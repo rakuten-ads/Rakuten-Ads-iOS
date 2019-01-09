@@ -4,7 +4,4 @@
    <FileRef
       location = "group:RDN/RDN.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:Core/Core.xcodeproj">
-   </FileRef>
 </Workspace>
