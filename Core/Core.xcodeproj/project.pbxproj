@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		325FF74721F065B400A899CF /* Aggregate */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 325FF74821F065B400A899CF /* Build configuration list for PBXAggregateTarget "Aggregate" */;
+			buildPhases = (
+				325FF74B21F065C900A899CF /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Aggregate;
+			productName = Aggregate;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		32F258C621E5866D001FD9C0 /* GAPCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258BC21E5866C001FD9C0 /* GAPCore.framework */; };
 		32F258CB21E5866D001FD9C0 /* CoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F258CA21E5866D001FD9C0 /* CoreTests.m */; };
@@ -44,6 +58,7 @@
 
 /* Begin PBXFileReference section */
 		325FF73F21E5EDDF00A899CF /* gapcore.private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = gapcore.private.modulemap; sourceTree = "<group>"; };
+		325FF74621F0584E00A899CF /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
 		32F258BC21E5866C001FD9C0 /* GAPCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GAPCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258C521E5866D001FD9C0 /* CoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258CA21E5866D001FD9C0 /* CoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreTests.m; sourceTree = "<group>"; };
@@ -95,6 +110,7 @@
 		32F258B221E5866C001FD9C0 = {
 			isa = PBXGroup;
 			children = (
+				325FF74621F0584E00A899CF /* Scripts */,
 				32F259B821E599F4001FD9C0 /* Core */,
 				32F258C921E5866D001FD9C0 /* CoreTests */,
 				32F258BD21E5866C001FD9C0 /* Products */,
@@ -252,6 +268,9 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Rakuten MPD";
 				TargetAttributes = {
+					325FF74721F065B400A899CF = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					32F258BB21E5866C001FD9C0 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -274,6 +293,7 @@
 			targets = (
 				32F258BB21E5866C001FD9C0 /* Core */,
 				32F258C421E5866D001FD9C0 /* CoreTests */,
+				325FF74721F065B400A899CF /* Aggregate */,
 			);
 		};
 /* End PBXProject section */
@@ -294,6 +314,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		325FF74B21F065C900A899CF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nScripts/carthage-iOS.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		32F258B821E5866C001FD9C0 /* Sources */ = {
@@ -331,6 +371,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		325FF74921F065B400A899CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		325FF74A21F065B400A899CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		32F258CE21E5866D001FD9C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -466,6 +522,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MODULEMAP_FILE = Core/gapcore.modulemap;
 				MODULEMAP_PRIVATE_FILE = Core/gapcore.private.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.gap.sdk.Core;
@@ -493,6 +550,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MODULEMAP_FILE = Core/gapcore.modulemap;
 				MODULEMAP_PRIVATE_FILE = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.gap.sdk.Core;
@@ -538,6 +596,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		325FF74821F065B400A899CF /* Build configuration list for PBXAggregateTarget "Aggregate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				325FF74921F065B400A899CF /* Debug */,
+				325FF74A21F065B400A899CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		32F258B621E5866C001FD9C0 /* Build configuration list for PBXProject "Core" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-               BuildableName = "GAPRDN.framework"
-               BlueprintName = "RDN"
-               ReferencedContainer = "container:RDN.xcodeproj">
+               BlueprintIdentifier = "32F258BB21E5866C001FD9C0"
+               BuildableName = "GAPCore.framework"
+               BlueprintName = "Core"
+               ReferencedContainer = "container:Core.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,20 +32,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "32F258E821E58689001FD9C0"
-               BuildableName = "RDNTests.xctest"
-               BlueprintName = "RDNTests"
-               ReferencedContainer = "container:RDN.xcodeproj">
+               BlueprintIdentifier = "32F258C421E5866D001FD9C0"
+               BuildableName = "CoreTests.xctest"
+               BlueprintName = "CoreTests"
+               ReferencedContainer = "container:Core.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-            BuildableName = "GAPRDN.framework"
-            BlueprintName = "RDN"
-            ReferencedContainer = "container:RDN.xcodeproj">
+            BlueprintIdentifier = "32F258BB21E5866C001FD9C0"
+            BuildableName = "GAPCore.framework"
+            BlueprintName = "Core"
+            ReferencedContainer = "container:Core.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -64,10 +64,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-            BuildableName = "GAPRDN.framework"
-            BlueprintName = "RDN"
-            ReferencedContainer = "container:RDN.xcodeproj">
+            BlueprintIdentifier = "32F258BB21E5866C001FD9C0"
+            BuildableName = "GAPCore.framework"
+            BlueprintName = "Core"
+            ReferencedContainer = "container:Core.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -82,10 +82,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-            BuildableName = "GAPRDN.framework"
-            BlueprintName = "RDN"
-            ReferencedContainer = "container:RDN.xcodeproj">
+            BlueprintIdentifier = "32F258BB21E5866C001FD9C0"
+            BuildableName = "GAPCore.framework"
+            BlueprintName = "Core"
+            ReferencedContainer = "container:Core.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

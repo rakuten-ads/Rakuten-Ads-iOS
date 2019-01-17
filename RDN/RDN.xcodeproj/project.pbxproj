@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		325FF74E21F0709800A899CF /* Aggregate */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 325FF74F21F0709800A899CF /* Build configuration list for PBXAggregateTarget "Aggregate" */;
+			buildPhases = (
+				325FF75221F0709F00A899CF /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Aggregate;
+			productName = Aggregate;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		325FF74121E605F100A899CF /* GAPCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* GAPCore.framework */; };
 		32F258EA21E58689001FD9C0 /* GAPRDN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258E021E58689001FD9C0 /* GAPRDN.framework */; };
@@ -57,6 +71,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		325FF74521F0577900A899CF /* gaprdn.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = gaprdn.modulemap; sourceTree = "<group>"; };
+		325FF74C21F0706000A899CF /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
 		32F258E021E58689001FD9C0 /* GAPRDN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GAPRDN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258E321E58689001FD9C0 /* RDN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RDN.h; sourceTree = "<group>"; };
 		32F258E421E58689001FD9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -103,6 +119,7 @@
 		32F258D621E58689001FD9C0 = {
 			isa = PBXGroup;
 			children = (
+				325FF74C21F0706000A899CF /* Scripts */,
 				32F25A1721E5A96C001FD9C0 /* Core.xcodeproj */,
 				32F258E221E58689001FD9C0 /* RDN */,
 				32F258ED21E58689001FD9C0 /* RDNTests */,
@@ -130,6 +147,7 @@
 				32F258E321E58689001FD9C0 /* RDN.h */,
 				32F25A1221E5A4E5001FD9C0 /* PrefixHeader.pch */,
 				32F258E421E58689001FD9C0 /* Info.plist */,
+				325FF74521F0577900A899CF /* gaprdn.modulemap */,
 			);
 			path = RDN;
 			sourceTree = "<group>";
@@ -266,6 +284,9 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Rakuten MPD";
 				TargetAttributes = {
+					325FF74E21F0709800A899CF = {
+						CreatedOnToolsVersion = 10.1;
+					};
 					32F258DF21E58689001FD9C0 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -294,6 +315,7 @@
 			targets = (
 				32F258DF21E58689001FD9C0 /* RDN */,
 				32F258E821E58689001FD9C0 /* RDNTests */,
+				325FF74E21F0709800A899CF /* Aggregate */,
 			);
 		};
 /* End PBXProject section */
@@ -331,6 +353,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		325FF75221F0709F00A899CF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nScripts/carthage-iOS.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		32F258DC21E58689001FD9C0 /* Sources */ = {
@@ -370,6 +412,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		325FF75021F0709800A899CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		325FF75121F0709800A899CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		32F258F221E58689001FD9C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -493,7 +551,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -506,6 +564,8 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = mh_dylib;
+				MODULEMAP_FILE = RDN/gaprdn.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.gap.sdk.RDN;
 				PRODUCT_NAME = "GAP$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -518,7 +578,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -531,6 +591,8 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACH_O_TYPE = mh_dylib;
+				MODULEMAP_FILE = RDN/gaprdn.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.gap.sdk.RDN;
 				PRODUCT_NAME = "GAP$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -573,6 +635,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		325FF74F21F0709800A899CF /* Build configuration list for PBXAggregateTarget "Aggregate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				325FF75021F0709800A899CF /* Debug */,
+				325FF75121F0709800A899CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		32F258DA21E58689001FD9C0 /* Build configuration list for PBXProject "RDN" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
