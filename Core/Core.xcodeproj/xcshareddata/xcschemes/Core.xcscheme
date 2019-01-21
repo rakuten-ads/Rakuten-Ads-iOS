@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "32F258BB21E5866C001FD9C0"
-               BuildableName = "GAPCore.framework"
+               BuildableName = "RPSCore.framework"
                BlueprintName = "Core"
                ReferencedContainer = "container:Core.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "32F258BB21E5866C001FD9C0"
-            BuildableName = "GAPCore.framework"
+            BuildableName = "RPSCore.framework"
             BlueprintName = "Core"
             ReferencedContainer = "container:Core.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "32F258BB21E5866C001FD9C0"
-            BuildableName = "GAPCore.framework"
+            BuildableName = "RPSCore.framework"
             BlueprintName = "Core"
             ReferencedContainer = "container:Core.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "32F258BB21E5866C001FD9C0"
-            BuildableName = "GAPCore.framework"
+            BuildableName = "RPSCore.framework"
             BlueprintName = "Core"
             ReferencedContainer = "container:Core.xcodeproj">
          </BuildableReference>

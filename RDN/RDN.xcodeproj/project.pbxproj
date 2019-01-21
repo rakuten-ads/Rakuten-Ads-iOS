@@ -21,22 +21,22 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		325FF74121E605F100A899CF /* GAPCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* GAPCore.framework */; };
-		32F258EA21E58689001FD9C0 /* GAPRDN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258E021E58689001FD9C0 /* GAPRDN.framework */; };
+		325FF74121E605F100A899CF /* RPSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RPSCore.framework */; };
+		32F258EA21E58689001FD9C0 /* RPSRDN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258E021E58689001FD9C0 /* RPSRDN.framework */; };
 		32F258EF21E58689001FD9C0 /* RDNTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F258EE21E58689001FD9C0 /* RDNTests.m */; };
-		32F258F121E58689001FD9C0 /* GAPRDN.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F258E321E58689001FD9C0 /* GAPRDN.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32F2595D21E597E5001FD9C0 /* GAPDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2594D21E597E5001FD9C0 /* GAPDefines.h */; };
-		32F2595E21E597E5001FD9C0 /* GAPDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2594E21E597E5001FD9C0 /* GAPDefines.m */; };
-		32F2595F21E597E5001FD9C0 /* GAPAdNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595021E597E5001FD9C0 /* GAPAdNative.m */; };
-		32F2596021E597E5001FD9C0 /* GAPAdView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595121E597E5001FD9C0 /* GAPAdView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32F2596121E597E5001FD9C0 /* GAPAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595221E597E5001FD9C0 /* GAPAdView.m */; };
-		32F2596221E597E5001FD9C0 /* GAPAdNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595321E597E5001FD9C0 /* GAPAdNative.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32F2596321E597E5001FD9C0 /* GAPAdRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595521E597E5001FD9C0 /* GAPAdRequest.m */; };
-		32F2596421E597E5001FD9C0 /* GAPAdRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595621E597E5001FD9C0 /* GAPAdRequest.h */; };
-		32F2596521E597E5001FD9C0 /* GAPAdSpotInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595821E597E5001FD9C0 /* GAPAdSpotInfo.h */; };
-		32F2596621E597E5001FD9C0 /* GAPAdSpotInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595921E597E5001FD9C0 /* GAPAdSpotInfo.m */; };
-		32F2596721E597E5001FD9C0 /* GAPAdWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595B21E597E5001FD9C0 /* GAPAdWebView.m */; };
-		32F2596821E597E5001FD9C0 /* GAPAdWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595C21E597E5001FD9C0 /* GAPAdWebView.h */; };
+		32F258F121E58689001FD9C0 /* RPSRDN.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F258E321E58689001FD9C0 /* RPSRDN.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32F2595D21E597E5001FD9C0 /* RPSDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2594D21E597E5001FD9C0 /* RPSDefines.h */; };
+		32F2595E21E597E5001FD9C0 /* RPSDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2594E21E597E5001FD9C0 /* RPSDefines.m */; };
+		32F2595F21E597E5001FD9C0 /* RPSAdNative.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595021E597E5001FD9C0 /* RPSAdNative.m */; };
+		32F2596021E597E5001FD9C0 /* RPSAdView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595121E597E5001FD9C0 /* RPSAdView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32F2596121E597E5001FD9C0 /* RPSAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595221E597E5001FD9C0 /* RPSAdView.m */; };
+		32F2596221E597E5001FD9C0 /* RPSAdNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595321E597E5001FD9C0 /* RPSAdNative.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32F2596321E597E5001FD9C0 /* RPSAdRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595521E597E5001FD9C0 /* RPSAdRequest.m */; };
+		32F2596421E597E5001FD9C0 /* RPSAdRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595621E597E5001FD9C0 /* RPSAdRequest.h */; };
+		32F2596521E597E5001FD9C0 /* RPSAdSpotInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595821E597E5001FD9C0 /* RPSAdSpotInfo.h */; };
+		32F2596621E597E5001FD9C0 /* RPSAdSpotInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595921E597E5001FD9C0 /* RPSAdSpotInfo.m */; };
+		32F2596721E597E5001FD9C0 /* RPSAdWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595B21E597E5001FD9C0 /* RPSAdWebView.m */; };
+		32F2596821E597E5001FD9C0 /* RPSAdWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595C21E597E5001FD9C0 /* RPSAdWebView.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,26 +71,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		325FF74521F0577900A899CF /* gaprdn.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = gaprdn.modulemap; sourceTree = "<group>"; };
+		325FF74521F0577900A899CF /* rpsrdn.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = rpsrdn.modulemap; sourceTree = "<group>"; };
 		325FF74C21F0706000A899CF /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
-		32F258E021E58689001FD9C0 /* GAPRDN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GAPRDN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		32F258E321E58689001FD9C0 /* GAPRDN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GAPRDN.h; sourceTree = "<group>"; };
+		32F258E021E58689001FD9C0 /* RPSRDN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RPSRDN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32F258E321E58689001FD9C0 /* RPSRDN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSRDN.h; sourceTree = "<group>"; };
 		32F258E421E58689001FD9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32F258E921E58689001FD9C0 /* RDNTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RDNTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258EE21E58689001FD9C0 /* RDNTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RDNTests.m; sourceTree = "<group>"; };
 		32F258F021E58689001FD9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		32F2594D21E597E5001FD9C0 /* GAPDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPDefines.h; sourceTree = "<group>"; };
-		32F2594E21E597E5001FD9C0 /* GAPDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPDefines.m; sourceTree = "<group>"; };
-		32F2595021E597E5001FD9C0 /* GAPAdNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPAdNative.m; sourceTree = "<group>"; };
-		32F2595121E597E5001FD9C0 /* GAPAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPAdView.h; sourceTree = "<group>"; };
-		32F2595221E597E5001FD9C0 /* GAPAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPAdView.m; sourceTree = "<group>"; };
-		32F2595321E597E5001FD9C0 /* GAPAdNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPAdNative.h; sourceTree = "<group>"; };
-		32F2595521E597E5001FD9C0 /* GAPAdRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPAdRequest.m; sourceTree = "<group>"; };
-		32F2595621E597E5001FD9C0 /* GAPAdRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPAdRequest.h; sourceTree = "<group>"; };
-		32F2595821E597E5001FD9C0 /* GAPAdSpotInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPAdSpotInfo.h; sourceTree = "<group>"; };
-		32F2595921E597E5001FD9C0 /* GAPAdSpotInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPAdSpotInfo.m; sourceTree = "<group>"; };
-		32F2595B21E597E5001FD9C0 /* GAPAdWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAPAdWebView.m; sourceTree = "<group>"; };
-		32F2595C21E597E5001FD9C0 /* GAPAdWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAPAdWebView.h; sourceTree = "<group>"; };
+		32F2594D21E597E5001FD9C0 /* RPSDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSDefines.h; sourceTree = "<group>"; };
+		32F2594E21E597E5001FD9C0 /* RPSDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSDefines.m; sourceTree = "<group>"; };
+		32F2595021E597E5001FD9C0 /* RPSAdNative.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSAdNative.m; sourceTree = "<group>"; };
+		32F2595121E597E5001FD9C0 /* RPSAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSAdView.h; sourceTree = "<group>"; };
+		32F2595221E597E5001FD9C0 /* RPSAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSAdView.m; sourceTree = "<group>"; };
+		32F2595321E597E5001FD9C0 /* RPSAdNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSAdNative.h; sourceTree = "<group>"; };
+		32F2595521E597E5001FD9C0 /* RPSAdRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSAdRequest.m; sourceTree = "<group>"; };
+		32F2595621E597E5001FD9C0 /* RPSAdRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSAdRequest.h; sourceTree = "<group>"; };
+		32F2595821E597E5001FD9C0 /* RPSAdSpotInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSAdSpotInfo.h; sourceTree = "<group>"; };
+		32F2595921E597E5001FD9C0 /* RPSAdSpotInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSAdSpotInfo.m; sourceTree = "<group>"; };
+		32F2595B21E597E5001FD9C0 /* RPSAdWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSAdWebView.m; sourceTree = "<group>"; };
+		32F2595C21E597E5001FD9C0 /* RPSAdWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSAdWebView.h; sourceTree = "<group>"; };
 		32F25A1121E5A4BD001FD9C0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../../../Core/Core/PrefixHeader.pch; sourceTree = "<group>"; };
 		32F25A1221E5A4E5001FD9C0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		32F25A1721E5A96C001FD9C0 /* Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core.xcodeproj; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				325FF74121E605F100A899CF /* GAPCore.framework in Frameworks */,
+				325FF74121E605F100A899CF /* RPSCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32F258EA21E58689001FD9C0 /* GAPRDN.framework in Frameworks */,
+				32F258EA21E58689001FD9C0 /* RPSRDN.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +130,7 @@
 		32F258E121E58689001FD9C0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				32F258E021E58689001FD9C0 /* GAPRDN.framework */,
+				32F258E021E58689001FD9C0 /* RPSRDN.framework */,
 				32F258E921E58689001FD9C0 /* RDNTests.xctest */,
 			);
 			name = Products;
@@ -144,10 +144,10 @@
 				32F2595721E597E5001FD9C0 /* Model */,
 				32F2595421E597E5001FD9C0 /* Request */,
 				32F2595A21E597E5001FD9C0 /* UI */,
-				32F258E321E58689001FD9C0 /* GAPRDN.h */,
+				32F258E321E58689001FD9C0 /* RPSRDN.h */,
 				32F25A1221E5A4E5001FD9C0 /* PrefixHeader.pch */,
 				32F258E421E58689001FD9C0 /* Info.plist */,
-				325FF74521F0577900A899CF /* gaprdn.modulemap */,
+				325FF74521F0577900A899CF /* rpsrdn.modulemap */,
 			);
 			path = RDN;
 			sourceTree = "<group>";
@@ -164,8 +164,8 @@
 		32F2594C21E597E5001FD9C0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				32F2594D21E597E5001FD9C0 /* GAPDefines.h */,
-				32F2594E21E597E5001FD9C0 /* GAPDefines.m */,
+				32F2594D21E597E5001FD9C0 /* RPSDefines.h */,
+				32F2594E21E597E5001FD9C0 /* RPSDefines.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -173,10 +173,10 @@
 		32F2594F21E597E5001FD9C0 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				32F2595021E597E5001FD9C0 /* GAPAdNative.m */,
-				32F2595121E597E5001FD9C0 /* GAPAdView.h */,
-				32F2595221E597E5001FD9C0 /* GAPAdView.m */,
-				32F2595321E597E5001FD9C0 /* GAPAdNative.h */,
+				32F2595121E597E5001FD9C0 /* RPSAdView.h */,
+				32F2595221E597E5001FD9C0 /* RPSAdView.m */,
+				32F2595321E597E5001FD9C0 /* RPSAdNative.h */,
+				32F2595021E597E5001FD9C0 /* RPSAdNative.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -184,8 +184,8 @@
 		32F2595421E597E5001FD9C0 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				32F2595521E597E5001FD9C0 /* GAPAdRequest.m */,
-				32F2595621E597E5001FD9C0 /* GAPAdRequest.h */,
+				32F2595521E597E5001FD9C0 /* RPSAdRequest.m */,
+				32F2595621E597E5001FD9C0 /* RPSAdRequest.h */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -193,8 +193,8 @@
 		32F2595721E597E5001FD9C0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				32F2595821E597E5001FD9C0 /* GAPAdSpotInfo.h */,
-				32F2595921E597E5001FD9C0 /* GAPAdSpotInfo.m */,
+				32F2595821E597E5001FD9C0 /* RPSAdSpotInfo.h */,
+				32F2595921E597E5001FD9C0 /* RPSAdSpotInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,8 +203,8 @@
 			isa = PBXGroup;
 			children = (
 				32F25A1121E5A4BD001FD9C0 /* PrefixHeader.pch */,
-				32F2595B21E597E5001FD9C0 /* GAPAdWebView.m */,
-				32F2595C21E597E5001FD9C0 /* GAPAdWebView.h */,
+				32F2595B21E597E5001FD9C0 /* RPSAdWebView.m */,
+				32F2595C21E597E5001FD9C0 /* RPSAdWebView.h */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -212,7 +212,7 @@
 		32F25A1821E5A96C001FD9C0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				32F25A1D21E5A96C001FD9C0 /* GAPCore.framework */,
+				32F25A1D21E5A96C001FD9C0 /* RPSCore.framework */,
 				32F25A1F21E5A96C001FD9C0 /* CoreTests.xctest */,
 			);
 			name = Products;
@@ -225,13 +225,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32F2596521E597E5001FD9C0 /* GAPAdSpotInfo.h in Headers */,
-				32F2596221E597E5001FD9C0 /* GAPAdNative.h in Headers */,
-				32F2596021E597E5001FD9C0 /* GAPAdView.h in Headers */,
-				32F2595D21E597E5001FD9C0 /* GAPDefines.h in Headers */,
-				32F258F121E58689001FD9C0 /* GAPRDN.h in Headers */,
-				32F2596421E597E5001FD9C0 /* GAPAdRequest.h in Headers */,
-				32F2596821E597E5001FD9C0 /* GAPAdWebView.h in Headers */,
+				32F2596521E597E5001FD9C0 /* RPSAdSpotInfo.h in Headers */,
+				32F2596221E597E5001FD9C0 /* RPSAdNative.h in Headers */,
+				32F2596021E597E5001FD9C0 /* RPSAdView.h in Headers */,
+				32F2595D21E597E5001FD9C0 /* RPSDefines.h in Headers */,
+				32F258F121E58689001FD9C0 /* RPSRDN.h in Headers */,
+				32F2596421E597E5001FD9C0 /* RPSAdRequest.h in Headers */,
+				32F2596821E597E5001FD9C0 /* RPSAdWebView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +254,7 @@
 			);
 			name = RDN;
 			productName = RDN;
-			productReference = 32F258E021E58689001FD9C0 /* GAPRDN.framework */;
+			productReference = 32F258E021E58689001FD9C0 /* RPSRDN.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		32F258E821E58689001FD9C0 /* RDNTests */ = {
@@ -321,10 +321,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		32F25A1D21E5A96C001FD9C0 /* GAPCore.framework */ = {
+		32F25A1D21E5A96C001FD9C0 /* RPSCore.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = GAPCore.framework;
+			path = RPSCore.framework;
 			remoteRef = 32F25A1C21E5A96C001FD9C0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -379,12 +379,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32F2595F21E597E5001FD9C0 /* GAPAdNative.m in Sources */,
-				32F2596121E597E5001FD9C0 /* GAPAdView.m in Sources */,
-				32F2595E21E597E5001FD9C0 /* GAPDefines.m in Sources */,
-				32F2596621E597E5001FD9C0 /* GAPAdSpotInfo.m in Sources */,
-				32F2596321E597E5001FD9C0 /* GAPAdRequest.m in Sources */,
-				32F2596721E597E5001FD9C0 /* GAPAdWebView.m in Sources */,
+				32F2595F21E597E5001FD9C0 /* RPSAdNative.m in Sources */,
+				32F2596121E597E5001FD9C0 /* RPSAdView.m in Sources */,
+				32F2595E21E597E5001FD9C0 /* RPSDefines.m in Sources */,
+				32F2596621E597E5001FD9C0 /* RPSAdSpotInfo.m in Sources */,
+				32F2596321E597E5001FD9C0 /* RPSAdRequest.m in Sources */,
+				32F2596721E597E5001FD9C0 /* RPSAdWebView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,9 +565,9 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MODULEMAP_FILE = RDN/gaprdn.modulemap;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.gap.sdk.RDN;
-				PRODUCT_NAME = "GAP$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = RDN/rpsrdn.modulemap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.sdk.RDN;
+				PRODUCT_NAME = "RPS$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -592,9 +592,9 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MODULEMAP_FILE = RDN/gaprdn.modulemap;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.gap.sdk.RDN;
-				PRODUCT_NAME = "GAP$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = RDN/rpsrdn.modulemap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.sdk.RDN;
+				PRODUCT_NAME = "RPS$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -610,7 +610,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.gap.sdk.RDNTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.sdk.RDNTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -626,7 +626,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.gap.sdk.RDNTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.sdk.RDNTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

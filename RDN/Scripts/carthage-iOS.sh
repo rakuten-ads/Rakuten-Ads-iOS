@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #  carthage-iOS.sh
-#  GAPRDN
+#  RPSRDN
 #
 #  Created by Wu Wei on 2019/01/15.
 #  Copyright © 2018 LOB. All rights reserved.
@@ -10,7 +10,7 @@ echo
 echo "===[$0] START==="
 set -eo pipefail
 
-SDK_PRODUCT_NAME=GAPRDN
+SDK_PRODUCT_NAME=RPSRDN
 if [ ! $SDK_OUTPUT_DIR ]; then
 	SDK_OUTPUT_DIR=${PROJECT_DIR}/build/${CONFIGURATION}
 fi

@@ -6,8 +6,8 @@
 
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
-#import "GAPMacros.h"
-#import "GAPVerboseLogger.h"
+#import "RPSMacros.h"
+#import "RPSVerboseLogger.h"
 #endif
 
 #endif /* PrefixHeader_pch */

@@ -1,6 +1,0 @@
-framework module GAPCore {
-    umbrella header "GAPCore.h"
-
-    export *
-    module * { export * }
-}
