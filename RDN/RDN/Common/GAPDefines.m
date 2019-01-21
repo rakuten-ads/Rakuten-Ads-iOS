@@ -7,7 +7,9 @@
 //
 
 #import "GAPDefines.h"
+#import "GAPRDN.h"
 #import <GAPCore/GAPValid.h>
+#import <GAPCore/GAPCore.h>
 
 NSString* GAP_AD_TYPE_BANNER = @"banner";
 NSString* GAP_AD_TYPE_VIDEO = @"video";
@@ -23,11 +25,6 @@ NSString* GAP_DOMAIN_BID = @"http://dev-s-bid.rx-ad.com"; // Developement
 #else
 NSString* GAP_DOMAIN_BID = @"http://s-bid.rmp.rakuten.co.jp"; // Production
 #endif
-
-
-#define STR(m) @"" #m
-#define EVAL(f, v) f(v)
-NSString* GAP_SDK_VERSION = EVAL(STR, MACRO_GAP_SDK_VERSION);
 
 @implementation GAPDefines {
     dispatch_queue_t _underlyingQueue;
@@ -107,14 +104,16 @@ NSString* GAP_SDK_VERSION = EVAL(STR, MACRO_GAP_SDK_VERSION);
 -(NSString *)description {
     [self.userAgentInfo syncResult];
     return [NSString stringWithFormat:
-            @"SDK version: %@\n"
+            @"SDK RDN version: %@\n"
+            @"SDK Core version: %@\n"
             @"IDFA: %@\n"
             @"UA: %@\n"
             @"%@"
             @"Bundle identifier: %@\n"
             @"Bundle version: %@\n"
             ,
-            GAP_SDK_VERSION,
+            GAPRDNVersionNumber,
+            GAPCoreVersionNumber,
             self->_idfaInfo.idfa,
             self->_userAgentInfo.userAgent,
             [self->_deviceInfo description],

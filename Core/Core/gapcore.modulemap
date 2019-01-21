@@ -1,5 +1,5 @@
 framework module GAPCore {
-    umbrella header "Core.h"
+    umbrella header "GAPCore.h"
 
     export *
     module * { export * }

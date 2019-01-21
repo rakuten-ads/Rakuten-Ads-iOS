@@ -9,12 +9,10 @@
 #import <Foundation/Foundation.h>
 
 //! Project version number for Core.
-FOUNDATION_EXPORT double CoreVersionNumber;
+FOUNDATION_EXPORT double GAPCoreVersionNumber;
 
 //! Project version string for Core.
-FOUNDATION_EXPORT const unsigned char CoreVersionString[];
+FOUNDATION_EXPORT const unsigned char GAPCoreVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <GAPCore/PublicHeader.h>
 
-
-#import "GAPMacros.h"

@@ -1,5 +1,5 @@
 framework module GAPCore {
-    umbrella header "RDN.h"
+    umbrella header "GAPRDN.h"
 
     export *
     module * { export * }
