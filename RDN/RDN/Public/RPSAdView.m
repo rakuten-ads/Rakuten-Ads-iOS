@@ -12,7 +12,7 @@
 #import <RPSCore/RPSValid.h>
 #import "RPSDefines.h"
 
-typedef BOOL (^RPSAdViewEventHandler)(RPSAdViewEvent event);
+typedef BOOL (^RPSAdViewEventHandler)(RPSAdView* view, RPSAdViewEvent event);
 
 typedef NS_ENUM(NSUInteger, RPSAdViewState) {
     RPS_ADVIEW_STATE_INIT,
@@ -263,7 +263,7 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
                 self.hidden = NO;
                 if (self.eventHandler) {
                     @try {
-                        self.eventHandler(RPS_ADVIEW_EVENT_SUCCEEDED);
+                        self.eventHandler(self, RPS_ADVIEW_EVENT_SUCCEEDED);
                     } @catch (NSException* exception) {
                         VERBOSE_LOG(@"exception when bannerOnSucesss callback: %@", exception);
                     }
@@ -287,7 +287,7 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
         BOOL shouldHandleFailureByDefault = YES;
         @try {
             if (self.eventHandler) {
-                shouldHandleFailureByDefault = self.eventHandler(RPS_ADVIEW_EVENT_FAILED);
+                shouldHandleFailureByDefault = self.eventHandler(self, RPS_ADVIEW_EVENT_FAILED);
             }
         } @catch(NSException* exception) {
             VERBOSE_LOG(@"exception when bannerOnFailure callback: %@", exception);
@@ -318,7 +318,7 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
             }
             RPSLog(@"WKNavigationActionPolicyCancel");
             if (self.eventHandler) {
-                self.eventHandler(RPS_ADVIEW_EVENT_CLICKED);
+                self.eventHandler(self, RPS_ADVIEW_EVENT_CLICKED);
             }
             self.state = RPS_ADVIEW_STATE_CLICKED;
             decisionHandler(WKNavigationActionPolicyCancel);

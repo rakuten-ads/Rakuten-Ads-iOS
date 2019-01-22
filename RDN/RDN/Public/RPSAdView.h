@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, RPSAdViewEvent) {
 @property(nonatomic, copy, nonnull) NSString* adSpotId;
 
 -(void) show;
--(void) showWithEventHandler:(nullable BOOL (^)(RPSAdViewEvent event)) handler;
+-(void) showWithEventHandler:(nullable BOOL (^)(RPSAdView* view, RPSAdViewEvent event)) handler;
 -(void) setPosition:(RPSAdViewPosition)position inView:(UIView*) parentView;
 
 @end
