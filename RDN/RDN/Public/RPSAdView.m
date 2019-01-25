@@ -64,17 +64,17 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
 }
 
 #pragma mark - APIs
--(void)show {
-    [self showWithEventHandler:nil];
+-(void)load {
+    [self loadWithEventHandler:nil];
 }
 
--(void) showWithEventHandler:(RPSAdViewEventHandler)handler {RPSTrace
+-(void) loadWithEventHandler:(RPSAdViewEventHandler)handler {RPSTrace
     self.eventHandler = handler;
     dispatch_async(RPSDefines.sharedQueue, ^{
         @try {
             VERBOSE_LOG(@"%@", RPSDefines.sharedInstance);
             if ([RPSValid isEmptyString:self.adSpotId]) {
-                NSLog(@"[RSSP] require adSpotId!");
+                NSLog(@"[RPS] require adSpotId!");
                 @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
             }
 
@@ -83,7 +83,7 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
             [request resume];
             self.state = RPS_ADVIEW_STATE_LOADING;
         } @catch(NSException* exception) {
-            VERBOSE_LOG(@"show exception: %@", exception);
+            VERBOSE_LOG(@"load exception: %@", exception);
             [self triggerFailure];
         }
     });
@@ -137,37 +137,37 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
     RPSTrace
     UILayoutGuide* safeGuide = self.parentView.safeAreaLayoutGuide;
     switch (self.position) {
-        case RPS_ADVIEW_POSITION_TOP_LEFT:
+        case RPSAdViewPositionTopLeft:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.leftAnchor constraintEqualToAnchor:safeGuide.leftAnchor],
                                                       [self.topAnchor constraintEqualToAnchor:safeGuide.topAnchor],
                                                       ]];
             break;
-        case RPS_ADVIEW_POSITION_TOP:
+        case RPSAdViewPositionTop:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.centerXAnchor constraintEqualToAnchor:safeGuide.centerXAnchor],
                                                       [self.topAnchor constraintEqualToAnchor:safeGuide.topAnchor],
                                                       ]];
             break;
-        case RPS_ADVIEW_POSITION_TOP_RIGHT:
+        case RPSAdViewPositionTopRight:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.rightAnchor constraintEqualToAnchor:safeGuide.rightAnchor],
                                                       [self.topAnchor constraintEqualToAnchor:safeGuide.topAnchor],
                                                       ]];
             break;
-        case RPS_ADVIEW_POSITION_BOTTOM_LEFT:
+        case RPSAdViewPositionBottomLeft:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.leftAnchor constraintEqualToAnchor:safeGuide.leftAnchor],
                                                       [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
                                                       ]];
             break;
-        case RPS_ADVIEW_POSITION_BOTTOM_RIGHT:
+        case RPSAdViewPositionBottomRight:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.rightAnchor constraintEqualToAnchor:safeGuide.rightAnchor],
                                                       [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
                                                       ]];
             break;
-        case RPS_ADVIEW_POSITION_BOTTOM:
+        case RPSAdViewPositionBottom:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.centerXAnchor constraintEqualToAnchor:safeGuide.centerXAnchor],
                                                       [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
@@ -181,37 +181,37 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
 -(void)applyPositionWithParentView {
     RPSTrace
     switch (self.position) {
-        case RPS_ADVIEW_POSITION_TOP_LEFT:
+        case RPSAdViewPositionTopLeft:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.topAnchor constraintEqualToAnchor:self.parentView.topAnchor],
                                                       [self.leftAnchor constraintEqualToAnchor:self.parentView.leftAnchor],
                                                       ]];
             break;
-        case RPS_ADVIEW_POSITION_TOP:
+        case RPSAdViewPositionTop:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.topAnchor constraintEqualToAnchor:self.parentView.topAnchor],
                                                       [self.centerXAnchor constraintEqualToAnchor:self.parentView.centerXAnchor],
                                                       ]];
             break;
-        case RPS_ADVIEW_POSITION_TOP_RIGHT:
+        case RPSAdViewPositionTopRight:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.topAnchor constraintEqualToAnchor:self.parentView.topAnchor],
                                                       [self.rightAnchor constraintEqualToAnchor:self.parentView.rightAnchor],
                                                       ]];
             break;
-        case RPS_ADVIEW_POSITION_BOTTOM_LEFT:
+        case RPSAdViewPositionBottomLeft:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.bottomAnchor constraintEqualToAnchor:self.parentView.bottomAnchor],
                                                       [self.leftAnchor constraintEqualToAnchor:self.parentView.leftAnchor],
                                                       ]];
             break;
-        case RPS_ADVIEW_POSITION_BOTTOM_RIGHT:
+        case RPSAdViewPositionBottomRight:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.bottomAnchor constraintEqualToAnchor:self.parentView.bottomAnchor],
                                                       [self.rightAnchor constraintEqualToAnchor:self.parentView.rightAnchor],
                                                       ]];
             break;
-        case RPS_ADVIEW_POSITION_BOTTOM:
+        case RPSAdViewPositionBottom:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.bottomAnchor constraintEqualToAnchor:self.parentView.bottomAnchor],
                                                       [self.centerXAnchor constraintEqualToAnchor:self.parentView.centerXAnchor],
@@ -246,12 +246,12 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
 
         if (!adSpotInfo) {
             VERBOSE_LOG(@"AdSpotInfo is empty");
-            @throw [NSException exceptionWithName:@"show failed" reason:@"adSpotInfo is empty" userInfo:@{@"RPSAdSpotInfo": [NSNull null]}];
+            @throw [NSException exceptionWithName:@"load failed" reason:@"adSpotInfo is empty" userInfo:@{@"RPSAdSpotInfo": [NSNull null]}];
         }
 
         if ([RPSValid isEmptyString:adSpotInfo.html]) {
             VERBOSE_LOG(@"adSpotInfo.htmlTemplate is empty");
-            @throw [NSException exceptionWithName:@"show failed" reason:@"adSpotInfo.htmlTemplate is empty" userInfo:@{@"RPSAdSpotInfo": adSpotInfo}];
+            @throw [NSException exceptionWithName:@"load failed" reason:@"adSpotInfo.htmlTemplate is empty" userInfo:@{@"RPSAdSpotInfo": adSpotInfo}];
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -263,7 +263,7 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
                 self.hidden = NO;
                 if (self.eventHandler) {
                     @try {
-                        self.eventHandler(self, RPS_ADVIEW_EVENT_SUCCEEDED);
+                        self.eventHandler(self, RPSAdViewEventSucceeded);
                     } @catch (NSException* exception) {
                         VERBOSE_LOG(@"exception when bannerOnSucesss callback: %@", exception);
                     }
@@ -287,7 +287,7 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
         BOOL shouldHandleFailureByDefault = YES;
         @try {
             if (self.eventHandler) {
-                shouldHandleFailureByDefault = self.eventHandler(self, RPS_ADVIEW_EVENT_FAILED);
+                shouldHandleFailureByDefault = self.eventHandler(self, RPSAdViewEventFailed);
             }
         } @catch(NSException* exception) {
             VERBOSE_LOG(@"exception when bannerOnFailure callback: %@", exception);
@@ -318,7 +318,7 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
             }
             RPSLog(@"WKNavigationActionPolicyCancel");
             if (self.eventHandler) {
-                self.eventHandler(self, RPS_ADVIEW_EVENT_CLICKED);
+                self.eventHandler(self, RPSAdViewEventClicked);
             }
             self.state = RPS_ADVIEW_STATE_CLICKED;
             decisionHandler(WKNavigationActionPolicyCancel);
