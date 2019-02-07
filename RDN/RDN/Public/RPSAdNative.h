@@ -10,6 +10,7 @@
 
 @interface RPSAdNative : NSObject
 
--(void) requestWithAdSpotId:(nonnull NSString*) adSpotId completionHandler:(nonnull void (^)(NSDictionary<NSString*, NSObject*>* _Nullable adInfo))handler;
+-(void) requestWithAdSpotId:(nonnull NSString*) adSpotId
+          completionHandler:(nonnull void (^)(NSDictionary<NSString*, NSObject*>* _Nullable adInfo))handler;
 
 @end

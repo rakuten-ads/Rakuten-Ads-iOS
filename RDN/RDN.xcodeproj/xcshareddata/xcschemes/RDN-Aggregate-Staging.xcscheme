@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-               BuildableName = "RPSRDN.framework"
-               BlueprintName = "RDN"
+               BlueprintIdentifier = "325FF74E21F0709800A899CF"
+               BuildableName = "Aggregate"
+               BlueprintName = "Aggregate"
                ReferencedContainer = "container:RDN.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "32F258E821E58689001FD9C0"
-               BuildableName = "RDNTests.xctest"
-               BlueprintName = "RDNTests"
-               ReferencedContainer = "container:RDN.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-            BuildableName = "RPSRDN.framework"
-            BlueprintName = "RDN"
-            ReferencedContainer = "container:RDN.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -64,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-            BuildableName = "RPSRDN.framework"
-            BlueprintName = "RDN"
+            BlueprintIdentifier = "325FF74E21F0709800A899CF"
+            BuildableName = "Aggregate"
+            BlueprintName = "Aggregate"
             ReferencedContainer = "container:RDN.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-            BuildableName = "RPSRDN.framework"
-            BlueprintName = "RDN"
+            BlueprintIdentifier = "325FF74E21F0709800A899CF"
+            BuildableName = "Aggregate"
+            BlueprintName = "Aggregate"
             ReferencedContainer = "container:RDN.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
