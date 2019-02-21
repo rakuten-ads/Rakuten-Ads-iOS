@@ -2,6 +2,7 @@
 #import <RPSCore/RPSWebUserAgent.h>
 #import <RPSCore/RPSIdfa.h>
 #import <RPSCore/RPSDevice.h>
+#import <RPSCore/RPSAppInfo.h>
 
 FOUNDATION_EXPORT NSString* RPS_AD_TYPE_BANNER;
 FOUNDATION_EXPORT NSString* RPS_AD_TYPE_VIDEO;
@@ -19,9 +20,7 @@ FOUNDATION_EXPORT NSString* RPS_DOMAIN_BID;
 @property(nonatomic, readonly, nonnull) RPSWebUserAgent* userAgentInfo;
 @property(nonatomic, readonly, nonnull) RPSIdfa* idfaInfo;
 @property(nonatomic, readonly, nonnull) RPSDevice* deviceInfo;
-@property(nonatomic, readonly, nonnull) NSString* bundleId;
-@property(nonatomic, readonly, nonnull) NSString* bundleVersion;
-
+@property(nonatomic, readonly, nonnull) RPSAppInfo* appInfo;
 
 +(instancetype) sharedInstance;
 +(dispatch_queue_t) sharedQueue;

@@ -21,6 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3259C07F221BF96C00CBF0BC /* RPSOpenRTBRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 3259C07D221BF96C00CBF0BC /* RPSOpenRTBRequest.h */; };
+		3259C080221BF96C00CBF0BC /* RPSOpenRTBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3259C07E221BF96C00CBF0BC /* RPSOpenRTBRequest.m */; };
+		3259C083221E5A7700CBF0BC /* RPSBannerBidRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 3259C081221E5A7700CBF0BC /* RPSBannerBidRequest.h */; };
+		3259C084221E5A7700CBF0BC /* RPSBannerBidRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3259C082221E5A7700CBF0BC /* RPSBannerBidRequest.m */; };
 		325FF74121E605F100A899CF /* RPSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RPSCore.framework */; };
 		32F258EA21E58689001FD9C0 /* RPSRDN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258E021E58689001FD9C0 /* RPSRDN.framework */; };
 		32F258EF21E58689001FD9C0 /* RDNTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F258EE21E58689001FD9C0 /* RDNTests.m */; };
@@ -71,6 +75,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3259C07D221BF96C00CBF0BC /* RPSOpenRTBRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSOpenRTBRequest.h; sourceTree = "<group>"; };
+		3259C07E221BF96C00CBF0BC /* RPSOpenRTBRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSOpenRTBRequest.m; sourceTree = "<group>"; };
+		3259C081221E5A7700CBF0BC /* RPSBannerBidRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBannerBidRequest.h; sourceTree = "<group>"; };
+		3259C082221E5A7700CBF0BC /* RPSBannerBidRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerBidRequest.m; sourceTree = "<group>"; };
 		325FF74521F0577900A899CF /* rpsrdn.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = rpsrdn.modulemap; sourceTree = "<group>"; };
 		325FF74C21F0706000A899CF /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
 		32F258E021E58689001FD9C0 /* RPSRDN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RPSRDN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +124,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3259C07C221BF94600CBF0BC /* OpenRTB */ = {
+			isa = PBXGroup;
+			children = (
+				3259C07D221BF96C00CBF0BC /* RPSOpenRTBRequest.h */,
+				3259C07E221BF96C00CBF0BC /* RPSOpenRTBRequest.m */,
+				3259C081221E5A7700CBF0BC /* RPSBannerBidRequest.h */,
+				3259C082221E5A7700CBF0BC /* RPSBannerBidRequest.m */,
+			);
+			path = OpenRTB;
+			sourceTree = "<group>";
+		};
 		32F258D621E58689001FD9C0 = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +183,7 @@
 		32F2594C21E597E5001FD9C0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3259C07C221BF94600CBF0BC /* OpenRTB */,
 				32F2594D21E597E5001FD9C0 /* RPSDefines.h */,
 				32F2594E21E597E5001FD9C0 /* RPSDefines.m */,
 			);
@@ -184,8 +204,8 @@
 		32F2595421E597E5001FD9C0 /* Request */ = {
 			isa = PBXGroup;
 			children = (
-				32F2595521E597E5001FD9C0 /* RPSAdRequest.m */,
 				32F2595621E597E5001FD9C0 /* RPSAdRequest.h */,
+				32F2595521E597E5001FD9C0 /* RPSAdRequest.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -226,9 +246,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				32F2596521E597E5001FD9C0 /* RPSAdSpotInfo.h in Headers */,
+				3259C07F221BF96C00CBF0BC /* RPSOpenRTBRequest.h in Headers */,
 				32F2596221E597E5001FD9C0 /* RPSAdNative.h in Headers */,
 				32F2596021E597E5001FD9C0 /* RPSAdView.h in Headers */,
 				32F2595D21E597E5001FD9C0 /* RPSDefines.h in Headers */,
+				3259C083221E5A7700CBF0BC /* RPSBannerBidRequest.h in Headers */,
 				32F258F121E58689001FD9C0 /* RPSRDN.h in Headers */,
 				32F2596421E597E5001FD9C0 /* RPSAdRequest.h in Headers */,
 				32F2596821E597E5001FD9C0 /* RPSAdWebView.h in Headers */,
@@ -380,7 +402,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				32F2595F21E597E5001FD9C0 /* RPSAdNative.m in Sources */,
+				3259C080221BF96C00CBF0BC /* RPSOpenRTBRequest.m in Sources */,
 				32F2596121E597E5001FD9C0 /* RPSAdView.m in Sources */,
+				3259C084221E5A7700CBF0BC /* RPSBannerBidRequest.m in Sources */,
 				32F2595E21E597E5001FD9C0 /* RPSDefines.m in Sources */,
 				32F2596621E597E5001FD9C0 /* RPSAdSpotInfo.m in Sources */,
 				32F2596321E597E5001FD9C0 /* RPSAdRequest.m in Sources */,

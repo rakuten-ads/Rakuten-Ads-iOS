@@ -75,26 +75,7 @@ NSString* RPS_DOMAIN_BID = @"http://s-bid.rmp.rakuten.co.jp"; // Production
         }
         
         {
-            self->_bundleId = NSBundle.mainBundle.bundleIdentifier;
-        }
-        {
-            self->_bundleVersion = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
-            if (!self->_bundleVersion) {
-                // if CFBundleShortVersionString not found in main bundle, like UnitTest
-                [NSBundle.allBundles enumerateObjectsUsingBlock:^(NSBundle * _Nonnull bundle, NSUInteger idx, BOOL * _Nonnull stop) {
-                    NSString* infoPath = [bundle pathForResource:@"Info" ofType:@"plist"];
-                    if (infoPath) {
-                        NSDictionary* infoDict = [NSDictionary dictionaryWithContentsOfFile:infoPath];
-                        self->_bundleVersion = [infoDict objectForKey:@"CFBundleShortVersionString"];
-                        if ([RPSValid isNotEmptyString:self->_bundleVersion]) {
-                            if ([RPSValid isEmptyString:self->_bundleId]) {
-                                self->_bundleId = [infoDict objectForKey:@"CFBundleIdentifier"];
-                            }
-                            *stop = YES;
-                        }
-                    }
-                }];
-            }
+            self->_appInfo = [RPSAppInfo new];
         }
         
     }
@@ -108,17 +89,15 @@ NSString* RPS_DOMAIN_BID = @"http://s-bid.rmp.rakuten.co.jp"; // Production
             @"SDK Core version: %lf\n"
             @"IDFA: %@\n"
             @"UA: %@\n"
-            @"%@"
-            @"Bundle identifier: %@\n"
-            @"Bundle version: %@\n"
+            @"Device: %@"
+            @"AppInfo: %@\n"
             ,
             RPSRDNVersionNumber,
             RPSCoreVersionNumber,
             self->_idfaInfo.idfa,
             self->_userAgentInfo.userAgent,
-            [self->_deviceInfo description],
-            self->_bundleId,
-            self->_bundleVersion,
+            self->_deviceInfo,
+            self->_appInfo,
             nil];
 }
 

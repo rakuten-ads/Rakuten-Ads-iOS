@@ -1,11 +1,10 @@
 #import "RPSIdfa.h"
 #import <AdSupport/AdSupport.h>
 
-@implementation RPSIdfa {
-    NSString* _idfa;
-    BOOL _idte;
-    NSString* _encryptedIdfa;
-}
+@implementation RPSIdfa
+
+@synthesize idfa = _idfa;
+@synthesize trackingEnabled = _idte;
 
 - (instancetype)init
 {

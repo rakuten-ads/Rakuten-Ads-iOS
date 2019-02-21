@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		32CAC0DD22164E6400BB4CC4 /* RPSAppInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CAC0DB22164E6400BB4CC4 /* RPSAppInfo.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		32CAC0DE22164E6400BB4CC4 /* RPSAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAC0DC22164E6400BB4CC4 /* RPSAppInfo.m */; };
 		32F258C621E5866D001FD9C0 /* RPSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258BC21E5866C001FD9C0 /* RPSCore.framework */; };
 		32F258CB21E5866D001FD9C0 /* CoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F258CA21E5866D001FD9C0 /* CoreTests.m */; };
 		32F259D321E599F5001FD9C0 /* RPSCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259B921E599F4001FD9C0 /* RPSCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -59,6 +61,8 @@
 /* Begin PBXFileReference section */
 		325FF73F21E5EDDF00A899CF /* rpscore.private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = rpscore.private.modulemap; sourceTree = "<group>"; };
 		325FF74621F0584E00A899CF /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
+		32CAC0DB22164E6400BB4CC4 /* RPSAppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSAppInfo.h; sourceTree = "<group>"; };
+		32CAC0DC22164E6400BB4CC4 /* RPSAppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSAppInfo.m; sourceTree = "<group>"; };
 		32F258BC21E5866C001FD9C0 /* RPSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RPSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258C521E5866D001FD9C0 /* CoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258CA21E5866D001FD9C0 /* CoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreTests.m; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 				32F259BD21E599F4001FD9C0 /* RPSIdfa.m */,
 				32F259BE21E599F4001FD9C0 /* RPSWebUserAgent.h */,
 				32F259BB21E599F4001FD9C0 /* RPSWebUserAgent.m */,
+				32CAC0DB22164E6400BB4CC4 /* RPSAppInfo.h */,
+				32CAC0DC22164E6400BB4CC4 /* RPSAppInfo.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -206,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32F259D321E599F5001FD9C0 /* RPSCore.h in Headers */,
+				32CAC0DD22164E6400BB4CC4 /* RPSAppInfo.h in Headers */,
 				32F259DF21E599F5001FD9C0 /* RPSValid.h in Headers */,
 				32F259D521E599F5001FD9C0 /* RPSDevice.h in Headers */,
 				32F259D721E599F5001FD9C0 /* RPSWebUserAgent.h in Headers */,
@@ -345,6 +352,7 @@
 				32F259E121E599F5001FD9C0 /* RPSURLCoder.m in Sources */,
 				32F259E221E599F5001FD9C0 /* RPSVerboseLogger.m in Sources */,
 				32F259D821E599F5001FD9C0 /* RPSDevice.m in Sources */,
+				32CAC0DE22164E6400BB4CC4 /* RPSAppInfo.m in Sources */,
 				32F259D421E599F5001FD9C0 /* RPSWebUserAgent.m in Sources */,
 				32F259E321E599F5001FD9C0 /* RPSLogger.m in Sources */,
 				32F259DA21E599F5001FD9C0 /* RPSHttpSession.m in Sources */,

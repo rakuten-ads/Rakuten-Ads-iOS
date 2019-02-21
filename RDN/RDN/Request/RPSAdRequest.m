@@ -41,8 +41,8 @@
                                          @"dm": defs.deviceInfo.model ?: @"",
                                          @"ob": defs.deviceInfo.buildName ?: @"",
                                          @"sv": [NSString stringWithFormat:@"%lf", RPSRDNVersionNumber],
-                                         @"bd": defs.bundleId ?: @"",
-                                         @"av": defs.bundleVersion ?: @"",
+                                         @"bd": defs.appInfo.bundleIdentifier ?: @"",
+                                         @"av": defs.appInfo.bundleShortVersion ?: @"",
                                          }];
     
     if (defs.idfaInfo.trackingEnabled) {
