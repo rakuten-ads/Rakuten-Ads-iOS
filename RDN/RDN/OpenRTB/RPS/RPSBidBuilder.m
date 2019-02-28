@@ -1,90 +1,20 @@
 //
-//  RPSOpenRTBRequest.m
+//  RPSBidRequestBuilder.m
 //  RDN
 //
-//  Created by Wu, Wei b on 2019/02/19.
+//  Created by Wu, Wei b on 2019/02/28.
 //  Copyright © 2019 Rakuten MPD. All rights reserved.
 //
 
-#import "RPSOpenRTBRequest.h"
+#import "RPSBidBuilder.h"
 #import "RPSDefines.h"
-#import <RPSCore/RPSDevice.h>
 
 NSString* kRPSBidRequestHost = @"https://s-bid.rx-ad.com/auc";
 
-@implementation RPSBidRequest
 
-@synthesize imp=_imp;
-@synthesize app=_app;
-@synthesize device=_device;
-
-#pragma mark - HTTPSession Protocol
-- (nonnull NSString *)getUrl {
-    return kRPSBidRequestHost;
-}
-
--(Boolean)shouldCancel {
-    return self.imp == nil;
-}
-
--(NSDictionary *)postJsonBody {
-    NSMutableDictionary* body = [NSMutableDictionary dictionary];
-
-    if (self.imp) {
-        [body setObject:self.imp forKey:@"imp"];
-    }
-    if (self.app) {
-        [body setObject:self.app forKey:@"app"];
-    }
-    if (self.device) {
-        [body setObject:self.device forKey:@"device"];
-    }
-
-    return body;
-}
-
-#pragma mark - OpenRTB Protocol
-- (nonnull NSArray *)getImp {
-    if (!self->_imp) {
-        if (self.bidRequestDelegate) {
-
-            if ([self.bidRequestDelegate respondsToSelector:@selector(preferImp)]) {
-                self->_imp = [self.bidRequestDelegate preferImp];
-
-            } else {
-                NSMutableArray* impList = [NSMutableArray array];
-                for (NSString* adspotId in self.bidRequestDelegate.getAdspotIdList) {
-                    if (adspotId) {
-                        [impList addObject:@{
-                                             @"ext" : @{
-                                                     @"adspot_id" : adspotId
-                                                     }
-                                             }];
-                    }
-                }
-                self->_imp = impList;
-            }
-        }
-    }
-    return self->_imp;
-}
+@implementation RPSBidBuilder
 
 - (nonnull NSDictionary *)getApp {
-    if (!self->_app) {
-        self->_app = [self defaultApp];
-    }
-    return self->_app;
-}
-
-
-- (nonnull NSDictionary *)getDevice {
-    if (!self->_device) {
-        self->_device = [self defaultDevice];
-    }
-    return self->_device;
-}
-
-- (nonnull NSDictionary *)defaultApp {
     static dispatch_once_t onceToken;
     static NSDictionary* jsonApp;
     dispatch_once(&onceToken, ^{
@@ -99,7 +29,7 @@ NSString* kRPSBidRequestHost = @"https://s-bid.rx-ad.com/auc";
     return jsonApp;
 }
 
-- (nonnull NSDictionary *)defaultDevice {
+- (nonnull NSDictionary *)getDevice {
     static dispatch_once_t onceToken;
     static NSDictionary* jsonDevice;
     dispatch_once(&onceToken, ^{
@@ -130,8 +60,43 @@ NSString* kRPSBidRequestHost = @"https://s-bid.rx-ad.com/auc";
                        // @"connectiontype"
                        };
     });
-
     return jsonDevice;
+}
+
+- (nonnull NSArray *)getImp {
+    NSMutableArray* impList = [NSMutableArray array];
+    for (NSString* adspotId in self.adspotIdList) {
+        if (adspotId) {
+            [impList addObject:@{
+                                 @"ext" : @{
+                                         @"adspot_id" : adspotId
+                                         }
+                                 }];
+        }
+    }
+    return impList;
+}
+
+- (nonnull NSString *)getURL {
+    return kRPSBidRequestHost;
+}
+
+- (void)onBidResponse:(nonnull NSHTTPURLResponse *)response withBidList:(nonnull NSArray *)bidList {
+    if (self.responseComsumer) {
+        NSMutableArray* adInfoList = [NSMutableArray array];
+        for (NSDictionary* bid in bidList) {
+            id<RPSAdInfo> adInfo = [self.responseComsumer parse:bid];
+            if (adInfo) {
+                [adInfoList addObject:adInfo];
+            }
+        }
+
+        if (adInfoList.count > 0) {
+            [self.responseComsumer onBidResponseSuccess:adInfoList];
+        } else {
+            [self.responseComsumer onBidResponseFailed];
+        }
+    }
 }
 
 @end

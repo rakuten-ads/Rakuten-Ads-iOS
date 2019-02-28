@@ -4,13 +4,12 @@
 
 @interface RPSHttpSession ()
 
-@property dispatch_semaphore_t semaphore;
+@property (nonatomic, strong, nullable) dispatch_semaphore_t semaphore;
+@property (nonatomic, strong, nonnull) NSString* underlyingUrl;
 
 @end
 
-@implementation RPSHttpSession {
-    NSString* _underlyingUrl;
-}
+@implementation RPSHttpSession
 
 -(void) resume {
     @try {
