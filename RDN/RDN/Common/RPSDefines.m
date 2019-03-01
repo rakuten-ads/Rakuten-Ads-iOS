@@ -64,6 +64,7 @@ NSString* RPS_DOMAIN_BID = @"http://s-bid.rmp.rakuten.co.jp"; // Production
         
         {
             self->_userAgentInfo = [RPSWebUserAgent new];
+            self->_userAgentInfo.timeout = RPS_API_TIMEOUT_INTERVAL;
             [self.userAgentInfo asyncRequest];
         }
         {
