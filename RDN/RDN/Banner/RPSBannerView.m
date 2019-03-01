@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     RPS_ADVIEW_STATE_CLICKED,
 };
 
-@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseComsumer>
+@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumer>
 
 @property (nonatomic, nonnull) RPSAdWebView* webView;
 @property (nonatomic, nullable, copy) RPSBannerViewEventHandler eventHandler;
@@ -80,7 +80,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
             RPSBannerBuilder* bannerBuilder = [RPSBannerBuilder new];
             bannerBuilder.adspotId = self.adSpotId;
-            bannerBuilder.responseComsumer = self;
+            bannerBuilder.responseConsumer = self;
 
             RPSOpenRTBRequest* request = [RPSOpenRTBRequest new];
             request.openRTBdelegate = bannerBuilder;
@@ -237,7 +237,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     [self.webView loadHTMLString:banner.html baseURL:nil];
 }
 
-#pragma mark - implement RPSBidResponseComsumer
+#pragma mark - implement RPSBidResponseConsumer
 - (void)onBidResponseFailed {
     self.state = RPS_ADVIEW_STATE_LOADED;
     [self triggerFailure];

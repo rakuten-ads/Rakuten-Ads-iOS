@@ -82,19 +82,19 @@ NSString* kRPSBidRequestHost = @"https://s-bid.rx-ad.com/auc";
 }
 
 - (void)onBidResponse:(nonnull NSHTTPURLResponse *)response withBidList:(nonnull NSArray *)bidList {
-    if (self.responseComsumer) {
+    if (self.responseConsumer) {
         NSMutableArray* adInfoList = [NSMutableArray array];
         for (NSDictionary* bid in bidList) {
-            id<RPSAdInfo> adInfo = [self.responseComsumer parse:bid];
+            id<RPSAdInfo> adInfo = [self.responseConsumer parse:bid];
             if (adInfo) {
                 [adInfoList addObject:adInfo];
             }
         }
 
         if (adInfoList.count > 0) {
-            [self.responseComsumer onBidResponseSuccess:adInfoList];
+            [self.responseConsumer onBidResponseSuccess:adInfoList];
         } else {
-            [self.responseComsumer onBidResponseFailed];
+            [self.responseConsumer onBidResponseFailed];
         }
     }
 }

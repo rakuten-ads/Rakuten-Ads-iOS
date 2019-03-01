@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@protocol RPSBidResponseComsumer <NSObject>
+@protocol RPSBidResponseConsumer <NSObject>
 
 -(id<RPSAdInfo>) parse:(NSDictionary*) bid;
 -(void) onBidResponseSuccess:(NSArray<id<RPSAdInfo>>*) adInfoList;
@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RPSBidBuilder : NSObject<RPSOpenRTBBuildDelegate>
 
 @property(nonatomic, copy) NSArray<NSString*>* adspotIdList;
-@property(nonatomic, assign) id<RPSBidResponseComsumer> responseComsumer;
+@property(nonatomic, assign) id<RPSBidResponseConsumer> responseConsumer;
 
 @end
 
