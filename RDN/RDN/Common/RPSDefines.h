@@ -11,8 +11,6 @@ FOUNDATION_EXPORT NSString* RPS_AD_TYPE_NATIVE_VIDEO;
 
 FOUNDATION_EXPORT NSTimeInterval RPS_API_TIMEOUT_INTERVAL;
 
-FOUNDATION_EXPORT NSString* RPS_DOMAIN_BID;
-
 @interface RPSDefines : NSObject
 
 @property(nonatomic, readonly, nonnull) NSURLSession* httpSession;

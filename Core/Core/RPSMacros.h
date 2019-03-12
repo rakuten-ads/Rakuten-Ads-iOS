@@ -2,7 +2,7 @@
 #define RPSMacros_h
 
 // LOG
-#ifdef DEBUG
+#if DEBUG
 #define RPSLog(...) NSLog(__VA_ARGS__)
 #else
 #define RPSLog(...)

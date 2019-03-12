@@ -18,14 +18,6 @@ NSString* RPS_AD_TYPE_NATIVE_VIDEO = @"native_video";
 
 NSTimeInterval RPS_API_TIMEOUT_INTERVAL = 30;
 
-#if STAGING
-NSString* RPS_DOMAIN_BID = @"http://stg-s-bid.rmp.rakuten.co.jp"; // Staging
-#elif DEBUG
-NSString* RPS_DOMAIN_BID = @"http://dev-s-bid.rx-ad.com"; // Developement
-#else
-NSString* RPS_DOMAIN_BID = @"http://s-bid.rmp.rakuten.co.jp"; // Production
-#endif
-
 @implementation RPSDefines {
     dispatch_queue_t _underlyingQueue;
 }

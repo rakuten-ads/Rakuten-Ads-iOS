@@ -9,6 +9,7 @@
 #import "RPSOpenRTB.h"
 #import <RPSCore/RPSJSONObject.h>
 #import "RPSDefines.h"
+#import "RPSRDN.h"
 
 @implementation RPSOpenRTBRequest
 
@@ -39,6 +40,11 @@
     return [self postBidBody];
 }
 
+NSString* kSDKUserAgentFormat = @"GAP-SDK:iOS:%f";
+-(void)appendConfig:(NSMutableURLRequest *)request {
+    [request setValue:[NSString stringWithFormat:kSDKUserAgentFormat, RPSRDNVersionNumber] forHTTPHeaderField:@"User-Agent"];
+}
+
 - (void)onJsonResponse:(NSHTTPURLResponse *)response withData:(NSDictionary *)json {
     NSMutableArray<NSDictionary*>* bidDataList = nil;
     if (response.statusCode == 200) {
@@ -67,17 +73,88 @@
 - (nonnull NSDictionary *)postBidBody {
     NSMutableDictionary* body = [NSMutableDictionary dictionary];
 
-    if ([self.openRTBdelegate getImp]) {
-        [body setObject:[self.openRTBdelegate getImp] forKey:@"imp"];
+    NSArray* imp = [self.openRTBdelegate getImp];
+    if (imp) {
+        body[@"imp"] = imp;
     }
-    if ([self.openRTBdelegate getApp]) {
-        [body setObject:[self.openRTBdelegate getApp] forKey:@"app"];
-    }
-    if ([self.openRTBdelegate getDevice]) {
-        [body setObject:[self.openRTBdelegate getDevice] forKey:@"device"];
+    body[@"app"] = [self getApp];
+    body[@"device"] = [self getDevice];
+
+    if ([self.openRTBdelegate respondsToSelector:@selector(processBidBody:)]) {
+       [self.openRTBdelegate processBidBody:body];
     }
 
     return body;
+}
+
+- (nonnull NSDictionary *)getApp {
+    static dispatch_once_t onceToken;
+    static NSDictionary* jsonApp;
+    dispatch_once(&onceToken, ^{
+        RPSDefines* defines = RPSDefines.sharedInstance;
+        RPSAppInfo* appInfo = defines.appInfo;
+        jsonApp = @{
+                    @"name": appInfo.bundleName,
+                    @"bundle": appInfo.bundleIdentifier,
+                    @"ver": appInfo.bundleShortVersion,
+                    };
+    });
+    return jsonApp;
+}
+
+- (nonnull NSDictionary *)getDevice {
+    static dispatch_once_t onceToken;
+    static NSDictionary* jsonDevice;
+    dispatch_once(&onceToken, ^{
+        RPSDefines* defines = RPSDefines.sharedInstance;
+        [defines.userAgentInfo syncResult];
+
+        RPSDevice* deviceInfo = defines.deviceInfo;
+        RPSIdfa* idfaInfo = defines.idfaInfo;
+        UIScreen* screen = UIScreen.mainScreen;
+
+        jsonDevice = @{
+                       @"ua" : defines.userAgentInfo.userAgent,
+                       @"devicetype" : [self getDeviceType],
+                       @"make": @"Apple",
+                       @"model": deviceInfo.model,
+                       @"os": @"iOS",
+                       @"osv": deviceInfo.osVersion,
+                       @"hwv": deviceInfo.buildName,
+                       @"h": @((int)screen.bounds.size.height),
+                       @"w": @((int)screen.bounds.size.width),
+                       @"ppi": @((int)(160 * screen.scale)),
+                       @"pxratio": @((int)screen.scale),
+                       @"language": deviceInfo.language,
+                       @"ifa": idfaInfo.idfa,
+                       @"lmt": idfaInfo.isTrackingEnabled ? @0 : @1,
+                       // @"geo"
+                       // @"carrier"
+                       // @"connectiontype"
+                       };
+    });
+    return jsonDevice;
+}
+
+/**
+ * OpenRTB Sepc 2.5 / 5.21 Device Type
+ */
+-(NSNumber*) getDeviceType {
+    switch (UIScreen.mainScreen.traitCollection.userInterfaceIdiom) {
+        case UIUserInterfaceIdiomPhone:
+            return [NSNumber numberWithInt:4]; // Phone
+        case UIUserInterfaceIdiomPad:
+            return [NSNumber numberWithInt:5]; // Tablet
+        case UIUserInterfaceIdiomTV:
+        case UIUserInterfaceIdiomCarPlay:
+            return [NSNumber numberWithInt:6]; // Connected Device
+        default:
+            return [NSNumber numberWithInt:7]; // Set Top BOx
+    }
+}
+
+- (NSDictionary*) getCarrier {
+    return nil;
 }
 
 @end

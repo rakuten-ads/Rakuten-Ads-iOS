@@ -20,11 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol RPSOpenRTBBuildDelegate <NSObject>
 
 -(NSArray*) getImp;
--(NSDictionary*) getApp;
--(NSDictionary*) getDevice;
 
 -(NSString*) getURL;
 -(void) onBidResponse:(NSHTTPURLResponse*) response withBidList:(NSArray*) bidList;
+
+@optional
+-(void) processBidBody:(NSMutableDictionary*) bidBody;
 
 @end
 

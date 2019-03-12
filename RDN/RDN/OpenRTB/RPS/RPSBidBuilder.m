@@ -9,59 +9,17 @@
 #import "RPSBidBuilder.h"
 #import "RPSDefines.h"
 
-NSString* kRPSBidRequestHost = @"https://s-bid.rx-ad.com/auc";
+#if RPS_PRODUCTION
+    NSString* kRPSBidRequestHost = @"https://s-bid.rx-ad.com/auc"; // TODO need confirm
+#elseif RPS_STAGING
+    NSString* kRPSBidRequestHost = @"https://stg-s-bid.rx-ad.com/auc"; // TODO need confirm
+#else
+//    NSString* kRPSBidRequestHost = @"https://dev-s-bid.rx-ad.com/auc"; // TODO need confirm
+    NSString* kRPSBidRequestHost = @"http://local.auction.rx-ad.com:5000/sshb/openrtb2/auction";
+#endif
 
 
 @implementation RPSBidBuilder
-
-- (nonnull NSDictionary *)getApp {
-    static dispatch_once_t onceToken;
-    static NSDictionary* jsonApp;
-    dispatch_once(&onceToken, ^{
-        RPSDefines* defines = RPSDefines.sharedInstance;
-        RPSAppInfo* appInfo = defines.appInfo;
-        jsonApp = @{
-                    @"name": appInfo.bundleName,
-                    @"bundle": appInfo.bundleIdentifier,
-                    @"ver": appInfo.bundleShortVersion,
-                    };
-    });
-    return jsonApp;
-}
-
-- (nonnull NSDictionary *)getDevice {
-    static dispatch_once_t onceToken;
-    static NSDictionary* jsonDevice;
-    dispatch_once(&onceToken, ^{
-        RPSDefines* defines = RPSDefines.sharedInstance;
-        [defines.userAgentInfo syncResult];
-
-        RPSDevice* deviceInfo = defines.deviceInfo;
-        RPSIdfa* idfaInfo = defines.idfaInfo;
-        UIScreen* screen = UIScreen.mainScreen;
-
-        jsonDevice = @{
-                       @"ua" : defines.userAgentInfo.userAgent,
-                       // @"devicetype" : @1,
-                       @"make": @"Apple",
-                       @"model": deviceInfo.model,
-                       @"os": @"iOS",
-                       @"osv": deviceInfo.osVersion,
-                       @"hwv": deviceInfo.buildName,
-                       @"h": @((int)screen.bounds.size.height),
-                       @"w": @((int)screen.bounds.size.width),
-                       @"ppi": @((int)(160 * screen.scale)),
-                       @"pxratio": @((int)screen.scale),
-                       @"language": deviceInfo.language,
-                       @"ifa": idfaInfo.idfa,
-                       @"lmt": idfaInfo.isTrackingEnabled ? @0 : @1,
-                       // @"geo"
-                       // @"carrier"
-                       // @"connectiontype"
-                       };
-    });
-    return jsonDevice;
-}
 
 - (nonnull NSArray *)getImp {
     NSMutableArray* impList = [NSMutableArray array];

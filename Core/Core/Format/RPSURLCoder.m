@@ -4,7 +4,7 @@
 @implementation RPSURLCoder
 
 /**
- * RFC3986基準
+ * RFC3986 
  */
 +(nullable NSString*) encodeURL:(nonnull NSString*) originURL {
     NSMutableCharacterSet* allowedCharacterSet = [NSMutableCharacterSet alphanumericCharacterSet];
