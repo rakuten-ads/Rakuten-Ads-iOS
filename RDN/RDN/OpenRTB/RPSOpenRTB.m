@@ -27,11 +27,11 @@
 }
 
 - (nonnull NSString *)getUrl {
-    return self.openRTBdelegate.getURL;
+    return self.openRTBAdapterDelegate.getURL;
 }
 
 -(Boolean)shouldCancel {
-    Boolean shouldCancel = [self.openRTBdelegate getImp] == nil;
+    Boolean shouldCancel = [self.openRTBAdapterDelegate getImp] == nil;
     RPSLog(shouldCancel ? @"HTTP request cancelled by empty imp" : @"ready to send");
     return shouldCancel;
 }
@@ -41,7 +41,7 @@
 }
 
 NSString* kSDKUserAgentFormat = @"GAP-SDK:iOS:%f";
--(void)appendConfig:(NSMutableURLRequest *)request {
+-(void)processConfig:(NSMutableURLRequest *)request {
     [request setValue:[NSString stringWithFormat:kSDKUserAgentFormat, RPSRDNVersionNumber] forHTTPHeaderField:@"User-Agent"];
 }
 
@@ -65,7 +65,7 @@ NSString* kSDKUserAgentFormat = @"GAP-SDK:iOS:%f";
         VERBOSE_LOG(@"OpenRTB responsed status code: %ld", (long)response.statusCode);
     }
 
-    [self.openRTBdelegate onBidResponse:response withBidList:bidDataList];
+    [self.openRTBAdapterDelegate onBidResponse:response withBidList:bidDataList];
 }
 
 
@@ -73,15 +73,15 @@ NSString* kSDKUserAgentFormat = @"GAP-SDK:iOS:%f";
 - (nonnull NSDictionary *)postBidBody {
     NSMutableDictionary* body = [NSMutableDictionary dictionary];
 
-    NSArray* imp = [self.openRTBdelegate getImp];
+    NSArray* imp = [self.openRTBAdapterDelegate getImp];
     if (imp) {
         body[@"imp"] = imp;
     }
     body[@"app"] = [self getApp];
     body[@"device"] = [self getDevice];
 
-    if ([self.openRTBdelegate respondsToSelector:@selector(processBidBody:)]) {
-       [self.openRTBdelegate processBidBody:body];
+    if ([self.openRTBAdapterDelegate respondsToSelector:@selector(processBidBody:)]) {
+       [self.openRTBAdapterDelegate processBidBody:body];
     }
 
     return body;

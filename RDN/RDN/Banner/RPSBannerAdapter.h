@@ -1,5 +1,5 @@
 //
-//  RPSBannerBuilder.h
+//  RPSBannerAdapter.h
 //  RDN
 //
 //  Created by Wu, Wei b on 2019/02/28.
@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RPSBidBuilder.h"
+#import "RPSBidAdapter.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface RPSBanner : NSObject<RPSAdInfo>
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface RPSBannerBuilder : RPSBidBuilder
+@interface RPSBannerAdapter : RPSBidAdapter
 
 @property(nonatomic, copy) NSString* adspotId;
 

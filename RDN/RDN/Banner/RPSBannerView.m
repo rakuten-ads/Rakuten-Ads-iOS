@@ -8,7 +8,7 @@
 
 #import "RPSBannerView.h"
 #import "RPSAdWebView.h"
-#import "RPSBannerBuilder.h"
+#import "RPSBannerAdapter.h"
 #import <RPSCore/RPSValid.h>
 #import "RPSDefines.h"
 
@@ -78,12 +78,12 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
                 @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
             }
 
-            RPSBannerBuilder* bannerBuilder = [RPSBannerBuilder new];
-            bannerBuilder.adspotId = self.adSpotId;
-            bannerBuilder.responseConsumer = self;
+            RPSBannerAdapter* bannerAdapter = [RPSBannerAdapter new];
+            bannerAdapter.adspotId = self.adSpotId;
+            bannerAdapter.responseConsumer = self;
 
             RPSOpenRTBRequest* request = [RPSOpenRTBRequest new];
-            request.openRTBdelegate = bannerBuilder;
+            request.openRTBAdapterDelegate = bannerAdapter;
 
             [request resume];
             self.state = RPS_ADVIEW_STATE_LOADING;

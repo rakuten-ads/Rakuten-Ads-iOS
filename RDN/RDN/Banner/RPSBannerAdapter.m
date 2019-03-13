@@ -1,12 +1,12 @@
 //
-//  RPSBannerBuilder.m
+//  RPSBannerAdapter.m
 //  RDN
 //
 //  Created by Wu, Wei b on 2019/02/28.
 //  Copyright © 2019 Rakuten MPD. All rights reserved.
 //
 
-#import "RPSBannerBuilder.h"
+#import "RPSBannerAdapter.h"
 #import <RPSCore/RPSJSONObject.h>
 
 @implementation RPSBanner
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation RPSBannerBuilder
+@implementation RPSBannerAdapter
 @synthesize adspotIdList = _adspotIdList;
 
 -(NSArray<NSString *> *)adspotIdList {

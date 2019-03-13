@@ -1,15 +1,15 @@
-#import "RPSHttpSession.h"
+#import "RPSHttpTask.h"
 #import "RPSURLCoder.h"
 #import "RPSValid.h"
 
-@interface RPSHttpSession ()
+@interface RPSHttpTask ()
 
 @property (nonatomic, strong, nullable) dispatch_semaphore_t semaphore;
 @property (nonatomic, strong, nonnull) NSString* underlyingUrl;
 
 @end
 
-@implementation RPSHttpSession
+@implementation RPSHttpTask
 
 -(void) resume {
     @try {
@@ -119,8 +119,8 @@
         [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     }
 
-    if ([_httpSessionDelegate respondsToSelector:@selector(appendConfig:)]) {
-        [_httpSessionDelegate appendConfig:request];
+    if ([_httpSessionDelegate respondsToSelector:@selector(processConfig:)]) {
+        [_httpSessionDelegate processConfig:request];
     }
 }
 

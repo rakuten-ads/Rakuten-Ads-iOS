@@ -1,5 +1,5 @@
 //
-//  RPSBidRequestBuilder.h
+//  RPSBidRequestAdapter.h
 //  RDN
 //
 //  Created by Wu, Wei b on 2019/02/28.
@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RPSBidBuilder : NSObject<RPSOpenRTBBuildDelegate>
+@interface RPSBidAdapter : NSObject<RPSOpenRTBAdapterDelegate>
 
 @property(nonatomic, copy) NSArray<NSString*>* adspotIdList;
 @property(nonatomic, assign) id<RPSBidResponseConsumer> responseConsumer;

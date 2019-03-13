@@ -1,12 +1,12 @@
 //
-//  RPSBidRequestBuilder.m
+//  RPSBidRequestAdapter.m
 //  RDN
 //
 //  Created by Wu, Wei b on 2019/02/28.
 //  Copyright © 2019 Rakuten MPD. All rights reserved.
 //
 
-#import "RPSBidBuilder.h"
+#import "RPSBidAdapter.h"
 #import "RPSDefines.h"
 
 #if RPS_PRODUCTION
@@ -19,7 +19,7 @@
 #endif
 
 
-@implementation RPSBidBuilder
+@implementation RPSBidAdapter
 
 - (nonnull NSArray *)getImp {
     NSMutableArray* impList = [NSMutableArray array];

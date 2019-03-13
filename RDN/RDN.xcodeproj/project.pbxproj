@@ -23,10 +23,10 @@
 /* Begin PBXBuildFile section */
 		32564D872224ECAA00DB4DBF /* RPSOpenRTB.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D852224ECAA00DB4DBF /* RPSOpenRTB.h */; };
 		32564D882224ECAA00DB4DBF /* RPSOpenRTB.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D862224ECAA00DB4DBF /* RPSOpenRTB.m */; };
-		32564D982227790900DB4DBF /* RPSBidBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D962227790900DB4DBF /* RPSBidBuilder.h */; };
-		32564D992227790900DB4DBF /* RPSBidBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D972227790900DB4DBF /* RPSBidBuilder.m */; };
-		32564D9C2227865100DB4DBF /* RPSBannerBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D9A2227865100DB4DBF /* RPSBannerBuilder.h */; };
-		32564D9D2227865100DB4DBF /* RPSBannerBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D9B2227865100DB4DBF /* RPSBannerBuilder.m */; };
+		32564D982227790900DB4DBF /* RPSBidAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D962227790900DB4DBF /* RPSBidAdapter.h */; };
+		32564D992227790900DB4DBF /* RPSBidAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D972227790900DB4DBF /* RPSBidAdapter.m */; };
+		32564D9C2227865100DB4DBF /* RPSBannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D9A2227865100DB4DBF /* RPSBannerAdapter.h */; };
+		32564D9D2227865100DB4DBF /* RPSBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D9B2227865100DB4DBF /* RPSBannerAdapter.m */; };
 		325FF74121E605F100A899CF /* RPSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RPSCore.framework */; };
 		32F258EA21E58689001FD9C0 /* RPSRDN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258E021E58689001FD9C0 /* RPSRDN.framework */; };
 		32F258EF21E58689001FD9C0 /* RDNTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F258EE21E58689001FD9C0 /* RDNTests.m */; };
@@ -73,10 +73,10 @@
 /* Begin PBXFileReference section */
 		32564D852224ECAA00DB4DBF /* RPSOpenRTB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSOpenRTB.h; sourceTree = "<group>"; };
 		32564D862224ECAA00DB4DBF /* RPSOpenRTB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSOpenRTB.m; sourceTree = "<group>"; };
-		32564D962227790900DB4DBF /* RPSBidBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBidBuilder.h; sourceTree = "<group>"; };
-		32564D972227790900DB4DBF /* RPSBidBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBidBuilder.m; sourceTree = "<group>"; };
-		32564D9A2227865100DB4DBF /* RPSBannerBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBannerBuilder.h; sourceTree = "<group>"; };
-		32564D9B2227865100DB4DBF /* RPSBannerBuilder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerBuilder.m; sourceTree = "<group>"; };
+		32564D962227790900DB4DBF /* RPSBidAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBidAdapter.h; sourceTree = "<group>"; };
+		32564D972227790900DB4DBF /* RPSBidAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBidAdapter.m; sourceTree = "<group>"; };
+		32564D9A2227865100DB4DBF /* RPSBannerAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBannerAdapter.h; sourceTree = "<group>"; };
+		32564D9B2227865100DB4DBF /* RPSBannerAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerAdapter.m; sourceTree = "<group>"; };
 		325FF74521F0577900A899CF /* rpsrdn.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = rpsrdn.modulemap; sourceTree = "<group>"; };
 		325FF74C21F0706000A899CF /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
 		32F258E021E58689001FD9C0 /* RPSRDN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RPSRDN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,8 +128,8 @@
 		32564D8A22253EC800DB4DBF /* RPS */ = {
 			isa = PBXGroup;
 			children = (
-				32564D962227790900DB4DBF /* RPSBidBuilder.h */,
-				32564D972227790900DB4DBF /* RPSBidBuilder.m */,
+				32564D962227790900DB4DBF /* RPSBidAdapter.h */,
+				32564D972227790900DB4DBF /* RPSBidAdapter.m */,
 			);
 			path = RPS;
 			sourceTree = "<group>";
@@ -139,8 +139,8 @@
 			children = (
 				32F2595121E597E5001FD9C0 /* RPSBannerView.h */,
 				32F2595221E597E5001FD9C0 /* RPSBannerView.m */,
-				32564D9A2227865100DB4DBF /* RPSBannerBuilder.h */,
-				32564D9B2227865100DB4DBF /* RPSBannerBuilder.m */,
+				32564D9A2227865100DB4DBF /* RPSBannerAdapter.h */,
+				32564D9B2227865100DB4DBF /* RPSBannerAdapter.m */,
 			);
 			path = Banner;
 			sourceTree = "<group>";
@@ -224,8 +224,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				32564D872224ECAA00DB4DBF /* RPSOpenRTB.h in Headers */,
-				32564D982227790900DB4DBF /* RPSBidBuilder.h in Headers */,
-				32564D9C2227865100DB4DBF /* RPSBannerBuilder.h in Headers */,
+				32564D982227790900DB4DBF /* RPSBidAdapter.h in Headers */,
+				32564D9C2227865100DB4DBF /* RPSBannerAdapter.h in Headers */,
 				32F2596021E597E5001FD9C0 /* RPSBannerView.h in Headers */,
 				32F2595D21E597E5001FD9C0 /* RPSDefines.h in Headers */,
 				32F258F121E58689001FD9C0 /* RPSRDN.h in Headers */,
@@ -377,11 +377,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32564D992227790900DB4DBF /* RPSBidBuilder.m in Sources */,
+				32564D992227790900DB4DBF /* RPSBidAdapter.m in Sources */,
 				32F2596121E597E5001FD9C0 /* RPSBannerView.m in Sources */,
 				32F2595E21E597E5001FD9C0 /* RPSDefines.m in Sources */,
 				32564D882224ECAA00DB4DBF /* RPSOpenRTB.m in Sources */,
-				32564D9D2227865100DB4DBF /* RPSBannerBuilder.m in Sources */,
+				32564D9D2227865100DB4DBF /* RPSBannerAdapter.m in Sources */,
 				32F2596721E597E5001FD9C0 /* RPSAdWebView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

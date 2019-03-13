@@ -32,8 +32,8 @@
 		32F259D721E599F5001FD9C0 /* RPSWebUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259BE21E599F4001FD9C0 /* RPSWebUserAgent.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259D821E599F5001FD9C0 /* RPSDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259BF21E599F4001FD9C0 /* RPSDevice.m */; };
 		32F259D921E599F5001FD9C0 /* RPSIdfa.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259C021E599F4001FD9C0 /* RPSIdfa.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		32F259DA21E599F5001FD9C0 /* RPSHttpSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259C221E599F4001FD9C0 /* RPSHttpSession.m */; };
-		32F259DB21E599F5001FD9C0 /* RPSHttpSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259C321E599F4001FD9C0 /* RPSHttpSession.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		32F259DA21E599F5001FD9C0 /* RPSHttpTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259C221E599F4001FD9C0 /* RPSHttpTask.m */; };
+		32F259DB21E599F5001FD9C0 /* RPSHttpTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259C321E599F4001FD9C0 /* RPSHttpTask.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259DC21E599F5001FD9C0 /* RPSValid.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259C521E599F4001FD9C0 /* RPSValid.m */; };
 		32F259DD21E599F5001FD9C0 /* RPSURLCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259C621E599F4001FD9C0 /* RPSURLCoder.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259DE21E599F5001FD9C0 /* RPSJSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259C721E599F4001FD9C0 /* RPSJSONObject.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -74,8 +74,8 @@
 		32F259BE21E599F4001FD9C0 /* RPSWebUserAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSWebUserAgent.h; sourceTree = "<group>"; };
 		32F259BF21E599F4001FD9C0 /* RPSDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSDevice.m; sourceTree = "<group>"; };
 		32F259C021E599F4001FD9C0 /* RPSIdfa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSIdfa.h; sourceTree = "<group>"; };
-		32F259C221E599F4001FD9C0 /* RPSHttpSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSHttpSession.m; sourceTree = "<group>"; };
-		32F259C321E599F4001FD9C0 /* RPSHttpSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSHttpSession.h; sourceTree = "<group>"; };
+		32F259C221E599F4001FD9C0 /* RPSHttpTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSHttpTask.m; sourceTree = "<group>"; };
+		32F259C321E599F4001FD9C0 /* RPSHttpTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSHttpTask.h; sourceTree = "<group>"; };
 		32F259C521E599F4001FD9C0 /* RPSValid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSValid.m; sourceTree = "<group>"; };
 		32F259C621E599F4001FD9C0 /* RPSURLCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSURLCoder.h; sourceTree = "<group>"; };
 		32F259C721E599F4001FD9C0 /* RPSJSONObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSJSONObject.h; sourceTree = "<group>"; };
@@ -174,8 +174,8 @@
 		32F259C121E599F4001FD9C0 /* Http */ = {
 			isa = PBXGroup;
 			children = (
-				32F259C321E599F4001FD9C0 /* RPSHttpSession.h */,
-				32F259C221E599F4001FD9C0 /* RPSHttpSession.m */,
+				32F259C321E599F4001FD9C0 /* RPSHttpTask.h */,
+				32F259C221E599F4001FD9C0 /* RPSHttpTask.m */,
 			);
 			path = Http;
 			sourceTree = "<group>";
@@ -220,7 +220,7 @@
 				32F259E421E599F5001FD9C0 /* RPSVerboseLogger.h in Headers */,
 				32F259DD21E599F5001FD9C0 /* RPSURLCoder.h in Headers */,
 				32F259E521E599F5001FD9C0 /* RPSLogger.h in Headers */,
-				32F259DB21E599F5001FD9C0 /* RPSHttpSession.h in Headers */,
+				32F259DB21E599F5001FD9C0 /* RPSHttpTask.h in Headers */,
 				32F259D921E599F5001FD9C0 /* RPSIdfa.h in Headers */,
 				32F259E621E599F5001FD9C0 /* RPSMacros.h in Headers */,
 				32F259E721E599F5001FD9C0 /* PrefixHeader.pch in Headers */,
@@ -355,7 +355,7 @@
 				32CAC0DE22164E6400BB4CC4 /* RPSAppInfo.m in Sources */,
 				32F259D421E599F5001FD9C0 /* RPSWebUserAgent.m in Sources */,
 				32F259E321E599F5001FD9C0 /* RPSLogger.m in Sources */,
-				32F259DA21E599F5001FD9C0 /* RPSHttpSession.m in Sources */,
+				32F259DA21E599F5001FD9C0 /* RPSHttpTask.m in Sources */,
 				32F259E021E599F5001FD9C0 /* RPSJSONObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

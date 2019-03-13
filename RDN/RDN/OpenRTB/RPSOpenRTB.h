@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <RPSCore/RPSHttpSession.h>
+#import <RPSCore/RPSHttpTask.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@protocol RPSOpenRTBBuildDelegate <NSObject>
+@protocol RPSOpenRTBAdapterDelegate <NSObject>
 
 -(NSArray*) getImp;
 
@@ -29,9 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RPSOpenRTBRequest : RPSHttpSession<RPSOpenRTBProtocol>
+@interface RPSOpenRTBRequest : RPSHttpTask<RPSOpenRTBProtocol>
 
-@property(nonatomic, strong) id<RPSOpenRTBBuildDelegate> openRTBdelegate;
+@property(nonatomic, strong) id<RPSOpenRTBAdapterDelegate> openRTBAdapterDelegate;
 
 @end
 
