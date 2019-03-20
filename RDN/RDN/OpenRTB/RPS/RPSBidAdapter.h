@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol RPSBidResponseConsumer <NSObject>
 
 -(id<RPSAdInfo>) parse:(NSDictionary*) bid;
+
 -(void) onBidResponseSuccess:(NSArray<id<RPSAdInfo>>*) adInfoList;
 -(void) onBidResponseFailed;
 

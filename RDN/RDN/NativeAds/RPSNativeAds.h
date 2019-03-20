@@ -44,9 +44,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RPSNativeRequest: NSObject
+@interface RPSNativeAdsLoader: NSObject
 
--(void) loadWithCompletionHandler:(nullable BOOL (^)(RPSNativeRequest* req, RPSNativeAds* ads)) handler;
+@property(nonatomic, copy, nonnull) NSString* adSpotId;
+
+-(void) loadWithCompletionHandler:(nullable BOOL (^)(RPSNativeAdsLoader* loader, NSArray<RPSNativeAds*>* adsList)) handler;
 
 @end
 

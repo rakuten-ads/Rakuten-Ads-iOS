@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RPSBidAdapter.h"
-#import "RPSNativeAdsRequest.h"
+#import "RPSNativeAdsInner.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
