@@ -136,6 +136,7 @@
             NSError* jsonSerialErr;
             NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonBody options:0 error:nil];
             if (jsonData) {
+                RPSLog(@"jsonBody string: %@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
                 request.HTTPBody = jsonData;
             } else {
                 if (jsonSerialErr) {
@@ -170,7 +171,7 @@
                 [(id<RPSJsonHttpSessionDelegate>)self->_httpSessionDelegate onJsonResponse:rep withData:json];
             }
 
-            RPSLog(@"http session result :%@", httpErr ?: @"OK");
+            RPSLog(@"http error: %@", httpErr ?: @"None");
         }
         @catch (NSException *exception) {
             RPSLog(@"http session completion handler exception %@", exception);

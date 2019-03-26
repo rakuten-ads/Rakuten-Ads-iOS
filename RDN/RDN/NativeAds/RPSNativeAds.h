@@ -25,7 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, nullable) NSString* title;
 @property(nonatomic, readonly, nullable) RPSNativeAdsAssetImage* img;
 @property(nonatomic, readonly, nullable) NSString* data;
-@property(nonatomic, readonly, nullable) NSString* link;
 
 @end
 
@@ -41,6 +40,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, nullable) NSArray<RPSNativeAdsAsset*>* assets;
 @property(nonatomic, readonly, nullable) NSArray<NSString*>* eventTrackers;
 @property(nonatomic, readonly, nullable) NSString* link;
+
+-(void) fireClick;
+-(void) fireImpression;
 
 @end
 

@@ -11,11 +11,6 @@
 #import <RPSCore/RPSCore.h>
 #import <RPSCore/RPSValid.h>
 
-NSString* RPS_AD_TYPE_BANNER = @"banner";
-NSString* RPS_AD_TYPE_VIDEO = @"video";
-NSString* RPS_AD_TYPE_NATIVE = @"native";
-NSString* RPS_AD_TYPE_NATIVE_VIDEO = @"native_video";
-
 NSTimeInterval RPS_API_TIMEOUT_INTERVAL = 30;
 
 @implementation RPSDefines {

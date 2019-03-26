@@ -32,7 +32,7 @@
 
 -(Boolean)shouldCancel {
     Boolean shouldCancel = [self.openRTBAdapterDelegate getImp] == nil;
-    RPSLog(shouldCancel ? @"HTTP request cancelled by empty imp" : @"ready to send");
+    RPSLog(shouldCancel ? @"HTTP request cancelled by empty imp" : @"HTTP request ready to send");
     return shouldCancel;
 }
 

@@ -15,7 +15,7 @@
     NSString* kRPSBidRequestHost = @"https://stg-s-bid.rx-ad.com/auc"; // TODO need confirm
 #else
 //    NSString* kRPSBidRequestHost = @"https://dev-s-bid.rx-ad.com/auc"; // TODO need confirm
-    NSString* kRPSBidRequestHost = @"http://local.auction.rx-ad.com:5000/sshb/openrtb2/auction";
+    NSString* kRPSBidRequestHost = @"http://local.auction.rx-ad.com:5000/auc";
 #endif
 
 

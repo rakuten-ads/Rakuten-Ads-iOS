@@ -8,6 +8,9 @@
 
 #import "RPSNativeAdsInner.h"
 #import <RPSCore/RPSJSONObject.h>
+#import <RPSCore/RPSValid.h>
+#import <UIKit/UIKit.h>
+#import "RPSNativeAdsImpRequest.h"
 
 #pragma mark - RPSNativeAdsAssetImage wtih writable properties
 @interface RPSNativeAdsAssetImage()
@@ -67,7 +70,7 @@
 
         asset.title = [assetJson getString:@"title.text"];
 
-        RPSJSONObject* imageJson = [assetJson getJson:@"image"];
+        RPSJSONObject* imageJson = [assetJson getJson:@"img"];
         if (imageJson) {
             RPSNativeAdsAssetImage* assetImage = [RPSNativeAdsAssetImage new];
             assetImage.url = [imageJson getString:@"url"];
@@ -102,4 +105,25 @@
     return nativeAds;
 }
 
+
+-(void)fireClick {
+    if ([RPSValid isNotEmptyString:self.link]) {
+        NSURL* clickUrl = [NSURL URLWithString:self.link];
+        if (clickUrl) {
+            VERBOSE_LOG(@"fire click %@", clickUrl);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[UIApplication sharedApplication] openURL:clickUrl];
+            });
+        }
+    }
+}
+
+-(void)fireImps {
+    for (NSString* impLink in self.eventTrackers) {
+        VERBOSE_LOG(@"fire imp %@", impLink);
+        RPSNativeAdsImpRequest* impRequest = [RPSNativeAdsImpRequest new];
+        impRequest.impLink = impLink;
+        [impRequest resume];
+    }
+}
 @end

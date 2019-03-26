@@ -1,5 +1,7 @@
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, RPSBannerViewPosition) {
     RPSBannerViewPositionCustom,
     RPSBannerViewPositionTop,
@@ -25,3 +27,5 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewEvent) {
 -(void) setPosition:(RPSBannerViewPosition)position inView:(UIView*) parentView;
 
 @end
+
+NS_ASSUME_NONNULL_END
