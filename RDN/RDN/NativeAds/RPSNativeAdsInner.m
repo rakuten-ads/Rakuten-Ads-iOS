@@ -62,6 +62,15 @@
     RPSJSONObject* bidJson = [RPSJSONObject jsonWithRawDictionary:bidData];
     RPSJSONObject* nativeJson = [bidJson getJson:@"ext.admnative"];
 
+    // fallback to adm string
+    if (!nativeJson) {
+        NSString* adm = [bidJson getString:@"adm"];
+        if (adm) {
+            NSDictionary* admJson = [NSJSONSerialization JSONObjectWithData:[adm dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+            nativeJson = [RPSJSONObject jsonWithRawDictionary:admJson];
+        }
+    }
+
     // assets
     NSMutableArray* assetsList = [NSMutableArray array];
     for (NSDictionary* assetData in [nativeJson getArray:@"assets"]) {
@@ -118,7 +127,7 @@
     }
 }
 
--(void)fireImps {
+-(void)fireImpression {
     for (NSString* impLink in self.eventTrackers) {
         VERBOSE_LOG(@"fire imp %@", impLink);
         RPSNativeAdsImpRequest* impRequest = [RPSNativeAdsImpRequest new];
