@@ -13,7 +13,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RPSNativeAds()<RPSAdInfo>
-
 /**
  * help method to convert one bid json to one RPSNativeAds
  */

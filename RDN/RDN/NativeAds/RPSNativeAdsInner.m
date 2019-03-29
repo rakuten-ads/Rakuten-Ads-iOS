@@ -12,30 +12,139 @@
 #import <UIKit/UIKit.h>
 #import "RPSNativeAdsImpRequest.h"
 
+#pragma mark - RPSNativeAdsAsset wtih writable properties
+@interface RPSNativeAdsAsset()
+
+@property(nonatomic, getter=isRequired) Boolean required;
+
+-(void) parse:(NSDictionary*) data;
+
++(instancetype) factoryAsset:(NSDictionary*) assetJson;
+
+@end
+
+@implementation RPSNativeAdsAsset
+
+-(void)parse:(NSDictionary *)data {
+    RPSLog(@"unimplement!");
+}
+
++(instancetype) factoryAsset:(NSDictionary *)assetData {
+    RPSNativeAdsAsset* asset = nil;
+    RPSJSONObject* assetJson = [RPSJSONObject jsonWithRawDictionary:assetData];
+
+    NSDictionary* titleData = [assetJson getJson:@"text"].rawDict;
+    if (titleData) {
+        asset = [RPSNativeAdsAssetTitle new];
+        [asset parse:titleData];
+    }
+
+    return asset;
+}
+
+@end
+
 #pragma mark - RPSNativeAdsAssetImage wtih writable properties
 @interface RPSNativeAdsAssetImage()
 
 @property(nonatomic) NSString* url;
 @property(nonatomic) int w;
 @property(nonatomic) int h;
+@property(nonatomic) RPSNativeAdsAssetImageType type;
+@property(nonatomic) NSDictionary* ext;
+
+-(void) parse:(NSDictionary*) imgAssetJson;
 
 @end
 
 @implementation RPSNativeAdsAssetImage
 
+-(void)parse:(NSDictionary *)imgAssetJson {
+    RPSJSONObject* imgAsset = [RPSJSONObject jsonWithRawDictionary:imgAssetJson];
+
+    // url
+    self.url = [imgAsset getString:@"url"];
+
+    // w / h
+    self.w = [[imgAsset getNumber:@"w"] intValue];
+    self.h = [[imgAsset getNumber:@"h"] intValue];
+
+    // type
+    int type = [[imgAsset getNumber:@"type"] intValue];
+    switch (type) {
+        case 1:
+            self.type = RPSNativeAdsAssetImageTypeIcon;
+            break;
+        case 3:
+            self.type = RPSNativeAdsAssetImageTypeMain;
+            break;
+        default:
+            self.type = RPSNativeAdsAssetImageTypeOther;
+            break;
+    }
+
+    // ext
+    self.ext = [imgAsset getJson:@"ext"].rawDict;
+}
+
 @end
 
-#pragma mark - RPSNativeAdsAsset wtih writable properties
-@interface RPSNativeAdsAsset()
+#pragma mark - RPSNativeAdsAssetTitle wtih writable properties
+@interface RPSNativeAdsAssetTitle()
 
-@property(nonatomic, getter=isRequired) Boolean required;
-@property(nonatomic, nullable) NSString* title;
-@property(nonatomic, nullable) RPSNativeAdsAssetImage* img;
-@property(nonatomic, nullable) NSString* data;
+@property(nonatomic) NSString* text;
+@property(nonatomic) int length;
+@property(nonatomic) NSDictionary* ext;
+
+-(void) parse:(NSDictionary*) titleAssetJson;
 
 @end
 
-@implementation RPSNativeAdsAsset
+@implementation RPSNativeAdsAssetTitle
+
+-(void)parse:(NSDictionary *)titleAssetJson {
+    RPSJSONObject* titleAsset = [RPSJSONObject jsonWithRawDictionary:titleAssetJson];
+
+    // text
+    self.text = [titleAsset getString:@"text"];
+
+    // length
+    self.length = [[titleAsset getNumber:@"len"] intValue];
+
+    // ext
+    self.ext = [titleAsset getJson:@"ext"].rawDict;
+}
+@end
+
+#pragma mark - RPSNativeAdsAssetData wtih writable properties
+@interface RPSNativeAdsAssetData()
+
+@property(nonatomic) NSString* value;
+@property(nonatomic) int type;
+@property(nonatomic) int len;
+@property(nonatomic) NSDictionary* ext;
+
+-(void) parse:(NSDictionary*) dataAssetJson;
+
+@end
+
+@implementation RPSNativeAdsAssetData
+
+-(void)parse:(NSDictionary *)dataAssetJson {
+    RPSJSONObject* dataAsset = [RPSJSONObject jsonWithRawDictionary:dataAssetJson];
+
+    // value
+    self.value = [dataAsset getString:@"value"];
+
+    // type
+    self.type = [[dataAsset getNumber:@"type"] intValue];
+
+    // len
+    self.len = [[dataAsset getNumber:@"len"] intValue];
+
+    // ext
+    self.ext = [dataAsset getJson:@"ext"].rawDict;
+}
 
 @end
 
@@ -52,7 +161,15 @@
 @end
 
 
+#pragma mark -
 #pragma mark - RPSNativeAds
+@interface RPSNativeAds()
+
+@property(nonatomic, nullable) NSString* link;
+@property(nonatomic, nullable) NSArray<NSString*>* clickTrackers;
+@property(nonatomic, nullable) NSArray<RPSNativeAdsEventTracker*>* eventTrackers;
+
+@end
 
 @implementation RPSNativeAds
 
@@ -74,29 +191,17 @@
     // assets
     NSMutableArray* assetsList = [NSMutableArray array];
     for (NSDictionary* assetData in [nativeJson getArray:@"assets"]) {
-        RPSJSONObject* assetJson = [RPSJSONObject jsonWithRawDictionary:assetData];
-        RPSNativeAdsAsset* asset = [RPSNativeAdsAsset new];
 
-        asset.title = [assetJson getString:@"title.text"];
-
-        RPSJSONObject* imageJson = [assetJson getJson:@"img"];
-        if (imageJson) {
-            RPSNativeAdsAssetImage* assetImage = [RPSNativeAdsAssetImage new];
-            assetImage.url = [imageJson getString:@"url"];
-            assetImage.w = [[imageJson getNumber:@"w"] intValue];
-            assetImage.h = [[imageJson getNumber:@"h"] intValue];
-            asset.img = assetImage;
-        }
-
-        asset.data = [assetJson getString:@"data.value"];
+        RPSNativeAdsAsset* asset = [RPSNativeAdsAsset parse:assetData];
         [assetsList addObject:asset];
-    };
+    }
     if (assetsList.count > 0) {
         nativeAds->_assets = [NSArray arrayWithArray:assetsList];
     }
 
     // link
-    nativeAds->_link = [nativeJson getString:@"link.url"];
+    nativeAds.link = [nativeJson getString:@"link.url"];
+    nativeAds.clickTrackers = [nativeJson getArray:@"clicktrackers"];
 
     // eventTrackers
     NSMutableArray* eventTrackerList = [NSMutableArray array];
@@ -123,7 +228,14 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[UIApplication sharedApplication] openURL:clickUrl];
             });
+
+            for (NSString* clickTracker in self.clickTrackers) {
+                RPSNativeAdsImpRequest* impRequest = [RPSNativeAdsImpRequest new];
+                impRequest.impLink = clickTracker;
+                [impRequest resume];
+            }
         }
+
     }
 }
 

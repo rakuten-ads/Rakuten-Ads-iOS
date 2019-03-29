@@ -10,7 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RPSNativeAdsAssetImage : NSObject
+@interface RPSNativeAdsAsset : NSObject
+
+@property(nonatomic, readonly, getter=isRequired) Boolean required;
+
+@end
+
+typedef NS_ENUM(NSUInteger, RPSNativeAdsAssetImageType) {
+    RPSNativeAdsAssetImageTypeIcon,
+    RPSNativeAdsAssetImageTypeMain,
+    RPSNativeAdsAssetImageTypeOther,
+};
+
+@interface RPSNativeAdsAssetImage : RPSNativeAdsAsset
 
 @property(nonatomic, readonly) NSString* url;
 @property(nonatomic, readonly) int w;
@@ -18,15 +30,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface RPSNativeAdsAssetTitle : RPSNativeAdsAsset
 
-@interface RPSNativeAdsAsset : NSObject
-
-@property(nonatomic, readonly, getter=isRequired) Boolean required;
-@property(nonatomic, readonly, nullable) NSString* title;
-@property(nonatomic, readonly, nullable) RPSNativeAdsAssetImage* img;
-@property(nonatomic, readonly, nullable) NSString* data;
+@property(nonatomic, readonly) NSString* text;
+@property(nonatomic, readonly) int length;
 
 @end
+
+@interface RPSNativeAdsAssetData : RPSNativeAdsAsset
+
+@property(nonatomic, readonly) NSString* value;
+
+@end
+
 
 @interface RPSNativeAdsEventTracker : NSObject
 
@@ -37,12 +53,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RPSNativeAds : NSObject
 
-@property(nonatomic, readonly, nullable) NSArray<RPSNativeAdsAsset*>* assets;
-@property(nonatomic, readonly, nullable) NSArray<NSString*>* eventTrackers;
-@property(nonatomic, readonly, nullable) NSString* link;
+@property(nonatomic, readonly, nullable) NSString* title;
+@property(nonatomic, readonly, nullable) NSString* subTitle;
+@property(nonatomic, readonly, nullable) NSArray<RPSNativeAdsAssetImage*>* imgs;
+@property(nonatomic, readonly, nullable) NSString* value;
 
 -(void) fireClick;
 -(void) fireImpression;
+-(void) showPrivacy;
+
+@end
+
+/**
+ * raw assets data
+ */
+@interface RPSNativeAds()
+
+@property(nonatomic, readonly, nullable) NSArray<RPSNativeAdsAsset*>* assets;
 
 @end
 
