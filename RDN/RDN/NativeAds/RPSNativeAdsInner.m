@@ -10,7 +10,8 @@
 #import <RPSCore/RPSJSONObject.h>
 #import <RPSCore/RPSValid.h>
 #import <UIKit/UIKit.h>
-#import "RPSNativeAdsImpRequest.h"
+#import <RPSCore/RPSHttpTask.h>
+#import "RPSNativeAdsEventTrackRequest.h"
 
 #pragma mark - RPSNativeAdsAsset wtih writable properties
 @interface RPSNativeAdsAsset()
@@ -149,7 +150,7 @@
 @end
 
 #pragma mark - RPSNativeAdsEventTracker wtih writable properties
-@interface RPSNativeAdsEventTracker()
+@interface RPSNativeAdsEventTracker() <RPSHttpTaskDelegate>
 
 @property(nonatomic) int method;
 @property(nonatomic) NSString* url;
@@ -157,6 +158,10 @@
 @end
 
 @implementation RPSNativeAdsEventTracker
+
+- (nonnull NSString *)getUrl {
+    return self.url;
+}
 
 @end
 
@@ -192,7 +197,7 @@
     NSMutableArray* assetsList = [NSMutableArray array];
     for (NSDictionary* assetData in [nativeJson getArray:@"assets"]) {
 
-        RPSNativeAdsAsset* asset = [RPSNativeAdsAsset parse:assetData];
+        RPSNativeAdsAsset* asset = [RPSNativeAdsAsset factoryAsset:assetData];
         [assetsList addObject:asset];
     }
     if (assetsList.count > 0) {
@@ -229,10 +234,10 @@
                 [[UIApplication sharedApplication] openURL:clickUrl];
             });
 
-            for (NSString* clickTracker in self.clickTrackers) {
-                RPSNativeAdsImpRequest* impRequest = [RPSNativeAdsImpRequest new];
-                impRequest.impLink = clickTracker;
-                [impRequest resume];
+            for (RPSNativeAdsEventTracker* clickTracker in self.clickTrackers) {
+                RPSNativeAdsEventTrackRequest* request = [RPSNativeAdsEventTrackRequest new];
+                request.httpTaskDelegate = clickTracker;
+                [request resume];
             }
         }
 
@@ -240,11 +245,11 @@
 }
 
 -(void)fireImpression {
-    for (NSString* impLink in self.eventTrackers) {
+    for (RPSNativeAdsEventTracker* impLink in self.eventTrackers) {
         VERBOSE_LOG(@"fire imp %@", impLink);
-        RPSNativeAdsImpRequest* impRequest = [RPSNativeAdsImpRequest new];
-        impRequest.impLink = impLink;
-        [impRequest resume];
+        RPSNativeAdsEventTrackRequest* request = [RPSNativeAdsEventTrackRequest new];
+        request.httpTaskDelegate = impLink;
+        [request resume];
     }
 }
 @end

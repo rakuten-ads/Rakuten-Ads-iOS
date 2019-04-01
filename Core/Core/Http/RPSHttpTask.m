@@ -13,7 +13,7 @@
 
 -(void) resume {
     @try {
-        if (!_httpSessionDelegate) {
+        if (!_httpTaskDelegate) {
             @throw [NSException exceptionWithName:@"HttpSessionException" reason:@"required httpSessionDelegate" userInfo:nil];
         }
 
@@ -21,7 +21,7 @@
             @throw [NSException exceptionWithName:@"HttpSessionException" reason:@"init httpSession first!" userInfo:nil];
         }
 
-        if ([_httpSessionDelegate respondsToSelector:@selector(shouldCancel)] && [_httpSessionDelegate shouldCancel]) {
+        if ([_httpTaskDelegate respondsToSelector:@selector(shouldCancel)] && [_httpTaskDelegate shouldCancel]) {
             RPSLog(@"http session canceled");
             @throw [NSException exceptionWithName:@"HttpSessionException" reason:@"http resume cannceled" userInfo:nil];
         }
@@ -43,8 +43,8 @@
 
         // define completionHandler if concern the response
         void (^completionHandler)(NSData*, NSURLResponse*, NSError*) = nil;
-        if ([self->_httpSessionDelegate respondsToSelector:@selector(onResponse:withData:)]
-            || [self->_httpSessionDelegate respondsToSelector:@selector(onJsonResponse:withData:)]) {
+        if ([self->_httpTaskDelegate respondsToSelector:@selector(onResponse:withData:)]
+            || [self->_httpTaskDelegate respondsToSelector:@selector(onJsonResponse:withData:)]) {
             completionHandler = [self getCompletionhandler];
         } else {
             RPSLog(@"skip response as no concern");
@@ -57,13 +57,6 @@
     @catch (NSException *exception) {
         RPSLog(@"httpsession resume failed: %@", exception);
         @throw exception;
-    }
-    @finally {
-        // release http session
-        if (!self.shouldKeepHttpSession) {
-            [_httpSession finishTasksAndInvalidate];
-        }
-        RPSLog(@"do%@ keep httpsession", self.shouldKeepHttpSession ? @"" : @" not");
     }
 }
 
@@ -85,9 +78,9 @@
 }
 
 -(NSString*) composeURLWithQueryString {
-    NSMutableString* urlStr = [NSMutableString stringWithString:[_httpSessionDelegate getUrl]];
-    if ([_httpSessionDelegate respondsToSelector:@selector(getQueryParameters)]) {
-        NSDictionary* paramDict = [_httpSessionDelegate getQueryParameters];
+    NSMutableString* urlStr = [NSMutableString stringWithString:[_httpTaskDelegate getUrl]];
+    if ([_httpTaskDelegate respondsToSelector:@selector(getQueryParameters)]) {
+        NSDictionary* paramDict = [_httpTaskDelegate getQueryParameters];
         if (paramDict) {
             // add query parameters
             if (![urlStr containsString:@"?"]) {
@@ -113,23 +106,23 @@
 }
 
 -(void) configHttpRequest:(NSMutableURLRequest*) request {
-    if (_httpSessionDelegate && [_httpSessionDelegate respondsToSelector:@selector(postJsonBody)]) {
+    if (_httpTaskDelegate && [_httpTaskDelegate respondsToSelector:@selector(postJsonBody)]) {
         RPSLog(@"set Json header");
         [request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     }
 
-    if ([_httpSessionDelegate respondsToSelector:@selector(processConfig:)]) {
-        [_httpSessionDelegate processConfig:request];
+    if ([_httpTaskDelegate respondsToSelector:@selector(processConfig:)]) {
+        [_httpTaskDelegate processConfig:request];
     }
 }
 
 -(void) setPostBody:(NSMutableURLRequest*) request {
-    if ([_httpSessionDelegate respondsToSelector:@selector(postBody)]) {
+    if ([_httpTaskDelegate respondsToSelector:@selector(postBody)]) {
         request.HTTPMethod = @"POST";
-        request.HTTPBody = [_httpSessionDelegate postBody];
-    } else if (_httpSessionDelegate && [_httpSessionDelegate respondsToSelector:@selector(postJsonBody)]) {
-        NSDictionary* jsonBody = [(id<RPSJsonHttpSessionDelegate>)_httpSessionDelegate postJsonBody];
+        request.HTTPBody = [_httpTaskDelegate postBody];
+    } else if (_httpTaskDelegate && [_httpTaskDelegate respondsToSelector:@selector(postJsonBody)]) {
+        NSDictionary* jsonBody = [(id<RPSJsonHttpSessionDelegate>)_httpTaskDelegate postJsonBody];
         RPSLog(@"jsonBody: %@", jsonBody);
         if (jsonBody) {
             request.HTTPMethod = @"POST";
@@ -155,10 +148,10 @@
 
         @try {
             NSHTTPURLResponse* rep = (NSHTTPURLResponse*)response;
-            if ([self->_httpSessionDelegate respondsToSelector:@selector(onResponse:withData:)]) {
+            if ([self->_httpTaskDelegate respondsToSelector:@selector(onResponse:withData:)]) {
                 // take prior response to HttpSesionDelegate
-                [self->_httpSessionDelegate onResponse:rep withData:data];
-            } else if ([self->_httpSessionDelegate respondsToSelector:@selector(onJsonResponse:withData:)]) {
+                [self->_httpTaskDelegate onResponse:rep withData:data];
+            } else if ([self->_httpTaskDelegate respondsToSelector:@selector(onJsonResponse:withData:)]) {
                 // otherwise the JsonHttpSessionDelegate
                 NSError* jsonErr = nil;
                 NSDictionary* json = nil;
@@ -168,7 +161,7 @@
                 } else {
                     RPSLog(@"desired JSON response data while nil");
                 }
-                [(id<RPSJsonHttpSessionDelegate>)self->_httpSessionDelegate onJsonResponse:rep withData:json];
+                [(id<RPSJsonHttpSessionDelegate>)self->_httpTaskDelegate onJsonResponse:rep withData:json];
             }
 
             RPSLog(@"http error: %@", httpErr ?: @"None");

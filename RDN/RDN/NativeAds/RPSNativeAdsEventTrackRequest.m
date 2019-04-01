@@ -6,24 +6,27 @@
 //  Copyright © 2019 Rakuten MPD. All rights reserved.
 //
 
-#import "RPSNativeAdsImpRequest.h"
+#import "RPSNativeAdsEventTrackRequest.h"
 #import "RPSDefines.h"
 
-@implementation RPSNativeAdsImpRequest
+
+@implementation NSString(RPSHttp)
+
+- (NSString *)getUrl {
+    return self;
+}
+
+@end
+
+@implementation RPSNativeAdsEventTrackRequest
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         self->_httpSession = RPSDefines.sharedInstance.httpSession;
-        self.shouldKeepHttpSession = YES;
-        self.httpSessionDelegate = self;
     }
     return self;
-}
-
-- (nonnull NSString *)getUrl {
-    return self.impLink;
 }
 
 @end

@@ -11,9 +11,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RPSNativeAdsImpRequest : RPSHttpTask<RPSHttpTaskDelegate>
+@interface NSString(RPSHttp) <RPSHttpTaskDelegate>
 
-@property(nonatomic, copy) NSString* impLink;
+@end
+
+@interface RPSNativeAdsEventTrackRequest : RPSHttpTask
 
 @end
 

@@ -46,10 +46,9 @@
 -(void) resume;
 -(void) syncResume:(dispatch_time_t) timeout;
 
-@property (nonatomic) BOOL shouldKeepHttpSession;
 @property (nonatomic, readonly, nullable) NSString* underlyingUrl;
 
-@property(nonatomic, weak, nullable) id<RPSHttpTaskDelegate> httpSessionDelegate;
+@property(nonatomic, weak, nullable) id<RPSHttpTaskDelegate> httpTaskDelegate;
 
 @end
 

@@ -20,8 +20,7 @@
     self = [super init];
     if (self) {
         self->_httpSession = RPSDefines.sharedInstance.httpSession;
-        self.shouldKeepHttpSession = YES;
-        self.httpSessionDelegate = self;
+        self.httpTaskDelegate = self;
     }
     return self;
 }
