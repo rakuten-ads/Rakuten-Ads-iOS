@@ -1,5 +1,5 @@
 //
-//  RPSNativeAdsAdapter.h
+//  RPSNativeAdAdapter.h
 //  RDN
 //
 //  Created by Wu, Wei b on 2019/03/12.
@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RPSNativeAdsInner.h"
+#import "RPSNativeAdInner.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RPSNativeAdsAdapter : RPSBidAdapter
+@interface RPSNativeAdAdapter : RPSBidAdapter
 
 @property(nonatomic, copy) NSString* adspotId;
 

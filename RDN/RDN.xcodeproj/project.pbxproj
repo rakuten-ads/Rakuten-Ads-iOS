@@ -28,14 +28,15 @@
 		32564D9C2227865100DB4DBF /* RPSBannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D9A2227865100DB4DBF /* RPSBannerAdapter.h */; };
 		32564D9D2227865100DB4DBF /* RPSBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D9B2227865100DB4DBF /* RPSBannerAdapter.m */; };
 		325FF74121E605F100A899CF /* RPSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RPSCore.framework */; };
-		32A693422237BBA800812DF9 /* RPSNativeAdsAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A693402237BBA800812DF9 /* RPSNativeAdsAdapter.h */; };
-		32A693432237BBA800812DF9 /* RPSNativeAdsAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A693412237BBA800812DF9 /* RPSNativeAdsAdapter.m */; };
-		32A693462240E31700812DF9 /* RPSNativeAds.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A693442240E31700812DF9 /* RPSNativeAds.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32A693472240E31700812DF9 /* RPSNativeAds.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A693452240E31700812DF9 /* RPSNativeAds.m */; };
-		32A6934B22422FCD00812DF9 /* RPSNativeAdsInner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A6934922422FCD00812DF9 /* RPSNativeAdsInner.h */; };
-		32A6934C22422FCD00812DF9 /* RPSNativeAdsInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6934A22422FCD00812DF9 /* RPSNativeAdsInner.m */; };
-		32A693622248BD7500812DF9 /* RPSNativeAdsEventTrackRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A693602248BD7500812DF9 /* RPSNativeAdsEventTrackRequest.h */; };
-		32A693632248BD7500812DF9 /* RPSNativeAdsEventTrackRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A693612248BD7500812DF9 /* RPSNativeAdsEventTrackRequest.m */; };
+		32A693422237BBA800812DF9 /* RPSNativeAdAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A693402237BBA800812DF9 /* RPSNativeAdAdapter.h */; };
+		32A693432237BBA800812DF9 /* RPSNativeAdAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A693412237BBA800812DF9 /* RPSNativeAdAdapter.m */; };
+		32A693462240E31700812DF9 /* RPSNativeAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A693442240E31700812DF9 /* RPSNativeAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32A693472240E31700812DF9 /* RPSNativeAdLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A693452240E31700812DF9 /* RPSNativeAdLoader.m */; };
+		32A6934B22422FCD00812DF9 /* RPSNativeAdInner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A6934922422FCD00812DF9 /* RPSNativeAdInner.h */; };
+		32A6934C22422FCD00812DF9 /* RPSNativeAdInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6934A22422FCD00812DF9 /* RPSNativeAdInner.m */; };
+		32A693622248BD7500812DF9 /* RPSNativeAdEventTrackRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A693602248BD7500812DF9 /* RPSNativeAdEventTrackRequest.h */; };
+		32A693632248BD7500812DF9 /* RPSNativeAdEventTrackRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A693612248BD7500812DF9 /* RPSNativeAdEventTrackRequest.m */; };
+		32A985D32269C47700F2204A /* RPSNativeAdLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A985D22269C47600F2204A /* RPSNativeAdLoader.h */; };
 		32F258EA21E58689001FD9C0 /* RPSRDN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258E021E58689001FD9C0 /* RPSRDN.framework */; };
 		32F258EF21E58689001FD9C0 /* RDNTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F258EE21E58689001FD9C0 /* RDNTests.m */; };
 		32F258F121E58689001FD9C0 /* RPSRDN.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F258E321E58689001FD9C0 /* RPSRDN.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -87,14 +88,15 @@
 		32564D9B2227865100DB4DBF /* RPSBannerAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerAdapter.m; sourceTree = "<group>"; };
 		325FF74521F0577900A899CF /* rpsrdn.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = rpsrdn.modulemap; sourceTree = "<group>"; };
 		325FF74C21F0706000A899CF /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
-		32A693402237BBA800812DF9 /* RPSNativeAdsAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSNativeAdsAdapter.h; sourceTree = "<group>"; };
-		32A693412237BBA800812DF9 /* RPSNativeAdsAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSNativeAdsAdapter.m; sourceTree = "<group>"; };
-		32A693442240E31700812DF9 /* RPSNativeAds.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSNativeAds.h; sourceTree = "<group>"; };
-		32A693452240E31700812DF9 /* RPSNativeAds.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSNativeAds.m; sourceTree = "<group>"; };
-		32A6934922422FCD00812DF9 /* RPSNativeAdsInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSNativeAdsInner.h; sourceTree = "<group>"; };
-		32A6934A22422FCD00812DF9 /* RPSNativeAdsInner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSNativeAdsInner.m; sourceTree = "<group>"; };
-		32A693602248BD7500812DF9 /* RPSNativeAdsEventTrackRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSNativeAdsEventTrackRequest.h; sourceTree = "<group>"; };
-		32A693612248BD7500812DF9 /* RPSNativeAdsEventTrackRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSNativeAdsEventTrackRequest.m; sourceTree = "<group>"; };
+		32A693402237BBA800812DF9 /* RPSNativeAdAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSNativeAdAdapter.h; sourceTree = "<group>"; };
+		32A693412237BBA800812DF9 /* RPSNativeAdAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSNativeAdAdapter.m; sourceTree = "<group>"; };
+		32A693442240E31700812DF9 /* RPSNativeAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSNativeAd.h; sourceTree = "<group>"; };
+		32A693452240E31700812DF9 /* RPSNativeAdLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSNativeAdLoader.m; sourceTree = "<group>"; };
+		32A6934922422FCD00812DF9 /* RPSNativeAdInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSNativeAdInner.h; sourceTree = "<group>"; };
+		32A6934A22422FCD00812DF9 /* RPSNativeAdInner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSNativeAdInner.m; sourceTree = "<group>"; };
+		32A693602248BD7500812DF9 /* RPSNativeAdEventTrackRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSNativeAdEventTrackRequest.h; sourceTree = "<group>"; };
+		32A693612248BD7500812DF9 /* RPSNativeAdEventTrackRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSNativeAdEventTrackRequest.m; sourceTree = "<group>"; };
+		32A985D22269C47600F2204A /* RPSNativeAdLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSNativeAdLoader.h; sourceTree = "<group>"; };
 		32F258E021E58689001FD9C0 /* RPSRDN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RPSRDN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258E321E58689001FD9C0 /* RPSRDN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSRDN.h; sourceTree = "<group>"; };
 		32F258E421E58689001FD9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -161,19 +163,20 @@
 			path = Banner;
 			sourceTree = "<group>";
 		};
-		32A6933F2237BB8700812DF9 /* NativeAds */ = {
+		32A6933F2237BB8700812DF9 /* NativeAd */ = {
 			isa = PBXGroup;
 			children = (
-				32A693442240E31700812DF9 /* RPSNativeAds.h */,
-				32A693452240E31700812DF9 /* RPSNativeAds.m */,
-				32A693402237BBA800812DF9 /* RPSNativeAdsAdapter.h */,
-				32A693412237BBA800812DF9 /* RPSNativeAdsAdapter.m */,
-				32A6934922422FCD00812DF9 /* RPSNativeAdsInner.h */,
-				32A6934A22422FCD00812DF9 /* RPSNativeAdsInner.m */,
-				32A693602248BD7500812DF9 /* RPSNativeAdsEventTrackRequest.h */,
-				32A693612248BD7500812DF9 /* RPSNativeAdsEventTrackRequest.m */,
+				32A693442240E31700812DF9 /* RPSNativeAd.h */,
+				32A985D22269C47600F2204A /* RPSNativeAdLoader.h */,
+				32A693452240E31700812DF9 /* RPSNativeAdLoader.m */,
+				32A6934922422FCD00812DF9 /* RPSNativeAdInner.h */,
+				32A6934A22422FCD00812DF9 /* RPSNativeAdInner.m */,
+				32A693402237BBA800812DF9 /* RPSNativeAdAdapter.h */,
+				32A693412237BBA800812DF9 /* RPSNativeAdAdapter.m */,
+				32A693602248BD7500812DF9 /* RPSNativeAdEventTrackRequest.h */,
+				32A693612248BD7500812DF9 /* RPSNativeAdEventTrackRequest.m */,
 			);
-			path = NativeAds;
+			path = NativeAd;
 			sourceTree = "<group>";
 		};
 		32F258D621E58689001FD9C0 = {
@@ -199,7 +202,7 @@
 		32F258E221E58689001FD9C0 /* RDN */ = {
 			isa = PBXGroup;
 			children = (
-				32A6933F2237BB8700812DF9 /* NativeAds */,
+				32A6933F2237BB8700812DF9 /* NativeAd */,
 				32564D912226305500DB4DBF /* Banner */,
 				32564D842224EC4A00DB4DBF /* OpenRTB */,
 				32F2594C21E597E5001FD9C0 /* Common */,
@@ -255,16 +258,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32A693622248BD7500812DF9 /* RPSNativeAdsEventTrackRequest.h in Headers */,
+				32A693622248BD7500812DF9 /* RPSNativeAdEventTrackRequest.h in Headers */,
+				32A985D32269C47700F2204A /* RPSNativeAdLoader.h in Headers */,
 				32564D872224ECAA00DB4DBF /* RPSOpenRTB.h in Headers */,
-				32A693462240E31700812DF9 /* RPSNativeAds.h in Headers */,
-				32A6934B22422FCD00812DF9 /* RPSNativeAdsInner.h in Headers */,
+				32A693462240E31700812DF9 /* RPSNativeAd.h in Headers */,
+				32A6934B22422FCD00812DF9 /* RPSNativeAdInner.h in Headers */,
 				32564D982227790900DB4DBF /* RPSBidAdapter.h in Headers */,
 				32564D9C2227865100DB4DBF /* RPSBannerAdapter.h in Headers */,
 				32F2596021E597E5001FD9C0 /* RPSBannerView.h in Headers */,
 				32F2595D21E597E5001FD9C0 /* RPSDefines.h in Headers */,
 				32F258F121E58689001FD9C0 /* RPSRDN.h in Headers */,
-				32A693422237BBA800812DF9 /* RPSNativeAdsAdapter.h in Headers */,
+				32A693422237BBA800812DF9 /* RPSNativeAdAdapter.h in Headers */,
 				32F2596821E597E5001FD9C0 /* RPSAdWebView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,12 +420,12 @@
 			files = (
 				32564D992227790900DB4DBF /* RPSBidAdapter.m in Sources */,
 				32F2596121E597E5001FD9C0 /* RPSBannerView.m in Sources */,
-				32A6934C22422FCD00812DF9 /* RPSNativeAdsInner.m in Sources */,
-				32A693432237BBA800812DF9 /* RPSNativeAdsAdapter.m in Sources */,
-				32A693632248BD7500812DF9 /* RPSNativeAdsEventTrackRequest.m in Sources */,
+				32A6934C22422FCD00812DF9 /* RPSNativeAdInner.m in Sources */,
+				32A693432237BBA800812DF9 /* RPSNativeAdAdapter.m in Sources */,
+				32A693632248BD7500812DF9 /* RPSNativeAdEventTrackRequest.m in Sources */,
 				32F2595E21E597E5001FD9C0 /* RPSDefines.m in Sources */,
 				32564D882224ECAA00DB4DBF /* RPSOpenRTB.m in Sources */,
-				32A693472240E31700812DF9 /* RPSNativeAds.m in Sources */,
+				32A693472240E31700812DF9 /* RPSNativeAdLoader.m in Sources */,
 				32564D9D2227865100DB4DBF /* RPSBannerAdapter.m in Sources */,
 				32F2596721E597E5001FD9C0 /* RPSAdWebView.m in Sources */,
 			);

@@ -29,12 +29,6 @@
     return self.openRTBAdapterDelegate.getURL;
 }
 
--(Boolean)shouldCancel {
-    Boolean shouldCancel = [self.openRTBAdapterDelegate getImp] == nil;
-    RPSLog(shouldCancel ? @"HTTP request cancelled by empty imp" : @"HTTP request ready to send");
-    return shouldCancel;
-}
-
 -(NSDictionary *)postJsonBody {
     return [self postBidBody];
 }
@@ -64,6 +58,11 @@ NSString* kSDKUserAgentFormat = @"GAP-SDK:iOS:%f";
         VERBOSE_LOG(@"OpenRTB responsed status code: %ld", (long)response.statusCode);
     }
 
+    // sort by id
+    [bidDataList sortUsingComparator:^NSComparisonResult(NSDictionary*  _Nonnull obj1, NSDictionary*  _Nonnull obj2) {
+        return [obj1[@"id"] compare:obj2[@"id"] options:NSNumericSearch];
+    }];
+
     [self.openRTBAdapterDelegate onBidResponse:response withBidList:bidDataList];
 }
 
@@ -80,7 +79,7 @@ NSString* kSDKUserAgentFormat = @"GAP-SDK:iOS:%f";
     body[@"device"] = [self getDevice];
 
     if ([self.openRTBAdapterDelegate respondsToSelector:@selector(processBidBody:)]) {
-       [self.openRTBAdapterDelegate processBidBody:body];
+        [self.openRTBAdapterDelegate processBidBody:body];
     }
 
     return body;

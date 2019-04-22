@@ -1,24 +1,15 @@
 //
-//  RPSNativeAdsImpRequest.m
+//  RPSNativeAdImpRequest.m
 //  RDN
 //
 //  Created by Wu, Wei b on 2019/03/25.
 //  Copyright © 2019 Rakuten MPD. All rights reserved.
 //
 
-#import "RPSNativeAdsEventTrackRequest.h"
+#import "RPSNativeAdEventTrackRequest.h"
 #import "RPSDefines.h"
 
-
-@implementation NSString(RPSHttp)
-
-- (NSString *)getUrl {
-    return self;
-}
-
-@end
-
-@implementation RPSNativeAdsEventTrackRequest
+@implementation RPSNativeAdEventTrackRequest
 
 - (instancetype)init
 {

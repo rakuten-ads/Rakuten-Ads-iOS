@@ -1,28 +1,28 @@
 //
-//  RPSNativeAds.m
+//  RPSNativeAd.m
 //  RDN
 //
 //  Created by Wu, Wei b on 2019/03/19.
 //  Copyright © 2019 Rakuten MPD. All rights reserved.
 //
 
-#import "RPSNativeAdsInner.h"
+#import "RPSNativeAdInner.h"
 #import "RPSBidAdapter.h"
 #import "RPSDefines.h"
+#import "RPSNativeAdAdapter.h"
 #import <RPSCore/RPSValid.h>
-#import "RPSNativeAdsAdapter.h"
 
-typedef BOOL (^RPSNativeAdsEventHandler)(RPSNativeAdsLoader* loader, NSArray<RPSNativeAds*>* adsList);
+typedef BOOL (^RPSNativeAdEventHandler)(RPSNativeAdLoader* loader, NSArray<RPSNativeAd*>* adsList);
 
-@interface RPSNativeAdsLoader()<RPSBidResponseConsumer>
+@interface RPSNativeAdLoader()<RPSBidResponseConsumer>
 
-@property (nonatomic, copy) RPSNativeAdsEventHandler handler;
+@property (nonatomic, copy) RPSNativeAdEventHandler handler;
 
 @end
 
-@implementation RPSNativeAdsLoader
+@implementation RPSNativeAdLoader
 
--(void)loadWithCompletionHandler:(BOOL (^)(RPSNativeAdsLoader * _Nonnull, NSArray<RPSNativeAds*> * _Nonnull))handler {
+-(void)loadWithCompletionHandler:(BOOL (^)(RPSNativeAdLoader * _Nonnull, NSArray<RPSNativeAd*> * _Nonnull))handler {
     self.handler = handler;
 
     dispatch_async(RPSDefines.sharedQueue, ^{
@@ -33,7 +33,7 @@ typedef BOOL (^RPSNativeAdsEventHandler)(RPSNativeAdsLoader* loader, NSArray<RPS
                 @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
             }
 
-            RPSNativeAdsAdapter* adapter = [RPSNativeAdsAdapter new];
+            RPSNativeAdAdapter* adapter = [RPSNativeAdAdapter new];
             adapter.adspotId = self.adSpotId;
             adapter.responseConsumer = self;
 
@@ -58,17 +58,15 @@ typedef BOOL (^RPSNativeAdsEventHandler)(RPSNativeAdsLoader* loader, NSArray<RPS
      [self triggerFailure];
 }
 
-- (void)onBidResponseSuccess:(nonnull NSArray<RPSNativeAds*> *)adInfoList {
+- (void)onBidResponseSuccess:(nonnull NSArray<RPSNativeAd*> *)adInfoList {
     if (self.handler) {
         self.handler(self, adInfoList);
     }
 }
 
-/**
- * implement RPSBidResponseConsumer's method
- */
-- (nonnull RPSNativeAds*)parse:(nonnull NSDictionary *)bid {
-    return [RPSNativeAds parse:bid];
+#pragma mark - RPSBidResponseConsumer protocol implementation
+- (nonnull RPSNativeAd*)parse:(nonnull NSDictionary *)bid {
+    return [RPSNativeAd parse:bid];
 }
 
 @end

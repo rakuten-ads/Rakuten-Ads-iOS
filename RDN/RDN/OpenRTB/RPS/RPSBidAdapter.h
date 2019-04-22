@@ -26,7 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RPSBidAdapter : NSObject<RPSOpenRTBAdapterDelegate>
 
-@property(nonatomic, copy) NSArray<NSString*>* adspotIdList;
 @property(nonatomic, assign) id<RPSBidResponseConsumer> responseConsumer;
 
 @end

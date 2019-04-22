@@ -22,17 +22,7 @@
 @implementation RPSBidAdapter
 
 - (nonnull NSArray *)getImp {
-    NSMutableArray* impList = [NSMutableArray array];
-    for (NSString* adspotId in self.adspotIdList) {
-        if (adspotId) {
-            [impList addObject:@{
-                                 @"ext" : @{
-                                         @"adspot_id" : adspotId
-                                         }
-                                 }];
-        }
-    }
-    return impList;
+    return nil;
 }
 
 - (nonnull NSString *)getURL {

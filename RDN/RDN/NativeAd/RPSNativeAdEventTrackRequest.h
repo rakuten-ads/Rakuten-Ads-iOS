@@ -1,5 +1,5 @@
 //
-//  RPSNativeAdsImpRequest.h
+//  RPSNativeAdImpRequest.h
 //  RDN
 //
 //  Created by Wu, Wei b on 2019/03/25.
@@ -11,11 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSString(RPSHttp) <RPSHttpTaskDelegate>
-
-@end
-
-@interface RPSNativeAdsEventTrackRequest : RPSHttpTask
+@interface RPSNativeAdEventTrackRequest : RPSHttpTask
 
 @end
 
