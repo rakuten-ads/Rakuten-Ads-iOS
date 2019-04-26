@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RPSNativeAdAsset()
 
 -(void) parse:(RPSJSONObject*) assetJson;
-//-(void) parseWithJson:(RPSJSONObject*) assetJson;
 
 +(instancetype) factoryAsset:(NSDictionary*) assetJson;
 
@@ -33,9 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 // image
 typedef NS_ENUM(NSUInteger, RPSNativeAdAssetImageType) {
-    RPSNativeAdAssetImageTypeIcon,
-    RPSNativeAdAssetImageTypeMain,
-    RPSNativeAdAssetImageTypeOther,
+    RPSNativeAdAssetImageTypeIcon = 1,
+    RPSNativeAdAssetImageTypeMain = 3,
+    RPSNativeAdAssetImageTypeOther = 500,
 };
 
 @interface RPSNativeAdAssetImage()
@@ -51,11 +50,21 @@ typedef NS_ENUM(NSUInteger, RPSNativeAdAssetImageType) {
 
 @end
 
+typedef NS_ENUM(NSUInteger, RPSNativeAdAssetDataType) {
+    RPSNativeAdAssetDataTypeSponsored = 1,
+    RPSNativeAdAssetDataTypeDesc,
+    RPSNativeAdAssetDataTypeRating,
+    RPSNativeAdAssetDataTypePrice,
+    RPSNativeAdAssetDataTypeSaleprice,
+    RPSNativeAdAssetDataTypeCtatext,
+};
+
+
 // data
 @interface RPSNativeAdAssetData : RPSNativeAdAsset
 
 @property(nonatomic, readonly) NSString* value;
-@property(nonatomic, readonly) int type;
+@property(nonatomic, readonly) RPSNativeAdAssetDataType type;
 @property(nonatomic, readonly) int len;
 
 @end
@@ -97,15 +106,18 @@ typedef NS_ENUM(NSUInteger, RPSNativeAdEventTrackerMethod) {
 
 #pragma mark -
 #pragma mark United Object
-@interface RPSNativeAd() <RPSAdInfo>
 
-@property(nonatomic, readonly, nullable) RPSNativeAdAssetTitle* assetTitle;
-@property(nonatomic, readonly, nullable) RPSNativeAdAssetData* assetData;
-@property(nonatomic, readonly, nullable) NSArray<RPSNativeAdAssetImage*>* assetImgs;
-@property(nonatomic, readonly, nullable) RPSNativeAdAssetVideo* assetVideo;
 
-@property(nonatomic, readonly, nullable) RPSNativeAdAssetLink* assetLink;
-@property(nonatomic, readonly, nullable) NSArray<RPSNativeAdEventTracker*>* eventTrackers;
+@interface RPSNativeAd()<RPSAdInfo>
+
+// protected
+@property(nonatomic, nullable) RPSNativeAdAssetTitle* assetTitle;
+@property(nonatomic, nullable) NSArray<RPSNativeAdAssetData*>* assetDatas;
+@property(nonatomic, nullable) NSArray<RPSNativeAdAssetImage*>* assetImgs;
+@property(nonatomic, nullable) RPSNativeAdAssetVideo* assetVideo;
+
+@property(nonatomic, nullable) RPSNativeAdAssetLink* assetLink;
+@property(nonatomic, nullable) NSArray<RPSNativeAdEventTracker*>* eventTrackers;
 
 /**
  * help method to convert one bid json to one RPSNativeAd

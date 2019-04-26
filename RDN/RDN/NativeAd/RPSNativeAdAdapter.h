@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RPSNativeAdInner.h"
+#import "RPSBidAdapter.h"
 
 
 NS_ASSUME_NONNULL_BEGIN

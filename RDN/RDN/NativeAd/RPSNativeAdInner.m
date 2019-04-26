@@ -11,20 +11,25 @@
 #import <UIKit/UIKit.h>
 #import <RPSCore/RPSHttpTask.h>
 #import "RPSNativeAdEventTrackRequest.h"
+#import <RPSCore/RPSJSONObject.h>
 
-#pragma mark - Asset Objects
+#pragma mark - Asset Types
+
+
+
 // super
 @implementation RPSNativeAdAsset
 
+int RPSNativeAdAssetRequiredYes = 1;
 -(void)parse:(RPSJSONObject*) assetJson {
-    self->_required = [assetJson getNumber:@"required"].intValue == 1;
+    self->_required = [assetJson getNumber:@"required"].intValue == RPSNativeAdAssetRequiredYes;
 }
 
 +(instancetype) factoryAsset:(NSDictionary *)assetData {
     RPSNativeAdAsset* asset = nil;
     RPSJSONObject* assetJson = [RPSJSONObject jsonWithRawDictionary:assetData];
 
-    if ([assetJson getJson:@"text"]) {
+    if ([assetJson getJson:@"title"]) {
         asset = [RPSNativeAdAssetTitle new];
     } else if ([assetJson getJson:@"img"]) {
         asset = [RPSNativeAdAssetImage new];
@@ -66,6 +71,15 @@
     }
 }
 
+-(NSString *)description {
+    return [NSString stringWithFormat:@"[Asset Image] %@: %@",
+            self.type == RPSNativeAdAssetImageTypeIcon ? @"Icon" :
+            self.type == RPSNativeAdAssetImageTypeMain ? @"Main" :
+            @"unkown",
+            self.url,
+            nil];
+}
+
 @end
 
 // title
@@ -76,6 +90,11 @@
 
     // text
     self->_text = [assetJson getString:@"text"];
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"Asset Title: %@", self.text];
 }
 
 @end
@@ -96,19 +115,39 @@
     self->_len = [[assetJson getNumber:@"len"] intValue];
 }
 
+- (NSString *)description
+{
+    NSString* type = nil;
+    switch (self.type) {
+        case RPSNativeAdAssetDataTypeDesc: type = @"desc"; break;
+        case RPSNativeAdAssetDataTypePrice: type = @"price"; break;
+        case RPSNativeAdAssetDataTypeSaleprice: type = @"saleprice"; break;
+        case RPSNativeAdAssetDataTypeSponsored: type = @"sponsored"; break;
+        case RPSNativeAdAssetDataTypeCtatext: type = @"ctatext"; break;
+        case RPSNativeAdAssetDataTypeRating: type = @"rating"; break;
+        default: break;
+    }
+    return [NSString stringWithFormat:@"[Asset Data] %@: %@", type, self.value];
+}
+
 @end
 
-#pragma mark - Link Object
+#pragma mark - Link Type
 @implementation RPSNativeAdAssetLink
 
 - (nonnull NSString *)getUrl {
     return self.url;
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"[Asset Link] URL: %@", self.url];
+}
+
 @end
 
 
-#pragma mark - Event Tracker Object
+#pragma mark - Event Tracker Type
 @implementation RPSNativeAdEventTracker
 
 - (nonnull NSString *)getUrl {
@@ -126,14 +165,19 @@
     self->_method = [[assetJson getNumber:@"method"] intValue];
 }
 
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"[Native Ad Event Tracker] method=%d: %@", self.method, self.url];
+}
 @end
-
-
 
 
 #pragma mark -
 #pragma mark - RPSNativeAd
 @implementation RPSNativeAd
+
+#pragma mark Private APIs
 
 +(instancetype)parse:(NSDictionary *)bidData {
 
@@ -169,16 +213,10 @@
 
         if ([asset isKindOfClass:RPSNativeAdAssetTitle.class]) {
             nativeAds->_assetTitle = (RPSNativeAdAssetTitle*)asset;
-
         } else if ([asset isKindOfClass:RPSNativeAdAssetImage.class]) {
-            if (!nativeAds->_assetImgs) {
-                nativeAds->_assetImgs = [NSMutableArray array];
-            }
-            [(NSMutableArray<RPSNativeAdAssetImage*>*)nativeAds->_assetImgs addObject:(RPSNativeAdAssetImage*)asset];
-
+            [nativeAds setImage:(RPSNativeAdAssetImage*)asset];
         } else if ([asset isKindOfClass:RPSNativeAdAssetData.class]) {
-            nativeAds->_assetData = (RPSNativeAdAssetData*)asset;
-
+            [nativeAds setData:(RPSNativeAdAssetData*)asset];
         } else if ([asset isKindOfClass:RPSNativeAdAssetLink.class]) {
             nativeAds->_assetLink = (RPSNativeAdAssetLink*)asset;
         }
@@ -204,9 +242,79 @@
     // privacy page URL
     nativeAds->_privacyURL = [admJson getString:@"privacy"];
 
+    RPSLog(@"parsed to native ads:\n%@", nativeAds);
     return nativeAds;
 }
 
+-(void) setImage:(RPSNativeAdAssetImage*) img {
+    if (!self->_assetImgs) {
+        self->_assetImgs = [NSMutableArray array];
+    }
+    [(NSMutableArray<RPSNativeAdAssetImage*>*)self->_assetImgs addObject:img];
+
+    switch (img.type) {
+        case RPSNativeAdAssetImageTypeIcon:
+            self->_iconImg = img;
+            break;
+        case RPSNativeAdAssetImageTypeMain:
+            self->_mainImg = img;
+        default:
+            break;
+    }
+}
+
+-(void) setData:(RPSNativeAdAssetData*) data {
+    if (!self->_assetDatas) {
+        self->_assetDatas = [NSMutableArray array];
+    }
+    [(NSMutableArray<RPSNativeAdAssetData*>*)self->_assetDatas addObject:data];
+
+    switch (data.type) {
+        case RPSNativeAdAssetDataTypeDesc:
+            self->_desc = data.value;
+            break;
+        case RPSNativeAdAssetDataTypePrice:
+            self->_price = data.value;
+            break;
+        case RPSNativeAdAssetDataTypeSaleprice:
+            self->_salePrice = data.value;
+            break;
+        case RPSNativeAdAssetDataTypeSponsored:
+            self->_sponsor = data.value;
+            break;
+        case RPSNativeAdAssetDataTypeCtatext:
+            self->_callToActionURL = data.value;
+            break;
+        case RPSNativeAdAssetDataTypeRating:
+            self->_rating = [data.value intValue] >0 ?: 0;
+            break;
+        default:
+            break;
+    }
+}
+
+-(NSString *)description {
+    return [NSString stringWithFormat:
+            @"{ \n"
+            @"asset title: %@\n"
+            @"asset imgs: %@\n"
+            @"asset link: %@\n"
+            @"asset datas: %@\n"
+            @"asset video: %@\n"
+            @" }",
+            self.assetTitle,
+            [self.assetImgs componentsJoinedByString:@","],
+            self.assetLink,
+            [self.assetDatas componentsJoinedByString:@","],
+            self.assetVideo,
+            nil];
+}
+
+#pragma mark Public APIs
+
+-(NSString *)title {
+    return self.assetTitle.text;
+}
 
 -(void)fireClick {
     if ([RPSValid isNotEmptyString:self.assetLink.url]) {
@@ -217,11 +325,11 @@
                 [[UIApplication sharedApplication] openURL:clickUrl];
             });
 
-//            for (RPSNativeAdEventTracker* clickTracker in self.clickTrackers) {
-//                RPSNativeAdEventTrackRequest* request = [RPSNativeAdEventTrackRequest new];
-//                request.httpTaskDelegate = clickTracker;
-//                [request resume];
-//            }
+            //            for (RPSNativeAdEventTracker* clickTracker in self.clickTrackers) {
+            //                RPSNativeAdEventTrackRequest* request = [RPSNativeAdEventTrackRequest new];
+            //                request.httpTaskDelegate = clickTracker;
+            //                [request resume];
+            //            }
         }
 
     }
@@ -235,4 +343,5 @@
         [request resume];
     }
 }
+
 @end

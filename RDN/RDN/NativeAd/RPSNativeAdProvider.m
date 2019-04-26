@@ -1,28 +1,36 @@
 //
-//  RPSNativeAd.m
+//  RPSNativeAdProvider.m
 //  RDN
 //
 //  Created by Wu, Wei b on 2019/03/19.
 //  Copyright © 2019 Rakuten MPD. All rights reserved.
 //
-
 #import "RPSNativeAdInner.h"
 #import "RPSBidAdapter.h"
 #import "RPSDefines.h"
 #import "RPSNativeAdAdapter.h"
 #import <RPSCore/RPSValid.h>
 
-typedef BOOL (^RPSNativeAdEventHandler)(RPSNativeAdLoader* loader, NSArray<RPSNativeAd*>* adsList);
+typedef BOOL (^RPSNativeAdEventHandler)(RPSNativeAdProvider* loader, NSArray<RPSNativeAd*>* adsList);
 
-@interface RPSNativeAdLoader()<RPSBidResponseConsumer>
+@interface RPSNativeAdProvider()<RPSBidResponseConsumer>
 
 @property (nonatomic, copy) RPSNativeAdEventHandler handler;
 
 @end
 
-@implementation RPSNativeAdLoader
+@implementation RPSNativeAdProvider
 
--(void)loadWithCompletionHandler:(BOOL (^)(RPSNativeAdLoader * _Nonnull, NSArray<RPSNativeAd*> * _Nonnull))handler {
+- (instancetype)initWithAdSpotId:(NSString *)adSpotId
+{
+    self = [super init];
+    if (self) {
+        self.adSpotId = adSpotId;
+    }
+    return self;
+}
+
+-(void)loadWithCompletionHandler:(BOOL (^)(RPSNativeAdProvider * _Nonnull, NSArray<RPSNativeAd*> * _Nonnull))handler {
     self.handler = handler;
 
     dispatch_async(RPSDefines.sharedQueue, ^{
