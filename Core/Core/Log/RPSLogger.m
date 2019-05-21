@@ -2,39 +2,63 @@
 #import "asl.h"
 
 #define MAKE_LOG_FUNC(LEVEL, FUNC_NAME) \
-+ (void) FUNC_NAME: (NSString*) format, ...{ \
-static aslclient client; \
-static dispatch_once_t onceToken; \
-dispatch_once(&onceToken, ^{ \
-client = asl_open("RPS-verbose", "RPS-LOG", ASL_OPT_STDERR); \
-}); \
++ (void) v##FUNC_NAME: (const char *)format withArgs:(va_list)args { \
+[RPSLogger vlogASL:LEVEL withFormat:format andArgs:args];\
+}\
 \
-va_list args; \
-va_start(args, format); \
-NSString* msg = [[NSString alloc] initWithFormat:format arguments:args]; \
-asl_log(client, NULL, ASL_LEVEL_DEBUG, "%s", [msg UTF8String]); \
-va_end(args); \
++ (void) FUNC_NAME: (const char*) format, ... { \
+va_list args;\
+va_start(args, format);\
+[RPSLogger v##FUNC_NAME:format withArgs:args];\
+va_end(args);\
 }
 
+BOOL gRPSLogModeEnabled = YES;
+const char* kSubSystem = "com.rakuten.ad.rps";
+const char* kCategory = "sdk";
 
 @implementation RPSLogger
 
-MAKE_LOG_FUNC(ASL_LEVEL_WARNING, warning)
+// template function
+//+(void)vdebug:(NSString *)format withArgs:(va_list)args {
+//    [RPSLogger vlogASL:ASL_LEVEL_DEBUG withFormat:format andArgs:args];
+//}
+//
+//+(void)debug:(NSString *)format, ... {
+//    va_list args;
+//    va_start(args, format);
+//    [RPSLogger vdebug:format withArgs:args];
+//    va_end(args);
+//}
+
+
 MAKE_LOG_FUNC(ASL_LEVEL_INFO, info)
 MAKE_LOG_FUNC(ASL_LEVEL_DEBUG, debug)
 
-//+(void) debug:(NSString*) format, ...{
-//    static aslclient client;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        client = asl_open("RPS-verbose", "RPS-LOG", ASL_OPT_STDERR);
-//    });
-//
-//    va_list args;
-//    va_start(args, format);
-//    NSString* msg = [[NSString alloc] initWithFormat:format arguments:args];
-//    asl_log(client, NULL, ASL_LEVEL_DEBUG, "%s", [msg UTF8String]);
-//    va_end(args);
-//}
++(void) vlogASL:(int)level withFormat:(const char*) format andArgs:(va_list) args {
+    static aslclient client;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        client = asl_open(kSubSystem, kCategory, ASL_OPT_STDERR);
+    });
+
+    asl_vlog(client, NULL, level, format, args);
+}
+
++(void) logASL:(int)level withFormat:(const char*) format, ...{
+    va_list args;
+    va_start(args, format);
+    [RPSLogger vlogASL:level withFormat:format andArgs:args];
+    va_end(args);
+}
+
++(os_log_t) sharedLog {
+    static os_log_t sharedLog;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedLog = os_log_create(kSubSystem, kCategory);
+    });
+    return sharedLog;
+}
 
 @end

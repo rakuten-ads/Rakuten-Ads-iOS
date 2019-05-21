@@ -24,32 +24,32 @@
 -(NSString*) idfa {
     
     if (self->_idfa) {
-        RPSLog(@"idfa return directly: %@", self->_idfa);
+        RPSDebug("idfa return directly: %@", self->_idfa);
         return self->_idfa;
     }
     
-    RPSLog(@"try to get idfa again");
+    RPSDebug("try to get idfa again");
     
     [NSThread sleepForTimeInterval:0.5];
     [self getValues];
     
-    RPSLog(@"finally get idfa: %@", self->_idfa);
+    RPSDebug("finally get idfa: %@", self->_idfa);
     return self->_idfa;
 }
 
 -(BOOL) isTrackingEnabled {
     
     if (self->_idfa) {
-        RPSLog(@"idfa enabled return directly: %@", self->_idte ? @"YES" : @"NO");
+        RPSDebug("idfa enabled return directly: %@", self->_idte ? @"YES" : @"NO");
         return self->_idte;
     }
     
-    RPSLog(@"try to get idte again");
+    RPSDebug("try to get idte again");
     
     [NSThread sleepForTimeInterval:0.5];
     [self getValues];
     
-    RPSLog(@"finally get idte: %@", self->_idfa ? @"YES" : @"NO");
+    RPSDebug("finally get idte: %@", self->_idfa ? @"YES" : @"NO");
     return self->_idte;
 }
 

@@ -19,7 +19,7 @@
         return;
     }
     
-    RPSLog(@"async request User-Agent...");
+    RPSDebug("async request User-Agent...");
     _semaphore = dispatch_semaphore_create(0);
     
     dispatch_async(dispatch_get_main_queue(), ^(){
@@ -28,9 +28,9 @@
 }
 
 -(void)syncResult {
-    RPSTrace
+    RPSDebug("trace");
     if (NSThread.currentThread.isMainThread) {
-        NSLog(@"Must not call this method in main thread.");
+        RPSDebug("Must not call this method in main thread.");
         return;
     }
     
@@ -40,18 +40,18 @@
     
     if (_semaphore) {
         dispatch_time_t timeout = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.timeout * NSEC_PER_SEC));
-        RPSLog(@"waiting on user-agent thread");
+        RPSDebug("waiting on user-agent thread");
         dispatch_semaphore_wait(_semaphore, timeout);
-        RPSLog(@"waking up user-agent thread");
+        RPSDebug("waking up user-agent thread");
     }
 }
 
 -(void) getUserAgent {
-    RPSLog(@"get UserAgent by WKWebView");
+    RPSDebug("get UserAgent by WKWebView");
     webView = [WKWebView new];
     [webView loadHTMLString:@"<html></html>" baseURL:nil];
     [webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id __nullable userAgent, NSError * __nullable error) {
-        RPSLog(@"get UserAgent in %@ thread [%@]", NSThread.currentThread.isMainThread?@"Main":@"BG", userAgent);
+        RPSDebug("get UserAgent in %@ thread [%@]", NSThread.currentThread.isMainThread?@"Main":@"BG", userAgent);
         self->_userAgent = userAgent;
         if (self->_semaphore) {
             dispatch_semaphore_signal(self->_semaphore);

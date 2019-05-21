@@ -39,7 +39,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 {
     self = [super initWithFrame:frame];
     if (self) {
-        RPSTrace
+        RPSDebug("trace");
         self.hidden = YES;
         self.state = RPS_ADVIEW_STATE_INIT;
     }
@@ -49,7 +49,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 @synthesize state = _state;
 
 -(void)setState:(RPSBannerViewState)state {
-    RPSLog(@"set state %@",
+    RPSDebug("set state %@",
            state == RPS_ADVIEW_STATE_INIT ? @"INIT" :
            state == RPS_ADVIEW_STATE_LOADING ? @"LOADING" :
            state == RPS_ADVIEW_STATE_LOADED ? @"LOADED" :
@@ -68,11 +68,11 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     [self loadWithEventHandler:nil];
 }
 
--(void) loadWithEventHandler:(RPSBannerViewEventHandler)handler {RPSTrace
+-(void) loadWithEventHandler:(RPSBannerViewEventHandler)handler {RPSDebug("trace");
     self.eventHandler = handler;
     dispatch_async(RPSDefines.sharedQueue, ^{
         @try {
-            VERBOSE_LOG(@"%@", RPSDefines.sharedInstance);
+            RPSLog("%@", RPSDefines.sharedInstance);
             if ([RPSValid isEmptyString:self.adSpotId]) {
                 NSLog(@"[RPS] require adSpotId!");
                 @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
@@ -88,7 +88,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
             [request resume];
             self.state = RPS_ADVIEW_STATE_LOADING;
         } @catch(NSException* exception) {
-            VERBOSE_LOG(@"load exception: %@", exception);
+            RPSLog("load exception: %@", exception);
             [self triggerFailure];
         }
     });
@@ -96,14 +96,14 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
 -(void)setPosition:(RPSBannerViewPosition)position inView:(UIView *)parentView {
     if (!parentView) {
-        VERBOSE_LOG(@"parent view cannot be nil");
+        RPSLog("parent view cannot be nil");
         return;
     }
 
     self.position = position;
     self.parentView = parentView;
     if (self.state == RPS_ADVIEW_STATE_SHOWED) {
-        RPSLog(@"re-apply position after showed");
+        RPSDebug("re-apply position after showed");
         [self applyPosition];
     }
 }
@@ -114,14 +114,14 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
                             self.frame.origin.y,
                             banner.width,
                             banner.height);
-    RPSLog(@"apply size: %@", NSStringFromCGRect(self.frame));
+    RPSDebug("apply size: %@", NSStringFromCGRect(self.frame));
 }
 
 -(void)applyPosition{
     if (self.parentView) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
         if (![self.parentView.subviews containsObject:self]) {
-            RPSLog(@"add as subview");
+            RPSDebug("add as subview");
             [self.parentView addSubview:self];
         }
         if (@available(ios 11.0, *)) {
@@ -134,12 +134,12 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
                                                   [self.heightAnchor constraintEqualToConstant:CGRectGetHeight(self.frame)],
                                                   ]];
         [self layoutIfNeeded];
-        RPSLog(@"apply position %@", NSStringFromCGRect(self.frame));
+        RPSDebug("apply position %@", NSStringFromCGRect(self.frame));
     }
 }
 
 -(void)applyPositionWithSafeArea API_AVAILABLE(ios(11.0)){
-    RPSTrace
+    RPSDebug("trace");
     UILayoutGuide* safeGuide = self.parentView.safeAreaLayoutGuide;
     switch (self.position) {
         case RPSBannerViewPositionTopLeft:
@@ -184,7 +184,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 }
 
 -(void)applyPositionWithParentView {
-    RPSTrace
+    RPSDebug("trace");
     switch (self.position) {
         case RPSBannerViewPositionTopLeft:
             [NSLayoutConstraint activateConstraints:@[
@@ -228,7 +228,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 }
 
 -(void) applyView:(RPSBanner*) banner {
-    RPSLog(@"apply applyView: %@", NSStringFromCGRect(self.frame));
+    RPSDebug("apply applyView: %@", NSStringFromCGRect(self.frame));
 
     // Web View
     self.webView = [[RPSAdWebView alloc]initWithFrame:self.bounds];
@@ -246,17 +246,17 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 -(void)onBidResponseSuccess:(NSArray<RPSBanner*> *)adInfoList {
     @try {
         RPSBanner* banner = [adInfoList firstObject];
-        RPSLog(@"onBidResponseSuccess: %@", banner);
+        RPSDebug("onBidResponseSuccess: %@", banner);
 
         self.state = RPS_ADVIEW_STATE_LOADED;
 
         if (!banner) {
-            VERBOSE_LOG(@"AdSpotInfo is empty");
+            RPSLog("AdSpotInfo is empty");
             @throw [NSException exceptionWithName:@"load failed" reason:@"adSpotInfo is empty" userInfo:@{@"RPSAdSpotInfo": [NSNull null]}];
         }
 
         if ([RPSValid isEmptyString:banner.html]) {
-            VERBOSE_LOG(@"adSpotInfo.htmlTemplate is empty");
+            RPSLog("adSpotInfo.htmlTemplate is empty");
             @throw [NSException exceptionWithName:@"load failed" reason:@"adSpotInfo.htmlTemplate is empty" userInfo:@{@"RPSAdSpotInfo": banner}];
         }
 
@@ -271,17 +271,17 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
                     @try {
                         self.eventHandler(self, RPSBannerViewEventSucceeded);
                     } @catch (NSException* exception) {
-                        VERBOSE_LOG(@"exception when bannerOnSucesss callback: %@", exception);
+                        RPSLog("exception when bannerOnSucesss callback: %@", exception);
                     }
                 }
                 self.state = RPS_ADVIEW_STATE_SHOWED;
             } @catch(NSException* exception) {
-                RPSLog(@"failed after Ad Request: %@", exception);
+                RPSDebug("failed after Ad Request: %@", exception);
                 [self triggerFailure];
             }
         });
     } @catch(NSException* exception) {
-        RPSLog(@"failed after Ad Request: %@", exception);
+        RPSDebug("failed after Ad Request: %@", exception);
         [self triggerFailure];
     }
 }
@@ -293,14 +293,14 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 -(void) triggerFailure {
     self.state = RPS_ADVIEW_STATE_FAILED;
     dispatch_async(dispatch_get_main_queue(), ^{
-        RPSLog(@"triggerFailure");
+        RPSDebug("triggerFailure");
         BOOL shouldHandleFailureByDefault = YES;
         @try {
             if (self.eventHandler) {
                 shouldHandleFailureByDefault = self.eventHandler(self, RPSBannerViewEventFailed);
             }
         } @catch(NSException* exception) {
-            VERBOSE_LOG(@"exception when bannerOnFailure callback: %@", exception);
+            RPSLog("exception when bannerOnFailure callback: %@", exception);
         } @finally {
             if (shouldHandleFailureByDefault) {
                 self.hidden = YES;
@@ -313,20 +313,20 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 #pragma mark - implement WKNavigationDelegate
 
 -(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    RPSLog(@"webview navigation: %@", navigationAction.request.URL);
+    RPSDebug("webview navigation: %@", navigationAction.request.URL);
     if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
-        RPSLog(@"clicked ad");
+        RPSDebug("clicked ad");
         NSURL* url = navigationAction.request.URL;
         if (url) {
             if (@available(iOS 10.0, *)) { // TODO too slow, may use dispatch_async
                 [UIApplication.sharedApplication openURL:url options:@{} completionHandler:^(BOOL success){
-                    RPSLog(@"opened AD URL");
+                    RPSDebug("opened AD URL");
                 }];
             } else {
                 // Fallback on earlier versions
                 [UIApplication.sharedApplication openURL:url];
             }
-            RPSLog(@"WKNavigationActionPolicyCancel");
+            RPSDebug("WKNavigationActionPolicyCancel");
             if (self.eventHandler) {
                 self.eventHandler(self, RPSBannerViewEventClicked);
             }
@@ -334,7 +334,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
             decisionHandler(WKNavigationActionPolicyCancel);
         }
     } else {
-        RPSLog(@"WKNavigationActionPolicyAllow");
+        RPSDebug("WKNavigationActionPolicyAllow");
         decisionHandler(WKNavigationActionPolicyAllow);
     }
 }

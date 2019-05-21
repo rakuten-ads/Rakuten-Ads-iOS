@@ -6,7 +6,6 @@
 //  Copyright © 2019 Rakuten MPD. All rights reserved.
 //
 #import "RPSNativeAdInner.h"
-#import "RPSBidAdapter.h"
 #import "RPSDefines.h"
 #import "RPSNativeAdAdapter.h"
 #import <RPSCore/RPSValid.h>
@@ -35,7 +34,7 @@ typedef BOOL (^RPSNativeAdEventHandler)(RPSNativeAdProvider* loader, NSArray<RPS
 
     dispatch_async(RPSDefines.sharedQueue, ^{
         @try {
-            VERBOSE_LOG(@"%@", RPSDefines.sharedInstance);
+            RPSLog("%@", RPSDefines.sharedInstance);
             if ([RPSValid isEmptyString:self.adSpotId]) {
                 NSLog(@"[RPS] require adSpotId!");
                 @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
@@ -50,7 +49,7 @@ typedef BOOL (^RPSNativeAdEventHandler)(RPSNativeAdProvider* loader, NSArray<RPS
 
             [request resume];
         } @catch(NSException* exception) {
-            VERBOSE_LOG(@"load exception: %@", exception);
+            RPSLog("load exception: %@", exception);
             [self triggerFailure];
         }
     });
@@ -62,7 +61,7 @@ typedef BOOL (^RPSNativeAdEventHandler)(RPSNativeAdProvider* loader, NSArray<RPS
 }
 
 - (void)onBidResponseFailed {
-    VERBOSE_LOG(@"native ads spot id %@ load failed", self.adSpotId);
+    RPSLog("native ads spot id %@ load failed", self.adSpotId);
      [self triggerFailure];
 }
 

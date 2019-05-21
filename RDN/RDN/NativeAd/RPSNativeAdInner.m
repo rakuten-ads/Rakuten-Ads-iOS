@@ -188,11 +188,11 @@ int RPSNativeAdAssetRequiredYes = 1;
     if (!admJson) {
         NSString* admString = [bidJson getString:@"adm"];
         if (admString) {
-            RPSLog(@"use adm string");
+            RPSDebug("use adm string");
             NSError* err;
             NSDictionary* admDict = [NSJSONSerialization JSONObjectWithData:[admString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:&err];
             if (err) {
-                VERBOSE_WARN(@"adm string parse error for: %@", admString);
+                RPSLog("adm string parse error for: %@", admString);
             } else {
                 admJson = [RPSJSONObject jsonWithRawDictionary:admDict];
             }
@@ -200,7 +200,7 @@ int RPSNativeAdAssetRequiredYes = 1;
     }
 
     if (!admJson) {
-        RPSLog(@"adm not found");
+        RPSDebug("adm not found");
         return nil;
     }
 
@@ -242,7 +242,7 @@ int RPSNativeAdAssetRequiredYes = 1;
     // privacy page URL
     nativeAds->_privacyURL = [admJson getString:@"privacy"];
 
-    RPSLog(@"parsed to native ads:\n%@", nativeAds);
+    RPSDebug("parsed to native ads:\n%@", nativeAds);
     return nativeAds;
 }
 
@@ -320,7 +320,7 @@ int RPSNativeAdAssetRequiredYes = 1;
     if ([RPSValid isNotEmptyString:self.assetLink.url]) {
         NSURL* clickUrl = [NSURL URLWithString:self.assetLink.url];
         if (clickUrl) {
-            VERBOSE_LOG(@"fire click %@", clickUrl);
+            RPSLog("fire click %@", clickUrl);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [[UIApplication sharedApplication] openURL:clickUrl];
             });
@@ -337,7 +337,7 @@ int RPSNativeAdAssetRequiredYes = 1;
 
 -(void)fireImpression {
     for (RPSNativeAdEventTracker* impLink in self.eventTrackers) {
-        VERBOSE_LOG(@"fire imp %@", impLink);
+        RPSLog("fire imp %@", impLink);
         RPSNativeAdEventTrackRequest* request = [RPSNativeAdEventTrackRequest new];
         request.httpTaskDelegate = impLink;
         [request resume];

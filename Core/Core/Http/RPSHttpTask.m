@@ -22,13 +22,13 @@
         }
 
         if ([_httpTaskDelegate respondsToSelector:@selector(shouldCancel)] && [_httpTaskDelegate shouldCancel]) {
-            RPSLog(@"http session canceled");
+            RPSDebug("http session canceled");
             @throw [NSException exceptionWithName:@"HttpSessionException" reason:@"http resume cannceled" userInfo:nil];
         }
 
         // compose url
         if (!self.underlyingUrl) {
-            RPSLog(@"required URL");
+            RPSDebug("required URL");
             @throw [NSException exceptionWithName:@"HttpSessionException" reason:@"url cannot be nil" userInfo:nil];
         }
 
@@ -47,21 +47,21 @@
             || [self->_httpTaskDelegate respondsToSelector:@selector(onJsonResponse:withData:)]) {
             completionHandler = [self getCompletionhandler];
         } else {
-            RPSLog(@"skip response as no concern");
+            RPSDebug("skip response as no concern");
         }
 
         // sending http transmission
-        RPSLog(@"send request: %@", request);
+        RPSDebug("send request: %@", request);
         [[_httpSession dataTaskWithRequest:request completionHandler:completionHandler] resume];
     }
     @catch (NSException *exception) {
-        RPSLog(@"httpsession resume failed: %@", exception);
+        RPSDebug("httpsession resume failed: %@", exception);
         @throw exception;
     }
 }
 
 -(void) syncResume:(dispatch_time_t) timeout {
-    RPSLog(@"http session syncResume with timeout at: %llu", timeout);
+    RPSDebug("http session syncResume with timeout at: %llu", timeout);
     self.semaphore = dispatch_semaphore_create(0);
 
     [self resume];
@@ -72,7 +72,7 @@
 -(NSString *) underlyingUrl {
     if (!_underlyingUrl) {
         _underlyingUrl = [self composeURLWithQueryString];
-        RPSLog(@"override getUnderlyingUrl %@", _underlyingUrl);
+        RPSDebug("override getUnderlyingUrl %@", _underlyingUrl);
     }
     return _underlyingUrl;
 }
@@ -107,7 +107,7 @@
 
 -(void) configHttpRequest:(NSMutableURLRequest*) request {
     if (_httpTaskDelegate && [_httpTaskDelegate respondsToSelector:@selector(postJsonBody)]) {
-        RPSLog(@"set Json header");
+        RPSDebug("set Json header");
         [request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
         [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     }
@@ -123,13 +123,13 @@
         request.HTTPBody = [_httpTaskDelegate postBody];
     } else if (_httpTaskDelegate && [_httpTaskDelegate respondsToSelector:@selector(postJsonBody)]) {
         NSDictionary* jsonBody = [(id<RPSJsonHttpSessionDelegate>)_httpTaskDelegate postJsonBody];
-        RPSLog(@"jsonBody: %@", jsonBody);
+        RPSDebug("jsonBody: %@", jsonBody);
         if (jsonBody) {
             request.HTTPMethod = @"POST";
             NSError* jsonSerialErr;
             NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonBody options:0 error:nil];
             if (jsonData) {
-                RPSLog(@"jsonBody string: %@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+                RPSDebug("jsonBody string: %@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
                 request.HTTPBody = jsonData;
             } else {
                 if (jsonSerialErr) {
@@ -142,7 +142,7 @@
 
 -(void (^)(NSData*, NSURLResponse*, NSError*)) getCompletionhandler {
     return ^void (NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable httpErr) {
-        RPSLog(@"receive response:%@ \n\t data: %@",
+        RPSDebug("receive response:%@ \n\t data: %@",
                response,
                data != nil ? [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] : @"nil");
 
@@ -157,21 +157,21 @@
                 NSDictionary* json = nil;
                 if (data) {
                     json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonErr];
-                    RPSLog(@"JSON format result: %@", jsonErr ?: @"OK");
+                    RPSDebug("JSON format result: %@", jsonErr ?: @"OK");
                 } else {
-                    RPSLog(@"desired JSON response data while nil");
+                    RPSDebug("desired JSON response data while nil");
                 }
                 [(id<RPSJsonHttpSessionDelegate>)self->_httpTaskDelegate onJsonResponse:rep withData:json];
             }
 
-            RPSLog(@"http error: %@", httpErr ?: @"None");
+            RPSDebug("http error: %@", httpErr ?: @"None");
         }
         @catch (NSException *exception) {
-            RPSLog(@"http session completion handler exception %@", exception);
+            RPSDebug("http session completion handler exception %@", exception);
         }
         @finally {
             if (self->_semaphore) {
-                RPSLog(@"dispatch_semaphore_signal for sync resume");
+                RPSDebug("dispatch_semaphore_signal for sync resume");
                 dispatch_semaphore_signal(self->_semaphore);
             }
         }

@@ -55,7 +55,7 @@ NSString* kSDKUserAgentFormat = @"GAP-SDK:iOS:%f";
             }
         }
     } else {
-        VERBOSE_LOG(@"OpenRTB responsed status code: %ld", (long)response.statusCode);
+        RPSLog("OpenRTB responsed status code: %ld", (long)response.statusCode);
     }
 
     // sort by id
