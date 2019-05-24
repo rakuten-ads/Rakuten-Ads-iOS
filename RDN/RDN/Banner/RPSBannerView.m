@@ -318,14 +318,10 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
         RPSDebug("clicked ad");
         NSURL* url = navigationAction.request.URL;
         if (url) {
-            if (@available(iOS 10.0, *)) { // TODO too slow, may use dispatch_async
-                [UIApplication.sharedApplication openURL:url options:@{} completionHandler:^(BOOL success){
-                    RPSDebug("opened AD URL");
-                }];
-            } else {
-                // Fallback on earlier versions
-                [UIApplication.sharedApplication openURL:url];
-            }
+            [UIApplication.sharedApplication openURL:url options:@{} completionHandler:^(BOOL success){
+                RPSDebug("opened AD URL");
+            }];
+
             RPSDebug("WKNavigationActionPolicyCancel");
             if (self.eventHandler) {
                 self.eventHandler(self, RPSBannerViewEventClicked);

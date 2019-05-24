@@ -322,7 +322,7 @@ int RPSNativeAdAssetRequiredYes = 1;
         if (clickUrl) {
             RPSLog("fire click %@", clickUrl);
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[UIApplication sharedApplication] openURL:clickUrl];
+                [[UIApplication sharedApplication] openURL:clickUrl options:@{} completionHandler:nil];
             });
 
             //            for (RPSNativeAdEventTracker* clickTracker in self.clickTrackers) {
