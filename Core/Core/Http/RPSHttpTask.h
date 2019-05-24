@@ -46,7 +46,7 @@
 -(void) resume;
 -(void) syncResume:(dispatch_time_t) timeout;
 
-@property (nonatomic, readonly, nullable) NSString* underlyingUrl;
+@property (nonatomic, readonly, nullable) NSURL* underlyingUrl;
 
 @property(nonatomic, weak, nullable) id<RPSHttpTaskDelegate> httpTaskDelegate;
 

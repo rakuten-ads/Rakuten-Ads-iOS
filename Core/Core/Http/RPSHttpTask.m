@@ -5,7 +5,7 @@
 @interface RPSHttpTask ()
 
 @property (nonatomic, strong, nullable) dispatch_semaphore_t semaphore;
-@property (nonatomic, strong, nonnull) NSString* underlyingUrl;
+@property (nonatomic, strong, nonnull) NSURL* underlyingUrl;
 
 @end
 
@@ -32,8 +32,7 @@
             @throw [NSException exceptionWithName:@"HttpSessionException" reason:@"url cannot be nil" userInfo:nil];
         }
 
-        NSURL* url = [NSURL URLWithString:self.underlyingUrl];
-        NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+        NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:self.underlyingUrl];
 
         // request configuration
         [self configHttpRequest:request];
@@ -69,40 +68,24 @@
     dispatch_semaphore_wait(_semaphore, timeout);
 }
 
--(NSString *) underlyingUrl {
+-(NSURL*) underlyingUrl {
     if (!_underlyingUrl) {
-        _underlyingUrl = [self composeURLWithQueryString];
+        _underlyingUrl = [self composeURL];
         RPSDebug("override getUnderlyingUrl %@", _underlyingUrl);
     }
     return _underlyingUrl;
 }
 
--(NSString*) composeURLWithQueryString {
-    NSMutableString* urlStr = [NSMutableString stringWithString:[_httpTaskDelegate getUrl]];
+-(NSURL*) composeURL {
+    NSURLComponents* comps = [[NSURLComponents alloc] initWithString:[_httpTaskDelegate getUrl]];
     if ([_httpTaskDelegate respondsToSelector:@selector(getQueryParameters)]) {
-        NSDictionary* paramDict = [_httpTaskDelegate getQueryParameters];
-        if (paramDict) {
-            // add query parameters
-            if (![urlStr containsString:@"?"]) {
-                [urlStr appendString:@"?"];
-            }
-            for (NSString* key in paramDict) {
-                NSString* encodeKey = [RPSURLCoder encodeURL:key];
-
-                NSString* encodeValue = @"";
-                id value = [paramDict objectForKey:key];
-                if (value && [value isKindOfClass:[NSString class]]) {
-                    encodeValue = [RPSURLCoder encodeURL:value];
-                } else {
-                    encodeValue = value;
-                }
-
-                [urlStr appendFormat:@"%@=%@&", encodeKey, encodeValue];
-            }
-            [urlStr deleteCharactersInRange:NSMakeRange(urlStr.length - 1, 1)];
-        }
+        NSMutableArray<NSURLQueryItem*>* queryItems = [NSMutableArray array];
+        [[_httpTaskDelegate getQueryParameters] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            [queryItems addObject:[NSURLQueryItem queryItemWithName:key value:(NSString*)obj]];
+        }];
+        comps.queryItems = queryItems;
     }
-    return [NSString stringWithString:urlStr];
+    return comps.URL;
 }
 
 -(void) configHttpRequest:(NSMutableURLRequest*) request {
