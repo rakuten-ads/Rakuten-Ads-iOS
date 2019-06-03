@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - Native Ads
+#pragma mark - Native Ads structs
 @interface RPSNativeAdAsset: NSObject
 
 @property(nonatomic, readonly, getter=isRequired) Boolean required;
@@ -48,6 +48,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) NSDictionary* rawData;
 
 @end
+
+# pragma mark - Ad Provider
 
 @interface RPSNativeAdProvider: NSObject
 

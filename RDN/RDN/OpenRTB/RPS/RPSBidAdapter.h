@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@protocol RPSBidResponseConsumer <NSObject>
+@protocol RPSBidResponseConsumerDelegate <NSObject>
 
 -(id<RPSAdInfo>) parse:(NSDictionary*) bid;
 
@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RPSBidAdapter : NSObject<RPSOpenRTBAdapterDelegate>
 
-@property(nonatomic, assign) id<RPSBidResponseConsumer> responseConsumer;
+@property(nonatomic, assign) id<RPSBidResponseConsumerDelegate> responseConsumer;
 
 @end
 

@@ -13,9 +13,20 @@
 #import "RPSNativeAdEventTrackRequest.h"
 #import <RPSCore/RPSJSONObject.h>
 
+#pragma mark - NSString extension
+@interface NSString (RPSSDK) <RPSHttpTaskDelegate>
+
+@end
+
+@implementation NSString (RPSSDK)
+
+-(NSString*) getUrl {
+    return self;
+}
+
+@end
+
 #pragma mark - Asset Types
-
-
 
 // super
 @implementation RPSNativeAdAsset
@@ -325,11 +336,11 @@ int RPSNativeAdAssetRequiredYes = 1;
                 [[UIApplication sharedApplication] openURL:clickUrl options:@{} completionHandler:nil];
             });
 
-            //            for (RPSNativeAdEventTracker* clickTracker in self.clickTrackers) {
-            //                RPSNativeAdEventTrackRequest* request = [RPSNativeAdEventTrackRequest new];
-            //                request.httpTaskDelegate = clickTracker;
-            //                [request resume];
-            //            }
+            for (NSString* clickTracker in self.assetLink.clicktrackers) {
+                RPSNativeAdEventTrackRequest* request = [RPSNativeAdEventTrackRequest new];
+                request.httpTaskDelegate = clickTracker;
+                [request resume];
+            }
         }
 
     }
@@ -345,3 +356,4 @@ int RPSNativeAdAssetRequiredYes = 1;
 }
 
 @end
+

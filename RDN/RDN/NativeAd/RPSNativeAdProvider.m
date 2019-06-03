@@ -12,7 +12,7 @@
 
 typedef BOOL (^RPSNativeAdEventHandler)(RPSNativeAdProvider* loader, NSArray<RPSNativeAd*>* adsList);
 
-@interface RPSNativeAdProvider()<RPSBidResponseConsumer>
+@interface RPSNativeAdProvider()<RPSBidResponseConsumerDelegate>
 
 @property (nonatomic, copy) RPSNativeAdEventHandler handler;
 
@@ -57,7 +57,9 @@ typedef BOOL (^RPSNativeAdEventHandler)(RPSNativeAdProvider* loader, NSArray<RPS
 }
 
 - (void) triggerFailure{
-
+    if (self.handler) {
+        self.handler(self, @[]);
+    }
 }
 
 - (void)onBidResponseFailed {

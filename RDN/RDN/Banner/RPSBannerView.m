@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     RPS_ADVIEW_STATE_CLICKED,
 };
 
-@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumer>
+@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumerDelegate>
 
 @property (nonatomic, nonnull) RPSAdWebView* webView;
 @property (nonatomic, nullable, copy) RPSBannerViewEventHandler eventHandler;
