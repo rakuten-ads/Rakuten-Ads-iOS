@@ -294,7 +294,7 @@ int RPSNativeAdAssetRequiredYes = 1;
             self->_sponsor = data.value;
             break;
         case RPSNativeAdAssetDataTypeCtatext:
-            self->_callToActionURL = data.value;
+            self->_ctatext = data.value;
             break;
         case RPSNativeAdAssetDataTypeRating:
             self->_rating = [data.value intValue] >0 ?: 0;

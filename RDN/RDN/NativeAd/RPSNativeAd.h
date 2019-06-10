@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, readonly, nullable) NSString* price;
 @property(nonatomic, readonly, nullable) NSString* salePrice;
-@property(nonatomic, readonly, nullable) NSString* callToActionURL;
+@property(nonatomic, readonly, nullable) NSString* ctatext;
 @property(nonatomic, readonly, nullable) NSString* sponsor;
 @property(nonatomic, readonly) unsigned int rating;
 
@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(instancetype) init NS_UNAVAILABLE;
 +(instancetype) new NS_UNAVAILABLE;
 
--(void) loadWithCompletionHandler:(nullable BOOL (^)(RPSNativeAdProvider* provider, NSArray<RPSNativeAd*>* adsList)) handler;
+-(void) loadWithCompletionHandler:(nullable void (^)(RPSNativeAdProvider* provider, NSArray<RPSNativeAd*>* adsList)) handler;
 
 @end
 

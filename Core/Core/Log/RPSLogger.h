@@ -1,6 +1,6 @@
 #import <os/log.h>
 
-FOUNDATION_EXPORT BOOL gRPSLogModeEnabled;
+FOUNDATION_EXPORT BOOL gRPSLogVerboseEnabled;
 
 @interface RPSLogger : NSObject
 
@@ -31,7 +31,9 @@ FOUNDATION_EXPORT BOOL gRPSLogModeEnabled;
 })
 
 #define rps_log_verbose(...) __extension__ ({\
-    if (gRPSLogModeEnabled) {\
+    if (gRPSLogVerboseEnabled) {\
         rps_log_info(__VA_ARGS__);\
+    } else {\
+        rps_log_debug(__VA_ARGS__);\
     };\
 })

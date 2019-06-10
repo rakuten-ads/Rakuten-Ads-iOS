@@ -1,6 +1,6 @@
 #import "RPSLogger.h"
 
-BOOL gRPSLogModeEnabled = YES;
+BOOL gRPSLogVerboseEnabled = NO;
 const char* kSubSystem = "com.rakuten.ad.rps";
 const char* kCategory = "sdk";
 

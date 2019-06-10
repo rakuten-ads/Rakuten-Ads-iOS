@@ -12,7 +12,7 @@
 #import <RPSCore/RPSValid.h>
 #import "RPSDefines.h"
 
-typedef BOOL (^RPSBannerViewEventHandler)(RPSBannerView* view, RPSBannerViewEvent event);
+typedef void (^RPSBannerViewEventHandler)(RPSBannerView* view, RPSBannerViewEvent event);
 
 typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     RPS_ADVIEW_STATE_INIT,
@@ -294,18 +294,15 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     self.state = RPS_ADVIEW_STATE_FAILED;
     dispatch_async(dispatch_get_main_queue(), ^{
         RPSDebug("triggerFailure");
-        BOOL shouldHandleFailureByDefault = YES;
         @try {
             if (self.eventHandler) {
-                shouldHandleFailureByDefault = self.eventHandler(self, RPSBannerViewEventFailed);
+                self.eventHandler(self, RPSBannerViewEventFailed);
             }
         } @catch(NSException* exception) {
             RPSLog("exception when bannerOnFailure callback: %@", exception);
         } @finally {
-            if (shouldHandleFailureByDefault) {
-                self.hidden = YES;
-                [self removeFromSuperview];
-            }
+            self.hidden = YES;
+            [self removeFromSuperview];
         }
     });
 }

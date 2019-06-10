@@ -10,7 +10,7 @@
 #import "RPSNativeAdAdapter.h"
 #import <RPSCore/RPSValid.h>
 
-typedef BOOL (^RPSNativeAdEventHandler)(RPSNativeAdProvider* loader, NSArray<RPSNativeAd*>* adsList);
+typedef void (^RPSNativeAdEventHandler)(RPSNativeAdProvider* loader, NSArray<RPSNativeAd*>* adsList);
 
 @interface RPSNativeAdProvider()<RPSBidResponseConsumerDelegate>
 
@@ -29,7 +29,7 @@ typedef BOOL (^RPSNativeAdEventHandler)(RPSNativeAdProvider* loader, NSArray<RPS
     return self;
 }
 
--(void)loadWithCompletionHandler:(BOOL (^)(RPSNativeAdProvider * _Nonnull, NSArray<RPSNativeAd*> * _Nonnull))handler {
+-(void)loadWithCompletionHandler:(void (^)(RPSNativeAdProvider * _Nonnull, NSArray<RPSNativeAd*> * _Nonnull))handler {
     self.handler = handler;
 
     dispatch_async(RPSDefines.sharedQueue, ^{
