@@ -110,10 +110,11 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
 #pragma mark - UI frame control
 -(void) applySize:(RPSBanner*) banner {
+    float scale = UIScreen.mainScreen.scale;
     self.frame = CGRectMake(self.frame.origin.x,
                             self.frame.origin.y,
-                            banner.width,
-                            banner.height);
+                            banner.width / scale,
+                            banner.height / scale);
     RPSDebug("apply size: %@", NSStringFromCGRect(self.frame));
 }
 

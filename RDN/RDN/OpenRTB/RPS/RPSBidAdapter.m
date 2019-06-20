@@ -14,8 +14,9 @@
 #elseif RPS_STAGING
     NSString* kRPSBidRequestHost = @"https://stg-s-bid.rx-ad.com/auc"; // TODO need confirm
 #else
+//    NSString* kRPSBidRequestHost = @"http://local.auction.rx-ad.com:5000/auc";
 //    NSString* kRPSBidRequestHost = @"https://dev-s-bid.rx-ad.com/auc"; // TODO need confirm
-    NSString* kRPSBidRequestHost = @"http://local.auction.rx-ad.com:5000/auc";
+    NSString* kRPSBidRequestHost = @"http://tst-s-bid.rx-ad.com/sshb/openrtb2/auction";
 #endif
 
 
