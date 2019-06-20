@@ -269,6 +269,7 @@ int RPSNativeAdAssetRequiredYes = 1;
             break;
         case RPSNativeAdAssetImageTypeMain:
             self->_mainImg = img;
+            break;
         default:
             break;
     }
@@ -296,8 +297,11 @@ int RPSNativeAdAssetRequiredYes = 1;
         case RPSNativeAdAssetDataTypeCtatext:
             self->_ctatext = data.value;
             break;
-        case RPSNativeAdAssetDataTypeRating:
-            self->_rating = [data.value intValue] >0 ?: 0;
+        case RPSNativeAdAssetDataTypeRating:;
+            double r = [data.value doubleValue];
+            if (r > 0) {
+                self->_rating = [NSNumber numberWithDouble:r];
+            }
             break;
         default:
             break;

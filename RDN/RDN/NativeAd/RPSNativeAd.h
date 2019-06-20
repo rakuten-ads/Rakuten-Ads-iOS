@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, nullable) NSString* salePrice;
 @property(nonatomic, readonly, nullable) NSString* ctatext;
 @property(nonatomic, readonly, nullable) NSString* sponsor;
-@property(nonatomic, readonly) unsigned int rating;
+@property(nonatomic, readonly, nullable) NSNumber* rating;
 
 @property(nonatomic, readonly, nullable) NSDictionary* ext;
 
