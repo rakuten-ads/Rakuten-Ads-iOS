@@ -65,6 +65,10 @@ NSTimeInterval RPS_API_TIMEOUT_INTERVAL = 30;
         {
             self->_appInfo = [RPSAppInfo new];
         }
+
+        {
+            self->_bundleShortVersionString = [[[NSBundle bundleForClass:self.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+        }
         
     }
     return self;
@@ -73,15 +77,15 @@ NSTimeInterval RPS_API_TIMEOUT_INTERVAL = 30;
 -(NSString *)description {
     [self.userAgentInfo syncResult];
     return [NSString stringWithFormat:
-            @"SDK RDN version: %lf\n"
-            @"SDK Core version: %lf\n"
+            @"SDK RDN version: %@\n"
+            @"SDK Core version: %@\n"
             @"IDFA: %@\n"
             @"UA: %@\n"
             @"Device: %@"
             @"AppInfo: %@\n"
             ,
-            RPSRDNVersionNumber,
-            RPSCoreVersionNumber,
+            self->_bundleShortVersionString,
+            [RPSCore bundleVersionShortString],
             self->_idfaInfo.idfa,
             self->_userAgentInfo.userAgent,
             self->_deviceInfo,

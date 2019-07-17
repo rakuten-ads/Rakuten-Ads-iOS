@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		32C7F77422CC757300E75319 /* RPSCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C7F77322CC757300E75319 /* RPSCore.m */; };
 		32CAC0DD22164E6400BB4CC4 /* RPSAppInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CAC0DB22164E6400BB4CC4 /* RPSAppInfo.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32CAC0DE22164E6400BB4CC4 /* RPSAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAC0DC22164E6400BB4CC4 /* RPSAppInfo.m */; };
 		32F258C621E5866D001FD9C0 /* RPSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258BC21E5866C001FD9C0 /* RPSCore.framework */; };
@@ -59,6 +60,7 @@
 /* Begin PBXFileReference section */
 		325FF73F21E5EDDF00A899CF /* rpscore.private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = rpscore.private.modulemap; sourceTree = "<group>"; };
 		325FF74621F0584E00A899CF /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
+		32C7F77322CC757300E75319 /* RPSCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSCore.m; sourceTree = "<group>"; };
 		32CAC0DB22164E6400BB4CC4 /* RPSAppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSAppInfo.h; sourceTree = "<group>"; };
 		32CAC0DC22164E6400BB4CC4 /* RPSAppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSAppInfo.m; sourceTree = "<group>"; };
 		32F258BC21E5866C001FD9C0 /* RPSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RPSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				32F259B921E599F4001FD9C0 /* RPSCore.h */,
+				32C7F77322CC757300E75319 /* RPSCore.m */,
 				32F259BA21E599F4001FD9C0 /* Profile */,
 				32F259C121E599F4001FD9C0 /* Http */,
 				32F259C421E599F4001FD9C0 /* Format */,
@@ -343,6 +346,7 @@
 			files = (
 				32F259D621E599F5001FD9C0 /* RPSIdfa.m in Sources */,
 				32F259DC21E599F5001FD9C0 /* RPSValid.m in Sources */,
+				32C7F77422CC757300E75319 /* RPSCore.m in Sources */,
 				32F259E121E599F5001FD9C0 /* RPSURLCoder.m in Sources */,
 				32F259D821E599F5001FD9C0 /* RPSDevice.m in Sources */,
 				32CAC0DE22164E6400BB4CC4 /* RPSAppInfo.m in Sources */,

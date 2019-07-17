@@ -16,14 +16,9 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
-### ios packageCore
+### ios package
 ```
-fastlane ios packageCore
-```
-
-### ios packageRDN
-```
-fastlane ios packageRDN
+fastlane ios package
 ```
 
 ### ios deploy_to_gcs_dev

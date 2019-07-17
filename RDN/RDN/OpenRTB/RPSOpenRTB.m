@@ -33,9 +33,9 @@
     return [self postBidBody];
 }
 
-NSString* kSDKUserAgentFormat = @"GAP-SDK:iOS:%f";
+NSString* kSDKUserAgentFormat = @"GAP-SDK:iOS:%@";
 -(void)processConfig:(NSMutableURLRequest *)request {
-    [request setValue:[NSString stringWithFormat:kSDKUserAgentFormat, RPSRDNVersionNumber] forHTTPHeaderField:@"User-Agent"];
+    [request setValue:[NSString stringWithFormat:kSDKUserAgentFormat, RPSDefines.sharedInstance.bundleShortVersionString] forHTTPHeaderField:@"User-Agent"];
 }
 
 - (void)onJsonResponse:(NSHTTPURLResponse *)response withData:(NSDictionary *)json {
