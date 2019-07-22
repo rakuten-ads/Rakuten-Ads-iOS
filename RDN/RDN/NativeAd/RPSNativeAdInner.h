@@ -60,15 +60,6 @@ typedef NS_ENUM(NSUInteger, RPSNativeAdAssetDataType) {
 };
 
 
-// data
-@interface RPSNativeAdAssetData : RPSNativeAdAsset
-
-@property(nonatomic, readonly) NSString* value;
-@property(nonatomic, readonly) RPSNativeAdAssetDataType type;
-@property(nonatomic, readonly) int len;
-
-@end
-
 // link
 @interface RPSNativeAdAssetLink: RPSNativeAdAsset<RPSHttpTaskDelegate>
 

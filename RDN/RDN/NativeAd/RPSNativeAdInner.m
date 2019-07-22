@@ -124,6 +124,9 @@ int RPSNativeAdAssetRequiredYes = 1;
 
     // len
     self->_len = [[assetJson getNumber:@"len"] intValue];
+
+    // ext
+    self->_ext = [[assetJson getJson:@"ext"] rawDict];
 }
 
 - (NSString *)description
@@ -136,7 +139,7 @@ int RPSNativeAdAssetRequiredYes = 1;
         case RPSNativeAdAssetDataTypeSponsored: type = @"sponsored"; break;
         case RPSNativeAdAssetDataTypeCtatext: type = @"ctatext"; break;
         case RPSNativeAdAssetDataTypeRating: type = @"rating"; break;
-        default: break;
+        default: type = @"specific"; break;
     }
     return [NSString stringWithFormat:@"[Asset Data] %@: %@", type, self.value];
 }
@@ -329,6 +332,16 @@ int RPSNativeAdAssetRequiredYes = 1;
 
 -(NSString *)title {
     return self.assetTitle.text;
+}
+
+-(NSArray<RPSNativeAdAssetData *> *)specificData {
+    return [[self.assetDatas filteredArrayUsingPredicate:
+             [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        if ([evaluatedObject isKindOfClass:[RPSNativeAdAssetData class]]) {
+            return ((RPSNativeAdAssetData*)evaluatedObject).type >= 500;
+        }
+        return NO;
+    }]] copy];
 }
 
 -(void)fireClick {

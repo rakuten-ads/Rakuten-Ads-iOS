@@ -25,6 +25,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+// data
+@interface RPSNativeAdAssetData : RPSNativeAdAsset
+
+@property(nonatomic, readonly) NSString* value;
+@property(nonatomic, readonly) int type;
+@property(nonatomic, readonly) int len;
+@property(nonatomic, readonly, nullable) NSDictionary* ext;
+
+@end
+
 // united ads
 @interface RPSNativeAd : NSObject
 
@@ -39,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, nullable) NSString* ctatext;
 @property(nonatomic, readonly, nullable) NSString* sponsor;
 @property(nonatomic, readonly, nullable) NSNumber* rating;
+@property(nonatomic, readonly, nullable) NSArray<RPSNativeAdAssetData*>* specificData;
 
 @property(nonatomic, readonly, nullable) NSDictionary* ext;
 
