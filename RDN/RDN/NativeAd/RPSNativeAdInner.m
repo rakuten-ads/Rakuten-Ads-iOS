@@ -61,14 +61,14 @@ int RPSNativeAdAssetRequiredYes = 1;
     [super parse:assetJson];
 
     // url
-    self->_url = [assetJson getString:@"url"];
+    self->_url = [assetJson getString:@"img.url"];
 
     // w / h
-    self->_w = [[assetJson getNumber:@"w"] intValue];
-    self->_h = [[assetJson getNumber:@"h"] intValue];
+    self->_w = [[assetJson getNumber:@"img.w"] intValue];
+    self->_h = [[assetJson getNumber:@"img.h"] intValue];
 
     // type
-    int type = [[assetJson getNumber:@"type"] intValue];
+    int type = [[assetJson getNumber:@"img.type"] intValue];
     switch (type) {
         case 1:
             self->_type = RPSNativeAdAssetImageTypeIcon;
@@ -100,7 +100,7 @@ int RPSNativeAdAssetRequiredYes = 1;
     [super parse:assetJson];
 
     // text
-    self->_text = [assetJson getString:@"text"];
+    self->_text = [assetJson getString:@"title.text"];
 }
 
 - (NSString *)description
@@ -117,16 +117,16 @@ int RPSNativeAdAssetRequiredYes = 1;
     [super parse:assetJson];
 
     // value
-    self->_value = [assetJson getString:@"value"];
+    self->_value = [assetJson getString:@"data.value"];
 
     // type
-    self->_type = [[assetJson getNumber:@"type"] intValue];
+    self->_type = [[assetJson getNumber:@"data.type"] intValue];
 
     // len
-    self->_len = [[assetJson getNumber:@"len"] intValue];
+    self->_len = [[assetJson getNumber:@"data.len"] intValue];
 
     // ext
-    self->_ext = [[assetJson getJson:@"ext"] rawDict];
+    self->_ext = [[assetJson getJson:@"data.ext"] rawDict];
 }
 
 - (NSString *)description
@@ -148,6 +148,13 @@ int RPSNativeAdAssetRequiredYes = 1;
 
 #pragma mark - Link Type
 @implementation RPSNativeAdAssetLink
+
+-(void)parse:(RPSJSONObject *)assetJson {
+    [super parse:assetJson];
+    self->_url = [assetJson getString:@"url"];
+    self->_fallback = [assetJson getString:@"fallback"];
+    self->_clicktrackers = [assetJson getArray:@"clicktrackers"];
+}
 
 - (nonnull NSString *)getUrl {
     return self.url;
@@ -239,7 +246,9 @@ int RPSNativeAdAssetRequiredYes = 1;
     // link
     RPSNativeAdAssetLink* link = [RPSNativeAdAssetLink new];
     [link parse:[admJson getJson:@"link"]];
-    nativeAds->_assetLink = link;
+    if (link.url) {
+        nativeAds->_assetLink = link;
+    }
 
     // eventTrackers
     NSMutableArray<RPSNativeAdEventTracker*>* eventTrackerList = [NSMutableArray array];
