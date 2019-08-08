@@ -11,7 +11,7 @@
 
 @implementation RPSCore
 
-+(NSString *)bundleVersionShortString {
++(NSString *)sdkBundleVersionShortString {
     return [[[NSBundle bundleForClass:RPSCore.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 

@@ -16,7 +16,7 @@ FOUNDATION_EXPORT NSTimeInterval RPS_API_TIMEOUT_INTERVAL;
 @property(nonatomic, readonly, nonnull) RPSIdfa* idfaInfo;
 @property(nonatomic, readonly, nonnull) RPSDevice* deviceInfo;
 @property(nonatomic, readonly, nonnull) RPSAppInfo* appInfo;
-@property(nonatomic, readonly, nonnull) NSString* bundleShortVersionString;
+@property(nonatomic, readonly, nonnull) NSString* sdkBundleShortVersionString;
 
 +(instancetype) sharedInstance;
 +(dispatch_queue_t) sharedQueue;

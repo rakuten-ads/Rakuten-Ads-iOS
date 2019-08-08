@@ -18,6 +18,6 @@ FOUNDATION_EXPORT const unsigned char RPSCoreVersionString[];
 
 @interface RPSCore : NSObject
 
-+(NSString*) bundleVersionShortString;
++(NSString*) sdkBundleVersionShortString;
 
 @end

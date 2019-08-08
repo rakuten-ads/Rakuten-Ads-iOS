@@ -17,7 +17,10 @@
 //    NSString* kRPSBidRequestHost = @"http://local.auction.rx-ad.com:5000/auc";
 //    NSString* kRPSBidRequestHost = @"https://dev-s-bid.rx-ad.com/auc"; // TODO need confirm
 //    NSString* kRPSBidRequestHost = @"https://tst-s-bid.rx-ad.com/sshb/openrtb2/auction";
-NSString* kRPSBidRequestHost = @"https://stg-s-bid.rmp.rakuten.co.jp/ad";
+//NSString* kRPSBidRequestHost = @"https://stg-s-bid.rmp.rakuten.co.jp/ad";
+//NSString* kRPSBidRequestHost = @"https://stg-s-ad.rmp.rakuten.co.jp/ad";
+NSString* kRPSBidRequestHost = @"https://dev-s-ad.rmp.rakuten.co.jp/ad";
+
 #endif
 
 
@@ -44,6 +47,7 @@ NSString* kRPSBidRequestHost = @"https://stg-s-bid.rmp.rakuten.co.jp/ad";
         if (adInfoList.count > 0) {
             [self.responseConsumer onBidResponseSuccess:adInfoList];
         } else {
+            RPSDebug("Bid data not found");
             [self.responseConsumer onBidResponseFailed];
         }
     }

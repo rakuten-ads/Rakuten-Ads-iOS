@@ -51,10 +51,10 @@
             @"bundle short version: %@\n"
             @"bundle name: %@\n"
             ,
-            self->_bundleIdentifier,
-            self->_bundleVersion,
-            self->_bundleShortVersion,
-            self->_bundleName,
+            self.bundleIdentifier,
+            self.bundleVersion,
+            self.bundleShortVersion,
+            self.bundleName,
             nil];
 }
 

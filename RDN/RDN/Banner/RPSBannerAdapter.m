@@ -14,7 +14,7 @@
 +(instancetype)parse:(NSDictionary *)bidData {
     RPSBanner* banner = [RPSBanner new];
     RPSJSONObject* jsonBid = [RPSJSONObject jsonWithRawDictionary:bidData];
-    banner->_html = [[jsonBid getString:@"adm"] stringByRemovingPercentEncoding];
+    banner->_html = [jsonBid getString:@"adm"];
     banner->_width = [[jsonBid getNumber:@"w"] intValue];
     banner->_height = [[jsonBid getNumber:@"h"] intValue];
     return banner;
