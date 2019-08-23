@@ -10,21 +10,8 @@
 #import <RPSCore/RPSValid.h>
 #import <UIKit/UIKit.h>
 #import <RPSCore/RPSHttpTask.h>
-#import "RPSNativeAdEventTrackRequest.h"
 #import <RPSCore/RPSJSONObject.h>
-
-#pragma mark - NSString extension
-@interface NSString (RPSSDK) <RPSHttpTaskDelegate>
-
-@end
-
-@implementation NSString (RPSSDK)
-
--(NSString*) getUrl {
-    return self;
-}
-
-@end
+#import "RPSURLString.h"
 
 #pragma mark - Asset Types
 
@@ -363,7 +350,7 @@ int RPSNativeAdAssetRequiredYes = 1;
             });
 
             for (NSString* clickTracker in self.assetLink.clicktrackers) {
-                RPSNativeAdEventTrackRequest* request = [RPSNativeAdEventTrackRequest new];
+                RPSURLStringRequest* request = [RPSURLStringRequest new];
                 request.httpTaskDelegate = clickTracker;
                 [request resume];
             }
@@ -375,7 +362,7 @@ int RPSNativeAdAssetRequiredYes = 1;
 -(void)fireImpression {
     for (RPSNativeAdEventTracker* impLink in self.eventTrackers) {
         RPSLog("fire imp %@", impLink);
-        RPSNativeAdEventTrackRequest* request = [RPSNativeAdEventTrackRequest new];
+        RPSURLStringRequest* request = [RPSURLStringRequest new];
         request.httpTaskDelegate = impLink;
         [request resume];
     }

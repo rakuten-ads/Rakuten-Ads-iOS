@@ -28,7 +28,6 @@
 }
 
 -(void)syncResult {
-    RPSDebug("trace");
     if (NSThread.currentThread.isMainThread) {
         RPSDebug("Must not call this method in main thread.");
         return;

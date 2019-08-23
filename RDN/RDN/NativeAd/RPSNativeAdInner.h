@@ -10,6 +10,7 @@
 #import <RPSCore/RPSJSONObject.h>
 #import "RPSBidAdapter.h"
 #import "RPSNativeAd.h"
+#import "RPSURLString.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -88,7 +89,7 @@ typedef NS_ENUM(NSUInteger, RPSNativeAdEventTrackerMethod) {
 
 @property(nonatomic, readonly) int event;
 @property(nonatomic, readonly) int method;
-@property(nonatomic, readonly) NSString* url;
+@property(nonatomic, readonly) RPSURLString* url;
 
 -(void) parse:(RPSJSONObject*) assetJson;
 

@@ -11,13 +11,17 @@
 
 @implementation RPSBanner
 
-+(instancetype)parse:(NSDictionary *)bidData {
-    RPSBanner* banner = [RPSBanner new];
+-(void)parse:(NSDictionary *)bidData {
     RPSJSONObject* jsonBid = [RPSJSONObject jsonWithRawDictionary:bidData];
-    banner->_html = [jsonBid getString:@"adm"];
-    banner->_width = [[jsonBid getNumber:@"w"] intValue];
-    banner->_height = [[jsonBid getNumber:@"h"] intValue];
-    return banner;
+    self->_html = [jsonBid getString:@"adm"];
+    self->_width = [[jsonBid getNumber:@"w"] intValue];
+    self->_height = [[jsonBid getNumber:@"h"] intValue];
+
+    RPSJSONObject* ext = [jsonBid getJson:@"ext"];
+    if (ext) {
+        self->_measuredURL = [ext getString:@"measured_url"];
+        self->_inviewURL = [ext getString:@"inview_url"];
+    }
 }
 
 @end

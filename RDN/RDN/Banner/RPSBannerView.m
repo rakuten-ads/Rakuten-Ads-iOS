@@ -11,6 +11,7 @@
 #import "RPSBannerAdapter.h"
 #import <RPSCore/RPSValid.h>
 #import "RPSDefines.h"
+#import "RPSMeasurement.h"
 
 typedef void (^RPSBannerViewEventHandler)(RPSBannerView* view, RPSBannerViewEvent event);
 
@@ -23,13 +24,17 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     RPS_ADVIEW_STATE_CLICKED,
 };
 
-@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumerDelegate>
+@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumerDelegate, RPSMeasurableDelegate>
 
 @property (nonatomic, nonnull) RPSAdWebView* webView;
 @property (nonatomic, nullable, copy) RPSBannerViewEventHandler eventHandler;
 @property (nonatomic) RPSBannerViewPosition position;
 @property (nonatomic, assign, nullable) UIView* parentView;
 @property (atomic) RPSBannerViewState state;
+
+@property (nonatomic, nullable) RPSBanner* banner;
+
+@property (nonatomic, nullable) RPSMeasurement* measurement;
 
 @end
 
@@ -39,7 +44,6 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 {
     self = [super initWithFrame:frame];
     if (self) {
-        RPSDebug("trace");
         self.hidden = YES;
         self.state = RPS_ADVIEW_STATE_INIT;
     }
@@ -68,28 +72,30 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     [self loadWithEventHandler:nil];
 }
 
--(void) loadWithEventHandler:(RPSBannerViewEventHandler)handler {RPSDebug("trace");
+-(void) loadWithEventHandler:(RPSBannerViewEventHandler)handler {
     self.eventHandler = handler;
+    __weak RPSBannerView* weakSelf = self;
     dispatch_async(RPSDefines.sharedQueue, ^{
         @try {
+            if (!weakSelf) return;
             RPSLog("%@", RPSDefines.sharedInstance);
-            if ([RPSValid isEmptyString:self.adSpotId]) {
+            if ([RPSValid isEmptyString:weakSelf.adSpotId]) {
                 NSLog(@"[RPS] require adSpotId!");
                 @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
             }
 
             RPSBannerAdapter* bannerAdapter = [RPSBannerAdapter new];
-            bannerAdapter.adspotId = self.adSpotId;
-            bannerAdapter.responseConsumer = self;
+            bannerAdapter.adspotId = weakSelf.adSpotId;
+            bannerAdapter.responseConsumer = weakSelf;
 
             RPSOpenRTBRequest* request = [RPSOpenRTBRequest new];
             request.openRTBAdapterDelegate = bannerAdapter;
 
             [request resume];
-            self.state = RPS_ADVIEW_STATE_LOADING;
+            weakSelf.state = RPS_ADVIEW_STATE_LOADING;
         } @catch(NSException* exception) {
             RPSLog("load exception: %@", exception);
-            [self triggerFailure];
+            [weakSelf triggerFailure];
         }
     });
 }
@@ -139,7 +145,6 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 }
 
 -(void)applyPositionWithSafeArea API_AVAILABLE(ios(11.0)){
-    RPSDebug("trace");
     UILayoutGuide* safeGuide = self.parentView.safeAreaLayoutGuide;
     switch (self.position) {
         case RPSBannerViewPositionTopLeft:
@@ -184,7 +189,6 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 }
 
 -(void)applyPositionWithParentView {
-    RPSDebug("trace");
     switch (self.position) {
         case RPSBannerViewPositionTopLeft:
             [NSLayoutConstraint activateConstraints:@[
@@ -245,39 +249,42 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
 -(void)onBidResponseSuccess:(NSArray<RPSBanner*> *)adInfoList {
     @try {
-        RPSBanner* banner = [adInfoList firstObject];
-        RPSDebug("onBidResponseSuccess: %@", banner);
+        self.banner = [adInfoList firstObject];
+        RPSDebug("onBidResponseSuccess: %@", self.banner);
 
         self.state = RPS_ADVIEW_STATE_LOADED;
 
-        if (!banner) {
+        if (!self.banner) {
             RPSLog("AdSpotInfo is empty");
             @throw [NSException exceptionWithName:@"load failed" reason:@"adSpotInfo is empty" userInfo:@{@"RPSAdSpotInfo": [NSNull null]}];
         }
 
-        if ([RPSValid isEmptyString:banner.html]) {
+        if ([RPSValid isEmptyString:self.banner.html]) {
             RPSLog("adSpotInfo.htmlTemplate is empty");
-            @throw [NSException exceptionWithName:@"load failed" reason:@"adSpotInfo.htmlTemplate is empty" userInfo:@{@"RPSAdSpotInfo": banner}];
+            @throw [NSException exceptionWithName:@"load failed" reason:@"adSpotInfo.htmlTemplate is empty" userInfo:@{@"RPSAdSpotInfo": self.banner}];
         }
 
+        __weak RPSBannerView* weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
             @try {
-                [self applySize:banner];
-                [self applyView:banner];
-                [self applyPosition];
+                if (!weakSelf) return;
 
-                self.hidden = NO;
-                if (self.eventHandler) {
+                [weakSelf applySize:weakSelf.banner];
+                [weakSelf applyView:weakSelf.banner];
+                [weakSelf applyPosition];
+
+                weakSelf.hidden = NO;
+                if (weakSelf.eventHandler) {
                     @try {
-                        self.eventHandler(self, RPSBannerViewEventSucceeded);
+                        weakSelf.eventHandler(weakSelf, RPSBannerViewEventSucceeded);
                     } @catch (NSException* exception) {
                         RPSLog("exception when bannerOnSucesss callback: %@", exception);
                     }
                 }
-                self.state = RPS_ADVIEW_STATE_SHOWED;
+                weakSelf.state = RPS_ADVIEW_STATE_SHOWED;
             } @catch(NSException* exception) {
                 RPSDebug("failed after Ad Request: %@", exception);
-                [self triggerFailure];
+                [weakSelf triggerFailure];
             }
         });
     } @catch(NSException* exception) {
@@ -287,22 +294,26 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 }
 
 - (nonnull RPSBanner*)parse:(nonnull NSDictionary *)bid {
-    return [RPSBanner parse:bid];
+    RPSBanner* banner = [RPSBanner new];
+    [banner parse:bid];
+    return banner;
 }
 
 -(void) triggerFailure {
     self.state = RPS_ADVIEW_STATE_FAILED;
+    __weak RPSBannerView* weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
+        if (!weakSelf) return;
         RPSDebug("triggerFailure");
         @try {
-            if (self.eventHandler) {
-                self.eventHandler(self, RPSBannerViewEventFailed);
+            if (weakSelf.eventHandler) {
+                weakSelf.eventHandler(weakSelf, RPSBannerViewEventFailed);
             }
         } @catch(NSException* exception) {
             RPSLog("exception when bannerOnFailure callback: %@", exception);
         } @finally {
-            self.hidden = YES;
-            [self removeFromSuperview];
+            weakSelf.hidden = YES;
+            [weakSelf removeFromSuperview];
         }
     });
 }
@@ -310,7 +321,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 #pragma mark - implement WKNavigationDelegate
 
 -(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    RPSDebug("webview navigation: %@", navigationAction.request.URL);
+    RPSDebug("webview navigation decide for: %@", navigationAction.request.URL);
     if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
         RPSDebug("clicked ad");
         NSURL* url = navigationAction.request.URL;
@@ -330,6 +341,47 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
         RPSDebug("WKNavigationActionPolicyAllow");
         decisionHandler(WKNavigationActionPolicyAllow);
     }
+}
+
+-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    RPSDebug("didFinishNavigation of: %@", navigation);
+    self.measurement = [RPSMeasurement new];
+    self.measurement.measurableTarget = self;
+    [self.measurement startMeasurement];
+}
+
+
+#pragma mark - implement RPSMeasurableDelegate
+
+-(void)measureInview {
+    RPSDebug("measure inview rate: %f", self.visibility);
+    if (self.banner.inviewURL && self.visibility > 0.5) {
+        RPSURLStringRequest* request = [RPSURLStringRequest new];
+        request.httpTaskDelegate = self.banner.inviewURL;
+        [request resume];
+    }
+}
+
+-(void)measureImp {
+    if (self.banner.measuredURL) {
+        RPSDebug("measure imp");
+        RPSURLStringRequest* request = [RPSURLStringRequest new];
+        request.httpTaskDelegate = self.banner.measuredURL;
+        [request resume];
+    }
+}
+
+
+-(float)visibility {
+    float areaOfAdView = self.frame.size.width * self.frame.size.height;
+    CGRect intersectionFrame = CGRectIntersection(UIScreen.mainScreen.bounds, self.frame);
+    if (!self.isHidden
+        && areaOfAdView > 0
+        && !CGRectIsNull(intersectionFrame)) {
+        float areaOfIntersection = intersectionFrame.size.width * intersectionFrame.size.height;
+        return areaOfIntersection / areaOfAdView;
+    }
+    return 0;
 }
 
 @end

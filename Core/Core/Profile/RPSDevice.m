@@ -17,7 +17,6 @@
 @synthesize language = _language;
 
 -(NSString*)osVersion {
-    RPSDebug("trace");
     if (!self->_osVersion) {
         self->_osVersion = UIDevice.currentDevice.systemVersion;
     }
@@ -25,7 +24,6 @@
 }
 
 -(NSString *)model {
-    RPSDebug("trace");
     if (!self->_model) {
         self->_model = [self getModel];
     }
@@ -33,7 +31,6 @@
 }
 
 -(NSString *)buildName {
-    RPSDebug("trace");
     if (!self->_buildName) {
         self->_buildName = [self getBuildName];
     }
@@ -41,7 +38,6 @@
 }
 
 -(NSString *)language {
-    RPSDebug("trace");
     if (!self->_language) {
         self->_language = [NSLocale.currentLocale objectForKey:NSLocaleLanguageCode];
     }

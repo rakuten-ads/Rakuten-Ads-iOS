@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "RPSBidAdapter.h"
+#import "RPSURLString.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface RPSBanner : NSObject<RPSAdInfo>
@@ -16,7 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) int width;
 @property(nonatomic, readonly) int height;
 
-+(instancetype)parse:(NSDictionary *)bidData;
+@property(nonatomic, readonly) RPSURLString* measuredURL;
+@property(nonatomic, readonly) RPSURLString* inviewURL;
+
+-(void)parse:(NSDictionary *)bidData;
 
 @end
 
