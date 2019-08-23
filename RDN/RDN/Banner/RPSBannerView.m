@@ -76,26 +76,27 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     self.eventHandler = handler;
     __weak RPSBannerView* weakSelf = self;
     dispatch_async(RPSDefines.sharedQueue, ^{
+        __strong RPSBannerView* strongSelf = weakSelf;
         @try {
-            if (!weakSelf) return;
+            if (!strongSelf) return;
             RPSLog("%@", RPSDefines.sharedInstance);
-            if ([RPSValid isEmptyString:weakSelf.adSpotId]) {
+            if ([RPSValid isEmptyString:strongSelf.adSpotId]) {
                 NSLog(@"[RPS] require adSpotId!");
                 @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
             }
 
             RPSBannerAdapter* bannerAdapter = [RPSBannerAdapter new];
-            bannerAdapter.adspotId = weakSelf.adSpotId;
-            bannerAdapter.responseConsumer = weakSelf;
+            bannerAdapter.adspotId = strongSelf.adSpotId;
+            bannerAdapter.responseConsumer = strongSelf;
 
             RPSOpenRTBRequest* request = [RPSOpenRTBRequest new];
             request.openRTBAdapterDelegate = bannerAdapter;
 
             [request resume];
-            weakSelf.state = RPS_ADVIEW_STATE_LOADING;
+            strongSelf.state = RPS_ADVIEW_STATE_LOADING;
         } @catch(NSException* exception) {
             RPSLog("load exception: %@", exception);
-            [weakSelf triggerFailure];
+            [strongSelf triggerFailure];
         }
     });
 }
@@ -266,25 +267,26 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
         __weak RPSBannerView* weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
+            __strong RPSBannerView* strongSelf = weakSelf;
             @try {
-                if (!weakSelf) return;
+                if (!strongSelf) return;
 
-                [weakSelf applySize:weakSelf.banner];
-                [weakSelf applyView:weakSelf.banner];
-                [weakSelf applyPosition];
+                [strongSelf applySize:strongSelf.banner];
+                [strongSelf applyView:strongSelf.banner];
+                [strongSelf applyPosition];
 
-                weakSelf.hidden = NO;
-                if (weakSelf.eventHandler) {
+                strongSelf.hidden = NO;
+                if (strongSelf.eventHandler) {
                     @try {
-                        weakSelf.eventHandler(weakSelf, RPSBannerViewEventSucceeded);
+                        strongSelf.eventHandler(strongSelf, RPSBannerViewEventSucceeded);
                     } @catch (NSException* exception) {
                         RPSLog("exception when bannerOnSucesss callback: %@", exception);
                     }
                 }
-                weakSelf.state = RPS_ADVIEW_STATE_SHOWED;
+                strongSelf.state = RPS_ADVIEW_STATE_SHOWED;
             } @catch(NSException* exception) {
                 RPSDebug("failed after Ad Request: %@", exception);
-                [weakSelf triggerFailure];
+                [strongSelf triggerFailure];
             }
         });
     } @catch(NSException* exception) {
@@ -303,17 +305,18 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     self.state = RPS_ADVIEW_STATE_FAILED;
     __weak RPSBannerView* weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (!weakSelf) return;
+        __strong RPSBannerView* strongSelf = weakSelf;
+        if (!strongSelf) return;
         RPSDebug("triggerFailure");
         @try {
-            if (weakSelf.eventHandler) {
-                weakSelf.eventHandler(weakSelf, RPSBannerViewEventFailed);
+            if (strongSelf.eventHandler) {
+                strongSelf.eventHandler(strongSelf, RPSBannerViewEventFailed);
             }
         } @catch(NSException* exception) {
             RPSLog("exception when bannerOnFailure callback: %@", exception);
         } @finally {
-            weakSelf.hidden = YES;
-            [weakSelf removeFromSuperview];
+            strongSelf.hidden = YES;
+            [strongSelf removeFromSuperview];
         }
     });
 }
@@ -376,6 +379,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     float areaOfAdView = self.frame.size.width * self.frame.size.height;
     CGRect intersectionFrame = CGRectIntersection(UIScreen.mainScreen.bounds, self.frame);
     if (!self.isHidden
+        && self.window
         && areaOfAdView > 0
         && !CGRectIsNull(intersectionFrame)) {
         float areaOfIntersection = intersectionFrame.size.width * intersectionFrame.size.height;
@@ -384,4 +388,9 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     return 0;
 }
 
+#if DEBUG
+-(void)dealloc {
+    RPSDebug("dealloc RPSBannerView");
+}
+#endif
 @end

@@ -8,19 +8,22 @@
 
 #import "RPSMeasurement.h"
 
+NSTimeInterval kIntervalInView = 1;
+
 @implementation RPSMeasurement
 
 -(void)startMeasurement {
     RPSDebug("startMeasurement");
     [self.measurableTarget measureImp];
 
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(afterOneSecond:) userInfo:nil repeats:false];
-}
-
--(void) afterOneSecond:(NSTimer*) timer {
-    RPSDebug("measurement in 1 Second");
-
-    [self.measurableTarget measureInview];
+    __weak RPSMeasurement* weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kIntervalInView * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (weakSelf && weakSelf.measurableTarget) {
+            [weakSelf.measurableTarget measureInview];
+        } else {
+            RPSDebug("adview disposed!");
+        }
+    });
 }
 
 @end
