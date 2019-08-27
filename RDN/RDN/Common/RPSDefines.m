@@ -11,20 +11,7 @@
 #import <RPSCore/RPSCore.h>
 #import <RPSCore/RPSValid.h>
 
-NSString* RPS_AD_TYPE_BANNER = @"banner";
-NSString* RPS_AD_TYPE_VIDEO = @"video";
-NSString* RPS_AD_TYPE_NATIVE = @"native";
-NSString* RPS_AD_TYPE_NATIVE_VIDEO = @"native_video";
-
 NSTimeInterval RPS_API_TIMEOUT_INTERVAL = 30;
-
-#if STAGING
-NSString* RPS_DOMAIN_BID = @"http://stg-s-bid.rmp.rakuten.co.jp"; // Staging
-#elif DEBUG
-NSString* RPS_DOMAIN_BID = @"http://dev-s-bid.rx-ad.com"; // Developement
-#else
-NSString* RPS_DOMAIN_BID = @"http://s-bid.rmp.rakuten.co.jp"; // Production
-#endif
 
 @implementation RPSDefines {
     dispatch_queue_t _underlyingQueue;
@@ -64,6 +51,7 @@ NSString* RPS_DOMAIN_BID = @"http://s-bid.rmp.rakuten.co.jp"; // Production
         
         {
             self->_userAgentInfo = [RPSWebUserAgent new];
+            self->_userAgentInfo.timeout = RPS_API_TIMEOUT_INTERVAL;
             [self.userAgentInfo asyncRequest];
         }
         {
@@ -75,26 +63,11 @@ NSString* RPS_DOMAIN_BID = @"http://s-bid.rmp.rakuten.co.jp"; // Production
         }
         
         {
-            self->_bundleId = NSBundle.mainBundle.bundleIdentifier;
+            self->_appInfo = [RPSAppInfo new];
         }
+
         {
-            self->_bundleVersion = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
-            if (!self->_bundleVersion) {
-                // if CFBundleShortVersionString not found in main bundle, like UnitTest
-                [NSBundle.allBundles enumerateObjectsUsingBlock:^(NSBundle * _Nonnull bundle, NSUInteger idx, BOOL * _Nonnull stop) {
-                    NSString* infoPath = [bundle pathForResource:@"Info" ofType:@"plist"];
-                    if (infoPath) {
-                        NSDictionary* infoDict = [NSDictionary dictionaryWithContentsOfFile:infoPath];
-                        self->_bundleVersion = [infoDict objectForKey:@"CFBundleShortVersionString"];
-                        if ([RPSValid isNotEmptyString:self->_bundleVersion]) {
-                            if ([RPSValid isEmptyString:self->_bundleId]) {
-                                self->_bundleId = [infoDict objectForKey:@"CFBundleIdentifier"];
-                            }
-                            *stop = YES;
-                        }
-                    }
-                }];
-            }
+            self->_sdkBundleShortVersionString = [[[NSBundle bundleForClass:self.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
         }
         
     }
@@ -104,21 +77,19 @@ NSString* RPS_DOMAIN_BID = @"http://s-bid.rmp.rakuten.co.jp"; // Production
 -(NSString *)description {
     [self.userAgentInfo syncResult];
     return [NSString stringWithFormat:
-            @"SDK RDN version: %lf\n"
-            @"SDK Core version: %lf\n"
+            @"SDK RDN version: %@\n"
+            @"SDK Core version: %@\n"
             @"IDFA: %@\n"
             @"UA: %@\n"
-            @"%@"
-            @"Bundle identifier: %@\n"
-            @"Bundle version: %@\n"
+            @"Device: %@"
+            @"AppInfo: %@\n"
             ,
-            RPSRDNVersionNumber,
-            RPSCoreVersionNumber,
+            self->_sdkBundleShortVersionString,
+            [RPSCore sdkBundleVersionShortString],
             self->_idfaInfo.idfa,
             self->_userAgentInfo.userAgent,
-            [self->_deviceInfo description],
-            self->_bundleId,
-            self->_bundleVersion,
+            self->_deviceInfo,
+            self->_appInfo,
             nil];
 }
 

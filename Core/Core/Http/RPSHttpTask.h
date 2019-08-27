@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@protocol RPSHttpSessionDelegate<NSObject>
+@protocol RPSHttpTaskDelegate<NSObject>
 
 @required
 // http URL
@@ -14,7 +14,7 @@
 -(nullable NSDictionary*) getQueryParameters;
 
 // specicial configuration on request, such as headers
--(void) appendConfig:(nonnull NSMutableURLRequest*) request;
+-(void) processConfig:(nonnull NSMutableURLRequest*) request;
 
 // the body when POST
 -(nonnull NSData*) postBody;
@@ -27,7 +27,7 @@
 /**
  * implements when enable JSON http session
  */
-@protocol RPSJsonHttpSessionDelegate <RPSHttpSessionDelegate>
+@protocol RPSJsonHttpSessionDelegate <RPSHttpTaskDelegate>
 
 @optional
 -(nullable NSDictionary*) postJsonBody;
@@ -37,7 +37,7 @@
 
 
 
-@interface RPSHttpSession : NSObject {
+@interface RPSHttpTask : NSObject {
 
 @protected
     NSURLSession* _httpSession;
@@ -46,10 +46,9 @@
 -(void) resume;
 -(void) syncResume:(dispatch_time_t) timeout;
 
-@property (nonatomic) BOOL shouldKeepHttpSession;
-@property (nonatomic, readonly, nullable) NSString* underlyingUrl;
+@property (nonatomic, readonly, nullable) NSURL* underlyingUrl;
 
-@property(nonatomic, weak, nullable) id<RPSHttpSessionDelegate> httpSessionDelegate;
+@property(nonatomic, weak, nullable) id<RPSHttpTaskDelegate> httpTaskDelegate;
 
 @end
 

@@ -29,7 +29,7 @@ if [ "$1" != "archive" ]; then
 
 fi
 
-SDK_NAME=${SDK_PRODUCT_NAME}_iOS_dynamic_${CURRENT_PROJECT_VERSION}.framework.zip
+SDK_NAME=${SDK_PRODUCT_NAME}_iOS_${CURRENT_PROJECT_VERSION}.framework.zip
 SDK_OUTPUT=${SDK_OUTPUT_DIR}/$SDK_NAME
 echo "carthage archive to $SDK_OUTPUT for ${SDK_PRODUCT_NAME}"
 carthage archive --output $SDK_OUTPUT ${SDK_PRODUCT_NAME}

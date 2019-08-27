@@ -1,14 +1,19 @@
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface RPSJSONObject : NSObject
 
-@property(nonatomic, readonly, nonnull)  NSDictionary* rawDict;
+@property(nonatomic, readonly)  NSDictionary* rawDict;
 
-+(nonnull instancetype) jsonWithRawDictionary:(nonnull NSDictionary*) rawDict;
++(instancetype) jsonWithRawDictionary:(NSDictionary*) rawDict;
 
--(nullable RPSJSONObject*) getJson:(nonnull NSString*) key;
--(nullable NSNumber*) getNumber:(nonnull NSString*) key;
--(nullable NSString*) getString:(nonnull NSString*) key;
--(BOOL) getBoolean:(nonnull NSString*) key;
+-(nullable RPSJSONObject*) getJson:(NSString*) key;
+-(nullable NSArray*) getArray:(NSString*) key;
+-(nullable NSNumber*) getNumber:(NSString*) key;
+-(nullable NSString*) getString:(NSString*) key;
+-(BOOL) getBoolean:(NSString*) key;
 
 @end
+
+NS_ASSUME_NONNULL_END

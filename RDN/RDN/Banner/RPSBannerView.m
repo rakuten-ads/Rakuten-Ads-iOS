@@ -1,20 +1,21 @@
 //
-//  RPSAdView.m
+//  RPSBannerView.m
 //  RPSSDK
 //
 //  Created by Wu Wei on 2018/07/23.
 //  Copyright © 2018 LOB. All rights reserved.
 //
 
-#import "RPSAdView.h"
+#import "RPSBannerView.h"
 #import "RPSAdWebView.h"
-#import "RPSAdRequest.h"
+#import "RPSBannerAdapter.h"
 #import <RPSCore/RPSValid.h>
 #import "RPSDefines.h"
+#import "RPSMeasurement.h"
 
-typedef BOOL (^RPSAdViewEventHandler)(RPSAdView* view, RPSAdViewEvent event);
+typedef void (^RPSBannerViewEventHandler)(RPSBannerView* view, RPSBannerViewEvent event);
 
-typedef NS_ENUM(NSUInteger, RPSAdViewState) {
+typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     RPS_ADVIEW_STATE_INIT,
     RPS_ADVIEW_STATE_LOADING,
     RPS_ADVIEW_STATE_LOADED,
@@ -23,23 +24,26 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
     RPS_ADVIEW_STATE_CLICKED,
 };
 
-@interface RPSAdView() <RPSAdRequestDelegate, WKNavigationDelegate>
+@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumerDelegate, RPSMeasurableDelegate>
 
 @property (nonatomic, nonnull) RPSAdWebView* webView;
-@property (nonatomic, nullable, copy) RPSAdViewEventHandler eventHandler;
-@property (nonatomic) RPSAdViewPosition position;
+@property (nonatomic, nullable, copy) RPSBannerViewEventHandler eventHandler;
+@property (nonatomic) RPSBannerViewPosition position;
 @property (nonatomic, assign, nullable) UIView* parentView;
-@property (atomic) RPSAdViewState state;
+@property (atomic) RPSBannerViewState state;
+
+@property (nonatomic, nullable) RPSBanner* banner;
+
+@property (nonatomic, nullable) RPSMeasurement* measurement;
 
 @end
 
-@implementation RPSAdView
+@implementation RPSBannerView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        RPSTrace
         self.hidden = YES;
         self.state = RPS_ADVIEW_STATE_INIT;
     }
@@ -48,8 +52,8 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
 
 @synthesize state = _state;
 
--(void)setState:(RPSAdViewState)state {
-    RPSLog(@"set state %@",
+-(void)setState:(RPSBannerViewState)state {
+    RPSDebug("set state %@",
            state == RPS_ADVIEW_STATE_INIT ? @"INIT" :
            state == RPS_ADVIEW_STATE_LOADING ? @"LOADING" :
            state == RPS_ADVIEW_STATE_LOADED ? @"LOADED" :
@@ -59,7 +63,7 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
     self->_state = state;
 }
 
--(RPSAdViewState)state {
+-(RPSBannerViewState)state {
     return self->_state;
 }
 
@@ -68,55 +72,63 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
     [self loadWithEventHandler:nil];
 }
 
--(void) loadWithEventHandler:(RPSAdViewEventHandler)handler {RPSTrace
+-(void) loadWithEventHandler:(RPSBannerViewEventHandler)handler {
     self.eventHandler = handler;
+    __weak RPSBannerView* weakSelf = self;
     dispatch_async(RPSDefines.sharedQueue, ^{
+        __strong RPSBannerView* strongSelf = weakSelf;
         @try {
-            VERBOSE_LOG(@"%@", RPSDefines.sharedInstance);
-            if ([RPSValid isEmptyString:self.adSpotId]) {
+            if (!strongSelf) return;
+            RPSLog("%@", RPSDefines.sharedInstance);
+            if ([RPSValid isEmptyString:strongSelf.adSpotId]) {
                 NSLog(@"[RPS] require adSpotId!");
                 @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
             }
 
-            RPSAdRequest* request = [[RPSAdRequest alloc]initWithAdSpotId:self.adSpotId];
-            request.delegate = self;
+            RPSBannerAdapter* bannerAdapter = [RPSBannerAdapter new];
+            bannerAdapter.adspotId = strongSelf.adSpotId;
+            bannerAdapter.responseConsumer = strongSelf;
+
+            RPSOpenRTBRequest* request = [RPSOpenRTBRequest new];
+            request.openRTBAdapterDelegate = bannerAdapter;
+
             [request resume];
-            self.state = RPS_ADVIEW_STATE_LOADING;
+            strongSelf.state = RPS_ADVIEW_STATE_LOADING;
         } @catch(NSException* exception) {
-            VERBOSE_LOG(@"load exception: %@", exception);
-            [self triggerFailure];
+            RPSLog("load exception: %@", exception);
+            [strongSelf triggerFailure];
         }
     });
 }
 
--(void)setPosition:(RPSAdViewPosition)position inView:(UIView *)parentView {
+-(void)setPosition:(RPSBannerViewPosition)position inView:(UIView *)parentView {
     if (!parentView) {
-        VERBOSE_LOG(@"parent view cannot be nil");
+        RPSLog("parent view cannot be nil");
         return;
     }
 
     self.position = position;
     self.parentView = parentView;
     if (self.state == RPS_ADVIEW_STATE_SHOWED) {
-        RPSLog(@"re-apply position after showed");
+        RPSDebug("re-apply position after showed");
         [self applyPosition];
     }
 }
 
 #pragma mark - UI frame control
--(void) applySize:(RPSAdSpotInfo*) adSpotInfo {
+-(void) applySize:(RPSBanner*) banner {
     self.frame = CGRectMake(self.frame.origin.x,
                             self.frame.origin.y,
-                            adSpotInfo.width,
-                            adSpotInfo.height);
-    RPSLog(@"apply size: %@", NSStringFromCGRect(self.frame));
+                            banner.width,
+                            banner.height);
+    RPSDebug("apply size: %@", NSStringFromCGRect(self.frame));
 }
 
 -(void)applyPosition{
     if (self.parentView) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
         if (![self.parentView.subviews containsObject:self]) {
-            RPSLog(@"add as subview");
+            RPSDebug("add as subview");
             [self.parentView addSubview:self];
         }
         if (@available(ios 11.0, *)) {
@@ -129,45 +141,44 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
                                                   [self.heightAnchor constraintEqualToConstant:CGRectGetHeight(self.frame)],
                                                   ]];
         [self layoutIfNeeded];
-        RPSLog(@"apply position %@", NSStringFromCGRect(self.frame));
+        RPSDebug("apply position %@", NSStringFromCGRect(self.frame));
     }
 }
 
 -(void)applyPositionWithSafeArea API_AVAILABLE(ios(11.0)){
-    RPSTrace
     UILayoutGuide* safeGuide = self.parentView.safeAreaLayoutGuide;
     switch (self.position) {
-        case RPSAdViewPositionTopLeft:
+        case RPSBannerViewPositionTopLeft:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.leftAnchor constraintEqualToAnchor:safeGuide.leftAnchor],
                                                       [self.topAnchor constraintEqualToAnchor:safeGuide.topAnchor],
                                                       ]];
             break;
-        case RPSAdViewPositionTop:
+        case RPSBannerViewPositionTop:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.centerXAnchor constraintEqualToAnchor:safeGuide.centerXAnchor],
                                                       [self.topAnchor constraintEqualToAnchor:safeGuide.topAnchor],
                                                       ]];
             break;
-        case RPSAdViewPositionTopRight:
+        case RPSBannerViewPositionTopRight:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.rightAnchor constraintEqualToAnchor:safeGuide.rightAnchor],
                                                       [self.topAnchor constraintEqualToAnchor:safeGuide.topAnchor],
                                                       ]];
             break;
-        case RPSAdViewPositionBottomLeft:
+        case RPSBannerViewPositionBottomLeft:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.leftAnchor constraintEqualToAnchor:safeGuide.leftAnchor],
                                                       [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
                                                       ]];
             break;
-        case RPSAdViewPositionBottomRight:
+        case RPSBannerViewPositionBottomRight:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.rightAnchor constraintEqualToAnchor:safeGuide.rightAnchor],
                                                       [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
                                                       ]];
             break;
-        case RPSAdViewPositionBottom:
+        case RPSBannerViewPositionBottom:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.centerXAnchor constraintEqualToAnchor:safeGuide.centerXAnchor],
                                                       [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
@@ -179,39 +190,38 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
 }
 
 -(void)applyPositionWithParentView {
-    RPSTrace
     switch (self.position) {
-        case RPSAdViewPositionTopLeft:
+        case RPSBannerViewPositionTopLeft:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.topAnchor constraintEqualToAnchor:self.parentView.topAnchor],
                                                       [self.leftAnchor constraintEqualToAnchor:self.parentView.leftAnchor],
                                                       ]];
             break;
-        case RPSAdViewPositionTop:
+        case RPSBannerViewPositionTop:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.topAnchor constraintEqualToAnchor:self.parentView.topAnchor],
                                                       [self.centerXAnchor constraintEqualToAnchor:self.parentView.centerXAnchor],
                                                       ]];
             break;
-        case RPSAdViewPositionTopRight:
+        case RPSBannerViewPositionTopRight:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.topAnchor constraintEqualToAnchor:self.parentView.topAnchor],
                                                       [self.rightAnchor constraintEqualToAnchor:self.parentView.rightAnchor],
                                                       ]];
             break;
-        case RPSAdViewPositionBottomLeft:
+        case RPSBannerViewPositionBottomLeft:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.bottomAnchor constraintEqualToAnchor:self.parentView.bottomAnchor],
                                                       [self.leftAnchor constraintEqualToAnchor:self.parentView.leftAnchor],
                                                       ]];
             break;
-        case RPSAdViewPositionBottomRight:
+        case RPSBannerViewPositionBottomRight:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.bottomAnchor constraintEqualToAnchor:self.parentView.bottomAnchor],
                                                       [self.rightAnchor constraintEqualToAnchor:self.parentView.rightAnchor],
                                                       ]];
             break;
-        case RPSAdViewPositionBottom:
+        case RPSBannerViewPositionBottom:
             [NSLayoutConstraint activateConstraints:@[
                                                       [self.bottomAnchor constraintEqualToAnchor:self.parentView.bottomAnchor],
                                                       [self.centerXAnchor constraintEqualToAnchor:self.parentView.centerXAnchor],
@@ -222,80 +232,91 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
     }
 }
 
--(void) applyView:(RPSAdSpotInfo*) adSpotInfo {
-    RPSLog(@"apply applyView: %@", NSStringFromCGRect(self.frame));
+-(void) applyView:(RPSBanner*) banner {
+    RPSDebug("apply applyView: %@", NSStringFromCGRect(self.frame));
 
     // Web View
     self.webView = [[RPSAdWebView alloc]initWithFrame:self.bounds];
     self.webView.navigationDelegate = self;
     [self addSubview:self.webView];
-    [self.webView loadHTMLString:adSpotInfo.html baseURL:nil];
+    [self.webView loadHTMLString:banner.html baseURL:nil];
 }
 
-#pragma mark - implement RPSAdRequestDelegate
-
--(void)adRequestOnFailure {
+#pragma mark - implement RPSBidResponseConsumer
+- (void)onBidResponseFailed {
     self.state = RPS_ADVIEW_STATE_LOADED;
     [self triggerFailure];
 }
 
--(void)adRequestOnSuccess:(RPSAdSpotInfo *)adSpotInfo {
+-(void)onBidResponseSuccess:(NSArray<RPSBanner*> *)adInfoList {
     @try {
-        RPSLog(@"adRequestOnSuccess: %@", adSpotInfo);
+        self.banner = [adInfoList firstObject];
+        RPSDebug("onBidResponseSuccess: %@", self.banner);
+
         self.state = RPS_ADVIEW_STATE_LOADED;
 
-        if (!adSpotInfo) {
-            VERBOSE_LOG(@"AdSpotInfo is empty");
+        if (!self.banner) {
+            RPSLog("AdSpotInfo is empty");
             @throw [NSException exceptionWithName:@"load failed" reason:@"adSpotInfo is empty" userInfo:@{@"RPSAdSpotInfo": [NSNull null]}];
         }
 
-        if ([RPSValid isEmptyString:adSpotInfo.html]) {
-            VERBOSE_LOG(@"adSpotInfo.htmlTemplate is empty");
-            @throw [NSException exceptionWithName:@"load failed" reason:@"adSpotInfo.htmlTemplate is empty" userInfo:@{@"RPSAdSpotInfo": adSpotInfo}];
+        if ([RPSValid isEmptyString:self.banner.html]) {
+            RPSLog("adSpotInfo.htmlTemplate is empty");
+            @throw [NSException exceptionWithName:@"load failed" reason:@"adSpotInfo.htmlTemplate is empty" userInfo:@{@"RPSAdSpotInfo": self.banner}];
         }
 
+        __weak RPSBannerView* weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
+            __strong RPSBannerView* strongSelf = weakSelf;
             @try {
-                [self applySize:adSpotInfo];
-                [self applyView:adSpotInfo];
-                [self applyPosition];
+                if (!strongSelf) return;
 
-                self.hidden = NO;
-                if (self.eventHandler) {
+                [strongSelf applySize:strongSelf.banner];
+                [strongSelf applyView:strongSelf.banner];
+                [strongSelf applyPosition];
+
+                strongSelf.hidden = NO;
+                if (strongSelf.eventHandler) {
                     @try {
-                        self.eventHandler(self, RPSAdViewEventSucceeded);
+                        strongSelf.eventHandler(strongSelf, RPSBannerViewEventSucceeded);
                     } @catch (NSException* exception) {
-                        VERBOSE_LOG(@"exception when bannerOnSucesss callback: %@", exception);
+                        RPSLog("exception when bannerOnSucesss callback: %@", exception);
                     }
                 }
-                self.state = RPS_ADVIEW_STATE_SHOWED;
+                strongSelf.state = RPS_ADVIEW_STATE_SHOWED;
             } @catch(NSException* exception) {
-                RPSLog(@"failed after Ad Request: %@", exception);
-                [self triggerFailure];
+                RPSDebug("failed after Ad Request: %@", exception);
+                [strongSelf triggerFailure];
             }
         });
     } @catch(NSException* exception) {
-        RPSLog(@"failed after Ad Request: %@", exception);
+        RPSDebug("failed after Ad Request: %@", exception);
         [self triggerFailure];
     }
 }
 
+- (nonnull RPSBanner*)parse:(nonnull NSDictionary *)bid {
+    RPSBanner* banner = [RPSBanner new];
+    [banner parse:bid];
+    return banner;
+}
+
 -(void) triggerFailure {
     self.state = RPS_ADVIEW_STATE_FAILED;
+    __weak RPSBannerView* weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        RPSLog(@"triggerFailure");
-        BOOL shouldHandleFailureByDefault = YES;
+        __strong RPSBannerView* strongSelf = weakSelf;
+        if (!strongSelf) return;
+        RPSDebug("triggerFailure");
         @try {
-            if (self.eventHandler) {
-                shouldHandleFailureByDefault = self.eventHandler(self, RPSAdViewEventFailed);
+            if (strongSelf.eventHandler) {
+                strongSelf.eventHandler(strongSelf, RPSBannerViewEventFailed);
             }
         } @catch(NSException* exception) {
-            VERBOSE_LOG(@"exception when bannerOnFailure callback: %@", exception);
+            RPSLog("exception when bannerOnFailure callback: %@", exception);
         } @finally {
-            if (shouldHandleFailureByDefault) {
-                self.hidden = YES;
-                [self removeFromSuperview];
-            }
+            strongSelf.hidden = YES;
+            [strongSelf removeFromSuperview];
         }
     });
 }
@@ -303,30 +324,73 @@ typedef NS_ENUM(NSUInteger, RPSAdViewState) {
 #pragma mark - implement WKNavigationDelegate
 
 -(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    RPSLog(@"webview navigation: %@", navigationAction.request.URL);
+    RPSDebug("webview navigation decide for: %@", navigationAction.request.URL);
     if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
-        RPSLog(@"clicked ad");
+        RPSDebug("clicked ad");
         NSURL* url = navigationAction.request.URL;
         if (url) {
-            if (@available(iOS 10.0, *)) { // TODO too slow, may use dispatch_async
-                [UIApplication.sharedApplication openURL:url options:@{} completionHandler:^(BOOL success){
-                    RPSLog(@"opened AD URL");
-                }];
-            } else {
-                // Fallback on earlier versions
-                [UIApplication.sharedApplication openURL:url];
-            }
-            RPSLog(@"WKNavigationActionPolicyCancel");
+            [UIApplication.sharedApplication openURL:url options:@{} completionHandler:^(BOOL success){
+                RPSDebug("opened AD URL");
+            }];
+
+            RPSDebug("WKNavigationActionPolicyCancel");
             if (self.eventHandler) {
-                self.eventHandler(self, RPSAdViewEventClicked);
+                self.eventHandler(self, RPSBannerViewEventClicked);
             }
             self.state = RPS_ADVIEW_STATE_CLICKED;
             decisionHandler(WKNavigationActionPolicyCancel);
         }
     } else {
-        RPSLog(@"WKNavigationActionPolicyAllow");
+        RPSDebug("WKNavigationActionPolicyAllow");
         decisionHandler(WKNavigationActionPolicyAllow);
     }
 }
 
+-(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    RPSDebug("didFinishNavigation of: %@", navigation);
+    self.measurement = [RPSMeasurement new];
+    self.measurement.measurableTarget = self;
+    [self.measurement startMeasurement];
+}
+
+
+#pragma mark - implement RPSMeasurableDelegate
+
+-(void)measureInview {
+    RPSDebug("measure inview rate: %f", self.visibility);
+    if (self.banner.inviewURL && self.visibility > 0.5) {
+        RPSURLStringRequest* request = [RPSURLStringRequest new];
+        request.httpTaskDelegate = self.banner.inviewURL;
+        [request resume];
+    }
+}
+
+-(void)measureImp {
+    if (self.banner.measuredURL) {
+        RPSDebug("measure imp");
+        RPSURLStringRequest* request = [RPSURLStringRequest new];
+        request.httpTaskDelegate = self.banner.measuredURL;
+        [request resume];
+    }
+}
+
+
+-(float)visibility {
+    float areaOfAdView = self.frame.size.width * self.frame.size.height;
+    CGRect intersectionFrame = CGRectIntersection(UIScreen.mainScreen.bounds, self.frame);
+    if (!self.isHidden
+        && self.window
+        && areaOfAdView > 0
+        && !CGRectIsNull(intersectionFrame)) {
+        float areaOfIntersection = intersectionFrame.size.width * intersectionFrame.size.height;
+        return areaOfIntersection / areaOfAdView;
+    }
+    return 0;
+}
+
+#if DEBUG
+-(void)dealloc {
+    RPSDebug("dealloc RPSBannerView");
+}
+#endif
 @end

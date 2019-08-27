@@ -16,5 +16,5 @@ FOUNDATION_EXPORT const unsigned char RPSRDNVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <RDN/PublicHeader.h>
 
-#import "RPSAdView.h"
-#import "RPSAdNative.h"
+#import "RPSBannerView.h"
+#import "RPSNativeAd.h"

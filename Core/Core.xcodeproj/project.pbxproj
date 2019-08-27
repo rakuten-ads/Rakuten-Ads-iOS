@@ -21,6 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		32C7F77422CC757300E75319 /* RPSCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C7F77322CC757300E75319 /* RPSCore.m */; };
+		32CAC0DD22164E6400BB4CC4 /* RPSAppInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CAC0DB22164E6400BB4CC4 /* RPSAppInfo.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		32CAC0DE22164E6400BB4CC4 /* RPSAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAC0DC22164E6400BB4CC4 /* RPSAppInfo.m */; };
 		32F258C621E5866D001FD9C0 /* RPSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258BC21E5866C001FD9C0 /* RPSCore.framework */; };
 		32F258CB21E5866D001FD9C0 /* CoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F258CA21E5866D001FD9C0 /* CoreTests.m */; };
 		32F259D321E599F5001FD9C0 /* RPSCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259B921E599F4001FD9C0 /* RPSCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,17 +33,15 @@
 		32F259D721E599F5001FD9C0 /* RPSWebUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259BE21E599F4001FD9C0 /* RPSWebUserAgent.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259D821E599F5001FD9C0 /* RPSDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259BF21E599F4001FD9C0 /* RPSDevice.m */; };
 		32F259D921E599F5001FD9C0 /* RPSIdfa.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259C021E599F4001FD9C0 /* RPSIdfa.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		32F259DA21E599F5001FD9C0 /* RPSHttpSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259C221E599F4001FD9C0 /* RPSHttpSession.m */; };
-		32F259DB21E599F5001FD9C0 /* RPSHttpSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259C321E599F4001FD9C0 /* RPSHttpSession.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		32F259DA21E599F5001FD9C0 /* RPSHttpTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259C221E599F4001FD9C0 /* RPSHttpTask.m */; };
+		32F259DB21E599F5001FD9C0 /* RPSHttpTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259C321E599F4001FD9C0 /* RPSHttpTask.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259DC21E599F5001FD9C0 /* RPSValid.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259C521E599F4001FD9C0 /* RPSValid.m */; };
 		32F259DD21E599F5001FD9C0 /* RPSURLCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259C621E599F4001FD9C0 /* RPSURLCoder.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259DE21E599F5001FD9C0 /* RPSJSONObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259C721E599F4001FD9C0 /* RPSJSONObject.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259DF21E599F5001FD9C0 /* RPSValid.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259C821E599F4001FD9C0 /* RPSValid.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259E021E599F5001FD9C0 /* RPSJSONObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259C921E599F4001FD9C0 /* RPSJSONObject.m */; };
 		32F259E121E599F5001FD9C0 /* RPSURLCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259CA21E599F4001FD9C0 /* RPSURLCoder.m */; };
-		32F259E221E599F5001FD9C0 /* RPSVerboseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259CC21E599F4001FD9C0 /* RPSVerboseLogger.m */; };
 		32F259E321E599F5001FD9C0 /* RPSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259CD21E599F4001FD9C0 /* RPSLogger.m */; };
-		32F259E421E599F5001FD9C0 /* RPSVerboseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259CE21E599F4001FD9C0 /* RPSVerboseLogger.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259E521E599F5001FD9C0 /* RPSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259CF21E599F4001FD9C0 /* RPSLogger.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259E621E599F5001FD9C0 /* RPSMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259D021E599F4001FD9C0 /* RPSMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259E721E599F5001FD9C0 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32F259D121E599F4001FD9C0 /* PrefixHeader.pch */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -59,6 +60,9 @@
 /* Begin PBXFileReference section */
 		325FF73F21E5EDDF00A899CF /* rpscore.private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = rpscore.private.modulemap; sourceTree = "<group>"; };
 		325FF74621F0584E00A899CF /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
+		32C7F77322CC757300E75319 /* RPSCore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSCore.m; sourceTree = "<group>"; };
+		32CAC0DB22164E6400BB4CC4 /* RPSAppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSAppInfo.h; sourceTree = "<group>"; };
+		32CAC0DC22164E6400BB4CC4 /* RPSAppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSAppInfo.m; sourceTree = "<group>"; };
 		32F258BC21E5866C001FD9C0 /* RPSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RPSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258C521E5866D001FD9C0 /* CoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258CA21E5866D001FD9C0 /* CoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreTests.m; sourceTree = "<group>"; };
@@ -70,17 +74,15 @@
 		32F259BE21E599F4001FD9C0 /* RPSWebUserAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSWebUserAgent.h; sourceTree = "<group>"; };
 		32F259BF21E599F4001FD9C0 /* RPSDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSDevice.m; sourceTree = "<group>"; };
 		32F259C021E599F4001FD9C0 /* RPSIdfa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSIdfa.h; sourceTree = "<group>"; };
-		32F259C221E599F4001FD9C0 /* RPSHttpSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSHttpSession.m; sourceTree = "<group>"; };
-		32F259C321E599F4001FD9C0 /* RPSHttpSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSHttpSession.h; sourceTree = "<group>"; };
+		32F259C221E599F4001FD9C0 /* RPSHttpTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSHttpTask.m; sourceTree = "<group>"; };
+		32F259C321E599F4001FD9C0 /* RPSHttpTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSHttpTask.h; sourceTree = "<group>"; };
 		32F259C521E599F4001FD9C0 /* RPSValid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSValid.m; sourceTree = "<group>"; };
 		32F259C621E599F4001FD9C0 /* RPSURLCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSURLCoder.h; sourceTree = "<group>"; };
 		32F259C721E599F4001FD9C0 /* RPSJSONObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSJSONObject.h; sourceTree = "<group>"; };
 		32F259C821E599F4001FD9C0 /* RPSValid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSValid.h; sourceTree = "<group>"; };
 		32F259C921E599F4001FD9C0 /* RPSJSONObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSJSONObject.m; sourceTree = "<group>"; };
 		32F259CA21E599F4001FD9C0 /* RPSURLCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSURLCoder.m; sourceTree = "<group>"; };
-		32F259CC21E599F4001FD9C0 /* RPSVerboseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSVerboseLogger.m; sourceTree = "<group>"; };
 		32F259CD21E599F4001FD9C0 /* RPSLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSLogger.m; sourceTree = "<group>"; };
-		32F259CE21E599F4001FD9C0 /* RPSVerboseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSVerboseLogger.h; sourceTree = "<group>"; };
 		32F259CF21E599F4001FD9C0 /* RPSLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSLogger.h; sourceTree = "<group>"; };
 		32F259D021E599F4001FD9C0 /* RPSMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSMacros.h; sourceTree = "<group>"; };
 		32F259D121E599F4001FD9C0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				32F259B921E599F4001FD9C0 /* RPSCore.h */,
+				32C7F77322CC757300E75319 /* RPSCore.m */,
 				32F259BA21E599F4001FD9C0 /* Profile */,
 				32F259C121E599F4001FD9C0 /* Http */,
 				32F259C421E599F4001FD9C0 /* Format */,
@@ -161,6 +164,8 @@
 				32F259BD21E599F4001FD9C0 /* RPSIdfa.m */,
 				32F259BE21E599F4001FD9C0 /* RPSWebUserAgent.h */,
 				32F259BB21E599F4001FD9C0 /* RPSWebUserAgent.m */,
+				32CAC0DB22164E6400BB4CC4 /* RPSAppInfo.h */,
+				32CAC0DC22164E6400BB4CC4 /* RPSAppInfo.m */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -168,8 +173,8 @@
 		32F259C121E599F4001FD9C0 /* Http */ = {
 			isa = PBXGroup;
 			children = (
-				32F259C221E599F4001FD9C0 /* RPSHttpSession.m */,
-				32F259C321E599F4001FD9C0 /* RPSHttpSession.h */,
+				32F259C321E599F4001FD9C0 /* RPSHttpTask.h */,
+				32F259C221E599F4001FD9C0 /* RPSHttpTask.m */,
 			);
 			path = Http;
 			sourceTree = "<group>";
@@ -190,10 +195,8 @@
 		32F259CB21E599F4001FD9C0 /* Log */ = {
 			isa = PBXGroup;
 			children = (
-				32F259CC21E599F4001FD9C0 /* RPSVerboseLogger.m */,
-				32F259CD21E599F4001FD9C0 /* RPSLogger.m */,
-				32F259CE21E599F4001FD9C0 /* RPSVerboseLogger.h */,
 				32F259CF21E599F4001FD9C0 /* RPSLogger.h */,
+				32F259CD21E599F4001FD9C0 /* RPSLogger.m */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -206,14 +209,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				32F259D321E599F5001FD9C0 /* RPSCore.h in Headers */,
+				32CAC0DD22164E6400BB4CC4 /* RPSAppInfo.h in Headers */,
 				32F259DF21E599F5001FD9C0 /* RPSValid.h in Headers */,
 				32F259D521E599F5001FD9C0 /* RPSDevice.h in Headers */,
 				32F259D721E599F5001FD9C0 /* RPSWebUserAgent.h in Headers */,
 				32F259DE21E599F5001FD9C0 /* RPSJSONObject.h in Headers */,
-				32F259E421E599F5001FD9C0 /* RPSVerboseLogger.h in Headers */,
 				32F259DD21E599F5001FD9C0 /* RPSURLCoder.h in Headers */,
 				32F259E521E599F5001FD9C0 /* RPSLogger.h in Headers */,
-				32F259DB21E599F5001FD9C0 /* RPSHttpSession.h in Headers */,
+				32F259DB21E599F5001FD9C0 /* RPSHttpTask.h in Headers */,
 				32F259D921E599F5001FD9C0 /* RPSIdfa.h in Headers */,
 				32F259E621E599F5001FD9C0 /* RPSMacros.h in Headers */,
 				32F259E721E599F5001FD9C0 /* PrefixHeader.pch in Headers */,
@@ -285,6 +288,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 32F258B221E5866C001FD9C0;
 			productRefGroup = 32F258BD21E5866C001FD9C0 /* Products */;
@@ -342,12 +346,13 @@
 			files = (
 				32F259D621E599F5001FD9C0 /* RPSIdfa.m in Sources */,
 				32F259DC21E599F5001FD9C0 /* RPSValid.m in Sources */,
+				32C7F77422CC757300E75319 /* RPSCore.m in Sources */,
 				32F259E121E599F5001FD9C0 /* RPSURLCoder.m in Sources */,
-				32F259E221E599F5001FD9C0 /* RPSVerboseLogger.m in Sources */,
 				32F259D821E599F5001FD9C0 /* RPSDevice.m in Sources */,
+				32CAC0DE22164E6400BB4CC4 /* RPSAppInfo.m in Sources */,
 				32F259D421E599F5001FD9C0 /* RPSWebUserAgent.m in Sources */,
 				32F259E321E599F5001FD9C0 /* RPSLogger.m in Sources */,
-				32F259DA21E599F5001FD9C0 /* RPSHttpSession.m in Sources */,
+				32F259DA21E599F5001FD9C0 /* RPSHttpTask.m in Sources */,
 				32F259E021E599F5001FD9C0 /* RPSJSONObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +421,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					"RPS_STAGING=1",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -423,7 +429,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -443,11 +449,6 @@
 				DYLIB_CURRENT_VERSION = "";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREFIX_HEADER = Core/PrefixHeader.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-					"STAGING=1",
-				);
 				INFOPLIST_FILE = Core/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -560,7 +561,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -610,13 +611,14 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "RPS_PRODUCTION=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -1,4 +1,4 @@
-framework module RPSCore {
+framework module RPSRDN {
     umbrella header "RPSRDN.h"
 
     export *

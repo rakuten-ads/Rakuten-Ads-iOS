@@ -2,15 +2,11 @@
 #import <RPSCore/RPSWebUserAgent.h>
 #import <RPSCore/RPSIdfa.h>
 #import <RPSCore/RPSDevice.h>
+#import <RPSCore/RPSAppInfo.h>
 
-FOUNDATION_EXPORT NSString* RPS_AD_TYPE_BANNER;
-FOUNDATION_EXPORT NSString* RPS_AD_TYPE_VIDEO;
-FOUNDATION_EXPORT NSString* RPS_AD_TYPE_NATIVE;
-FOUNDATION_EXPORT NSString* RPS_AD_TYPE_NATIVE_VIDEO;
+NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXPORT NSTimeInterval RPS_API_TIMEOUT_INTERVAL;
-
-FOUNDATION_EXPORT NSString* RPS_DOMAIN_BID;
 
 @interface RPSDefines : NSObject
 
@@ -19,9 +15,8 @@ FOUNDATION_EXPORT NSString* RPS_DOMAIN_BID;
 @property(nonatomic, readonly, nonnull) RPSWebUserAgent* userAgentInfo;
 @property(nonatomic, readonly, nonnull) RPSIdfa* idfaInfo;
 @property(nonatomic, readonly, nonnull) RPSDevice* deviceInfo;
-@property(nonatomic, readonly, nonnull) NSString* bundleId;
-@property(nonatomic, readonly, nonnull) NSString* bundleVersion;
-
+@property(nonatomic, readonly, nonnull) RPSAppInfo* appInfo;
+@property(nonatomic, readonly, nonnull) NSString* sdkBundleShortVersionString;
 
 +(instancetype) sharedInstance;
 +(dispatch_queue_t) sharedQueue;
@@ -30,3 +25,5 @@ FOUNDATION_EXPORT NSString* RPS_DOMAIN_BID;
 +(instancetype)new __unavailable;
 
 @end
+
+NS_ASSUME_NONNULL_END

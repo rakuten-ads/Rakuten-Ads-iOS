@@ -11,7 +11,6 @@
 @implementation RPSAdWebView
 
 -(instancetype)initWithFrame:(CGRect)frame {
-    RPSTrace
     WKWebViewConfiguration* config = [WKWebViewConfiguration new];
     [RPSAdWebView setScalesPageToFit:&config];
     
