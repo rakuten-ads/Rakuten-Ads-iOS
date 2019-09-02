@@ -8,22 +8,63 @@
 
 #import "RPSMeasurement.h"
 
-NSTimeInterval kIntervalInView = 1;
+NSTimeInterval kMeasureIntervalInView = 1;
+
+@interface RPSMeasurement()
+
+@property(atomic) BOOL shouldStopMeasureImp;
+@property(atomic) BOOL shouldStopMeasureInview;
+
+@end
 
 @implementation RPSMeasurement
 
--(void)startMeasurement {
-    RPSDebug("startMeasurement");
-    [self.measurableTarget measureImp];
++(NSOperationQueue*) sharedQueue {
+    static dispatch_once_t onceToken;
+    static NSOperationQueue* queue;
+    dispatch_once(&onceToken, ^{
+        queue = [NSOperationQueue new];
+    });
+    return queue;
+}
 
+-(void)main {
+    RPSDebug("measurement inview dequeue");
     __weak RPSMeasurement* weakSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kIntervalInView * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kMeasureIntervalInView * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (weakSelf && weakSelf.measurableTarget) {
-            [weakSelf.measurableTarget measureInview];
+            weakSelf.shouldStopMeasureInview = [weakSelf.measurableTarget measureInview];
+            RPSDebug("measurement inview : %@", weakSelf.shouldStopMeasureInview ? @"success" : @"failure");
+            if (!weakSelf.shouldStopMeasureInview) {
+                RPSDebug("measurement inview enqueue again");
+                RPSMeasurement* repeatingOperation = [self clone];
+                [[RPSMeasurement sharedQueue] addOperation:repeatingOperation];
+            }
         } else {
-            RPSDebug("adview disposed!");
+            RPSDebug("measurable target disposed!");
         }
     });
+}
+
+-(instancetype) clone {
+    RPSMeasurement* repeatOperation = [RPSMeasurement new];
+    repeatOperation.measurableTarget = self.measurableTarget;
+    repeatOperation.shouldStopMeasureImp = self.shouldStopMeasureImp;
+    repeatOperation.shouldStopMeasureInview = self.shouldStopMeasureInview;
+    return repeatOperation;
+}
+
+-(void)startMeasurement {
+    RPSDebug("startMeasurement");
+    if (!self.shouldStopMeasureImp) {
+        self.shouldStopMeasureImp = [self.measurableTarget measureImp];
+        RPSDebug("measurement imp : %@", self.shouldStopMeasureImp ? @"success" : @"failure");
+    }
+
+    if (!self.shouldStopMeasureInview) {
+        RPSDebug("measurement inview enqueue");
+        [[RPSMeasurement sharedQueue] addOperation:self];
+    }
 }
 
 @end

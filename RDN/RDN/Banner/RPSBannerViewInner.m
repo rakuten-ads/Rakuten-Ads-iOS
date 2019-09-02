@@ -1,42 +1,12 @@
 //
-//  RPSBannerView.m
+//  RPSBannerViewInner.m
 //  RPSSDK
 //
 //  Created by Wu Wei on 2018/07/23.
 //  Copyright © 2018 LOB. All rights reserved.
 //
 
-#import "RPSBannerView.h"
-#import "RPSAdWebView.h"
-#import "RPSBannerAdapter.h"
-#import <RPSCore/RPSValid.h>
-#import "RPSDefines.h"
-#import "RPSMeasurement.h"
-
-typedef void (^RPSBannerViewEventHandler)(RPSBannerView* view, RPSBannerViewEvent event);
-
-typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
-    RPS_ADVIEW_STATE_INIT,
-    RPS_ADVIEW_STATE_LOADING,
-    RPS_ADVIEW_STATE_LOADED,
-    RPS_ADVIEW_STATE_SHOWED,
-    RPS_ADVIEW_STATE_FAILED,
-    RPS_ADVIEW_STATE_CLICKED,
-};
-
-@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumerDelegate, RPSMeasurableDelegate>
-
-@property (nonatomic, nonnull) RPSAdWebView* webView;
-@property (nonatomic, nullable, copy) RPSBannerViewEventHandler eventHandler;
-@property (nonatomic) RPSBannerViewPosition position;
-@property (nonatomic, assign, nullable) UIView* parentView;
-@property (atomic) RPSBannerViewState state;
-
-@property (nonatomic, nullable) RPSBanner* banner;
-
-@property (nonatomic, nullable) RPSMeasurement* measurement;
-
-@end
+#import "RPSBannerViewInner.h"
 
 @implementation RPSBannerView
 
@@ -348,44 +318,11 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     RPSDebug("didFinishNavigation of: %@", navigation);
-    self.measurement = [RPSMeasurement new];
-    self.measurement.measurableTarget = self;
-    [self.measurement startMeasurement];
-}
-
-
-#pragma mark - implement RPSMeasurableDelegate
-
--(void)measureInview {
-    RPSDebug("measure inview rate: %f", self.visibility);
-    if (self.banner.inviewURL && self.visibility > 0.5) {
-        RPSURLStringRequest* request = [RPSURLStringRequest new];
-        request.httpTaskDelegate = self.banner.inviewURL;
-        [request resume];
+    if ([self conformsToProtocol:@protocol(RPSMeasurableDelegate)]) {
+        self.measurement = [RPSMeasurement new];
+        self.measurement.measurableTarget = (id<RPSMeasurableDelegate>)self;
+        [self.measurement startMeasurement];
     }
-}
-
--(void)measureImp {
-    if (self.banner.measuredURL) {
-        RPSDebug("measure imp");
-        RPSURLStringRequest* request = [RPSURLStringRequest new];
-        request.httpTaskDelegate = self.banner.measuredURL;
-        [request resume];
-    }
-}
-
-
--(float)visibility {
-    float areaOfAdView = self.frame.size.width * self.frame.size.height;
-    CGRect intersectionFrame = CGRectIntersection(UIScreen.mainScreen.bounds, self.frame);
-    if (!self.isHidden
-        && self.window
-        && areaOfAdView > 0
-        && !CGRectIsNull(intersectionFrame)) {
-        float areaOfIntersection = intersectionFrame.size.width * intersectionFrame.size.height;
-        return areaOfIntersection / areaOfAdView;
-    }
-    return 0;
 }
 
 #if DEBUG

@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3211A414231CA60900DB0225 /* RPSBannerViewMeasurable.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211A413231CA60900DB0225 /* RPSBannerViewMeasurable.m */; };
 		32564D872224ECAA00DB4DBF /* RPSOpenRTB.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D852224ECAA00DB4DBF /* RPSOpenRTB.h */; };
 		32564D882224ECAA00DB4DBF /* RPSOpenRTB.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D862224ECAA00DB4DBF /* RPSOpenRTB.m */; };
 		32564D982227790900DB4DBF /* RPSBidAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D962227790900DB4DBF /* RPSBidAdapter.h */; };
@@ -44,7 +45,7 @@
 		32F2595D21E597E5001FD9C0 /* RPSDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2594D21E597E5001FD9C0 /* RPSDefines.h */; };
 		32F2595E21E597E5001FD9C0 /* RPSDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2594E21E597E5001FD9C0 /* RPSDefines.m */; };
 		32F2596021E597E5001FD9C0 /* RPSBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595121E597E5001FD9C0 /* RPSBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32F2596121E597E5001FD9C0 /* RPSBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595221E597E5001FD9C0 /* RPSBannerView.m */; };
+		32F2596121E597E5001FD9C0 /* RPSBannerViewInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595221E597E5001FD9C0 /* RPSBannerViewInner.m */; };
 		32F2596721E597E5001FD9C0 /* RPSAdWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595B21E597E5001FD9C0 /* RPSAdWebView.m */; };
 		32F2596821E597E5001FD9C0 /* RPSAdWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595C21E597E5001FD9C0 /* RPSAdWebView.h */; };
 /* End PBXBuildFile section */
@@ -81,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3211A413231CA60900DB0225 /* RPSBannerViewMeasurable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerViewMeasurable.m; sourceTree = "<group>"; };
+		3211A417231CA7F800DB0225 /* RPSBannerViewInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBannerViewInner.h; sourceTree = "<group>"; };
 		32564D852224ECAA00DB4DBF /* RPSOpenRTB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSOpenRTB.h; sourceTree = "<group>"; };
 		32564D862224ECAA00DB4DBF /* RPSOpenRTB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSOpenRTB.m; sourceTree = "<group>"; };
 		32564D962227790900DB4DBF /* RPSBidAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBidAdapter.h; sourceTree = "<group>"; };
@@ -108,7 +111,7 @@
 		32F2594D21E597E5001FD9C0 /* RPSDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSDefines.h; sourceTree = "<group>"; };
 		32F2594E21E597E5001FD9C0 /* RPSDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSDefines.m; sourceTree = "<group>"; };
 		32F2595121E597E5001FD9C0 /* RPSBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSBannerView.h; sourceTree = "<group>"; };
-		32F2595221E597E5001FD9C0 /* RPSBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSBannerView.m; sourceTree = "<group>"; };
+		32F2595221E597E5001FD9C0 /* RPSBannerViewInner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSBannerViewInner.m; sourceTree = "<group>"; };
 		32F2595B21E597E5001FD9C0 /* RPSAdWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSAdWebView.m; sourceTree = "<group>"; };
 		32F2595C21E597E5001FD9C0 /* RPSAdWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSAdWebView.h; sourceTree = "<group>"; };
 		32F25A1221E5A4E5001FD9C0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -167,7 +170,9 @@
 			isa = PBXGroup;
 			children = (
 				32F2595121E597E5001FD9C0 /* RPSBannerView.h */,
-				32F2595221E597E5001FD9C0 /* RPSBannerView.m */,
+				3211A417231CA7F800DB0225 /* RPSBannerViewInner.h */,
+				32F2595221E597E5001FD9C0 /* RPSBannerViewInner.m */,
+				3211A413231CA60900DB0225 /* RPSBannerViewMeasurable.m */,
 				32564D9A2227865100DB4DBF /* RPSBannerAdapter.h */,
 				32564D9B2227865100DB4DBF /* RPSBannerAdapter.m */,
 			);
@@ -255,8 +260,8 @@
 		32F2595A21E597E5001FD9C0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				32F2595B21E597E5001FD9C0 /* RPSAdWebView.m */,
 				32F2595C21E597E5001FD9C0 /* RPSAdWebView.h */,
+				32F2595B21E597E5001FD9C0 /* RPSAdWebView.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -440,12 +445,13 @@
 				32E3A60A230F9B9B001FC49F /* RPSURLString.m in Sources */,
 				329753AC230A7D4C002A53CC /* RPSMeasurement.m in Sources */,
 				32564D992227790900DB4DBF /* RPSBidAdapter.m in Sources */,
-				32F2596121E597E5001FD9C0 /* RPSBannerView.m in Sources */,
+				32F2596121E597E5001FD9C0 /* RPSBannerViewInner.m in Sources */,
 				32A6934C22422FCD00812DF9 /* RPSNativeAdInner.m in Sources */,
 				32A693432237BBA800812DF9 /* RPSNativeAdAdapter.m in Sources */,
 				32F2595E21E597E5001FD9C0 /* RPSDefines.m in Sources */,
 				32564D882224ECAA00DB4DBF /* RPSOpenRTB.m in Sources */,
 				32A693472240E31700812DF9 /* RPSNativeAdProvider.m in Sources */,
+				3211A414231CA60900DB0225 /* RPSBannerViewMeasurable.m in Sources */,
 				32564D9D2227865100DB4DBF /* RPSBannerAdapter.m in Sources */,
 				32F2596721E597E5001FD9C0 /* RPSAdWebView.m in Sources */,
 			);

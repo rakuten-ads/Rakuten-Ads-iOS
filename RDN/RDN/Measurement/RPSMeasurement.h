@@ -13,12 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol RPSMeasurableDelegate <NSObject>
 
--(void) measureImp;
--(void) measureInview;
+-(BOOL) measureImp;
+-(BOOL) measureInview;
 
 @end
 
-@interface RPSMeasurement : NSObject
+@interface RPSMeasurement: NSOperation
 
 @property(nonatomic, assign, nullable) id<RPSMeasurableDelegate> measurableTarget;
 
