@@ -57,7 +57,7 @@
 
             RPSBannerAdapter* bannerAdapter = [RPSBannerAdapter new];
             bannerAdapter.adspotId = strongSelf.adSpotId;
-            bannerAdapter.responseConsumer = strongSelf;
+            bannerAdapter.responseConsumer = weakSelf;
 
             RPSOpenRTBRequest* request = [RPSOpenRTBRequest new];
             request.openRTBAdapterDelegate = bannerAdapter;
@@ -327,7 +327,7 @@
 
 #if DEBUG
 -(void)dealloc {
-    RPSDebug("dealloc RPSBannerView");
+    RPSDebug("dealloc RPSBannerView %@", self);
 }
 #endif
 @end
