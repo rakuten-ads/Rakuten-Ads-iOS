@@ -50,6 +50,7 @@
     UIView* rootView = UIApplication.sharedApplication.keyWindow.rootViewController.view;
     CGRect abstractFrame = [self convertRect:self.frame toView:rootView];
     CGRect intersectionFrame = CGRectIntersection(rootView.frame, abstractFrame);
+    
     if (!self.isHidden
         && self.window
         && areaOfAdView > 0

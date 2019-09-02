@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 @property (nonatomic, nonnull) RPSAdWebView* webView;
 @property (nonatomic, nullable, copy) RPSBannerViewEventHandler eventHandler;
 @property (nonatomic) RPSBannerViewPosition position;
-@property (nonatomic, assign, nullable) UIView* parentView;
+@property (nonatomic, weak, nullable) UIView* parentView;
 @property (atomic) RPSBannerViewState state;
 
 @property (nonatomic, nullable) RPSBanner* banner;

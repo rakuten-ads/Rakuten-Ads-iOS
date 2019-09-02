@@ -32,16 +32,20 @@ NSTimeInterval kMeasureIntervalInView = 1;
     RPSDebug("measurement inview dequeue");
     __weak RPSMeasurement* weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kMeasureIntervalInView * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (weakSelf && weakSelf.measurableTarget) {
-            weakSelf.shouldStopMeasureInview = [weakSelf.measurableTarget measureInview];
-            RPSDebug("measurement inview : %@", weakSelf.shouldStopMeasureInview ? @"success" : @"failure");
-            if (!weakSelf.shouldStopMeasureInview) {
-                RPSDebug("measurement inview enqueue again");
-                RPSMeasurement* repeatingOperation = [self clone];
-                [[RPSMeasurement sharedQueue] addOperation:repeatingOperation];
+        @try {
+            if (weakSelf && weakSelf.measurableTarget) {
+                weakSelf.shouldStopMeasureInview = [weakSelf.measurableTarget measureInview];
+                RPSDebug("measurement inview : %@", weakSelf.shouldStopMeasureInview ? @"stopped" : @"continue...");
+                if (!weakSelf.shouldStopMeasureInview) {
+                    RPSDebug("measurement inview enqueue again");
+                    RPSMeasurement* repeatingOperation = [weakSelf clone];
+                    [[RPSMeasurement sharedQueue] addOperation:repeatingOperation];
+                }
+            } else {
+                RPSDebug("measurable target disposed!");
             }
-        } else {
-            RPSDebug("measurable target disposed!");
+        } @catch (NSException *exception) {
+            RPSDebug("Measurement Operation exception: %@", exception);
         }
     });
 }
@@ -58,7 +62,7 @@ NSTimeInterval kMeasureIntervalInView = 1;
     RPSDebug("startMeasurement");
     if (!self.shouldStopMeasureImp) {
         self.shouldStopMeasureImp = [self.measurableTarget measureImp];
-        RPSDebug("measurement imp : %@", self.shouldStopMeasureImp ? @"success" : @"failure");
+        RPSDebug("measurement imp : %@", self.shouldStopMeasureImp ? @"stopped" : @"continue...");
     }
 
     if (!self.shouldStopMeasureInview) {

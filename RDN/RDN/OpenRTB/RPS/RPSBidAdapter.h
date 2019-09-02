@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RPSBidAdapter : NSObject<RPSOpenRTBAdapterDelegate>
 
-@property(nonatomic, assign) id<RPSBidResponseConsumerDelegate> responseConsumer;
+@property(nonatomic, weak) id<RPSBidResponseConsumerDelegate> responseConsumer;
 
 @end
 

@@ -10,8 +10,9 @@
 #import "RPSDefines.h"
 
 #if RPS_PRODUCTION
-    NSString* kRPSBidRequestHost = @"https://s-bid.rx-ad.com/auc"; // TODO need confirm
-#elseif RPS_STAGING
+//    NSString* kRPSBidRequestHost = @"https://s-bid.rx-ad.com/auc"; // TODO need confirm
+    NSString* kRPSBidRequestHost = @"https://dev-s-ad.rmp.rakuten.co.jp/ad";
+#elif RPS_STAGING
     NSString* kRPSBidRequestHost = @"https://stg-s-bid.rx-ad.com/auc"; // TODO need confirm
 #else
 //    NSString* kRPSBidRequestHost = @"http://local.auction.rx-ad.com:5000/auc";
@@ -19,7 +20,7 @@
 //    NSString* kRPSBidRequestHost = @"https://tst-s-bid.rx-ad.com/sshb/openrtb2/auction";
 //NSString* kRPSBidRequestHost = @"https://stg-s-bid.rmp.rakuten.co.jp/ad";
 //NSString* kRPSBidRequestHost = @"https://stg-s-ad.rmp.rakuten.co.jp/ad";
-NSString* kRPSBidRequestHost = @"https://dev-s-ad.rmp.rakuten.co.jp/ad";
+    NSString* kRPSBidRequestHost = @"https://dev-s-ad.rmp.rakuten.co.jp/ad";
 
 #endif
 

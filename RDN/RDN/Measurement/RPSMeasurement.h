@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RPSMeasurement: NSOperation
 
-@property(nonatomic, assign, nullable) id<RPSMeasurableDelegate> measurableTarget;
+@property(nonatomic, weak, nullable) id<RPSMeasurableDelegate> measurableTarget;
 
 -(void) startMeasurement;
 

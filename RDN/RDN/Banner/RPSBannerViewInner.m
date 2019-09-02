@@ -305,7 +305,11 @@
 
             RPSDebug("WKNavigationActionPolicyCancel");
             if (self.eventHandler) {
-                self.eventHandler(self, RPSBannerViewEventClicked);
+                @try {
+                    self.eventHandler(self, RPSBannerViewEventClicked);
+                } @catch (NSException *exception) {
+                    RPSDebug("exception on clicked event: %@", exception);
+                }
             }
             self.state = RPS_ADVIEW_STATE_CLICKED;
             decisionHandler(WKNavigationActionPolicyCancel);
@@ -319,9 +323,13 @@
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     RPSDebug("didFinishNavigation of: %@", navigation);
     if ([self conformsToProtocol:@protocol(RPSMeasurableDelegate)]) {
-        self.measurement = [RPSMeasurement new];
-        self.measurement.measurableTarget = (id<RPSMeasurableDelegate>)self;
-        [self.measurement startMeasurement];
+        @try {
+            self.measurement = [RPSMeasurement new];
+            self.measurement.measurableTarget = (id<RPSMeasurableDelegate>)self;
+            [self.measurement startMeasurement];
+        } @catch (NSException *exception) {
+            RPSDebug("exception when start measurement: %@", exception);
+        }
     }
 }
 
