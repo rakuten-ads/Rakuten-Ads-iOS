@@ -29,4 +29,10 @@
     return self;
 }
 
+-(void)processConfig:(NSMutableURLRequest *)request {
+    RPSWebUserAgent* userAgentInfo = RPSDefines.sharedInstance.userAgentInfo;
+    [userAgentInfo syncResult];
+    [request setValue:userAgentInfo.userAgent forHTTPHeaderField:@"User-Agent"];
+}
+
 @end

@@ -33,9 +33,10 @@
     return [self postBidBody];
 }
 
-NSString* kSDKUserAgentFormat = @"GAP-SDK:iOS:%@";
 -(void)processConfig:(NSMutableURLRequest *)request {
-    [request setValue:[NSString stringWithFormat:kSDKUserAgentFormat, RPSDefines.sharedInstance.sdkBundleShortVersionString] forHTTPHeaderField:@"User-Agent"];
+    RPSWebUserAgent* userAgentInfo = RPSDefines.sharedInstance.userAgentInfo;
+    [userAgentInfo syncResult];
+    [request setValue:userAgentInfo.userAgent forHTTPHeaderField:@"User-Agent"];
 }
 
 - (void)onJsonResponse:(NSHTTPURLResponse *)response withData:(NSDictionary *)json {
@@ -126,6 +127,9 @@ NSString* kSDKUserAgentFormat = @"GAP-SDK:iOS:%@";
                        @"language": deviceInfo.language,
                        @"ifa": idfaInfo.idfa,
                        @"lmt": idfaInfo.isTrackingEnabled ? @0 : @1,
+                       @"ext" : @{
+                               @"sdk_version": defines.sdkBundleShortVersionString,
+                               },
                        // @"geo"
                        // @"carrier"
                        // @"connectiontype"
