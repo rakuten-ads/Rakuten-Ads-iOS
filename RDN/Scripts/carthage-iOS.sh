@@ -15,6 +15,8 @@ if [ ! $SDK_OUTPUT_DIR ]; then
 	SDK_OUTPUT_DIR=${PROJECT_DIR}/build/${CONFIGURATION}
 fi
 
+SDK_VERSION_STRING=`agvtool what-marketing-version -terse1`
+
 if [ "$1" != "archive" ]; then
 	echo "clean"
 	SDK_BUILD_DIR=${PROJECT_DIR}/Carthage/Build
@@ -24,12 +26,12 @@ if [ "$1" != "archive" ]; then
 		exit
 	fi
 
-	echo "carthage build for ${SDK_PRODUCT_NAME} $CURRENT_PROJECT_VERSION in configuration $CONFIGURATION"
+	echo "carthage build for ${SDK_PRODUCT_NAME} $SDK_VERSION_STRING in configuration $CONFIGURATION"
 	carthage build --configuration $CONFIGURATION --platform iOS --no-skip-current --project-directory ${PROJECT_DIR}
 
 fi
 
-SDK_NAME=${SDK_PRODUCT_NAME}_iOS_${CURRENT_PROJECT_VERSION}.framework.zip
+SDK_NAME=${SDK_PRODUCT_NAME}_iOS_${SDK_VERSION_STRING}.framework.zip
 SDK_OUTPUT=${SDK_OUTPUT_DIR}/$SDK_NAME
 echo "carthage archive to $SDK_OUTPUT for ${SDK_PRODUCT_NAME}"
 carthage archive --output $SDK_OUTPUT ${SDK_PRODUCT_NAME}

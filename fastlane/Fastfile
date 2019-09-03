@@ -27,7 +27,7 @@ platform :ios do
   }
   p @sdk_map
 
-  @sdk_module_names = ["Core", "RPS"]
+  @sdk_module_names = ["Core", "RDN"]
 
   def set_env param
     if param
@@ -78,7 +78,7 @@ platform :ios do
       keyfile: ENV["FASTLANE_GCS_CREDENTIAL"],
       bucket: "dev-s-cdn.rx-ad.com",
       content_path: "#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{param[:file_name]}",
-      name: "sdk/ios/#{version}/#{param[:file_name]}",
+      name: "sdk/ios/#{@sdk_map[:sdk_release_version]}/#{param[:file_name]}",
     )
   end
 
@@ -115,16 +115,16 @@ platform :ios do
 
   lane :release do |param|
     if param[:module]
-      @sdk_module_names = param[:module]
+      @sdk_module_names = [param[:module]]
     end
 
     @sdk_module_names.each do |module_name|
       @sdk_map[:sdk_module_current] = module_name
       set_env param
       package
-      deploy_to_gcs_dev file_name: "RPS#{sdk_module_current}_iOS_#{sdk_release_version}.framework.zip"
-      update_podspec
-      github_release_tag
+      # deploy_to_gcs_dev file_name: "RPS#{module_name}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
+      # update_podspec
+      # github_release_tag
     end
 
   end
