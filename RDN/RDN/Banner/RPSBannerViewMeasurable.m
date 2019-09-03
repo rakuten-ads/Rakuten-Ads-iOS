@@ -48,9 +48,10 @@
 -(float)visibility {
     float areaOfAdView = self.frame.size.width * self.frame.size.height;
     UIView* rootView = UIApplication.sharedApplication.keyWindow.rootViewController.view;
-    CGRect abstractFrame = [self convertRect:self.frame toView:rootView];
+    CGRect abstractFrame = [self convertRect:self.bounds toView:rootView];
     CGRect intersectionFrame = CGRectIntersection(rootView.frame, abstractFrame);
-    
+
+    RPSDebug("get abstractFrame %@ of self %@ in root %@", NSStringFromCGRect(abstractFrame), NSStringFromCGRect(self.frame), NSStringFromCGRect(rootView.frame));
     if (!self.isHidden
         && self.window
         && areaOfAdView > 0

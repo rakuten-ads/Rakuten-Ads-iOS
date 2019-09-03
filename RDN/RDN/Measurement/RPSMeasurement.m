@@ -30,15 +30,14 @@ NSTimeInterval kMeasureIntervalInView = 1;
 
 -(void)main {
     RPSDebug("measurement inview dequeue");
-    __weak RPSMeasurement* weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kMeasureIntervalInView * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         @try {
-            if (weakSelf && weakSelf.measurableTarget) {
-                weakSelf.shouldStopMeasureInview = [weakSelf.measurableTarget measureInview];
-                RPSDebug("measurement inview : %@", weakSelf.shouldStopMeasureInview ? @"stopped" : @"continue...");
-                if (!weakSelf.shouldStopMeasureInview) {
+            if (self.measurableTarget) {
+                self.shouldStopMeasureInview = [self.measurableTarget measureInview];
+                RPSDebug("measurement inview : %@", self.shouldStopMeasureInview ? @"stopped" : @"continue...");
+                if (!self.shouldStopMeasureInview) {
                     RPSDebug("measurement inview enqueue again");
-                    RPSMeasurement* repeatingOperation = [weakSelf clone];
+                    RPSMeasurement* repeatingOperation = [self clone];
                     [[RPSMeasurement sharedQueue] addOperation:repeatingOperation];
                 }
             } else {

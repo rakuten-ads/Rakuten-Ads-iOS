@@ -44,29 +44,26 @@
 
 -(void) loadWithEventHandler:(RPSBannerViewEventHandler)handler {
     self.eventHandler = handler;
-    __weak RPSBannerView* weakSelf = self;
     dispatch_async(RPSDefines.sharedQueue, ^{
-        __strong RPSBannerView* strongSelf = weakSelf;
         @try {
-            if (!strongSelf) return;
             RPSLog("%@", RPSDefines.sharedInstance);
-            if ([RPSValid isEmptyString:strongSelf.adSpotId]) {
+            if ([RPSValid isEmptyString:self.adSpotId]) {
                 NSLog(@"[RPS] require adSpotId!");
                 @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
             }
 
             RPSBannerAdapter* bannerAdapter = [RPSBannerAdapter new];
-            bannerAdapter.adspotId = strongSelf.adSpotId;
-            bannerAdapter.responseConsumer = weakSelf;
+            bannerAdapter.adspotId = self.adSpotId;
+            bannerAdapter.responseConsumer = self;
 
             RPSOpenRTBRequest* request = [RPSOpenRTBRequest new];
             request.openRTBAdapterDelegate = bannerAdapter;
 
             [request resume];
-            strongSelf.state = RPS_ADVIEW_STATE_LOADING;
+            self.state = RPS_ADVIEW_STATE_LOADING;
         } @catch(NSException* exception) {
             RPSLog("load exception: %@", exception);
-            [strongSelf triggerFailure];
+            [self triggerFailure];
         }
     });
 }
@@ -235,28 +232,24 @@
             @throw [NSException exceptionWithName:@"load failed" reason:@"adSpotInfo.htmlTemplate is empty" userInfo:@{@"RPSAdSpotInfo": self.banner}];
         }
 
-        __weak RPSBannerView* weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
-            __strong RPSBannerView* strongSelf = weakSelf;
             @try {
-                if (!strongSelf) return;
+                [self applySize:self.banner];
+                [self applyView:self.banner];
+                [self applyPosition];
 
-                [strongSelf applySize:strongSelf.banner];
-                [strongSelf applyView:strongSelf.banner];
-                [strongSelf applyPosition];
-
-                strongSelf.hidden = NO;
-                if (strongSelf.eventHandler) {
+                self.hidden = NO;
+                if (self.eventHandler) {
                     @try {
-                        strongSelf.eventHandler(strongSelf, RPSBannerViewEventSucceeded);
+                        self.eventHandler(self, RPSBannerViewEventSucceeded);
                     } @catch (NSException* exception) {
                         RPSLog("exception when bannerOnSucesss callback: %@", exception);
                     }
                 }
-                strongSelf.state = RPS_ADVIEW_STATE_SHOWED;
+                self.state = RPS_ADVIEW_STATE_SHOWED;
             } @catch(NSException* exception) {
                 RPSDebug("failed after Ad Request: %@", exception);
-                [strongSelf triggerFailure];
+                [self triggerFailure];
             }
         });
     } @catch(NSException* exception) {
@@ -273,20 +266,17 @@
 
 -(void) triggerFailure {
     self.state = RPS_ADVIEW_STATE_FAILED;
-    __weak RPSBannerView* weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        __strong RPSBannerView* strongSelf = weakSelf;
-        if (!strongSelf) return;
         RPSDebug("triggerFailure");
         @try {
-            if (strongSelf.eventHandler) {
-                strongSelf.eventHandler(strongSelf, RPSBannerViewEventFailed);
+            if (self.eventHandler) {
+                self.eventHandler(self, RPSBannerViewEventFailed);
             }
         } @catch(NSException* exception) {
             RPSLog("exception when bannerOnFailure callback: %@", exception);
         } @finally {
-            strongSelf.hidden = YES;
-            [strongSelf removeFromSuperview];
+            self.hidden = YES;
+            [self removeFromSuperview];
         }
     });
 }
