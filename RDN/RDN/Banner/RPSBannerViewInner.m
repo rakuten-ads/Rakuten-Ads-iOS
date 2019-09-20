@@ -275,7 +275,11 @@
         } @catch(NSException* exception) {
             RPSLog("exception when bannerOnFailure callback: %@", exception);
         } @finally {
+            if (self.measurement && !self.measurement.isCancelled) {
+                [self.measurement cancel];
+            }
             self.hidden = YES;
+            self.webView.navigationDelegate = nil;
             [self removeFromSuperview];
         }
     });
@@ -312,7 +316,8 @@
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     RPSDebug("didFinishNavigation of: %@", navigation);
-    if ([self conformsToProtocol:@protocol(RPSMeasurableDelegate)]) {
+    if ([self conformsToProtocol:@protocol(RPSMeasurableDelegate)]
+        && self.state != RPS_ADVIEW_STATE_FAILED) {
         @try {
             self.measurement = [RPSMeasurement new];
             self.measurement.measurableTarget = (id<RPSMeasurableDelegate>)self;

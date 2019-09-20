@@ -33,7 +33,7 @@ NSTimeInterval kMeasureIntervalInView = 1;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kMeasureIntervalInView * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         @try {
             if (self.measurableTarget) {
-                self.shouldStopMeasureInview = [self.measurableTarget measureInview];
+                self.shouldStopMeasureInview = self.shouldStopMeasureInview || [self.measurableTarget measureInview];
                 RPSDebug("measurement inview : %@", self.shouldStopMeasureInview ? @"stopped" : @"continue...");
                 if (!self.shouldStopMeasureInview) {
                     RPSDebug("measurement inview enqueue again");
@@ -60,7 +60,7 @@ NSTimeInterval kMeasureIntervalInView = 1;
 -(void)startMeasurement {
     RPSDebug("startMeasurement");
     if (!self.shouldStopMeasureImp) {
-        self.shouldStopMeasureImp = [self.measurableTarget measureImp];
+        self.shouldStopMeasureImp = self.shouldStopMeasureImp || [self.measurableTarget measureImp];
         RPSDebug("measurement imp : %@", self.shouldStopMeasureImp ? @"stopped" : @"continue...");
     }
 

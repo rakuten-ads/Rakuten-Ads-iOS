@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
 @interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumerDelegate>
 
-@property (nonatomic, nonnull) RPSAdWebView* webView;
+@property (nonatomic, nullable) RPSAdWebView* webView;
 @property (nonatomic, nullable, copy) RPSBannerViewEventHandler eventHandler;
 @property (nonatomic) RPSBannerViewPosition position;
 @property (nonatomic, weak, nullable) UIView* parentView;
