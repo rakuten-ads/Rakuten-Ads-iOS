@@ -24,12 +24,12 @@
 
 -(void)setState:(RPSBannerViewState)state {
     RPSDebug("set state %@",
-           state == RPS_ADVIEW_STATE_INIT ? @"INIT" :
-           state == RPS_ADVIEW_STATE_LOADING ? @"LOADING" :
-           state == RPS_ADVIEW_STATE_LOADED ? @"LOADED" :
-           state == RPS_ADVIEW_STATE_SHOWED ? @"SHOWED" :
-           state == RPS_ADVIEW_STATE_FAILED ? @"FAILED" :
-           state == RPS_ADVIEW_STATE_CLICKED ? @"CLICKED" : @"unknown");
+             state == RPS_ADVIEW_STATE_INIT ? @"INIT" :
+             state == RPS_ADVIEW_STATE_LOADING ? @"LOADING" :
+             state == RPS_ADVIEW_STATE_LOADED ? @"LOADED" :
+             state == RPS_ADVIEW_STATE_SHOWED ? @"SHOWED" :
+             state == RPS_ADVIEW_STATE_FAILED ? @"FAILED" :
+             state == RPS_ADVIEW_STATE_CLICKED ? @"CLICKED" : @"unknown");
     self->_state = state;
 }
 
@@ -68,88 +68,97 @@
     });
 }
 
--(void)setPosition:(RPSBannerViewPosition)position inView:(UIView *)parentView {
-    if (!parentView) {
-        RPSLog("parent view cannot be nil");
-        return;
-    }
+-(void)setSize:(RPSBannerViewSize)size {
+    self->_size = size;
 
-    self.position = position;
-    self.parentView = parentView;
+    if (self.state == RPS_ADVIEW_STATE_SHOWED) {
+        RPSDebug("adjust size after showed");
+        [self applyContainerSize];
+        [self resetConstraints];
+    }
+}
+
+-(void)setPosition:(RPSBannerViewPosition)position {
+    self->_position = position;
+
     if (self.state == RPS_ADVIEW_STATE_SHOWED) {
         RPSDebug("re-apply position after showed");
-        [self applyPosition];
+        [self applyContainerPosition];
+        [self resetConstraints];
     }
 }
 
 #pragma mark - UI frame control
--(void) applySize:(RPSBanner*) banner {
-    self.frame = CGRectMake(self.frame.origin.x,
-                            self.frame.origin.y,
-                            banner.width,
-                            banner.height);
-    RPSDebug("apply size: %@", NSStringFromCGRect(self.frame));
+-(void) applyContainerSize {
+    if (self.superview && self.banner) {
+        self.translatesAutoresizingMaskIntoConstraints = NO;
+        switch (self.size) {
+            case RPSBannerViewSizeAspectFill:
+                if (@available(ios 11.0, *)) {
+                    UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
+                    self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],
+                                               [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:self.banner.height / self.banner.width],
+                                               ];
+                } else {
+                    self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
+                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:self.banner.height / self.banner.width],
+                                               ];
+                }
+                break;
+            default:
+                self->_sizeConstraints = @[[self.widthAnchor constraintEqualToConstant:self.banner.width],
+                                           [self.heightAnchor constraintEqualToConstant:self.banner.height],
+                                           ];
+                break;
+        }
+        RPSDebug("applyContainerSize");
+    }
 }
 
--(void)applyPosition{
-    if (self.parentView) {
+-(void)applyContainerPosition{
+    if (self.superview) {
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        if (![self.parentView.subviews containsObject:self]) {
-            RPSDebug("add as subview");
-            [self.parentView addSubview:self];
-        }
         if (@available(ios 11.0, *)) {
             [self applyPositionWithSafeArea];
         } else {
             [self applyPositionWithParentView];
         }
-        [NSLayoutConstraint activateConstraints:@[
-                                                  [self.widthAnchor constraintEqualToConstant:CGRectGetWidth(self.frame)],
-                                                  [self.heightAnchor constraintEqualToConstant:CGRectGetHeight(self.frame)],
-                                                  ]];
-        [self layoutIfNeeded];
-        RPSDebug("apply position %@", NSStringFromCGRect(self.frame));
+        RPSDebug("applyContainerPosition");
     }
 }
 
 -(void)applyPositionWithSafeArea API_AVAILABLE(ios(11.0)){
-    UILayoutGuide* safeGuide = self.parentView.safeAreaLayoutGuide;
+    UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
     switch (self.position) {
         case RPSBannerViewPositionTopLeft:
-            [NSLayoutConstraint activateConstraints:@[
-                                                      [self.leftAnchor constraintEqualToAnchor:safeGuide.leftAnchor],
-                                                      [self.topAnchor constraintEqualToAnchor:safeGuide.topAnchor],
-                                                      ]];
+            self->_positionConstraints = @[[self.leftAnchor constraintEqualToAnchor:safeGuide.leftAnchor],
+                                           [self.topAnchor constraintEqualToAnchor:safeGuide.topAnchor],
+                                           ];
             break;
         case RPSBannerViewPositionTop:
-            [NSLayoutConstraint activateConstraints:@[
-                                                      [self.centerXAnchor constraintEqualToAnchor:safeGuide.centerXAnchor],
-                                                      [self.topAnchor constraintEqualToAnchor:safeGuide.topAnchor],
-                                                      ]];
+            self->_positionConstraints = @[[self.centerXAnchor constraintEqualToAnchor:safeGuide.centerXAnchor],
+                                           [self.topAnchor constraintEqualToAnchor:safeGuide.topAnchor],
+                                           ];
             break;
         case RPSBannerViewPositionTopRight:
-            [NSLayoutConstraint activateConstraints:@[
-                                                      [self.rightAnchor constraintEqualToAnchor:safeGuide.rightAnchor],
-                                                      [self.topAnchor constraintEqualToAnchor:safeGuide.topAnchor],
-                                                      ]];
+            self->_positionConstraints = @[[self.rightAnchor constraintEqualToAnchor:safeGuide.rightAnchor],
+                                           [self.topAnchor constraintEqualToAnchor:safeGuide.topAnchor],
+                                           ];
             break;
         case RPSBannerViewPositionBottomLeft:
-            [NSLayoutConstraint activateConstraints:@[
-                                                      [self.leftAnchor constraintEqualToAnchor:safeGuide.leftAnchor],
-                                                      [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
-                                                      ]];
+            self->_positionConstraints = @[[self.leftAnchor constraintEqualToAnchor:safeGuide.leftAnchor],
+                                           [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
+                                           ];
             break;
         case RPSBannerViewPositionBottomRight:
-            [NSLayoutConstraint activateConstraints:@[
-                                                      [self.rightAnchor constraintEqualToAnchor:safeGuide.rightAnchor],
-                                                      [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
-                                                      ]];
+            self->_positionConstraints = @[[self.rightAnchor constraintEqualToAnchor:safeGuide.rightAnchor],
+                                           [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
+                                           ];
             break;
         case RPSBannerViewPositionBottom:
-            [NSLayoutConstraint activateConstraints:@[
-                                                      [self.centerXAnchor constraintEqualToAnchor:safeGuide.centerXAnchor],
-                                                      [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
-                                                      ]];
+            self->_positionConstraints = @[[self.centerXAnchor constraintEqualToAnchor:safeGuide.centerXAnchor],
+                                           [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
+                                           ];
             break;
         default:
             ;
@@ -159,54 +168,69 @@
 -(void)applyPositionWithParentView {
     switch (self.position) {
         case RPSBannerViewPositionTopLeft:
-            [NSLayoutConstraint activateConstraints:@[
-                                                      [self.topAnchor constraintEqualToAnchor:self.parentView.topAnchor],
-                                                      [self.leftAnchor constraintEqualToAnchor:self.parentView.leftAnchor],
-                                                      ]];
+            self->_positionConstraints = @[[self.topAnchor constraintEqualToAnchor:self.superview.topAnchor],
+                                           [self.leftAnchor constraintEqualToAnchor:self.superview.leftAnchor],
+                                           ];
             break;
         case RPSBannerViewPositionTop:
-            [NSLayoutConstraint activateConstraints:@[
-                                                      [self.topAnchor constraintEqualToAnchor:self.parentView.topAnchor],
-                                                      [self.centerXAnchor constraintEqualToAnchor:self.parentView.centerXAnchor],
-                                                      ]];
+            self->_positionConstraints = @[[self.topAnchor constraintEqualToAnchor:self.superview.topAnchor],
+                                           [self.centerXAnchor constraintEqualToAnchor:self.superview.centerXAnchor],
+                                           ];
             break;
         case RPSBannerViewPositionTopRight:
-            [NSLayoutConstraint activateConstraints:@[
-                                                      [self.topAnchor constraintEqualToAnchor:self.parentView.topAnchor],
-                                                      [self.rightAnchor constraintEqualToAnchor:self.parentView.rightAnchor],
-                                                      ]];
+            self->_positionConstraints = @[[self.topAnchor constraintEqualToAnchor:self.superview.topAnchor],
+                                           [self.rightAnchor constraintEqualToAnchor:self.superview.rightAnchor],
+                                           ];
             break;
         case RPSBannerViewPositionBottomLeft:
-            [NSLayoutConstraint activateConstraints:@[
-                                                      [self.bottomAnchor constraintEqualToAnchor:self.parentView.bottomAnchor],
-                                                      [self.leftAnchor constraintEqualToAnchor:self.parentView.leftAnchor],
-                                                      ]];
+            self->_positionConstraints = @[[self.bottomAnchor constraintEqualToAnchor:self.superview.bottomAnchor],
+                                           [self.leftAnchor constraintEqualToAnchor:self.superview.leftAnchor],
+                                           ];
             break;
         case RPSBannerViewPositionBottomRight:
-            [NSLayoutConstraint activateConstraints:@[
-                                                      [self.bottomAnchor constraintEqualToAnchor:self.parentView.bottomAnchor],
-                                                      [self.rightAnchor constraintEqualToAnchor:self.parentView.rightAnchor],
-                                                      ]];
+            self->_positionConstraints = @[[self.bottomAnchor constraintEqualToAnchor:self.superview.bottomAnchor],
+                                           [self.rightAnchor constraintEqualToAnchor:self.superview.rightAnchor],
+                                           ];
             break;
         case RPSBannerViewPositionBottom:
-            [NSLayoutConstraint activateConstraints:@[
-                                                      [self.bottomAnchor constraintEqualToAnchor:self.parentView.bottomAnchor],
-                                                      [self.centerXAnchor constraintEqualToAnchor:self.parentView.centerXAnchor],
-                                                      ]];
+            self->_positionConstraints = @[[self.bottomAnchor constraintEqualToAnchor:self.superview.bottomAnchor],
+                                           [self.centerXAnchor constraintEqualToAnchor:self.superview.centerXAnchor],
+                                           ];
             break;
-        default:
-            ;
+        default:;
     }
 }
 
--(void) applyView:(RPSBanner*) banner {
+-(void) applyAdView {
     RPSDebug("apply applyView: %@", NSStringFromCGRect(self.frame));
 
     // Web View
-    self.webView = [[RPSAdWebView alloc]initWithFrame:self.bounds];
+    self->_webView = [RPSAdWebView new];
     self.webView.navigationDelegate = self;
     [self addSubview:self.webView];
-    [self.webView loadHTMLString:banner.html baseURL:nil];
+    [self.webView loadHTMLString:self.banner.html baseURL:nil];
+
+    self.webView.translatesAutoresizingMaskIntoConstraints = NO;
+    self->_webViewConstraints = @[[self.webView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+                                  [self.webView.topAnchor constraintEqualToAnchor:self.topAnchor],
+                                  [self.webView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+                                  [self.webView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor]
+                                  ]];
+}
+
+-(void) resetConstraints {
+    NSMutableArray<NSLayoutConstraint*>* constraints = [NSMutableArray array];
+    if (self.positionConstraints) {
+        [constraints addObjectsFromArray:self.positionConstraints];
+    }
+    if (self.sizeConstraints) {
+        [constraints addObjectsFromArray:self.sizeConstraints];
+    }
+    if (self.webViewConstraints) {
+        [constraints addObjectsFromArray:self.webViewConstraints];
+    }
+    self.constraints = constraints;
+    [self layoutIfNeeded];
 }
 
 #pragma mark - implement RPSBidResponseConsumer
@@ -217,26 +241,27 @@
 
 -(void)onBidResponseSuccess:(NSArray<RPSBanner*> *)adInfoList {
     @try {
-        self.banner = [adInfoList firstObject];
+        self->_banner = [adInfoList firstObject];
         RPSDebug("onBidResponseSuccess: %@", self.banner);
 
         self.state = RPS_ADVIEW_STATE_LOADED;
 
         if (!self.banner) {
             RPSLog("AdSpotInfo is empty");
-            @throw [NSException exceptionWithName:@"load failed" reason:@"adSpotInfo is empty" userInfo:@{@"RPSAdSpotInfo": [NSNull null]}];
+            @throw [NSException exceptionWithName:@"load failed" reason:@"banner info is empty" userInfo:@{@"RPSBanner": [NSNull null]}];
         }
 
         if ([RPSValid isEmptyString:self.banner.html]) {
-            RPSLog("adSpotInfo.htmlTemplate is empty");
-            @throw [NSException exceptionWithName:@"load failed" reason:@"adSpotInfo.htmlTemplate is empty" userInfo:@{@"RPSAdSpotInfo": self.banner}];
+            RPSLog("banner html is empty");
+            @throw [NSException exceptionWithName:@"load failed" reason:@"banner html is empty" userInfo:@{@"RPSBanner": self.banner}];
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
             @try {
-                [self applySize:self.banner];
-                [self applyView:self.banner];
-                [self applyPosition];
+                [self applyAdView];
+                [self applyContainerSize];
+                [self applyContainerPosition];
+                [self resetConstraints];
 
                 self.hidden = NO;
                 if (self.eventHandler) {
@@ -296,7 +321,7 @@
             [UIApplication.sharedApplication openURL:url options:@{} completionHandler:^(BOOL success){
                 RPSDebug("opened AD URL");
             }];
-
+            
             RPSDebug("WKNavigationActionPolicyCancel");
             if (self.eventHandler) {
                 @try {
