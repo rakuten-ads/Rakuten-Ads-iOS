@@ -1,0 +1,132 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+
+  @sdk_map = {
+    sdk_env: "dev",
+    sdk_configuration: "Debug",
+    # sdk_module_current: nil,
+    # sdk_release_version: nil,
+    # sdk_xcodeproj_path: nil,
+    # sdk_output_dir: nil,
+  }
+  p @sdk_map
+
+  @sdk_module_names = ["Core", "RDN"]
+
+  def set_env param
+    if param
+      @sdk_map.merge!(param)
+      p "merged SDK MAP: #{@sdk_map}"
+    else
+      return
+    end
+
+    if !@sdk_map[:sdk_module_current]
+      p "Not found parameter :sdk_module_current. Pick one from #{@sdk_module_names}"
+      exit!
+    end
+    @sdk_map[:sdk_xcodeproj_path] = "#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_module_current]}.xcodeproj"
+
+    increment_version_number(
+      version_number: @sdk_map[:sdk_release_version],
+      xcodeproj: @sdk_map[:sdk_xcodeproj_path],
+    )
+    if !@sdk_map[:sdk_release_version]
+      @sdk_map[:sdk_release_version] = get_version_number(
+        xcodeproj: @sdk_map[:sdk_xcodeproj_path],
+        target: @sdk_map[:sdk_module_current],
+      )
+    end
+
+    @sdk_map[:sdk_output_dir] = "build/#{@sdk_map[:sdk_configuration]}"
+
+    p "sdk map: #{@sdk_map}"
+  end
+
+  lane :package do |param|
+    p param
+    set_env param
+    xcodebuild(
+      raw_buildlog: true,
+      project: @sdk_map[:sdk_xcodeproj_path],
+      target: "Aggregate",
+      configuration: @sdk_map[:sdk_configuration],
+      build_settings: { :SDK_OUTPUT_DIR => @sdk_map[:sdk_output_dir] },
+    )
+  end
+
+  lane :deploy_to_gcs_dev do |param|
+    set_env param
+    google_cloud_storage_upload(
+      project: "rd2n-dev",
+      keyfile: ENV["FASTLANE_GCS_CREDENTIAL"],
+      bucket: "dev-s-cdn.rx-ad.com",
+      content_path: "#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{param[:file_name]}",
+      name: "sdk/ios/#{@sdk_map[:sdk_release_version]}/#{param[:file_name]}",
+    )
+  end
+
+  lane :deploy_to_gcs do |param|
+      p "TODO"
+  end
+
+  lane :update_podspec do |param|
+    set_env param
+    version_bump_podspec(
+      path: "RPS#{@sdk_map[:sdk_module_current]}.#{@sdk_map[:sdk_env]}.podspec",
+      version_number: @sdk_map[:sdk_release_version],
+    )
+
+    pod_push(
+      path: "RPS#{@sdk_map[:sdk_module_current]}.#{@sdk_map[:sdk_env]}.podspec",
+      repo: 'lob-inc',
+    )
+  end
+
+  lane :github_release_tag do |param|
+    set_env param
+    version = @sdk_map[:sdk_release_version]
+
+    set_github_release(
+      repository_name: "lob-inc/rssp.ios.repo",
+      api_token: ENV["GITHUB_TOKEN"],
+      name: version,
+      tag_name: version,
+      description: "release for #{version}",
+      upload_assets: ["#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/RPS#{@sdk_map[:sdk_module_current]}_iOS_#{version}.framework.zip"],
+    )
+  end
+
+  lane :release do |param|
+    if param[:module]
+      @sdk_module_names = [param[:module]]
+    end
+
+    @sdk_module_names.each do |module_name|
+      @sdk_map[:sdk_module_current] = module_name
+      set_env param
+      package
+      # deploy_to_gcs_dev file_name: "RPS#{module_name}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
+      # update_podspec
+      # github_release_tag
+    end
+
+  end
+end
+
