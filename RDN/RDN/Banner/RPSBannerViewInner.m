@@ -16,6 +16,7 @@
     if (self) {
         self.hidden = YES;
         self.state = RPS_ADVIEW_STATE_INIT;
+        self.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return self;
 }
@@ -74,7 +75,6 @@
     if (self.state == RPS_ADVIEW_STATE_SHOWED) {
         RPSDebug("adjust size after showed");
         [self applyContainerSize];
-        [self resetConstraints];
     }
 }
 
@@ -84,46 +84,53 @@
     if (self.state == RPS_ADVIEW_STATE_SHOWED) {
         RPSDebug("re-apply position after showed");
         [self applyContainerPosition];
-        [self resetConstraints];
     }
 }
 
 #pragma mark - UI frame control
 -(void) applyContainerSize {
     if (self.superview && self.banner) {
-        self.translatesAutoresizingMaskIntoConstraints = NO;
+        RPSDebug("applyContainerSize %lu", self.size);
+
+        [self.superview removeConstraints:self.sizeConstraints];
+        [self removeConstraints:self.sizeConstraints];
+
         switch (self.size) {
             case RPSBannerViewSizeAspectFill:
                 if (@available(ios 11.0, *)) {
                     UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
                     self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:self.banner.height / self.banner.width],
+                                               [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:((float)self.banner.height / (float)self.banner.width)],
                                                ];
                 } else {
                     self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:self.banner.height / self.banner.width],
+                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:((float)self.banner.height / (float)self.banner.width)],
                                                ];
                 }
+                [self.superview addConstraints:self->_sizeConstraints];
                 break;
             default:
                 self->_sizeConstraints = @[[self.widthAnchor constraintEqualToConstant:self.banner.width],
                                            [self.heightAnchor constraintEqualToConstant:self.banner.height],
                                            ];
+                [self addConstraints:self.sizeConstraints];
                 break;
         }
-        RPSDebug("applyContainerSize");
     }
 }
 
 -(void)applyContainerPosition{
     if (self.superview) {
-        self.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.superview removeConstraints:self.positionConstraints];
+
         if (@available(ios 11.0, *)) {
             [self applyPositionWithSafeArea];
         } else {
             [self applyPositionWithParentView];
         }
+
         RPSDebug("applyContainerPosition");
+        [self.superview addConstraints:self.positionConstraints];
     }
 }
 
@@ -215,22 +222,8 @@
                                   [self.webView.topAnchor constraintEqualToAnchor:self.topAnchor],
                                   [self.webView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
                                   [self.webView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor]
-                                  ]];
-}
-
--(void) resetConstraints {
-    NSMutableArray<NSLayoutConstraint*>* constraints = [NSMutableArray array];
-    if (self.positionConstraints) {
-        [constraints addObjectsFromArray:self.positionConstraints];
-    }
-    if (self.sizeConstraints) {
-        [constraints addObjectsFromArray:self.sizeConstraints];
-    }
-    if (self.webViewConstraints) {
-        [constraints addObjectsFromArray:self.webViewConstraints];
-    }
-    self.constraints = constraints;
-    [self layoutIfNeeded];
+                                  ];
+    [self addConstraints:_webViewConstraints];
 }
 
 #pragma mark - implement RPSBidResponseConsumer
@@ -261,7 +254,7 @@
                 [self applyAdView];
                 [self applyContainerSize];
                 [self applyContainerPosition];
-                [self resetConstraints];
+                [self layoutIfNeeded];
 
                 self.hidden = NO;
                 if (self.eventHandler) {
