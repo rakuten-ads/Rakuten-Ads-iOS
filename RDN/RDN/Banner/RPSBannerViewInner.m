@@ -96,7 +96,7 @@
         [self removeConstraints:self.sizeConstraints];
 
         switch (self.size) {
-            case RPSBannerViewSizeAspectFill:
+            case RPSBannerViewSizeAspectFit:
                 if (@available(ios 11.0, *)) {
                     UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
                     self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],

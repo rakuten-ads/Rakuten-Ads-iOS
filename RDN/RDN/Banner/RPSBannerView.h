@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewEvent) {
 
 typedef NS_ENUM(NSUInteger, RPSBannerViewSize) {
     RPSBannerViewSizeDefault,
-    RPSBannerViewSizeAspectFill,
+    RPSBannerViewSizeAspectFit,
 };
 
 @interface RPSBannerView : UIView
