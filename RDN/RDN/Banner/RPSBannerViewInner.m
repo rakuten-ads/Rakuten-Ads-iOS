@@ -100,11 +100,11 @@
                 if (@available(ios 11.0, *)) {
                     UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
                     self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:((float)self.banner.height / (float)self.banner.width)],
+                                               [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:self.banner.height / self.banner.width],
                                                ];
                 } else {
                     self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:((float)self.banner.height / (float)self.banner.width)],
+                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:self.banner.height / self.banner.width],
                                                ];
                 }
                 [self.superview addConstraints:self->_sizeConstraints];

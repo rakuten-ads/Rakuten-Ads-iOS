@@ -14,8 +14,8 @@
 -(void)parse:(NSDictionary *)bidData {
     RPSJSONObject* jsonBid = [RPSJSONObject jsonWithRawDictionary:bidData];
     self->_html = [jsonBid getString:@"adm"];
-    self->_width = [[jsonBid getNumber:@"w"] intValue];
-    self->_height = [[jsonBid getNumber:@"h"] intValue];
+    self->_width = [[jsonBid getNumber:@"w"] floatValue];
+    self->_height = [[jsonBid getNumber:@"h"] floatValue];
 
     RPSJSONObject* ext = [jsonBid getJson:@"ext"];
     if (ext) {
