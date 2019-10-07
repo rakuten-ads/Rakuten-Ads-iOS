@@ -16,7 +16,6 @@
     if (self) {
         self.hidden = YES;
         self.state = RPS_ADVIEW_STATE_INIT;
-        self.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return self;
 }
@@ -107,20 +106,27 @@
                                                [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:self.banner.height / self.banner.width],
                                                ];
                 }
-                [self.superview addConstraints:self->_sizeConstraints];
+                self.translatesAutoresizingMaskIntoConstraints = NO;
+                [self.superview addConstraints:self.sizeConstraints];
                 break;
-            default:
+
+            case RPSBannerViewSizeDefault:
                 self->_sizeConstraints = @[[self.widthAnchor constraintEqualToConstant:self.banner.width],
                                            [self.heightAnchor constraintEqualToConstant:self.banner.height],
                                            ];
+                self.translatesAutoresizingMaskIntoConstraints = NO;
                 [self addConstraints:self.sizeConstraints];
                 break;
+
+            case RPSBannerViewSizeCustom: default:
+                self->_sizeConstraints = nil;
         }
     }
 }
 
 -(void)applyContainerPosition{
     if (self.superview) {
+        RPSDebug("applyContainerPosition %lu", self.position);
         [self.superview removeConstraints:self.positionConstraints];
 
         if (@available(ios 11.0, *)) {
@@ -129,8 +135,10 @@
             [self applyPositionWithParentView];
         }
 
-        RPSDebug("applyContainerPosition");
-        [self.superview addConstraints:self.positionConstraints];
+        if (self.position != RPSBannerViewPositionCustom) {
+            self.translatesAutoresizingMaskIntoConstraints = NO;
+            [self.superview addConstraints:self.positionConstraints];
+        }
     }
 }
 
@@ -138,7 +146,7 @@
     UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
     switch (self.position) {
         case RPSBannerViewPositionTopLeft:
-            self->_positionConstraints = @[[self.leftAnchor constraintEqualToAnchor:safeGuide.leftAnchor],
+            self->_positionConstraints = @[[self.leadingAnchor constraintEqualToAnchor:safeGuide.leadingAnchor],
                                            [self.topAnchor constraintEqualToAnchor:safeGuide.topAnchor],
                                            ];
             break;
@@ -148,17 +156,17 @@
                                            ];
             break;
         case RPSBannerViewPositionTopRight:
-            self->_positionConstraints = @[[self.rightAnchor constraintEqualToAnchor:safeGuide.rightAnchor],
+            self->_positionConstraints = @[[self.trailingAnchor constraintEqualToAnchor:safeGuide.trailingAnchor],
                                            [self.topAnchor constraintEqualToAnchor:safeGuide.topAnchor],
                                            ];
             break;
         case RPSBannerViewPositionBottomLeft:
-            self->_positionConstraints = @[[self.leftAnchor constraintEqualToAnchor:safeGuide.leftAnchor],
+            self->_positionConstraints = @[[self.leadingAnchor constraintEqualToAnchor:safeGuide.leadingAnchor],
                                            [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
                                            ];
             break;
         case RPSBannerViewPositionBottomRight:
-            self->_positionConstraints = @[[self.rightAnchor constraintEqualToAnchor:safeGuide.rightAnchor],
+            self->_positionConstraints = @[[self.trailingAnchor constraintEqualToAnchor:safeGuide.trailingAnchor],
                                            [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
                                            ];
             break;
@@ -167,8 +175,8 @@
                                            [self.bottomAnchor constraintEqualToAnchor:safeGuide.bottomAnchor],
                                            ];
             break;
-        default:
-            ;
+        case RPSBannerViewPositionCustom: default:
+            self->_positionConstraints = nil;
     }
 }
 
@@ -176,7 +184,7 @@
     switch (self.position) {
         case RPSBannerViewPositionTopLeft:
             self->_positionConstraints = @[[self.topAnchor constraintEqualToAnchor:self.superview.topAnchor],
-                                           [self.leftAnchor constraintEqualToAnchor:self.superview.leftAnchor],
+                                           [self.leadingAnchor constraintEqualToAnchor:self.superview.leadingAnchor],
                                            ];
             break;
         case RPSBannerViewPositionTop:
@@ -186,17 +194,17 @@
             break;
         case RPSBannerViewPositionTopRight:
             self->_positionConstraints = @[[self.topAnchor constraintEqualToAnchor:self.superview.topAnchor],
-                                           [self.rightAnchor constraintEqualToAnchor:self.superview.rightAnchor],
+                                           [self.trailingAnchor constraintEqualToAnchor:self.superview.trailingAnchor],
                                            ];
             break;
         case RPSBannerViewPositionBottomLeft:
             self->_positionConstraints = @[[self.bottomAnchor constraintEqualToAnchor:self.superview.bottomAnchor],
-                                           [self.leftAnchor constraintEqualToAnchor:self.superview.leftAnchor],
+                                           [self.leadingAnchor constraintEqualToAnchor:self.superview.leadingAnchor],
                                            ];
             break;
         case RPSBannerViewPositionBottomRight:
             self->_positionConstraints = @[[self.bottomAnchor constraintEqualToAnchor:self.superview.bottomAnchor],
-                                           [self.rightAnchor constraintEqualToAnchor:self.superview.rightAnchor],
+                                           [self.trailingAnchor constraintEqualToAnchor:self.superview.trailingAnchor],
                                            ];
             break;
         case RPSBannerViewPositionBottom:
@@ -204,7 +212,8 @@
                                            [self.centerXAnchor constraintEqualToAnchor:self.superview.centerXAnchor],
                                            ];
             break;
-        default:;
+        case RPSBannerViewPositionCustom: default:
+            self->_positionConstraints = nil;
     }
 }
 
@@ -223,7 +232,7 @@
                                   [self.webView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
                                   [self.webView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor]
                                   ];
-    [self addConstraints:_webViewConstraints];
+    [self addConstraints:self.webViewConstraints];
 }
 
 #pragma mark - implement RPSBidResponseConsumer
@@ -266,7 +275,7 @@
                 }
                 self.state = RPS_ADVIEW_STATE_SHOWED;
             } @catch(NSException* exception) {
-                RPSDebug("failed after Ad Request: %@", exception);
+                RPSDebug("failed to apply Ad request: %@", exception);
                 [self triggerFailure];
             }
         });
