@@ -31,14 +31,13 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
 @interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumerDelegate>
 
-@property (nonatomic, nullable) RPSAdWebView* webView;
+@property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
+@property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
+@property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* webViewConstraints;
+@property (nonatomic, readonly, nullable) RPSAdWebView* webView;
 @property (nonatomic, nullable, copy) RPSBannerViewEventHandler eventHandler;
-@property (nonatomic) RPSBannerViewPosition position;
-@property (nonatomic, weak, nullable) UIView* parentView;
-@property (atomic) RPSBannerViewState state;
-
-@property (nonatomic, nullable) RPSBanner* banner;
-
+@property (atomic, readonly) RPSBannerViewState state;
+@property (nonatomic, readonly, nullable) RPSBanner* banner;
 @property (nonatomic, nullable) RPSMeasurement* measurement;
 
 @end
