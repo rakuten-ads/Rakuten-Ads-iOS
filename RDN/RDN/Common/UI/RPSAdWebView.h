@@ -17,13 +17,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RPSAdWebViewMessage : NSObject
-
-@property(nonatomic, readonly) NSString* vender;
-@property(nonatomic, readonly) NSString* type;
-
-+(instancetype) parse:(NSDictionary*) data;
-
-@end
-
 NS_ASSUME_NONNULL_END

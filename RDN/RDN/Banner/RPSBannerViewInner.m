@@ -7,6 +7,7 @@
 //
 
 #import "RPSBannerViewInner.h"
+#import "RPSBannerModel.h"
 
 @implementation RPSBannerView
 

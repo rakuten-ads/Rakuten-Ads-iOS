@@ -7,7 +7,6 @@
 //
 
 #import "RPSAdWebView.h"
-#import <RPSCore/RPSJSONObject.h>
 
 @implementation RPSAdWebView
 
@@ -42,19 +41,6 @@ NSString *jScriptViewport =
     [userCtrl addUserScript:userScript];
     
     (*config).userContentController = userCtrl;
-}
-
-@end
-
-
-@implementation RPSAdWebViewMessage
-
-+(instancetype) parse:(NSDictionary*) data {
-    RPSJSONObject* json = [RPSJSONObject jsonWithRawDictionary:data];
-    RPSAdWebViewMessage* message = [RPSAdWebViewMessage new];
-    message->_vender = [json getString:@"vendor"];
-    message->_type = [json getString:@"type"];
-    return message;
 }
 
 @end
