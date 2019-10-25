@@ -7,6 +7,7 @@
 //
 
 #import "RPSAdWebView.h"
+#import <RPSCore/RPSJSONObject.h>
 
 @implementation RPSAdWebView
 
@@ -30,17 +31,30 @@
     return self;
 }
 
-NSString *jScript =
+NSString *jScriptViewport =
 @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width');"
 @"document.getElementsByTagName('head')[0].appendChild(meta);"
 @"document.getElementsByTagName('body')[0].style.margin = 0;";
 
 + (void)setScalesPageToFit:(WKWebViewConfiguration**) config {
-    WKUserScript *userScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+    WKUserScript *userScript = [[WKUserScript alloc] initWithSource:jScriptViewport injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
     WKUserContentController* userCtrl = [WKUserContentController new];
     [userCtrl addUserScript:userScript];
     
     (*config).userContentController = userCtrl;
+}
+
+@end
+
+
+@implementation RPSAdWebViewMessage
+
++(instancetype) parse:(NSDictionary*) data {
+    RPSJSONObject* json = [RPSJSONObject jsonWithRawDictionary:data];
+    RPSAdWebViewMessage* message = [RPSAdWebViewMessage new];
+    message->_vender = [json getString:@"vendor"];
+    message->_type = [json getString:@"type"];
+    return message;
 }
 
 @end

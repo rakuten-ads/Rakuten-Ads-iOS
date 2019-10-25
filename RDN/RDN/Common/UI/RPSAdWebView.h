@@ -9,8 +9,21 @@
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface RPSAdWebView : WKWebView
 
--(nonnull instancetype)initWithFrame:(CGRect)frame;
+-(instancetype)initWithFrame:(CGRect)frame;
 
 @end
+
+@interface RPSAdWebViewMessage : NSObject
+
+@property(nonatomic, readonly) NSString* vender;
+@property(nonatomic, readonly) NSString* type;
+
++(instancetype) parse:(NSDictionary*) data;
+
+@end
+
+NS_ASSUME_NONNULL_END
