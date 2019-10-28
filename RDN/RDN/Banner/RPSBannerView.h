@@ -29,6 +29,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewSize) {
 @property(nonatomic, copy, nonnull) NSString* adSpotId;
 @property(nonatomic) RPSBannerViewSize size;
 @property(nonatomic) RPSBannerViewPosition position;
+@property(nonatomic, nullable) NSDictionary* properties;
 
 -(void) load;
 -(void) loadWithEventHandler:(nullable void (^)(RPSBannerView* view, RPSBannerViewEvent event)) handler;

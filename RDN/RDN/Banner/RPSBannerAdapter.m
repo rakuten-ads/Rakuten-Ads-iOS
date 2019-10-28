@@ -34,7 +34,8 @@
         if (adspotId) {
             [impList addObject:@{
                                  @"ext" : @{
-                                         @"adspot_id" : adspotId
+                                         @"adspot_id" : adspotId,
+                                         @"json" : self.json ?: [NSNull null],
                                          }
                                  }];
         }

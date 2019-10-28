@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RPSBannerAdapter : RPSBidAdapter
 
 @property(nonatomic, copy) NSString* adspotId;
+@property(nonatomic) NSDictionary* json;
 
 @end
 
