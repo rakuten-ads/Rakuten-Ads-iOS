@@ -29,6 +29,7 @@
              state == RPS_ADVIEW_STATE_LOADING ? @"LOADING" :
              state == RPS_ADVIEW_STATE_LOADED ? @"LOADED" :
              state == RPS_ADVIEW_STATE_RENDERING ? @"RENDERING":
+             state == RPS_ADVIEW_STATE_MESSAGE_LISTENING ? @"MESSAGE_LISTENING":
              state == RPS_ADVIEW_STATE_SHOWED ? @"SHOWED" :
              state == RPS_ADVIEW_STATE_FAILED ? @"FAILED" :
              state == RPS_ADVIEW_STATE_CLICKED ? @"CLICKED" : @"unknown");
@@ -219,11 +220,6 @@
     }
 }
 
-NSString *kSdkMessageHandler = @"rpsSdkInterface";
-NSString *kSdkMessageVender = @"rdn";
-NSString *kSdkMessageTypeExpand = @"expand";
-NSString *kSdkMessageTypeCollapse = @"collapse";
-
 -(void) applyAdView {
     RPSDebug("apply applyView: %@", NSStringFromCGRect(self.frame));
 
@@ -388,7 +384,10 @@ int kAdViewRenderingTimeout = 5;
 
 
 #pragma mark - implement WKScriptMessageHandler
-
+NSString *kSdkMessageHandler = @"rpsSdkInterface";
+NSString *kSdkMessageTypeExpand = @"expand";
+NSString *kSdkMessageTypeCollapse = @"collapse";
+NSString *kSdkMessageTypeRegister = @"register";
 -(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
     RPSDebug("received posted message %@", message);
     if ([message.name isEqualToString:kSdkMessageHandler]
@@ -396,12 +395,12 @@ int kAdViewRenderingTimeout = 5;
         NSDictionary* messageBody = [NSJSONSerialization JSONObjectWithData:message.body options:0 error:nil];
         RPSAdWebViewMessage* sdkMessage = [RPSAdWebViewMessage parse:messageBody];
         RPSDebug("sdk message %@", sdkMessage);
-        if ([sdkMessage.vender isEqualToString:kSdkMessageVender]) {
-            if ([sdkMessage.type isEqualToString:kSdkMessageTypeExpand]) {
-                [self triggerSuccess];
-            } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeCollapse]) {
-                [self triggerFailure];
-            }
+        if ([sdkMessage.type isEqualToString:kSdkMessageTypeRegister]) {
+            self.state = RPS_ADVIEW_STATE_MESSAGE_LISTENING;
+        } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeExpand]) {
+            [self triggerSuccess];
+        } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeCollapse]) {
+            [self triggerFailure];
         }
     }
 }
