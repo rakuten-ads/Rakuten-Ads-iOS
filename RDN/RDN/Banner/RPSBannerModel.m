@@ -15,9 +15,18 @@
 +(instancetype) parse:(NSDictionary*) data {
     RPSJSONObject* json = [RPSJSONObject jsonWithRawDictionary:data];
     RPSAdWebViewMessage* message = [RPSAdWebViewMessage new];
-    message->_vender = [json getString:@"vendor"];
+    message->_vendor = [json getString:@"vendor"];
     message->_type = [json getString:@"type"];
     return message;
+}
+
+-(NSString *)description {
+    return [NSString stringWithFormat:@"vendor: %@\n"
+            @"type: %@"
+            ,
+            self.vendor,
+            self.type,
+            nil];
 }
 
 @end

@@ -229,9 +229,9 @@
 
     self.webView.navigationDelegate = self;
     [self addSubview:self.webView];
-    [self.webView loadHTMLString:self.banner.html baseURL:nil];
+    [self.webView loadHTMLString:self.banner.html baseURL:[NSURL URLWithString:@"https://rakuten.co.jp"]];
+    
     self.state = RPS_ADVIEW_STATE_RENDERING;
-
     self.webView.translatesAutoresizingMaskIntoConstraints = NO;
     self->_webViewConstraints = @[[self.webView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
                                   [self.webView.topAnchor constraintEqualToAnchor:self.topAnchor],
@@ -287,7 +287,7 @@
 }
 
 -(void) triggerSuccess {
-    if (self.state == RPS_ADVIEW_STATE_SHOWED) {
+    if (self.state == RPS_ADVIEW_STATE_SHOWED || self.state == RPS_ADVIEW_STATE_FAILED) {
         return;
     }
 
@@ -306,7 +306,7 @@
 }
 
 -(void) triggerFailure {
-    if (self.state == RPS_ADVIEW_STATE_FAILED) {
+    if (self.state == RPS_ADVIEW_STATE_FAILED || self.state == RPS_ADVIEW_STATE_SHOWED) {
         return;
     }
 
@@ -360,7 +360,6 @@
     }
 }
 
-int kAdViewRenderingTimeout = 5;
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     RPSDebug("didFinishNavigation of: %@", navigation);
     if (self.state != RPS_ADVIEW_STATE_FAILED) {
@@ -373,12 +372,6 @@ int kAdViewRenderingTimeout = 5;
                 RPSDebug("exception when start measurement: %@", exception);
             }
         }
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kAdViewRenderingTimeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            RPSDebug("web rendering timeout in state %lu", self.state);
-            if (self.state == RPS_ADVIEW_STATE_RENDERING) {
-                [self triggerSuccess]; // default trigger success
-            }
-        });
     }
 }
 
@@ -389,17 +382,25 @@ NSString *kSdkMessageTypeExpand = @"expand";
 NSString *kSdkMessageTypeCollapse = @"collapse";
 NSString *kSdkMessageTypeRegister = @"register";
 -(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-    RPSDebug("received posted message %@", message);
+    RPSDebug("received posted message %@", [message debugDescription]);
     if ([message.name isEqualToString:kSdkMessageHandler]
         && message.body) {
-        NSDictionary* messageBody = [NSJSONSerialization JSONObjectWithData:message.body options:0 error:nil];
-        RPSAdWebViewMessage* sdkMessage = [RPSAdWebViewMessage parse:messageBody];
-        RPSDebug("sdk message %@", sdkMessage);
-        if ([sdkMessage.type isEqualToString:kSdkMessageTypeRegister]) {
-            self.state = RPS_ADVIEW_STATE_MESSAGE_LISTENING;
-        } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeExpand]) {
-            [self triggerSuccess];
-        } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeCollapse]) {
+        @try {
+            if ([message.body isKindOfClass:[NSDictionary class]]) {
+                RPSAdWebViewMessage* sdkMessage = [RPSAdWebViewMessage parse:(NSDictionary*)message.body];
+                RPSDebug("sdk message %@", sdkMessage);
+                if ([sdkMessage.type isEqualToString:kSdkMessageTypeRegister]) {
+                    self.state = RPS_ADVIEW_STATE_MESSAGE_LISTENING;
+                } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeExpand]) {
+                    [self triggerSuccess];
+                } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeCollapse]) {
+                    [self triggerFailure];
+                }
+            } else {
+                RPSDebug("%@", message.body);
+            }
+        } @catch (NSException *exception) {
+            RPSDebug("exception when waiting post message: %@", exception);
             [self triggerFailure];
         }
     }

@@ -11,21 +11,18 @@
 @implementation RPSAdWebView
 
 -(instancetype)initWithFrame:(CGRect)frame {
-    WKWebViewConfiguration* config = [WKWebViewConfiguration new];
-    [RPSAdWebView setScalesPageToFit:&config];
-    
-    self = [super initWithFrame:frame configuration:config];
+    self = [super initWithFrame:frame];
     if (self) {
+        [self setScalesPageToFit];
         [self setBackgroundColor:UIColor.clearColor];
         [self setOpaque:NO];
-        
+
         for (UIView* subView in self.subviews) {
             if ([subView isKindOfClass:[UIScrollView class]]) {
                 ((UIScrollView*)subView).scrollEnabled = false;
                 ((UIScrollView*)subView).bounces = false;
             }
         }
-        
     }
     return self;
 }
@@ -35,12 +32,9 @@ NSString *jScriptViewport =
 @"document.getElementsByTagName('head')[0].appendChild(meta);"
 @"document.getElementsByTagName('body')[0].style.margin = 0;";
 
-+ (void)setScalesPageToFit:(WKWebViewConfiguration**) config {
+- (void)setScalesPageToFit {
     WKUserScript *userScript = [[WKUserScript alloc] initWithSource:jScriptViewport injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-    WKUserContentController* userCtrl = [WKUserContentController new];
-    [userCtrl addUserScript:userScript];
-    
-    (*config).userContentController = userCtrl;
+    [self.configuration.userContentController addUserScript:userScript];
 }
 
 @end

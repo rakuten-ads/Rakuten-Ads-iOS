@@ -13,8 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RPSAdWebView : WKWebView
 
--(instancetype)initWithFrame:(CGRect)frame;
-
 @end
 
 NS_ASSUME_NONNULL_END
