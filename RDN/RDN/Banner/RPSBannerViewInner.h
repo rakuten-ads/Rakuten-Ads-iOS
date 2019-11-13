@@ -41,6 +41,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 @property (atomic, readonly) RPSBannerViewState state;
 @property (nonatomic, readonly, nullable) RPSBanner* banner;
 @property (nonatomic, nullable) RPSMeasurement* measurement;
+@property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
 
 @end
 

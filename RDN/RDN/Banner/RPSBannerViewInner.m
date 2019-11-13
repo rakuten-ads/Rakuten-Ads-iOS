@@ -57,6 +57,7 @@
 
             RPSBannerAdapter* bannerAdapter = [RPSBannerAdapter new];
             bannerAdapter.adspotId = self.adSpotId;
+            bannerAdapter.json = self.jsonProperties;
             bannerAdapter.responseConsumer = self;
 
             RPSOpenRTBRequest* request = [RPSOpenRTBRequest new];
@@ -87,6 +88,14 @@
         RPSDebug("re-apply position after showed");
         [self applyContainerPosition];
     }
+}
+
+-(void)setProperties:(NSDictionary *)properties {
+    self.jsonProperties = [NSMutableDictionary dictionaryWithDictionary:properties];
+}
+
+-(NSDictionary *)properties {
+    return self.jsonProperties;
 }
 
 #pragma mark - UI frame control
@@ -291,10 +300,10 @@
         return;
     }
 
-    self.hidden = NO;
     self.state = RPS_ADVIEW_STATE_SHOWED;
     dispatch_async(dispatch_get_main_queue(), ^{
         RPSDebug("triggerSuccess");
+        self.hidden = NO;
         if (self.eventHandler) {
             @try {
                 self.eventHandler(self, RPSBannerViewEventSucceeded);
@@ -310,10 +319,10 @@
         return;
     }
 
-    self.hidden = YES;
     self.state = RPS_ADVIEW_STATE_FAILED;
     dispatch_async(dispatch_get_main_queue(), ^{
         RPSDebug("triggerFailure");
+        self.hidden = YES;
         @try {
             if (self.eventHandler) {
                 self.eventHandler(self, RPSBannerViewEventFailed);
