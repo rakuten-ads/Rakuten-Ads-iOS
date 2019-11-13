@@ -7,6 +7,7 @@
 //
 
 #import "RPSBannerViewInner.h"
+#import "RPSBannerModel.h"
 
 @implementation RPSBannerView
 
@@ -27,6 +28,8 @@
              state == RPS_ADVIEW_STATE_INIT ? @"INIT" :
              state == RPS_ADVIEW_STATE_LOADING ? @"LOADING" :
              state == RPS_ADVIEW_STATE_LOADED ? @"LOADED" :
+             state == RPS_ADVIEW_STATE_RENDERING ? @"RENDERING":
+             state == RPS_ADVIEW_STATE_MESSAGE_LISTENING ? @"MESSAGE_LISTENING":
              state == RPS_ADVIEW_STATE_SHOWED ? @"SHOWED" :
              state == RPS_ADVIEW_STATE_FAILED ? @"FAILED" :
              state == RPS_ADVIEW_STATE_CLICKED ? @"CLICKED" : @"unknown");
@@ -222,10 +225,13 @@
 
     // Web View
     self->_webView = [RPSAdWebView new];
+    [self->_webView.configuration.userContentController addScriptMessageHandler:self name:kSdkMessageHandler];
+
     self.webView.navigationDelegate = self;
     [self addSubview:self.webView];
-    [self.webView loadHTMLString:self.banner.html baseURL:nil];
-
+    [self.webView loadHTMLString:self.banner.html baseURL:[NSURL URLWithString:@"https://rakuten.co.jp"]];
+    
+    self.state = RPS_ADVIEW_STATE_RENDERING;
     self.webView.translatesAutoresizingMaskIntoConstraints = NO;
     self->_webViewConstraints = @[[self.webView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
                                   [self.webView.topAnchor constraintEqualToAnchor:self.topAnchor],
@@ -237,7 +243,6 @@
 
 #pragma mark - implement RPSBidResponseConsumer
 - (void)onBidResponseFailed {
-    self.state = RPS_ADVIEW_STATE_LOADED;
     [self triggerFailure];
 }
 
@@ -264,16 +269,6 @@
                 [self applyContainerSize];
                 [self applyContainerPosition];
                 [self layoutIfNeeded];
-
-                self.hidden = NO;
-                if (self.eventHandler) {
-                    @try {
-                        self.eventHandler(self, RPSBannerViewEventSucceeded);
-                    } @catch (NSException* exception) {
-                        RPSLog("exception when bannerOnSucesss callback: %@", exception);
-                    }
-                }
-                self.state = RPS_ADVIEW_STATE_SHOWED;
             } @catch(NSException* exception) {
                 RPSDebug("failed to apply Ad request: %@", exception);
                 [self triggerFailure];
@@ -291,7 +286,31 @@
     return banner;
 }
 
+-(void) triggerSuccess {
+    if (self.state == RPS_ADVIEW_STATE_SHOWED || self.state == RPS_ADVIEW_STATE_FAILED) {
+        return;
+    }
+
+    self.hidden = NO;
+    self.state = RPS_ADVIEW_STATE_SHOWED;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        RPSDebug("triggerSuccess");
+        if (self.eventHandler) {
+            @try {
+                self.eventHandler(self, RPSBannerViewEventSucceeded);
+            } @catch (NSException* exception) {
+                RPSLog("exception when bannerOnSucesss callback: %@", exception);
+            }
+        }
+    });
+}
+
 -(void) triggerFailure {
+    if (self.state == RPS_ADVIEW_STATE_FAILED || self.state == RPS_ADVIEW_STATE_SHOWED) {
+        return;
+    }
+
+    self.hidden = YES;
     self.state = RPS_ADVIEW_STATE_FAILED;
     dispatch_async(dispatch_get_main_queue(), ^{
         RPSDebug("triggerFailure");
@@ -343,14 +362,46 @@
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     RPSDebug("didFinishNavigation of: %@", navigation);
-    if ([self conformsToProtocol:@protocol(RPSMeasurableDelegate)]
-        && self.state != RPS_ADVIEW_STATE_FAILED) {
+    if (self.state != RPS_ADVIEW_STATE_FAILED) {
+        if ([self conformsToProtocol:@protocol(RPSMeasurableDelegate)]) {
+            @try {
+                self.measurement = [RPSMeasurement new];
+                self.measurement.measurableTarget = (id<RPSMeasurableDelegate>)self;
+                [self.measurement startMeasurement];
+            } @catch (NSException *exception) {
+                RPSDebug("exception when start measurement: %@", exception);
+            }
+        }
+    }
+}
+
+
+#pragma mark - implement WKScriptMessageHandler
+NSString *kSdkMessageHandler = @"rpsSdkInterface";
+NSString *kSdkMessageTypeExpand = @"expand";
+NSString *kSdkMessageTypeCollapse = @"collapse";
+NSString *kSdkMessageTypeRegister = @"register";
+-(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
+    RPSDebug("received posted message %@", [message debugDescription]);
+    if ([message.name isEqualToString:kSdkMessageHandler]
+        && message.body) {
         @try {
-            self.measurement = [RPSMeasurement new];
-            self.measurement.measurableTarget = (id<RPSMeasurableDelegate>)self;
-            [self.measurement startMeasurement];
+            if ([message.body isKindOfClass:[NSDictionary class]]) {
+                RPSAdWebViewMessage* sdkMessage = [RPSAdWebViewMessage parse:(NSDictionary*)message.body];
+                RPSDebug("sdk message %@", sdkMessage);
+                if ([sdkMessage.type isEqualToString:kSdkMessageTypeRegister]) {
+                    self.state = RPS_ADVIEW_STATE_MESSAGE_LISTENING;
+                } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeExpand]) {
+                    [self triggerSuccess];
+                } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeCollapse]) {
+                    [self triggerFailure];
+                }
+            } else {
+                RPSDebug("%@", message.body);
+            }
         } @catch (NSException *exception) {
-            RPSDebug("exception when start measurement: %@", exception);
+            RPSDebug("exception when waiting post message: %@", exception);
+            [self triggerFailure];
         }
     }
 }

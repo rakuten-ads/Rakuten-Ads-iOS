@@ -24,12 +24,14 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     RPS_ADVIEW_STATE_INIT,
     RPS_ADVIEW_STATE_LOADING,
     RPS_ADVIEW_STATE_LOADED,
-    RPS_ADVIEW_STATE_SHOWED,
     RPS_ADVIEW_STATE_FAILED,
+    RPS_ADVIEW_STATE_RENDERING,
+    RPS_ADVIEW_STATE_MESSAGE_LISTENING,
+    RPS_ADVIEW_STATE_SHOWED,
     RPS_ADVIEW_STATE_CLICKED,
 };
 
-@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumerDelegate>
+@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumerDelegate, WKScriptMessageHandler>
 
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
