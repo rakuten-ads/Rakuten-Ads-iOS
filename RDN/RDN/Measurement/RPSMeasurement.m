@@ -59,10 +59,8 @@ NSTimeInterval kMeasureIntervalInView = 1;
 
 -(void)startMeasurement {
     RPSDebug("startMeasurement");
-    if (!self.shouldStopMeasureImp) {
-        self.shouldStopMeasureImp = self.shouldStopMeasureImp || [self.measurableTarget measureImp];
-        RPSDebug("measurement imp : %@", self.shouldStopMeasureImp ? @"stopped" : @"continue...");
-    }
+    self.shouldStopMeasureImp = self.shouldStopMeasureImp || [self.measurableTarget measureImp];
+    RPSDebug("measurement imp : %@", self.shouldStopMeasureImp ? @"stopped" : @"continue...");
 
     if (!self.shouldStopMeasureInview) {
         RPSDebug("measurement inview enqueue");
