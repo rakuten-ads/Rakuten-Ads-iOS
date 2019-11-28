@@ -126,6 +126,13 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 }
 
 #pragma mark - UI frame control
+-(void)didMoveToSuperview {
+    RPSDebug("didMoveToSuperview");
+    [self applyContainerSize];
+    [self applyContainerPosition];
+    [self layoutIfNeeded];
+}
+
 -(void) applyContainerSize {
     if (self.superview && self.banner) {
         RPSDebug("applyContainerSize %lu", self.size);
