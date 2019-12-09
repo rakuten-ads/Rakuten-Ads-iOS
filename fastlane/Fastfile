@@ -73,13 +73,18 @@ platform :ios do
 
   lane :deploy_to_gcs_dev do |param|
     set_env param
-    google_cloud_storage_upload(
-      project: "rd2n-dev",
-      keyfile: ENV["FASTLANE_GCS_CREDENTIAL"],
-      bucket: "dev-s-cdn.rx-ad.com",
-      content_path: "#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{param[:file_name]}",
-      name: "sdk/ios/#{@sdk_map[:sdk_release_version]}/#{param[:file_name]}",
-    )
+    # google_cloud_storage_upload(
+    #   project: "rd2n-dev",
+    #   keyfile: ENV["GOOGLE_APPLICATION_CREDENTIALS"],
+    #   bucket: "rssp-dev-cdn",
+    #   content_path: "#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{param[:file_name]}",
+    #   name: "sdk/ios/#{@sdk_map[:sdk_release_version]}/#{param[:file_name]}",
+    # )
+    project = "rd2n-dev"
+    bucket = "rssp-dev-cdn"
+    source_file = "../#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{param[:file_name]}"
+    target_file = "gs://#{bucket}/sdk/ios/#{@sdk_map[:sdk_release_version]}/#{param[:file_name]}"
+    system("gsutil cp #{source_file} #{target_file}")
   end
 
   lane :deploy_to_gcs do |param|
@@ -95,7 +100,9 @@ platform :ios do
 
     pod_push(
       path: "RPS#{@sdk_map[:sdk_module_current]}.#{@sdk_map[:sdk_env]}.podspec",
-      repo: 'lob-inc',
+      repo: 'Rakuten-Ads-iOS',
+      skip_tests: true,
+      verbose: true,
     )
   end
 
@@ -104,7 +111,7 @@ platform :ios do
     version = @sdk_map[:sdk_release_version]
 
     set_github_release(
-      repository_name: "lob-inc/rssp.ios.repo",
+      repository_name: "rakuten-ads/Rakuten-Ads-iOS",
       api_token: ENV["GITHUB_TOKEN"],
       name: version,
       tag_name: version,
@@ -122,9 +129,9 @@ platform :ios do
       @sdk_map[:sdk_module_current] = module_name
       set_env param
       package
-      # deploy_to_gcs_dev file_name: "RPS#{module_name}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
-      # update_podspec
-      # github_release_tag
+      deploy_to_gcs_dev file_name: "RPS#{module_name}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
+      update_podspec
+      github_release_tag
     end
 
   end

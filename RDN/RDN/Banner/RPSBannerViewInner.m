@@ -135,7 +135,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
 -(void) applyContainerSize {
     if (self.superview && self.banner) {
-        RPSDebug("applyContainerSize %lu", self.size);
+        RPSDebug("applyContainerSize %lu", (unsigned long)self.size);
 
         [self.superview removeConstraints:self.sizeConstraints];
         [self removeConstraints:self.sizeConstraints];
@@ -172,7 +172,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
 -(void)applyContainerPosition{
     if (self.superview) {
-        RPSDebug("applyContainerPosition %lu", self.position);
+        RPSDebug("applyContainerPosition %lu", (unsigned long)self.position);
         [self.superview removeConstraints:self.positionConstraints];
 
         if (@available(ios 11.0, *)) {
@@ -377,7 +377,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 #pragma mark - implement WKNavigationDelegate
 
 -(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    RPSDebug("webview navigation decide for: %@", navigationAction.request.URL);
+    RPSDebug("webview navigation type %lu decide for: %@", (unsigned long)navigationAction.navigationType, navigationAction.request.URL);
     if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
         RPSDebug("clicked ad");
         NSURL* url = navigationAction.request.URL;
@@ -401,6 +401,10 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
         RPSDebug("WKNavigationActionPolicyAllow");
         decisionHandler(WKNavigationActionPolicyAllow);
     }
+}
+
+-(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    RPSDebug("didStartProvisionalNavigation of: %@", navigation);
 }
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {

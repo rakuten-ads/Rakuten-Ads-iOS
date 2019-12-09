@@ -56,7 +56,7 @@
             }
         }
     } else {
-        RPSLog("OpenRTB responsed status code: %ld", (long)response.statusCode);
+        RPSLog("OpenRTB responsed status code: %lu", (unsigned long)response.statusCode);
     }
 
     // sort by id

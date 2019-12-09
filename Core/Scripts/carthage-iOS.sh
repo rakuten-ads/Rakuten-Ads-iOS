@@ -38,7 +38,7 @@ carthage archive --output $SDK_OUTPUT ${SDK_PRODUCT_NAME}
 if test -f $SDK_OUTPUT; then
 	echo "-----prune dSYM files -----"
 	cd $SDK_OUTPUT_DIR
-	unzip $SDK_NAME -d .
+	unzip -o $SDK_NAME -d .
 	find . -name *.dSYM -o -name *.bcsymbolmap | xargs rm -r
 	rm $SDK_NAME
 	zip -r $SDK_NAME ./Carthage -x .DS_Store
