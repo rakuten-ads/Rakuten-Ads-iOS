@@ -27,19 +27,17 @@
 
 -(void)setPropertyGenre:(RPSBannerViewGenreProperty *)matchingGenre {
     if (matchingGenre) {
-        NSDictionary* jsonGenre = @{
+        self.jsonProperties[@"genre"] = @{
             @"master_id" : @(matchingGenre.masterId),
-            @"code" : matchingGenre.code ?: [NSNull null],
-            @"match" : matchingGenre.match ?: [NSNull null],
+            @"code" : matchingGenre.code ?: NSNull.null,
+            @"match" : matchingGenre.match ?: NSNull.null,
         };
-
-        [self.jsonProperties setObject:jsonGenre forKey:@"genre"];
     }
 }
 
 -(void)setPropertyTargeting:(NSDictionary *)target {
     if (target) {
-        [self.jsonProperties setObject:target forKey:@"targeting"];
+        self.jsonProperties[@"targeting"] = target;
     }
 }
 

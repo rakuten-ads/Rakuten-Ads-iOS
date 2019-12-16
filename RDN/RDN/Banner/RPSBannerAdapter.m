@@ -43,6 +43,17 @@
     return impList;
 }
 
+-(NSDictionary *)getApp {
+    if (self.appContent) {
+       return @{
+           @"content" : self.appContent
+       };
+    } else {
+        return @{};
+    }
+}
+
+
 -(NSArray<NSString *> *)adspotIdList {
     if (self.adspotId) {
         return @[self.adspotId];

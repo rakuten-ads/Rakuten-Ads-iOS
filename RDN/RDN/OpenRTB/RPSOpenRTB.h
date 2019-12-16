@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol RPSOpenRTBAdapterDelegate <NSObject>
 
 -(NSArray*) getImp;
+-(NSDictionary*) getApp;
 
 -(NSString*) getURL;
 -(void) onBidResponse:(NSHTTPURLResponse*) response withBidList:(NSArray*) bidList;

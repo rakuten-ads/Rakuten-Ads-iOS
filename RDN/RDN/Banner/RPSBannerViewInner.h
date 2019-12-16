@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, nullable) RPSBanner* banner;
 @property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
+@property (nonatomic, nullable) NSMutableDictionary* appContent;
 
 @end
 

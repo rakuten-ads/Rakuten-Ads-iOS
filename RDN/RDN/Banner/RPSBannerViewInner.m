@@ -7,7 +7,6 @@
 //
 
 #import "RPSBannerViewInner.h"
-#import "RPSBannerModel.h"
 
 typedef void (^RPSBannerViewEventHandler)(RPSBannerView* view, RPSBannerViewEvent event);
 
@@ -22,7 +21,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     RPS_ADVIEW_STATE_CLICKED,
 };
 
-@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumerDelegate, WKScriptMessageHandler>
+@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumerDelegate>
 
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
@@ -85,6 +84,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
             RPSBannerAdapter* bannerAdapter = [RPSBannerAdapter new];
             bannerAdapter.adspotId = self.adSpotId;
             bannerAdapter.json = self.jsonProperties;
+            bannerAdapter.appContent = self.appContent;
             bannerAdapter.responseConsumer = self;
 
             RPSOpenRTBRequest* request = [RPSOpenRTBRequest new];
@@ -268,7 +268,15 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
     // Web View
     self->_webView = [RPSAdWebView new];
-    [self->_webView.configuration.userContentController addScriptMessageHandler:self name:kSdkMessageHandler];
+    [self->_webView addMessageHandler:[RPSAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handler:^(RPSAdWebViewMessage * _Nonnull message) {
+        [self triggerSuccess];
+    }]];
+    [self->_webView addMessageHandler:[RPSAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeCollapse handler:^(RPSAdWebViewMessage * _Nonnull message) {
+        [self triggerFailure];
+    }]];
+    [self->_webView addMessageHandler:[RPSAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeRegister handler:^(RPSAdWebViewMessage * _Nonnull message) {
+        self.state = RPS_ADVIEW_STATE_MESSAGE_LISTENING;
+    }]];
 
     self.webView.navigationDelegate = self;
     [self addSubview:self.webView];
@@ -418,37 +426,6 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
             } @catch (NSException *exception) {
                 RPSDebug("exception when start measurement: %@", exception);
             }
-        }
-    }
-}
-
-
-#pragma mark - implement WKScriptMessageHandler
-NSString *kSdkMessageHandler = @"rpsSdkInterface";
-NSString *kSdkMessageTypeExpand = @"expand";
-NSString *kSdkMessageTypeCollapse = @"collapse";
-NSString *kSdkMessageTypeRegister = @"register";
--(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-    RPSDebug("received posted message %@", [message debugDescription]);
-    if ([message.name isEqualToString:kSdkMessageHandler]
-        && message.body) {
-        @try {
-            if ([message.body isKindOfClass:[NSDictionary class]]) {
-                RPSAdWebViewMessage* sdkMessage = [RPSAdWebViewMessage parse:(NSDictionary*)message.body];
-                RPSDebug("sdk message %@", sdkMessage);
-                if ([sdkMessage.type isEqualToString:kSdkMessageTypeRegister]) {
-                    self.state = RPS_ADVIEW_STATE_MESSAGE_LISTENING;
-                } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeExpand]) {
-                    [self triggerSuccess];
-                } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeCollapse]) {
-                    [self triggerFailure];
-                }
-            } else {
-                RPSDebug("%@", message.body);
-            }
-        } @catch (NSException *exception) {
-            RPSDebug("exception when waiting post message: %@", exception);
-            [self triggerFailure];
         }
     }
 }

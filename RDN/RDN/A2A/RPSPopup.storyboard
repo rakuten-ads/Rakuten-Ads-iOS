@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Z6N-01-6dh">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Popup View Controller-->
+        <scene sceneID="QC1-q7-aKc">
+            <objects>
+                <viewController id="Z6N-01-6dh" customClass="RPSPopupViewController" customModule="RPSRDN" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="T94-ix-LKJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Seg-Mv-BLp">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="aqE-bo-Oz0">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="VPD-RO-SWy">
+                                            <connections>
+                                                <action selector="onExit:" destination="Z6N-01-6dh" id="atm-3E-b4x"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zkr-5c-jql" customClass="RPSAdWebView" customModule="RPSRDN" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Seg-Mv-BLp" firstAttribute="top" secondItem="VQX-Qf-idR" secondAttribute="top" id="1xK-xp-32p"/>
+                            <constraint firstItem="Zkr-5c-jql" firstAttribute="leading" secondItem="VQX-Qf-idR" secondAttribute="leading" id="3X7-Zt-HII"/>
+                            <constraint firstItem="Zkr-5c-jql" firstAttribute="trailing" secondItem="VQX-Qf-idR" secondAttribute="trailing" id="Ytx-Ln-13O"/>
+                            <constraint firstItem="Seg-Mv-BLp" firstAttribute="centerX" secondItem="T94-ix-LKJ" secondAttribute="centerX" id="b8o-Se-yOv"/>
+                            <constraint firstItem="Zkr-5c-jql" firstAttribute="top" secondItem="Seg-Mv-BLp" secondAttribute="bottom" id="c41-e8-qR3"/>
+                            <constraint firstItem="Zkr-5c-jql" firstAttribute="bottom" secondItem="VQX-Qf-idR" secondAttribute="bottom" id="n6m-jr-hfJ"/>
+                            <constraint firstItem="Seg-Mv-BLp" firstAttribute="leading" secondItem="VQX-Qf-idR" secondAttribute="leading" id="pGt-aF-gDz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VQX-Qf-idR"/>
+                    </view>
+                    <connections>
+                        <outlet property="adWebView" destination="Zkr-5c-jql" id="JJ4-kK-2m2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YAR-TA-ggF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23.188405797101453" y="56.919642857142854"/>
+        </scene>
+    </scenes>
+</document>
