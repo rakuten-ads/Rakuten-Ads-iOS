@@ -9,7 +9,7 @@
 #import "RPSAdWebView.h"
 
 @implementation RPSAdWebView {
-    NSMutableArray<RPSAdWebViewMessageHandler*>* _messageHandlers;
+    NSMutableDictionary<NSString*, RPSAdWebViewMessageHandler*>* _messageHandlers;
 }
 
 @synthesize messageHandlers = _messageHandlers;
@@ -41,39 +41,29 @@ NSString *jScriptViewport =
     [self.configuration.userContentController addUserScript:userScript];
 }
 
+NSString *kSdkMessageHandlerName = @"rpsSdkInterface";
 -(void)addMessageHandler:(RPSAdWebViewMessageHandler *)handler {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self.configuration.userContentController addScriptMessageHandler:self name:kSdkMessageHandlerName];
-        self->_messageHandlers = [NSMutableArray array];
+        self->_messageHandlers = [NSMutableDictionary dictionary];
     });
-    [self->_messageHandlers addObject:handler];
+    [self->_messageHandlers setObject:handler forKey:handler.type];
 }
 
 -(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-    RPSDebug("received posted message %@", [message debugDescription]);
-
+    RPSDebug("received posted raw message %@", [message debugDescription]);
     if ([message.name isEqualToString:kSdkMessageHandlerName]
         && message.body) {
         @try {
             if ([message.body isKindOfClass:[NSDictionary class]]) {
                 RPSAdWebViewMessage* sdkMessage = [RPSAdWebViewMessage parse:(NSDictionary*)message.body];
-                RPSDebug("sdk message %@", sdkMessage);
-                [self.messageHandlers enumerateObjectsUsingBlock:^(RPSAdWebViewMessageHandler * _Nonnull messageHandler, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if ([sdkMessage.type isEqualToString:messageHandler.type]) {
-                        messageHandler.handle(sdkMessage);
-                        *stop = YES;
-                    }
-                }];
+                RPSDebug("translate to sdk message %@", sdkMessage);
+                self.messageHandlers[sdkMessage.type].handle(sdkMessage);
             }
         } @catch (NSException *exception) {
             RPSDebug("exception when waiting post message: %@", exception);
-            [self.messageHandlers enumerateObjectsUsingBlock:^(RPSAdWebViewMessageHandler * _Nonnull messageHandler, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ([kSdkMessageTypeOther isEqualToString:messageHandler.type]) {
-                    messageHandler.handle(nil);
-                    *stop = YES;
-                }
-            }];
+            self.messageHandlers[kSdkMessageTypeOther].handle(nil);
         }
     }
 }

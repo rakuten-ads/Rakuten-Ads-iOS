@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RPSAdWebView : WKWebView <WKScriptMessageHandler>
 
-@property(nonatomic,readonly) NSArray<RPSAdWebViewMessageHandler*>* messageHandlers;
+@property(nonatomic,readonly) NSDictionary<NSString*, RPSAdWebViewMessageHandler*>* messageHandlers;
 
 -(void) addMessageHandler:(RPSAdWebViewMessageHandler*) handler;
 

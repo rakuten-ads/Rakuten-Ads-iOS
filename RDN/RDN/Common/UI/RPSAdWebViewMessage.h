@@ -7,11 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <WebKit/WebKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXPORT NSString *kSdkMessageHandlerName;
 FOUNDATION_EXPORT NSString *kSdkMessageTypeOther;
 FOUNDATION_EXPORT NSString *kSdkMessageTypeExpand;
 FOUNDATION_EXPORT NSString *kSdkMessageTypeCollapse;
@@ -31,15 +29,17 @@ FOUNDATION_EXPORT NSString *kSdkMessageTypeOpenPopup;
 
 
 typedef void (^RPSAdWebViewMessageHandle)(RPSAdWebViewMessage* __nullable message);
+
 @interface RPSAdWebViewMessageHandler : NSObject
 
-@property(nonatomic, readonly) NSString* type;
-@property(nonatomic, readonly) RPSAdWebViewMessageHandle handle;
+@property(nonatomic, readonly, copy) NSString* type;
+@property(nonatomic, readonly, copy) RPSAdWebViewMessageHandle handle;
 
 +(instancetype)new NS_UNAVAILABLE;
 -(instancetype)init NS_UNAVAILABLE;
 
-+(instancetype) messageHandlerWithType:(NSString*) type handler:(RPSAdWebViewMessageHandle) handle;
+-(instancetype) initWithType:(NSString*) type handle:(RPSAdWebViewMessageHandle) handle;
++(instancetype) messageHandlerWithType:(NSString*) type handle:(RPSAdWebViewMessageHandle) handle;
 
 @end
 

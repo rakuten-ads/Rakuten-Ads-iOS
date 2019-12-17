@@ -15,6 +15,7 @@
 #import <RPSCore/RPSValid.h>
 #import "RPSDefines.h"
 #import "RPSMeasurement.h"
+#import "RPSAdWebViewMessage.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, nullable) RPSBanner* banner;
 @property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
 @property (nonatomic, nullable) NSMutableDictionary* appContent;
+@property (nonatomic, nullable) RPSAdWebViewMessageHandler* openPopupHandler;
 
 @end
 

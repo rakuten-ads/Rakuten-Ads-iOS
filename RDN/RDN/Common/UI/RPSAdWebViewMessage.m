@@ -7,10 +7,8 @@
 //
 
 #import "RPSAdWebViewMessage.h"
-#import "RPSPopupViewController.h"
 #import <RPSCore/RPSJSONObject.h>
 
-NSString *kSdkMessageHandlerName = @"rpsSdkInterface";
 NSString *kSdkMessageTypeOther = @"other";
 NSString *kSdkMessageTypeExpand = @"expand";
 NSString *kSdkMessageTypeCollapse = @"collapse";
@@ -29,75 +27,33 @@ NSString *kSdkMessageTypeOpenPopup = @"open_popup";
 }
 
 -(NSString *)description {
-    return [NSString stringWithFormat:@"vendor: %@\n"
-            @"type: %@"
-            @"url:n %@"
-            ,
+    return [NSString stringWithFormat:@"{"
+            @"vendor: %@"
+            @", type: %@"
+            @", url: %@"
+            @" }",
             self.vendor,
             self.type,
             self.url,
             nil];
 }
 
--(void)handleMessage:(RPSAdWebViewMessage *)message {
+@end
 
+@implementation RPSAdWebViewMessageHandler
+
+- (instancetype)initWithType:(NSString *)type handle:(RPSAdWebViewMessageHandle)handle {
+    self = [super init];
+    if (self) {
+        self->_type = [type copy];
+        self->_handle = [handle copy];
+    }
+    return self;
 }
 
-#pragma mark - implement WKScriptMessageHandler
-
-//-(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-//    RPSDebug("received posted message %@", [message debugDescription]);
-//    if ([message.name isEqualToString:kSdkMessageHandlerName]
-//        && message.body) {
-//        @try {
-//            if ([message.body isKindOfClass:[NSDictionary class]]) {
-//                RPSAdWebViewMessage* sdkMessage = [RPSAdWebViewMessage parse:(NSDictionary*)message.body];
-//                RPSDebug("sdk message %@", sdkMessage);
-//                if ([sdkMessage.type isEqualToString:kSdkMessageTypeRegister]) {
-//                    self.state = RPS_ADVIEW_STATE_MESSAGE_LISTENING;
-//                } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeExpand]) {
-//                    [self triggerSuccess];
-//                } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeCollapse]) {
-//                    [self triggerFailure];
-//                } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeOpenPopup]) {
-//                    [self handlePopup:sdkMessage.url];
-//                }
-//            } else {
-//                RPSDebug("%@", message.body);
-//            }
-//        } @catch (NSException *exception) {
-//            RPSDebug("exception when waiting post message: %@", exception);
-//            [self triggerFailure];
-//        }
-//    }
-//}
-
--(void) handlePopup:(NSString*) url {
-    RPSDebug("open popup url: %@", url);
-    NSURL* nsurl = [NSURL URLWithString:url];
-    if (nsurl) {
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"RPSPopup" bundle:[NSBundle bundleForClass:self.class]];
-        RPSPopupViewController* popupViewController = (RPSPopupViewController*)[storyboard instantiateInitialViewController];
-        UIViewController* root = [UIApplication sharedApplication].keyWindow.rootViewController;
-        UIViewController* top = [self topViewControllerFrom:root];
-        [top presentViewController:popupViewController animated:YES completion:nil];
-    }
-}
-
--(UIViewController*) topViewControllerFrom:(UIViewController*) viewController {
-    UIViewController* current = viewController;
-    UIViewController* top = current;
-    while (current) {
-        top = current;
-        if ([current isKindOfClass:[UITabBarController class]]) {
-            current = ((UITabBarController*)current).selectedViewController;
-        } else if ([viewController isKindOfClass:[UINavigationController class]]) {
-            current = ((UINavigationController*)current).visibleViewController;
-        } else if (viewController.presentedViewController) {
-            current = current.presentedViewController;
-        }
-    }
-    return top;
++ (instancetype)messageHandlerWithType:(NSString *)type handle:(RPSAdWebViewMessageHandle)handle {
+    RPSAdWebViewMessageHandler* handler = [[RPSAdWebViewMessageHandler alloc] initWithType:type handle:handle];
+    return handler;
 }
 
 @end

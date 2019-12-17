@@ -268,15 +268,23 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
     // Web View
     self->_webView = [RPSAdWebView new];
-    [self->_webView addMessageHandler:[RPSAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handler:^(RPSAdWebViewMessage * _Nonnull message) {
+    [self->_webView addMessageHandler:[RPSAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handle:^(RPSAdWebViewMessage * _Nonnull message) {
+        RPSDebug("handle %@", message.type);
         [self triggerSuccess];
     }]];
-    [self->_webView addMessageHandler:[RPSAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeCollapse handler:^(RPSAdWebViewMessage * _Nonnull message) {
+    [self->_webView addMessageHandler:[RPSAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeCollapse handle:^(RPSAdWebViewMessage * _Nonnull message) {
+        RPSDebug("handle %@", message.type);
         [self triggerFailure];
     }]];
-    [self->_webView addMessageHandler:[RPSAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeRegister handler:^(RPSAdWebViewMessage * _Nonnull message) {
+    [self->_webView addMessageHandler:[RPSAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeRegister handle:^(RPSAdWebViewMessage * _Nonnull message) {
+        RPSDebug("handle %@", message.type);
         self.state = RPS_ADVIEW_STATE_MESSAGE_LISTENING;
     }]];
+
+    // message type open_popup, for like a2a
+    if (self.openPopupHandler) {
+        [self->_webView addMessageHandler:self.openPopupHandler];
+    }
 
     self.webView.navigationDelegate = self;
     [self addSubview:self.webView];
