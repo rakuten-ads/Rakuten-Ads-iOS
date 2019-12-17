@@ -46,7 +46,7 @@
     NSURL* nsurl = [NSURL URLWithString:url];
     if (nsurl) {
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"RPSPopup" bundle:[NSBundle bundleForClass:self.class]];
-        RPSPopupViewController* popupViewController = (RPSPopupViewController*)[storyboard instantiateInitialViewController];
+        RPSPopupViewController* popupViewController = (RPSPopupViewController*)[storyboard instantiateViewControllerWithIdentifier:@"RPSPopupViewController"];
         UIViewController* root = [UIApplication sharedApplication].keyWindow.rootViewController;
         UIViewController* top = [self topViewControllerFrom:root];
         [top presentViewController:popupViewController animated:YES completion:nil];

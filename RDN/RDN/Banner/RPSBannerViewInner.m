@@ -288,7 +288,8 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
     self.webView.navigationDelegate = self;
     [self addSubview:self.webView];
-    [self.webView loadHTMLString:self.banner.html baseURL:[NSURL URLWithString:@"https://rakuten.co.jp"]];
+//    [self.webView loadHTMLString:self.banner.html baseURL:[NSURL URLWithString:@"https://rakuten.co.jp"]];
+    [self.webView loadHTMLString:self.banner.html baseURL:[NSURL URLWithString:@"https://dev-s-dlv.rmp.rakuten.co.jp"]];
     
     self.state = RPS_ADVIEW_STATE_RENDERING;
     self.webView.translatesAutoresizingMaskIntoConstraints = NO;

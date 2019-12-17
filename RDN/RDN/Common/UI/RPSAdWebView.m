@@ -59,11 +59,17 @@ NSString *kSdkMessageHandlerName = @"rpsSdkInterface";
             if ([message.body isKindOfClass:[NSDictionary class]]) {
                 RPSAdWebViewMessage* sdkMessage = [RPSAdWebViewMessage parse:(NSDictionary*)message.body];
                 RPSDebug("translate to sdk message %@", sdkMessage);
-                self.messageHandlers[sdkMessage.type].handle(sdkMessage);
+                RPSAdWebViewMessageHandler* handler = self.messageHandlers[sdkMessage.type];
+                if (handler) {
+                    handler.handle(sdkMessage);
+                }
             }
         } @catch (NSException *exception) {
             RPSDebug("exception when waiting post message: %@", exception);
-            self.messageHandlers[kSdkMessageTypeOther].handle(nil);
+            RPSAdWebViewMessageHandler* handler = self.messageHandlers[kSdkMessageTypeOther];
+            if (handler) {
+                handler.handle(nil);
+            }
         }
     }
 }
