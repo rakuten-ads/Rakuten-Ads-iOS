@@ -14,6 +14,17 @@
     [super viewDidLoad];
 
     if (self.url) {
+        self.adWebView = [RPSAdWebView new];
+        [self.adWebViewContainerView addSubview:self.adWebView];
+        
+        self.adWebView.translatesAutoresizingMaskIntoConstraints = NO;
+        [NSLayoutConstraint activateConstraints:@[
+            [self.adWebView.leadingAnchor constraintEqualToAnchor:self.adWebViewContainerView.leadingAnchor],
+            [self.adWebView.topAnchor constraintEqualToAnchor:self.adWebViewContainerView.topAnchor],
+            [self.adWebView.trailingAnchor constraintEqualToAnchor:self.adWebViewContainerView.trailingAnchor],
+            [self.adWebView.bottomAnchor constraintEqualToAnchor:self.adWebViewContainerView.bottomAnchor],
+        ]];
+        
         [self.adWebView loadRequest:[NSURLRequest requestWithURL:self.url]];
     }
 }

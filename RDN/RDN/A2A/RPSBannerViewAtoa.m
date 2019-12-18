@@ -45,8 +45,9 @@
     RPSDebug("open popup url: %@", url);
     NSURL* nsurl = [NSURL URLWithString:url];
     if (nsurl) {
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"RPSPopup" bundle:[NSBundle bundleForClass:self.class]];
-        RPSPopupViewController* popupViewController = (RPSPopupViewController*)[storyboard instantiateViewControllerWithIdentifier:@"RPSPopupViewController"];
+        RPSPopupViewController* popupViewController = [[RPSPopupViewController alloc] initWithNibName:@"RPSPopup" bundle:[NSBundle bundleForClass:self.class]];
+        popupViewController.url = nsurl;
+
         UIViewController* root = [UIApplication sharedApplication].keyWindow.rootViewController;
         UIViewController* top = [self topViewControllerFrom:root];
         [top presentViewController:popupViewController animated:YES completion:nil];
@@ -60,9 +61,11 @@
         top = current;
         if ([current isKindOfClass:[UITabBarController class]]) {
             current = ((UITabBarController*)current).selectedViewController;
-        } else if ([viewController isKindOfClass:[UINavigationController class]]) {
+        } else if ([current isKindOfClass:[UINavigationController class]]) {
             current = ((UINavigationController*)current).visibleViewController;
-        } else if (viewController.presentedViewController) {
+        } else if ([current isKindOfClass:[UISplitViewController class]]){
+            current = ((UISplitViewController*)current).childViewControllers.lastObject;
+        } else {
             current = current.presentedViewController;
         }
     }

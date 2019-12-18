@@ -32,7 +32,6 @@
 		32564D9D2227865100DB4DBF /* RPSBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D9B2227865100DB4DBF /* RPSBannerAdapter.m */; };
 		3256FA4D23A16E81005D9E0E /* RPSBannerViewAtoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 3256FA4B23A16E81005D9E0E /* RPSBannerViewAtoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3256FA4E23A16E81005D9E0E /* RPSBannerViewAtoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 3256FA4C23A16E81005D9E0E /* RPSBannerViewAtoa.m */; };
-		3256FA5523A1C522005D9E0E /* RPSPopup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3256FA5423A1C522005D9E0E /* RPSPopup.storyboard */; };
 		3256FA5823A1C944005D9E0E /* RPSPopupViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3256FA5623A1C944005D9E0E /* RPSPopupViewController.h */; };
 		3256FA5923A1C944005D9E0E /* RPSPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3256FA5723A1C944005D9E0E /* RPSPopupViewController.m */; };
 		325FF74121E605F100A899CF /* RPSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RPSCore.framework */; };
@@ -57,6 +56,7 @@
 		32F2596121E597E5001FD9C0 /* RPSBannerViewInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595221E597E5001FD9C0 /* RPSBannerViewInner.m */; };
 		32F2596721E597E5001FD9C0 /* RPSAdWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595B21E597E5001FD9C0 /* RPSAdWebView.m */; };
 		32F2596821E597E5001FD9C0 /* RPSAdWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595C21E597E5001FD9C0 /* RPSAdWebView.h */; };
+		32FA22BF23A9FD0A00801B9F /* RPSPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32FA22BE23A9FD0A00801B9F /* RPSPopup.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,7 +103,6 @@
 		32564D9B2227865100DB4DBF /* RPSBannerAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerAdapter.m; sourceTree = "<group>"; };
 		3256FA4B23A16E81005D9E0E /* RPSBannerViewAtoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBannerViewAtoa.h; sourceTree = "<group>"; };
 		3256FA4C23A16E81005D9E0E /* RPSBannerViewAtoa.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerViewAtoa.m; sourceTree = "<group>"; };
-		3256FA5423A1C522005D9E0E /* RPSPopup.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RPSPopup.storyboard; sourceTree = "<group>"; };
 		3256FA5623A1C944005D9E0E /* RPSPopupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSPopupViewController.h; sourceTree = "<group>"; };
 		3256FA5723A1C944005D9E0E /* RPSPopupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSPopupViewController.m; sourceTree = "<group>"; };
 		325FF74521F0577900A899CF /* rpsrdn.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = rpsrdn.modulemap; sourceTree = "<group>"; };
@@ -134,6 +133,7 @@
 		32F2595C21E597E5001FD9C0 /* RPSAdWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSAdWebView.h; sourceTree = "<group>"; };
 		32F25A1221E5A4E5001FD9C0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		32F25A1721E5A96C001FD9C0 /* Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core.xcodeproj; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
+		32FA22BE23A9FD0A00801B9F /* RPSPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RPSPopup.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,9 +204,9 @@
 			children = (
 				3256FA4B23A16E81005D9E0E /* RPSBannerViewAtoa.h */,
 				3256FA4C23A16E81005D9E0E /* RPSBannerViewAtoa.m */,
-				3256FA5423A1C522005D9E0E /* RPSPopup.storyboard */,
 				3256FA5623A1C944005D9E0E /* RPSPopupViewController.h */,
 				3256FA5723A1C944005D9E0E /* RPSPopupViewController.m */,
+				32FA22BE23A9FD0A00801B9F /* RPSPopup.xib */,
 			);
 			path = A2A;
 			sourceTree = "<group>";
@@ -444,7 +444,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3256FA5523A1C522005D9E0E /* RPSPopup.storyboard in Resources */,
+				32FA22BF23A9FD0A00801B9F /* RPSPopup.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RPSPopupViewController : UIViewController
 
 @property (nonatomic) NSURL* url;
-@property (weak, nonatomic) IBOutlet RPSAdWebView *adWebView;
+@property (nonatomic) RPSAdWebView* adWebView;
+
+@property (weak, nonatomic) IBOutlet UIView *adWebViewContainerView;
+
 
 @end
 
