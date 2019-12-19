@@ -9,6 +9,7 @@
 #import "RPSBannerViewAtoa.h"
 #import "RPSBannerViewInner.h"
 #import "RPSPopupViewController.h"
+#import "RPSUIViewController+.h"
 
 @implementation RPSBannerViewAppContent
 -(instancetype) initWithTitle:(NSString *)title keywords:(NSArray<NSString *> *)keywords url:(NSString *)url {
@@ -49,27 +50,9 @@
         popupViewController.url = nsurl;
 
         UIViewController* root = [UIApplication sharedApplication].keyWindow.rootViewController;
-        UIViewController* top = [self topViewControllerFrom:root];
+        UIViewController* top = [UIViewController topViewControllerInHierarchy:root];
         [top presentViewController:popupViewController animated:YES completion:nil];
     }
-}
-
--(UIViewController*) topViewControllerFrom:(UIViewController*) viewController {
-    UIViewController* current = viewController;
-    UIViewController* top = current;
-    while (current) {
-        top = current;
-        if ([current isKindOfClass:[UITabBarController class]]) {
-            current = ((UITabBarController*)current).selectedViewController;
-        } else if ([current isKindOfClass:[UINavigationController class]]) {
-            current = ((UINavigationController*)current).visibleViewController;
-        } else if ([current isKindOfClass:[UISplitViewController class]]){
-            current = ((UISplitViewController*)current).childViewControllers.lastObject;
-        } else {
-            current = current.presentedViewController;
-        }
-    }
-    return top;
 }
 
 @end
