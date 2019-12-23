@@ -43,11 +43,10 @@ NSString *jScriptViewport =
 
 NSString *kSdkMessageHandlerName = @"rpsSdkInterface";
 -(void)addMessageHandler:(RPSAdWebViewMessageHandler *)handler {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    if (!self.messageHandlers) {
         [self.configuration.userContentController addScriptMessageHandler:self name:kSdkMessageHandlerName];
         self->_messageHandlers = [NSMutableDictionary dictionary];
-    });
+    }
     [self->_messageHandlers setObject:handler forKey:handler.type];
 }
 
