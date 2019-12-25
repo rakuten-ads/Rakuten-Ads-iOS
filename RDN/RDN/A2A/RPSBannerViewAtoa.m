@@ -44,7 +44,25 @@
 
 -(void) handlePopup:(NSString*) url {
     RPSDebug("open popup url: %@", url);
-    NSURL* nsurl = [NSURL URLWithString:url];
+    NSURLComponents* urlComp = [NSURLComponents componentsWithString:url];
+    if (!urlComp) {
+        RPSDebug("illegal url format: %@", url);
+        return;
+    }
+
+    NSMutableArray<NSURLQueryItem*>* mutableQueryItems = [urlComp.queryItems mutableCopy];
+    BOOL hasAdspotId = false;
+    [urlComp.queryItems enumerateObjectsUsingBlock:^(NSURLQueryItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([item.name isEqualToString:@"id"]) {
+            hasAdspotId = true;
+        }
+    }];
+    if (!hasAdspotId && self.adSpotId) {
+        RPSDebug("fill adspot Id: %@", self.adSpotId);
+        [mutableQueryItems addObject:[NSURLQueryItem queryItemWithName:@"id" value:self.adSpotId]];
+    }
+    urlComp.queryItems = mutableQueryItems;
+    NSURL* nsurl = urlComp.URL;
     if (nsurl) {
         RPSPopupViewController* popupViewController = [[RPSPopupViewController alloc] initWithNibName:@"RPSPopup" bundle:[NSBundle bundleForClass:self.class]];
         popupViewController.url = nsurl;
@@ -54,5 +72,7 @@
         [top presentViewController:popupViewController animated:YES completion:nil];
     }
 }
+
+
 
 @end
