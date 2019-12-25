@@ -43,6 +43,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     if (self) {
         self.hidden = YES;
         self.state = RPS_ADVIEW_STATE_INIT;
+        self.jsonProperties = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -437,6 +438,17 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
             }
         }
     }
+}
+
+-(NSString *)description {
+    return [NSString stringWithFormat:
+            @"{\n"
+            @"adspotId: %@\n"
+            @"properties: %@\n"
+            @"}",
+            self.adSpotId,
+            self.properties,
+            nil];
 }
 
 #if DEBUG

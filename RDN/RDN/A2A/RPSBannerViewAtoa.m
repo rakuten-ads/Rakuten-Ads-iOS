@@ -51,7 +51,7 @@
     }
 
     NSMutableArray<NSURLQueryItem*>* mutableQueryItems = [urlComp.queryItems mutableCopy];
-    BOOL hasAdspotId = false;
+    __block BOOL hasAdspotId = false;
     [urlComp.queryItems enumerateObjectsUsingBlock:^(NSURLQueryItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([item.name isEqualToString:@"id"]) {
             hasAdspotId = true;
