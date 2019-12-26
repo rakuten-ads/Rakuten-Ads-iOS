@@ -7,7 +7,6 @@
 //
 
 #import "RPSBannerViewInner.h"
-#import "RPSBannerModel.h"
 
 typedef void (^RPSBannerViewEventHandler)(RPSBannerView* view, RPSBannerViewEvent event);
 
@@ -22,7 +21,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     RPS_ADVIEW_STATE_CLICKED,
 };
 
-@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumerDelegate, WKScriptMessageHandler>
+@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumerDelegate>
 
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
@@ -44,6 +43,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     if (self) {
         self.hidden = YES;
         self.state = RPS_ADVIEW_STATE_INIT;
+        self.jsonProperties = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -85,6 +85,7 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
             RPSBannerAdapter* bannerAdapter = [RPSBannerAdapter new];
             bannerAdapter.adspotId = self.adSpotId;
             bannerAdapter.json = self.jsonProperties;
+            bannerAdapter.appContent = self.appContent;
             bannerAdapter.responseConsumer = self;
 
             RPSOpenRTBRequest* request = [RPSOpenRTBRequest new];
@@ -268,7 +269,23 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
     // Web View
     self->_webView = [RPSAdWebView new];
-    [self->_webView.configuration.userContentController addScriptMessageHandler:self name:kSdkMessageHandler];
+    [self->_webView addMessageHandler:[RPSAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handle:^(RPSAdWebViewMessage * _Nonnull message) {
+        RPSDebug("handle %@", message.type);
+        [self triggerSuccess];
+    }]];
+    [self->_webView addMessageHandler:[RPSAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeCollapse handle:^(RPSAdWebViewMessage * _Nonnull message) {
+        RPSDebug("handle %@", message.type);
+        [self triggerFailure];
+    }]];
+    [self->_webView addMessageHandler:[RPSAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeRegister handle:^(RPSAdWebViewMessage * _Nonnull message) {
+        RPSDebug("handle %@", message.type);
+        self.state = RPS_ADVIEW_STATE_MESSAGE_LISTENING;
+    }]];
+
+    // message type open_popup, for like a2a
+    if (self.openPopupHandler) {
+        [self->_webView addMessageHandler:self.openPopupHandler];
+    }
 
     self.webView.navigationDelegate = self;
     [self addSubview:self.webView];
@@ -422,35 +439,15 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
     }
 }
 
-
-#pragma mark - implement WKScriptMessageHandler
-NSString *kSdkMessageHandler = @"rpsSdkInterface";
-NSString *kSdkMessageTypeExpand = @"expand";
-NSString *kSdkMessageTypeCollapse = @"collapse";
-NSString *kSdkMessageTypeRegister = @"register";
--(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-    RPSDebug("received posted message %@", [message debugDescription]);
-    if ([message.name isEqualToString:kSdkMessageHandler]
-        && message.body) {
-        @try {
-            if ([message.body isKindOfClass:[NSDictionary class]]) {
-                RPSAdWebViewMessage* sdkMessage = [RPSAdWebViewMessage parse:(NSDictionary*)message.body];
-                RPSDebug("sdk message %@", sdkMessage);
-                if ([sdkMessage.type isEqualToString:kSdkMessageTypeRegister]) {
-                    self.state = RPS_ADVIEW_STATE_MESSAGE_LISTENING;
-                } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeExpand]) {
-                    [self triggerSuccess];
-                } else if ([sdkMessage.type isEqualToString:kSdkMessageTypeCollapse]) {
-                    [self triggerFailure];
-                }
-            } else {
-                RPSDebug("%@", message.body);
-            }
-        } @catch (NSException *exception) {
-            RPSDebug("exception when waiting post message: %@", exception);
-            [self triggerFailure];
-        }
-    }
+-(NSString *)description {
+    return [NSString stringWithFormat:
+            @"{\n"
+            @"adspotId: %@\n"
+            @"properties: %@\n"
+            @"}",
+            self.adSpotId,
+            self.properties,
+            nil];
 }
 
 #if DEBUG

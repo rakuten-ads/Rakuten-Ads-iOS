@@ -87,17 +87,13 @@
 }
 
 - (nonnull NSDictionary *)getApp {
-    static dispatch_once_t onceToken;
-    static NSDictionary* jsonApp;
-    dispatch_once(&onceToken, ^{
-        RPSDefines* defines = RPSDefines.sharedInstance;
-        RPSAppInfo* appInfo = defines.appInfo;
-        jsonApp = @{
-                    @"name": appInfo.bundleName,
-                    @"bundle": appInfo.bundleIdentifier,
-                    @"ver": appInfo.bundleShortVersion,
-                    };
-    });
+    RPSAppInfo* appInfo = RPSDefines.sharedInstance.appInfo;
+    NSMutableDictionary* jsonApp = [NSMutableDictionary dictionaryWithDictionary:self.openRTBAdapterDelegate.getApp ?: @{}];
+
+    jsonApp[@"name"] = appInfo.bundleName;
+    jsonApp[@"bundle"] = appInfo.bundleIdentifier;
+    jsonApp[@"ver"] = appInfo.bundleShortVersion;
+
     return jsonApp;
 }
 
