@@ -24,6 +24,10 @@
     return nil;
 }
 
+- (nonnull NSDictionary *)getApp {
+    return nil;
+}
+
 - (nonnull NSString *)getURL {
     return kRPSBidRequestHost;
 }
@@ -46,5 +50,7 @@
         }
     }
 }
+
+
 
 @end

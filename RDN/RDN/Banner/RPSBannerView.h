@@ -18,13 +18,21 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewEvent) {
     RPSBannerViewEventClicked,
 };
 
+typedef NS_ENUM(NSUInteger, RPSBannerViewSize) {
+    RPSBannerViewSizeDefault,
+    RPSBannerViewSizeAspectFit,
+    RPSBannerViewSizeCustom,
+};
+
 @interface RPSBannerView : UIView
 
 @property(nonatomic, copy, nonnull) NSString* adSpotId;
+@property(nonatomic) RPSBannerViewSize size;
+@property(nonatomic) RPSBannerViewPosition position;
+@property(nonatomic, nullable) NSDictionary* properties;
 
 -(void) load;
 -(void) loadWithEventHandler:(nullable void (^)(RPSBannerView* view, RPSBannerViewEvent event)) handler;
--(void) setPosition:(RPSBannerViewPosition)position inView:(UIView*) parentView;
 
 @end
 

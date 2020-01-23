@@ -14,8 +14,8 @@
 -(void)parse:(NSDictionary *)bidData {
     RPSJSONObject* jsonBid = [RPSJSONObject jsonWithRawDictionary:bidData];
     self->_html = [jsonBid getString:@"adm"];
-    self->_width = [[jsonBid getNumber:@"w"] intValue];
-    self->_height = [[jsonBid getNumber:@"h"] intValue];
+    self->_width = [[jsonBid getNumber:@"w"] floatValue];
+    self->_height = [[jsonBid getNumber:@"h"] floatValue];
 
     RPSJSONObject* ext = [jsonBid getJson:@"ext"];
     if (ext) {
@@ -34,13 +34,25 @@
         if (adspotId) {
             [impList addObject:@{
                                  @"ext" : @{
-                                         @"adspot_id" : adspotId
+                                         @"adspot_id" : adspotId,
+                                         @"json" : self.json ?: [NSNull null],
                                          }
                                  }];
         }
     }
     return impList;
 }
+
+-(NSDictionary *)getApp {
+    if (self.appContent) {
+       return @{
+           @"content" : self.appContent
+       };
+    } else {
+        return @{};
+    }
+}
+
 
 -(NSArray<NSString *> *)adspotIdList {
     if (self.adspotId) {

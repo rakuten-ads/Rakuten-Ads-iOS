@@ -8,23 +8,23 @@
 
 Pod::Spec.new do |s|
 
-  s.name         = "RPSCore"
-  s.version      = "1.0.0"
-  s.summary      = "Podspec file of RPSCore iOS SDK."
+  s.name         = "RPSCore.dev"
+  s.version      = "0.0.1"
+  s.summary      = "Podspec file of #{s.name} iOS SDK."
   s.description  = <<-DESC
-This repository is used to distribute RPSCore iOS SDK for CocoaPods users.
+This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
                    DESC
-  s.homepage     = "https://github.com/lob-inc/RPSCore.ios.repo"
+  s.homepage     = "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
   s.license      = {
     :type => "Copyright",
-    :text => "Copyright © LOB, inc. All Rights Reserved."
+    :text => "Copyright © Rakuten, inc. All Rights Reserved."
   }
-  s.author       = "LOB-INC"
-  s.platform     = :ios, "9.0"
+  s.author       = "Rakuten"
+  s.platform     = :ios, "11.0"
   s.source       = {
-    :http => "https://dev-s-cdn.rx-ad.com/sdk/ios/#{s.version}/RPSCore_iOS_static_#{s.version}.zip"
+    :http => "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/#{s.version}/RPSCore_iOS_#{s.version}.framework.zip"
   }
-  s.vendored_frameworks = "RPSCore_iOS_static_#{s.version}/RPSCore.framework"
+  s.vendored_frameworks = "Carthage/Build/iOS/RPSCore.framework"
 
   s.frameworks = "Foundation", "AdSupport", "SystemConfiguration", "WebKit", "UIKit"
 end

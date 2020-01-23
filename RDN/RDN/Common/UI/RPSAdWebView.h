@@ -8,9 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
+#import "RPSAdWebViewMessage.h"
 
-@interface RPSAdWebView : WKWebView
+NS_ASSUME_NONNULL_BEGIN
 
--(nonnull instancetype)initWithFrame:(CGRect)frame;
+@interface RPSAdWebView : WKWebView <WKScriptMessageHandler>
+
+@property(nonatomic,readonly) NSDictionary<NSString*, RPSAdWebViewMessageHandler*>* messageHandlers;
+
+-(void) addMessageHandler:(RPSAdWebViewMessageHandler*) handler;
 
 @end
+
+NS_ASSUME_NONNULL_END

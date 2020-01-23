@@ -15,31 +15,16 @@
 #import <RPSCore/RPSValid.h>
 #import "RPSDefines.h"
 #import "RPSMeasurement.h"
+#import "RPSAdWebViewMessage.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^RPSBannerViewEventHandler)(RPSBannerView* view, RPSBannerViewEvent event);
+@interface RPSBannerView()
 
-typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
-    RPS_ADVIEW_STATE_INIT,
-    RPS_ADVIEW_STATE_LOADING,
-    RPS_ADVIEW_STATE_LOADED,
-    RPS_ADVIEW_STATE_SHOWED,
-    RPS_ADVIEW_STATE_FAILED,
-    RPS_ADVIEW_STATE_CLICKED,
-};
-
-@interface RPSBannerView() <WKNavigationDelegate, RPSBidResponseConsumerDelegate>
-
-@property (nonatomic, nullable) RPSAdWebView* webView;
-@property (nonatomic, nullable, copy) RPSBannerViewEventHandler eventHandler;
-@property (nonatomic) RPSBannerViewPosition position;
-@property (nonatomic, weak, nullable) UIView* parentView;
-@property (atomic) RPSBannerViewState state;
-
-@property (nonatomic, nullable) RPSBanner* banner;
-
-@property (nonatomic, nullable) RPSMeasurement* measurement;
+@property (nonatomic, readonly, nullable) RPSBanner* banner;
+@property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
+@property (nonatomic, nullable) NSMutableDictionary* appContent;
+@property (nonatomic, nullable) RPSAdWebViewMessageHandler* openPopupHandler;
 
 @end
 

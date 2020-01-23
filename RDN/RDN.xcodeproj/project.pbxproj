@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		320B6BF823A7123E003E1A10 /* RPSAdWebViewMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 320B6BF623A7123E003E1A10 /* RPSAdWebViewMessage.h */; };
+		320B6BF923A7123E003E1A10 /* RPSAdWebViewMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 320B6BF723A7123E003E1A10 /* RPSAdWebViewMessage.m */; };
 		3211A414231CA60900DB0225 /* RPSBannerViewMeasurable.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211A413231CA60900DB0225 /* RPSBannerViewMeasurable.m */; };
 		32564D872224ECAA00DB4DBF /* RPSOpenRTB.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D852224ECAA00DB4DBF /* RPSOpenRTB.h */; };
 		32564D882224ECAA00DB4DBF /* RPSOpenRTB.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D862224ECAA00DB4DBF /* RPSOpenRTB.m */; };
@@ -28,6 +30,10 @@
 		32564D992227790900DB4DBF /* RPSBidAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D972227790900DB4DBF /* RPSBidAdapter.m */; };
 		32564D9C2227865100DB4DBF /* RPSBannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D9A2227865100DB4DBF /* RPSBannerAdapter.h */; };
 		32564D9D2227865100DB4DBF /* RPSBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D9B2227865100DB4DBF /* RPSBannerAdapter.m */; };
+		3256FA4D23A16E81005D9E0E /* RPSBannerViewAtoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 3256FA4B23A16E81005D9E0E /* RPSBannerViewAtoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3256FA4E23A16E81005D9E0E /* RPSBannerViewAtoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 3256FA4C23A16E81005D9E0E /* RPSBannerViewAtoa.m */; };
+		3256FA5823A1C944005D9E0E /* RPSPopupViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3256FA5623A1C944005D9E0E /* RPSPopupViewController.h */; };
+		3256FA5923A1C944005D9E0E /* RPSPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3256FA5723A1C944005D9E0E /* RPSPopupViewController.m */; };
 		325FF74121E605F100A899CF /* RPSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RPSCore.framework */; };
 		329753AB230A7D4C002A53CC /* RPSMeasurement.h in Headers */ = {isa = PBXBuildFile; fileRef = 329753A9230A7D4C002A53CC /* RPSMeasurement.h */; };
 		329753AC230A7D4C002A53CC /* RPSMeasurement.m in Sources */ = {isa = PBXBuildFile; fileRef = 329753AA230A7D4C002A53CC /* RPSMeasurement.m */; };
@@ -39,6 +45,8 @@
 		32A6934C22422FCD00812DF9 /* RPSNativeAdInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6934A22422FCD00812DF9 /* RPSNativeAdInner.m */; };
 		32E3A609230F9B9B001FC49F /* RPSURLString.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E3A607230F9B9B001FC49F /* RPSURLString.h */; };
 		32E3A60A230F9B9B001FC49F /* RPSURLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E3A608230F9B9B001FC49F /* RPSURLString.m */; };
+		32ED78B9236693AB007833DF /* RPSBannerViewIchiba.h in Headers */ = {isa = PBXBuildFile; fileRef = 32ED78B7236693AB007833DF /* RPSBannerViewIchiba.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32ED78BA236693AB007833DF /* RPSBannerViewIchiba.m in Sources */ = {isa = PBXBuildFile; fileRef = 32ED78B8236693AB007833DF /* RPSBannerViewIchiba.m */; };
 		32F258EA21E58689001FD9C0 /* RPSRDN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258E021E58689001FD9C0 /* RPSRDN.framework */; };
 		32F258EF21E58689001FD9C0 /* RDNTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F258EE21E58689001FD9C0 /* RDNTests.m */; };
 		32F258F121E58689001FD9C0 /* RPSRDN.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F258E321E58689001FD9C0 /* RPSRDN.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -48,6 +56,9 @@
 		32F2596121E597E5001FD9C0 /* RPSBannerViewInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595221E597E5001FD9C0 /* RPSBannerViewInner.m */; };
 		32F2596721E597E5001FD9C0 /* RPSAdWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595B21E597E5001FD9C0 /* RPSAdWebView.m */; };
 		32F2596821E597E5001FD9C0 /* RPSAdWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595C21E597E5001FD9C0 /* RPSAdWebView.h */; };
+		32FA22BF23A9FD0A00801B9F /* RPSPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32FA22BE23A9FD0A00801B9F /* RPSPopup.xib */; };
+		32FA22C523AAFE9600801B9F /* RPSUIViewController+.h in Headers */ = {isa = PBXBuildFile; fileRef = 32FA22C323AAFE9600801B9F /* RPSUIViewController+.h */; };
+		32FA22C623AAFE9600801B9F /* RPSUIViewController+.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA22C423AAFE9600801B9F /* RPSUIViewController+.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +93,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		320B6BF623A7123E003E1A10 /* RPSAdWebViewMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSAdWebViewMessage.h; sourceTree = "<group>"; };
+		320B6BF723A7123E003E1A10 /* RPSAdWebViewMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSAdWebViewMessage.m; sourceTree = "<group>"; };
 		3211A413231CA60900DB0225 /* RPSBannerViewMeasurable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerViewMeasurable.m; sourceTree = "<group>"; };
 		3211A417231CA7F800DB0225 /* RPSBannerViewInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBannerViewInner.h; sourceTree = "<group>"; };
 		32564D852224ECAA00DB4DBF /* RPSOpenRTB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSOpenRTB.h; sourceTree = "<group>"; };
@@ -90,6 +103,10 @@
 		32564D972227790900DB4DBF /* RPSBidAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBidAdapter.m; sourceTree = "<group>"; };
 		32564D9A2227865100DB4DBF /* RPSBannerAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBannerAdapter.h; sourceTree = "<group>"; };
 		32564D9B2227865100DB4DBF /* RPSBannerAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerAdapter.m; sourceTree = "<group>"; };
+		3256FA4B23A16E81005D9E0E /* RPSBannerViewAtoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBannerViewAtoa.h; sourceTree = "<group>"; };
+		3256FA4C23A16E81005D9E0E /* RPSBannerViewAtoa.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerViewAtoa.m; sourceTree = "<group>"; };
+		3256FA5623A1C944005D9E0E /* RPSPopupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSPopupViewController.h; sourceTree = "<group>"; };
+		3256FA5723A1C944005D9E0E /* RPSPopupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSPopupViewController.m; sourceTree = "<group>"; };
 		325FF74521F0577900A899CF /* rpsrdn.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = rpsrdn.modulemap; sourceTree = "<group>"; };
 		325FF74C21F0706000A899CF /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
 		329753A9230A7D4C002A53CC /* RPSMeasurement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSMeasurement.h; sourceTree = "<group>"; };
@@ -102,6 +119,8 @@
 		32A6934A22422FCD00812DF9 /* RPSNativeAdInner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSNativeAdInner.m; sourceTree = "<group>"; };
 		32E3A607230F9B9B001FC49F /* RPSURLString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSURLString.h; sourceTree = "<group>"; };
 		32E3A608230F9B9B001FC49F /* RPSURLString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSURLString.m; sourceTree = "<group>"; };
+		32ED78B7236693AB007833DF /* RPSBannerViewIchiba.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBannerViewIchiba.h; sourceTree = "<group>"; };
+		32ED78B8236693AB007833DF /* RPSBannerViewIchiba.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerViewIchiba.m; sourceTree = "<group>"; };
 		32F258E021E58689001FD9C0 /* RPSRDN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RPSRDN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258E321E58689001FD9C0 /* RPSRDN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSRDN.h; sourceTree = "<group>"; };
 		32F258E421E58689001FD9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,6 +135,9 @@
 		32F2595C21E597E5001FD9C0 /* RPSAdWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSAdWebView.h; sourceTree = "<group>"; };
 		32F25A1221E5A4E5001FD9C0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		32F25A1721E5A96C001FD9C0 /* Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core.xcodeproj; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
+		32FA22BE23A9FD0A00801B9F /* RPSPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RPSPopup.xib; sourceTree = "<group>"; };
+		32FA22C323AAFE9600801B9F /* RPSUIViewController+.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RPSUIViewController+.h"; sourceTree = "<group>"; };
+		32FA22C423AAFE9600801B9F /* RPSUIViewController+.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RPSUIViewController+.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +165,7 @@
 			children = (
 				329753A9230A7D4C002A53CC /* RPSMeasurement.h */,
 				329753AA230A7D4C002A53CC /* RPSMeasurement.m */,
+				3211A413231CA60900DB0225 /* RPSBannerViewMeasurable.m */,
 			);
 			path = Measurement;
 			sourceTree = "<group>";
@@ -172,11 +195,24 @@
 				32F2595121E597E5001FD9C0 /* RPSBannerView.h */,
 				3211A417231CA7F800DB0225 /* RPSBannerViewInner.h */,
 				32F2595221E597E5001FD9C0 /* RPSBannerViewInner.m */,
-				3211A413231CA60900DB0225 /* RPSBannerViewMeasurable.m */,
 				32564D9A2227865100DB4DBF /* RPSBannerAdapter.h */,
 				32564D9B2227865100DB4DBF /* RPSBannerAdapter.m */,
+				32ED78B7236693AB007833DF /* RPSBannerViewIchiba.h */,
+				32ED78B8236693AB007833DF /* RPSBannerViewIchiba.m */,
 			);
 			path = Banner;
+			sourceTree = "<group>";
+		};
+		3256FA5323A1C3E1005D9E0E /* A2A */ = {
+			isa = PBXGroup;
+			children = (
+				3256FA4B23A16E81005D9E0E /* RPSBannerViewAtoa.h */,
+				3256FA4C23A16E81005D9E0E /* RPSBannerViewAtoa.m */,
+				3256FA5623A1C944005D9E0E /* RPSPopupViewController.h */,
+				3256FA5723A1C944005D9E0E /* RPSPopupViewController.m */,
+				32FA22BE23A9FD0A00801B9F /* RPSPopup.xib */,
+			);
+			path = A2A;
 			sourceTree = "<group>";
 		};
 		32A6933F2237BB8700812DF9 /* NativeAd */ = {
@@ -224,6 +260,7 @@
 		32F258E221E58689001FD9C0 /* RDN */ = {
 			isa = PBXGroup;
 			children = (
+				3256FA5323A1C3E1005D9E0E /* A2A */,
 				32132858230A5E2900DA92AC /* Measurement */,
 				32A6933F2237BB8700812DF9 /* NativeAd */,
 				32564D912226305500DB4DBF /* Banner */,
@@ -260,8 +297,12 @@
 		32F2595A21E597E5001FD9C0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				320B6BF623A7123E003E1A10 /* RPSAdWebViewMessage.h */,
+				320B6BF723A7123E003E1A10 /* RPSAdWebViewMessage.m */,
 				32F2595C21E597E5001FD9C0 /* RPSAdWebView.h */,
 				32F2595B21E597E5001FD9C0 /* RPSAdWebView.m */,
+				32FA22C323AAFE9600801B9F /* RPSUIViewController+.h */,
+				32FA22C423AAFE9600801B9F /* RPSUIViewController+.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -285,14 +326,19 @@
 				32564D872224ECAA00DB4DBF /* RPSOpenRTB.h in Headers */,
 				32A693462240E31700812DF9 /* RPSNativeAd.h in Headers */,
 				32A6934B22422FCD00812DF9 /* RPSNativeAdInner.h in Headers */,
+				32FA22C523AAFE9600801B9F /* RPSUIViewController+.h in Headers */,
 				32564D982227790900DB4DBF /* RPSBidAdapter.h in Headers */,
 				32564D9C2227865100DB4DBF /* RPSBannerAdapter.h in Headers */,
 				32F2596021E597E5001FD9C0 /* RPSBannerView.h in Headers */,
 				32F2595D21E597E5001FD9C0 /* RPSDefines.h in Headers */,
+				32ED78B9236693AB007833DF /* RPSBannerViewIchiba.h in Headers */,
 				32F258F121E58689001FD9C0 /* RPSRDN.h in Headers */,
 				32E3A609230F9B9B001FC49F /* RPSURLString.h in Headers */,
 				329753AB230A7D4C002A53CC /* RPSMeasurement.h in Headers */,
+				3256FA4D23A16E81005D9E0E /* RPSBannerViewAtoa.h in Headers */,
 				32A693422237BBA800812DF9 /* RPSNativeAdAdapter.h in Headers */,
+				320B6BF823A7123E003E1A10 /* RPSAdWebViewMessage.h in Headers */,
+				3256FA5823A1C944005D9E0E /* RPSPopupViewController.h in Headers */,
 				32F2596821E597E5001FD9C0 /* RPSAdWebView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +451,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32FA22BF23A9FD0A00801B9F /* RPSPopup.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,12 +492,17 @@
 				32E3A60A230F9B9B001FC49F /* RPSURLString.m in Sources */,
 				329753AC230A7D4C002A53CC /* RPSMeasurement.m in Sources */,
 				32564D992227790900DB4DBF /* RPSBidAdapter.m in Sources */,
+				3256FA5923A1C944005D9E0E /* RPSPopupViewController.m in Sources */,
 				32F2596121E597E5001FD9C0 /* RPSBannerViewInner.m in Sources */,
+				32FA22C623AAFE9600801B9F /* RPSUIViewController+.m in Sources */,
 				32A6934C22422FCD00812DF9 /* RPSNativeAdInner.m in Sources */,
 				32A693432237BBA800812DF9 /* RPSNativeAdAdapter.m in Sources */,
 				32F2595E21E597E5001FD9C0 /* RPSDefines.m in Sources */,
 				32564D882224ECAA00DB4DBF /* RPSOpenRTB.m in Sources */,
 				32A693472240E31700812DF9 /* RPSNativeAdProvider.m in Sources */,
+				32ED78BA236693AB007833DF /* RPSBannerViewIchiba.m in Sources */,
+				3256FA4E23A16E81005D9E0E /* RPSBannerViewAtoa.m in Sources */,
+				320B6BF923A7123E003E1A10 /* RPSAdWebViewMessage.m in Sources */,
 				3211A414231CA60900DB0225 /* RPSBannerViewMeasurable.m in Sources */,
 				32564D9D2227865100DB4DBF /* RPSBannerAdapter.m in Sources */,
 				32F2596721E597E5001FD9C0 /* RPSAdWebView.m in Sources */,

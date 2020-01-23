@@ -14,8 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RPSBanner : NSObject<RPSAdInfo>
 
 @property(nonatomic, readonly) NSString* html;
-@property(nonatomic, readonly) int width;
-@property(nonatomic, readonly) int height;
+@property(nonatomic, readonly) float width;
+@property(nonatomic, readonly) float height;
 
 @property(nonatomic, readonly) RPSURLString* measuredURL;
 @property(nonatomic, readonly) RPSURLString* inviewURL;
@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RPSBannerAdapter : RPSBidAdapter
 
 @property(nonatomic, copy) NSString* adspotId;
+@property(nonatomic) NSDictionary* json;
+@property(nonatomic) NSDictionary* appContent;
 
 @end
 
