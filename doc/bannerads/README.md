@@ -1,4 +1,4 @@
-[TOP](/README.md#top)　>　Banner Ads
+[TOP](/README.md#top)　>　 Banner Ads
 
 ---
 
@@ -63,7 +63,7 @@ banner.position = RPS_ADVIEW_POSITION_BOTTOM;
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 
 ```swift
-let banner = BannerView
+let banner = RPSBannerView()
 
 banner.adSpotId = "adspot_id_xxx"
 banner.position = .bottom
@@ -86,8 +86,11 @@ self.view.addSubview(banner)
 ```
 
 ---
+
 [TOP](/README.md#top)
 
 ---
+
 LANGUAGE :
+
 > [![ja](/doc/lang/ja.png)](/doc/ja/bannerads/README.md)

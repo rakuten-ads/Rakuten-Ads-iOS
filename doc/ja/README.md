@@ -9,34 +9,36 @@
 
 ### 広告フォーマット
 
-* **[バナー広告](./bannerads/README.md)**
+- **[バナー広告](./bannerads/README.md)**
 
 ---
+
 # はじめに
 
 <div id="prerequisites"></div>
 
 ## 前提
 
-* Xcode 10 以上
-* iOS 10 以上
-
+- Xcode 10 以上
+- iOS 10 以上
 
 <div id="import_sdk"></div>
 
-## SDKの導入
+## SDK の導入
 
 ### CocoaPods
 
 `Podfile`に下記の設定を追加.
-```ruby
-source https://rakuten.github.com/rdn/publish
 
-pod 'RPSRDN'
-pod 'RPSCore'
+```ruby
+source https://github.com/rakuten-ads/Rakuten-Ads-iOS
+
+pod 'RPSRDN.dev'
+pod 'RPSCore.dev'
 ```
 
 ### Carthage
+
 `Cartfile`に下記の設定を追加.
 
 ```
@@ -48,5 +50,7 @@ github "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
 [バナー広告](./bannerads/README.md)
 
 ---
+
 LANGUAGE :
+
 > [![en](../lang/en.png)](/README.md#top)
