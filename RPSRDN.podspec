@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
 
-  s.name         = "RPSRDN.dev"
-  s.version      = "0.0.1"
+  s.name         = "RPSRDN"
+  s.version      = "0.0.2"
   s.summary      = "Podspec file of #{s.name} iOS SDK."
   s.description  = <<-DESC
 This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
@@ -22,7 +22,7 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   s.author       = "Rakuten"
   s.platform     = :ios, "11.0"
   s.source       = {
-    :http => "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/dev/#{s.version}/RPSRDN_iOS_#{s.version}.framework.zip"
+    :http => "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/#{s.version}/RPSRDN_iOS_#{s.version}.framework.zip"
   }
   s.vendored_frameworks = "Carthage/Build/iOS/RPSRDN.framework"
 

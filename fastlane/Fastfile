@@ -30,24 +30,26 @@ platform :ios do
   @sdk_module_names = ["Core", "RDN"]
 
   def set_env param
-    if param
+    if param.count > 0
       @sdk_map.merge!(param)
       p "merged SDK MAP: #{@sdk_map}"
-    else
-      return
     end
 
     if !@sdk_map[:sdk_module_current]
       p "Not found parameter :sdk_module_current. Pick one from #{@sdk_module_names}"
       exit!
     end
-    @sdk_map[:sdk_xcodeproj_path] = "#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_module_current]}.xcodeproj"
 
-    increment_version_number(
-      version_number: @sdk_map[:sdk_release_version],
-      xcodeproj: @sdk_map[:sdk_xcodeproj_path],
-    )
+    if !@sdk_map[:sdk_xcodeproj_path] 
+      @sdk_map[:sdk_xcodeproj_path] = "#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_module_current]}.xcodeproj"
+    end
+
     if !@sdk_map[:sdk_release_version]
+      increment_version_number(
+        version_number: @sdk_map[:sdk_release_version],
+        xcodeproj: @sdk_map[:sdk_xcodeproj_path],
+      )
+      
       @sdk_map[:sdk_release_version] = get_version_number(
         xcodeproj: @sdk_map[:sdk_xcodeproj_path],
         target: @sdk_map[:sdk_module_current],
@@ -62,6 +64,7 @@ platform :ios do
   lane :package do |param|
     p param
     set_env param
+    p "xcodebuild #{@sdk_map[:sdk_xcodeproj_path]} for #{@sdk_map[:sdk_configuration]} into #{@sdk_map[:sdk_output_dir]}"
     xcodebuild(
       raw_buildlog: true,
       project: @sdk_map[:sdk_xcodeproj_path],
@@ -83,7 +86,8 @@ platform :ios do
     project = "rd2n-dev"
     bucket = "rssp-dev-cdn"
     source_file = "../#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{param[:file_name]}"
-    target_file = "gs://#{bucket}/sdk/ios/#{@sdk_map[:sdk_release_version]}/#{param[:file_name]}"
+    target_file = "gs://#{bucket}/sdk/ios/#{@sdk_map[:sdk_env]}/#{@sdk_map[:sdk_release_version]}/#{param[:file_name]}"
+    puts("cp #{source_file} #{target_file}")
     system("gsutil cp #{source_file} #{target_file}")
   end
 
@@ -93,13 +97,17 @@ platform :ios do
 
   lane :update_podspec do |param|
     set_env param
+
+    env = @sdk_map[:sdk_env] == "prod" ? "" : ".#{@sdk_map[:sdk_env]}"
+    path = "RPS#{@sdk_map[:sdk_module_current]}#{env}.podspec"
+
     version_bump_podspec(
-      path: "RPS#{@sdk_map[:sdk_module_current]}.#{@sdk_map[:sdk_env]}.podspec",
+      path: path,
       version_number: @sdk_map[:sdk_release_version],
     )
 
     pod_push(
-      path: "RPS#{@sdk_map[:sdk_module_current]}.#{@sdk_map[:sdk_env]}.podspec",
+      path: path,
       repo: 'Rakuten-Ads-iOS',
       skip_tests: true,
       verbose: true,
@@ -110,13 +118,19 @@ platform :ios do
     set_env param
     version = @sdk_map[:sdk_release_version]
 
+    assets = []
+    if @sdk_map[:sdk_configuration] == "Release"
+      assets = @sdk_module_names.map { |module_name| "#{module_name}/#{@sdk_map[:sdk_output_dir]}/RPS#{module_name}_iOS_#{version}.framework.zip" }
+    end
+    p "upload assets: #{assets}"
+
     set_github_release(
       repository_name: "rakuten-ads/Rakuten-Ads-iOS",
       api_token: ENV["GITHUB_TOKEN"],
       name: version,
       tag_name: version,
       description: "release for #{version}",
-      upload_assets: ["#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/RPS#{@sdk_map[:sdk_module_current]}_iOS_#{version}.framework.zip"],
+      upload_assets: assets,
     )
   end
 
@@ -126,13 +140,23 @@ platform :ios do
     end
 
     @sdk_module_names.each do |module_name|
+      @sdk_map = {
+        sdk_env: "dev",
+        sdk_configuration: "Debug",
+        # sdk_module_current: nil,
+        # sdk_release_version: nil,
+        # sdk_xcodeproj_path: nil,
+        # sdk_output_dir: nil,
+      }
+
       @sdk_map[:sdk_module_current] = module_name
       set_env param
       package
       deploy_to_gcs_dev file_name: "RPS#{module_name}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
       update_podspec
-      github_release_tag
     end
+
+    github_release_tag
 
   end
 end
