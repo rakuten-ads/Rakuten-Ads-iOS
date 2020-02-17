@@ -386,7 +386,6 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
             }
             self.hidden = YES;
             self.webView.navigationDelegate = nil;
-            [self removeFromSuperview];
         }
     });
 }
