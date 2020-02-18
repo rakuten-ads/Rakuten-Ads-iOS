@@ -126,7 +126,7 @@ platform :ios do
 
     set_github_release(
       repository_name: "rakuten-ads/Rakuten-Ads-iOS",
-      api_token: ENV["GITHUB_TOKEN"],
+      api_token: ENV["FASTLANE_GITHUB_TOKEN"],
       name: version,
       tag_name: version,
       description: "release for #{version}",

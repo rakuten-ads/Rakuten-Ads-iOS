@@ -20,11 +20,12 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
     :text => "Copyright © Rakuten, inc. All Rights Reserved."
   }
   s.author       = "Rakuten"
-  s.platform     = :ios, "11.0"
+  s.platform     = :ios, "10.0"
   s.source       = {
     :http => "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/dev/#{s.version}/RPSRDN_iOS_#{s.version}.framework.zip"
   }
   s.vendored_frameworks = "Carthage/Build/iOS/RPSRDN.framework"
 
   s.frameworks = "Foundation", "AdSupport", "SystemConfiguration", "WebKit", "UIKit"
+  s.dependency 'RPSCore.dev', '0.0.2'
 end
