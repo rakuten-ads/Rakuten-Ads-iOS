@@ -12,14 +12,15 @@
 
 `gem install bundler`
 
-`gem install`
+`bundle install`
 
-3. gcloud
+3. gcloud credential file of bucket
 
 `gcloud auth application-default login`
 
 4. cocoapods
+`pod repo add Rakuten-Ads-iOS git@github.com:rakuten-ads/Rakuten-Ads-iOS.git`
 
-5. Github access token
+5. Set env of Github access token
 
 `GITHUB_API_TOKEN`
