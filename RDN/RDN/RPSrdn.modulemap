@@ -8,9 +8,4 @@ framework module RPSRDN {
         header "RPSBannerViewIchiba.h"
         export *
     }
-
-    module Atoa {
-        header "RPSBannerViewAtoa.h"
-        export *
-    }
 }
