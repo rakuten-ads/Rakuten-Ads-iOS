@@ -36,10 +36,12 @@ The RDNSDK tracks 3 events if developers need to be triggerred and handle someth
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)
 
 ```objc
-RPSBannerView * banner = [RPSBannerView new];
+#import <RPSRDN/RPSBanner.h>
 
-banner.adSpotId = "spot_id_xxx";
-banner.position = RPS_ADVIEW_POSITION_BOTTOM;
+RPSBannerView* banner = [RPSBannerView new];
+
+banner.adSpotId = @"spot_id_xxx";
+banner.position = RPSBannerViewPositionBottom;
 
 [banner loadWithEventHandler: ^void (RPSBannerView* view, RPSBannerViewEvent event){
     switch (event) {
@@ -63,6 +65,8 @@ banner.position = RPS_ADVIEW_POSITION_BOTTOM;
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 
 ```swift
+import RPSRDN
+
 let banner = RPSBannerView()
 
 banner.adSpotId = "adspot_id_xxx"
@@ -82,7 +86,6 @@ banner.load { (banner, event) in
 }
 
 self.view.addSubview(banner)
-
 ```
 
 ---

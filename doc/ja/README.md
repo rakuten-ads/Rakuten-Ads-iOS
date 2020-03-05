@@ -33,8 +33,7 @@
 ```ruby
 source https://github.com/rakuten-ads/Rakuten-Ads-iOS
 
-pod 'RPSRDN.dev'
-pod 'RPSCore.dev'
+pod 'RPSRDN'
 ```
 
 ### Carthage

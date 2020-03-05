@@ -38,10 +38,12 @@ RDNSDK は三つのイベントをトラッキングすることが可能です�
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)
 
 ```objc
-RPSBannerView * banner = [RPSBannerView new];
+#import <RPSRDN/RPSBanner.h>
 
-banner.adSpotId = "spot_id_xxx";
-[banner setPosition: RPS_ADVIEW_POSITION_BOTTOM inView: [self view]];
+RPSBannerView* banner = [RPSBannerView new];
+
+banner.adSpotId = @"spot_id_xxx";
+banner.position = RPSBannerViewPositionBottom;
 
 [banner loadWithEventHandler: ^void (RPSBannerView* view, RPSBannerViewEvent event){
     switch (event) {
@@ -65,10 +67,12 @@ banner.adSpotId = "spot_id_xxx";
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 
 ```swift
+import RPSRDN
+
 let banner = RPSBannerView()
 
 banner.adSpotId = "adspot_id_xxx"
-banner.setPosition(RPSBannerViewPosition.bottom, in: self.view)
+banner.position = .bottom
 
 banner.load { (banner, event) in
     switch event {
@@ -84,7 +88,6 @@ banner.load { (banner, event) in
 }
 
 self.view.addSubview(banner)
-
 ```
 
 ---
