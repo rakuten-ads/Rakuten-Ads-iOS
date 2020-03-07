@@ -1,6 +1,6 @@
 //
 //  RPSPopupViewController.m
-//  RDN
+//  A2A
 //
 //  Created by Wu, Wei b on 2019/12/12.
 //  Copyright © 2019 Rakuten MPD. All rights reserved.
