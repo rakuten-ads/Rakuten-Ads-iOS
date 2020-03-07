@@ -7,15 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RPSBannerViewInner.h"
 #import "RPSMeasurement.h"
+#import "RPSBannerViewInner.h"
 #import "RPSURLString.h"
 
-@interface RPSBannerView(RPSMeasurement)<RPSMeasurableDelegate>
+@interface RPSBannerView(RPSMeasurement)<RPSDefaultMeasurement>
 
 @end
 
 @implementation RPSBannerView(RPSMeasurement)
+
+-(id<RPSMeasurer>)getDefaultMeasurer {
+    RPSDefaultMeasurer* measurer = [RPSDefaultMeasurer new];
+    [self.measurer setMeasureTarget:self];
+    return measurer;
+}
 
 -(BOOL)measureInview {
     if (!self.banner.inviewURL) {

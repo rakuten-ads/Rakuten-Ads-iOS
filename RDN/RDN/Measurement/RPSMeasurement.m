@@ -10,14 +10,16 @@
 
 NSTimeInterval kMeasureIntervalInView = 1;
 
-@interface RPSMeasurement()
+@interface RPSDefaultMeasurer()
+
+@property(nonatomic, weak, nullable) id<RPSDefaultMeasurement> measurableTarget;
 
 @property(atomic) BOOL shouldStopMeasureImp;
 @property(atomic) BOOL shouldStopMeasureInview;
 
 @end
 
-@implementation RPSMeasurement
+@implementation RPSDefaultMeasurer
 
 +(NSOperationQueue*) sharedQueue {
     static dispatch_once_t onceToken;
@@ -37,8 +39,8 @@ NSTimeInterval kMeasureIntervalInView = 1;
                 RPSDebug("measurement inview : %@", self.shouldStopMeasureInview ? @"stopped" : @"continue...");
                 if (!self.shouldStopMeasureInview) {
                     RPSDebug("measurement inview enqueue again");
-                    RPSMeasurement* repeatingOperation = [self clone];
-                    [[RPSMeasurement sharedQueue] addOperation:repeatingOperation];
+                    RPSDefaultMeasurer* repeatingOperation = [self clone];
+                    [[RPSDefaultMeasurer sharedQueue] addOperation:repeatingOperation];
                 }
             } else {
                 RPSDebug("measurable target disposed!");
@@ -50,7 +52,7 @@ NSTimeInterval kMeasureIntervalInView = 1;
 }
 
 -(instancetype) clone {
-    RPSMeasurement* repeatOperation = [RPSMeasurement new];
+    RPSDefaultMeasurer* repeatOperation = [RPSDefaultMeasurer new];
     repeatOperation.measurableTarget = self.measurableTarget;
     repeatOperation.shouldStopMeasureImp = self.shouldStopMeasureImp;
     repeatOperation.shouldStopMeasureInview = self.shouldStopMeasureInview;
@@ -64,8 +66,17 @@ NSTimeInterval kMeasureIntervalInView = 1;
 
     if (!self.shouldStopMeasureInview) {
         RPSDebug("measurement inview enqueue");
-        [[RPSMeasurement sharedQueue] addOperation:self];
+        [[RPSDefaultMeasurer sharedQueue] addOperation:self];
     }
 }
 
+-(void)finishMeasurement {
+    if (!self.isCancelled) {
+        [self cancel];
+    }
+}
+
+-(void)setMeasureTarget:(id<RPSDefaultMeasurement>)measurableTarget {
+    self.measurableTarget = measurableTarget;
+}
 @end

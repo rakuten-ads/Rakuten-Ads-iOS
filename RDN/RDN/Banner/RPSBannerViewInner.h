@@ -14,10 +14,11 @@
 #import "RPSBannerAdapter.h"
 #import <RPSCore/RPSValid.h>
 #import "RPSDefines.h"
-#import "RPSMeasurement.h"
 #import "RPSAdWebViewMessage.h"
+#import "RPSMeasurement.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
 
 @interface RPSBannerView()
 
@@ -25,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
 @property (nonatomic, nullable) NSMutableDictionary* appContent;
 @property (nonatomic, nullable) RPSAdWebViewMessageHandler* openPopupHandler;
+@property (nonatomic, nullable) id<RPSMeasurer> measurer;
 
 @end
 

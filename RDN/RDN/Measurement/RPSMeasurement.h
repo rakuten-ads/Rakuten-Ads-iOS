@@ -7,23 +7,42 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RPSBannerView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol RPSMeasurableDelegate <NSObject>
+@protocol RPSMeasurable <NSObject>
 
+@end
+
+@protocol RPSMeasurer <NSObject>
+
+-(void) setMeasureTarget:(id<RPSMeasurable>) target;
+-(void) startMeasurement;
+-(void) finishMeasurement;
+
+@end
+
+#pragma mark - default measurement
+
+@protocol RPSDefaultMeasurement <RPSMeasurable>
+
+-(id<RPSMeasurer>) getDefaultMeasurer;
 -(BOOL) measureImp;
 -(BOOL) measureInview;
 
 @end
 
-@interface RPSMeasurement: NSOperation
-
-@property(nonatomic, weak, nullable) id<RPSMeasurableDelegate> measurableTarget;
-
--(void) startMeasurement;
+@interface RPSDefaultMeasurer: NSOperation <RPSMeasurer>
 
 @end
+
+#pragma mark - open measurement
+
+@protocol RPSOpenMeasurement <RPSMeasurable>
+
+-(id<RPSMeasurer>) getOpenMeasurer;
+
+@end
+
 
 NS_ASSUME_NONNULL_END

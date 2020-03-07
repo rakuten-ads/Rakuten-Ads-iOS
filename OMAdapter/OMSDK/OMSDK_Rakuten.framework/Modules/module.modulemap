@@ -1,0 +1,4 @@
+module OMSDK_Rakuten {
+    header "Headers/OMIDImports.h"
+    export *
+}

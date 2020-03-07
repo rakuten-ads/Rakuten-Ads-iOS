@@ -109,27 +109,27 @@
         UIScreen* screen = UIScreen.mainScreen;
 
         jsonDevice = @{
-                       @"ua" : defines.userAgentInfo.userAgent,
-                       @"devicetype" : [self getDeviceType],
-                       @"make": @"Apple",
-                       @"model": deviceInfo.model,
-                       @"os": @"iOS",
-                       @"osv": deviceInfo.osVersion,
-                       @"hwv": deviceInfo.buildName,
-                       @"h": @((int)screen.bounds.size.height),
-                       @"w": @((int)screen.bounds.size.width),
-                       @"ppi": @((int)(160 * screen.scale)),
-                       @"pxratio": @((int)screen.scale),
-                       @"language": deviceInfo.language,
-                       @"ifa": idfaInfo.idfa,
-                       @"lmt": idfaInfo.isTrackingEnabled ? @0 : @1,
-                       @"ext" : @{
-                               @"sdk_version": defines.sdkBundleShortVersionString,
-                               },
-                       // @"geo"
-                       // @"carrier"
-                       // @"connectiontype"
-                       };
+            @"ua" : defines.userAgentInfo.userAgent ?: @"",
+            @"devicetype" : [self getDeviceType],
+            @"make": @"Apple",
+            @"model": deviceInfo.model,
+            @"os": @"iOS",
+            @"osv": deviceInfo.osVersion,
+            @"hwv": deviceInfo.buildName,
+            @"h": @((int)screen.bounds.size.height),
+            @"w": @((int)screen.bounds.size.width),
+            @"ppi": @((int)(160 * screen.scale)),
+            @"pxratio": @((int)screen.scale),
+            @"language": deviceInfo.language,
+            @"ifa": idfaInfo.idfa,
+            @"lmt": idfaInfo.isTrackingEnabled ? @0 : @1,
+            @"ext" : @{
+                    @"sdk_version": defines.sdkBundleShortVersionString,
+            },
+            // @"geo"
+            // @"carrier"
+            // @"connectiontype"
+        };
     });
     return jsonDevice;
 }

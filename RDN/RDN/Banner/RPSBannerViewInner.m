@@ -29,7 +29,6 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 @property (nonatomic, readonly, nullable) RPSAdWebView* webView;
 @property (nonatomic, nullable, copy) RPSBannerViewEventHandler eventHandler;
 @property (atomic, readonly) RPSBannerViewState state;
-@property (nonatomic, nullable) RPSMeasurement* measurement;
 
 @end
 
@@ -55,10 +54,10 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
              state == RPS_ADVIEW_STATE_INIT ? @"INIT" :
              state == RPS_ADVIEW_STATE_LOADING ? @"LOADING" :
              state == RPS_ADVIEW_STATE_LOADED ? @"LOADED" :
+             state == RPS_ADVIEW_STATE_FAILED ? @"FAILED" :
              state == RPS_ADVIEW_STATE_RENDERING ? @"RENDERING":
              state == RPS_ADVIEW_STATE_MESSAGE_LISTENING ? @"MESSAGE_LISTENING":
              state == RPS_ADVIEW_STATE_SHOWED ? @"SHOWED" :
-             state == RPS_ADVIEW_STATE_FAILED ? @"FAILED" :
              state == RPS_ADVIEW_STATE_CLICKED ? @"CLICKED" : @"unknown");
     self->_state = state;
 }
@@ -266,7 +265,12 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
 -(void) applyAdView {
     RPSDebug("apply applyView: %@", NSStringFromCGRect(self.frame));
-
+    // remove old web view
+    if (self.webView
+        && self.webView.superview == self) {
+        [self.webView removeFromSuperview];
+    }
+    
     // Web View
     self->_webView = [RPSAdWebView new];
     [self->_webView addMessageHandler:[RPSAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handle:^(RPSAdWebViewMessage * _Nonnull message) {
@@ -381,11 +385,12 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
         } @catch(NSException* exception) {
             RPSLog("exception when bannerOnFailure callback: %@", exception);
         } @finally {
-            if (self.measurement && !self.measurement.isCancelled) {
-                [self.measurement cancel];
+            if (self.measurer) {
+                [self.measurer finishMeasurement];
             }
             self.hidden = YES;
             self.webView.navigationDelegate = nil;
+            [self.webView removeFromSuperview];
         }
     });
 }
@@ -425,15 +430,16 @@ typedef NS_ENUM(NSUInteger, RPSBannerViewState) {
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     RPSDebug("didFinishNavigation of: %@", navigation);
-    if (self.state != RPS_ADVIEW_STATE_FAILED) {
-        if ([self conformsToProtocol:@protocol(RPSMeasurableDelegate)]) {
-            @try {
-                self.measurement = [RPSMeasurement new];
-                self.measurement.measurableTarget = (id<RPSMeasurableDelegate>)self;
-                [self.measurement startMeasurement];
-            } @catch (NSException *exception) {
-                RPSDebug("exception when start measurement: %@", exception);
+    if (self.state != RPS_ADVIEW_STATE_FAILED) {  
+        @try {
+            if ([self conformsToProtocol:@protocol(RPSOpenMeasurement)]) {
+                self.measurer = [(id<RPSOpenMeasurement>)self getOpenMeasurer];
+            } else if ([self conformsToProtocol:@protocol(RPSOpenMeasurement)]) {
+                self.measurer = [(id<RPSDefaultMeasurement>)self getDefaultMeasurer];
             }
+            [self.measurer startMeasurement];
+        } @catch (NSException *exception) {
+            RPSDebug("exception when start measurement: %@", exception);
         }
     }
 }
