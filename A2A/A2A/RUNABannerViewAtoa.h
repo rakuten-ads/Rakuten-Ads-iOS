@@ -6,7 +6,7 @@
 //  Copyright © 2019 Rakuten MPD. All rights reserved.
 //
 
-#import <RUNARDN/RUNABannerView.h>
+#import <RUNA/RUNABannerView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

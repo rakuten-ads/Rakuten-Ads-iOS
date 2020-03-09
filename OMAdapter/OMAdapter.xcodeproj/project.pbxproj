@@ -14,7 +14,7 @@
 		32671F8424108BD300C50F9F /* RUNAOpenMeasurer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671F8224108BD300C50F9F /* RUNAOpenMeasurer.m */; };
 		32671F8F2412318300C50F9F /* OMSDK_Rakuten.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32671F8E2412318300C50F9F /* OMSDK_Rakuten.framework */; };
 		32671F902412318300C50F9F /* OMSDK_Rakuten.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32671F8E2412318300C50F9F /* OMSDK_Rakuten.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		32671FA02412492700C50F9F /* RUNARDN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32671F9824123C9B00C50F9F /* RUNARDN.framework */; };
+		32671FA02412492700C50F9F /* RUNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32671F9824123C9B00C50F9F /* RUNA.framework */; };
 		32671FA52412501400C50F9F /* RUNABannerViewOM.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671FA32412501400C50F9F /* RUNABannerViewOM.m */; };
 		32EE30222415D14700E6D076 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EE30212415D14700E6D076 /* RUNACore.framework */; };
 /* End PBXBuildFile section */
@@ -29,17 +29,17 @@
 		};
 		32671F9724123C9B00C50F9F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 32671F9124123C9B00C50F9F /* RDN.xcodeproj */;
+			containerPortal = 32671F9124123C9B00C50F9F /* RUNA.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 32F258E021E58689001FD9C0;
-			remoteInfo = RDN;
+			remoteInfo = RUNA;
 		};
 		32671F9924123C9B00C50F9F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 32671F9124123C9B00C50F9F /* RDN.xcodeproj */;
+			containerPortal = 32671F9124123C9B00C50F9F /* RUNA.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 32F258E921E58689001FD9C0;
-			remoteInfo = RDNTests;
+			remoteInfo = RUNATests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -67,7 +67,7 @@
 		32671F8124108BD300C50F9F /* RUNAOpenMeasurer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOpenMeasurer.h; sourceTree = "<group>"; };
 		32671F8224108BD300C50F9F /* RUNAOpenMeasurer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOpenMeasurer.m; sourceTree = "<group>"; };
 		32671F8E2412318300C50F9F /* OMSDK_Rakuten.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OMSDK_Rakuten.framework; path = OMSDK/OMSDK_Rakuten.framework; sourceTree = "<group>"; };
-		32671F9124123C9B00C50F9F /* RDN.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RDN.xcodeproj; path = ../RDN/RDN.xcodeproj; sourceTree = "<group>"; };
+		32671F9124123C9B00C50F9F /* RUNA.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RUNA.xcodeproj; path = ../RUNA/RUNA.xcodeproj; sourceTree = "<group>"; };
 		32671FA32412501400C50F9F /* RUNABannerViewOM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewOM.m; sourceTree = "<group>"; };
 		32EE301E2415D13500E6D076 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32EE30212415D14700E6D076 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,7 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32671F8F2412318300C50F9F /* OMSDK_Rakuten.framework in Frameworks */,
-				32671FA02412492700C50F9F /* RUNARDN.framework in Frameworks */,
+				32671FA02412492700C50F9F /* RUNA.framework in Frameworks */,
 				32EE30222415D14700E6D076 /* RUNACore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,7 +98,7 @@
 		32671F5D24108BB300C50F9F = {
 			isa = PBXGroup;
 			children = (
-				32671F9124123C9B00C50F9F /* RDN.xcodeproj */,
+				32671F9124123C9B00C50F9F /* RUNA.xcodeproj */,
 				32671F6924108BB400C50F9F /* OMAdapter */,
 				32671F7424108BB400C50F9F /* OMAdapterTests */,
 				32671F6824108BB400C50F9F /* Products */,
@@ -149,8 +149,8 @@
 		32671F9224123C9B00C50F9F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				32671F9824123C9B00C50F9F /* RUNARDN.framework */,
-				32671F9A24123C9B00C50F9F /* RDNTests.xctest */,
+				32671F9824123C9B00C50F9F /* RUNA.framework */,
+				32671F9A24123C9B00C50F9F /* RUNATests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -238,7 +238,7 @@
 			projectReferences = (
 				{
 					ProductGroup = 32671F9224123C9B00C50F9F /* Products */;
-					ProjectRef = 32671F9124123C9B00C50F9F /* RDN.xcodeproj */;
+					ProjectRef = 32671F9124123C9B00C50F9F /* RUNA.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -250,17 +250,17 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		32671F9824123C9B00C50F9F /* RUNARDN.framework */ = {
+		32671F9824123C9B00C50F9F /* RUNA.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = RUNARDN.framework;
+			path = RUNA.framework;
 			remoteRef = 32671F9724123C9B00C50F9F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		32671F9A24123C9B00C50F9F /* RDNTests.xctest */ = {
+		32671F9A24123C9B00C50F9F /* RUNATests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = RDNTests.xctest;
+			path = RUNATests.xctest;
 			remoteRef = 32671F9924123C9B00C50F9F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -441,7 +441,7 @@
 					"$(PROJECT_DIR)/OMSDK",
 				);
 				GCC_PREFIX_HEADER = OMAdapter/PrefixHeader.pch;
-				HEADER_SEARCH_PATHS = "../RDN/RDN/**";
+				HEADER_SEARCH_PATHS = "../RUNA/RUNA/**";
 				INFOPLIST_FILE = OMAdapter/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -469,7 +469,7 @@
 					"$(PROJECT_DIR)/OMSDK",
 				);
 				GCC_PREFIX_HEADER = OMAdapter/PrefixHeader.pch;
-				HEADER_SEARCH_PATHS = "../RDN/RDN/**";
+				HEADER_SEARCH_PATHS = "../RUNA/RUNA/**";
 				INFOPLIST_FILE = OMAdapter/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (

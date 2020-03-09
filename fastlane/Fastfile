@@ -27,7 +27,7 @@ platform :ios do
   }
   p @sdk_map
 
-  @sdk_module_names = ["Core", "RDN"]
+  @sdk_module_names = ["Core", "RUNA"]
 
   def set_env param
     if param.count > 0

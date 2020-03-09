@@ -12,7 +12,7 @@
 		324862C12408EB360071E164 /* RUNAA2A.h in Headers */ = {isa = PBXBuildFile; fileRef = 324862B32408EB350071E164 /* RUNAA2A.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		324862DC2408EB980071E164 /* RUNABannerViewAtoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 324862DA2408EB980071E164 /* RUNABannerViewAtoa.m */; };
 		324862DD2408EB980071E164 /* RUNAPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324862D92408EB980071E164 /* RUNAPopupViewController.m */; };
-		324862E22408ECB50071E164 /* RUNARDN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324862D22408EB7C0071E164 /* RUNARDN.framework */; };
+		324862E22408ECB50071E164 /* RUNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324862D22408EB7C0071E164 /* RUNA.framework */; };
 		324862E5240C86240071E164 /* RUNABannerViewAtoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 324862D52408EB980071E164 /* RUNABannerViewAtoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		324862E6240C86910071E164 /* RUNAPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324862DB2408EB980071E164 /* RUNAPopup.xib */; };
 		324862E7240C86A20071E164 /* RUNAPopupViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 324862D82408EB980071E164 /* RUNAPopupViewController.h */; };
@@ -30,17 +30,17 @@
 		};
 		324862D12408EB7C0071E164 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 324862CB2408EB7C0071E164 /* RDN.xcodeproj */;
+			containerPortal = 324862CB2408EB7C0071E164 /* RUNA.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 32F258E021E58689001FD9C0;
-			remoteInfo = RDN;
+			remoteInfo = RUNA;
 		};
 		324862D32408EB7C0071E164 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 324862CB2408EB7C0071E164 /* RDN.xcodeproj */;
+			containerPortal = 324862CB2408EB7C0071E164 /* RUNA.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 32F258E921E58689001FD9C0;
-			remoteInfo = RDNTests;
+			remoteInfo = RUNATests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -51,7 +51,7 @@
 		324862B92408EB360071E164 /* A2ATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = A2ATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		324862BE2408EB360071E164 /* A2ATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A2ATests.m; sourceTree = "<group>"; };
 		324862C02408EB360071E164 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		324862CB2408EB7C0071E164 /* RDN.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RDN.xcodeproj; path = ../RDN/RDN.xcodeproj; sourceTree = "<group>"; };
+		324862CB2408EB7C0071E164 /* RUNA.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RUNA.xcodeproj; path = ../RUNA/RUNA.xcodeproj; sourceTree = "<group>"; };
 		324862D52408EB980071E164 /* RUNABannerViewAtoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewAtoa.h; sourceTree = "<group>"; };
 		324862D82408EB980071E164 /* RUNAPopupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAPopupViewController.h; sourceTree = "<group>"; };
 		324862D92408EB980071E164 /* RUNAPopupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAPopupViewController.m; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				324862E22408ECB50071E164 /* RUNARDN.framework in Frameworks */,
+				324862E22408ECB50071E164 /* RUNA.framework in Frameworks */,
 				32EE30252415D15800E6D076 /* RUNACore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,7 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				324862F0240C88E20071E164 /* Scripts */,
-				324862CB2408EB7C0071E164 /* RDN.xcodeproj */,
+				324862CB2408EB7C0071E164 /* RUNA.xcodeproj */,
 				324862B22408EB350071E164 /* A2A */,
 				324862BD2408EB360071E164 /* A2ATests */,
 				324862B12408EB350071E164 /* Products */,
@@ -135,8 +135,8 @@
 		324862CC2408EB7C0071E164 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				324862D22408EB7C0071E164 /* RUNARDN.framework */,
-				324862D42408EB7C0071E164 /* RDNTests.xctest */,
+				324862D22408EB7C0071E164 /* RUNA.framework */,
+				324862D42408EB7C0071E164 /* RUNATests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -233,7 +233,7 @@
 			projectReferences = (
 				{
 					ProductGroup = 324862CC2408EB7C0071E164 /* Products */;
-					ProjectRef = 324862CB2408EB7C0071E164 /* RDN.xcodeproj */;
+					ProjectRef = 324862CB2408EB7C0071E164 /* RUNA.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -245,17 +245,17 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		324862D22408EB7C0071E164 /* RUNARDN.framework */ = {
+		324862D22408EB7C0071E164 /* RUNA.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = RUNARDN.framework;
+			path = RUNA.framework;
 			remoteRef = 324862D12408EB7C0071E164 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		324862D42408EB7C0071E164 /* RDNTests.xctest */ = {
+		324862D42408EB7C0071E164 /* RUNATests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = RDNTests.xctest;
+			path = RUNATests.xctest;
 			remoteRef = 324862D32408EB7C0071E164 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -433,7 +433,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREFIX_HEADER = A2A/PrefixHeader.pch;
-				HEADER_SEARCH_PATHS = "../RDN/RDN/**";
+				HEADER_SEARCH_PATHS = "../RUNA/RUNA/**";
 				INFOPLIST_FILE = A2A/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -459,7 +459,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREFIX_HEADER = A2A/PrefixHeader.pch;
-				HEADER_SEARCH_PATHS = "../RDN/RDN/**";
+				HEADER_SEARCH_PATHS = "../RUNA/RUNA/**";
 				INFOPLIST_FILE = A2A/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -578,7 +578,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_PREFIX_HEADER = A2A/PrefixHeader.pch;
-				HEADER_SEARCH_PATHS = "../RDN/RDN/**";
+				HEADER_SEARCH_PATHS = "../RUNA/RUNA/**";
 				INFOPLIST_FILE = A2A/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
