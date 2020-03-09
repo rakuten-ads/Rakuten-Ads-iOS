@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #  carthage-iOS.sh
-#  RUNACore
+#  RUNA
 #
 #  Created by Wu Wei on 2019/01/15.
 #  Copyright © 2018 LOB. All rights reserved.
@@ -10,7 +10,12 @@ echo
 echo "===[$0] START==="
 set -eo pipefail
 
-SDK_PRODUCT_NAME=RUNACore
+SDK_PRODUCT_NAME=$1
+if [ ! $SDK_PRODUCT_NAME ]; then
+	echo "must give a product name"
+	exit 1
+fi
+
 if [ ! $SDK_OUTPUT_DIR ]; then
 	SDK_OUTPUT_DIR=${PROJECT_DIR}/build/${CONFIGURATION}
 fi

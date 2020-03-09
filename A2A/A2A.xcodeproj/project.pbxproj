@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		32EE305324163F4D00E6D076 /* Aggregate */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 32EE305A24163F4D00E6D076 /* Build configuration list for PBXAggregateTarget "Aggregate" */;
+			buildPhases = (
+				32EE305B24163F5200E6D076 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Aggregate;
+			productName = Aggregate;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		324862BA2408EB360071E164 /* RUNAA2A.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324862B02408EB350071E164 /* RUNAA2A.framework */; };
 		324862BF2408EB360071E164 /* A2ATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324862BE2408EB360071E164 /* A2ATests.m */; };
@@ -217,6 +231,9 @@
 					324862B82408EB360071E164 = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
+					32EE305324163F4D00E6D076 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
 				};
 			};
 			buildConfigurationList = 324862AA2408EB350071E164 /* Build configuration list for PBXProject "A2A" */;
@@ -240,6 +257,7 @@
 			targets = (
 				324862AF2408EB350071E164 /* A2A */,
 				324862B82408EB360071E164 /* A2ATests */,
+				32EE305324163F4D00E6D076 /* Aggregate */,
 			);
 		};
 /* End PBXProject section */
@@ -278,6 +296,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		32EE305B24163F5200E6D076 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n../Scripts/carthage-iOS.sh RUNAA2a\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		324862AC2408EB350071E164 /* Sources */ = {
@@ -611,6 +649,30 @@
 			};
 			name = Staging;
 		};
+		32EE305424163F4D00E6D076 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		32EE305524163F4D00E6D076 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Staging;
+		};
+		32EE305624163F4D00E6D076 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -640,6 +702,16 @@
 				324862C82408EB360071E164 /* Debug */,
 				324862E02408EBC30071E164 /* Staging */,
 				324862C92408EB360071E164 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32EE305A24163F4D00E6D076 /* Build configuration list for PBXAggregateTarget "Aggregate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32EE305424163F4D00E6D076 /* Debug */,
+				32EE305524163F4D00E6D076 /* Staging */,
+				32EE305624163F4D00E6D076 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

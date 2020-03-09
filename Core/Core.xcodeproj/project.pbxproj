@@ -59,7 +59,6 @@
 
 /* Begin PBXFileReference section */
 		325FF73F21E5EDDF00A899CF /* runacore.private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = runacore.private.modulemap; sourceTree = "<group>"; };
-		325FF74621F0584E00A899CF /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
 		32C7F77322CC757300E75319 /* RUNACore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNACore.m; sourceTree = "<group>"; };
 		32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAppInfo.h; sourceTree = "<group>"; };
 		32CAC0DC22164E6400BB4CC4 /* RUNAAppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAppInfo.m; sourceTree = "<group>"; };
@@ -112,7 +111,6 @@
 		32F258B221E5866C001FD9C0 = {
 			isa = PBXGroup;
 			children = (
-				325FF74621F0584E00A899CF /* Scripts */,
 				32F259B821E599F4001FD9C0 /* Core */,
 				32F258C921E5866D001FD9C0 /* CoreTests */,
 				32F258BD21E5866C001FD9C0 /* Products */,
@@ -335,7 +333,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nScripts/carthage-iOS.sh\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n../Scripts/carthage-iOS.sh RUNACore\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -99,7 +99,6 @@
 		32564D9A2227865100DB4DBF /* RUNABannerAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerAdapter.h; sourceTree = "<group>"; };
 		32564D9B2227865100DB4DBF /* RUNABannerAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerAdapter.m; sourceTree = "<group>"; };
 		325FF74521F0577900A899CF /* RUNA.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = RUNA.modulemap; sourceTree = "<group>"; };
-		325FF74C21F0706000A899CF /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
 		329753A9230A7D4C002A53CC /* RUNAMeasurement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAMeasurement.h; sourceTree = "<group>"; };
 		329753AA230A7D4C002A53CC /* RUNAMeasurement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAMeasurement.m; sourceTree = "<group>"; };
 		32A693402237BBA800812DF9 /* RUNANativeAdAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNANativeAdAdapter.h; sourceTree = "<group>"; };
@@ -218,7 +217,6 @@
 		32F258D621E58689001FD9C0 = {
 			isa = PBXGroup;
 			children = (
-				325FF74C21F0706000A899CF /* Scripts */,
 				32F25A1721E5A96C001FD9C0 /* Core.xcodeproj */,
 				32F258E221E58689001FD9C0 /* RUNA */,
 				32F258ED21E58689001FD9C0 /* RUNATests */,
@@ -454,7 +452,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nScripts/carthage-iOS.sh\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n../Scripts/carthage-iOS.sh RUNA\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

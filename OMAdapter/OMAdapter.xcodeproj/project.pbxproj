@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		32EE304B24163EED00E6D076 /* Aggregate */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 32EE305124163EED00E6D076 /* Build configuration list for PBXAggregateTarget "Aggregate" */;
+			buildPhases = (
+				32EE305224163EF400E6D076 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Aggregate;
+			productName = Aggregate;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		32671F7124108BB400C50F9F /* OMAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32671F6724108BB400C50F9F /* OMAdapter.framework */; };
 		32671F7624108BB400C50F9F /* OMAdapterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671F7524108BB400C50F9F /* OMAdapterTests.m */; };
@@ -220,6 +234,9 @@
 					32671F6F24108BB400C50F9F = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
+					32EE304B24163EED00E6D076 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
 				};
 			};
 			buildConfigurationList = 32671F6124108BB300C50F9F /* Build configuration list for PBXProject "OMAdapter" */;
@@ -243,6 +260,7 @@
 			targets = (
 				32671F6624108BB400C50F9F /* OMAdapter */,
 				32671F6F24108BB400C50F9F /* OMAdapterTests */,
+				32EE304B24163EED00E6D076 /* Aggregate */,
 			);
 		};
 /* End PBXProject section */
@@ -280,6 +298,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		32EE305224163EF400E6D076 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n../Scripts/carthage-iOS.sh RUNAOma\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		32671F6324108BB400C50F9F /* Sources */ = {
@@ -514,6 +552,22 @@
 			};
 			name = Release;
 		};
+		32EE304C24163EED00E6D076 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		32EE304D24163EED00E6D076 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -540,6 +594,15 @@
 			buildConfigurations = (
 				32671F7F24108BB400C50F9F /* Debug */,
 				32671F8024108BB400C50F9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32EE305124163EED00E6D076 /* Build configuration list for PBXAggregateTarget "Aggregate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32EE304C24163EED00E6D076 /* Debug */,
+				32EE304D24163EED00E6D076 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
