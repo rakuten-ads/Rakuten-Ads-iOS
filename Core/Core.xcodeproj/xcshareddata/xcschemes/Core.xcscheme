@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "32F258BB21E5866C001FD9C0"
-               BuildableName = "RPSCore.framework"
+               BuildableName = "RUNACore.framework"
                BlueprintName = "Core"
                ReferencedContainer = "container:Core.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "32F258BB21E5866C001FD9C0"
-            BuildableName = "RPSCore.framework"
+            BuildableName = "RUNACore.framework"
             BlueprintName = "Core"
             ReferencedContainer = "container:Core.xcodeproj">
          </BuildableReference>
@@ -63,7 +63,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "32F258BB21E5866C001FD9C0"
-            BuildableName = "RPSCore.framework"
+            BuildableName = "RUNACore.framework"
             BlueprintName = "Core"
             ReferencedContainer = "container:Core.xcodeproj">
          </BuildableReference>
@@ -79,7 +79,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "32F258BB21E5866C001FD9C0"
-            BuildableName = "RPSCore.framework"
+            BuildableName = "RUNACore.framework"
             BlueprintName = "Core"
             ReferencedContainer = "container:Core.xcodeproj">
          </BuildableReference>

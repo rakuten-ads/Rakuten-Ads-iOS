@@ -21,39 +21,39 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		320B6BF823A7123E003E1A10 /* RPSAdWebViewMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 320B6BF623A7123E003E1A10 /* RPSAdWebViewMessage.h */; };
-		320B6BF923A7123E003E1A10 /* RPSAdWebViewMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 320B6BF723A7123E003E1A10 /* RPSAdWebViewMessage.m */; };
-		3211A414231CA60900DB0225 /* RPSBannerViewMeasurable.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211A413231CA60900DB0225 /* RPSBannerViewMeasurable.m */; };
-		32564D872224ECAA00DB4DBF /* RPSOpenRTB.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D852224ECAA00DB4DBF /* RPSOpenRTB.h */; };
-		32564D882224ECAA00DB4DBF /* RPSOpenRTB.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D862224ECAA00DB4DBF /* RPSOpenRTB.m */; };
-		32564D982227790900DB4DBF /* RPSBidAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D962227790900DB4DBF /* RPSBidAdapter.h */; };
-		32564D992227790900DB4DBF /* RPSBidAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D972227790900DB4DBF /* RPSBidAdapter.m */; };
-		32564D9C2227865100DB4DBF /* RPSBannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D9A2227865100DB4DBF /* RPSBannerAdapter.h */; };
-		32564D9D2227865100DB4DBF /* RPSBannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D9B2227865100DB4DBF /* RPSBannerAdapter.m */; };
-		325FF74121E605F100A899CF /* RPSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RPSCore.framework */; };
-		329753AB230A7D4C002A53CC /* RPSMeasurement.h in Headers */ = {isa = PBXBuildFile; fileRef = 329753A9230A7D4C002A53CC /* RPSMeasurement.h */; };
-		329753AC230A7D4C002A53CC /* RPSMeasurement.m in Sources */ = {isa = PBXBuildFile; fileRef = 329753AA230A7D4C002A53CC /* RPSMeasurement.m */; };
-		32A693422237BBA800812DF9 /* RPSNativeAdAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A693402237BBA800812DF9 /* RPSNativeAdAdapter.h */; };
-		32A693432237BBA800812DF9 /* RPSNativeAdAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A693412237BBA800812DF9 /* RPSNativeAdAdapter.m */; };
-		32A693462240E31700812DF9 /* RPSNativeAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A693442240E31700812DF9 /* RPSNativeAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32A693472240E31700812DF9 /* RPSNativeAdProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A693452240E31700812DF9 /* RPSNativeAdProvider.m */; };
-		32A6934B22422FCD00812DF9 /* RPSNativeAdInner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A6934922422FCD00812DF9 /* RPSNativeAdInner.h */; };
-		32A6934C22422FCD00812DF9 /* RPSNativeAdInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6934A22422FCD00812DF9 /* RPSNativeAdInner.m */; };
-		32E3A609230F9B9B001FC49F /* RPSURLString.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E3A607230F9B9B001FC49F /* RPSURLString.h */; };
-		32E3A60A230F9B9B001FC49F /* RPSURLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E3A608230F9B9B001FC49F /* RPSURLString.m */; };
-		32ED78B9236693AB007833DF /* RPSBannerViewIchiba.h in Headers */ = {isa = PBXBuildFile; fileRef = 32ED78B7236693AB007833DF /* RPSBannerViewIchiba.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32ED78BA236693AB007833DF /* RPSBannerViewIchiba.m in Sources */ = {isa = PBXBuildFile; fileRef = 32ED78B8236693AB007833DF /* RPSBannerViewIchiba.m */; };
-		32F258EA21E58689001FD9C0 /* RPSRDN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258E021E58689001FD9C0 /* RPSRDN.framework */; };
+		320B6BF823A7123E003E1A10 /* RUNAAdWebViewMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 320B6BF623A7123E003E1A10 /* RUNAAdWebViewMessage.h */; };
+		320B6BF923A7123E003E1A10 /* RUNAAdWebViewMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 320B6BF723A7123E003E1A10 /* RUNAAdWebViewMessage.m */; };
+		3211A414231CA60900DB0225 /* RUNABannerViewMeasurable.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211A413231CA60900DB0225 /* RUNABannerViewMeasurable.m */; };
+		32564D872224ECAA00DB4DBF /* RUNAOpenRTB.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D852224ECAA00DB4DBF /* RUNAOpenRTB.h */; };
+		32564D882224ECAA00DB4DBF /* RUNAOpenRTB.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D862224ECAA00DB4DBF /* RUNAOpenRTB.m */; };
+		32564D982227790900DB4DBF /* RUNABidAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D962227790900DB4DBF /* RUNABidAdapter.h */; };
+		32564D992227790900DB4DBF /* RUNABidAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D972227790900DB4DBF /* RUNABidAdapter.m */; };
+		32564D9C2227865100DB4DBF /* RUNABannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D9A2227865100DB4DBF /* RUNABannerAdapter.h */; };
+		32564D9D2227865100DB4DBF /* RUNABannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D9B2227865100DB4DBF /* RUNABannerAdapter.m */; };
+		325FF74121E605F100A899CF /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RUNACore.framework */; };
+		329753AB230A7D4C002A53CC /* RUNAMeasurement.h in Headers */ = {isa = PBXBuildFile; fileRef = 329753A9230A7D4C002A53CC /* RUNAMeasurement.h */; };
+		329753AC230A7D4C002A53CC /* RUNAMeasurement.m in Sources */ = {isa = PBXBuildFile; fileRef = 329753AA230A7D4C002A53CC /* RUNAMeasurement.m */; };
+		32A693422237BBA800812DF9 /* RUNANativeAdAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A693402237BBA800812DF9 /* RUNANativeAdAdapter.h */; };
+		32A693432237BBA800812DF9 /* RUNANativeAdAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A693412237BBA800812DF9 /* RUNANativeAdAdapter.m */; };
+		32A693462240E31700812DF9 /* RUNANativeAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A693442240E31700812DF9 /* RUNANativeAd.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32A693472240E31700812DF9 /* RUNANativeAdProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A693452240E31700812DF9 /* RUNANativeAdProvider.m */; };
+		32A6934B22422FCD00812DF9 /* RUNANativeAdInner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A6934922422FCD00812DF9 /* RUNANativeAdInner.h */; };
+		32A6934C22422FCD00812DF9 /* RUNANativeAdInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A6934A22422FCD00812DF9 /* RUNANativeAdInner.m */; };
+		32E3A609230F9B9B001FC49F /* RUNAURLString.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E3A607230F9B9B001FC49F /* RUNAURLString.h */; };
+		32E3A60A230F9B9B001FC49F /* RUNAURLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E3A608230F9B9B001FC49F /* RUNAURLString.m */; };
+		32ED78B9236693AB007833DF /* RUNABannerViewIchiba.h in Headers */ = {isa = PBXBuildFile; fileRef = 32ED78B7236693AB007833DF /* RUNABannerViewIchiba.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32ED78BA236693AB007833DF /* RUNABannerViewIchiba.m in Sources */ = {isa = PBXBuildFile; fileRef = 32ED78B8236693AB007833DF /* RUNABannerViewIchiba.m */; };
+		32F258EA21E58689001FD9C0 /* RUNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258E021E58689001FD9C0 /* RUNA.framework */; };
 		32F258EF21E58689001FD9C0 /* RDNTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F258EE21E58689001FD9C0 /* RDNTests.m */; };
-		32F258F121E58689001FD9C0 /* RPSRDN.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F258E321E58689001FD9C0 /* RPSRDN.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32F2595D21E597E5001FD9C0 /* RPSDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2594D21E597E5001FD9C0 /* RPSDefines.h */; };
-		32F2595E21E597E5001FD9C0 /* RPSDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2594E21E597E5001FD9C0 /* RPSDefines.m */; };
-		32F2596021E597E5001FD9C0 /* RPSBannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595121E597E5001FD9C0 /* RPSBannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32F2596121E597E5001FD9C0 /* RPSBannerViewInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595221E597E5001FD9C0 /* RPSBannerViewInner.m */; };
-		32F2596721E597E5001FD9C0 /* RPSAdWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595B21E597E5001FD9C0 /* RPSAdWebView.m */; };
-		32F2596821E597E5001FD9C0 /* RPSAdWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595C21E597E5001FD9C0 /* RPSAdWebView.h */; };
-		32FA22C523AAFE9600801B9F /* RPSUIViewController+.h in Headers */ = {isa = PBXBuildFile; fileRef = 32FA22C323AAFE9600801B9F /* RPSUIViewController+.h */; };
-		32FA22C623AAFE9600801B9F /* RPSUIViewController+.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA22C423AAFE9600801B9F /* RPSUIViewController+.m */; };
+		32F258F121E58689001FD9C0 /* RUNARDN.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F258E321E58689001FD9C0 /* RUNARDN.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32F2595D21E597E5001FD9C0 /* RUNADefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2594D21E597E5001FD9C0 /* RUNADefines.h */; };
+		32F2595E21E597E5001FD9C0 /* RUNADefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2594E21E597E5001FD9C0 /* RUNADefines.m */; };
+		32F2596021E597E5001FD9C0 /* RUNABannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595121E597E5001FD9C0 /* RUNABannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32F2596121E597E5001FD9C0 /* RUNABannerViewInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595221E597E5001FD9C0 /* RUNABannerViewInner.m */; };
+		32F2596721E597E5001FD9C0 /* RUNAAdWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595B21E597E5001FD9C0 /* RUNAAdWebView.m */; };
+		32F2596821E597E5001FD9C0 /* RUNAAdWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595C21E597E5001FD9C0 /* RUNAAdWebView.h */; };
+		32FA22C523AAFE9600801B9F /* RUNAUIViewController+.h in Headers */ = {isa = PBXBuildFile; fileRef = 32FA22C323AAFE9600801B9F /* RUNAUIViewController+.h */; };
+		32FA22C623AAFE9600801B9F /* RUNAUIViewController+.m in Sources */ = {isa = PBXBuildFile; fileRef = 32FA22C423AAFE9600801B9F /* RUNAUIViewController+.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,46 +88,46 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		320B6BF623A7123E003E1A10 /* RPSAdWebViewMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSAdWebViewMessage.h; sourceTree = "<group>"; };
-		320B6BF723A7123E003E1A10 /* RPSAdWebViewMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSAdWebViewMessage.m; sourceTree = "<group>"; };
-		3211A413231CA60900DB0225 /* RPSBannerViewMeasurable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerViewMeasurable.m; sourceTree = "<group>"; };
-		3211A417231CA7F800DB0225 /* RPSBannerViewInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBannerViewInner.h; sourceTree = "<group>"; };
-		32564D852224ECAA00DB4DBF /* RPSOpenRTB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSOpenRTB.h; sourceTree = "<group>"; };
-		32564D862224ECAA00DB4DBF /* RPSOpenRTB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSOpenRTB.m; sourceTree = "<group>"; };
-		32564D962227790900DB4DBF /* RPSBidAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBidAdapter.h; sourceTree = "<group>"; };
-		32564D972227790900DB4DBF /* RPSBidAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBidAdapter.m; sourceTree = "<group>"; };
-		32564D9A2227865100DB4DBF /* RPSBannerAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBannerAdapter.h; sourceTree = "<group>"; };
-		32564D9B2227865100DB4DBF /* RPSBannerAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerAdapter.m; sourceTree = "<group>"; };
-		325FF74521F0577900A899CF /* rpsrdn.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = rpsrdn.modulemap; sourceTree = "<group>"; };
+		320B6BF623A7123E003E1A10 /* RUNAAdWebViewMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAdWebViewMessage.h; sourceTree = "<group>"; };
+		320B6BF723A7123E003E1A10 /* RUNAAdWebViewMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewMessage.m; sourceTree = "<group>"; };
+		3211A413231CA60900DB0225 /* RUNABannerViewMeasurable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewMeasurable.m; sourceTree = "<group>"; };
+		3211A417231CA7F800DB0225 /* RUNABannerViewInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewInner.h; sourceTree = "<group>"; };
+		32564D852224ECAA00DB4DBF /* RUNAOpenRTB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOpenRTB.h; sourceTree = "<group>"; };
+		32564D862224ECAA00DB4DBF /* RUNAOpenRTB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOpenRTB.m; sourceTree = "<group>"; };
+		32564D962227790900DB4DBF /* RUNABidAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABidAdapter.h; sourceTree = "<group>"; };
+		32564D972227790900DB4DBF /* RUNABidAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABidAdapter.m; sourceTree = "<group>"; };
+		32564D9A2227865100DB4DBF /* RUNABannerAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerAdapter.h; sourceTree = "<group>"; };
+		32564D9B2227865100DB4DBF /* RUNABannerAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerAdapter.m; sourceTree = "<group>"; };
+		325FF74521F0577900A899CF /* runardn.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = runardn.modulemap; sourceTree = "<group>"; };
 		325FF74C21F0706000A899CF /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
-		329753A9230A7D4C002A53CC /* RPSMeasurement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSMeasurement.h; sourceTree = "<group>"; };
-		329753AA230A7D4C002A53CC /* RPSMeasurement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSMeasurement.m; sourceTree = "<group>"; };
-		32A693402237BBA800812DF9 /* RPSNativeAdAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSNativeAdAdapter.h; sourceTree = "<group>"; };
-		32A693412237BBA800812DF9 /* RPSNativeAdAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSNativeAdAdapter.m; sourceTree = "<group>"; };
-		32A693442240E31700812DF9 /* RPSNativeAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSNativeAd.h; sourceTree = "<group>"; };
-		32A693452240E31700812DF9 /* RPSNativeAdProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSNativeAdProvider.m; sourceTree = "<group>"; };
-		32A6934922422FCD00812DF9 /* RPSNativeAdInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSNativeAdInner.h; sourceTree = "<group>"; };
-		32A6934A22422FCD00812DF9 /* RPSNativeAdInner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSNativeAdInner.m; sourceTree = "<group>"; };
-		32E3A607230F9B9B001FC49F /* RPSURLString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSURLString.h; sourceTree = "<group>"; };
-		32E3A608230F9B9B001FC49F /* RPSURLString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSURLString.m; sourceTree = "<group>"; };
-		32ED78B7236693AB007833DF /* RPSBannerViewIchiba.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBannerViewIchiba.h; sourceTree = "<group>"; };
-		32ED78B8236693AB007833DF /* RPSBannerViewIchiba.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerViewIchiba.m; sourceTree = "<group>"; };
-		32F258E021E58689001FD9C0 /* RPSRDN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RPSRDN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		32F258E321E58689001FD9C0 /* RPSRDN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSRDN.h; sourceTree = "<group>"; };
+		329753A9230A7D4C002A53CC /* RUNAMeasurement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAMeasurement.h; sourceTree = "<group>"; };
+		329753AA230A7D4C002A53CC /* RUNAMeasurement.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAMeasurement.m; sourceTree = "<group>"; };
+		32A693402237BBA800812DF9 /* RUNANativeAdAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNANativeAdAdapter.h; sourceTree = "<group>"; };
+		32A693412237BBA800812DF9 /* RUNANativeAdAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNANativeAdAdapter.m; sourceTree = "<group>"; };
+		32A693442240E31700812DF9 /* RUNANativeAd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNANativeAd.h; sourceTree = "<group>"; };
+		32A693452240E31700812DF9 /* RUNANativeAdProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNANativeAdProvider.m; sourceTree = "<group>"; };
+		32A6934922422FCD00812DF9 /* RUNANativeAdInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNANativeAdInner.h; sourceTree = "<group>"; };
+		32A6934A22422FCD00812DF9 /* RUNANativeAdInner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNANativeAdInner.m; sourceTree = "<group>"; };
+		32E3A607230F9B9B001FC49F /* RUNAURLString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAURLString.h; sourceTree = "<group>"; };
+		32E3A608230F9B9B001FC49F /* RUNAURLString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAURLString.m; sourceTree = "<group>"; };
+		32ED78B7236693AB007833DF /* RUNABannerViewIchiba.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewIchiba.h; sourceTree = "<group>"; };
+		32ED78B8236693AB007833DF /* RUNABannerViewIchiba.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewIchiba.m; sourceTree = "<group>"; };
+		32F258E021E58689001FD9C0 /* RUNA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32F258E321E58689001FD9C0 /* RUNARDN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNARDN.h; sourceTree = "<group>"; };
 		32F258E421E58689001FD9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32F258E921E58689001FD9C0 /* RDNTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RDNTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258EE21E58689001FD9C0 /* RDNTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RDNTests.m; sourceTree = "<group>"; };
 		32F258F021E58689001FD9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		32F2594D21E597E5001FD9C0 /* RPSDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSDefines.h; sourceTree = "<group>"; };
-		32F2594E21E597E5001FD9C0 /* RPSDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSDefines.m; sourceTree = "<group>"; };
-		32F2595121E597E5001FD9C0 /* RPSBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSBannerView.h; sourceTree = "<group>"; };
-		32F2595221E597E5001FD9C0 /* RPSBannerViewInner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSBannerViewInner.m; sourceTree = "<group>"; };
-		32F2595B21E597E5001FD9C0 /* RPSAdWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RPSAdWebView.m; sourceTree = "<group>"; };
-		32F2595C21E597E5001FD9C0 /* RPSAdWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RPSAdWebView.h; sourceTree = "<group>"; };
+		32F2594D21E597E5001FD9C0 /* RUNADefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUNADefines.h; sourceTree = "<group>"; };
+		32F2594E21E597E5001FD9C0 /* RUNADefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNADefines.m; sourceTree = "<group>"; };
+		32F2595121E597E5001FD9C0 /* RUNABannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUNABannerView.h; sourceTree = "<group>"; };
+		32F2595221E597E5001FD9C0 /* RUNABannerViewInner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewInner.m; sourceTree = "<group>"; };
+		32F2595B21E597E5001FD9C0 /* RUNAAdWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebView.m; sourceTree = "<group>"; };
+		32F2595C21E597E5001FD9C0 /* RUNAAdWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUNAAdWebView.h; sourceTree = "<group>"; };
 		32F25A1221E5A4E5001FD9C0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		32F25A1721E5A96C001FD9C0 /* Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core.xcodeproj; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
-		32FA22C323AAFE9600801B9F /* RPSUIViewController+.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RPSUIViewController+.h"; sourceTree = "<group>"; };
-		32FA22C423AAFE9600801B9F /* RPSUIViewController+.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RPSUIViewController+.m"; sourceTree = "<group>"; };
+		32FA22C323AAFE9600801B9F /* RUNAUIViewController+.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RUNAUIViewController+.h"; sourceTree = "<group>"; };
+		32FA22C423AAFE9600801B9F /* RUNAUIViewController+.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RUNAUIViewController+.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				325FF74121E605F100A899CF /* RPSCore.framework in Frameworks */,
+				325FF74121E605F100A899CF /* RUNACore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32F258EA21E58689001FD9C0 /* RPSRDN.framework in Frameworks */,
+				32F258EA21E58689001FD9C0 /* RUNA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,9 +153,9 @@
 		32132858230A5E2900DA92AC /* Measurement */ = {
 			isa = PBXGroup;
 			children = (
-				329753A9230A7D4C002A53CC /* RPSMeasurement.h */,
-				329753AA230A7D4C002A53CC /* RPSMeasurement.m */,
-				3211A413231CA60900DB0225 /* RPSBannerViewMeasurable.m */,
+				329753A9230A7D4C002A53CC /* RUNAMeasurement.h */,
+				329753AA230A7D4C002A53CC /* RUNAMeasurement.m */,
+				3211A413231CA60900DB0225 /* RUNABannerViewMeasurable.m */,
 			);
 			path = Measurement;
 			sourceTree = "<group>";
@@ -163,32 +163,32 @@
 		32564D842224EC4A00DB4DBF /* OpenRTB */ = {
 			isa = PBXGroup;
 			children = (
-				32564D8A22253EC800DB4DBF /* RPS */,
-				32564D852224ECAA00DB4DBF /* RPSOpenRTB.h */,
-				32564D862224ECAA00DB4DBF /* RPSOpenRTB.m */,
+				32564D8A22253EC800DB4DBF /* RUNA */,
+				32564D852224ECAA00DB4DBF /* RUNAOpenRTB.h */,
+				32564D862224ECAA00DB4DBF /* RUNAOpenRTB.m */,
 			);
 			path = OpenRTB;
 			sourceTree = "<group>";
 		};
-		32564D8A22253EC800DB4DBF /* RPS */ = {
+		32564D8A22253EC800DB4DBF /* RUNA */ = {
 			isa = PBXGroup;
 			children = (
-				32564D962227790900DB4DBF /* RPSBidAdapter.h */,
-				32564D972227790900DB4DBF /* RPSBidAdapter.m */,
+				32564D962227790900DB4DBF /* RUNABidAdapter.h */,
+				32564D972227790900DB4DBF /* RUNABidAdapter.m */,
 			);
-			path = RPS;
+			path = RUNA;
 			sourceTree = "<group>";
 		};
 		32564D912226305500DB4DBF /* Banner */ = {
 			isa = PBXGroup;
 			children = (
-				32F2595121E597E5001FD9C0 /* RPSBannerView.h */,
-				3211A417231CA7F800DB0225 /* RPSBannerViewInner.h */,
-				32F2595221E597E5001FD9C0 /* RPSBannerViewInner.m */,
-				32564D9A2227865100DB4DBF /* RPSBannerAdapter.h */,
-				32564D9B2227865100DB4DBF /* RPSBannerAdapter.m */,
-				32ED78B7236693AB007833DF /* RPSBannerViewIchiba.h */,
-				32ED78B8236693AB007833DF /* RPSBannerViewIchiba.m */,
+				32F2595121E597E5001FD9C0 /* RUNABannerView.h */,
+				3211A417231CA7F800DB0225 /* RUNABannerViewInner.h */,
+				32F2595221E597E5001FD9C0 /* RUNABannerViewInner.m */,
+				32564D9A2227865100DB4DBF /* RUNABannerAdapter.h */,
+				32564D9B2227865100DB4DBF /* RUNABannerAdapter.m */,
+				32ED78B7236693AB007833DF /* RUNABannerViewIchiba.h */,
+				32ED78B8236693AB007833DF /* RUNABannerViewIchiba.m */,
 			);
 			path = Banner;
 			sourceTree = "<group>";
@@ -196,12 +196,12 @@
 		32A6933F2237BB8700812DF9 /* NativeAd */ = {
 			isa = PBXGroup;
 			children = (
-				32A693442240E31700812DF9 /* RPSNativeAd.h */,
-				32A693452240E31700812DF9 /* RPSNativeAdProvider.m */,
-				32A6934922422FCD00812DF9 /* RPSNativeAdInner.h */,
-				32A6934A22422FCD00812DF9 /* RPSNativeAdInner.m */,
-				32A693402237BBA800812DF9 /* RPSNativeAdAdapter.h */,
-				32A693412237BBA800812DF9 /* RPSNativeAdAdapter.m */,
+				32A693442240E31700812DF9 /* RUNANativeAd.h */,
+				32A693452240E31700812DF9 /* RUNANativeAdProvider.m */,
+				32A6934922422FCD00812DF9 /* RUNANativeAdInner.h */,
+				32A6934A22422FCD00812DF9 /* RUNANativeAdInner.m */,
+				32A693402237BBA800812DF9 /* RUNANativeAdAdapter.h */,
+				32A693412237BBA800812DF9 /* RUNANativeAdAdapter.m */,
 			);
 			path = NativeAd;
 			sourceTree = "<group>";
@@ -209,8 +209,8 @@
 		32E3A606230F9B7E001FC49F /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				32E3A607230F9B9B001FC49F /* RPSURLString.h */,
-				32E3A608230F9B9B001FC49F /* RPSURLString.m */,
+				32E3A607230F9B9B001FC49F /* RUNAURLString.h */,
+				32E3A608230F9B9B001FC49F /* RUNAURLString.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -229,7 +229,7 @@
 		32F258E121E58689001FD9C0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				32F258E021E58689001FD9C0 /* RPSRDN.framework */,
+				32F258E021E58689001FD9C0 /* RUNA.framework */,
 				32F258E921E58689001FD9C0 /* RDNTests.xctest */,
 			);
 			name = Products;
@@ -243,10 +243,10 @@
 				32564D912226305500DB4DBF /* Banner */,
 				32564D842224EC4A00DB4DBF /* OpenRTB */,
 				32F2594C21E597E5001FD9C0 /* Common */,
-				32F258E321E58689001FD9C0 /* RPSRDN.h */,
+				32F258E321E58689001FD9C0 /* RUNARDN.h */,
 				32F25A1221E5A4E5001FD9C0 /* PrefixHeader.pch */,
 				32F258E421E58689001FD9C0 /* Info.plist */,
-				325FF74521F0577900A899CF /* rpsrdn.modulemap */,
+				325FF74521F0577900A899CF /* runardn.modulemap */,
 			);
 			path = RDN;
 			sourceTree = "<group>";
@@ -265,8 +265,8 @@
 			children = (
 				32E3A606230F9B7E001FC49F /* Extension */,
 				32F2595A21E597E5001FD9C0 /* UI */,
-				32F2594D21E597E5001FD9C0 /* RPSDefines.h */,
-				32F2594E21E597E5001FD9C0 /* RPSDefines.m */,
+				32F2594D21E597E5001FD9C0 /* RUNADefines.h */,
+				32F2594E21E597E5001FD9C0 /* RUNADefines.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -274,12 +274,12 @@
 		32F2595A21E597E5001FD9C0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				320B6BF623A7123E003E1A10 /* RPSAdWebViewMessage.h */,
-				320B6BF723A7123E003E1A10 /* RPSAdWebViewMessage.m */,
-				32F2595C21E597E5001FD9C0 /* RPSAdWebView.h */,
-				32F2595B21E597E5001FD9C0 /* RPSAdWebView.m */,
-				32FA22C323AAFE9600801B9F /* RPSUIViewController+.h */,
-				32FA22C423AAFE9600801B9F /* RPSUIViewController+.m */,
+				320B6BF623A7123E003E1A10 /* RUNAAdWebViewMessage.h */,
+				320B6BF723A7123E003E1A10 /* RUNAAdWebViewMessage.m */,
+				32F2595C21E597E5001FD9C0 /* RUNAAdWebView.h */,
+				32F2595B21E597E5001FD9C0 /* RUNAAdWebView.m */,
+				32FA22C323AAFE9600801B9F /* RUNAUIViewController+.h */,
+				32FA22C423AAFE9600801B9F /* RUNAUIViewController+.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -287,7 +287,7 @@
 		32F25A1821E5A96C001FD9C0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				32F25A1D21E5A96C001FD9C0 /* RPSCore.framework */,
+				32F25A1D21E5A96C001FD9C0 /* RUNACore.framework */,
 				32F25A1F21E5A96C001FD9C0 /* CoreTests.xctest */,
 			);
 			name = Products;
@@ -300,21 +300,21 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32564D872224ECAA00DB4DBF /* RPSOpenRTB.h in Headers */,
-				32A693462240E31700812DF9 /* RPSNativeAd.h in Headers */,
-				32A6934B22422FCD00812DF9 /* RPSNativeAdInner.h in Headers */,
-				32FA22C523AAFE9600801B9F /* RPSUIViewController+.h in Headers */,
-				32564D982227790900DB4DBF /* RPSBidAdapter.h in Headers */,
-				32564D9C2227865100DB4DBF /* RPSBannerAdapter.h in Headers */,
-				32F2596021E597E5001FD9C0 /* RPSBannerView.h in Headers */,
-				32F2595D21E597E5001FD9C0 /* RPSDefines.h in Headers */,
-				32ED78B9236693AB007833DF /* RPSBannerViewIchiba.h in Headers */,
-				32F258F121E58689001FD9C0 /* RPSRDN.h in Headers */,
-				32E3A609230F9B9B001FC49F /* RPSURLString.h in Headers */,
-				329753AB230A7D4C002A53CC /* RPSMeasurement.h in Headers */,
-				32A693422237BBA800812DF9 /* RPSNativeAdAdapter.h in Headers */,
-				320B6BF823A7123E003E1A10 /* RPSAdWebViewMessage.h in Headers */,
-				32F2596821E597E5001FD9C0 /* RPSAdWebView.h in Headers */,
+				32564D872224ECAA00DB4DBF /* RUNAOpenRTB.h in Headers */,
+				32A693462240E31700812DF9 /* RUNANativeAd.h in Headers */,
+				32A6934B22422FCD00812DF9 /* RUNANativeAdInner.h in Headers */,
+				32FA22C523AAFE9600801B9F /* RUNAUIViewController+.h in Headers */,
+				32564D982227790900DB4DBF /* RUNABidAdapter.h in Headers */,
+				32564D9C2227865100DB4DBF /* RUNABannerAdapter.h in Headers */,
+				32F2596021E597E5001FD9C0 /* RUNABannerView.h in Headers */,
+				32F2595D21E597E5001FD9C0 /* RUNADefines.h in Headers */,
+				32ED78B9236693AB007833DF /* RUNABannerViewIchiba.h in Headers */,
+				32F258F121E58689001FD9C0 /* RUNARDN.h in Headers */,
+				32E3A609230F9B9B001FC49F /* RUNAURLString.h in Headers */,
+				329753AB230A7D4C002A53CC /* RUNAMeasurement.h in Headers */,
+				32A693422237BBA800812DF9 /* RUNANativeAdAdapter.h in Headers */,
+				320B6BF823A7123E003E1A10 /* RUNAAdWebViewMessage.h in Headers */,
+				32F2596821E597E5001FD9C0 /* RUNAAdWebView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +337,7 @@
 			);
 			name = RDN;
 			productName = RDN;
-			productReference = 32F258E021E58689001FD9C0 /* RPSRDN.framework */;
+			productReference = 32F258E021E58689001FD9C0 /* RUNA.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		32F258E821E58689001FD9C0 /* RDNTests */ = {
@@ -405,10 +405,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		32F25A1D21E5A96C001FD9C0 /* RPSCore.framework */ = {
+		32F25A1D21E5A96C001FD9C0 /* RUNACore.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = RPSCore.framework;
+			path = RUNACore.framework;
 			remoteRef = 32F25A1C21E5A96C001FD9C0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -463,21 +463,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32E3A60A230F9B9B001FC49F /* RPSURLString.m in Sources */,
-				329753AC230A7D4C002A53CC /* RPSMeasurement.m in Sources */,
-				32564D992227790900DB4DBF /* RPSBidAdapter.m in Sources */,
-				32F2596121E597E5001FD9C0 /* RPSBannerViewInner.m in Sources */,
-				32FA22C623AAFE9600801B9F /* RPSUIViewController+.m in Sources */,
-				32A6934C22422FCD00812DF9 /* RPSNativeAdInner.m in Sources */,
-				32A693432237BBA800812DF9 /* RPSNativeAdAdapter.m in Sources */,
-				32F2595E21E597E5001FD9C0 /* RPSDefines.m in Sources */,
-				32564D882224ECAA00DB4DBF /* RPSOpenRTB.m in Sources */,
-				32A693472240E31700812DF9 /* RPSNativeAdProvider.m in Sources */,
-				32ED78BA236693AB007833DF /* RPSBannerViewIchiba.m in Sources */,
-				320B6BF923A7123E003E1A10 /* RPSAdWebViewMessage.m in Sources */,
-				3211A414231CA60900DB0225 /* RPSBannerViewMeasurable.m in Sources */,
-				32564D9D2227865100DB4DBF /* RPSBannerAdapter.m in Sources */,
-				32F2596721E597E5001FD9C0 /* RPSAdWebView.m in Sources */,
+				32E3A60A230F9B9B001FC49F /* RUNAURLString.m in Sources */,
+				329753AC230A7D4C002A53CC /* RUNAMeasurement.m in Sources */,
+				32564D992227790900DB4DBF /* RUNABidAdapter.m in Sources */,
+				32F2596121E597E5001FD9C0 /* RUNABannerViewInner.m in Sources */,
+				32FA22C623AAFE9600801B9F /* RUNAUIViewController+.m in Sources */,
+				32A6934C22422FCD00812DF9 /* RUNANativeAdInner.m in Sources */,
+				32A693432237BBA800812DF9 /* RUNANativeAdAdapter.m in Sources */,
+				32F2595E21E597E5001FD9C0 /* RUNADefines.m in Sources */,
+				32564D882224ECAA00DB4DBF /* RUNAOpenRTB.m in Sources */,
+				32A693472240E31700812DF9 /* RUNANativeAdProvider.m in Sources */,
+				32ED78BA236693AB007833DF /* RUNABannerViewIchiba.m in Sources */,
+				320B6BF923A7123E003E1A10 /* RUNAAdWebViewMessage.m in Sources */,
+				3211A414231CA60900DB0225 /* RUNABannerViewMeasurable.m in Sources */,
+				32564D9D2227865100DB4DBF /* RUNABannerAdapter.m in Sources */,
+				32F2596721E597E5001FD9C0 /* RUNAAdWebView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +551,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
-					"RPS_STAGING=1",
+					"RUNA_STAGING=1",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -588,10 +588,10 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MODULEMAP_FILE = RDN/rpsrdn.modulemap;
+				MODULEMAP_FILE = RDN/runardn.modulemap;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.sdk.RDN;
-				PRODUCT_NAME = "RPS$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;
+				PRODUCT_NAME = RUNA;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -607,7 +607,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.sdk.RDNTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.runa.sdk.RDNTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -739,7 +739,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "RPS_PRODUCTION=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "RUNA_PRODUCTION=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -775,10 +775,10 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MODULEMAP_FILE = RDN/rpsrdn.modulemap;
+				MODULEMAP_FILE = RDN/runardn.modulemap;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.sdk.RDN;
-				PRODUCT_NAME = "RPS$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;
+				PRODUCT_NAME = RUNA;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -803,10 +803,10 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MODULEMAP_FILE = RDN/rpsrdn.modulemap;
+				MODULEMAP_FILE = RDN/runardn.modulemap;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.sdk.RDN;
-				PRODUCT_NAME = "RPS$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;
+				PRODUCT_NAME = RUNA;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -822,7 +822,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.sdk.RDNTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.runa.sdk.RDNTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -838,7 +838,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.sdk.RDNTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.runa.sdk.RDNTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

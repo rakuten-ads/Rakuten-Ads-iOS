@@ -3,7 +3,7 @@
 //  OMAdapter
 //
 //  Created by Wu, Wei b on R 2/03/05.
-//  Copyright © Reiwa 2 RPS. All rights reserved.
+//  Copyright © Reiwa 2 RUNA. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

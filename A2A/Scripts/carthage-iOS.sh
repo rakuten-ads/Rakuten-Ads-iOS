@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #  carthage-iOS.sh
-#  RPSA2A
+#  RUNAA2A
 #
 #  Created by Wu Wei on 2020/02/14.
 #  Copyright © 2020 LOB. All rights reserved.
@@ -10,7 +10,7 @@ echo
 echo "===[$0] START==="
 set -eo pipefail
 
-SDK_PRODUCT_NAME=RPSA2A
+SDK_PRODUCT_NAME=RUNAA2A
 if [ ! $SDK_OUTPUT_DIR ]; then
 	SDK_OUTPUT_DIR=${PROJECT_DIR}/build/${CONFIGURATION}
 fi

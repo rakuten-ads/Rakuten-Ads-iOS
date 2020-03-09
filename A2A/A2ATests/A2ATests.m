@@ -3,7 +3,7 @@
 //  A2ATests
 //
 //  Created by Wu, Wei b on R 2/02/28.
-//  Copyright © Reiwa 2 RPS. All rights reserved.
+//  Copyright © Reiwa 2 RUNA. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>

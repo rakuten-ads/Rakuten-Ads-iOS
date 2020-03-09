@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-               BuildableName = "RPSRDN.framework"
+               BuildableName = "RUNARDN.framework"
                BlueprintName = "RDN"
                ReferencedContainer = "container:RDN.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-            BuildableName = "RPSRDN.framework"
+            BuildableName = "RUNARDN.framework"
             BlueprintName = "RDN"
             ReferencedContainer = "container:RDN.xcodeproj">
          </BuildableReference>
@@ -63,7 +63,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-            BuildableName = "RPSRDN.framework"
+            BuildableName = "RUNARDN.framework"
             BlueprintName = "RDN"
             ReferencedContainer = "container:RDN.xcodeproj">
          </BuildableReference>
@@ -79,7 +79,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-            BuildableName = "RPSRDN.framework"
+            BuildableName = "RUNARDN.framework"
             BlueprintName = "RDN"
             ReferencedContainer = "container:RDN.xcodeproj">
          </BuildableReference>

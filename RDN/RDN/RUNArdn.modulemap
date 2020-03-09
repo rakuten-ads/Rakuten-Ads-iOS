@@ -1,0 +1,11 @@
+framework module RUNARDN {
+    umbrella header "RUNARDN.h"
+
+    export *
+    module * { export * }
+    
+    module Ichiba {
+        header "RUNABannerViewIchiba.h"
+        export *
+    }
+}

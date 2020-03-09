@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		324862BA2408EB360071E164 /* RPSA2A.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324862B02408EB350071E164 /* RPSA2A.framework */; };
+		324862BA2408EB360071E164 /* RUNAA2A.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324862B02408EB350071E164 /* RUNAA2A.framework */; };
 		324862BF2408EB360071E164 /* A2ATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324862BE2408EB360071E164 /* A2ATests.m */; };
-		324862C12408EB360071E164 /* RPSA2A.h in Headers */ = {isa = PBXBuildFile; fileRef = 324862B32408EB350071E164 /* RPSA2A.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		324862DC2408EB980071E164 /* RPSBannerViewAtoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 324862DA2408EB980071E164 /* RPSBannerViewAtoa.m */; };
-		324862DD2408EB980071E164 /* RPSPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324862D92408EB980071E164 /* RPSPopupViewController.m */; };
-		324862E22408ECB50071E164 /* RPSRDN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324862D22408EB7C0071E164 /* RPSRDN.framework */; };
-		324862E5240C86240071E164 /* RPSBannerViewAtoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 324862D52408EB980071E164 /* RPSBannerViewAtoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		324862E6240C86910071E164 /* RPSPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324862DB2408EB980071E164 /* RPSPopup.xib */; };
-		324862E7240C86A20071E164 /* RPSPopupViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 324862D82408EB980071E164 /* RPSPopupViewController.h */; };
-		324862E9240C87B20071E164 /* RPSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324862E8240C87B20071E164 /* RPSCore.framework */; };
+		324862C12408EB360071E164 /* RUNAA2A.h in Headers */ = {isa = PBXBuildFile; fileRef = 324862B32408EB350071E164 /* RUNAA2A.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324862DC2408EB980071E164 /* RUNABannerViewAtoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 324862DA2408EB980071E164 /* RUNABannerViewAtoa.m */; };
+		324862DD2408EB980071E164 /* RUNAPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324862D92408EB980071E164 /* RUNAPopupViewController.m */; };
+		324862E22408ECB50071E164 /* RUNARDN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324862D22408EB7C0071E164 /* RUNARDN.framework */; };
+		324862E5240C86240071E164 /* RUNABannerViewAtoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 324862D52408EB980071E164 /* RUNABannerViewAtoa.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324862E6240C86910071E164 /* RUNAPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324862DB2408EB980071E164 /* RUNAPopup.xib */; };
+		324862E7240C86A20071E164 /* RUNAPopupViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 324862D82408EB980071E164 /* RUNAPopupViewController.h */; };
 		324862EF240C888C0071E164 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = 324862EE240C888B0071E164 /* PrefixHeader.pch */; };
+		32EE30252415D15800E6D076 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EE30242415D15800E6D076 /* RUNACore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,23 +45,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		324862B02408EB350071E164 /* RPSA2A.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RPSA2A.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		324862B32408EB350071E164 /* RPSA2A.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSA2A.h; sourceTree = "<group>"; };
+		324862B02408EB350071E164 /* RUNAA2A.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNAA2A.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		324862B32408EB350071E164 /* RUNAA2A.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAA2A.h; sourceTree = "<group>"; };
 		324862B42408EB350071E164 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		324862B92408EB360071E164 /* A2ATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = A2ATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		324862BE2408EB360071E164 /* A2ATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = A2ATests.m; sourceTree = "<group>"; };
 		324862C02408EB360071E164 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		324862CB2408EB7C0071E164 /* RDN.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RDN.xcodeproj; path = ../RDN/RDN.xcodeproj; sourceTree = "<group>"; };
-		324862D52408EB980071E164 /* RPSBannerViewAtoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBannerViewAtoa.h; sourceTree = "<group>"; };
-		324862D82408EB980071E164 /* RPSPopupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSPopupViewController.h; sourceTree = "<group>"; };
-		324862D92408EB980071E164 /* RPSPopupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSPopupViewController.m; sourceTree = "<group>"; };
-		324862DA2408EB980071E164 /* RPSBannerViewAtoa.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RPSBannerViewAtoa.m; sourceTree = "<group>"; };
-		324862DB2408EB980071E164 /* RPSPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RPSPopup.xib; sourceTree = "<group>"; };
-		324862E8240C87B20071E164 /* RPSCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RPSCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		324862D52408EB980071E164 /* RUNABannerViewAtoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewAtoa.h; sourceTree = "<group>"; };
+		324862D82408EB980071E164 /* RUNAPopupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAPopupViewController.h; sourceTree = "<group>"; };
+		324862D92408EB980071E164 /* RUNAPopupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAPopupViewController.m; sourceTree = "<group>"; };
+		324862DA2408EB980071E164 /* RUNABannerViewAtoa.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewAtoa.m; sourceTree = "<group>"; };
+		324862DB2408EB980071E164 /* RUNAPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RUNAPopup.xib; sourceTree = "<group>"; };
 		324862EE240C888B0071E164 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		324862F0240C88E20071E164 /* Scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Scripts; sourceTree = "<group>"; };
-		324862F5240C8A470071E164 /* RPSA2A.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = RPSA2A.modulemap; sourceTree = "<group>"; };
-		324862F6240C90480071E164 /* RPSBannerViewAtoaInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RPSBannerViewAtoaInner.h; sourceTree = "<group>"; };
+		324862F5240C8A470071E164 /* RUNAA2A.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = RUNAA2A.modulemap; sourceTree = "<group>"; };
+		324862F6240C90480071E164 /* RUNABannerViewAtoaInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewAtoaInner.h; sourceTree = "<group>"; };
+		32EE30242415D15800E6D076 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				324862E22408ECB50071E164 /* RPSRDN.framework in Frameworks */,
-				324862E9240C87B20071E164 /* RPSCore.framework in Frameworks */,
+				324862E22408ECB50071E164 /* RUNARDN.framework in Frameworks */,
+				32EE30252415D15800E6D076 /* RUNACore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				324862BA2408EB360071E164 /* RPSA2A.framework in Frameworks */,
+				324862BA2408EB360071E164 /* RUNAA2A.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +100,7 @@
 		324862B12408EB350071E164 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				324862B02408EB350071E164 /* RPSA2A.framework */,
+				324862B02408EB350071E164 /* RUNAA2A.framework */,
 				324862B92408EB360071E164 /* A2ATests.xctest */,
 			);
 			name = Products;
@@ -109,16 +109,16 @@
 		324862B22408EB350071E164 /* A2A */ = {
 			isa = PBXGroup;
 			children = (
-				324862B32408EB350071E164 /* RPSA2A.h */,
-				324862D52408EB980071E164 /* RPSBannerViewAtoa.h */,
-				324862F6240C90480071E164 /* RPSBannerViewAtoaInner.h */,
-				324862DA2408EB980071E164 /* RPSBannerViewAtoa.m */,
-				324862D82408EB980071E164 /* RPSPopupViewController.h */,
-				324862D92408EB980071E164 /* RPSPopupViewController.m */,
-				324862DB2408EB980071E164 /* RPSPopup.xib */,
+				324862B32408EB350071E164 /* RUNAA2A.h */,
+				324862D52408EB980071E164 /* RUNABannerViewAtoa.h */,
+				324862F6240C90480071E164 /* RUNABannerViewAtoaInner.h */,
+				324862DA2408EB980071E164 /* RUNABannerViewAtoa.m */,
+				324862D82408EB980071E164 /* RUNAPopupViewController.h */,
+				324862D92408EB980071E164 /* RUNAPopupViewController.m */,
+				324862DB2408EB980071E164 /* RUNAPopup.xib */,
 				324862EE240C888B0071E164 /* PrefixHeader.pch */,
 				324862B42408EB350071E164 /* Info.plist */,
-				324862F5240C8A470071E164 /* RPSA2A.modulemap */,
+				324862F5240C8A470071E164 /* RUNAA2A.modulemap */,
 			);
 			path = A2A;
 			sourceTree = "<group>";
@@ -135,7 +135,7 @@
 		324862CC2408EB7C0071E164 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				324862D22408EB7C0071E164 /* RPSRDN.framework */,
+				324862D22408EB7C0071E164 /* RUNARDN.framework */,
 				324862D42408EB7C0071E164 /* RDNTests.xctest */,
 			);
 			name = Products;
@@ -144,7 +144,7 @@
 		324862E12408ECB50071E164 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				324862E8240C87B20071E164 /* RPSCore.framework */,
+				32EE30242415D15800E6D076 /* RUNACore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -157,9 +157,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				324862EF240C888C0071E164 /* PrefixHeader.pch in Headers */,
-				324862C12408EB360071E164 /* RPSA2A.h in Headers */,
-				324862E5240C86240071E164 /* RPSBannerViewAtoa.h in Headers */,
-				324862E7240C86A20071E164 /* RPSPopupViewController.h in Headers */,
+				324862C12408EB360071E164 /* RUNAA2A.h in Headers */,
+				324862E5240C86240071E164 /* RUNABannerViewAtoa.h in Headers */,
+				324862E7240C86A20071E164 /* RUNAPopupViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +181,7 @@
 			);
 			name = A2A;
 			productName = A2A;
-			productReference = 324862B02408EB350071E164 /* RPSA2A.framework */;
+			productReference = 324862B02408EB350071E164 /* RUNAA2A.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		324862B82408EB360071E164 /* A2ATests */ = {
@@ -209,7 +209,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1130;
-				ORGANIZATIONNAME = RPS;
+				ORGANIZATIONNAME = RUNA;
 				TargetAttributes = {
 					324862AF2408EB350071E164 = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -245,10 +245,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		324862D22408EB7C0071E164 /* RPSRDN.framework */ = {
+		324862D22408EB7C0071E164 /* RUNARDN.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = RPSRDN.framework;
+			path = RUNARDN.framework;
 			remoteRef = 324862D12408EB7C0071E164 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -266,7 +266,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				324862E6240C86910071E164 /* RPSPopup.xib in Resources */,
+				324862E6240C86910071E164 /* RUNAPopup.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,8 +284,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				324862DC2408EB980071E164 /* RPSBannerViewAtoa.m in Sources */,
-				324862DD2408EB980071E164 /* RPSPopupViewController.m in Sources */,
+				324862DC2408EB980071E164 /* RUNABannerViewAtoa.m in Sources */,
+				324862DD2408EB980071E164 /* RUNAPopupViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,9 +442,9 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				MODULEMAP_FILE = A2A/rpsa2a.modulemap;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.sdk.A2A;
-				PRODUCT_NAME = "RPS$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = A2A/runaa2a.modulemap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.a2a;
+				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -468,9 +468,9 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				MODULEMAP_FILE = A2A/rpsa2a.modulemap;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.sdk.A2A;
-				PRODUCT_NAME = "RPS$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = A2A/runaa2a.modulemap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.a2a;
+				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -486,7 +486,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.A2ATests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.runa.A2ATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -502,7 +502,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.A2ATests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.runa.A2ATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -587,9 +587,9 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				MODULEMAP_FILE = A2A/rpsa2a.modulemap;
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.sdk.A2A;
-				PRODUCT_NAME = "RPS$(TARGET_NAME:c99extidentifier)";
+				MODULEMAP_FILE = A2A/runaa2a.modulemap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.a2a;
+				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -605,7 +605,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.rps.A2ATests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.runa.A2ATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

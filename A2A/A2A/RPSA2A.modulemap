@@ -1,6 +1,0 @@
-framework module RPSA2A {
-    umbrella header "RPSA2A.h"
-
-    export *
-    module * { export * }
-}

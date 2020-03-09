@@ -99,7 +99,7 @@ platform :ios do
     set_env param
 
     env = @sdk_map[:sdk_env] == "prod" ? "" : ".#{@sdk_map[:sdk_env]}"
-    path = "RPS#{@sdk_map[:sdk_module_current]}#{env}.podspec"
+    path = "RUNA#{@sdk_map[:sdk_module_current]}#{env}.podspec"
 
     version_bump_podspec(
       path: path,
@@ -120,7 +120,7 @@ platform :ios do
 
     assets = []
     if @sdk_map[:sdk_configuration] == "Release"
-      assets = @sdk_module_names.map { |module_name| "#{module_name}/#{@sdk_map[:sdk_output_dir]}/RPS#{module_name}_iOS_#{version}.framework.zip" }
+      assets = @sdk_module_names.map { |module_name| "#{module_name}/#{@sdk_map[:sdk_output_dir]}/RUNA#{module_name}_iOS_#{version}.framework.zip" }
     end
     p "upload assets: #{assets}"
 
@@ -152,7 +152,7 @@ platform :ios do
       @sdk_map[:sdk_module_current] = module_name
       set_env param
       package
-      deploy_to_gcs_dev file_name: "RPS#{module_name}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
+      deploy_to_gcs_dev file_name: "RUNA#{module_name}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
       update_podspec
     end
 
