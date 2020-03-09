@@ -313,7 +313,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n../Scripts/carthage-iOS.sh RUNAA2a\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n../Scripts/carthage-iOS.sh RUNAA2A\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -479,11 +479,12 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
+				MARKETING_VERSION = "";
 				MODULEMAP_FILE = A2A/runaa2a.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.a2a;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -505,11 +506,12 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
+				MARKETING_VERSION = "";
 				MODULEMAP_FILE = A2A/runaa2a.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.a2a;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -624,11 +626,12 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
+				MARKETING_VERSION = "";
 				MODULEMAP_FILE = A2A/runaa2a.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.a2a;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Staging;
