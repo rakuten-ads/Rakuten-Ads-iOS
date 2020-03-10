@@ -1,6 +1,0 @@
-framework module RPSCore {
-    umbrella header "RPSCore.h"
-
-    export *
-    module * { export * }
-}
