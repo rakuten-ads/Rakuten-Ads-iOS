@@ -18,8 +18,8 @@ default_platform(:ios)
 platform :ios do
 
   @sdk_map = {
-    sdk_env: "dev",
-    sdk_configuration: "Debug",
+    sdk_env: "dev", # "dev", "prod"
+    sdk_configuration: "Debug", # "Debug", "Release"
     # sdk_module_current: nil,
     # sdk_release_version: nil,
     # sdk_xcodeproj_path: nil,
@@ -27,7 +27,13 @@ platform :ios do
   }
   p @sdk_map
 
-  @sdk_module_names = ["Core", "RDN"]
+  @sdk_module_names = ["Core", "RUNA", "OMAdapter", "A2A"]
+  @sdk_product_map = {
+    "Core" => "RUNACore",
+    "RUNA" => "RUNA", 
+    "OMAdapter" => "RUNAOMAdapter", 
+    "A2A" => "RUNAA2A"
+  }
 
   def set_env param
     if param.count > 0
@@ -44,15 +50,16 @@ platform :ios do
       @sdk_map[:sdk_xcodeproj_path] = "#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_module_current]}.xcodeproj"
     end
 
-    if !@sdk_map[:sdk_release_version]
+    if @sdk_map[:sdk_release_version]
       increment_version_number(
+        bump_type: "patch",
         version_number: @sdk_map[:sdk_release_version],
         xcodeproj: @sdk_map[:sdk_xcodeproj_path],
       )
-      
-      @sdk_map[:sdk_release_version] = get_version_number(
+    else
+      @sdk_map[:sdk_release_version] = increment_version_number(
+        bump_type: "patch",
         xcodeproj: @sdk_map[:sdk_xcodeproj_path],
-        target: @sdk_map[:sdk_module_current],
       )
     end
 
@@ -99,7 +106,7 @@ platform :ios do
     set_env param
 
     env = @sdk_map[:sdk_env] == "prod" ? "" : ".#{@sdk_map[:sdk_env]}"
-    path = "RPS#{@sdk_map[:sdk_module_current]}#{env}.podspec"
+    path = "#{@sdk_product_map[@sdk_map[:sdk_module_current]]}#{env}.podspec"
 
     version_bump_podspec(
       path: path,
@@ -120,7 +127,7 @@ platform :ios do
 
     assets = []
     if @sdk_map[:sdk_configuration] == "Release"
-      assets = @sdk_module_names.map { |module_name| "#{module_name}/#{@sdk_map[:sdk_output_dir]}/RPS#{module_name}_iOS_#{version}.framework.zip" }
+      assets = @sdk_module_names.map { |module_name| "#{module_name}/#{@sdk_map[:sdk_output_dir]}/#{@sdk_product_map[module_name]}_iOS_#{version}.framework.zip" }
     end
     p "upload assets: #{assets}"
 
@@ -152,7 +159,7 @@ platform :ios do
       @sdk_map[:sdk_module_current] = module_name
       set_env param
       package
-      deploy_to_gcs_dev file_name: "RPS#{module_name}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
+      deploy_to_gcs_dev file_name: "#{@sdk_product_map[module_name]}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
       update_podspec
     end
 

@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <RPSCore/RPSCore.h>
+#import <RUNACore/RUNACore.h>
 
 @interface CoreTests : XCTestCase
 
@@ -26,8 +26,8 @@
 - (void)testExample {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
-    NSLog(@"version number = %lf", RPSCoreVersionNumber);
-    NSLog(@"version = %s", RPSCoreVersionString);
+    NSLog(@"version number = %lf", RUNACoreVersionNumber);
+    NSLog(@"version = %s", RUNACoreVersionString);
 }
 
 - (void)testPerformanceExample {

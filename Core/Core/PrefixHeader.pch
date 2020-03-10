@@ -6,8 +6,8 @@
 
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
-#import "RPSLogger.h"
-#import "RPSMacros.h"
+#import "RUNALogger.h"
+#import "RUNAMacros.h"
 
 #endif
 

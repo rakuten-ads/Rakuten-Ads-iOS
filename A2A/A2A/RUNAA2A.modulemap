@@ -1,0 +1,6 @@
+framework module RUNAA2A {
+    umbrella header "RUNAA2A.h"
+
+    export *
+    module * { export * }
+}

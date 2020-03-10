@@ -1,0 +1,11 @@
+framework module RUNA {
+    umbrella header "RUNA.h"
+
+    export *
+    module * { export * }
+    
+    module Ichiba {
+        header "RUNABannerViewIchiba.h"
+        export *
+    }
+}

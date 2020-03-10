@@ -1,0 +1,6 @@
+framework module RUNACore {
+    umbrella header "RUNACore.h"
+
+    export *
+    module * { export * }
+}
