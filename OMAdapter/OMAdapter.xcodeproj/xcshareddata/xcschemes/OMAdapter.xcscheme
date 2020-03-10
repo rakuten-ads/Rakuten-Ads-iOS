@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "32671F6624108BB400C50F9F"
-               BuildableName = "OMAdapter.framework"
+               BuildableName = "RUNAOMAdapter.framework"
                BlueprintName = "OMAdapter"
                ReferencedContainer = "container:OMAdapter.xcodeproj">
             </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "32671F6624108BB400C50F9F"
-            BuildableName = "OMAdapter.framework"
+            BuildableName = "RUNAOMAdapter.framework"
             BlueprintName = "OMAdapter"
             ReferencedContainer = "container:OMAdapter.xcodeproj">
          </BuildableReference>
