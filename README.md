@@ -30,10 +30,9 @@
 Put under lines into `Podfile`.
 
 ```ruby
-source https://github.com/rakuten-ads/Rakuten-Ads-iOS
+source "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
 
-pod 'RPSRDN.dev'
-pod 'RPSCore.dev'
+pod 'RUNA'
 ```
 
 ### Carthage

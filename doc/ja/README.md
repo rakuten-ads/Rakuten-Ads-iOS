@@ -31,9 +31,9 @@
 `Podfile`に下記の設定を追加.
 
 ```ruby
-source https://github.com/rakuten-ads/Rakuten-Ads-iOS
+source "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
 
-pod 'RPSRDN'
+pod 'RUNA'
 ```
 
 ### Carthage

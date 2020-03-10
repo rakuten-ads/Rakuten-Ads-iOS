@@ -24,13 +24,13 @@ RDNSDK は三つのイベントをトラッキングすることが可能です�
 
 #### 1.3.1 イベント
 
-- **成功 (RPSBannerViewEventSucceeded) :**
+- **成功 (RUNABannerViewEventSucceeded) :**
   広告内容の受信完了
 
-- **失敗 (RPSBannerViewEventFailed) :**
+- **失敗 (RUNABannerViewEventFailed) :**
   広告内容のリクエストのそう受信、及び広告表示のいずれかで失敗した場合。<br>失敗の原因はシステムログで確認することができます。
 
-- **クリック (RPSBannerViewEventClicked) :**
+- **クリック (RUNABannerViewEventClicked) :**
   banner 広告がクリックされた時。
 
 ## 2. 実装サンプル
@@ -38,22 +38,22 @@ RDNSDK は三つのイベントをトラッキングすることが可能です�
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)
 
 ```objc
-#import <RPSRDN/RPSBanner.h>
+#import <RUNA/RUNABanner.h>
 
-RPSBannerView* banner = [RPSBannerView new];
+RUNABannerView* banner = [RUNABannerView new];
 
 banner.adSpotId = @"spot_id_xxx";
-banner.position = RPSBannerViewPositionBottom;
+banner.position = RUNABannerViewPositionBottom;
 
-[banner loadWithEventHandler: ^void (RPSBannerView* view, RPSBannerViewEvent event){
+[banner loadWithEventHandler: ^void (RUNABannerView* view, RUNABannerViewEvent event){
     switch (event) {
-        case RPSBannerViewEventSucceeded:
+        case RUNABannerViewEventSucceeded:
             NSLog(@"received event succeeded");
             break;
-        case RPSBannerViewEventFailed:
+        case RUNABannerViewEventFailed:
             NSLog(@"received event failed");
             break;
-        case RPSBannerViewEventClicked:
+        case RUNABannerViewEventClicked:
             NSLog(@"received event clicked");
             break;
         default:
@@ -67,20 +67,20 @@ banner.position = RPSBannerViewPositionBottom;
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 
 ```swift
-import RPSRDN
+import RUNA
 
-let banner = RPSBannerView()
+let banner = RUNABannerView()
 
 banner.adSpotId = "adspot_id_xxx"
 banner.position = .bottom
 
 banner.load { (banner, event) in
     switch event {
-    case RPSBannerViewEvent.succeeded:
+    case RUNABannerViewEvent.succeeded:
         print("received event succceeded")
-    case RPSBannerViewEvent.failed:
+    case RUNABannerViewEvent.failed:
         print("received event failed")
-    case RPSBannerViewEvent.clicked:
+    case RUNABannerViewEvent.clicked:
         print("received event clicked")
     default:
         break

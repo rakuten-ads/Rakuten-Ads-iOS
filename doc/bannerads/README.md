@@ -4,7 +4,7 @@
 
 # Banner Ads
 
-RDNSDK banner view is a web view bases on `WebKit/WKWebView` which will present advertisement content by loading HTML advertisement tags.
+RUNA SDK banner view is a web view bases on `WebKit/WKWebView` which will present advertisement content by loading HTML advertisement tags.
 
 ---
 
@@ -20,15 +20,15 @@ The banner view's **size** can not be changed programmatically and is depended o
 
 ### 1.3 Event Tracker
 
-The RDNSDK tracks 3 events if developers need to be triggerred and handle something by themselves.
+The RUNA SDK tracks 3 events if developers need to be triggerred and handle something by themselves.
 
-- **Succeeded (RPSBannerViewEventSucceeded) :**<br>
+- **Succeeded (RUNABannerViewEventSucceeded) :**<br>
   Succeeded to received the advertisement response.
 
-- **Failed (RPSBannerViewEventFailed) :**<br>
+- **Failed (RUNABannerViewEventFailed) :**<br>
   Failed to send, receive or show the advertisement. Detail of the failure can be found in the system console logs.
 
-- **Clicked (RPSBannerViewEventClicked) :**<br>
+- **Clicked (RUNABannerViewEventClicked) :**<br>
   After the banner is clicked.
 
 ## 2. Samples
@@ -36,22 +36,22 @@ The RDNSDK tracks 3 events if developers need to be triggerred and handle someth
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)
 
 ```objc
-#import <RPSRDN/RPSBanner.h>
+#import <RUNA/RUNABanner.h>
 
-RPSBannerView* banner = [RPSBannerView new];
+RUNABannerView* banner = [RUNABannerView new];
 
 banner.adSpotId = @"spot_id_xxx";
-banner.position = RPSBannerViewPositionBottom;
+banner.position = RUNABannerViewPositionBottom;
 
-[banner loadWithEventHandler: ^void (RPSBannerView* view, RPSBannerViewEvent event){
+[banner loadWithEventHandler: ^void (RUNABannerView* view, RUNABannerViewEvent event){
     switch (event) {
-        case RPSBannerViewEventSucceeded:
+        case RUNABannerViewEventSucceeded:
             NSLog(@"received event succeeded");
             break;
-        case RPSBannerViewEventFailed:
+        case RUNABannerViewEventFailed:
             NSLog(@"received event failed");
             break;
-        case RPSBannerViewEventClicked:
+        case RUNABannerViewEventClicked:
             NSLog(@"received event clicked");
             break;
         default:
@@ -65,20 +65,20 @@ banner.position = RPSBannerViewPositionBottom;
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 
 ```swift
-import RPSRDN
+import RUNA
 
-let banner = RPSBannerView()
+let banner = RUNABannerView()
 
 banner.adSpotId = "adspot_id_xxx"
 banner.position = .bottom
 
 banner.load { (banner, event) in
     switch event {
-    case RPSBannerViewEvent.succeeded:
+    case RUNABannerViewEvent.succeeded:
         print("received event succceeded")
-    case RPSBannerViewEvent.failed:
+    case RUNABannerViewEvent.failed:
         print("received event failed")
-    case RPSBannerViewEvent.clicked:
+    case RUNABannerViewEvent.clicked:
         print("received event clicked")
     default:
         break
