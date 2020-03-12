@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNABannerView()
 
+@property (nonatomic, readonly, nullable) RUNAAdWebView* webView;
 @property (nonatomic, readonly, nullable) RUNABanner* banner;
 @property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
 @property (nonatomic, nullable) NSMutableDictionary* appContent;

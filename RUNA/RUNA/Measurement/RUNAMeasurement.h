@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <WebKit/WebKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -41,6 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol RUNAOpenMeasurement <RUNAMeasurable>
 
 -(id<RUNAMeasurer>) getOpenMeasurer;
+-(UIView*) getOMAdView;
+-(nullable WKWebView*) getOMWebView;
 
 @end
 

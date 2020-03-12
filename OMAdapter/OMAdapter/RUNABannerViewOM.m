@@ -21,4 +21,11 @@
     return measurer;
 }
 
+-(UIView *)getOMAdView {
+    return self;
+}
+
+-(WKWebView *)getOMWebView {
+    return self.webView;
+}
 @end

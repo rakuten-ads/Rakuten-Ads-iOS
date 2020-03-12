@@ -26,7 +26,6 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* webViewConstraints;
-@property (nonatomic, readonly, nullable) RUNAAdWebView* webView;
 @property (nonatomic, nullable, copy) RUNABannerViewEventHandler eventHandler;
 @property (atomic, readonly) RUNABannerViewState state;
 
