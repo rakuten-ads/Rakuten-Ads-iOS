@@ -132,6 +132,11 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
     [self layoutIfNeeded];
 }
 
+-(void)removeFromSuperview {
+    [super removeFromSuperview];
+    [self.measurer finishMeasurement];
+}
+
 -(void) applyContainerSize {
     if (self.superview && self.banner) {
         RUNADebug("applyContainerSize %lu", (unsigned long)self.size);
