@@ -71,6 +71,7 @@ NSTimeInterval kMeasureIntervalInView = 1;
 }
 
 -(void)finishMeasurement {
+    RUNADebug("finishMeasurement");
     if (!self.isCancelled) {
         [self cancel];
     }

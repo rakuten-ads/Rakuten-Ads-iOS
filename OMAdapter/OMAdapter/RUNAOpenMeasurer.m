@@ -32,7 +32,7 @@ NSString* kPartnerName = @"RUNA";
     if (![self isSDKActive]
         || !self.adView
         || !self.webView) {
-        RUNALog("Not prepared for measurement.");
+        RUNALog("Not prepared for open measurement.");
         return;
     }
     
@@ -45,13 +45,13 @@ NSString* kPartnerName = @"RUNA";
             return;
         }
         
-        RUNADebug("Starting measurement session");
+        RUNADebug("Starting open measurement session");
         [self.adSession start];
         
         err = nil;
         [event loadedWithError:&err];
         if (err) {
-            RUNADebug("Unable to trigger loaded event: %@)", err);
+            RUNADebug("Unable to trigger loaded OM event: %@)", err);
             return;
         }
         
@@ -65,7 +65,7 @@ NSString* kPartnerName = @"RUNA";
 }
 
 - (void)finishMeasurement {
-    RUNADebug("Finishing measurement session");
+    RUNADebug("Finishing open measurement session");
     [self.adSession finish];
 }
 
