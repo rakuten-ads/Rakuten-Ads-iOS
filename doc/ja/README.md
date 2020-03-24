@@ -10,7 +10,7 @@
 ### 広告フォーマット
 
 - **[バナー広告](./bannerads/README.md)**
-
+- **[App to App](./doc/a2a/README.md)**
 ---
 
 # はじめに
@@ -46,7 +46,8 @@ github "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
 
 ---
 
-[バナー広告](./bannerads/README.md)
+[バナー広告](./bannerads/README.md)<br>
+[App to App](./doc/a2a/README.md)
 
 ---
 
