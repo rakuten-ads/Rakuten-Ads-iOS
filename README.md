@@ -10,6 +10,7 @@
 ### Ad Formats
 
 * **[Banner Ad](./doc/bannerads/README.md)**
+* **[App to App](./doc/a2a/README.md)**
 
 ---
 # Get Started
@@ -44,7 +45,8 @@ github "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
 
 ---
 
-[Banner Ad](./doc/bannerads/README.md)
+[Banner Ad](./doc/bannerads/README.md)<br>
+[App to App](./doc/a2a/README.md)
 
 ---
 LANGUAGE :
