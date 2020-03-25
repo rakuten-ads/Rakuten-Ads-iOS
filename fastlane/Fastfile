@@ -18,8 +18,8 @@ default_platform(:ios)
 platform :ios do
 
   @sdk_map = {
-    sdk_env: "dev", # "dev", "prod"
-    sdk_configuration: "Debug", # "Debug", "Release"
+    sdk_env: "prod", # "dev", "prod"
+    sdk_configuration: "Release", # "Debug", "Release"
     # sdk_module_current: nil,
     # sdk_release_version: nil,
     # sdk_xcodeproj_path: nil,
@@ -148,8 +148,8 @@ platform :ios do
 
     @sdk_module_names.each do |module_name|
       @sdk_map = {
-        sdk_env: "dev",
-        sdk_configuration: "Debug",
+        sdk_env: "prod",
+        sdk_configuration: "Release",
         # sdk_module_current: nil,
         # sdk_release_version: nil,
         # sdk_xcodeproj_path: nil,
