@@ -267,6 +267,9 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
     }
 }
 
+NSString* OM_JS_TAG_SDK = @"<script src=\"https://dev-s-cdn.rmp.rakuten.co.jp/om_sdk/omsdk-v1.js\"></script>";
+NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.com/omsdk-files/compliance-js/omid-validation-verification-script-v1-ssl.js\"></script>";
+
 -(void) applyAdView {
     RUNADebug("apply applyView: %@", NSStringFromCGRect(self.frame));
     // remove old web view
@@ -297,7 +300,13 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
 
     self.webView.navigationDelegate = self;
     [self addSubview:self.webView];
-    [self.webView loadHTMLString:self.banner.html baseURL:[NSURL URLWithString:@"https://rakuten.co.jp"]];
+    
+    NSString* html = self.banner.html;
+    if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]) {
+        html = [self.banner.html stringByAppendingFormat:@"%@ %@", OM_JS_TAG_SDK, OM_JS_TAG_VALIDATION];
+    }
+    
+    [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://rakuten.co.jp"]];
     
     self.state = RUNA_ADVIEW_STATE_RENDERING;
     self.webView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -434,7 +443,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     RUNADebug("didFinishNavigation of: %@", navigation);
-    if (self.state != RUNA_ADVIEW_STATE_FAILED) {  
+    if (self.state != RUNA_ADVIEW_STATE_FAILED) {
         @try {
             if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]) {
                 self.measurer = [(id<RUNAOpenMeasurement>)self getOpenMeasurer];
