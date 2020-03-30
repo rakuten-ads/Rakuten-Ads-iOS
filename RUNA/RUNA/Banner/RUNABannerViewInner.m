@@ -438,16 +438,16 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
 }
 
 -(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
-    RUNADebug("didStartProvisionalNavigation of: %@", navigation);
+    RUNADebug("didStartProvisionalNavigation");
 }
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    RUNADebug("didFinishNavigation of: %@", navigation);
+    RUNADebug("didFinishNavigation");
     if (self.state != RUNA_ADVIEW_STATE_FAILED) {
         @try {
             if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]) {
                 self.measurer = [(id<RUNAOpenMeasurement>)self getOpenMeasurer];
-            } else if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]) {
+            } else if ([self conformsToProtocol:@protocol(RUNADefaultMeasurement)]) {
                 self.measurer = [(id<RUNADefaultMeasurement>)self getDefaultMeasurer];
             }
             [self.measurer startMeasurement];
