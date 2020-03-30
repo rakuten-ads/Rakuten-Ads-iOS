@@ -27,7 +27,6 @@
 		32671F8324108BD300C50F9F /* RUNAOpenMeasurer.h in Headers */ = {isa = PBXBuildFile; fileRef = 32671F8124108BD300C50F9F /* RUNAOpenMeasurer.h */; };
 		32671F8424108BD300C50F9F /* RUNAOpenMeasurer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671F8224108BD300C50F9F /* RUNAOpenMeasurer.m */; };
 		32671F8F2412318300C50F9F /* OMSDK_Rakuten.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32671F8E2412318300C50F9F /* OMSDK_Rakuten.framework */; };
-		32671F902412318300C50F9F /* OMSDK_Rakuten.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32671F8E2412318300C50F9F /* OMSDK_Rakuten.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		32671FA02412492700C50F9F /* RUNA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32671F9824123C9B00C50F9F /* RUNA.framework */; };
 		32671FA52412501400C50F9F /* RUNABannerViewOM.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671FA32412501400C50F9F /* RUNABannerViewOM.m */; };
 		32EE303A2415D80900E6D076 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EE30392415D80900E6D076 /* RUNACore.framework */; };
@@ -56,20 +55,6 @@
 			remoteInfo = RUNATests;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		32671F8D24108D6000C50F9F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				32671F902412318300C50F9F /* OMSDK_Rakuten.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		32671F6724108BB400C50F9F /* RUNAOMAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNAOMAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,7 +175,6 @@
 				32671F6324108BB400C50F9F /* Sources */,
 				32671F6424108BB400C50F9F /* Frameworks */,
 				32671F6524108BB400C50F9F /* Resources */,
-				32671F8D24108D6000C50F9F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -485,6 +469,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.om;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -514,6 +499,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.om;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -652,6 +638,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.om;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

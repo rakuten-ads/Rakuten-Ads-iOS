@@ -481,6 +481,7 @@
 				);
 				MARKETING_VERSION = "";
 				MODULEMAP_FILE = A2A/runaa2a.modulemap;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.a2a;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -508,6 +509,7 @@
 				);
 				MARKETING_VERSION = "";
 				MODULEMAP_FILE = A2A/runaa2a.modulemap;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.a2a;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -628,6 +630,7 @@
 				);
 				MARKETING_VERSION = "";
 				MODULEMAP_FILE = A2A/runaa2a.modulemap;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.a2a;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
