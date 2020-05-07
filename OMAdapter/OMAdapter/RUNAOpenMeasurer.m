@@ -24,7 +24,7 @@
 
 @end
 
-NSString* kPartnerName = @"RUNA";
+NSString* kPartnerName = @"Rakuten";
 
 @implementation RUNAOpenMeasurer
 
