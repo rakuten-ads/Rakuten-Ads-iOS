@@ -38,7 +38,7 @@ RDNSDK は三つのイベントをトラッキングすることが可能です�
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)
 
 ```objc
-#import <RUNA/RUNABanner.h>
+#import <RUNA/RUNA.h>
 
 RUNABannerView* banner = [RUNABannerView new];
 

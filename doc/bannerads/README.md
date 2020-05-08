@@ -36,7 +36,7 @@ The RUNA SDK tracks 3 events if developers need to be triggerred and handle some
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)
 
 ```objc
-#import <RUNA/RUNABanner.h>
+#import <RUNA/RUNA.h>
 
 RUNABannerView* banner = [RUNABannerView new];
 
