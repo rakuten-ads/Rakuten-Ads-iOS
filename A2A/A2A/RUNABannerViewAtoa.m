@@ -64,7 +64,7 @@
     urlComp.queryItems = mutableQueryItems;
     NSURL* nsurl = urlComp.URL;
     if (nsurl) {
-        RUNAPopupViewController* popupViewController = [[RUNAPopupViewController alloc] initWithNibName:@"RUNAPopup" bundle:[NSBundle bundleForClass:self.class]];
+        RUNAPopupViewController* popupViewController = [[RUNAPopupViewController alloc] initWithNibName:@"RUNAPopup" bundle:[NSBundle bundleForClass:RUNAPopupViewController.class]];
         popupViewController.url = nsurl;
 
         UIViewController* root = [UIApplication sharedApplication].keyWindow.rootViewController;
