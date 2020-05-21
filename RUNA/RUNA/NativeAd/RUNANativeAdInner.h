@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <RUNACore/RUNAJSONObject.h>
-#import "RUNABidAdapter.h"
+#import <RUNACore/RUNABidAdapter.h>
 #import "RUNANativeAd.h"
-#import "RUNAURLString.h"
+#import <RUNACore/RUNAURLString.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

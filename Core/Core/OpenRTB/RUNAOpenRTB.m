@@ -7,9 +7,8 @@
 //
 
 #import "RUNAOpenRTB.h"
-#import <RUNACore/RUNAJSONObject.h>
+#import "RUNAJSONObject.h"
 #import "RUNADefines.h"
-#import "RUNA.h"
 
 @implementation RUNAOpenRTBRequest
 

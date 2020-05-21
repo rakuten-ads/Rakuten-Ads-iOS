@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 
-  s.name         = "RUNA"
+  s.name         = "RUNABanner"
   s.version      = "0.1.2"
   s.summary      = "Podspec file of #{s.name} iOS SDK."
   s.description  = <<-DESC
@@ -21,27 +21,11 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   }
   s.author       = "Rakuten"
   s.platform     = :ios, "10.0"
+  s.source       = {
+    :http => "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/#{s.version}/#{s.name}_iOS_#{s.version}.framework.zip"
+  }
+  s.vendored_frameworks = "Carthage/Build/iOS/#{s.name}.framework"
 
-  s.default_subspec = 'Banner'
-
-  s.subspec 'CoreOnly' do |ss|
-    ss.ios.dependency 'RUNACore', '0.1.2'
-  end
-
-  s.subspec 'Banner' do |ss|
-    ss.dependency 'RUNA/CoreOnly'
-    ss.ios.dependency 'RUNABanner', '0.1.2'
-  end
-
-  s.subspec 'A2A' do |ss|
-    ss.dependency 'RUNA/CoreOnly'
-    ss.ios.dependency 'RUNAA2A', '0.1.2'
-  end
-
-  s.subspec 'OpenMeasurement' do |ss|
-    ss.dependency 'RUNA/CoreOnly'
-    ss.dependency 'RUNA/Banner'
-    ss.ios.dependency 'RUNAOMAdapter', '0.1.2'
-  end
+  s.frameworks = "Foundation", "AdSupport", "SystemConfiguration", "WebKit", "UIKit"
 
 end

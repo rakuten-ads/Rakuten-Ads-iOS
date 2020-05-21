@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "RUNAMeasurement.h"
 #import "RUNABannerViewInner.h"
-#import "RUNAURLString.h"
+#import <RUNACore/RUNAURLString.h>
 
 @interface RUNABannerView(RUNAMeasurement)<RUNADefaultMeasurement>
 

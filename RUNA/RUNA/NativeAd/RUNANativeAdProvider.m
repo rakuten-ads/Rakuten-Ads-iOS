@@ -6,9 +6,9 @@
 //  Copyright © 2019 Rakuten MPD. All rights reserved.
 //
 #import "RUNANativeAdInner.h"
-#import "RUNADefines.h"
 #import "RUNANativeAdAdapter.h"
 #import <RUNACore/RUNAValid.h>
+#import <RUNACore/RUNADefines.h>
 
 typedef void (^RUNANativeAdEventHandler)(RUNANativeAdProvider* loader, NSArray<RUNANativeAd*>* adsList);
 

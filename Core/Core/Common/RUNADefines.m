@@ -7,9 +7,8 @@
 //
 
 #import "RUNADefines.h"
-#import "RUNA.h"
-#import <RUNACore/RUNACore.h>
-#import <RUNACore/RUNAValid.h>
+#import "RUNACore.h"
+#import "RUNAValid.h"
 
 NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RUNAAdWebView.h"
+#import <RUNACore/RUNAAdWebView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

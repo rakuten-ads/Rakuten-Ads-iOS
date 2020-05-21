@@ -15,9 +15,23 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-               BuildableName = "RUNA.framework"
-               BlueprintName = "RUNA"
-               ReferencedContainer = "container:RUNA.xcodeproj">
+               BuildableName = "RUNABanner.framework"
+               BlueprintName = "Banner"
+               ReferencedContainer = "container:Banner.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "32F258E821E58689001FD9C0"
+               BuildableName = "BannerTests.xctest"
+               BlueprintName = "BannerTests"
+               ReferencedContainer = "container:Banner.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -37,16 +51,6 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "32F258E821E58689001FD9C0"
-               BuildableName = "RUNATests.xctest"
-               BlueprintName = "RUNATests"
-               ReferencedContainer = "container:RUNA.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -59,15 +63,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-            BuildableName = "RUNA.framework"
-            BlueprintName = "RUNA"
-            ReferencedContainer = "container:RUNA.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -79,9 +74,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "32F258DF21E58689001FD9C0"
-            BuildableName = "RUNA.framework"
-            BlueprintName = "RUNA"
-            ReferencedContainer = "container:RUNA.xcodeproj">
+            BuildableName = "RUNABanner.framework"
+            BlueprintName = "Banner"
+            ReferencedContainer = "container:Banner.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

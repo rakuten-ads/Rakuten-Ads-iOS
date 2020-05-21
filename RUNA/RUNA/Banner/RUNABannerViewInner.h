@@ -10,11 +10,11 @@
 #define RUNABannerViewInner_h
 
 #import "RUNABannerView.h"
-#import "RUNAAdWebView.h"
 #import "RUNABannerAdapter.h"
 #import <RUNACore/RUNAValid.h>
-#import "RUNADefines.h"
-#import "RUNAAdWebViewMessage.h"
+#import <RUNACore/RUNAAdWebView.h>
+#import <RUNACore/RUNADefines.h>
+#import <RUNACore/RUNAAdWebViewMessage.h>
 #import "RUNAMeasurement.h"
 
 NS_ASSUME_NONNULL_BEGIN

@@ -9,7 +9,7 @@
 #import "RUNABannerViewAtoaInner.h"
 #import "RUNABannerViewInner.h"
 #import "RUNAPopupViewController.h"
-#import "RUNAUIViewController+.h"
+#import <RUNACore/RUNAUIViewController+.h>
 
 @implementation RUNABannerViewAppContent
 -(instancetype) initWithTitle:(NSString *)title keywords:(NSArray<NSString *> *)keywords url:(NSString *)url {

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RUNABidAdapter.h"
+#import <RUNACore/RUNABidAdapter.h>
 
 
 NS_ASSUME_NONNULL_BEGIN

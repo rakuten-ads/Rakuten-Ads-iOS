@@ -14,7 +14,7 @@
 #import <OMSDK_Rakuten/OMIDAdEvents.h>
 
 #import "RUNABannerViewInner.h"
-#import "RUNADefines.h"
+#import <RUNACore/RUNADefines.h>
 
 @interface RUNAOpenMeasurer()
 

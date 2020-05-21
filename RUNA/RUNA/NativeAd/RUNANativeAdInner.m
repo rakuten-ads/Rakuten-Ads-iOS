@@ -11,7 +11,7 @@
 #import <UIKit/UIKit.h>
 #import <RUNACore/RUNAHttpTask.h>
 #import <RUNACore/RUNAJSONObject.h>
-#import "RUNAURLString.h"
+#import <RUNACore/RUNAURLString.h>
 
 #pragma mark - Asset Types
 
