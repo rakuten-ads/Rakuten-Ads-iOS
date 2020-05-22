@@ -104,7 +104,7 @@ platform :ios do
     set_env param
 
     env = @sdk_map[:sdk_env] == "prod" ? "" : ".#{@sdk_map[:sdk_env]}"
-    path = "RUNA#{@sdk_map[:sdk_module_current]}#{env}.podspec"
+    path = "Release/cocoapods/RUNA#{@sdk_map[:sdk_module_current]}#{env}.podspec"
 
     version_bump_podspec(
       path: path,
