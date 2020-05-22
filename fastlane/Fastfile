@@ -20,6 +20,7 @@ platform :ios do
   @sdk_map = {
     sdk_env: "prod", # "dev", "prod"
     sdk_configuration: "Release", # "Debug", "Release"
+    sdk_dryrun: false,
     # sdk_module_current: nil,
     # sdk_release_version: nil,
     # sdk_xcodeproj_path: nil,
@@ -27,13 +28,7 @@ platform :ios do
   }
   p @sdk_map
 
-  @sdk_module_names = ["Core", "RUNA", "OMAdapter", "A2A"]
-  @sdk_product_map = {
-    "Core" => "RUNACore",
-    "RUNA" => "RUNA", 
-    "OMAdapter" => "RUNAOMAdapter", 
-    "A2A" => "RUNAA2A"
-  }
+  @sdk_module_names = ["Core", "Banner", "OMAdapter", "A2A"]
 
   def set_env param
     if param.count > 0
@@ -83,19 +78,22 @@ platform :ios do
 
   lane :deploy_to_gcs_dev do |param|
     set_env param
-    # google_cloud_storage_upload(
-    #   project: "rd2n-dev",
-    #   keyfile: ENV["GOOGLE_APPLICATION_CREDENTIALS"],
-    #   bucket: "rssp-dev-cdn",
-    #   content_path: "#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{param[:file_name]}",
-    #   name: "sdk/ios/#{@sdk_map[:sdk_release_version]}/#{param[:file_name]}",
-    # )
+    google_cloud_storage_upload(
+      project: "rd2n-dev",
+      keyfile: ENV["GOOGLE_APPLICATION_CREDENTIALS"],
+      bucket: "rssp-dev-cdn",
+      content_path: "#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{param[:file_name]}",
+      name: "sdk/ios/#{@sdk_map[:sdk_release_version]}/#{param[:file_name]}",
+    )
     project = "rd2n-dev"
     bucket = "rssp-dev-cdn"
     source_file = "../#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{param[:file_name]}"
     target_file = "gs://#{bucket}/sdk/ios/#{@sdk_map[:sdk_env]}/#{@sdk_map[:sdk_release_version]}/#{param[:file_name]}"
+    
     puts("cp #{source_file} #{target_file}")
-    system("gsutil cp #{source_file} #{target_file}")
+    if !@sdk_map[:sdk_dryrun]
+      # system("gsutil cp #{source_file} #{target_file}")
+    end
   end
 
   lane :deploy_to_gcs do |param|
@@ -106,19 +104,22 @@ platform :ios do
     set_env param
 
     env = @sdk_map[:sdk_env] == "prod" ? "" : ".#{@sdk_map[:sdk_env]}"
-    path = "#{@sdk_product_map[@sdk_map[:sdk_module_current]]}#{env}.podspec"
+    path = "RUNA#{@sdk_map[:sdk_module_current]}#{env}.podspec"
 
     version_bump_podspec(
       path: path,
       version_number: @sdk_map[:sdk_release_version],
     )
 
-    pod_push(
-      path: path,
-      repo: 'Rakuten-Ads-iOS',
-      skip_tests: true,
-      verbose: true,
-    )
+    puts("public push to Rakuten-Ads-iOS")
+    if !@sdk_map[:sdk_dryrun]
+      pod_push(
+        path: path,
+        repo: 'Rakuten-Ads-iOS',
+        skip_tests: true,
+        verbose: true,
+      )
+    end
   end
 
   lane :github_release_tag do |param|
@@ -127,18 +128,20 @@ platform :ios do
 
     assets = []
     if @sdk_map[:sdk_configuration] == "Release"
-      assets = @sdk_module_names.map { |module_name| "#{module_name}/#{@sdk_map[:sdk_output_dir]}/#{@sdk_product_map[module_name]}_iOS_#{version}.framework.zip" }
+      assets = @sdk_module_names.map { |module_name| "#{module_name}/#{@sdk_map[:sdk_output_dir]}/RUNA#{module_name}_iOS_#{version}.framework.zip" }
     end
-    p "upload assets: #{assets}"
 
-    set_github_release(
-      repository_name: "rakuten-ads/Rakuten-Ads-iOS",
-      api_token: ENV["FASTLANE_GITHUB_TOKEN"],
-      name: version,
-      tag_name: version,
-      description: "release for #{version}",
-      upload_assets: assets,
-    )
+    p "push release tag #{version} with assets [#{assets}]"
+    if !@sdk_map[:sdk_dryrun]
+      set_github_release(
+        repository_name: "rakuten-ads/Rakuten-Ads-iOS",
+        api_token: ENV["FASTLANE_GITHUB_TOKEN"],
+        name: version,
+        tag_name: version,
+        description: "release for #{version}",
+        upload_assets: assets,
+      )
+    end
   end
 
   lane :release do |param|
@@ -154,12 +157,13 @@ platform :ios do
         # sdk_release_version: nil,
         # sdk_xcodeproj_path: nil,
         # sdk_output_dir: nil,
+        sdk_dryrun: false
       }
 
       @sdk_map[:sdk_module_current] = module_name
       set_env param
       package
-      deploy_to_gcs_dev file_name: "#{@sdk_product_map[module_name]}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
+      deploy_to_gcs_dev file_name: "RUNA#{module_name}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
       update_podspec
     end
 
