@@ -1,5 +1,5 @@
-framework module RUNA {
-    umbrella header "RUNA.h"
+framework module RUNABanner {
+    umbrella header "RUNABanner.h"
 
     export *
     module * { export * }
