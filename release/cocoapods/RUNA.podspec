@@ -38,13 +38,13 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
 
   s.subspec 'A2A' do |ss|
     ss.dependency 'RUNA/CoreOnly'
-    ss.ios.dependency 'RUNAA2A', '0.2.1'
+    ss.ios.dependency 'RUNAA2A', '0.2.0'
   end
 
   s.subspec 'OpenMeasurement' do |ss|
     ss.dependency 'RUNA/CoreOnly'
     ss.dependency 'RUNA/Banner'
-    ss.ios.dependency 'RUNAOMAdapter', '0.2.1'
+    ss.ios.dependency 'RUNAOMAdapter', '0.2.0'
   end
 
 end
