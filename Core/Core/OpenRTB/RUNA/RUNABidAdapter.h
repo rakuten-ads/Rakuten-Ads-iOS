@@ -11,6 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+FOUNDATION_EXPORT NSInteger kRUNABidResponseUnfill;
+
 @protocol RUNAAdInfo <NSObject>
 
 @end
@@ -20,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(id<RUNAAdInfo>) parse:(NSDictionary*) bid;
 
 -(void) onBidResponseSuccess:(NSArray<id<RUNAAdInfo>>*) adInfoList;
--(void) onBidResponseFailed;
+-(void) onBidResponseFailed:(NSHTTPURLResponse*) response error:(nullable NSError*) error;
 
 @end
 

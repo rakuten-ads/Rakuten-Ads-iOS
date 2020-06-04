@@ -20,7 +20,7 @@
 -(nonnull NSData*) postBody;
 
 // on response
--(void) onResponse:(nullable NSHTTPURLResponse*) response withData:(nullable NSData*) data;
+-(void) onResponse:(nullable NSHTTPURLResponse*) response withData:(nullable NSData*) data error:(nullable NSError*) error;
 
 @end
 
@@ -31,7 +31,7 @@
 
 @optional
 -(nullable NSDictionary*) postJsonBody;
--(void) onJsonResponse:(nullable NSHTTPURLResponse*) response withData:(nullable NSDictionary*) json;
+-(void) onJsonResponse:(nullable NSHTTPURLResponse*) response withData:(nullable NSDictionary*) json error:(nullable NSError*) error;
 
 @end
 

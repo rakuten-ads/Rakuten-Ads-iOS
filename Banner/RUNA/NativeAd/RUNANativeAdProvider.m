@@ -62,7 +62,7 @@ typedef void (^RUNANativeAdEventHandler)(RUNANativeAdProvider* loader, NSArray<R
     }
 }
 
-- (void)onBidResponseFailed {
+- (void)onBidResponseFailed:(NSHTTPURLResponse *)response error:(NSError *)error {
     RUNALog("native ads spot id %@ load failed", self.adSpotId);
      [self triggerFailure];
 }

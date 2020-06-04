@@ -38,9 +38,9 @@
     [request setValue:userAgentInfo.userAgent forHTTPHeaderField:@"User-Agent"];
 }
 
-- (void)onJsonResponse:(NSHTTPURLResponse *)response withData:(NSDictionary *)json {
+- (void)onJsonResponse:(NSHTTPURLResponse *)response withData:(nullable NSDictionary *)json error:(nullable NSError *)error {
     NSMutableArray<NSDictionary*>* bidDataList = nil;
-    if (response.statusCode == 200) {
+    if (response.statusCode == 200 && json) {
         bidDataList = [NSMutableArray array];
         RUNAJSONObject* jsonObj = [RUNAJSONObject jsonWithRawDictionary:json];
         for (id seatbid in [jsonObj getArray:@"seatbid"]) {
@@ -56,6 +56,11 @@
         }
     } else {
         RUNALog("OpenRTB responsed status code: %lu", (unsigned long)response.statusCode);
+        if (error) {
+            RUNALog("OpenRTB responsed error: %@", error);
+            [self.openRTBAdapterDelegate onBidFailed:response error:error];
+            return;
+        }
     }
 
     // sort by id

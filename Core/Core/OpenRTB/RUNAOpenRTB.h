@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(NSString*) getURL;
 -(void) onBidResponse:(NSHTTPURLResponse*) response withBidList:(NSArray*) bidList;
+-(void) onBidFailed:(NSHTTPURLResponse*) response error:(NSError*) error;
 
 @optional
 -(void) processBidBody:(NSMutableDictionary*) bidBody;

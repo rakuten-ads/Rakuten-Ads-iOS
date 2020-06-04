@@ -17,6 +17,7 @@
     NSString* kRUNABidRequestHost = @"https://dev-s-ad.rmp.rakuten.co.jp/ad";
 #endif
 
+NSInteger kRUNABidResponseUnfill = 204;
 
 @implementation RUNABidAdapter
 
@@ -43,14 +44,16 @@
         }
 
         if (adInfoList.count > 0) {
-            [self.responseConsumer onBidResponseSuccess:adInfoList];
+            [self.responseConsumer onBidResponseSuccess: adInfoList];
         } else {
             RUNADebug("Bid data not found");
-            [self.responseConsumer onBidResponseFailed];
+            [self.responseConsumer onBidResponseFailed: response error:nil];
         }
     }
 }
 
-
+- (void)onBidFailed:(nonnull NSHTTPURLResponse *)response error:(nonnull NSError *)error {
+    [self.responseConsumer onBidResponseFailed:response error:error];
+}
 
 @end

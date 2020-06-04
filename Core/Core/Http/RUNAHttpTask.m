@@ -42,8 +42,8 @@
 
         // define completionHandler if concern the response
         void (^completionHandler)(NSData*, NSURLResponse*, NSError*) = nil;
-        if ([self->_httpTaskDelegate respondsToSelector:@selector(onResponse:withData:)]
-            || [self->_httpTaskDelegate respondsToSelector:@selector(onJsonResponse:withData:)]) {
+        if ([self->_httpTaskDelegate respondsToSelector:@selector(onResponse:withData:error:)]
+            || [self->_httpTaskDelegate respondsToSelector:@selector(onJsonResponse:withData:error:)]) {
             completionHandler = [self getCompletionhandler];
         } else {
             RUNADebug("skip response as no concern");
@@ -131,10 +131,10 @@
 
         @try {
             NSHTTPURLResponse* rep = (NSHTTPURLResponse*)response;
-            if ([self->_httpTaskDelegate respondsToSelector:@selector(onResponse:withData:)]) {
+            if ([self->_httpTaskDelegate respondsToSelector:@selector(onResponse:withData:error:)]) {
                 // take prior response to HttpSesionDelegate
-                [self->_httpTaskDelegate onResponse:rep withData:data];
-            } else if ([self->_httpTaskDelegate respondsToSelector:@selector(onJsonResponse:withData:)]) {
+                [self->_httpTaskDelegate onResponse:rep withData:data error:httpErr];
+            } else if ([self->_httpTaskDelegate respondsToSelector:@selector(onJsonResponse:withData:error:)]) {
                 // otherwise the JsonHttpSessionDelegate
                 NSError* jsonErr = nil;
                 NSDictionary* json = nil;
@@ -142,9 +142,9 @@
                     json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonErr];
                     RUNADebug("JSON format result: %@", jsonErr ?: @"OK");
                 } else {
-                    RUNADebug("desired JSON response data while nil");
+                    RUNADebug("desired JSON response data while is nil");
                 }
-                [(id<RUNAJsonHttpSessionDelegate>)self->_httpTaskDelegate onJsonResponse:rep withData:json];
+                [(id<RUNAJsonHttpSessionDelegate>)self->_httpTaskDelegate onJsonResponse:rep withData:json error:httpErr];
             }
 
             RUNADebug("http error: %@", httpErr ?: @"None");

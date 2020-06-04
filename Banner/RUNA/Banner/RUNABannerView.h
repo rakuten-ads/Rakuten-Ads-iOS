@@ -12,16 +12,29 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewPosition) {
     RUNABannerViewPositionBottomRight,
 };
 
-typedef NS_ENUM(NSUInteger, RUNABannerViewEvent) {
-    RUNABannerViewEventSucceeded,
-    RUNABannerViewEventFailed,
-    RUNABannerViewEventClicked,
+typedef NS_ENUM(NSUInteger, RUNABannerViewEventType) {
+    RUNABannerViewEventTypeSucceeded,
+    RUNABannerViewEventTypeFailed,
+    RUNABannerViewEventTypeClicked,
 };
 
 typedef NS_ENUM(NSUInteger, RUNABannerViewSize) {
     RUNABannerViewSizeDefault,
     RUNABannerViewSizeAspectFit,
     RUNABannerViewSizeCustom,
+};
+
+typedef NS_ENUM(NSUInteger, RUNABannerViewError) {
+    RUNABannerViewErrorNone,
+    RUNABannerViewErrorInternal,
+    RUNABannerViewErrorNetwork,
+    RUNABannerViewErrorFatal,
+    RUNABannerViewErrorUnfill,
+};
+
+struct RUNABannerViewEvent {
+    RUNABannerViewEventType eventType;
+    RUNABannerViewError error;
 };
 
 @interface RUNABannerView : UIView
@@ -32,7 +45,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewSize) {
 @property(nonatomic, nullable) NSDictionary* properties;
 
 -(void) load;
--(void) loadWithEventHandler:(nullable void (^)(RUNABannerView* view, RUNABannerViewEvent event)) handler;
+-(void) loadWithEventHandler:(nullable void (^)(RUNABannerView* view, struct RUNABannerViewEvent event)) handler;
 
 @end
 

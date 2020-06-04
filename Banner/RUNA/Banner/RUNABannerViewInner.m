@@ -8,7 +8,7 @@
 
 #import "RUNABannerViewInner.h"
 
-typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, RUNABannerViewEvent event);
+typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABannerViewEvent event);
 
 typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
     RUNA_ADVIEW_STATE_INIT,
@@ -39,12 +39,17 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.hidden = YES;
-        self.state = RUNA_ADVIEW_STATE_INIT;
+        [self setInitState];
         self.jsonProperties = [NSMutableDictionary dictionary];
         self.measurers = [NSMutableArray array];
     }
     return self;
+}
+
+-(void) setInitState {
+    self.hidden = YES;
+    self.state = RUNA_ADVIEW_STATE_INIT;
+    self.error = RUNABannerViewErrorNone;
 }
 
 @synthesize state = _state;
@@ -72,6 +77,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
 }
 
 -(void) loadWithEventHandler:(RUNABannerViewEventHandler)handler {
+    [self setInitState];
     self.eventHandler = handler;
     dispatch_async(RUNADefines.sharedQueue, ^{
         @try {
@@ -85,6 +91,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
             
             if ([RUNAValid isEmptyString:self.adSpotId]) {
                 NSLog(@"[RUNA] require adSpotId!");
+                self.error = RUNABannerViewErrorFatal;
                 @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
             }
 
@@ -101,6 +108,9 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
             self.state = RUNA_ADVIEW_STATE_LOADING;
         } @catch(NSException* exception) {
             RUNALog("load exception: %@", exception);
+            if (self.error == RUNABannerViewErrorNone) {
+                self.error = RUNABannerViewErrorInternal;
+            }
             [self triggerFailure];
         }
     });
@@ -329,7 +339,12 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
 }
 
 #pragma mark - implement RUNABidResponseConsumer
-- (void)onBidResponseFailed {
+- (void)onBidResponseFailed:(NSHTTPURLResponse *)response error:(NSError *)error {
+    if (response.statusCode == kRUNABidResponseUnfill) {
+        self.error = RUNABannerViewErrorUnfill;
+    } else if (error) {
+        self.error = RUNABannerViewErrorNetwork;
+    }
     [self triggerFailure];
 }
 
@@ -342,11 +357,13 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
 
         if (!self.banner) {
             RUNALog("AdSpotInfo is empty");
+            self.error = RUNABannerViewErrorInternal;
             @throw [NSException exceptionWithName:@"load failed" reason:@"banner info is empty" userInfo:@{@"RUNABanner": [NSNull null]}];
         }
 
         if ([RUNAValid isEmptyString:self.banner.html]) {
             RUNALog("banner html is empty");
+            self.error = RUNABannerViewErrorInternal;
             @throw [NSException exceptionWithName:@"load failed" reason:@"banner html is empty" userInfo:@{@"RUNABanner": self.banner}];
         }
 
@@ -358,11 +375,17 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
                 [self layoutIfNeeded];
             } @catch(NSException* exception) {
                 RUNADebug("failed to apply Ad request: %@", exception);
+                if (self.error == RUNABannerViewErrorNone) {
+                    self.error = RUNABannerViewErrorInternal;
+                }
                 [self triggerFailure];
             }
         });
     } @catch(NSException* exception) {
         RUNADebug("failed after Ad Request: %@", exception);
+        if (self.error == RUNABannerViewErrorNone) {
+            self.error = RUNABannerViewErrorInternal;
+        }
         [self triggerFailure];
     }
 }
@@ -384,7 +407,8 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
         self.hidden = NO;
         if (self.eventHandler) {
             @try {
-                self.eventHandler(self, RUNABannerViewEventSucceeded);
+                struct RUNABannerViewEvent event = { RUNABannerViewEventTypeSucceeded, self.error };
+                self.eventHandler(self, event);
             } @catch (NSException* exception) {
                 RUNALog("exception when bannerOnSucesss callback: %@", exception);
             }
@@ -403,7 +427,8 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
         self.hidden = YES;
         @try {
             if (self.eventHandler) {
-                self.eventHandler(self, RUNABannerViewEventFailed);
+                struct RUNABannerViewEvent event = { RUNABannerViewEventTypeFailed, self.error };
+                self.eventHandler(self, event);
             }
         } @catch(NSException* exception) {
             RUNALog("exception when bannerOnFailure callback: %@", exception);
@@ -433,7 +458,8 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
             RUNADebug("WKNavigationActionPolicyCancel");
             if (self.eventHandler) {
                 @try {
-                    self.eventHandler(self, RUNABannerViewEventClicked);
+                    struct RUNABannerViewEvent event = { RUNABannerViewEventTypeClicked, self.error };
+                    self.eventHandler(self, event);
                 } @catch (NSException *exception) {
                     RUNADebug("exception on clicked event: %@", exception);
                 }
