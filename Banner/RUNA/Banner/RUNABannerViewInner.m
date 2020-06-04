@@ -312,6 +312,11 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
         RUNADebug("handle %@", message.type);
         self.state = RUNA_ADVIEW_STATE_MESSAGE_LISTENING;
     }]];
+    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeUnfilled handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+        RUNADebug("handle %@", message.type);
+        self.error = RUNABannerViewErrorUnfilled;
+        [self triggerFailure];
+    }]];
 
     // message type open_popup, for like a2a
     if (self.openPopupHandler) {
@@ -340,8 +345,8 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
 
 #pragma mark - implement RUNABidResponseConsumer
 - (void)onBidResponseFailed:(NSHTTPURLResponse *)response error:(NSError *)error {
-    if (response.statusCode == kRUNABidResponseUnfill) {
-        self.error = RUNABannerViewErrorUnfill;
+    if (response.statusCode == kRUNABidResponseUnfilled) {
+        self.error = RUNABannerViewErrorUnfilled;
     } else if (error) {
         self.error = RUNABannerViewErrorNetwork;
     }

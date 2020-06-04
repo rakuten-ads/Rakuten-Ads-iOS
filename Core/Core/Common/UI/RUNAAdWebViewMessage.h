@@ -14,6 +14,7 @@ FOUNDATION_EXPORT NSString *kSdkMessageTypeOther;
 FOUNDATION_EXPORT NSString *kSdkMessageTypeExpand;
 FOUNDATION_EXPORT NSString *kSdkMessageTypeCollapse;
 FOUNDATION_EXPORT NSString *kSdkMessageTypeRegister;
+FOUNDATION_EXPORT NSString *kSdkMessageTypeUnfilled;
 FOUNDATION_EXPORT NSString *kSdkMessageTypeOpenPopup;
 
 

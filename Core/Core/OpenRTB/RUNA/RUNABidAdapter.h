@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXPORT NSInteger kRUNABidResponseUnfill;
+FOUNDATION_EXPORT NSInteger kRUNABidResponseUnfilled;
 
 @protocol RUNAAdInfo <NSObject>
 

@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewError) {
     RUNABannerViewErrorInternal,
     RUNABannerViewErrorNetwork,
     RUNABannerViewErrorFatal,
-    RUNABannerViewErrorUnfill,
+    RUNABannerViewErrorUnfilled,
 };
 
 struct RUNABannerViewEvent {

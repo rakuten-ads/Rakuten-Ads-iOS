@@ -13,6 +13,7 @@ NSString *kSdkMessageTypeOther = @"other";
 NSString *kSdkMessageTypeExpand = @"expand";
 NSString *kSdkMessageTypeCollapse = @"collapse";
 NSString *kSdkMessageTypeRegister = @"register";
+NSString *kSdkMessageTypeUnfilled = @"unfilled";
 NSString *kSdkMessageTypeOpenPopup = @"open_popup";
 
 @implementation RUNAAdWebViewMessage

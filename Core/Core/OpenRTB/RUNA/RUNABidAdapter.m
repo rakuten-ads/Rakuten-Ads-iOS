@@ -17,7 +17,7 @@
     NSString* kRUNABidRequestHost = @"https://dev-s-ad.rmp.rakuten.co.jp/ad";
 #endif
 
-NSInteger kRUNABidResponseUnfill = 204;
+NSInteger kRUNABidResponseUnfilled = 204;
 
 @implementation RUNABidAdapter
 
