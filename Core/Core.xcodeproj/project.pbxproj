@@ -35,7 +35,6 @@
 		3210D0072476684A00E93FF2 /* RUNAUIViewController+.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210CFF3247614DC00E93FF2 /* RUNAUIViewController+.m */; };
 		3210D0102476E61800E93FF2 /* RUNADefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210D00E2476E61800E93FF2 /* RUNADefines.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3210D0112476E61800E93FF2 /* RUNADefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210D00F2476E61800E93FF2 /* RUNADefines.m */; };
-		32C7F77422CC757300E75319 /* RUNACore.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C7F77322CC757300E75319 /* RUNACore.m */; };
 		32CAC0DD22164E6400BB4CC4 /* RUNAAppInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32CAC0DE22164E6400BB4CC4 /* RUNAAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAC0DC22164E6400BB4CC4 /* RUNAAppInfo.m */; };
 		32F258C621E5866D001FD9C0 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258BC21E5866C001FD9C0 /* RUNACore.framework */; };
@@ -87,7 +86,6 @@
 		3210D00E2476E61800E93FF2 /* RUNADefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUNADefines.h; sourceTree = "<group>"; };
 		3210D00F2476E61800E93FF2 /* RUNADefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNADefines.m; sourceTree = "<group>"; };
 		325FF73F21E5EDDF00A899CF /* runacore.private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = runacore.private.modulemap; sourceTree = "<group>"; };
-		32C7F77322CC757300E75319 /* RUNACore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNACore.m; sourceTree = "<group>"; };
 		32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAppInfo.h; sourceTree = "<group>"; };
 		32CAC0DC22164E6400BB4CC4 /* RUNAAppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAppInfo.m; sourceTree = "<group>"; };
 		32F258BC21E5866C001FD9C0 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				32F259B921E599F4001FD9C0 /* RUNACore.h */,
-				32C7F77322CC757300E75319 /* RUNACore.m */,
 				32F259BA21E599F4001FD9C0 /* Profile */,
 				32F259C121E599F4001FD9C0 /* Http */,
 				32F259C421E599F4001FD9C0 /* Format */,
@@ -435,7 +432,6 @@
 				32F259D621E599F5001FD9C0 /* RUNAIdfa.m in Sources */,
 				32F259DC21E599F5001FD9C0 /* RUNAValid.m in Sources */,
 				3210D0052476684100E93FF2 /* RUNAAdWebViewMessage.m in Sources */,
-				32C7F77422CC757300E75319 /* RUNACore.m in Sources */,
 				32F259E121E599F5001FD9C0 /* RUNAURLCoder.m in Sources */,
 				3210D0032476683500E93FF2 /* RUNAOpenRTB.m in Sources */,
 				3210D0062476684500E93FF2 /* RUNAAdWebView.m in Sources */,

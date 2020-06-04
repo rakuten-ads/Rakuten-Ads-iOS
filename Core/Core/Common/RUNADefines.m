@@ -76,15 +76,13 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
 -(NSString *)description {
     [self.userAgentInfo syncResult];
     return [NSString stringWithFormat:
-            @"SDK RUNA version: %@\n"
-            @"SDK Core version: %@\n"
+            @"SDK RUNA/Core version: %@\n"
             @"IDFA: %@\n"
             @"UA: %@\n"
             @"Device: %@"
             @"AppInfo: %@\n"
             ,
             self->_sdkBundleShortVersionString,
-            [RUNACore sdkBundleVersionShortString],
             self->_idfaInfo.idfa,
             self->_userAgentInfo.userAgent,
             self->_deviceInfo,

@@ -15,9 +15,3 @@ FOUNDATION_EXPORT double RUNACoreVersionNumber;
 FOUNDATION_EXPORT const unsigned char RUNACoreVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <RUNACore/PublicHeader.h>
-
-@interface RUNACore : NSObject
-
-+(NSString*) sdkBundleVersionShortString;
-
-@end

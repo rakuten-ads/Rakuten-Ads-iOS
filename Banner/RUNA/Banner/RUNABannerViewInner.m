@@ -74,7 +74,14 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
     self.eventHandler = handler;
     dispatch_async(RUNADefines.sharedQueue, ^{
         @try {
-            RUNALog("%@", RUNADefines.sharedInstance);
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                RUNALog("SDK RUNA/Banner Version: %@",
+                      [[[NSBundle bundleForClass:self.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+                      );
+                RUNALog("%@", RUNADefines.sharedInstance);
+            });
+            
             if ([RUNAValid isEmptyString:self.adSpotId]) {
                 NSLog(@"[RUNA] require adSpotId!");
                 @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
