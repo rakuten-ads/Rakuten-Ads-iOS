@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
 @property (nonatomic, nullable) NSMutableDictionary* appContent;
 @property (nonatomic, nullable) RUNAAdWebViewMessageHandler* openPopupHandler;
-@property (nonatomic, nullable) id<RUNAMeasurer> measurer;
+@property (nonatomic, nullable) NSMutableArray<id<RUNAMeasurer>> *measurers;
 
 @end
 

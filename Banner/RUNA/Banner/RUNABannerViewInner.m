@@ -42,6 +42,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
         self.hidden = YES;
         self.state = RUNA_ADVIEW_STATE_INIT;
         self.jsonProperties = [NSMutableDictionary dictionary];
+        self.measurers = [NSMutableArray array];
     }
     return self;
 }
@@ -141,7 +142,9 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
 
 -(void)removeFromSuperview {
     [super removeFromSuperview];
-    [self.measurer finishMeasurement];
+    [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
+        [measurer finishMeasurement];
+    }];
 }
 
 -(void) applyContainerSize {
@@ -405,9 +408,9 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
         } @catch(NSException* exception) {
             RUNALog("exception when bannerOnFailure callback: %@", exception);
         } @finally {
-            if (self.measurer) {
-                [self.measurer finishMeasurement];
-            }
+            [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
+                [measurer finishMeasurement];
+            }];
             self.hidden = YES;
             self.webView.navigationDelegate = nil;
             [self.webView removeFromSuperview];
@@ -453,11 +456,14 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
     if (self.state != RUNA_ADVIEW_STATE_FAILED) {
         @try {
             if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]) {
-                self.measurer = [(id<RUNAOpenMeasurement>)self getOpenMeasurer];
-            } else if ([self conformsToProtocol:@protocol(RUNADefaultMeasurement)]) {
-                self.measurer = [(id<RUNADefaultMeasurement>)self getDefaultMeasurer];
+                [self.measurers addObject:[(id<RUNAOpenMeasurement>)self getOpenMeasurer]];
             }
-            [self.measurer startMeasurement];
+            if ([self conformsToProtocol:@protocol(RUNADefaultMeasurement)]) {
+                [self.measurers addObject:[(id<RUNADefaultMeasurement>)self getDefaultMeasurer]];
+            }
+            [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
+                [measurer startMeasurement];
+            }];
         } @catch (NSException *exception) {
             RUNADebug("exception when start measurement: %@", exception);
         }
