@@ -19,7 +19,7 @@
 
 -(id<RUNAMeasurer>)getDefaultMeasurer {
     RUNADefaultMeasurer* measurer = [RUNADefaultMeasurer new];
-    [self.measurer setMeasureTarget:self];
+    [measurer setMeasureTarget:self];
     return measurer;
 }
 
