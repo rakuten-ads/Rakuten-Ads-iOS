@@ -14,8 +14,8 @@
 # update_fastlane
 
 # usage sample:
-# - bundle exec fastlane release sdk_dryrun:true module:Core sdk_release_version:0.2.0 sdk_skip_build:true
-# - bundle exec fastlane release sdk_release_version:0.2.0
+# - bundle exec fastlane release sdk_dryrun:true module:Core=0.2.1,Banner=0.2.2 sdk_skip_build:true
+# - bundle exec fastlane release
 
 default_platform(:ios)
 
@@ -50,11 +50,12 @@ platform :ios do
       @sdk_map[:sdk_xcodeproj_path] = "#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_module_current]}.xcodeproj"
     end
 
-    if @sdk_map[:sdk_release_version] != get_version_number(
+    version_in_plist = get_version_number(
       target: @sdk_map[:sdk_module_current],
       xcodeproj: @sdk_map[:sdk_xcodeproj_path]
-      )
-      p "incorrect release version number #{@sdk_map[:sdk_release_version]} !"
+    )
+    if @sdk_map[:sdk_release_version] != version_in_plist
+      p "incorrect release version to plist #{@sdk_map[:sdk_release_version]} != #{version_in_plist}!"
       exit!
     end
 
@@ -150,10 +151,10 @@ platform :ios do
 
   lane :release do |param|
     if param[:module]
-      @sdk_module_names = [param[:module]]
+      modules = param[:module].split(",")
     end
 
-    @sdk_module_names.each do |module_name|
+    modules.each do |aModule|
       @sdk_map = {
         sdk_env: "prod",
         sdk_configuration: "Release",
@@ -164,11 +165,12 @@ platform :ios do
         # sdk_xcodeproj_path: nil,
         # sdk_output_dir: nil,
       }
+      @sdk_map[:sdk_module_current] = aModule.split("=")[0]
+      @sdk_map[:sdk_release_version] = aModule.split("=")[1]
 
-      @sdk_map[:sdk_module_current] = module_name
       set_env param
       package
-      deploy_to_gcs_dev file_name: "RUNA#{module_name}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
+      deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
       update_carthage
       update_podspec
     end
