@@ -301,7 +301,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n../Scripts/carthage-iOS.sh RUNAOMAdapter\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n../release/carthage-iOS.sh RUNAOMAdapter\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

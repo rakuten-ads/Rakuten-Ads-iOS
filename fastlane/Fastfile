@@ -13,6 +13,10 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+# usage sample:
+# - bundle exec fastlane release sdk_dryrun:true module:Core sdk_release_version:0.2.0 sdk_skip_build:true
+# - bundle exec fastlane release sdk_release_version:0.2.0
+
 default_platform(:ios)
 
 platform :ios do
@@ -21,6 +25,7 @@ platform :ios do
     sdk_env: "prod", # "dev", "prod"
     sdk_configuration: "Release", # "Debug", "Release"
     sdk_dryrun: false,
+    sdk_skip_build: false,
     # sdk_module_current: nil,
     # sdk_release_version: nil,
     # sdk_xcodeproj_path: nil,
@@ -37,7 +42,7 @@ platform :ios do
     end
 
     if !@sdk_map[:sdk_module_current]
-      p "Not found parameter :sdk_module_current. Pick one from #{@sdk_module_names}"
+      p "Not found parameter :sdk_module_current. Pick one from #{@sdk_module_names} !"
       exit!
     end
 
@@ -45,17 +50,12 @@ platform :ios do
       @sdk_map[:sdk_xcodeproj_path] = "#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_module_current]}.xcodeproj"
     end
 
-    if @sdk_map[:sdk_release_version]
-      increment_version_number(
-        bump_type: "patch",
-        version_number: @sdk_map[:sdk_release_version],
-        xcodeproj: @sdk_map[:sdk_xcodeproj_path],
+    if @sdk_map[:sdk_release_version] != get_version_number(
+      target: @sdk_map[:sdk_module_current],
+      xcodeproj: @sdk_map[:sdk_xcodeproj_path]
       )
-    else
-      @sdk_map[:sdk_release_version] = increment_version_number(
-        bump_type: "patch",
-        xcodeproj: @sdk_map[:sdk_xcodeproj_path],
-      )
+      p "incorrect release version number #{@sdk_map[:sdk_release_version]} !"
+      exit!
     end
 
     @sdk_map[:sdk_output_dir] = "build/#{@sdk_map[:sdk_configuration]}"
@@ -64,9 +64,14 @@ platform :ios do
   end
 
   lane :package do |param|
-    p param
     set_env param
     p "xcodebuild #{@sdk_map[:sdk_xcodeproj_path]} for #{@sdk_map[:sdk_configuration]} into #{@sdk_map[:sdk_output_dir]}"
+
+    if @sdk_map[:sdk_skip_build]
+      p "skip build #{@sdk_map[:sdk_module_current]}"
+      next
+    end
+
     xcodebuild(
       raw_buildlog: true,
       project: @sdk_map[:sdk_xcodeproj_path],
@@ -78,22 +83,18 @@ platform :ios do
 
   lane :deploy_to_gcs_dev do |param|
     set_env param
-    google_cloud_storage_upload(
-      project: "rd2n-dev",
-      keyfile: ENV["GOOGLE_APPLICATION_CREDENTIALS"],
-      bucket: "rssp-dev-cdn",
-      content_path: "#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{param[:file_name]}",
-      name: "sdk/ios/#{@sdk_map[:sdk_release_version]}/#{param[:file_name]}",
-    )
+
     project = "rd2n-dev"
     bucket = "rssp-dev-cdn"
     source_file = "../#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{param[:file_name]}"
     target_file = "gs://#{bucket}/sdk/ios/#{@sdk_map[:sdk_env]}/#{@sdk_map[:sdk_release_version]}/#{param[:file_name]}"
     
     puts("cp #{source_file} #{target_file}")
-    if !@sdk_map[:sdk_dryrun]
-      # system("gsutil cp #{source_file} #{target_file}")
+    if @sdk_map[:sdk_dryrun]
+      next
     end
+
+    system("gsutil cp #{source_file} #{target_file}")
   end
 
   lane :deploy_to_gcs do |param|
@@ -103,45 +104,48 @@ platform :ios do
   lane :update_podspec do |param|
     set_env param
 
-    env = @sdk_map[:sdk_env] == "prod" ? "" : ".#{@sdk_map[:sdk_env]}"
-    path = "Release/cocoapods/RUNA#{@sdk_map[:sdk_module_current]}#{env}.podspec"
+    path = "release/cocoapods/RUNA#{@sdk_map[:sdk_module_current]}.podspec"
 
-    version_bump_podspec(
-      path: path,
-      version_number: @sdk_map[:sdk_release_version],
-    )
-
-    puts("public push to Rakuten-Ads-iOS")
-    if !@sdk_map[:sdk_dryrun]
-      pod_push(
-        path: path,
-        repo: 'Rakuten-Ads-iOS',
-        skip_tests: true,
-        verbose: true,
-      )
+    puts("publish #{path} #{@sdk_map[:sdk_release_version]}")
+    if @sdk_map[:sdk_dryrun]
+      next
     end
+
+    pod_push(
+      path: path,
+      repo: 'Rakuten-Ads-iOS',
+      skip_tests: true,
+      verbose: true,
+    )
+  end
+
+  lane :update_carthage do |param|
+    p "TODO update_carthage"
   end
 
   lane :github_release_tag do |param|
-    set_env param
-    version = @sdk_map[:sdk_release_version]
+    path = "release/cocoapods/RUNA.podspec"
+    version = version_get_podspec(path: path)
 
-    assets = []
-    if @sdk_map[:sdk_configuration] == "Release"
-      assets = @sdk_module_names.map { |module_name| "#{module_name}/#{@sdk_map[:sdk_output_dir]}/RUNA#{module_name}_iOS_#{version}.framework.zip" }
+    p "push release tag #{version}"
+    if @sdk_map[:sdk_dryrun]
+      next
     end
 
-    p "push release tag #{version} with assets [#{assets}]"
-    if !@sdk_map[:sdk_dryrun]
-      set_github_release(
-        repository_name: "rakuten-ads/Rakuten-Ads-iOS",
-        api_token: ENV["FASTLANE_GITHUB_TOKEN"],
-        name: version,
-        tag_name: version,
-        description: "release for #{version}",
-        upload_assets: assets,
-      )
-    end
+    pod_push(
+      path: path,
+      repo: 'Rakuten-Ads-iOS',
+      skip_tests: true,
+      verbose: true,
+    )
+
+    set_github_release(
+      repository_name: "rakuten-ads/Rakuten-Ads-iOS",
+      api_token: ENV["FASTLANE_GITHUB_TOKEN"],
+      name: version,
+      tag_name: version,
+      description: "release for #{version}",
+    )
   end
 
   lane :release do |param|
@@ -153,17 +157,19 @@ platform :ios do
       @sdk_map = {
         sdk_env: "prod",
         sdk_configuration: "Release",
+        sdk_dryrun: false,
+        sdk_skip_build: false,
         # sdk_module_current: nil,
         # sdk_release_version: nil,
         # sdk_xcodeproj_path: nil,
         # sdk_output_dir: nil,
-        sdk_dryrun: false
       }
 
       @sdk_map[:sdk_module_current] = module_name
       set_env param
       package
       deploy_to_gcs_dev file_name: "RUNA#{module_name}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
+      update_carthage
       update_podspec
     end
 

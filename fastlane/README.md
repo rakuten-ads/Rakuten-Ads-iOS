@@ -36,6 +36,11 @@ fastlane ios deploy_to_gcs
 fastlane ios update_podspec
 ```
 
+### ios update_carthage
+```
+fastlane ios update_carthage
+```
+
 ### ios github_release_tag
 ```
 fastlane ios github_release_tag
