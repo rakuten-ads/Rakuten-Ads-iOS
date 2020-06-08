@@ -1,5 +1,5 @@
 //
-//  RUNABannerViewIchiba.h
+//  RUNABannerViewExtension.h
 //  RUNA
 //
 //  Created by Wu, Wei b on 2019/10/28.
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-@interface RUNABannerView(RUNA_Ichiba)
+@interface RUNABannerView(RUNA_Extension)
 
 -(void) setPropertyGenre:(RUNABannerViewGenreProperty*) matchingGenre;
 -(void) setPropertyTargeting:(NSDictionary*) target;

@@ -1,12 +1,12 @@
 //
-//  RUNABannerViewIchiba.m
+//  RUNABannerViewExtension.m
 //  RUNA
 //
 //  Created by Wu, Wei b on 2019/10/28.
 //  Copyright © 2019 Rakuten MPD. All rights reserved.
 //
 
-#import "RUNABannerViewIchiba.h"
+#import "RUNABannerViewExtension.h"
 #import "RUNABannerViewInner.h"
 
 @implementation RUNABannerViewGenreProperty
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation RUNABannerView(RUNA_Ichiba)
+@implementation RUNABannerView(RUNA_Extension)
 
 -(void)setPropertyGenre:(RUNABannerViewGenreProperty *)matchingGenre {
     if (matchingGenre) {

@@ -4,8 +4,8 @@ framework module RUNABanner {
     export *
     module * { export * }
     
-    module Ichiba {
-        header "RUNABannerViewIchiba.h"
+    module Extension {
+        header "RUNABannerViewExtension.h"
         export *
     }
 }
