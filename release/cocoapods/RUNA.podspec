@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "RUNA"
-  s.version      = "0.2.2"
+  s.version      = "0.3.0"
   s.summary      = "Podspec file of #{s.name} iOS SDK."
   s.description  = <<-DESC
 This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
@@ -22,7 +22,7 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   s.author       = "Rakuten"
   s.platform     = :ios, "10.0"
   s.source       = {
-    :http => "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/#{s.version}/RUNABanner_iOS_#{s.version}.framework.zip"
+    :git => "https://github.com/rakuten-ads/Rakuten-Ads-iOS.git"
   }
 
   s.default_subspec = 'Banner'
@@ -33,18 +33,18 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
 
   s.subspec 'Banner' do |ss|
     ss.dependency 'RUNA/CoreOnly'
-    ss.ios.dependency 'RUNABanner', '0.2.2'
+    ss.ios.dependency 'RUNABanner', '0.3.0'
   end
 
   s.subspec 'A2A' do |ss|
     ss.dependency 'RUNA/CoreOnly'
-    ss.ios.dependency 'RUNAA2A', '0.2.0'
+    ss.ios.dependency 'RUNAA2A', '0.2.1'
   end
 
   s.subspec 'OpenMeasurement' do |ss|
     ss.dependency 'RUNA/CoreOnly'
     ss.dependency 'RUNA/Banner'
-    ss.ios.dependency 'RUNAOMAdapter', '0.2.0'
+    ss.ios.dependency 'RUNAOMAdapter', '0.2.1'
   end
 
 end
