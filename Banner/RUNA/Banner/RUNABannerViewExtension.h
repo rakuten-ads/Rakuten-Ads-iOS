@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RUNABannerView(RUNA_Extension)
 
 -(void) setPropertyGenre:(RUNABannerViewGenreProperty*) matchingGenre;
--(void) setPropertyTargeting:(NSDictionary*) target;
+-(void) setCustomTargeting:(NSDictionary*) target;
 
 @end
 

@@ -35,7 +35,7 @@
     }
 }
 
--(void)setPropertyTargeting:(NSDictionary *)target {
+-(void)setCustomTargeting:(NSDictionary *)target {
     if (target) {
         self.jsonProperties[@"targeting"] = target;
     }
