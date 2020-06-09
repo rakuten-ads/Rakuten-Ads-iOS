@@ -33,15 +33,7 @@
 ```ruby
 source "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
 
-pod 'RUNA'
-```
-
-### Carthage
-
-`Cartfile`に下記の設定を追加.
-
-```
-github "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
+pod 'RUNABanner'
 ```
 
 ---

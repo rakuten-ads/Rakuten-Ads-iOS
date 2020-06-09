@@ -33,14 +33,7 @@ Put under lines into `Podfile`.
 ```ruby
 source "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
 
-pod 'RUNA'
-```
-
-### Carthage
-Put under lines into `Cartfile`.
-
-```
-github "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
+pod 'RUNABanner'
 ```
 
 ---
