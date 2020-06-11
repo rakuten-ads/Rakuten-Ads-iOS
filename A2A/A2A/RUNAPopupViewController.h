@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <RUNACore/RUNAAdWebView.h>
+#import <WebKit/WebKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNAPopupViewController : UIViewController
 
 @property (nonatomic) NSURL* url;
-@property (nonatomic) RUNAAdWebView* adWebView;
+@property (nonatomic) WKWebView* adWebView;
 
 @property (weak, nonatomic) IBOutlet UIView *adWebViewContainerView;
 

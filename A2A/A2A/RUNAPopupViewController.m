@@ -8,13 +8,18 @@
 
 #import "RUNAPopupViewController.h"
 
+@interface RUNAPopupViewController() <WKNavigationDelegate>
+
+@end
+
 @implementation RUNAPopupViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     if (self.url) {
-        self.adWebView = [RUNAAdWebView new];
+        self.adWebView = [WKWebView new];
+        self.adWebView.navigationDelegate = self;
         [self.adWebViewContainerView addSubview:self.adWebView];
         
         self.adWebView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -31,6 +36,24 @@
 
 - (IBAction)onExit:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
+}
+
+-(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    RUNADebug("webview navigation type %lu decide for: %@", (unsigned long)navigationAction.navigationType, navigationAction.request.URL);
+    if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
+        RUNADebug("clicked ad");
+        NSURL* url = navigationAction.request.URL;
+        if (url) {
+            [UIApplication.sharedApplication openURL:url options:@{} completionHandler:^(BOOL success){
+                RUNADebug("opened AD URL");
+            }];
+            decisionHandler(WKNavigationActionPolicyCancel);
+            return;
+        }
+    }
+
+    RUNADebug("WKNavigationActionPolicyAllow");
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 @end

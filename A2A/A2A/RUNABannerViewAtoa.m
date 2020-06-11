@@ -10,6 +10,7 @@
 #import "RUNABannerViewInner.h"
 #import "RUNAPopupViewController.h"
 #import <RUNACore/RUNAUIViewController+.h>
+#import <RUNACore/RUNAValid.h>
 
 @implementation RUNABannerViewAppContent
 -(instancetype) initWithTitle:(NSString *)title keywords:(NSArray<NSString *> *)keywords url:(NSString *)url {
@@ -43,7 +44,6 @@
 }
 
 -(void) handlePopup:(NSString*) url {
-    RUNADebug("open popup url: %@", url);
     NSURLComponents* urlComp = [NSURLComponents componentsWithString:url];
     if (!urlComp) {
         RUNADebug("illegal url format: %@", url);
@@ -61,18 +61,28 @@
         RUNADebug("fill adspot Id: %@", self.adSpotId);
         [mutableQueryItems addObject:[NSURLQueryItem queryItemWithName:@"id" value:self.adSpotId]];
     }
+    if (self.appContent) {
+        RUNADebug("fill app content: %@", self.appContent);
+        [self.appContent enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key, id _Nonnull obj, BOOL * _Nonnull stop) {
+            if ([RUNAValid isNotEmptyString:obj]) {
+                [mutableQueryItems addObject:[NSURLQueryItem queryItemWithName:key value:obj]];
+            }
+        }];
+    }
     urlComp.queryItems = mutableQueryItems;
     NSURL* nsurl = urlComp.URL;
     if (nsurl) {
+        RUNADebug("open popup url: %@", nsurl);
         RUNAPopupViewController* popupViewController = [[RUNAPopupViewController alloc] initWithNibName:@"RUNAPopup" bundle:[NSBundle bundleForClass:RUNAPopupViewController.class]];
         popupViewController.url = nsurl;
+        if (@available(iOS 13.0, *)) {
+            popupViewController.modalInPresentation = YES;
+        }
 
         UIViewController* root = [UIApplication sharedApplication].keyWindow.rootViewController;
         UIViewController* top = [UIViewController topViewControllerInHierarchy:root];
         [top presentViewController:popupViewController animated:YES completion:nil];
     }
 }
-
-
 
 @end

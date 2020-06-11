@@ -471,11 +471,12 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
             }
             self.state = RUNA_ADVIEW_STATE_CLICKED;
             decisionHandler(WKNavigationActionPolicyCancel);
+            return;
         }
-    } else {
-        RUNADebug("WKNavigationActionPolicyAllow");
-        decisionHandler(WKNavigationActionPolicyAllow);
     }
+
+    RUNADebug("WKNavigationActionPolicyAllow");
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 -(void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
@@ -506,9 +507,11 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
             @"{\n"
             @"adspotId: %@\n"
             @"properties: %@\n"
+            @"content: %@\n"
             @"}",
             self.adSpotId,
             self.properties,
+            self.appContent,
             nil];
 }
 

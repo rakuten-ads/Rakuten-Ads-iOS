@@ -51,7 +51,7 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
 }
 
 -(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-    RUNADebug("received posted raw message %@", [message debugDescription]);
+    RUNADebug("received posted raw message name %@: %@", [message name], [message body]);
     if ([message.name isEqualToString:kSdkMessageHandlerName]
         && message.body) {
         @try {

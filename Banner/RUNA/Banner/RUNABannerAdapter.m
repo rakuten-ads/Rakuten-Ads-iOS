@@ -48,9 +48,8 @@
        return @{
            @"content" : self.appContent
        };
-    } else {
-        return @{};
     }
+    return @{};
 }
 
 
