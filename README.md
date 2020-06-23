@@ -33,7 +33,7 @@ Put under lines into `Podfile`.
 ```ruby
 source "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
 
-pod 'RUNABanner'
+pod 'RUNA/Banner'
 ```
 
 ---
