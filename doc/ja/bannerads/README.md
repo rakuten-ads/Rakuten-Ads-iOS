@@ -4,7 +4,7 @@
 
 # バナー広告
 
-RDNSDK banner view は `WebKit/WKWebView`を元にした web view です。Web 広告タグをロードして広告内容を表示しています。
+RUNA SDK banner view は `WebKit/WKWebView`を元にした web view です。Web 広告タグをロードして広告内容を表示しています。
 
 ---
 
@@ -14,23 +14,61 @@ RDNSDK banner view は `WebKit/WKWebView`を元にした web view です。Web �
 
 `Ad Spot`は広告表示枠を意味するもので、`adSpotId`はその枠のユニークな ID を定義するものです。その ID は広告内容を要求する時に必要なパラメーターです。パブリッシャー管理サイドに登録及び検索できます。
 
-### 1.2 サイズと位置
+### 1.2 サイズ
 
-Banner View のサイズはプログラムで指定することが調整出来ません。管理画面で`adspotId`を登録する同時に指定することになります。なお、場所を任意に指定することが出来ます。SDK も便利のためいくつの場所設定値を用意しています。
+**size** プロパーティーに三つのサイズ調整設定が出来ます。
 
-### 1.3 Event Tracker
+- `default` :<br>
+黙認値。`adspotId`を登録時にサーバーサイドで設定したサイズを反映します。サイズ指定が無効となります
 
-RDNSDK は三つのイベントをトラッキングすることが可能です。
+- `aspectFit` : <br>
+縦横比率を保つづ、親Viewの横サイズを充満するまでアウトレイアウトで伸縮します。
 
-#### 1.3.1 イベント
+- `custom` :<br>
+任意のサイズを指定します。
 
-- **成功 (RUNABannerViewEventSucceeded) :**
+### 1.3 Position
+
+画面の任意の場所に指定できます。また、SDKが **position** プロパーティーにいくつの便利な設定項目を用意しています。
+
+- `custom` :<br>
+黙認値。 `frame.origin` の場所に配置します。
+
+- `top` :<br>
+親Viewの中央上寄せする。
+
+- `topLeft` :<br>
+親Viewの左上寄せする。
+
+- `topRight` :<br>
+親Viewの右上寄せする。
+
+- `bottom` :<br>
+親Viewの中央下寄せする。
+
+- `bottomLeft` :<br>
+親Viewの左下寄せする。
+
+- `bottomRight` :<br>
+親Viewの右下寄せする。
+
+### 1.4 Event Tracker
+
+RUNA SDK は三つのイベントをトラッキングすることが可能です。
+
+- **成功 (RUNABannerViewEventTypeSucceeded) :**
   広告内容の受信完了
 
-- **失敗 (RUNABannerViewEventFailed) :**
-  広告内容のリクエストのそう受信、及び広告表示のいずれかで失敗した場合。<br>失敗の原因はシステムログで確認することができます。
+- **失敗 (RUNABannerViewEventTypeFailed) :**
+  広告内容のリクエストのそう受信、及び広告表示のいずれかで失敗した場合。<br>
+　失敗の原因は `RUNABannerViewError` プロパーティーとシステムログで確認することができます。
+  - `none` : エラーなし.
+  - `internal` : 予想外のSDK内部エラーUnexpected internal error of SDK.
+  - `network` : 通信エラー.
+  - `fatal` : パラメーターの設定ミス.
+  - `unfilled` : 表示できる広告がない.
 
-- **クリック (RUNABannerViewEventClicked) :**
+- **クリック (RUNABannerViewEventTypeClicked) :**
   banner 広告がクリックされた時。
 
 ## 2. 実装サンプル
@@ -45,15 +83,26 @@ RUNABannerView* banner = [RUNABannerView new];
 banner.adSpotId = @"spot_id_xxx";
 banner.position = RUNABannerViewPositionBottom;
 
-[banner loadWithEventHandler: ^void (RUNABannerView* view, RUNABannerViewEvent event){
-    switch (event) {
-        case RUNABannerViewEventSucceeded:
+[banner loadWithEventHandler:^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
+    switch (event.eventType) {
+        case RUNABannerViewEventTypeSucceeded:
             NSLog(@"received event succeeded");
+            [banner setCenter:[self.view center]];
             break;
-        case RUNABannerViewEventFailed:
+        case RUNABannerViewEventTypeFailed:
             NSLog(@"received event failed");
+            switch (event.error) {
+                case RUNABannerViewErrorUnfilled:
+                    NSLog(@"ad unavailable");
+                    break;
+                case RUNABannerViewErrorNetwork:
+                    NSLog(@"network unavailable");
+                    break;
+                default:
+                    break;
+            }
             break;
-        case RUNABannerViewEventClicked:
+        case RUNABannerViewEventTypeClicked:
             NSLog(@"received event clicked");
             break;
         default:
@@ -67,7 +116,7 @@ banner.position = RUNABannerViewPositionBottom;
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 
 ```swift
-import RUNA
+import RUNABanner
 
 let banner = RUNABannerView()
 
@@ -75,12 +124,20 @@ banner.adSpotId = "adspot_id_xxx"
 banner.position = .bottom
 
 banner.load { (banner, event) in
-    switch event {
-    case RUNABannerViewEvent.succeeded:
+    switch event.eventType {
+    case .succeeded:
         print("received event succceeded")
-    case RUNABannerViewEvent.failed:
+    case .failed:
         print("received event failed")
-    case RUNABannerViewEvent.clicked:
+        switch event.error {
+        case .unfilled:
+            print("ad unavailable")
+        case .network:
+            print("network unavailable")
+        default:
+            break
+        }
+    case .clicked:
         print("received event clicked")
     default:
         break

@@ -29,6 +29,27 @@ The banner view can be indicated to arbitrary size and ignores the orginal size.
 
 The banner view's **position** can be set in anywhere of the screen in demand. The SDK also has six preset position settings with the auto layout features to give some convienence during the integration.
 
+- `custom` :<br>
+Default option. Locate with the frame origin point.
+
+- `top` :<br>
+Locate at the top center of the super view.
+
+- `topLeft` :<br>
+Locate at the top left of the super view.
+
+- `topRight` :<br>
+Locate at the top right of the super view.
+
+- `bottom` :<br>
+Locate at the bottom center of the super view.
+
+- `bottomLeft` :<br>
+Locate at the bottom left of the super view.
+
+- `bottomRight` :<br>
+Locate at the right left of the super view.
+
 ### 1.4 Event Tracker
 
 The RUNABanner SDK tracks 3 event types of `RUNABannerViewEvent` if developers need to be triggerred and handle something by themselves.
@@ -72,7 +93,7 @@ banner.position = RUNABannerViewPositionBottom;
             NSLog(@"received event failed");
             switch (event.error) {
                 case RUNABannerViewErrorUnfilled:
-                    NSLog(@"ad unfilled");
+                    NSLog(@"ad unavailable");
                     break;
                 case RUNABannerViewErrorNetwork:
                     NSLog(@"network unavailable");
@@ -110,9 +131,9 @@ banner.load { (banner, event) in
         print("received event failed")
         switch event.error {
         case .unfilled:
-            print("ad available")
+            print("ad unavailable")
         case .network:
-            print("network available")
+            print("network unavailable")
         default:
             break
         }
