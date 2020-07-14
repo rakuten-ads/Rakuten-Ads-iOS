@@ -32,7 +32,7 @@ NSString* kPartnerName = @"Rakuten";
     if (![self isSDKActive]
         || !self.adView
         || !self.webView) {
-        RUNALog("Not prepared for open measurement.");
+        RUNALog("Not prepared for open measurement[OM].");
         return;
     }
     
@@ -45,7 +45,7 @@ NSString* kPartnerName = @"Rakuten";
             return;
         }
         
-        RUNADebug("Starting open measurement session");
+        RUNADebug("measurement[OM] start");
         [self.adSession start];
         
         err = nil;
@@ -65,7 +65,7 @@ NSString* kPartnerName = @"Rakuten";
 }
 
 - (void)finishMeasurement {
-    RUNADebug("Finishing open measurement session");
+    RUNADebug("measurement[OM] finish");
     [self.adSession finish];
 }
 

@@ -328,7 +328,8 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
     
     NSString* html = self.banner.html;
     if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]) {
-        html = [self.banner.html stringByAppendingFormat:@"%@ %@", OM_JS_TAG_SDK, OM_JS_TAG_VALIDATION];
+        html = [(id<RUNAOpenMeasurement>)self injectOMIDIntoHTML:html];
+        html = [html stringByAppendingFormat:@"%@", OM_JS_TAG_VALIDATION];
     }
     
     [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://rakuten.co.jp"]];
@@ -500,6 +501,10 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
             RUNADebug("exception when start measurement: %@", exception);
         }
     }
+}
+
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
+    RUNADebug("didFailNavigation %@", error);
 }
 
 -(NSString *)description {
