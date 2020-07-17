@@ -6,15 +6,16 @@
 //  Copyright © Reiwa 2 RUNA. All rights reserved.
 //
 
+#import "RUNABannerViewOMInner.h"
 #import "RUNABannerViewInner.h"
 #import "RUNAOpenMeasurer.h"
 #import <OMSDK_Rakuten/OMIDScriptInjector.h>
 
-@interface RUNABannerView(OMSDK)<RUNAOpenMeasurement>
-
-@end
-
 @implementation RUNABannerView(OMSDK)
+
+-(void)disableOpenMeasurement {
+    self.openMeasurementDisabled = true;
+}
 
 -(id<RUNAMeasurer>) getOpenMeasurer {
     RUNAOpenMeasurer* measurer = [RUNAOpenMeasurer new];
@@ -31,11 +32,11 @@
 }
 
 -(NSString*) injectOMIDIntoHTML:(NSString*) html {
-    NSURL* omidJSServiceUrl =  [[NSBundle bundleForClass:RUNAOpenMeasurer.class] URLForResource:@"omsdk-v1" withExtension:@"js"];
+    NSURL* omidJsUrl =  [[NSBundle bundleForClass:RUNAOpenMeasurer.class] URLForResource:@"omsdk-v1" withExtension:@"js"];
     NSError* err;
-    NSString* omidJSService = [NSString stringWithContentsOfURL:omidJSServiceUrl encoding:NSUTF8StringEncoding error:&err];
-    if (omidJSService) {
-        NSString* creativeWithOMID = [OMIDRakutenScriptInjector injectScriptContent:omidJSService intoHTML:html error:&err];
+    NSString* omidJSSript = [NSString stringWithContentsOfURL:omidJsUrl encoding:NSUTF8StringEncoding error:&err];
+    if (omidJSSript) {
+        NSString* creativeWithOMID = [OMIDRakutenScriptInjector injectScriptContent:omidJSSript intoHTML:html error:&err];
         if (err) {
             RUNADebug("Unable to inject OMID JS into ad creative: %@", err);
         } else {

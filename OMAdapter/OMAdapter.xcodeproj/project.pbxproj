@@ -58,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		320313AA24C173D0002D9727 /* RUNABannerViewOM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewOM.h; sourceTree = "<group>"; };
+		320313AE24C175F8002D9727 /* RUNABannerViewOMInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewOMInner.h; sourceTree = "<group>"; };
 		3210D0142476EDC200E93FF2 /* RUNABanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNABanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32671F6724108BB400C50F9F /* RUNAOMAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNAOMAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32671F6A24108BB400C50F9F /* OMAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMAdapter.h; sourceTree = "<group>"; };
@@ -133,6 +135,8 @@
 				328807BB24BD529500A635FB /* omsdk-v1.js */,
 				32671F8124108BD300C50F9F /* RUNAOpenMeasurer.h */,
 				32671F8224108BD300C50F9F /* RUNAOpenMeasurer.m */,
+				320313AA24C173D0002D9727 /* RUNABannerViewOM.h */,
+				320313AE24C175F8002D9727 /* RUNABannerViewOMInner.h */,
 				32671FA32412501400C50F9F /* RUNABannerViewOM.m */,
 			);
 			path = OMAdapter;
