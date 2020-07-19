@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		320313B224C182AD002D9727 /* RUNACacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 320313B024C182AD002D9727 /* RUNACacheFile.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		320313B324C182AD002D9727 /* RUNACacheFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 320313B124C182AD002D9727 /* RUNACacheFile.m */; };
 		3210CFF824765E4400E93FF2 /* RUNAOpenRTB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210CFE6247614DC00E93FF2 /* RUNAOpenRTB.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3210CFF924765F1700E93FF2 /* RUNAURLString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210CFEB247614DC00E93FF2 /* RUNAURLString.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3210CFFA24765F1700E93FF2 /* RUNAAdWebViewMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210CFEE247614DC00E93FF2 /* RUNAAdWebViewMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -71,6 +73,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		320313B024C182AD002D9727 /* RUNACacheFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNACacheFile.h; sourceTree = "<group>"; };
+		320313B124C182AD002D9727 /* RUNACacheFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNACacheFile.m; sourceTree = "<group>"; };
 		3210CFE3247614DC00E93FF2 /* RUNABidAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABidAdapter.h; sourceTree = "<group>"; };
 		3210CFE4247614DC00E93FF2 /* RUNABidAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABidAdapter.m; sourceTree = "<group>"; };
 		3210CFE6247614DC00E93FF2 /* RUNAOpenRTB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOpenRTB.h; sourceTree = "<group>"; };
@@ -134,6 +138,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		320313AF24C181A4002D9727 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				320313B024C182AD002D9727 /* RUNACacheFile.h */,
+				320313B124C182AD002D9727 /* RUNACacheFile.m */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
 		3210CFE5247614DC00E93FF2 /* RUNA */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				32F259B921E599F4001FD9C0 /* RUNACore.h */,
+				320313AF24C181A4002D9727 /* Persistence */,
 				32F259BA21E599F4001FD9C0 /* Profile */,
 				32F259C121E599F4001FD9C0 /* Http */,
 				32F259C421E599F4001FD9C0 /* Format */,
@@ -292,6 +306,7 @@
 				32F259D721E599F5001FD9C0 /* RUNAWebUserAgent.h in Headers */,
 				32F259DE21E599F5001FD9C0 /* RUNAJSONObject.h in Headers */,
 				32F259DD21E599F5001FD9C0 /* RUNAURLCoder.h in Headers */,
+				320313B224C182AD002D9727 /* RUNACacheFile.h in Headers */,
 				32F259E521E599F5001FD9C0 /* RUNALogger.h in Headers */,
 				32F259DB21E599F5001FD9C0 /* RUNAHttpTask.h in Headers */,
 				3210CFFE24765F9900E93FF2 /* RUNABidAdapter.h in Headers */,
@@ -428,6 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				320313B324C182AD002D9727 /* RUNACacheFile.m in Sources */,
 				3210D0072476684A00E93FF2 /* RUNAUIViewController+.m in Sources */,
 				32F259D621E599F5001FD9C0 /* RUNAIdfa.m in Sources */,
 				32F259DC21E599F5001FD9C0 /* RUNAValid.m in Sources */,

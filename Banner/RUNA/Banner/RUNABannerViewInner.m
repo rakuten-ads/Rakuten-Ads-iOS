@@ -327,8 +327,10 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
     [self addSubview:self.webView];
     
     NSString* html = self.banner.html;
-    if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]) {
-        html = [(id<RUNAOpenMeasurement>)self injectOMIDIntoHTML:html];
+    if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
+        && !self.openMeasurementDisabled
+        && self.banner.viewableProviderURL) {
+        html = [(id<RUNAOpenMeasurement>)self injectOMProvider:self.banner.viewableProviderURL IntoHTML:html];
     }
     
     [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://rakuten.co.jp"]];

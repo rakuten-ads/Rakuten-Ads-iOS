@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
+#import <RUNACore/RUNAURLString.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -44,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(id<RUNAMeasurer>) getOpenMeasurer;
 -(UIView*) getOMAdView;
 -(nullable WKWebView*) getOMWebView;
--(NSString*) injectOMIDIntoHTML:(NSString*) html;
+-(NSString*) injectOMProvider:(NSString*) omProviderURL IntoHTML:(NSString*) html;
 @end
 
 

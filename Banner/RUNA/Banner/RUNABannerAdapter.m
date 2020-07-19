@@ -21,6 +21,7 @@
     if (ext) {
         self->_measuredURL = [ext getString:@"measured_url"];
         self->_inviewURL = [ext getString:@"inview_url"];
+        self->_viewableProviderURL = [ext getString:@"viewable_provider_url"];
     }
 }
 

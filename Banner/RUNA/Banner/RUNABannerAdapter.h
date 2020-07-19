@@ -17,8 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) float width;
 @property(nonatomic, readonly) float height;
 
-@property(nonatomic, readonly) RUNAURLString* measuredURL;
-@property(nonatomic, readonly) RUNAURLString* inviewURL;
+@property(nonatomic, readonly, nullable) RUNAURLString* measuredURL;
+@property(nonatomic, readonly, nullable) RUNAURLString* inviewURL;
+@property(nonatomic, readonly, nullable) NSString* viewableProviderURL;
+
 
 -(void)parse:(NSDictionary *)bidData;
 
