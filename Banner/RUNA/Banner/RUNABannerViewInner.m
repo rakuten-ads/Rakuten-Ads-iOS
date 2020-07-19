@@ -97,10 +97,14 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
 
             RUNABannerAdapter* bannerAdapter = [RUNABannerAdapter new];
             bannerAdapter.adspotId = self.adSpotId;
+            if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
+                && !self.openMeasurementDisabled) {
+                self->_jsonProperties[@"banner.api"] = @(7);
+            }
             bannerAdapter.json = self.jsonProperties;
             bannerAdapter.appContent = self.appContent;
             bannerAdapter.responseConsumer = self;
-
+            
             RUNAOpenRTBRequest* request = [RUNAOpenRTBRequest new];
             request.openRTBAdapterDelegate = bannerAdapter;
 
