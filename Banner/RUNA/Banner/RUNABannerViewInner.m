@@ -99,7 +99,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
             bannerAdapter.adspotId = self.adSpotId;
             if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
                 && !self.openMeasurementDisabled) {
-                self->_jsonProperties[@"banner.api"] = @(7);
+                bannerAdapter.banner = @{ @"api": @[@(7)] };
             }
             bannerAdapter.json = self.jsonProperties;
             bannerAdapter.appContent = self.appContent;
@@ -291,9 +291,6 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
     }
 }
 
-NSString* OM_JS_TAG_SDK = @"<script src=\"https://dev-s-cdn.rmp.rakuten.co.jp/om_sdk/omsdk-v1.js\"></script>";
-NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.com/omsdk-files/compliance-js/omid-validation-verification-script-v1-ssl.js\"></script>";
-
 -(void) applyAdView {
     RUNADebug("apply applyView: %@", NSStringFromCGRect(self.frame));
     // remove old web view
@@ -331,9 +328,7 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
     [self addSubview:self.webView];
     
     NSString* html = self.banner.html;
-    if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
-        && !self.openMeasurementDisabled
-        && self.banner.viewableProviderURL) {
+    if ([self isOpenMeasurementAvailable]) {
         html = [(id<RUNAOpenMeasurement>)self injectOMProvider:self.banner.viewableProviderURL IntoHTML:html];
     }
     
@@ -347,6 +342,12 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
                                   [self.webView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor]
                                   ];
     [self addConstraints:self.webViewConstraints];
+}
+
+- (BOOL)isOpenMeasurementAvailable {
+    return [self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
+    && !self.openMeasurementDisabled
+    && self.banner.viewableProviderURL;
 }
 
 #pragma mark - implement RUNABidResponseConsumer
@@ -493,7 +494,7 @@ NSString* OM_JS_TAG_VALIDATION = @"<script src=\"https://s3-us-west-2.amazonaws.
     RUNADebug("didFinishNavigation");
     if (self.state != RUNA_ADVIEW_STATE_FAILED) {
         @try {
-            if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]) {
+            if ([self isOpenMeasurementAvailable]) {
                 [self.measurers addObject:[(id<RUNAOpenMeasurement>)self getOpenMeasurer]];
             }
             if ([self conformsToProtocol:@protocol(RUNADefaultMeasurement)]) {

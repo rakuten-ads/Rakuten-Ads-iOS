@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString* adspotId;
 @property(nonatomic) NSDictionary* json;
 @property(nonatomic) NSDictionary* appContent;
+@property(nonatomic) NSDictionary* banner;
 
 @end
 

@@ -34,6 +34,7 @@
     for (NSString* adspotId in self.adspotIdList) {
         if (adspotId) {
             [impList addObject:@{
+                                 @"banner" : self.banner ?: [NSNull null],
                                  @"ext" : @{
                                          @"adspot_id" : adspotId,
                                          @"json" : self.json ?: [NSNull null],
