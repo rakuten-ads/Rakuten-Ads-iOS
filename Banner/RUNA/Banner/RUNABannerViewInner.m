@@ -329,7 +329,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
     
     NSString* html = self.banner.html;
     if ([self isOpenMeasurementAvailable]) {
-        html = [(id<RUNAOpenMeasurement>)self injectOMProvider:self.banner.viewableProviderURL IntoHTML:html];
+        html = [(id<RUNAOpenMeasurement>)self injectOMProvider:self.banner.viewabilityProviderURL IntoHTML:html];
     }
     
     [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://rakuten.co.jp"]];
@@ -347,7 +347,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
 - (BOOL)isOpenMeasurementAvailable {
     return [self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
     && !self.openMeasurementDisabled
-    && self.banner.viewableProviderURL;
+    && self.banner.viewabilityProviderURL;
 }
 
 #pragma mark - implement RUNABidResponseConsumer
