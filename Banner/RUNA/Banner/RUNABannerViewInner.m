@@ -21,6 +21,14 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
     RUNA_ADVIEW_STATE_CLICKED,
 };
 
+#if RUNA_PRODUCTION
+    NSString* BASE_URL_RUNA_JS = @"https://s-dlv.rmp.rakuten.co.jp";
+#elif RUNA_STAGING
+    NSString* BASE_URL_RUNA_JS = @"https://stg-s-dlv.rmp.rakuten.co.jp";
+#else
+    NSString* BASE_URL_RUNA_JS = @"https://dev-s-dlv.rmp.rakuten.co.jp";
+#endif
+
 @interface RUNABannerView() <WKNavigationDelegate, RUNABidResponseConsumerDelegate>
 
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
@@ -331,8 +339,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
     if ([self isOpenMeasurementAvailable]) {
         html = [(id<RUNAOpenMeasurement>)self injectOMProvider:self.banner.viewabilityProviderURL IntoHTML:html];
     }
-    
-    [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:@"https://rakuten.co.jp"]];
+    [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BASE_URL_RUNA_JS]];
     
     self.state = RUNA_ADVIEW_STATE_RENDERING;
     self.webView.translatesAutoresizingMaskIntoConstraints = NO;
