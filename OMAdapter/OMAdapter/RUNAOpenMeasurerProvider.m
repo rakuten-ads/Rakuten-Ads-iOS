@@ -44,7 +44,7 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 3;
 
 -(void)onResponse:(NSHTTPURLResponse *)response withData:(NSData *)data error:(NSError *)error {
     if (!error) {
-        if (!_cacheFile.isExist) {
+        if (!_cacheFile.isExist && data.length > 0) {
             [_cacheFile writeData:data];
         }
     }
