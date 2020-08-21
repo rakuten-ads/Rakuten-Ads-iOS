@@ -31,7 +31,6 @@
 		32671FA52412501400C50F9F /* RUNABannerViewOM.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671FA32412501400C50F9F /* RUNABannerViewOM.m */; };
 		327AE03424C41039000071E8 /* RUNAOpenMeasurerProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 327AE03224C41039000071E8 /* RUNAOpenMeasurerProvider.h */; };
 		327AE03524C41039000071E8 /* RUNAOpenMeasurerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 327AE03324C41039000071E8 /* RUNAOpenMeasurerProvider.m */; };
-		328807BF24BD529500A635FB /* omsdk-v1.js in Resources */ = {isa = PBXBuildFile; fileRef = 328807BB24BD529500A635FB /* omsdk-v1.js */; };
 		32EE303A2415D80900E6D076 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EE30392415D80900E6D076 /* RUNACore.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,7 +75,6 @@
 		32671FA32412501400C50F9F /* RUNABannerViewOM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewOM.m; sourceTree = "<group>"; };
 		327AE03224C41039000071E8 /* RUNAOpenMeasurerProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOpenMeasurerProvider.h; sourceTree = "<group>"; };
 		327AE03324C41039000071E8 /* RUNAOpenMeasurerProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOpenMeasurerProvider.m; sourceTree = "<group>"; };
-		328807BB24BD529500A635FB /* omsdk-v1.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "omsdk-v1.js"; sourceTree = "<group>"; };
 		32EE30392415D80900E6D076 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -136,7 +134,6 @@
 			children = (
 				32671F6A24108BB400C50F9F /* OMAdapter.h */,
 				32671F6B24108BB400C50F9F /* Info.plist */,
-				328807BB24BD529500A635FB /* omsdk-v1.js */,
 				32671F8124108BD300C50F9F /* RUNAOpenMeasurer.h */,
 				32671F8224108BD300C50F9F /* RUNAOpenMeasurer.m */,
 				320313AA24C173D0002D9727 /* RUNABannerViewOM.h */,
@@ -287,7 +284,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				328807BF24BD529500A635FB /* omsdk-v1.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
