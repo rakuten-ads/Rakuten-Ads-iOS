@@ -17,3 +17,4 @@ FOUNDATION_EXPORT const unsigned char OMAdapterVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <OMAdapter/PublicHeader.h>
 
 
+#import "RUNABannerViewOM.h"

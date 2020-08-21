@@ -1,0 +1,6 @@
+framework module RUNAOMAdapter {
+    umbrella header "RUNAOMAdapter.h"
+
+    export *
+    module * { export * }
+}
