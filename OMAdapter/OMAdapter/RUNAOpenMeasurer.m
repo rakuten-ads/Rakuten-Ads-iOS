@@ -73,7 +73,7 @@ NSString* kPartnerName = @"Rakuten";
     if (!OMIDRakutenSDK.sharedInstance.isActive) {
         [OMIDRakutenSDK.sharedInstance activate];
     }
-    RUNADebug("OMIDRakutenSDK is Actived: %@", OMIDRakutenSDK.sharedInstance.isActive ? @"YES" : @"NO");
+    RUNADebug("OMIDRakutenSDK %@ is Actived: %@", OMIDRakutenSDK.versionString, OMIDRakutenSDK.sharedInstance.isActive ? @"YES" : @"NO");
     return OMIDRakutenSDK.sharedInstance.isActive;
 }
 

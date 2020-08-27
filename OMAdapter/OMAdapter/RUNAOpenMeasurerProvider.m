@@ -28,6 +28,7 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 3;
     NSString* cacheFileName = [[NSString alloc] initWithData:urlStringInBase64 encoding:NSUTF8StringEncoding];
     self->_cacheFile = [[RUNACacheFile alloc] initWithName:cacheFileName];
     if (self.cacheFile.isExist) {
+        RUNADebug("om provider cache %@ is exist", self.cacheFile.fileName);
         return;
     }
     
@@ -35,7 +36,6 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 3;
     request.httpTaskDelegate = self;
     dispatch_time_t timeout = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(RUNA_API_TIMEOUT_INTERVAL * NSEC_PER_SEC));
     [request syncResume:timeout];
-    
 }
 
 -(NSString *)getUrl {
@@ -45,6 +45,7 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 3;
 -(void)onResponse:(NSHTTPURLResponse *)response withData:(NSData *)data error:(NSError *)error {
     if (!error) {
         if (!_cacheFile.isExist && data.length > 0) {
+            RUNADebug("write om provider cache %@", self.cacheFile.fileName);
             [_cacheFile writeData:data];
         }
     }

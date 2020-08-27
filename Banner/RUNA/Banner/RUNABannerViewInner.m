@@ -517,7 +517,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-    RUNADebug("didFailNavigation %@", error);
+    RUNALog("AD view didFailNavigation %@", error);
 }
 
 -(NSString *)description {
