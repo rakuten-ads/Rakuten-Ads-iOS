@@ -181,11 +181,11 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
                 if (@available(ios 11.0, *)) {
                     UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
                     self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:self.banner.height / self.banner.width],
+                                               [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:(self.banner.height / self.banner.width) constant:0.5],
                                                ];
                 } else {
                     self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:self.banner.height / self.banner.width],
+                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:(self.banner.height / self.banner.width) constant:0.5],
                                                ];
                 }
                 self.translatesAutoresizingMaskIntoConstraints = NO;
