@@ -29,6 +29,8 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
     NSString* BASE_URL_RUNA_JS = @"https://dev-s-dlv.rmp.rakuten.co.jp";
 #endif
 
+NSString* BASE_URL_BLANK = @"about:blank";
+
 @interface RUNABannerView() <WKNavigationDelegate, RUNABidResponseConsumerDelegate>
 
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
@@ -465,11 +467,24 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
 #pragma mark - implement WKNavigationDelegate
 
 -(void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    RUNADebug("webview navigation type %lu decide for: %@", (unsigned long)navigationAction.navigationType, navigationAction.request.URL);
-    if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
-        RUNADebug("clicked ad");
-        NSURL* url = navigationAction.request.URL;
-        if (url) {
+    RUNADebug("webview navigation type %@ decide for: %@",
+              navigationAction.navigationType == WKNavigationTypeLinkActivated ? @"WKNavigationTypeLinkActivated" :
+              navigationAction.navigationType == WKNavigationTypeOther ? @"WKNavigationTypeOther" :
+              navigationAction.navigationType == WKNavigationTypeReload ? @"WKNavigationTypeReload" :
+              navigationAction.navigationType == WKNavigationTypeBackForward ? @"WKNavigationTypeBackForward" :
+              navigationAction.navigationType == WKNavigationTypeFormSubmitted ? @"WKNavigationTypeFormSubmitted" :
+              navigationAction.navigationType == WKNavigationTypeFormResubmitted ? @"WKNavigationTypeFormResubmitted" :
+              @"unknown"
+              , navigationAction.request.URL.absoluteString);
+    
+    NSURL* url = navigationAction.request.URL;
+    if (url && navigationAction.targetFrame.isMainFrame) {
+        if (navigationAction.navigationType == WKNavigationTypeLinkActivated // alternative 1 : click link
+            || (navigationAction.navigationType == WKNavigationTypeOther // alternative 2: location change except internal Base URL
+                && ![url.absoluteString isEqualToString:[BASE_URL_RUNA_JS stringByAppendingString:@"/"]]
+                && ![url.absoluteString isEqualToString:BASE_URL_BLANK])
+            ) {
+            RUNADebug("clicked ad");
             [UIApplication.sharedApplication openURL:url options:@{} completionHandler:^(BOOL success){
                 RUNADebug("opened AD URL");
             }];
@@ -488,7 +503,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
             return;
         }
     }
-
+    
     RUNADebug("WKNavigationActionPolicyAllow");
     decisionHandler(WKNavigationActionPolicyAllow);
 }
