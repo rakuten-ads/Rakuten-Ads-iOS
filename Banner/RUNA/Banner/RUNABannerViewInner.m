@@ -51,7 +51,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
     if (self) {
         [self setInitState];
         self.jsonProperties = [NSMutableDictionary dictionary];
-        self.measurers = [NSMutableArray array];
     }
     return self;
 }
@@ -60,6 +59,10 @@ NSString* BASE_URL_BLANK = @"about:blank";
     self.hidden = YES;
     self.state = RUNA_ADVIEW_STATE_INIT;
     self.error = RUNABannerViewErrorNone;
+    [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
+        [measurer finishMeasurement];
+    }];
+    self.measurers = [NSMutableArray array];
 }
 
 @synthesize state = _state;
