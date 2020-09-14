@@ -15,6 +15,12 @@
     return self;
 }
 
+-(void)processConfig:(NSMutableURLRequest *)request {
+    RUNAWebUserAgent* userAgentInfo = RUNADefines.sharedInstance.userAgentInfo;
+    [userAgentInfo syncResult];
+    [request setValue:userAgentInfo.userAgent forHTTPHeaderField:@"User-Agent"];
+}
+
 @end
 
 
@@ -27,12 +33,6 @@
         self->_httpSession = RUNADefines.sharedInstance.httpSession;
     }
     return self;
-}
-
--(void)processConfig:(NSMutableURLRequest *)request {
-    RUNAWebUserAgent* userAgentInfo = RUNADefines.sharedInstance.userAgentInfo;
-    [userAgentInfo syncResult];
-    [request setValue:userAgentInfo.userAgent forHTTPHeaderField:@"User-Agent"];
 }
 
 @end
