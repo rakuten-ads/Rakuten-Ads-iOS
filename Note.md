@@ -1,26 +1,32 @@
 ## Xcode Settings for New Project
 
-- Project Deployment Target >= iOS 9.0
+- Project Deployment Target >= iOS 10.0
 - Create a PrefixHeader.pch and apply to precompile. Like `RUNA/RUNA/PrefixHeader.pch`.
 - Link library `RUNACore.Framework`
 
 ## Require for Release
 
-1. carthage. like `brew install carthage`
+1. carthage. 
 
-2. gem
+`brew install carthage`
 
-`gem install bundler`
+2. cocoapods
 
-`bundle install`
+`brew install cocoapods`
 
-3. gcloud credential file of bucket
+3. gem
+
+`gem install bundler -i .`
+
+`bundle install --path .`
+
+4. gcloud credential file of bucket
 
 `gcloud auth application-default login`
 
-4. cocoapods
-`pod repo add Rakuten-Ads-iOS git@github.com:rakuten-ads/Rakuten-Ads-iOS.git`
+5. cocoapods
+`bundle exec pod repo add rakuten-ads git@github.com:rakuten-ads/Rakuten-Ads-iOS.git`
 
-5. Set env of Github access token
+6. Set env of Github access token
 
-`GITHUB_API_TOKEN`
+`FASTLANE_GITHUB_TOKEN`
