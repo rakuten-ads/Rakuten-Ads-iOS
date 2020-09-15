@@ -71,17 +71,26 @@ RUNA SDK は三つのイベントをトラッキングすることが可能で�
 - **クリック (RUNABannerViewEventTypeClicked) :**
   banner 広告がクリックされた時。
 
+### 1.5 Open Measurement
+
+Open Measurementを自動に有効するために`Podfile`に `pod 'OMAdapter'`を追加する必要があります。
+尚、`banner.disableOpenMeasurement` APIを使って個別なbannerを無効することも可能性す。
+
 ## 2. 実装サンプル
 
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)
 
 ```objc
 #import <RUNA/RUNA.h>
+#import <RUNAOMAdapter/RUNAOMAdapter.h> // if need disable open measurement
 
 RUNABannerView* banner = [RUNABannerView new];
 
 banner.adSpotId = @"spot_id_xxx";
 banner.position = RUNABannerViewPositionBottom;
+
+// specify disable open measurement by need
+// [banner disableOpenMeasurement];
 
 [banner loadWithEventHandler:^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
     switch (event.eventType) {
@@ -117,11 +126,15 @@ banner.position = RUNABannerViewPositionBottom;
 
 ```swift
 import RUNABanner
+import RUNAOMAdapter // if need disable open measurement
 
 let banner = RUNABannerView()
 
 banner.adSpotId = "adspot_id_xxx"
 banner.position = .bottom
+
+// specify disable open measurement by need
+// banner.disableOpenMeasurement()
 
 banner.load { (banner, event) in
     switch event.eventType {

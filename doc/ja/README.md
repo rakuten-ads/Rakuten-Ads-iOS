@@ -34,6 +34,7 @@
 source "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
 
 pod 'RUNA/Banner'
+pod 'RUNA/OMAdapter'
 ```
 
 ---

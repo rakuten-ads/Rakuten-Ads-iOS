@@ -71,17 +71,25 @@ The RUNABanner SDK tracks 3 event types of `RUNABannerViewEvent` if developers n
   After the banner is clicked.
 
 
+### 1.5 Open Measurement
+
+Add `pod 'OMAdapter'` into the `Podfile` will enable open measurement feature automatically. And it could also disable this feature on a certain banner by calling api `banner.disableOpenMeasurement`.
+
 ## 2. Samples
 
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)
 
 ```objc
 #import <RUNABanner/RUNABanner.h>
+#import <RUNAOMAdapter/RUNAOMAdapter.h> // if need disable open measurement
 
 RUNABannerView* banner = [RUNABannerView new];
 
 banner.adSpotId = @"spot_id_xxx";
 banner.position = RUNABannerViewPositionBottom;
+
+// specify disable open measurement by need
+// [banner disableOpenMeasurement];
 
 [banner loadWithEventHandler:^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
     switch (event.eventType) {
@@ -117,11 +125,15 @@ banner.position = RUNABannerViewPositionBottom;
 
 ```swift
 import RUNABanner
+import RUNAOMAdapter // if need disable open measurement
 
 let banner = RUNABannerView()
 
 banner.adSpotId = "adspot_id_xxx"
 banner.position = .bottom
+
+// specify disable open measurement by need
+// banner.disableOpenMeasurement()
 
 banner.load { (banner, event) in
     switch event.eventType {
