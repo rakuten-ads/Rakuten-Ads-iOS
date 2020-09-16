@@ -114,7 +114,7 @@ platform :ios do
 
     pod_push(
       path: path,
-      repo: 'rakuten-ads',
+      repo: 'Rakuten-Ads-iOS',
       skip_tests: true,
       verbose: true,
     )
@@ -135,7 +135,7 @@ platform :ios do
 
     pod_push(
       path: path,
-      repo: 'rakuten-ads',
+      repo: 'Rakuten-Ads-iOS',
       skip_tests: true,
       verbose: true,
     )

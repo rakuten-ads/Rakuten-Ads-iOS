@@ -25,7 +25,7 @@
 `gcloud auth application-default login`
 
 5. cocoapods
-`bundle exec pod repo add rakuten-ads git@github.com:rakuten-ads/Rakuten-Ads-iOS.git`
+`bundle exec pod repo add Rakuten-Ads-iOS git@github.com:rakuten-ads/Rakuten-Ads-iOS.git`
 
 6. Set env of Github access token
 
