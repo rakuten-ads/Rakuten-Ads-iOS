@@ -32,16 +32,18 @@
         RUNADebug("Must not call this method in main thread.");
         return;
     }
-    
-    if (self.userAgent) {
-        return;
-    }
-    
-    if (_semaphore) {
-        dispatch_time_t timeout = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.timeout * NSEC_PER_SEC));
-        RUNADebug("waiting on user-agent thread");
-        dispatch_semaphore_wait(_semaphore, timeout);
-        RUNADebug("waking up user-agent thread");
+
+    @synchronized (self) {
+        if (self.userAgent) {
+            return;
+        }
+
+        if (_semaphore) {
+            dispatch_time_t timeout = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.timeout * NSEC_PER_SEC));
+            RUNADebug("waiting on user-agent thread");
+            dispatch_semaphore_wait(_semaphore, timeout);
+            RUNADebug("waking up user-agent thread");
+        }
     }
 }
 
