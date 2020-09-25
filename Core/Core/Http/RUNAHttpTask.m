@@ -147,7 +147,7 @@
                 [(id<RUNAJsonHttpSessionDelegate>)self->_httpTaskDelegate onJsonResponse:rep withData:json error:httpErr];
             }
 
-            RUNADebug("http error: %@", httpErr ?: @"None");
+            RUNADebug("http result: %@", httpErr ?: @"OK");
         }
         @catch (NSException *exception) {
             RUNADebug("http session completion handler exception %@", exception);

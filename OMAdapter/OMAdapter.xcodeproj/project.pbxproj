@@ -22,13 +22,14 @@
 
 /* Begin PBXBuildFile section */
 		3210D0152476EDC200E93FF2 /* RUNABanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3210D0142476EDC200E93FF2 /* RUNABanner.framework */; };
+		3259214B24EFA37E00345612 /* RUNABannerViewOM.h in Headers */ = {isa = PBXBuildFile; fileRef = 320313AA24C173D0002D9727 /* RUNABannerViewOM.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32671F7124108BB400C50F9F /* RUNAOMAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32671F6724108BB400C50F9F /* RUNAOMAdapter.framework */; };
 		32671F7624108BB400C50F9F /* OMAdapterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671F7524108BB400C50F9F /* OMAdapterTests.m */; };
-		32671F7824108BB400C50F9F /* OMAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32671F6A24108BB400C50F9F /* OMAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32671F8324108BD300C50F9F /* RUNAOpenMeasurer.h in Headers */ = {isa = PBXBuildFile; fileRef = 32671F8124108BD300C50F9F /* RUNAOpenMeasurer.h */; };
+		32671F7824108BB400C50F9F /* RUNAOMAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32671F6A24108BB400C50F9F /* RUNAOMAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32671F8424108BD300C50F9F /* RUNAOpenMeasurer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671F8224108BD300C50F9F /* RUNAOpenMeasurer.m */; };
 		32671F8F2412318300C50F9F /* OMSDK_Rakuten.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32671F8E2412318300C50F9F /* OMSDK_Rakuten.framework */; };
 		32671FA52412501400C50F9F /* RUNABannerViewOM.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671FA32412501400C50F9F /* RUNABannerViewOM.m */; };
+		327AE03524C41039000071E8 /* RUNAOpenMeasurerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 327AE03324C41039000071E8 /* RUNAOpenMeasurerProvider.m */; };
 		32EE303A2415D80900E6D076 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EE30392415D80900E6D076 /* RUNACore.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,9 +58,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		320313AA24C173D0002D9727 /* RUNABannerViewOM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewOM.h; sourceTree = "<group>"; };
+		320313AE24C175F8002D9727 /* RUNABannerViewOMInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewOMInner.h; sourceTree = "<group>"; };
 		3210D0142476EDC200E93FF2 /* RUNABanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNABanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3259214C24EFA48900345612 /* RUNAOMAdapter.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = RUNAOMAdapter.modulemap; sourceTree = "<group>"; };
 		32671F6724108BB400C50F9F /* RUNAOMAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNAOMAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		32671F6A24108BB400C50F9F /* OMAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMAdapter.h; sourceTree = "<group>"; };
+		32671F6A24108BB400C50F9F /* RUNAOMAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOMAdapter.h; sourceTree = "<group>"; };
 		32671F6B24108BB400C50F9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32671F7024108BB400C50F9F /* OMAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OMAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32671F7524108BB400C50F9F /* OMAdapterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OMAdapterTests.m; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 		32671F8E2412318300C50F9F /* OMSDK_Rakuten.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OMSDK_Rakuten.framework; path = OMSDK/OMSDK_Rakuten.framework; sourceTree = "<group>"; };
 		32671F9124123C9B00C50F9F /* Banner.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Banner.xcodeproj; path = ../Banner/Banner.xcodeproj; sourceTree = "<group>"; };
 		32671FA32412501400C50F9F /* RUNABannerViewOM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewOM.m; sourceTree = "<group>"; };
+		327AE03224C41039000071E8 /* RUNAOpenMeasurerProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOpenMeasurerProvider.h; sourceTree = "<group>"; };
+		327AE03324C41039000071E8 /* RUNAOpenMeasurerProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOpenMeasurerProvider.m; sourceTree = "<group>"; };
 		32EE30392415D80900E6D076 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -126,11 +132,16 @@
 		32671F6924108BB400C50F9F /* OMAdapter */ = {
 			isa = PBXGroup;
 			children = (
-				32671F6A24108BB400C50F9F /* OMAdapter.h */,
+				32671F6A24108BB400C50F9F /* RUNAOMAdapter.h */,
 				32671F6B24108BB400C50F9F /* Info.plist */,
 				32671F8124108BD300C50F9F /* RUNAOpenMeasurer.h */,
 				32671F8224108BD300C50F9F /* RUNAOpenMeasurer.m */,
+				320313AA24C173D0002D9727 /* RUNABannerViewOM.h */,
+				320313AE24C175F8002D9727 /* RUNABannerViewOMInner.h */,
 				32671FA32412501400C50F9F /* RUNABannerViewOM.m */,
+				327AE03224C41039000071E8 /* RUNAOpenMeasurerProvider.h */,
+				327AE03324C41039000071E8 /* RUNAOpenMeasurerProvider.m */,
+				3259214C24EFA48900345612 /* RUNAOMAdapter.modulemap */,
 			);
 			path = OMAdapter;
 			sourceTree = "<group>";
@@ -161,8 +172,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32671F7824108BB400C50F9F /* OMAdapter.h in Headers */,
-				32671F8324108BD300C50F9F /* RUNAOpenMeasurer.h in Headers */,
+				32671F7824108BB400C50F9F /* RUNAOMAdapter.h in Headers */,
+				3259214B24EFA37E00345612 /* RUNABannerViewOM.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32671FA52412501400C50F9F /* RUNABannerViewOM.m in Sources */,
+				327AE03524C41039000071E8 /* RUNAOpenMeasurerProvider.m in Sources */,
 				32671F8424108BD300C50F9F /* RUNAOpenMeasurer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +483,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MODULEMAP_FILE = OMAdapter/RUNAOMAdapter.modulemap;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.om;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
@@ -501,6 +514,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MODULEMAP_FILE = OMAdapter/RUNAOMAdapter.modulemap;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.om;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
@@ -640,6 +654,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MODULEMAP_FILE = OMAdapter/RUNAOMAdapter.modulemap;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.om;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";

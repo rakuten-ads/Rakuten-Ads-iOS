@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(id<RUNAMeasurer>) getOpenMeasurer;
 -(UIView*) getOMAdView;
 -(nullable WKWebView*) getOMWebView;
-
+-(NSString*) injectOMProvider:(NSString*) omProviderURL IntoHTML:(NSString*) html;
 @end
 
 

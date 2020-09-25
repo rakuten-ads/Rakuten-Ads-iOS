@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable) RUNAAdWebViewMessageHandler* openPopupHandler;
 @property (nonatomic, nullable) NSMutableArray<id<RUNAMeasurer>> *measurers;
 @property (nonatomic) RUNABannerViewError error;
+@property (nonatomic) BOOL openMeasurementDisabled;
 
 @end
 

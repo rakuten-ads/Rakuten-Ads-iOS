@@ -32,7 +32,7 @@ NSString* kPartnerName = @"Rakuten";
     if (![self isSDKActive]
         || !self.adView
         || !self.webView) {
-        RUNALog("Not prepared for open measurement.");
+        RUNALog("Not prepared for open measurement[OM].");
         return;
     }
     
@@ -45,7 +45,7 @@ NSString* kPartnerName = @"Rakuten";
             return;
         }
         
-        RUNADebug("Starting open measurement session");
+        RUNADebug("measurement[OM] start");
         [self.adSession start];
         
         err = nil;
@@ -65,7 +65,7 @@ NSString* kPartnerName = @"Rakuten";
 }
 
 - (void)finishMeasurement {
-    RUNADebug("Finishing open measurement session");
+    RUNADebug("measurement[OM] finish");
     [self.adSession finish];
 }
 
@@ -73,7 +73,7 @@ NSString* kPartnerName = @"Rakuten";
     if (!OMIDRakutenSDK.sharedInstance.isActive) {
         [OMIDRakutenSDK.sharedInstance activate];
     }
-    RUNADebug("OMIDRakutenSDK is Actived: %@", OMIDRakutenSDK.sharedInstance.isActive ? @"YES" : @"NO");
+    RUNADebug("OMIDRakutenSDK %@ is Actived: %@", OMIDRakutenSDK.versionString, OMIDRakutenSDK.sharedInstance.isActive ? @"YES" : @"NO");
     return OMIDRakutenSDK.sharedInstance.isActive;
 }
 

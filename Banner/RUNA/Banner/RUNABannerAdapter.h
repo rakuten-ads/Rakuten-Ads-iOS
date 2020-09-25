@@ -17,8 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) float width;
 @property(nonatomic, readonly) float height;
 
-@property(nonatomic, readonly) RUNAURLString* measuredURL;
-@property(nonatomic, readonly) RUNAURLString* inviewURL;
+@property(nonatomic, readonly, nullable) RUNAURLString* measuredURL;
+@property(nonatomic, readonly, nullable) RUNAURLString* inviewURL;
+@property(nonatomic, readonly, nullable) NSString* viewabilityProviderURL;
+
 
 -(void)parse:(NSDictionary *)bidData;
 
@@ -30,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString* adspotId;
 @property(nonatomic) NSDictionary* json;
 @property(nonatomic) NSDictionary* appContent;
+@property(nonatomic) NSDictionary* banner;
 
 @end
 

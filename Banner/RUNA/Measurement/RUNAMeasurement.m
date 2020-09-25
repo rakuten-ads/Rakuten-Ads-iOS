@@ -31,22 +31,22 @@ NSTimeInterval kMeasureIntervalInView = 1;
 }
 
 -(void)main {
-    RUNADebug("measurement inview dequeue");
+    RUNADebug("measurement[default] inview dequeue");
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kMeasureIntervalInView * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         @try {
             if (self.measurableTarget) {
                 self.shouldStopMeasureInview = self.shouldStopMeasureInview || [self.measurableTarget measureInview];
-                RUNADebug("measurement inview : %@", self.shouldStopMeasureInview ? @"stopped" : @"continue...");
+                RUNADebug("measurement[default] inview : %@", self.shouldStopMeasureInview ? @"stopped" : @"continue...");
                 if (!self.shouldStopMeasureInview) {
-                    RUNADebug("measurement inview enqueue again");
+                    RUNADebug("measurement[default] inview enqueue again");
                     RUNADefaultMeasurer* repeatingOperation = [self clone];
                     [[RUNADefaultMeasurer sharedQueue] addOperation:repeatingOperation];
                 }
             } else {
-                RUNADebug("measurable target disposed!");
+                RUNADebug("measurement[default] target disposed!");
             }
         } @catch (NSException *exception) {
-            RUNADebug("Measurement Operation exception: %@", exception);
+            RUNADebug("measurement[default] operation exception: %@", exception);
         }
     });
 }
@@ -60,18 +60,18 @@ NSTimeInterval kMeasureIntervalInView = 1;
 }
 
 -(void)startMeasurement {
-    RUNADebug("startMeasurement");
+    RUNADebug("measurement[default] start");
     self.shouldStopMeasureImp = self.shouldStopMeasureImp || [self.measurableTarget measureImp];
-    RUNADebug("measurement imp : %@", self.shouldStopMeasureImp ? @"stopped" : @"continue...");
+    RUNADebug("measurement[default] imp : %@", self.shouldStopMeasureImp ? @"stopped" : @"continue...");
 
     if (!self.shouldStopMeasureInview) {
-        RUNADebug("measurement inview enqueue");
+        RUNADebug("measurement[default] inview enqueue");
         [[RUNADefaultMeasurer sharedQueue] addOperation:self];
     }
 }
 
 -(void)finishMeasurement {
-    RUNADebug("finishMeasurement");
+    RUNADebug("measurement[default] finish");
     if (!self.isCancelled) {
         [self cancel];
     }

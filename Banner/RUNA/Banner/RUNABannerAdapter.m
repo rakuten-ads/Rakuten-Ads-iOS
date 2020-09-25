@@ -21,6 +21,7 @@
     if (ext) {
         self->_measuredURL = [ext getString:@"measured_url"];
         self->_inviewURL = [ext getString:@"inview_url"];
+        self->_viewabilityProviderURL = [ext getString:@"viewability_provider_url"];
     }
 }
 
@@ -33,6 +34,7 @@
     for (NSString* adspotId in self.adspotIdList) {
         if (adspotId) {
             [impList addObject:@{
+                                 @"banner" : self.banner ?: [NSNull null],
                                  @"ext" : @{
                                          @"adspot_id" : adspotId,
                                          @"json" : self.json ?: [NSNull null],
