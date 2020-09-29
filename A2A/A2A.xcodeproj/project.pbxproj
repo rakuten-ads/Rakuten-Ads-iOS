@@ -74,7 +74,6 @@
 		324862DB2408EB980071E164 /* RUNAPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RUNAPopup.xib; sourceTree = "<group>"; };
 		324862EE240C888B0071E164 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		324862F5240C8A470071E164 /* RUNAA2A.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = RUNAA2A.modulemap; sourceTree = "<group>"; };
-		324862F6240C90480071E164 /* RUNABannerViewAtoaInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewAtoaInner.h; sourceTree = "<group>"; };
 		32EE30332415D7CD00E6D076 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -133,7 +132,6 @@
 			children = (
 				324862B32408EB350071E164 /* RUNAA2A.h */,
 				324862D52408EB980071E164 /* RUNABannerViewAtoa.h */,
-				324862F6240C90480071E164 /* RUNABannerViewAtoaInner.h */,
 				324862DA2408EB980071E164 /* RUNABannerViewAtoa.m */,
 				324862D82408EB980071E164 /* RUNAPopupViewController.h */,
 				324862D92408EB980071E164 /* RUNAPopupViewController.m */,

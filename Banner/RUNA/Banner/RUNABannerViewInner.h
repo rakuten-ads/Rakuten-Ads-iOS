@@ -9,7 +9,10 @@
 #ifndef RUNABannerViewInner_h
 #define RUNABannerViewInner_h
 
+#ifndef RUNABannerView_h
 #import "RUNABannerView.h"
+#endif
+
 #import "RUNABannerAdapter.h"
 #import <RUNACore/RUNAValid.h>
 #import <RUNACore/RUNAAdWebView.h>
