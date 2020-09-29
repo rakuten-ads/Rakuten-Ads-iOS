@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RUNADefaultMeasurer: NSOperation <RUNAMeasurer>
+@interface RUNADefaultMeasurer: NSObject<RUNAMeasurer>
 
 @end
 
