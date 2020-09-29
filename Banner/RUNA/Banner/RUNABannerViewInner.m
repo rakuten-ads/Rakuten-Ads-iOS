@@ -90,6 +90,11 @@ NSString* BASE_URL_BLANK = @"about:blank";
 }
 
 -(void) loadWithEventHandler:(RUNABannerViewEventHandler)handler {
+    if (self.state != RUNA_ADVIEW_STATE_INIT) {
+        RUNALog("Banner already loaded.");
+        return;
+    }
+
     [self setInitState];
     self.eventHandler = handler;
     dispatch_async(RUNADefines.sharedQueue, ^{
@@ -448,7 +453,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
     self.state = RUNA_ADVIEW_STATE_FAILED;
     dispatch_async(dispatch_get_main_queue(), ^{
         RUNADebug("triggerFailure");
-        self.hidden = YES;
         @try {
             if (self.eventHandler) {
                 struct RUNABannerViewEvent event = { RUNABannerViewEventTypeFailed, self.error };
