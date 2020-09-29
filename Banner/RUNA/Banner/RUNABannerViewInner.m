@@ -96,6 +96,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
     }
 
     [self setInitState];
+    self.state = RUNA_ADVIEW_STATE_LOADING;
     self.eventHandler = handler;
     dispatch_async(RUNADefines.sharedQueue, ^{
         @try {
@@ -127,7 +128,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
             request.openRTBAdapterDelegate = bannerAdapter;
 
             [request resume];
-            self.state = RUNA_ADVIEW_STATE_LOADING;
         } @catch(NSException* exception) {
             RUNALog("load exception: %@", exception);
             if (self.error == RUNABannerViewErrorNone) {
