@@ -130,7 +130,7 @@ import RUNAOMAdapter // if need disable open measurement
 
 let banner = RUNABannerView()
 
-banner.adSpotId = "adspot_id_xxx"
+banner.adSpotId = "0000"
 banner.position = .bottom
 
 // specify disable open measurement by need
