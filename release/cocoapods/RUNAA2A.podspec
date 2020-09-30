@@ -27,6 +27,6 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   s.vendored_frameworks = "Carthage/Build/iOS/#{s.name}.framework"
 
   s.frameworks = "Foundation", "AdSupport", "SystemConfiguration", "WebKit", "UIKit"
-  s.dependency 'RUNABanner', '~> 1.1.0'
+  s.dependency 'RUNABanner', '~> 1.1.1'
 
 end
