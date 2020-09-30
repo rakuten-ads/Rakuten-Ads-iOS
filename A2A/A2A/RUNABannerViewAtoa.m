@@ -6,7 +6,7 @@
 //  Copyright © 2019 Rakuten MPD. All rights reserved.
 //
 
-#import "RUNABannerViewAtoaInner.h"
+#import "RUNABannerViewAtoa.h"
 #import "RUNABannerViewInner.h"
 #import "RUNAPopupViewController.h"
 #import <RUNACore/RUNAUIViewController+.h>
