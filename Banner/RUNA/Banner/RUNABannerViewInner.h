@@ -22,9 +22,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABannerViewEvent event);
 
 @interface RUNABannerView()
 
+@property (nonatomic, nullable, copy) RUNABannerViewEventHandler eventHandler;
 @property (nonatomic, readonly, nullable) RUNAAdWebView* webView;
 @property (nonatomic, readonly, nullable) RUNABanner* banner;
 @property (nonatomic, nullable) NSMutableDictionary* jsonProperties;

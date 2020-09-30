@@ -39,6 +39,14 @@
             if (message.url) {
                 [self handlePopup:message.url];
             }
+            if (self.eventHandler) {
+                @try {
+                    struct RUNABannerViewEvent event = { RUNABannerViewEventTypeClicked, self.error };
+                    self.eventHandler(self, event);
+                } @catch (NSException *exception) {
+                    RUNADebug("exception on popup event: %@", exception);
+                }
+            }
         }];
     }
 }
