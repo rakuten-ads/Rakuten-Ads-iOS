@@ -90,8 +90,11 @@ NSString* BASE_URL_BLANK = @"about:blank";
 }
 
 -(void) loadWithEventHandler:(RUNABannerViewEventHandler)handler {
-    if (self.state != RUNA_ADVIEW_STATE_INIT) {
-        RUNALog("Banner already loaded.");
+    if (self.state == RUNA_ADVIEW_STATE_LOADING
+        || self.state == RUNA_ADVIEW_STATE_LOADED
+        || self.state == RUNA_ADVIEW_STATE_RENDERING
+        || self.state == RUNA_ADVIEW_STATE_MESSAGE_LISTENING) {
+        RUNALog("BannerView %p has started loading.", self);
         return;
     }
 
