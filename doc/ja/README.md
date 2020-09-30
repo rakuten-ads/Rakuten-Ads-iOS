@@ -37,6 +37,21 @@ pod 'RUNA/Banner'
 pod 'RUNA/OMAdapter'
 ```
 
+- __xcode 12 `EXCLUDED_ARCHS` 問題__
+
+Build Settings に`EXCLUDED_ARCHS[sdk=iphonesimulator*] = "arm64 armv7"` 手動で設定する, 或いは下記のように `Podfile` に `post_install` hookを追加する.
+
+```ruby
+target 'App' do
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |configuration|
+      configuration.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64 armv7"
+    end
+  end
+end
+```
+
+
 ---
 
 [バナー広告](./bannerads/README.md)<br>
