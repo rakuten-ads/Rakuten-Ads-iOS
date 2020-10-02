@@ -11,7 +11,7 @@ The activation of this module enables you to have new sources of revenue through
 Just in case you have a question related to the business background, please feel free to contact with our sales person in charge.
 
 `RUNA/A2A` is extension for `RUNA/Banner`, the all configurations and method of `RUNA/Banner` are supported to `RUNA/A2A`.
-Please [see it](/bannerads/README.md#Banner_Ads)
+Please [see it](/doc/bannerads/README.md#Banner_Ads)
 
 --
 
@@ -41,7 +41,7 @@ import <RUNAA2A/RUNAA2A.h>
 
 ## Configurations
 
-Please [see it](/bannerads/README.md#1._Configurations)
+Please [see it](/doc/bannerads/README.md#1-configurations)
 
 ### AppContent
 Either parameter is nullable, but at least one is not null.

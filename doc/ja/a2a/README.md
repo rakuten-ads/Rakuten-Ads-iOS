@@ -12,7 +12,7 @@ A2Aモジュールは、その柔軟な広告フォーマットを通じて、�
 
 
 `RUNA/A2A` は `RUNA/Banner`の拡張モデルとして, `RUNA/Banner`の設定と機能全部使用できます。
-Please [see it](/ja/bannerads/README.md#Banner_Ads)
+Please [see it](/doc/ja/bannerads/README.md#Banner_Ads)
 
 --
 
@@ -42,7 +42,7 @@ import <RUNAA2A/RUNAA2A.h>
 
 ## 設定項目
 
-Please [see it](/bannerads/README.md#1._Configurations)
+Please [see it](/doc/bannerads/README.md#1._Configurations)
 
 ### AppContent
 何のパラメーターはnull値が可能ですが、最少一つはnullじゃなければなりません。
