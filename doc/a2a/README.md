@@ -69,7 +69,7 @@ banner.position = .bottom
 banner.size = .aspectFit
 
 let appContent = RUNABannerViewAppContent(title: "title", keywords: "keywords", url: "url")
-bannerView.setBannerViewAppContent(appContent)
+banner.setBannerViewAppContent(appContent)
 
 banner.load { (banner, event) in
     switch event.eventType {
