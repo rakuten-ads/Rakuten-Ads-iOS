@@ -349,6 +349,10 @@ NSString* BASE_URL_BLANK = @"about:blank";
     if ([self isOpenMeasurementAvailable]) {
         html = [(id<RUNAOpenMeasurement>)self injectOMProvider:self.banner.viewabilityProviderURL IntoHTML:html];
     }
+
+    // workaround: WKWebView rendering issue with async loading iframe
+    html = [html stringByAppendingFormat:@"<div style=\"position:absolute;z-index:-1;width:%fpx;height:%fpx;\"></div>", self.banner.width, self.banner.height];
+
     [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BASE_URL_RUNA_JS]];
     
     self.state = RUNA_ADVIEW_STATE_RENDERING;
