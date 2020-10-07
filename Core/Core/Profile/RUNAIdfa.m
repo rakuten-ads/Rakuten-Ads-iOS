@@ -1,5 +1,6 @@
 #import "RUNAIdfa.h"
 #import <AdSupport/AdSupport.h>
+#import <AppTrackingTransparency/ATTrackingManager.h>
 
 @implementation RUNAIdfa
 
@@ -17,8 +18,15 @@
 
 -(void) getValues {
     ASIdentifierManager* idfaManager = [ASIdentifierManager sharedManager];
+    
     self->_idfa = [[idfaManager advertisingIdentifier] UUIDString];
-    self->_idte = [idfaManager isAdvertisingTrackingEnabled];
+
+    if (@available(iOS 14, *)) {
+        BOOL shouldGetIdfa = [ATTrackingManager trackingAuthorizationStatus] == ATTrackingManagerAuthorizationStatusAuthorized;
+        self->_idte = shouldGetIdfa;
+    } else {
+        self->_idte = [idfaManager isAdvertisingTrackingEnabled];
+    }
 }
 
 -(NSString*) idfa {
@@ -27,12 +35,12 @@
         RUNADebug("idfa return directly: %@", self->_idfa);
         return self->_idfa;
     }
-    
+
     RUNADebug("try to get idfa again");
-    
+
     [NSThread sleepForTimeInterval:0.5];
     [self getValues];
-    
+
     RUNADebug("finally get idfa: %@", self->_idfa);
     return self->_idfa;
 }
@@ -43,12 +51,12 @@
         RUNADebug("idfa enabled return directly: %@", self->_idte ? @"YES" : @"NO");
         return self->_idte;
     }
-    
+
     RUNADebug("try to get idte again");
-    
+
     [NSThread sleepForTimeInterval:0.5];
     [self getValues];
-    
+
     RUNADebug("finally get idte: %@", self->_idfa ? @"YES" : @"NO");
     return self->_idte;
 }

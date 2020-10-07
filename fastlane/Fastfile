@@ -117,6 +117,7 @@ platform :ios do
       repo: 'Rakuten-Ads-iOS',
       skip_tests: true,
       verbose: true,
+      skip_import_validation: true, # workaround for xcode 12 EXCLUDE_ARCHS issue
     )
   end
 
@@ -138,6 +139,7 @@ platform :ios do
       repo: 'Rakuten-Ads-iOS',
       skip_tests: true,
       verbose: true,
+      skip_import_validation: true, # workaround for xcode 12 EXCLUDE_ARCHS issue
     )
 
     set_github_release(

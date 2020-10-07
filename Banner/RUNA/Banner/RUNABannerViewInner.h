@@ -9,7 +9,10 @@
 #ifndef RUNABannerViewInner_h
 #define RUNABannerViewInner_h
 
+#ifndef RUNABannerView_h
 #import "RUNABannerView.h"
+#endif
+
 #import "RUNABannerAdapter.h"
 #import <RUNACore/RUNAValid.h>
 #import <RUNACore/RUNAAdWebView.h>
@@ -19,9 +22,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABannerViewEvent event);
 
 @interface RUNABannerView()
 
+@property (nonatomic, nullable, copy) RUNABannerViewEventHandler eventHandler;
 @property (nonatomic, readonly, nullable) RUNAAdWebView* webView;
 @property (nonatomic, readonly, nullable) RUNABanner* banner;
 @property (nonatomic, nullable) NSMutableDictionary* jsonProperties;

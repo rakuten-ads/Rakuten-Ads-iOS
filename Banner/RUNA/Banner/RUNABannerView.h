@@ -1,5 +1,8 @@
 #import <UIKit/UIKit.h>
 
+#ifndef RUNABannerView_h
+#define RUNABannerView_h
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, RUNABannerViewPosition) {
@@ -50,3 +53,5 @@ struct RUNABannerViewEvent {
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

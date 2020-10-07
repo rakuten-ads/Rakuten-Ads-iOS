@@ -8,8 +8,6 @@
 
 #import "RUNABannerViewInner.h"
 
-typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABannerViewEvent event);
-
 typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
     RUNA_ADVIEW_STATE_INIT,
     RUNA_ADVIEW_STATE_LOADING,
@@ -36,7 +34,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* webViewConstraints;
-@property (nonatomic, nullable, copy) RUNABannerViewEventHandler eventHandler;
 @property (atomic, readonly) RUNABannerViewState state;
 
 @end
@@ -90,7 +87,16 @@ NSString* BASE_URL_BLANK = @"about:blank";
 }
 
 -(void) loadWithEventHandler:(RUNABannerViewEventHandler)handler {
+    if (self.state == RUNA_ADVIEW_STATE_LOADING
+        || self.state == RUNA_ADVIEW_STATE_LOADED
+        || self.state == RUNA_ADVIEW_STATE_RENDERING
+        || self.state == RUNA_ADVIEW_STATE_MESSAGE_LISTENING) {
+        RUNALog("BannerView %p has started loading.", self);
+        return;
+    }
+
     [self setInitState];
+    self.state = RUNA_ADVIEW_STATE_LOADING;
     self.eventHandler = handler;
     dispatch_async(RUNADefines.sharedQueue, ^{
         @try {
@@ -122,7 +128,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
             request.openRTBAdapterDelegate = bannerAdapter;
 
             [request resume];
-            self.state = RUNA_ADVIEW_STATE_LOADING;
         } @catch(NSException* exception) {
             RUNALog("load exception: %@", exception);
             if (self.error == RUNABannerViewErrorNone) {
@@ -448,7 +453,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
     self.state = RUNA_ADVIEW_STATE_FAILED;
     dispatch_async(dispatch_get_main_queue(), ^{
         RUNADebug("triggerFailure");
-        self.hidden = YES;
         @try {
             if (self.eventHandler) {
                 struct RUNABannerViewEvent event = { RUNABannerViewEventTypeFailed, self.error };

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Rakuten MPD. All rights reserved.
 //
 
-#import "RUNABannerViewAtoaInner.h"
+#import "RUNABannerViewAtoa.h"
 #import "RUNABannerViewInner.h"
 #import "RUNAPopupViewController.h"
 #import <RUNACore/RUNAUIViewController+.h>
@@ -38,6 +38,14 @@
             RUNADebug("handle %@", message.type);
             if (message.url) {
                 [self handlePopup:message.url];
+            }
+            if (self.eventHandler) {
+                @try {
+                    struct RUNABannerViewEvent event = { RUNABannerViewEventTypeClicked, self.error };
+                    self.eventHandler(self, event);
+                } @catch (NSException *exception) {
+                    RUNADebug("exception on popup event: %@", exception);
+                }
             }
         }];
     }
