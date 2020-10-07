@@ -28,17 +28,17 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   s.default_subspec = 'Banner'
 
   s.subspec 'CoreOnly' do |ss|
-    ss.ios.dependency 'RUNACore', '~> 1.1.1'
+    ss.ios.dependency 'RUNACore', '~> 1.1.2'
   end
 
   s.subspec 'Banner' do |ss|
     ss.dependency 'RUNA/CoreOnly'
-    ss.ios.dependency 'RUNABanner', '~> 1.1.0'
+    ss.ios.dependency 'RUNABanner', '~> 1.1.1'
   end
 
   s.subspec 'OMAdapter' do |ss|
     ss.dependency 'RUNA/Banner'
-    ss.ios.dependency 'RUNAOMAdapter', '~> 1.0.0'
+    ss.ios.dependency 'RUNAOMAdapter', '~> 1.0.1'
   end
 
   s.subspec 'A2A' do |ss|

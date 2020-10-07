@@ -8,8 +8,6 @@
 
 #import "RUNABannerViewInner.h"
 
-typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABannerViewEvent event);
-
 typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
     RUNA_ADVIEW_STATE_INIT,
     RUNA_ADVIEW_STATE_LOADING,
@@ -36,7 +34,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* webViewConstraints;
-@property (nonatomic, nullable, copy) RUNABannerViewEventHandler eventHandler;
 @property (atomic, readonly) RUNABannerViewState state;
 
 @end
