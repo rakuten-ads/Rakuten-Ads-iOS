@@ -50,7 +50,7 @@ Either parameter is nullable, but at least one is not null.
 Title shows in the popup advertise items list view.
 
 - `keyword`:<br>
-Keywords relate the advertise content, delimited by comma `,`.
+Keyword array relate the advertise content.
 
 - `url`:<br>
 Indicate URL to show a specific advertise content.

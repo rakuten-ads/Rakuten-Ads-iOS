@@ -51,7 +51,7 @@ Please [see it](/doc/bannerads/README.md#1._Configurations)
 飛び出す広告アイテムリスト画面のタイル
 
 - `keyword`:<br>
-広告内容に関連する`,`区切りのキーワードリストです。
+広告内容に関連するキーワードリストです。
 
 - `url`:<br>
 特定の広告内容を指定するURLです
