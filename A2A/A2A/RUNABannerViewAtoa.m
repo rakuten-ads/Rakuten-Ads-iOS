@@ -72,7 +72,7 @@
     if (self.appContent) {
         RUNADebug("fill app content: %@", self.appContent);
         [self.appContent enumerateKeysAndObjectsUsingBlock:^(id _Nonnull key, id _Nonnull obj, BOOL * _Nonnull stop) {
-            if ([RUNAValid isNotEmptyString:obj]) {
+            if (obj != NSNull.null && [RUNAValid isNotEmptyString:obj]) {
                 [mutableQueryItems addObject:[NSURLQueryItem queryItemWithName:key value:obj]];
             }
         }];

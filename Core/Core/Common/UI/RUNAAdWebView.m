@@ -20,11 +20,17 @@
         [self setScalesPageToFit];
         [self setBackgroundColor:UIColor.clearColor];
         [self setOpaque:NO];
+        [self setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
+        [self setAllowsLinkPreview:NO];
 
         for (UIView* subView in self.subviews) {
             if ([subView isKindOfClass:[UIScrollView class]]) {
                 ((UIScrollView*)subView).scrollEnabled = false;
                 ((UIScrollView*)subView).bounces = false;
+                if (@available(iOS 11.0, *)) {
+                    // Avoid HTML content fix position when scrolling
+                    ((UIScrollView*)subView).contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+                }
             }
         }
     }
