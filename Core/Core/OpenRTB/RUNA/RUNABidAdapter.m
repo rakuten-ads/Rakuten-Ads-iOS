@@ -7,7 +7,7 @@
 //
 
 #import "RUNABidAdapter.h"
-#import "RUNADefines.h"
+#import "RUNAInfoPlist.h"
 
 #if RUNA_PRODUCTION
     NSString* kRUNABidRequestHost = @"https://s-ad.rmp.rakuten.co.jp/ad";
@@ -30,13 +30,7 @@ NSInteger kRUNABidResponseUnfilled = 204;
 }
 
 - (nonnull NSString *)getURL {
-    static NSString* host = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        host = [NSBundle.mainBundle.infoDictionary valueForKey:@"RUNA_HOST_URL"];
-        RUNADebug("infoplist host: %@", host ?: @"(not found)");
-    });
-    return host ?: kRUNABidRequestHost;
+    return RUNAInfoPlist.sharedInstance.hostURL ?: kRUNABidRequestHost;
 }
 
 - (void)onBidResponse:(nonnull NSHTTPURLResponse *)response withBidList:(nonnull NSArray *)bidList {
