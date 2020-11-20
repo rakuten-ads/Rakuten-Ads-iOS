@@ -30,7 +30,13 @@ NSInteger kRUNABidResponseUnfilled = 204;
 }
 
 - (nonnull NSString *)getURL {
-    return kRUNABidRequestHost;
+    static NSString* host = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        host = [NSBundle.mainBundle.infoDictionary valueForKey:@"RUNA_HOST_URL"];
+        RUNADebug("infoplist host: %@", host ?: @"(not found)");
+    });
+    return host ?: kRUNABidRequestHost;
 }
 
 - (void)onBidResponse:(nonnull NSHTTPURLResponse *)response withBidList:(nonnull NSArray *)bidList {
