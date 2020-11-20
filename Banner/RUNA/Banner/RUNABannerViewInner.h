@@ -36,6 +36,8 @@ typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABann
 @property (nonatomic) RUNABannerViewError error;
 @property (nonatomic) BOOL openMeasurementDisabled;
 
+@property (nonatomic) BOOL iframeWebContentEnabled;
+
 @end
 
 NS_ASSUME_NONNULL_END
