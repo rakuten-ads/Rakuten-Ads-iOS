@@ -17,6 +17,7 @@
 #import <RUNACore/RUNAValid.h>
 #import <RUNACore/RUNAAdWebView.h>
 #import <RUNACore/RUNADefines.h>
+#import <RUNACore/RUNAInfoPlist.h>
 #import <RUNACore/RUNAAdWebViewMessage.h>
 #import "RUNAMeasurement.h"
 
@@ -35,6 +36,8 @@ typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABann
 @property (nonatomic, nullable) NSMutableArray<id<RUNAMeasurer>> *measurers;
 @property (nonatomic) RUNABannerViewError error;
 @property (nonatomic) BOOL openMeasurementDisabled;
+
+@property (nonatomic) BOOL iframeWebContentEnabled;
 
 @end
 

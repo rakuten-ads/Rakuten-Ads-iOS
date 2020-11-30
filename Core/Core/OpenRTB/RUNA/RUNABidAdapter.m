@@ -7,7 +7,7 @@
 //
 
 #import "RUNABidAdapter.h"
-#import "RUNADefines.h"
+#import "RUNAInfoPlist.h"
 
 #if RUNA_PRODUCTION
     NSString* kRUNABidRequestHost = @"https://s-ad.rmp.rakuten.co.jp/ad";
@@ -30,7 +30,7 @@ NSInteger kRUNABidResponseUnfilled = 204;
 }
 
 - (nonnull NSString *)getURL {
-    return kRUNABidRequestHost;
+    return RUNAInfoPlist.sharedInstance.hostURL ?: kRUNABidRequestHost;
 }
 
 - (void)onBidResponse:(nonnull NSHTTPURLResponse *)response withBidList:(nonnull NSArray *)bidList {
