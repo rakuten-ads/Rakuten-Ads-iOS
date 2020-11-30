@@ -356,7 +356,8 @@ NSString* BASE_URL_BLANK = @"about:blank";
         html = [disableIframe stringByAppendingString:html];
     }
 
-    [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:BASE_URL_RUNA_JS]];
+    NSString* baseURLJs = [RUNAInfoPlist sharedInstance].baseURLJs ?: BASE_URL_RUNA_JS;
+    [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:baseURLJs]];
     
     self.state = RUNA_ADVIEW_STATE_RENDERING;
     self.webView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -490,12 +491,13 @@ NSString* BASE_URL_BLANK = @"about:blank";
               navigationAction.navigationType == WKNavigationTypeFormResubmitted ? @"WKNavigationTypeFormResubmitted" :
               @"unknown"
               , navigationAction.request.URL.absoluteString);
-    
+
+    NSString* baseURLJs = [RUNAInfoPlist sharedInstance].baseURLJs ?: BASE_URL_RUNA_JS;
     NSURL* url = navigationAction.request.URL;
     if (url && navigationAction.targetFrame.isMainFrame) {
         if (navigationAction.navigationType == WKNavigationTypeLinkActivated // alternative 1 : click link
             || (navigationAction.navigationType == WKNavigationTypeOther // alternative 2: location change except internal Base URL
-                && ![url.absoluteString isEqualToString:[BASE_URL_RUNA_JS stringByAppendingString:@"/"]]
+                && ![url.absoluteString isEqualToString:[baseURLJs stringByAppendingString:@"/"]]
                 && ![url.absoluteString isEqualToString:BASE_URL_BLANK])
             ) {
             RUNADebug("clicked ad");
