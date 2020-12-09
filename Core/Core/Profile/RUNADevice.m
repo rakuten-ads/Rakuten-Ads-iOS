@@ -8,13 +8,17 @@
 
 #import "RUNADevice.h"
 #import <sys/sysctl.h>
+#import <Network/Network.h>
 
-@implementation RUNADevice
+@implementation RUNADevice {
+    nw_path_monitor_t monitor;
+}
 
 @synthesize osVersion = _osVersion;
 @synthesize model = _model;
 @synthesize buildName = _buildName;
 @synthesize language = _language;
+@synthesize connectionMethod = _connectionMethod;
 
 -(NSString*)osVersion {
     if (!self->_osVersion) {
@@ -72,6 +76,39 @@
         return nil;
     }
     return [[NSString alloc] initWithCString:buffer.mutableBytes encoding:NSUTF8StringEncoding];
+}
+
+-(void) startNetworkMonitor {
+    self->_connectionMethod = RUNA_DEVICE_CONN_METHOD_UNKNOWN;
+    if (@available(iOS 12, *)) {
+        RUNADebug("startNetworkMonitor");
+        monitor = nw_path_monitor_create();
+        __weak RUNADevice* weakSelf = self;
+        nw_path_monitor_set_update_handler(monitor, ^(nw_path_t  _Nonnull path) {
+            if (weakSelf) {
+                __strong RUNADevice* strongSelf = weakSelf;
+                BOOL isWiFi = nw_path_uses_interface_type(path, nw_interface_type_wifi);
+                BOOL isCellular = nw_path_uses_interface_type(path, nw_interface_type_cellular);
+                BOOL isEthernet = nw_path_uses_interface_type(path, nw_interface_type_wired);
+                RUNA_DEVICE_CONN_METHOD method = (isEthernet ? RUNA_DEVICE_CONN_METHOD_ETHERNET :
+                                                  isWiFi ? RUNA_DEVICE_CONN_METHOD_WIFI :
+                                                  isCellular ? RUNA_DEVICE_CONN_METHOD_CELLULAR :
+                                                  RUNA_DEVICE_CONN_METHOD_UNKNOWN);
+                RUNADebug("network path monitor updated to %d", (int)method);
+                strongSelf->_connectionMethod = method;
+            }
+        });
+        nw_path_monitor_start(monitor);
+    }
+}
+
+-(void) cancelNetworkMonitor {
+    if (@available(iOS 12, *)) {
+        if (monitor) {
+            RUNADebug("cancelNetworkMonitor");
+            nw_path_monitor_cancel(monitor);
+        }
+    }
 }
 
 -(NSString *)description {
