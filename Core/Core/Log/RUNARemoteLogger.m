@@ -59,16 +59,12 @@ NSString* RUNA_LOG_USER_AGENT = @"RUNA SDK RemoteLog";
     [request setValue:RUNA_LOG_USER_AGENT forHTTPHeaderField:@"User-Agent"];
 }
 
-int kSDKTypeIOS = 1; // 1=iOS/2=Android/3=JS
+
 - (NSDictionary *)postJsonBody {
     NSMutableDictionary* jsonBody = [NSMutableDictionary dictionaryWithDictionary:@{
-        @"date" : [NSDate new].description,
-        @"sdk_type" : @(kSDKTypeIOS),
-        @"sdk_version" : self.defines.sdkBundleShortVersionString,
         @"error_detail" : self.logInfo.errorDetail.toDictionary,
         @"device" : [self device],
         @"app" : [self app],
-        // TODO @"site" : [self site]
     }];
 
     NSDictionary* userInfo = self.logInfo.userInfo.toDictionary;
@@ -81,6 +77,7 @@ int kSDKTypeIOS = 1; // 1=iOS/2=Android/3=JS
         [jsonBody addEntriesFromDictionary:adInfo];
     }
 
+    RUNADebug("[Remote-Log] send log body: %@", jsonBody);
     return jsonBody;
 }
 
@@ -139,8 +136,10 @@ int kSDKTypeIOS = 1; // 1=iOS/2=Android/3=JS
     dispatch_once(&onceToken, ^{
         instance = [RUNARemoteLogger new];
 
+        // common background queue for logs retained as property
         instance.logQueue = dispatch_queue_create("RUNA.sdk.queue.log", DISPATCH_QUEUE_CONCURRENT);
 
+        // url session uses the common log queue
         NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
         [config setTimeoutIntervalForRequest:RUNA_API_TIMEOUT_INTERVAL];
         NSOperationQueue* sessionQueue = [NSOperationQueue new];
@@ -153,6 +152,7 @@ int kSDKTypeIOS = 1; // 1=iOS/2=Android/3=JS
 - (void)sendLog:(RUNARemoteLogEntity *)logInfo {
     RUNARemoteLogRequest* request = [RUNARemoteLogRequest new];
     request.logInfo = logInfo;
+    RUNADebug("[Remote-Log] send log entity: %@", logInfo);
     [request resume];
 }
 

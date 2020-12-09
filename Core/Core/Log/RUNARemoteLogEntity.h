@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNARemoteLogEntityAd : NSObject
 
+@property(nonatomic, nonnull, readonly) NSDate* timestamp;
+@property(nonatomic, readonly) int sdkType;
+@property(nonatomic, nonnull) NSString* sdkVersion;
 @property(nonatomic, nullable) NSString* adspotId;
 @property(nonatomic, nullable) NSArray<NSString*>* batchAdspotList;
 @property(nonatomic, nullable) NSString* sessionId;
