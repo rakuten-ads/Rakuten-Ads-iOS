@@ -98,7 +98,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
     [self setInitState];
     self.state = RUNA_ADVIEW_STATE_LOADING;
     self.eventHandler = handler;
-    dispatch_async(RUNADefines.sharedQueue, ^{
+    dispatch_async(RUNADefines.sharedInstance.sharedQueue, ^{
         @try {
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
