@@ -51,11 +51,14 @@
     RUNADebug("get UserAgent by WKWebView");
     webView = [WKWebView new];
     [webView loadHTMLString:@"<html></html>" baseURL:nil];
+    __weak RUNAWebUserAgent* weakSelf = self;
     [webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id __nullable userAgent, NSError * __nullable error) {
         RUNADebug("get UserAgent in %@ thread [%@]", NSThread.currentThread.isMainThread?@"Main":@"BG", userAgent);
-        self->_userAgent = userAgent;
-        if (self->_semaphore) {
-            dispatch_semaphore_signal(self->_semaphore);
+        __strong RUNAWebUserAgent* blockSelf = weakSelf;
+        blockSelf->_userAgent = userAgent;
+        blockSelf->webView = nil;
+        if (blockSelf->_semaphore) {
+            dispatch_semaphore_signal(blockSelf->_semaphore);
         }
     }];
 }
