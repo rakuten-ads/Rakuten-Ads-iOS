@@ -13,11 +13,12 @@
 #import <OMSDK_Rakuten/OMIDAdSessionConfiguration.h>
 #import <OMSDK_Rakuten/OMIDAdEvents.h>
 
-#import "RUNABannerViewInner.h"
+#import "RUNABannerViewOMInner.h"
 #import <RUNACore/RUNADefines.h>
 
 @interface RUNAOpenMeasurer()
 
+@property(nonatomic, weak, nullable) id<RUNAOpenMeasurement> measureTarget;
 @property(nonatomic, weak, nullable) UIView* adView;
 @property(nonatomic, weak, nullable) WKWebView* webView;
 @property(nonatomic, nonnull) OMIDRakutenAdSession* adSession;
@@ -123,7 +124,8 @@ NSString* kPartnerName = @"Rakuten";
 
 #pragma mark - RUNAOpenMeasurement
 
-- (void)setMeasureTarget:(nonnull id<RUNAOpenMeasurement>)target {
+- (void)setMeasureTarget:(id<RUNAOpenMeasurement>)target {
+    self.measureTarget = target;
     self.adView = [target getOMAdView];
     if (!self.adView) {
         RUNALog("OM target AdView must not be nil");
