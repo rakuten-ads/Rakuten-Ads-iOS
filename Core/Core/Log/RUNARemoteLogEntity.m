@@ -15,8 +15,8 @@
     if (self.errorMessage) {
         [dict setValue:self.errorMessage forKey:@"error_message"];
     }
-    if (self.stacktrace) {
-        [dict setValue:self.stacktrace forKey:@"stacktrace"];
+    if (self.stacktrace && self.stacktrace.count > 0) {
+        [dict setValue:[self.stacktrace componentsJoinedByString:@"\n"] forKey:@"stacktrace"];
     }
     if (self.tag) {
         [dict setValue:self.tag forKey:@"tag"];

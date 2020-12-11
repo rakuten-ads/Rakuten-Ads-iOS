@@ -125,10 +125,10 @@
 
 -(void (^)(NSData*, NSURLResponse*, NSError*)) getCompletionhandler {
     return ^void (NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable httpErr) {
+        RUNADebug("http result: %@", httpErr ?: @"OK");
         RUNADebug("receive response:%@ \n\t data: %@",
                response,
                data != nil ? [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] : @"nil");
-
         @try {
             NSHTTPURLResponse* rep = (NSHTTPURLResponse*)response;
             if ([self->_httpTaskDelegate respondsToSelector:@selector(onResponse:withData:error:)]) {
@@ -144,10 +144,8 @@
                 } else {
                     RUNADebug("desired JSON response data while is nil");
                 }
-                [(id<RUNAJsonHttpSessionDelegate>)self->_httpTaskDelegate onJsonResponse:rep withData:json error:httpErr];
+                [(id<RUNAJsonHttpSessionDelegate>)self->_httpTaskDelegate onJsonResponse:rep withData:json error: httpErr ?: jsonErr];
             }
-
-            RUNADebug("http result: %@", httpErr ?: @"OK");
         }
         @catch (NSException *exception) {
             RUNADebug("http session completion handler exception %@", exception);

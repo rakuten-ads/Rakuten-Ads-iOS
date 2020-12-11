@@ -38,13 +38,13 @@
 		3210D0102476E61800E93FF2 /* RUNADefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210D00E2476E61800E93FF2 /* RUNADefines.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3210D0112476E61800E93FF2 /* RUNADefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210D00F2476E61800E93FF2 /* RUNADefines.m */; };
 		321FE40D257F60B300D9A8CD /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321FE40C257F60B300D9A8CD /* Network.framework */; };
-		321FE41325805CF300D9A8CD /* RUNARemoteLogEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 321FE41125805CF300D9A8CD /* RUNARemoteLogEntity.h */; };
+		321FE41325805CF300D9A8CD /* RUNARemoteLogEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 321FE41125805CF300D9A8CD /* RUNARemoteLogEntity.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		321FE41425805CF300D9A8CD /* RUNARemoteLogEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 321FE41225805CF300D9A8CD /* RUNARemoteLogEntity.m */; };
 		32696FFA2567907500602E5C /* RUNAInfoPlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 32696FF82567907500602E5C /* RUNAInfoPlist.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32696FFB2567907500602E5C /* RUNAInfoPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 32696FF92567907500602E5C /* RUNAInfoPlist.m */; };
 		32CAC0DD22164E6400BB4CC4 /* RUNAAppInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32CAC0DE22164E6400BB4CC4 /* RUNAAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAC0DC22164E6400BB4CC4 /* RUNAAppInfo.m */; };
-		32EE7C032578A9B100CF7B4A /* RUNARemoteLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 32EE7C012578A9B100CF7B4A /* RUNARemoteLogger.h */; };
+		32EE7C032578A9B100CF7B4A /* RUNARemoteLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 32EE7C012578A9B100CF7B4A /* RUNARemoteLogger.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32EE7C042578A9B100CF7B4A /* RUNARemoteLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE7C022578A9B100CF7B4A /* RUNARemoteLogger.m */; };
 		32F258C621E5866D001FD9C0 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258BC21E5866C001FD9C0 /* RUNACore.framework */; };
 		32F258CB21E5866D001FD9C0 /* CoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F258CA21E5866D001FD9C0 /* CoreTests.m */; };

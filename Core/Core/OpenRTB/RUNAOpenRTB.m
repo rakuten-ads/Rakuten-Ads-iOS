@@ -40,9 +40,11 @@
 
 - (void)onJsonResponse:(NSHTTPURLResponse *)response withData:(nullable NSDictionary *)json error:(nullable NSError *)error {
     NSMutableArray<NSDictionary*>* bidDataList = nil;
+    NSString* sessionId = nil;
     if (response.statusCode == 200 && json) {
         bidDataList = [NSMutableArray array];
         RUNAJSONObject* jsonObj = [RUNAJSONObject jsonWithRawDictionary:json];
+        sessionId = [jsonObj getString:@"id"];
         for (id seatbid in [jsonObj getArray:@"seatbid"]) {
             if (seatbid && [seatbid isKindOfClass:NSDictionary.class]) {
                 RUNAJSONObject* jsonSeatbid = [RUNAJSONObject jsonWithRawDictionary:seatbid];
@@ -68,7 +70,7 @@
         return [obj1[@"id"] compare:obj2[@"id"] options:NSNumericSearch];
     }];
 
-    [self.openRTBAdapterDelegate onBidResponse:response withBidList:bidDataList];
+    [self.openRTBAdapterDelegate onBidResponse:response withBidList:bidDataList sessionId:sessionId];
 }
 
 

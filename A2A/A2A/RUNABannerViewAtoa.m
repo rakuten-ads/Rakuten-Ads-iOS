@@ -45,6 +45,7 @@
                     self.eventHandler(self, event);
                 } @catch (NSException *exception) {
                     RUNADebug("exception on popup event: %@", exception);
+                    [self sendRemoteLog:exception];
                 }
             }
         }];

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, nullable) NSString* tag;
 @property(nonatomic, nullable) NSString* errorMessage;
-@property(nonatomic, nullable) NSString* stacktrace;
+@property(nonatomic, nullable) NSArray<NSString*>* stacktrace;
 @property(nonatomic, nullable) NSDictionary* ext;
 
 -(NSDictionary*) toDictionary;
@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, nonnull, readonly) NSDate* timestamp;
 @property(nonatomic, readonly) int sdkType;
+
 @property(nonatomic, nonnull) NSString* sdkVersion;
 @property(nonatomic, nullable) NSString* adspotId;
 @property(nonatomic, nullable) NSArray<NSString*>* batchAdspotList;
