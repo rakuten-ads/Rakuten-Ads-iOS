@@ -572,7 +572,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
     RUNALog("AD view didFailNavigation %@", error);
 }
 
-# pragma mark - private helping method
+# pragma mark - helping method
 - (BOOL)isOpenMeasurementAvailable {
     return [self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
     && !self.openMeasurementDisabled

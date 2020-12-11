@@ -56,6 +56,9 @@ typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABann
 
 -(void) sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception;
 
+-(BOOL) isOpenMeasurementAvailable;
+-(NSString*) descpritionState;
+
 @end
 
 NS_ASSUME_NONNULL_END
