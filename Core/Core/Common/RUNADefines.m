@@ -49,7 +49,7 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
         
         {
             self->_deviceInfo = [RUNADevice new];
-            [self.deviceInfo startNetworkMonitor];
+            [self.deviceInfo startNetworkMonitorOnQueue:self.sharedQueue];
         }
         
         {
@@ -59,7 +59,6 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
         {
             self->_sdkBundleShortVersionString = [[[NSBundle bundleForClass:self.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
         }
-        
     }
     return self;
 }

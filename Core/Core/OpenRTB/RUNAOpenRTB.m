@@ -134,7 +134,7 @@
             },
             // @"geo"
             // @"carrier"
-            // @"connectiontype"
+            @"connectiontype" : @(deviceInfo.connectionMethod)
         };
     });
     return jsonDevice;

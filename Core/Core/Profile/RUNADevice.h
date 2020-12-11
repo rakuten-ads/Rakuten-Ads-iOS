@@ -15,7 +15,7 @@ typedef NS_ENUM(NSUInteger, RUNA_DEVICE_CONN_METHOD) {
 @property(nonatomic, readonly, nonnull) NSString* language;
 @property(nonatomic, readonly) RUNA_DEVICE_CONN_METHOD connectionMethod;
 
--(void) startNetworkMonitor;
+-(void) startNetworkMonitorOnQueue:(nonnull dispatch_queue_t) queue;
 -(void) cancelNetworkMonitor;
 
 @end

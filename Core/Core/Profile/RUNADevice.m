@@ -7,6 +7,7 @@
 //
 
 #import "RUNADevice.h"
+#import "RUNADefines.h"
 #import <sys/sysctl.h>
 #import <Network/Network.h>
 
@@ -78,13 +79,15 @@
     return [[NSString alloc] initWithCString:buffer.mutableBytes encoding:NSUTF8StringEncoding];
 }
 
--(void) startNetworkMonitor {
+-(void) startNetworkMonitorOnQueue:(dispatch_queue_t) queue {
     self->_connectionMethod = RUNA_DEVICE_CONN_METHOD_UNKNOWN;
     if (@available(iOS 12, *)) {
         RUNADebug("startNetworkMonitor");
         monitor = nw_path_monitor_create();
+        nw_path_monitor_set_queue(monitor, queue);
         __weak RUNADevice* weakSelf = self;
         nw_path_monitor_set_update_handler(monitor, ^(nw_path_t  _Nonnull path) {
+            RUNADebug("network path monitor updated");
             if (weakSelf) {
                 __strong RUNADevice* strongSelf = weakSelf;
                 BOOL isWiFi = nw_path_uses_interface_type(path, nw_interface_type_wifi);
