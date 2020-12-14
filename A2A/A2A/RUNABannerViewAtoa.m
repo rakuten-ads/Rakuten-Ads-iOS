@@ -33,7 +33,7 @@
         @"url" : appContent.url ?: NSNull.null,
     }];
     if (!self.openPopupHandler) {
-        RUNADebug("RUNA/A2A version: %@", self.a2a_versionString);
+        RUNADebug("SDK RUNA/A2A version: %@", self.a2a_versionString);
         RUNADebug("create open_popup handler");
         self.openPopupHandler = [RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeOpenPopup handle:^(RUNAAdWebViewMessage * _Nullable message) {
             RUNADebug("handle %@", message.type);

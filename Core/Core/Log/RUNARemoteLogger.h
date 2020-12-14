@@ -13,9 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNARemoteLogger : NSObject
 
-+(instancetype) sharedInstance;
++(nullable instancetype) sharedInstance;
 
 -(void) sendLog:(RUNARemoteLogEntity*) logInfo;
+
+-(instancetype)init NS_UNAVAILABLE;
++(instancetype)new NS_UNAVAILABLE;
 
 @end
 

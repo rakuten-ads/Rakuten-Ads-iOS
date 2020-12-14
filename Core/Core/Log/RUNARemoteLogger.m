@@ -9,6 +9,7 @@
 #import "RUNARemoteLogger.h"
 #import "RUNAHttpTask.h"
 #import "RUNADefines.h"
+#import "RUNAInfoPlist.h"
 
 #if RUNA_PRODUCTION
     NSString* kRUNALogRequestHost = @"https://log.rmp.rakuten.co.jp";
@@ -131,6 +132,11 @@ NSString* RUNA_LOG_USER_AGENT = @"RUNA SDK RemoteLog";
 @implementation RUNARemoteLogger
 
 + (instancetype)sharedInstance {
+    if (RUNAInfoPlist.sharedInstance.remoteLogDisabled) {
+        RUNADebug("RemoteLog disabled");
+        return nil;
+    }
+
     static RUNARemoteLogger* instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -150,10 +156,14 @@ NSString* RUNA_LOG_USER_AGENT = @"RUNA SDK RemoteLog";
 }
 
 - (void)sendLog:(RUNARemoteLogEntity *)logInfo {
-    RUNARemoteLogRequest* request = [RUNARemoteLogRequest new];
-    request.logInfo = logInfo;
-    RUNADebug("[Remote-Log] send log entity: %@", logInfo);
-    [request resume];
+    @try {
+        RUNARemoteLogRequest* request = [RUNARemoteLogRequest new];
+        request.logInfo = logInfo;
+        RUNADebug("[Remote-Log] send log entity: %@", logInfo);
+        [request resume];
+    } @catch (NSException *exception) {
+        RUNADebug("excetion on remote log: %@", exception);
+    }
 }
 
 @end
