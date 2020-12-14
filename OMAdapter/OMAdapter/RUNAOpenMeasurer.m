@@ -18,7 +18,7 @@
 
 @interface RUNAOpenMeasurer()
 
-@property(nonatomic, weak, nullable) id<RUNAOpenMeasurement> measureTarget;
+@property(nonatomic, weak, nullable) id<RUNAOpenMeasurement> measurableTarget;
 @property(nonatomic, weak, nullable) UIView* adView;
 @property(nonatomic, weak, nullable) WKWebView* webView;
 @property(nonatomic, nonnull) OMIDRakutenAdSession* adSession;
@@ -43,6 +43,7 @@ NSString* kPartnerName = @"Rakuten";
         OMIDRakutenAdEvents* event = [[OMIDRakutenAdEvents alloc] initWithAdSession:self.adSession error:&err];
         if (err) {
             RUNADebug("create OMIDRakutenAdEvents failed: %@", err);
+            [self sendRemoteLogWithMessage:@"create OMIDRakutenAdEvents failed:" andError:err];
             return;
         }
         
@@ -52,7 +53,8 @@ NSString* kPartnerName = @"Rakuten";
         err = nil;
         [event loadedWithError:&err];
         if (err) {
-            RUNADebug("Unable to trigger loaded OM event: %@)", err);
+            RUNADebug("unable to trigger loaded OM event: %@)", err);
+            [self sendRemoteLogWithMessage:@"unable to trigger loaded OM event:" andError:err];
             return;
         }
         
@@ -60,6 +62,7 @@ NSString* kPartnerName = @"Rakuten";
         [event impressionOccurredWithError:&err];
         if (err) {
             RUNADebug("OMID impression failed: %@", err);
+            [self sendRemoteLogWithMessage:@"OMID impression failed:" andError:err];
             return;
         }
     }
@@ -89,6 +92,7 @@ NSString* kPartnerName = @"Rakuten";
             self.adSession = [[OMIDRakutenAdSession alloc] initWithConfiguration:config adSessionContext:context error:&error];
             if (error) {
                 RUNADebug("create OMIDRakutenAdSession failed: %@", error);
+                [self sendRemoteLogWithMessage:@"create OMIDRakutenAdSession failed:" andError:error];
             } else {
                 self.adSession.mainAdView = self.adView;
             }
@@ -102,6 +106,7 @@ NSString* kPartnerName = @"Rakuten";
     context = [[OMIDRakutenAdSessionContext alloc] initWithPartner:partner webView:self.webView contentUrl:nil customReferenceIdentifier:nil error:&err];
     if (err) {
         RUNADebug("create OMIDRakutenAdSessionContext failed: %@", err);
+        [self sendRemoteLogWithMessage:@"create OMIDRakutenAdSessionContext failed:" andError:err];
     }
     return context;
 }
@@ -118,6 +123,7 @@ NSString* kPartnerName = @"Rakuten";
               error:&err];
     if (err) {
         RUNADebug("create OMIDRakutenAdSessionConfiguration failed: %@", err);
+        [self sendRemoteLogWithMessage:@"create OMIDRakutenAdSessionConfiguration failed:" andError:err];
     }
     return config;
 }
@@ -125,14 +131,21 @@ NSString* kPartnerName = @"Rakuten";
 #pragma mark - RUNAOpenMeasurement
 
 - (void)setMeasureTarget:(id<RUNAOpenMeasurement>)target {
-    self.measureTarget = target;
+    self.measurableTarget = target;
     self.adView = [target getOMAdView];
     if (!self.adView) {
-        RUNALog("OM target AdView must not be nil");
+        RUNADebug("OM target AdView must not be nil");
     }
     self.webView = [target getOMWebView];
     if (!self.adView) {
         RUNADebug("OM target WebView is nil");
+    }
+}
+
+-(void) sendRemoteLogWithMessage:(NSString*) message andError:(NSError*) error {
+    if ([self.measurableTarget isKindOfClass:[RUNABannerView class]]) {
+        NSException* exception = [NSException exceptionWithName:error.description reason:@"RUNA OMSDK" userInfo:nil];
+        [(RUNABannerView*)self.measurableTarget om_sendRemoteLogWithMessage:message andException:exception];
     }
 }
 
