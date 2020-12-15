@@ -52,7 +52,7 @@
 
 # pragma mark - http delegate
 - (nonnull NSString *)getUrl {
-    return kRUNALogRequestHost;
+    return RUNAInfoPlist.sharedInstance.remoteLogHostURL ?: kRUNALogRequestHost;
 }
 
 NSString* RUNA_LOG_USER_AGENT = @"RUNA SDK RemoteLog";
