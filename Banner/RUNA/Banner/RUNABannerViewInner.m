@@ -159,7 +159,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
 
 -(void) sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception {
     RUNARemoteLogEntityErrorDetail* error = [RUNARemoteLogEntityErrorDetail new];
-    error.errorMessage = [message stringByAppendingFormat:@": %@", exception];
+    error.errorMessage = [message stringByAppendingFormat:@": [%@] %@ { userInfo: %@ }", exception.name, exception.reason, exception.userInfo];
     error.stacktrace = exception.callStackSymbols;
     error.tag = @"RUNABanner";
     error.ext = @{

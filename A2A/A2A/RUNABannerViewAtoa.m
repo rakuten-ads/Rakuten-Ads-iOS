@@ -97,7 +97,7 @@
 
 -(void) a2a_sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception {
     RUNARemoteLogEntityErrorDetail* error = [RUNARemoteLogEntityErrorDetail new];
-    error.errorMessage = [message stringByAppendingFormat:@": %@", exception];
+    error.errorMessage = [message stringByAppendingFormat:@": [%@] %@ { userInfo: %@ }", exception.name, exception.reason, exception.userInfo];
     error.stacktrace = exception.callStackSymbols;
     error.tag = @"RUNAA2A";
     error.ext = @{

@@ -77,8 +77,6 @@ NSString* RUNA_LOG_USER_AGENT = @"RUNA SDK RemoteLog";
     if (adInfo && adInfo.count > 0) {
         [jsonBody addEntriesFromDictionary:adInfo];
     }
-
-    RUNADebug("[Remote-Log] send log body: %@", jsonBody);
     return jsonBody;
 }
 
@@ -159,10 +157,10 @@ NSString* RUNA_LOG_USER_AGENT = @"RUNA SDK RemoteLog";
     @try {
         RUNARemoteLogRequest* request = [RUNARemoteLogRequest new];
         request.logInfo = logInfo;
-        RUNADebug("[Remote-Log] send log entity: %@", logInfo);
+        RUNADebug("[Remote-Log] send log entity: %@", logInfo.errorDetail.errorMessage);
         [request resume];
     } @catch (NSException *exception) {
-        RUNADebug("excetion on remote log: %@", exception);
+        RUNADebug("excetion (%@) on sending remote log: %@", exception, logInfo);
     }
 }
 
