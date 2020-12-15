@@ -27,11 +27,11 @@
 @implementation RUNABannerView(RUNA_Atoa)
 
 -(void)setBannerViewAppContent:(RUNABannerViewAppContent *)appContent {
-    self.appContent = [NSMutableDictionary dictionaryWithDictionary:@{
+    self.appContent = @{
         @"title" : appContent.title ?: NSNull.null,
         @"keywords" : [appContent.keywords componentsJoinedByString:@","] ?: NSNull.null,
         @"url" : appContent.url ?: NSNull.null,
-    }];
+    };
     if (!self.openPopupHandler) {
         RUNADebug("SDK RUNA/A2A version: %@", self.a2a_versionString);
         RUNADebug("create open_popup handler");

@@ -44,7 +44,7 @@ typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABann
  external options
  */
 @property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
-@property (nonatomic, nullable) NSMutableDictionary* appContent;
+@property (nonatomic, nullable) NSDictionary* appContent;
 @property (nonatomic) BOOL openMeasurementDisabled;
 @property (nonatomic) BOOL iframeWebContentEnabled;
 
