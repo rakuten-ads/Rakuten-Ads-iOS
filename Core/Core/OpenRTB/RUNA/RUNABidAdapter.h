@@ -21,7 +21,7 @@ FOUNDATION_EXPORT NSInteger kRUNABidResponseUnfilled;
 
 -(id<RUNAAdInfo>) parse:(NSDictionary*) bid;
 
--(void) onBidResponseSuccess:(NSArray<id<RUNAAdInfo>>*) adInfoList;
+-(void) onBidResponseSuccess:(NSArray<id<RUNAAdInfo>>*) adInfoList withSessionId: (NSString*) sessionId;
 -(void) onBidResponseFailed:(NSHTTPURLResponse*) response error:(nullable NSError*) error;
 
 @end

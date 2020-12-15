@@ -12,9 +12,7 @@
 
 NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
 
-@implementation RUNADefines {
-    dispatch_queue_t _underlyingQueue;
-}
+@implementation RUNADefines
 
 +(instancetype)sharedInstance {
     static RUNADefines* instance;
@@ -25,15 +23,6 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
     return instance;
 }
 
-+(dispatch_queue_t) sharedQueue {
-    static dispatch_queue_t queue;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        queue = dispatch_queue_create("RUNA.sdk.queue", DISPATCH_QUEUE_CONCURRENT);
-    });
-    return queue;
-}
-
 - (instancetype)initPrivate
 {
     self = [super init];
@@ -41,10 +30,11 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
         {
             NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
             [config setTimeoutIntervalForRequest:RUNA_API_TIMEOUT_INTERVAL];
-            
+
+            self->_sharedQueue = dispatch_queue_create("RUNA.sdk.queue", DISPATCH_QUEUE_CONCURRENT);
+
             NSOperationQueue* sessionQueue = [NSOperationQueue new];
-            sessionQueue.underlyingQueue = [[self class]sharedQueue];
-            
+            sessionQueue.underlyingQueue = self->_sharedQueue;
             self->_httpSession = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:sessionQueue];
         }
         
@@ -59,6 +49,7 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
         
         {
             self->_deviceInfo = [RUNADevice new];
+            [self.deviceInfo startNetworkMonitorOnQueue:self.sharedQueue];
         }
         
         {
@@ -68,7 +59,6 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
         {
             self->_sdkBundleShortVersionString = [[[NSBundle bundleForClass:self.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
         }
-        
     }
     return self;
 }

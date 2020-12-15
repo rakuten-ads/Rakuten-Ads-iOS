@@ -19,6 +19,7 @@
 }
 
 -(id<RUNAMeasurer>) getOpenMeasurer {
+    RUNADebug("SDK RUNA/OMAdapter version: %@", self.om_versionString);
     RUNAOpenMeasurer* measurer = [RUNAOpenMeasurer new];
     [measurer setMeasureTarget:self];
     return measurer;
@@ -44,6 +45,37 @@
     }
     RUNADebug("inject js script: %@", err ?: @"success");
     return html;
+}
+
+-(void) om_sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception {
+    RUNARemoteLogEntityErrorDetail* error = [RUNARemoteLogEntityErrorDetail new];
+    error.errorMessage = [message stringByAppendingFormat:@": %@", exception];
+    error.stacktrace = exception.callStackSymbols;
+    error.tag = @"RUNAOMAdapter";
+    error.ext = @{
+        @"state" : self.descpritionState,
+        @"postion" : @(self.position),
+        @"size" : @(self.size),
+        @"properties" : self.properties ?: NSNull.null,
+        @"om_disabled" : self.openMeasurementDisabled ? @"YES" : @"NO",
+        @"om_available" : self.isOpenMeasurementAvailable ? @"YES" : @"NO",
+        @"iframe_enabled" : self.iframeWebContentEnabled ? @"YES" : @"NO",
+    };
+    
+    // user info
+    self.logUserInfo = nil;
+    
+    // ad info
+    self.logAdInfo.adspotId = self.adSpotId;
+    self.logAdInfo.sessionId = self.sessionId;
+    self.logAdInfo.sdkVersion = self.om_versionString;
+    
+    RUNARemoteLogEntity* log = [RUNARemoteLogEntity logWithError:error andUserInfo:self.logUserInfo adInfo:self.logAdInfo];
+    [RUNARemoteLogger.sharedInstance sendLog:log];
+}
+
+-(NSString*) om_versionString {
+    return [[[NSBundle bundleForClass:RUNAOpenMeasurer.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 
 @end

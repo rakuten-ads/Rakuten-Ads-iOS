@@ -23,8 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSDictionary*) getApp;
 
 -(NSString*) getURL;
--(void) onBidResponse:(NSHTTPURLResponse*) response withBidList:(NSArray*) bidList;
--(void) onBidFailed:(NSHTTPURLResponse*) response error:(NSError*) error;
+-(void) onBidResponse:(NSHTTPURLResponse*) response withBidList:(NSArray*) bidList sessionId:(nullable NSString*) sessionId;
+-(void) onBidFailed:(NSHTTPURLResponse*) response error:(nullable NSError*) error;
 
 @optional
 -(void) processBidBody:(NSMutableDictionary*) bidBody;
