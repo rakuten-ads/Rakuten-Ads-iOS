@@ -54,6 +54,14 @@
     return @{};
 }
 
+-(NSDictionary *)getUser {
+    if (self.userExt) {
+        return @{
+            @"ext" : self.userExt
+        };
+    }
+    return @{};
+}
 
 -(NSArray<NSString *> *)adspotIdList {
     if (self.adspotId) {
