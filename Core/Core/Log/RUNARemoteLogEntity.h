@@ -12,16 +12,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNARemoteLogEntityErrorDetail : NSObject
 
-@property(nonatomic, nullable) NSString* tag;
-@property(nonatomic, nullable) NSString* errorMessage;
-@property(nonatomic, nullable) NSArray<NSString*>* stacktrace;
-@property(nonatomic, nullable) NSDictionary* ext;
+@property(nonatomic, copy, nullable) NSString* tag;
+@property(nonatomic, copy, nullable) NSString* errorMessage;
+@property(nonatomic, copy, nullable) NSArray<NSString*>* stacktrace;
+@property(nonatomic, copy, nullable) NSDictionary* ext;
 
 -(NSDictionary*) toDictionary;
 
 @end
 
-@interface RUNARemoteLogEntityUser : NSObject
+@interface RUNARemoteLogEntityUser : NSObject<NSCopying>
 
 @property(nonatomic, nullable) NSString* id;
 @property(nonatomic, nullable) NSDictionary* ext;
@@ -30,25 +30,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface RUNARemoteLogEntityAd : NSObject
+@interface RUNARemoteLogEntityAd : NSObject<NSCopying>
 
 @property(nonatomic, readonly) NSDate* timestamp;
 @property(nonatomic, readonly) int sdkType;
 
-@property(nonatomic) NSString* sdkVersion;
-@property(nonatomic, nullable) NSString* adspotId;
-@property(nonatomic, nullable) NSArray<NSString*>* batchAdspotList;
-@property(nonatomic, nullable) NSString* sessionId;
+@property(nonatomic, copy) NSString* sdkVersion;
+@property(nonatomic, copy, nullable) NSString* adspotId;
+@property(nonatomic, copy, nullable) NSArray<NSString*>* batchAdspotList;
+@property(nonatomic, copy, nullable) NSString* sessionId;
 
 -(NSDictionary*) toDictionary;
 
 @end
 
-@interface RUNARemoteLogEntity : NSObject
+@interface RUNARemoteLogEntity : NSObject<NSCopying>
 
-@property(nonatomic) RUNARemoteLogEntityErrorDetail* errorDetail;
-@property(nonatomic, nullable) RUNARemoteLogEntityUser* userInfo;
-@property(nonatomic, nullable) RUNARemoteLogEntityAd* adInfo;
+@property(nonatomic, copy) RUNARemoteLogEntityErrorDetail* errorDetail;
+@property(nonatomic, copy, nullable) RUNARemoteLogEntityUser* userInfo;
+@property(nonatomic, copy, nullable) RUNARemoteLogEntityAd* adInfo;
 
 +(instancetype) logWithError:(RUNARemoteLogEntityErrorDetail*) errorDetail andUserInfo: (nullable RUNARemoteLogEntityUser*) userInfo adInfo:(nullable RUNARemoteLogEntityAd*) adInfo;
 

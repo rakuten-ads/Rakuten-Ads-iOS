@@ -27,6 +27,15 @@
     return dict;
 }
 
+-(id)copyWithZone:(NSZone *)zone {
+    RUNARemoteLogEntityErrorDetail* newObj = [[RUNARemoteLogEntityErrorDetail allocWithZone:zone] init];
+    newObj.errorMessage = self.errorMessage;
+    newObj.ext = self.ext;
+    newObj.stacktrace = self.stacktrace;
+    newObj.tag = self.tag;
+    return newObj;
+}
+
 @end
 
 @implementation RUNARemoteLogEntityUser
@@ -41,6 +50,13 @@
         [dict setObject:self.ext forKey:@"ext"];
     }
     return dict;
+}
+
+-(id)copyWithZone:(NSZone *)zone {
+    RUNARemoteLogEntityUser* newObj = [[RUNARemoteLogEntityUser allocWithZone:zone] init];
+    newObj.id = self.id;
+    newObj.ext = self.ext;
+    return newObj;
 }
 
 @end
@@ -84,6 +100,17 @@ int kSDKTypeIOS = 1; // 1=iOS/2=Android/3=JS
     return dict;
 }
 
+-(id)copyWithZone:(NSZone *)zone {
+    RUNARemoteLogEntityAd* newObj = [[RUNARemoteLogEntityAd allocWithZone:zone] init];
+    newObj.adspotId = self.adspotId;
+    newObj.batchAdspotList = self.batchAdspotList;
+    newObj.sessionId = self.sessionId;
+    newObj.sdkVersion = self.sdkVersion;
+    newObj->_timestamp = [self.timestamp copy];
+    newObj->_sdkType = self.sdkType;
+    return newObj;
+}
+
 @end
 
 
@@ -101,6 +128,14 @@ int kSDKTypeIOS = 1; // 1=iOS/2=Android/3=JS
 - (NSString *)description {
     return [NSString stringWithFormat:@"error: %@, user: %@, ad: %@",
             self.errorDetail.toDictionary, self.userInfo.toDictionary, self.adInfo.toDictionary];
+}
+
+-(id)copyWithZone:(NSZone *)zone {
+    RUNARemoteLogEntity* newObj = [[RUNARemoteLogEntity allocWithZone:zone] init];
+    newObj.errorDetail = self.errorDetail;
+    newObj.adInfo = self.adInfo;
+    newObj.userInfo = self.userInfo;
+    return newObj;
 }
 
 @end
