@@ -75,6 +75,10 @@ The RUNABanner SDK tracks 3 event types of `RUNABannerViewEvent` if developers n
 
 Add `pod 'OMAdapter'` into the `Podfile` will enable open measurement feature automatically. And it could also disable this feature on a certain banner by calling api `banner.disableOpenMeasurement`.
 
+### 1.6 Extensions
+
+See [Extension Module](./extension/README.md)
+
 ## 2. Samples
 
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)

@@ -76,6 +76,10 @@ RUNA SDK は三つのイベントをトラッキングすることが可能で�
 Open Measurementを自動に有効するために`Podfile`に `pod 'OMAdapter'`を追加する必要があります。
 尚、`banner.disableOpenMeasurement` APIを使って個別なbannerを無効することも可能性す。
 
+### 1.6 拡張設定
+
+参照先: [拡張モジュール](./extension/README.md)
+
 ## 2. 実装サンプル
 
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)
