@@ -27,12 +27,13 @@
 @implementation RUNABannerView(RUNA_Atoa)
 
 -(void)setBannerViewAppContent:(RUNABannerViewAppContent *)appContent {
-    self.appContent = [NSMutableDictionary dictionaryWithDictionary:@{
+    self.appContent = @{
         @"title" : appContent.title ?: NSNull.null,
         @"keywords" : [appContent.keywords componentsJoinedByString:@","] ?: NSNull.null,
         @"url" : appContent.url ?: NSNull.null,
-    }];
+    };
     if (!self.openPopupHandler) {
+        RUNADebug("SDK RUNA/A2A version: %@", self.a2a_versionString);
         RUNADebug("create open_popup handler");
         self.openPopupHandler = [RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeOpenPopup handle:^(RUNAAdWebViewMessage * _Nullable message) {
             RUNADebug("handle %@", message.type);
@@ -45,6 +46,7 @@
                     self.eventHandler(self, event);
                 } @catch (NSException *exception) {
                     RUNADebug("exception on popup event: %@", exception);
+                    [self a2a_sendRemoteLogWithMessage:@"exception on popup event" andException:exception];
                 }
             }
         }];
@@ -91,6 +93,37 @@
         UIViewController* top = [UIViewController topViewControllerInHierarchy:root];
         [top presentViewController:popupViewController animated:YES completion:nil];
     }
+}
+
+-(void) a2a_sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception {
+    RUNARemoteLogEntityErrorDetail* error = [RUNARemoteLogEntityErrorDetail new];
+    error.errorMessage = [message stringByAppendingFormat:@": [%@] %@ { userInfo: %@ }", exception.name, exception.reason, exception.userInfo];
+    error.stacktrace = exception.callStackSymbols;
+    error.tag = @"RUNAA2A";
+    error.ext = @{
+        @"state" : self.descpritionState,
+        @"postion" : @(self.position),
+        @"size" : @(self.size),
+        @"properties" : self.properties ?: NSNull.null,
+        @"om_disabled" : self.openMeasurementDisabled ? @"YES" : @"NO",
+        @"om_available" : self.isOpenMeasurementAvailable ? @"YES" : @"NO",
+        @"iframe_enabled" : self.iframeWebContentEnabled ? @"YES" : @"NO",
+    };
+    
+    // user info
+    self.logUserInfo = nil;
+    
+    // ad info
+    self.logAdInfo.adspotId = self.adSpotId;
+    self.logAdInfo.sessionId = self.sessionId;
+    self.logAdInfo.sdkVersion = self.a2a_versionString;
+    
+    RUNARemoteLogEntity* log = [RUNARemoteLogEntity logWithError:error andUserInfo:self.logUserInfo adInfo:self.logAdInfo];
+    [RUNARemoteLogger.sharedInstance sendLog:log];
+}
+
+-(NSString*) a2a_versionString {
+    return [[[NSBundle bundleForClass:[RUNAPopupViewController class]] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 
 @end

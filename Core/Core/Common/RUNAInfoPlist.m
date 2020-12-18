@@ -11,6 +11,8 @@
 
 NSString* RUNA_INFO_KEY_HOST_URL = @"RUNA_HOST_URL";
 NSString* RUNA_INFO_KEY_BASE_URL_JS = @"RUNA_BASE_URL_JS";
+NSString* RUNA_INFO_KEY_REMOTE_LOG_HOST_URL = @"RUNA_INFO_KEY_REMOTE_LOG_HOST_URL";
+NSString* RUNA_INFO_KEY_REMOTE_LOG_DISABLED = @"RUNA_BASE_REMOTE_LOG_DISABLED";
 
 @implementation RUNAInfoPlist
 
@@ -25,6 +27,8 @@ NSString* RUNA_INFO_KEY_BASE_URL_JS = @"RUNA_BASE_URL_JS";
             instance = [RUNAInfoPlist new];
             instance->_hostURL = [runaInfo valueForKey:RUNA_INFO_KEY_HOST_URL];
             instance->_baseURLJs = [runaInfo valueForKey:RUNA_INFO_KEY_BASE_URL_JS];
+            instance->_remoteLogDisabled = [[runaInfo valueForKey:RUNA_INFO_KEY_REMOTE_LOG_DISABLED] boolValue];
+            instance->_remoteLogHostURL = [runaInfo valueForKey:RUNA_INFO_KEY_REMOTE_LOG_HOST_URL];
         }
     });
     return instance;

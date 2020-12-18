@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) NSDictionary* json;
 @property(nonatomic) NSDictionary* appContent;
 @property(nonatomic) NSDictionary* banner;
+@property(nonatomic) NSDictionary* userExt;
 
 @end
 

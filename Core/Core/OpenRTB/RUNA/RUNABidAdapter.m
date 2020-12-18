@@ -25,7 +25,11 @@ NSInteger kRUNABidResponseUnfilled = 204;
     return nil;
 }
 
-- (nonnull NSDictionary *)getApp {
+- (nullable NSDictionary *)getApp {
+    return nil;
+}
+
+- (nullable NSDictionary *)getUser {
     return nil;
 }
 
@@ -33,7 +37,7 @@ NSInteger kRUNABidResponseUnfilled = 204;
     return RUNAInfoPlist.sharedInstance.hostURL ?: kRUNABidRequestHost;
 }
 
-- (void)onBidResponse:(nonnull NSHTTPURLResponse *)response withBidList:(nonnull NSArray *)bidList {
+- (void)onBidResponse:(nonnull NSHTTPURLResponse *)response withBidList:(nonnull NSArray *)bidList sessionId:(nullable NSString*) sessionId {
     if (self.responseConsumer) {
         NSMutableArray* adInfoList = [NSMutableArray array];
         for (NSDictionary* bid in bidList) {
@@ -44,7 +48,7 @@ NSInteger kRUNABidResponseUnfilled = 204;
         }
 
         if (adInfoList.count > 0) {
-            [self.responseConsumer onBidResponseSuccess: adInfoList];
+            [self.responseConsumer onBidResponseSuccess: adInfoList withSessionId: sessionId];
         } else {
             RUNADebug("Bid data not found");
             [self.responseConsumer onBidResponseFailed: response error:nil];
@@ -52,7 +56,7 @@ NSInteger kRUNABidResponseUnfilled = 204;
     }
 }
 
-- (void)onBidFailed:(nonnull NSHTTPURLResponse *)response error:(nonnull NSError *)error {
+- (void)onBidFailed:(nonnull NSHTTPURLResponse *)response error:(nullable NSError *)error {
     [self.responseConsumer onBidResponseFailed:response error:error];
 }
 

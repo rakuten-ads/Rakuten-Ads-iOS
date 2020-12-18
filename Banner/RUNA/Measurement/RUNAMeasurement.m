@@ -7,6 +7,7 @@
 //
 
 #import "RUNAMeasurement.h"
+#import "RUNABannerViewInner.h"
 
 NSTimeInterval kMeasureIntervalInView = 1;
 
@@ -84,7 +85,15 @@ NSTimeInterval kMeasureIntervalInView = 1;
             }
         } @catch (NSException *exception) {
             RUNADebug("measurement[default] operation exception: %@", exception);
+            [self sendRemoteLogWithMessage:@"measurement[default] operation exception" andException:exception];
         }
     });
 }
+
+-(void) sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception {
+    if ([self.measurer.measurableTarget isKindOfClass:[RUNABannerView class]]) {
+        [(RUNABannerView*)self.measurer.measurableTarget sendRemoteLogWithMessage:message andException:exception];
+    }
+}
+
 @end

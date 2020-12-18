@@ -32,7 +32,7 @@ typedef void (^RUNANativeAdEventHandler)(RUNANativeAdProvider* loader, NSArray<R
 -(void)loadWithCompletionHandler:(void (^)(RUNANativeAdProvider * _Nonnull, NSArray<RUNANativeAd*> * _Nonnull))handler {
     self.handler = handler;
 
-    dispatch_async(RUNADefines.sharedQueue, ^{
+    dispatch_async(RUNADefines.sharedInstance.sharedQueue, ^{
         @try {
             RUNALog("%@", RUNADefines.sharedInstance);
             if ([RUNAValid isEmptyString:self.adSpotId]) {

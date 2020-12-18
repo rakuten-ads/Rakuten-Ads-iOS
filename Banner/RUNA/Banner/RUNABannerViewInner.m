@@ -39,7 +39,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
 @end
 
 
-
 @implementation RUNABannerView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -60,21 +59,15 @@ NSString* BASE_URL_BLANK = @"about:blank";
         [measurer finishMeasurement];
     }];
     self.measurers = [NSMutableArray array];
+    self.logAdInfo = [RUNARemoteLogEntityAd new];
+    self.logUserInfo = [RUNARemoteLogEntityUser new];
 }
 
 @synthesize state = _state;
 
 -(void)setState:(RUNABannerViewState)state {
-    RUNADebug("set state %@",
-             state == RUNA_ADVIEW_STATE_INIT ? @"INIT" :
-             state == RUNA_ADVIEW_STATE_LOADING ? @"LOADING" :
-             state == RUNA_ADVIEW_STATE_LOADED ? @"LOADED" :
-             state == RUNA_ADVIEW_STATE_FAILED ? @"FAILED" :
-             state == RUNA_ADVIEW_STATE_RENDERING ? @"RENDERING":
-             state == RUNA_ADVIEW_STATE_MESSAGE_LISTENING ? @"MESSAGE_LISTENING":
-             state == RUNA_ADVIEW_STATE_SHOWED ? @"SHOWED" :
-             state == RUNA_ADVIEW_STATE_CLICKED ? @"CLICKED" : @"unknown");
     self->_state = state;
+    RUNADebug("set state %@", self.descpritionState);
 }
 
 -(RUNABannerViewState)state {
@@ -98,13 +91,11 @@ NSString* BASE_URL_BLANK = @"about:blank";
     [self setInitState];
     self.state = RUNA_ADVIEW_STATE_LOADING;
     self.eventHandler = handler;
-    dispatch_async(RUNADefines.sharedQueue, ^{
+    dispatch_async(RUNADefines.sharedInstance.sharedQueue, ^{
         @try {
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
-                RUNALog("SDK RUNA/Banner Version: %@",
-                      [[[NSBundle bundleForClass:self.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
-                      );
+                RUNALog("SDK RUNA/Banner Version: %@", self.versionString);
                 RUNALog("%@", RUNADefines.sharedInstance);
             });
             
@@ -122,6 +113,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
             }
             bannerAdapter.json = self.jsonProperties;
             bannerAdapter.appContent = self.appContent;
+            bannerAdapter.userExt = self.userExt;
             bannerAdapter.responseConsumer = self;
             
             RUNAOpenRTBRequest* request = [RUNAOpenRTBRequest new];
@@ -133,6 +125,8 @@ NSString* BASE_URL_BLANK = @"about:blank";
             if (self.error == RUNABannerViewErrorNone) {
                 self.error = RUNABannerViewErrorInternal;
             }
+            
+            [self sendRemoteLogWithMessage:@"banner load exception" andException:exception];
             [self triggerFailure];
         }
     });
@@ -162,6 +156,33 @@ NSString* BASE_URL_BLANK = @"about:blank";
 
 -(NSDictionary *)properties {
     return self.jsonProperties;
+}
+
+-(void) sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception {
+    RUNARemoteLogEntityErrorDetail* error = [RUNARemoteLogEntityErrorDetail new];
+    error.errorMessage = [message stringByAppendingFormat:@": [%@] %@ { userInfo: %@ }", exception.name, exception.reason, exception.userInfo];
+    error.stacktrace = exception.callStackSymbols;
+    error.tag = @"RUNABanner";
+    error.ext = @{
+        @"state" : self.descpritionState,
+        @"postion" : @(self.position),
+        @"size" : @(self.size),
+        @"properties" : self.properties ?: NSNull.null,
+        @"om_disabled" : self.openMeasurementDisabled ? @"YES" : @"NO",
+        @"om_available" : self.isOpenMeasurementAvailable ? @"YES" : @"NO",
+        @"iframe_enabled" : self.iframeWebContentEnabled ? @"YES" : @"NO",
+    };
+    
+    // user info
+    self.logUserInfo = nil;
+    
+    // ad info
+    self.logAdInfo.adspotId = self.adSpotId;
+    self.logAdInfo.sessionId = self.sessionId;
+    self.logAdInfo.sdkVersion = self.versionString;
+    
+    RUNARemoteLogEntity* log = [RUNARemoteLogEntity logWithError:error andUserInfo:self.logUserInfo adInfo:self.logAdInfo];
+    [RUNARemoteLogger.sharedInstance sendLog:log];
 }
 
 #pragma mark - UI frame control
@@ -369,12 +390,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
     [self addConstraints:self.webViewConstraints];
 }
 
-- (BOOL)isOpenMeasurementAvailable {
-    return [self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
-    && !self.openMeasurementDisabled
-    && self.banner.viewabilityProviderURL;
-}
-
 #pragma mark - implement RUNABidResponseConsumer
 - (void)onBidResponseFailed:(NSHTTPURLResponse *)response error:(NSError *)error {
     if (response.statusCode == kRUNABidResponseUnfilled) {
@@ -385,8 +400,9 @@ NSString* BASE_URL_BLANK = @"about:blank";
     [self triggerFailure];
 }
 
--(void)onBidResponseSuccess:(NSArray<RUNABanner*> *)adInfoList {
+-(void)onBidResponseSuccess:(NSArray<RUNABanner*> *)adInfoList withSessionId:(NSString*) sessionId {
     @try {
+        self->_sessionId = sessionId;
         self->_banner = [adInfoList firstObject];
         RUNADebug("onBidResponseSuccess: %@", self.banner);
 
@@ -411,18 +427,20 @@ NSString* BASE_URL_BLANK = @"about:blank";
                 [self applyContainerPosition];
                 [self layoutIfNeeded];
             } @catch(NSException* exception) {
-                RUNADebug("failed to apply Ad request: %@", exception);
+                RUNADebug("failed to render ad: %@", exception);
                 if (self.error == RUNABannerViewErrorNone) {
                     self.error = RUNABannerViewErrorInternal;
                 }
+                [self sendRemoteLogWithMessage:@"failed to render ad" andException:exception];
                 [self triggerFailure];
             }
         });
     } @catch(NSException* exception) {
-        RUNADebug("failed after Ad Request: %@", exception);
+        RUNADebug("failed to recognize ad response: %@", exception);
         if (self.error == RUNABannerViewErrorNone) {
             self.error = RUNABannerViewErrorInternal;
         }
+        [self sendRemoteLogWithMessage:@"failed to recognize ad response" andException:exception];
         [self triggerFailure];
     }
 }
@@ -448,6 +466,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
                 self.eventHandler(self, event);
             } @catch (NSException* exception) {
                 RUNALog("exception when bannerOnSucesss callback: %@", exception);
+                [self sendRemoteLogWithMessage:@"exception when bannerOnSucesss callback" andException:exception];
             }
         }
     });
@@ -468,6 +487,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
             }
         } @catch(NSException* exception) {
             RUNALog("exception when bannerOnFailure callback: %@", exception);
+            [self sendRemoteLogWithMessage:@"exception when bannerOnFailure callback:" andException:exception];
         } @finally {
             [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
                 [measurer finishMeasurement];
@@ -511,7 +531,8 @@ NSString* BASE_URL_BLANK = @"about:blank";
                     struct RUNABannerViewEvent event = { RUNABannerViewEventTypeClicked, self.error };
                     self.eventHandler(self, event);
                 } @catch (NSException *exception) {
-                    RUNADebug("exception on clicked event: %@", exception);
+                    RUNADebug("exception when bannerOnClick callback: %@", exception);
+                    [self sendRemoteLogWithMessage:@"exception when bannerOnClick callback" andException:exception];
                 }
             }
             self.state = RUNA_ADVIEW_STATE_CLICKED;
@@ -543,12 +564,20 @@ NSString* BASE_URL_BLANK = @"about:blank";
             }];
         } @catch (NSException *exception) {
             RUNADebug("exception when start measurement: %@", exception);
+            [self sendRemoteLogWithMessage:@"exception when start measurement" andException:exception];
         }
     }
 }
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     RUNALog("AD view didFailNavigation %@", error);
+}
+
+# pragma mark - helping method
+- (BOOL)isOpenMeasurementAvailable {
+    return [self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
+    && !self.openMeasurementDisabled
+    && self.banner.viewabilityProviderURL;
 }
 
 -(NSString *)description {
@@ -562,6 +591,21 @@ NSString* BASE_URL_BLANK = @"about:blank";
             self.properties,
             self.appContent,
             nil];
+}
+
+-(NSString*) versionString {
+    return [[[NSBundle bundleForClass:self.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+}
+
+-(NSString*) descpritionState {
+    return _state == RUNA_ADVIEW_STATE_INIT ? @"INIT" :
+    _state == RUNA_ADVIEW_STATE_LOADING ? @"LOADING" :
+    _state == RUNA_ADVIEW_STATE_LOADED ? @"LOADED" :
+    _state == RUNA_ADVIEW_STATE_FAILED ? @"FAILED" :
+    _state == RUNA_ADVIEW_STATE_RENDERING ? @"RENDERING":
+    _state == RUNA_ADVIEW_STATE_MESSAGE_LISTENING ? @"MESSAGE_LISTENING":
+    _state == RUNA_ADVIEW_STATE_SHOWED ? @"SHOWED" :
+    _state == RUNA_ADVIEW_STATE_CLICKED ? @"CLICKED" : @"unknown";
 }
 
 #if DEBUG

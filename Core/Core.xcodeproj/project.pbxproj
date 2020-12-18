@@ -37,10 +37,15 @@
 		3210D0072476684A00E93FF2 /* RUNAUIViewController+.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210CFF3247614DC00E93FF2 /* RUNAUIViewController+.m */; };
 		3210D0102476E61800E93FF2 /* RUNADefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210D00E2476E61800E93FF2 /* RUNADefines.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3210D0112476E61800E93FF2 /* RUNADefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210D00F2476E61800E93FF2 /* RUNADefines.m */; };
+		321FE40D257F60B300D9A8CD /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321FE40C257F60B300D9A8CD /* Network.framework */; };
+		321FE41325805CF300D9A8CD /* RUNARemoteLogEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 321FE41125805CF300D9A8CD /* RUNARemoteLogEntity.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		321FE41425805CF300D9A8CD /* RUNARemoteLogEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 321FE41225805CF300D9A8CD /* RUNARemoteLogEntity.m */; };
 		32696FFA2567907500602E5C /* RUNAInfoPlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 32696FF82567907500602E5C /* RUNAInfoPlist.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32696FFB2567907500602E5C /* RUNAInfoPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 32696FF92567907500602E5C /* RUNAInfoPlist.m */; };
 		32CAC0DD22164E6400BB4CC4 /* RUNAAppInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32CAC0DE22164E6400BB4CC4 /* RUNAAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAC0DC22164E6400BB4CC4 /* RUNAAppInfo.m */; };
+		32EE7C032578A9B100CF7B4A /* RUNARemoteLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 32EE7C012578A9B100CF7B4A /* RUNARemoteLogger.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		32EE7C042578A9B100CF7B4A /* RUNARemoteLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE7C022578A9B100CF7B4A /* RUNARemoteLogger.m */; };
 		32F258C621E5866D001FD9C0 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258BC21E5866C001FD9C0 /* RUNACore.framework */; };
 		32F258CB21E5866D001FD9C0 /* CoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F258CA21E5866D001FD9C0 /* CoreTests.m */; };
 		32F259D321E599F5001FD9C0 /* RUNACore.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259B921E599F4001FD9C0 /* RUNACore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -91,11 +96,16 @@
 		3210CFF3247614DC00E93FF2 /* RUNAUIViewController+.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RUNAUIViewController+.m"; sourceTree = "<group>"; };
 		3210D00E2476E61800E93FF2 /* RUNADefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUNADefines.h; sourceTree = "<group>"; };
 		3210D00F2476E61800E93FF2 /* RUNADefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNADefines.m; sourceTree = "<group>"; };
+		321FE40C257F60B300D9A8CD /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
+		321FE41125805CF300D9A8CD /* RUNARemoteLogEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNARemoteLogEntity.h; sourceTree = "<group>"; };
+		321FE41225805CF300D9A8CD /* RUNARemoteLogEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNARemoteLogEntity.m; sourceTree = "<group>"; };
 		325FF73F21E5EDDF00A899CF /* runacore.private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = runacore.private.modulemap; sourceTree = "<group>"; };
 		32696FF82567907500602E5C /* RUNAInfoPlist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAInfoPlist.h; sourceTree = "<group>"; };
 		32696FF92567907500602E5C /* RUNAInfoPlist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAInfoPlist.m; sourceTree = "<group>"; };
 		32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAppInfo.h; sourceTree = "<group>"; };
 		32CAC0DC22164E6400BB4CC4 /* RUNAAppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAppInfo.m; sourceTree = "<group>"; };
+		32EE7C012578A9B100CF7B4A /* RUNARemoteLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNARemoteLogger.h; sourceTree = "<group>"; };
+		32EE7C022578A9B100CF7B4A /* RUNARemoteLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNARemoteLogger.m; sourceTree = "<group>"; };
 		32F258BC21E5866C001FD9C0 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258C521E5866D001FD9C0 /* CoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258CA21E5866D001FD9C0 /* CoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreTests.m; sourceTree = "<group>"; };
@@ -128,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				321FE40D257F60B300D9A8CD /* Network.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,12 +216,21 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		321FE40B257F60B300D9A8CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				321FE40C257F60B300D9A8CD /* Network.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		32F258B221E5866C001FD9C0 = {
 			isa = PBXGroup;
 			children = (
 				32F259B821E599F4001FD9C0 /* Core */,
 				32F258C921E5866D001FD9C0 /* CoreTests */,
 				32F258BD21E5866C001FD9C0 /* Products */,
+				321FE40B257F60B300D9A8CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -294,6 +314,10 @@
 			children = (
 				32F259CF21E599F4001FD9C0 /* RUNALogger.h */,
 				32F259CD21E599F4001FD9C0 /* RUNALogger.m */,
+				32EE7C012578A9B100CF7B4A /* RUNARemoteLogger.h */,
+				32EE7C022578A9B100CF7B4A /* RUNARemoteLogger.m */,
+				321FE41125805CF300D9A8CD /* RUNARemoteLogEntity.h */,
+				321FE41225805CF300D9A8CD /* RUNARemoteLogEntity.m */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -313,6 +337,7 @@
 				32F259D721E599F5001FD9C0 /* RUNAWebUserAgent.h in Headers */,
 				32F259DE21E599F5001FD9C0 /* RUNAJSONObject.h in Headers */,
 				32F259DD21E599F5001FD9C0 /* RUNAURLCoder.h in Headers */,
+				32EE7C032578A9B100CF7B4A /* RUNARemoteLogger.h in Headers */,
 				320313B224C182AD002D9727 /* RUNACacheFile.h in Headers */,
 				32F259E521E599F5001FD9C0 /* RUNALogger.h in Headers */,
 				32F259DB21E599F5001FD9C0 /* RUNAHttpTask.h in Headers */,
@@ -326,6 +351,7 @@
 				3210D0102476E61800E93FF2 /* RUNADefines.h in Headers */,
 				3210CFFB24765F1700E93FF2 /* RUNAAdWebView.h in Headers */,
 				3210CFFC24765F1700E93FF2 /* RUNAUIViewController+.h in Headers */,
+				321FE41325805CF300D9A8CD /* RUNARemoteLogEntity.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,7 +483,9 @@
 				3210D0052476684100E93FF2 /* RUNAAdWebViewMessage.m in Sources */,
 				32696FFB2567907500602E5C /* RUNAInfoPlist.m in Sources */,
 				32F259E121E599F5001FD9C0 /* RUNAURLCoder.m in Sources */,
+				32EE7C042578A9B100CF7B4A /* RUNARemoteLogger.m in Sources */,
 				3210D0032476683500E93FF2 /* RUNAOpenRTB.m in Sources */,
+				321FE41425805CF300D9A8CD /* RUNARemoteLogEntity.m in Sources */,
 				3210D0062476684500E93FF2 /* RUNAAdWebView.m in Sources */,
 				32F259D821E599F5001FD9C0 /* RUNADevice.m in Sources */,
 				3210D0042476683D00E93FF2 /* RUNAURLString.m in Sources */,
