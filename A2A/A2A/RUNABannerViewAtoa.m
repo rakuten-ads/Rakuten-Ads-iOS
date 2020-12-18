@@ -27,11 +27,11 @@
 @implementation RUNABannerView(RUNA_Atoa)
 
 -(void)setBannerViewAppContent:(RUNABannerViewAppContent *)appContent {
-    self.appContent = [NSMutableDictionary dictionaryWithDictionary:@{
+    self.appContent = @{
         @"title" : appContent.title ?: NSNull.null,
         @"keywords" : [appContent.keywords componentsJoinedByString:@","] ?: NSNull.null,
         @"url" : appContent.url ?: NSNull.null,
-    }];
+    };
     if (!self.openPopupHandler) {
         RUNADebug("SDK RUNA/A2A version: %@", self.a2a_versionString);
         RUNADebug("create open_popup handler");
@@ -97,7 +97,7 @@
 
 -(void) a2a_sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception {
     RUNARemoteLogEntityErrorDetail* error = [RUNARemoteLogEntityErrorDetail new];
-    error.errorMessage = [message stringByAppendingFormat:@": %@", exception];
+    error.errorMessage = [message stringByAppendingFormat:@": [%@] %@ { userInfo: %@ }", exception.name, exception.reason, exception.userInfo];
     error.stacktrace = exception.callStackSymbols;
     error.tag = @"RUNAA2A";
     error.ext = @{

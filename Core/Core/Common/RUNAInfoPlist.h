@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nullable, readonly) NSString* hostURL;
 @property(nullable, readonly) NSString* baseURLJs;
+
+@property(nullable, readonly) NSString* remoteLogHostURL;
 @property(readonly) BOOL remoteLogDisabled;
 
 +(nullable instancetype) sharedInstance;

@@ -8,6 +8,7 @@
 
 #import "RUNABannerViewExtension.h"
 #import "RUNABannerViewInner.h"
+#import <RUNACore/RUNAValid.h>
 
 @implementation RUNABannerViewGenreProperty
 
@@ -41,4 +42,11 @@
     }
 }
 
+-(void)setRz:(NSString *)rz {
+    if ([RUNAValid isNotEmptyString:rz]) {
+        self.userExt = @{
+            @"rz" : rz
+        };
+    }
+}
 @end

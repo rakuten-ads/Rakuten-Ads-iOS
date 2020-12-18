@@ -85,6 +85,11 @@
     body[@"app"] = [self getApp];
     body[@"device"] = [self getDevice];
 
+    NSDictionary* user = self.openRTBAdapterDelegate.getUser;
+    if (user && user.count > 0) {
+        body[@"user"] = user;
+    }
+
     if ([self.openRTBAdapterDelegate respondsToSelector:@selector(processBidBody:)]) {
         [self.openRTBAdapterDelegate processBidBody:body];
     }

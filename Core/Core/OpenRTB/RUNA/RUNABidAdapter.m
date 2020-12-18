@@ -25,7 +25,11 @@ NSInteger kRUNABidResponseUnfilled = 204;
     return nil;
 }
 
-- (nonnull NSDictionary *)getApp {
+- (nullable NSDictionary *)getApp {
+    return nil;
+}
+
+- (nullable NSDictionary *)getUser {
     return nil;
 }
 

@@ -30,6 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) setPropertyGenre:(RUNABannerViewGenreProperty*) matchingGenre;
 -(void) setCustomTargeting:(NSDictionary*) target;
 
+/**
+ set RzCookie
+ */
+-(void) setRz:(NSString*) rz;
+
 @end
 
 NS_ASSUME_NONNULL_END
