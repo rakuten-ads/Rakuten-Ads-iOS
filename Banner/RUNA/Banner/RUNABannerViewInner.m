@@ -114,6 +114,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
             bannerAdapter.json = self.jsonProperties;
             bannerAdapter.appContent = self.appContent;
             bannerAdapter.userExt = self.userExt;
+            bannerAdapter.geo = self.geo;
             bannerAdapter.responseConsumer = self;
             
             RUNAOpenRTBRequest* request = [RUNAOpenRTBRequest new];

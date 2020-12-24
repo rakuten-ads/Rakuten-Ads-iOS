@@ -33,6 +33,10 @@ NSInteger kRUNABidResponseUnfilled = 204;
     return nil;
 }
 
+-(nullable NSDictionary *)getGeo {
+    return nil;
+}
+
 - (nonnull NSString *)getURL {
     return RUNAInfoPlist.sharedInstance.hostURL ?: kRUNABidRequestHost;
 }

@@ -70,4 +70,18 @@
     return nil;
 }
 
+- (NSDictionary *)getGeo {
+    if (self.geo) {
+        return @{
+            @"lat": @(self.geo.latitude),
+            @"lon": @(self.geo.longitude)
+        };
+    }
+    return nil;
+}
+
+@end
+
+@implementation RUNAGeo
+
 @end
