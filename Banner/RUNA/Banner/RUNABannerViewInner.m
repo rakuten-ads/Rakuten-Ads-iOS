@@ -360,10 +360,13 @@ NSString* BASE_URL_BLANK = @"about:blank";
         [self triggerFailure];
     }]];
 
-    // message type open_popup, for like a2a
-    if (self.openPopupHandler) {
-        [self->_webView addMessageHandler:self.openPopupHandler];
+    // active a2a if a2a framework imported
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    if ([self respondsToSelector:@selector(a2a_active)]) {
+        [self performSelector:@selector(a2a_active)];
     }
+#pragma clang diagnostic pop
 
     self.webView.navigationDelegate = self;
     [self addSubview:self.webView];

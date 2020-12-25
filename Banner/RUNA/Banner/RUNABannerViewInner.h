@@ -37,7 +37,6 @@ typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABann
 @property (nonatomic, readonly, nullable) RUNABanner* banner;
 @property (nonatomic, readonly, nullable) NSString* sessionId;
 @property (nonatomic, nullable) NSMutableArray<id<RUNAMeasurer>> *measurers;
-@property (nonatomic, nullable) RUNAAdWebViewMessageHandler* openPopupHandler;
 @property (nonatomic) RUNABannerViewError error;
 
 /*
