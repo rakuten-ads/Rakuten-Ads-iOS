@@ -27,8 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface RUNAGeo : NSObject
-@property(nonatomic) float latitude;
-@property(nonatomic) float longitude;
+@property(nonatomic) double latitude;
+@property(nonatomic) double longitude;
 @end
 
 @interface RUNABannerAdapter : RUNABidAdapter
