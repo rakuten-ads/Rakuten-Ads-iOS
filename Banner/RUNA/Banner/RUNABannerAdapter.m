@@ -84,4 +84,11 @@
 
 @implementation RUNAGeo
 
+
+-(NSString *)description {
+    return [NSString stringWithFormat:@"{ lat: %f, lon: %f }",
+            self.latitude,
+            self.longitude];
+}
+
 @end

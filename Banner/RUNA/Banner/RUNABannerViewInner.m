@@ -67,7 +67,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
 
 -(void)setState:(RUNABannerViewState)state {
     self->_state = state;
-    RUNADebug("set state %@", self.descpritionState);
+    RUNADebug("set state %@", self.descriptionState);
 }
 
 -(RUNABannerViewState)state {
@@ -164,15 +164,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
     error.errorMessage = [message stringByAppendingFormat:@": [%@] %@ { userInfo: %@ }", exception.name, exception.reason, exception.userInfo];
     error.stacktrace = exception.callStackSymbols;
     error.tag = @"RUNABanner";
-    error.ext = @{
-        @"state" : self.descpritionState,
-        @"postion" : @(self.position),
-        @"size" : @(self.size),
-        @"properties" : self.properties ?: NSNull.null,
-        @"om_disabled" : self.openMeasurementDisabled ? @"YES" : @"NO",
-        @"om_available" : self.isOpenMeasurementAvailable ? @"YES" : @"NO",
-        @"iframe_enabled" : self.iframeWebContentEnabled ? @"YES" : @"NO",
-    };
+    error.ext = self.descriptionDetail;
     
     // user info
     self.logUserInfo = nil;
@@ -584,24 +576,31 @@ NSString* BASE_URL_BLANK = @"about:blank";
     && self.banner.viewabilityProviderURL;
 }
 
+-(NSDictionary *) descriptionDetail {
+    return @{
+        @"adspotId" : self.adSpotId ?: NSNull.null,
+        @"state" : self.descriptionState,
+        @"postion" : @(self.position),
+        @"size" : @(self.size),
+        @"properties" : self.properties ?: NSNull.null,
+        @"appContent" : self.appContent ?: NSNull.null,
+        @"geo" : self.geo ?: NSNull.null,
+        @"user_extension" : self.userExt ?: NSNull.null,
+        @"om_disabled" : self.openMeasurementDisabled ? @"YES" : @"NO",
+        @"om_available" : self.isOpenMeasurementAvailable ? @"YES" : @"NO",
+        @"iframe_enabled" : self.iframeWebContentEnabled ? @"YES" : @"NO",
+    };
+}
+
 -(NSString *)description {
-    return [NSString stringWithFormat:
-            @"{\n"
-            @"adspotId: %@\n"
-            @"properties: %@\n"
-            @"content: %@\n"
-            @"}",
-            self.adSpotId,
-            self.properties,
-            self.appContent,
-            nil];
+    return [NSString stringWithFormat: @"%@", self.descriptionDetail];
 }
 
 -(NSString*) versionString {
     return [[[NSBundle bundleForClass:self.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 
--(NSString*) descpritionState {
+-(NSString*) descriptionState {
     return _state == RUNA_ADVIEW_STATE_INIT ? @"INIT" :
     _state == RUNA_ADVIEW_STATE_LOADING ? @"LOADING" :
     _state == RUNA_ADVIEW_STATE_LOADED ? @"LOADED" :
