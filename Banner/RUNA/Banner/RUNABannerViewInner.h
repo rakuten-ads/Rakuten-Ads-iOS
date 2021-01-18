@@ -13,6 +13,7 @@
 #import "RUNABannerView.h"
 #endif
 
+#import "RUNAAdSessionInner.h"
 #import "RUNABannerAdapter.h"
 #import <RUNACore/RUNAValid.h>
 #import <RUNACore/RUNAAdWebView.h>

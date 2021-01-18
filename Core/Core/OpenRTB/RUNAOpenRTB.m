@@ -90,6 +90,11 @@
         body[@"user"] = user;
     }
 
+    NSDictionary* ext = self.openRTBAdapterDelegate.getExt;
+    if (ext && ext.count > 0) {
+        body[@"ext"] = ext;
+    }
+
     if ([self.openRTBAdapterDelegate respondsToSelector:@selector(processBidBody:)]) {
         [self.openRTBAdapterDelegate processBidBody:body];
     }

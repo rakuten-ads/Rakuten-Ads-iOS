@@ -22,6 +22,7 @@
         self->_measuredURL = [ext getString:@"measured_url"];
         self->_inviewURL = [ext getString:@"inview_url"];
         self->_viewabilityProviderURL = [ext getString:@"viewability_provider_url"];
+        self->_advertiseId = [[ext getNumber:@"advid"] integerValue];
     }
 }
 
@@ -68,6 +69,12 @@
         return @[self.adspotId];
     }
     return nil;
+}
+
+-(NSDictionary *)getExt {
+    return @{
+        @"badvid" : self.blockAdList ?: @[]
+    };
 }
 
 @end

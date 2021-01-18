@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSArray*) getImp;
 -(nullable NSDictionary*) getApp;
 -(nullable NSDictionary*) getUser;
+-(nullable NSDictionary*) getExt;
 
 -(NSString*) getURL;
 -(void) onBidResponse:(NSHTTPURLResponse*) response withBidList:(NSArray*) bidList sessionId:(nullable NSString*) sessionId;

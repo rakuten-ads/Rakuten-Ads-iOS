@@ -17,3 +17,4 @@ FOUNDATION_EXPORT const unsigned char RUNAVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <RUNA/PublicHeader.h>
 
 #import "RUNABannerView.h"
+#import "RUNAAdSession.h"
