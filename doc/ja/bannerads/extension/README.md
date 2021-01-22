@@ -63,3 +63,14 @@ var runaCustomTargeting: [String: [String]] {
 bannerView.setRz("RzCookie")
 ```
 
+#### 地理情報
+
+- latitude: `double`, 値は -90.0 から +90.0 まで, マイナス値は南を表す
+- longitude: `double`, 値は -180.0 から +180.0 まで, マイナス値は西を表す
+
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+```Swift
+let lat = location.coordinate.latitude
+let lon = location.coordinate.longitude
+bannerView.setLocation(latitude: lat, longitude: lon)
+```
