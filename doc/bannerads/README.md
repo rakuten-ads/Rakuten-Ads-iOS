@@ -75,7 +75,11 @@ The RUNABanner SDK tracks 3 event types of `RUNABannerViewEvent` if developers n
 
 Add `pod 'OMAdapter'` into the `Podfile` will enable open measurement feature automatically. And it could also disable this feature on a certain banner by calling api `banner.disableOpenMeasurement`.
 
-### 1.6 Extensions
+### 1.6 Ad Sesssion
+
+`RUNAAdSession` is for avoiding duplicated advertisment contents. When a `RUNAAdSession` instance is set to banners and not nil, individual ad will be load at those banners ammong the same session instance.
+
+### 1.7 Extensions
 
 See [Extension Module](./extension/README.md)
 

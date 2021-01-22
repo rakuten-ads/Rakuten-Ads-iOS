@@ -76,7 +76,11 @@ RUNA SDK は三つのイベントをトラッキングすることが可能で�
 Open Measurementを自動に有効するために`Podfile`に `pod 'OMAdapter'`を追加する必要があります。
 尚、`banner.disableOpenMeasurement` APIを使って個別なbannerを無効することも可能性す。
 
-### 1.6 拡張設定
+### 1.6 Ad Sesssion
+
+`RUNAAdSession` は広告内容の重複排除するために使用されます。`RUNAAdSession`が設定され且つnilではない場合、同じセッションに異なる広告内容がロードされることは保証されます。
+
+### 1.7 拡張設定
 
 参照先: [拡張モジュール](./extension/README.md)
 
