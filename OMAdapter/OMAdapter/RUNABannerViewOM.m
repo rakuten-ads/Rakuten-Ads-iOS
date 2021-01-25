@@ -52,15 +52,7 @@
     error.errorMessage = [message stringByAppendingFormat:@": [%@] %@ { userInfo: %@ }", exception.name, exception.reason, exception.userInfo];
     error.stacktrace = exception.callStackSymbols;
     error.tag = @"RUNAOMAdapter";
-    error.ext = @{
-        @"state" : self.descpritionState,
-        @"postion" : @(self.position),
-        @"size" : @(self.size),
-        @"properties" : self.properties ?: NSNull.null,
-        @"om_disabled" : self.openMeasurementDisabled ? @"YES" : @"NO",
-        @"om_available" : self.isOpenMeasurementAvailable ? @"YES" : @"NO",
-        @"iframe_enabled" : self.iframeWebContentEnabled ? @"YES" : @"NO",
-    };
+    error.ext = self.descriptionDetail;
     
     // user info
     self.logUserInfo = nil;

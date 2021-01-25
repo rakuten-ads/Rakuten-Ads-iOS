@@ -109,39 +109,40 @@
 }
 
 - (nonnull NSDictionary *)getDevice {
-    static dispatch_once_t onceToken;
-    static NSDictionary* jsonDevice;
-    dispatch_once(&onceToken, ^{
-        RUNADefines* defines = RUNADefines.sharedInstance;
-        [defines.userAgentInfo syncResult];
+    NSMutableDictionary* jsonDevice;
+    RUNADefines* defines = RUNADefines.sharedInstance;
+    [defines.userAgentInfo syncResult];
 
-        RUNADevice* deviceInfo = defines.deviceInfo;
-        RUNAIdfa* idfaInfo = defines.idfaInfo;
-        UIScreen* screen = UIScreen.mainScreen;
+    RUNADevice* deviceInfo = defines.deviceInfo;
+    RUNAIdfa* idfaInfo = defines.idfaInfo;
+    UIScreen* screen = UIScreen.mainScreen;
 
-        jsonDevice = @{
-            @"ua" : defines.userAgentInfo.userAgent ?: @"",
-            @"devicetype" : [self getDeviceType],
-            @"make": @"Apple",
-            @"model": deviceInfo.model,
-            @"os": @"iOS",
-            @"osv": deviceInfo.osVersion,
-            @"hwv": deviceInfo.buildName,
-            @"h": @((int)screen.bounds.size.height),
-            @"w": @((int)screen.bounds.size.width),
-            @"ppi": @((int)(160 * screen.scale)),
-            @"pxratio": @((int)screen.scale),
-            @"language": deviceInfo.language,
-            @"ifa": idfaInfo.idfa,
-            @"lmt": idfaInfo.isTrackingEnabled ? @0 : @1,
-            @"ext" : @{
-                    @"sdk_version": defines.sdkBundleShortVersionString,
-            },
-            // @"geo"
-            // @"carrier"
-            @"connectiontype" : @(deviceInfo.connectionMethod)
-        };
-    });
+    jsonDevice = [NSMutableDictionary dictionaryWithDictionary:@{
+        @"ua" : defines.userAgentInfo.userAgent ?: @"",
+        @"devicetype" : [self getDeviceType],
+        @"make": @"Apple",
+        @"model": deviceInfo.model,
+        @"os": @"iOS",
+        @"osv": deviceInfo.osVersion,
+        @"hwv": deviceInfo.buildName,
+        @"h": @((int)screen.bounds.size.height),
+        @"w": @((int)screen.bounds.size.width),
+        @"ppi": @((int)(160 * screen.scale)),
+        @"pxratio": @((int)screen.scale),
+        @"language": deviceInfo.language,
+        @"ifa": idfaInfo.idfa,
+        @"lmt": idfaInfo.isTrackingEnabled ? @0 : @1,
+        @"ext" : @{
+                @"sdk_version": defines.sdkBundleShortVersionString,
+        },
+        @"connectiontype" : @(deviceInfo.connectionMethod)
+        // @"carrier"
+    }];
+
+    NSDictionary* geo = self.openRTBAdapterDelegate.getGeo;
+    if (geo && geo.count > 0) {
+        jsonDevice[@"geo"] = geo;
+    }
     return jsonDevice;
 }
 

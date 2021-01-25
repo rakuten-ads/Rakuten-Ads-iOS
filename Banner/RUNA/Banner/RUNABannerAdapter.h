@@ -26,6 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface RUNAGeo : NSObject
+@property(nonatomic) double latitude;
+@property(nonatomic) double longitude;
+@end
 
 @interface RUNABannerAdapter : RUNABidAdapter
 
@@ -34,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) NSDictionary* appContent;
 @property(nonatomic) NSDictionary* banner;
 @property(nonatomic) NSDictionary* userExt;
+@property(nonatomic) RUNAGeo* geo;
 
 @end
 
