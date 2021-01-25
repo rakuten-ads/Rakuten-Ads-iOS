@@ -32,6 +32,9 @@
 		32A6934B22422FCD00812DF9 /* RUNANativeAdInner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A6934922422FCD00812DF9 /* RUNANativeAdInner.h */; };
 		32ED78B9236693AB007833DF /* RUNABannerViewExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 32ED78B7236693AB007833DF /* RUNABannerViewExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32ED78BA236693AB007833DF /* RUNABannerViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 32ED78B8236693AB007833DF /* RUNABannerViewExtension.m */; };
+		32EFC6BD25AE8281006F85C8 /* RUNAAdSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 32EFC6BB25AE8281006F85C8 /* RUNAAdSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32EFC6BE25AE8281006F85C8 /* RUNAAdSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EFC6BC25AE8281006F85C8 /* RUNAAdSession.m */; };
+		32EFC6C825AE8356006F85C8 /* RUNAAdSessionInner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32EFC6C425AE82AA006F85C8 /* RUNAAdSessionInner.h */; };
 		32F258EA21E58689001FD9C0 /* RUNABanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258E021E58689001FD9C0 /* RUNABanner.framework */; };
 		32F258EF21E58689001FD9C0 /* RUNATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F258EE21E58689001FD9C0 /* RUNATests.m */; };
 		32F258F121E58689001FD9C0 /* RUNABanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F258E321E58689001FD9C0 /* RUNABanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -86,6 +89,9 @@
 		32A6934A22422FCD00812DF9 /* RUNANativeAdInner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNANativeAdInner.m; sourceTree = "<group>"; };
 		32ED78B7236693AB007833DF /* RUNABannerViewExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewExtension.h; sourceTree = "<group>"; };
 		32ED78B8236693AB007833DF /* RUNABannerViewExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewExtension.m; sourceTree = "<group>"; };
+		32EFC6BB25AE8281006F85C8 /* RUNAAdSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAdSession.h; sourceTree = "<group>"; };
+		32EFC6BC25AE8281006F85C8 /* RUNAAdSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdSession.m; sourceTree = "<group>"; };
+		32EFC6C425AE82AA006F85C8 /* RUNAAdSessionInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAdSessionInner.h; sourceTree = "<group>"; };
 		32F258E021E58689001FD9C0 /* RUNABanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNABanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258E321E58689001FD9C0 /* RUNABanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABanner.h; sourceTree = "<group>"; };
 		32F258E421E58689001FD9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -139,6 +145,9 @@
 				32564D9B2227865100DB4DBF /* RUNABannerAdapter.m */,
 				32ED78B7236693AB007833DF /* RUNABannerViewExtension.h */,
 				32ED78B8236693AB007833DF /* RUNABannerViewExtension.m */,
+				32EFC6BB25AE8281006F85C8 /* RUNAAdSession.h */,
+				32EFC6C425AE82AA006F85C8 /* RUNAAdSessionInner.h */,
+				32EFC6BC25AE8281006F85C8 /* RUNAAdSession.m */,
 			);
 			path = Banner;
 			sourceTree = "<group>";
@@ -221,6 +230,8 @@
 				32F258F121E58689001FD9C0 /* RUNABanner.h in Headers */,
 				329753AB230A7D4C002A53CC /* RUNAMeasurement.h in Headers */,
 				32A693422237BBA800812DF9 /* RUNANativeAdAdapter.h in Headers */,
+				32EFC6C825AE8356006F85C8 /* RUNAAdSessionInner.h in Headers */,
+				32EFC6BD25AE8281006F85C8 /* RUNAAdSession.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +382,7 @@
 			files = (
 				329753AC230A7D4C002A53CC /* RUNAMeasurement.m in Sources */,
 				32F2596121E597E5001FD9C0 /* RUNABannerViewInner.m in Sources */,
+				32EFC6BE25AE8281006F85C8 /* RUNAAdSession.m in Sources */,
 				32ED78BA236693AB007833DF /* RUNABannerViewExtension.m in Sources */,
 				3211A414231CA60900DB0225 /* RUNABannerViewMeasurable.m in Sources */,
 				32564D9D2227865100DB4DBF /* RUNABannerAdapter.m in Sources */,

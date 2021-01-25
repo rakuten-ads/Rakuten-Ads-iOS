@@ -37,6 +37,10 @@ NSInteger kRUNABidResponseUnfilled = 204;
     return nil;
 }
 
+-(nullable NSDictionary *)getExt {
+    return nil;
+}
+
 - (nonnull NSString *)getURL {
     return RUNAInfoPlist.sharedInstance.hostURL ?: kRUNABidRequestHost;
 }

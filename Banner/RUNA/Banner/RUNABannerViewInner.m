@@ -116,6 +116,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
             bannerAdapter.userExt = self.userExt;
             bannerAdapter.geo = self.geo;
             bannerAdapter.responseConsumer = self;
+            bannerAdapter.blockAdList = self.session.blockAdList;
             
             RUNAOpenRTBRequest* request = [RUNAOpenRTBRequest new];
             request.openRTBAdapterDelegate = bannerAdapter;
@@ -453,6 +454,9 @@ NSString* BASE_URL_BLANK = @"about:blank";
     }
 
     self.state = RUNA_ADVIEW_STATE_SHOWED;
+    if (self.banner.advertiseId > 0) {
+        [self.session addBlockAd:self.banner.advertiseId];
+    }
     dispatch_async(dispatch_get_main_queue(), ^{
         RUNADebug("triggerSuccess");
         self.hidden = NO;

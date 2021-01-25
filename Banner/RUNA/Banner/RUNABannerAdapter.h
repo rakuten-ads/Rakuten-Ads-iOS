@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly, nullable) RUNAURLString* measuredURL;
 @property(nonatomic, readonly, nullable) RUNAURLString* inviewURL;
 @property(nonatomic, readonly, nullable) NSString* viewabilityProviderURL;
+@property(nonatomic, readonly) NSInteger advertiseId;
 
 
 -(void)parse:(NSDictionary *)bidData;
@@ -39,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) NSDictionary* banner;
 @property(nonatomic) NSDictionary* userExt;
 @property(nonatomic) RUNAGeo* geo;
+@property(nonatomic) NSArray* blockAdList;
 
 @end
 
