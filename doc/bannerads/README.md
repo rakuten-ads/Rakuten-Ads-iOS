@@ -77,7 +77,7 @@ Add `pod 'OMAdapter'` into the `Podfile` will enable open measurement feature au
 
 ### 1.6 Ad Sesssion
 
-`RUNAAdSession` is for avoiding duplicated advertisment contents. When a `RUNAAdSession` instance is set to banners and not nil, individual ad will be load at those banners ammong the same session instance.
+`RUNAAdSession` is for avoiding duplicated advertisment contents. When a `RUNAAdSession` instance is set to banners and not nil, individual ad will be load at those banners among the same session instance.
 
 ### 1.7 Extensions
 
