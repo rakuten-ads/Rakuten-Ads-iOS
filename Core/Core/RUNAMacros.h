@@ -8,6 +8,6 @@
 #define RUNADebug(...)
 #endif
 
-#define RUNALog(...) runa_log_verbose(__VA_ARGS__)
+#define RUNALog(...) runa_log_info(__VA_ARGS__)
 
 #endif /* RUNAMacros_h */
