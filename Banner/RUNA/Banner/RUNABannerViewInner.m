@@ -117,6 +117,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
             bannerAdapter.geo = self.geo;
             bannerAdapter.responseConsumer = self;
             bannerAdapter.blockAdList = self.session.blockAdList;
+            RUNALog("block ad list for current session: %@", self.session.blockAdList);
             
             RUNAOpenRTBRequest* request = [RUNAOpenRTBRequest new];
             request.openRTBAdapterDelegate = bannerAdapter;
