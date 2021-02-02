@@ -80,12 +80,15 @@ Open Measurementを自動に有効するために`Podfile`に `pod 'OMAdapter'`�
 
 `RUNAAdSession` は広告内容の重複排除するために使用されます。`RUNAAdSession`が設定され且つnilではない場合、同じセッションに異なる広告内容がロードされることは保証されます。
 
+> __注意：__ 二つのバナーのロードタイミングが近い場合、重複な広告が表示されてしまう可能性があります。
+
 ### 1.7 拡張設定
 
 参照先: [拡張モジュール](./extension/README.md)
 
 ## 2. 実装サンプル
 
+### 2.1 一般の実装
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)
 
 ```objc
@@ -166,6 +169,27 @@ banner.load { (banner, event) in
 }
 
 self.view.addSubview(banner)
+```
+
+### 2.2 広告内容の重複排除
+
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+
+```swift
+// 生存期間に管理されたオブジェクトを作成します
+private let adSession = RUNAAdSession
+
+...
+
+// 最初のバナーをロードさせます
+banner1.adSession = adSession
+banner1.load()
+
+...
+
+// 時間少し間隔を空けるように意識しながら次のバナーをロードさせます
+banner2.adSession = adSession
+banner2.load()
 ```
 
 ---

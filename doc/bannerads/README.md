@@ -77,7 +77,9 @@ Add `pod 'OMAdapter'` into the `Podfile` will enable open measurement feature au
 
 ### 1.6 Ad Sesssion
 
-`RUNAAdSession` is for avoiding duplicated advertisment contents. When a `RUNAAdSession` instance is set to banners and not nil, individual ad will be load at those banners among the same session instance.
+`RUNAAdSession` is for avoiding duplicate advertisement contents. When a `RUNAAdSession` instance is set to banners and not nil, individual ad will be loaded at those banners with the same session instance. 
+
+> __Notice:__ It is still possible that a banner show as same ad as a previous one when two banners' loading times are too close.
 
 ### 1.7 Extensions
 
@@ -85,6 +87,7 @@ See [Extension Module](./extension/README.md)
 
 ## 2. Samples
 
+### 2.1 Normal case
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)
 
 ```objc
@@ -165,6 +168,27 @@ banner.load { (banner, event) in
 }
 
 self.view.addSubview(banner)
+```
+
+### 2.2 Use RUNAAdSession to avoid duplicate ad
+
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+
+```swift
+// create an instance in the managed life cycle
+private let adSession = RUNAAdSession
+
+...
+
+// load first banner
+banner1.adSession = adSession
+banner1.load()
+
+...
+
+// be aware of loading second banner in a few time interval
+banner2.adSession = adSession
+banner2.load()
 ```
 
 ---
