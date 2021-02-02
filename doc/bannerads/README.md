@@ -181,13 +181,13 @@ private let adSession = RUNAAdSession
 ...
 
 // load first banner
-banner1.adSession = adSession
+banner1.session = adSession
 banner1.load()
 
 ...
 
 // be aware of loading second banner in a few time interval
-banner2.adSession = adSession
+banner2.session = adSession
 banner2.load()
 ```
 
