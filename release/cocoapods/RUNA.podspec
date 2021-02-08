@@ -28,7 +28,7 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   s.default_subspec = 'Banner'
 
   s.subspec 'CoreOnly' do |ss|
-    ss.ios.dependency 'RUNACore', '~> 1.2.1'
+    ss.ios.dependency 'RUNACore', '~> 1.3.0'
   end
 
   s.subspec 'Banner' do |ss|
