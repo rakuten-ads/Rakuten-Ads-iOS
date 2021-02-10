@@ -75,12 +75,19 @@ The RUNABanner SDK tracks 3 event types of `RUNABannerViewEvent` if developers n
 
 Add `pod 'OMAdapter'` into the `Podfile` will enable open measurement feature automatically. And it could also disable this feature on a certain banner by calling api `banner.disableOpenMeasurement`.
 
-### 1.6 Extensions
+### 1.6 Ad Sesssion
+
+`RUNAAdSession` is for avoiding duplicate advertisement contents. When a `RUNAAdSession` instance is set to banners and not nil, individual ad will be loaded at those banners with the same session instance. 
+
+> __Notice:__ It is still possible that a banner show as same ad as a previous one when two banners' loading times are too close.
+
+### 1.7 Extensions
 
 See [Extension Module](./extension/README.md)
 
 ## 2. Samples
 
+### 2.1 Normal case
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)
 
 ```objc
@@ -161,6 +168,27 @@ banner.load { (banner, event) in
 }
 
 self.view.addSubview(banner)
+```
+
+### 2.2 Use RUNAAdSession to avoid duplicate ad
+
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+
+```swift
+// create an instance in the managed life cycle
+private let adSession = RUNAAdSession
+
+...
+
+// load first banner
+banner1.session = adSession
+banner1.load()
+
+...
+
+// be aware of loading second banner in a few time interval
+banner2.session = adSession
+banner2.load()
 ```
 
 ---
