@@ -26,31 +26,35 @@
 
 @implementation RUNABannerView(RUNA_Atoa)
 
+-(void)a2a_active {
+    RUNADebug("active SDK RUNA/A2A version: %@", self.a2a_versionString);
+    RUNADebug("create open_popup handler");
+    __weak RUNABannerView* weakSelf = self;
+    RUNAAdWebViewMessageHandler* openPopupHandler = [RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeOpenPopup handle:^(RUNAAdWebViewMessage * _Nullable message) {
+        RUNADebug("handle %@", message.type);
+        __strong RUNABannerView* strongSelf = weakSelf;
+        if (message.url) {
+            [strongSelf handlePopup:message.url];
+        }
+        if (strongSelf.eventHandler) {
+            @try {
+                struct RUNABannerViewEvent event = { RUNABannerViewEventTypeClicked, strongSelf.error };
+                strongSelf.eventHandler(self, event);
+            } @catch (NSException *exception) {
+                RUNADebug("exception on popup event: %@", exception);
+                [strongSelf a2a_sendRemoteLogWithMessage:@"exception on popup event" andException:exception];
+            }
+        }
+    }];
+    [self.webView addMessageHandler:openPopupHandler];
+}
+
 -(void)setBannerViewAppContent:(RUNABannerViewAppContent *)appContent {
     self.appContent = @{
         @"title" : appContent.title ?: NSNull.null,
         @"keywords" : [appContent.keywords componentsJoinedByString:@","] ?: NSNull.null,
         @"url" : appContent.url ?: NSNull.null,
     };
-    if (!self.openPopupHandler) {
-        RUNADebug("SDK RUNA/A2A version: %@", self.a2a_versionString);
-        RUNADebug("create open_popup handler");
-        self.openPopupHandler = [RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeOpenPopup handle:^(RUNAAdWebViewMessage * _Nullable message) {
-            RUNADebug("handle %@", message.type);
-            if (message.url) {
-                [self handlePopup:message.url];
-            }
-            if (self.eventHandler) {
-                @try {
-                    struct RUNABannerViewEvent event = { RUNABannerViewEventTypeClicked, self.error };
-                    self.eventHandler(self, event);
-                } @catch (NSException *exception) {
-                    RUNADebug("exception on popup event: %@", exception);
-                    [self a2a_sendRemoteLogWithMessage:@"exception on popup event" andException:exception];
-                }
-            }
-        }];
-    }
 }
 
 -(void) handlePopup:(NSString*) url {
@@ -79,6 +83,11 @@
             }
         }];
     }
+    if (self.geo) {
+        RUNADebug("fill geo: lat=%f, lon=%f", self.geo.latitude, self.geo.longitude);
+        [mutableQueryItems addObject:[NSURLQueryItem queryItemWithName:@"latitude" value:[NSString stringWithFormat:@"%f", self.geo.latitude]]];
+        [mutableQueryItems addObject:[NSURLQueryItem queryItemWithName:@"longitude" value:[NSString stringWithFormat:@"%f", self.geo.longitude]]];
+    }
     urlComp.queryItems = mutableQueryItems;
     NSURL* nsurl = urlComp.URL;
     if (nsurl) {
@@ -100,15 +109,7 @@
     error.errorMessage = [message stringByAppendingFormat:@": [%@] %@ { userInfo: %@ }", exception.name, exception.reason, exception.userInfo];
     error.stacktrace = exception.callStackSymbols;
     error.tag = @"RUNAA2A";
-    error.ext = @{
-        @"state" : self.descpritionState,
-        @"postion" : @(self.position),
-        @"size" : @(self.size),
-        @"properties" : self.properties ?: NSNull.null,
-        @"om_disabled" : self.openMeasurementDisabled ? @"YES" : @"NO",
-        @"om_available" : self.isOpenMeasurementAvailable ? @"YES" : @"NO",
-        @"iframe_enabled" : self.iframeWebContentEnabled ? @"YES" : @"NO",
-    };
+    error.ext = self.descriptionDetail;
     
     // user info
     self.logUserInfo = nil;

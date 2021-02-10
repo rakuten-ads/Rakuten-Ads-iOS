@@ -81,9 +81,9 @@ int kSDKTypeIOS = 1; // 1=iOS/2=Android/3=JS
     [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
 
     NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithDictionary:@{
-        @"date" : [formatter stringFromDate:self.timestamp],
+        @"date" : [formatter stringFromDate:self.timestamp] ?: NSNull.null,
         @"sdk_type" : @(self.sdkType),
-        @"sdk_version" : self.sdkVersion,
+        @"sdk_version" : self.sdkVersion ?: NSNull.null,
     }];
     if (self.adspotId) {
         [dict setValue:self.adspotId forKey:@"adspot_id"];

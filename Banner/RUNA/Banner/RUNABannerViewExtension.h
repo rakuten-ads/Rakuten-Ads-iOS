@@ -35,6 +35,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(void) setRz:(NSString*) rz;
 
+/**
+ set location with latitude and longitude values.
+ @param lat double, from -90.0 to +90.0, where negative is south
+ @param lon double, from -180.0 to +180.0, where negative is west
+ */
+-(void) setLocationWithLatitude:(double) lat longitude:(double) lon
+NS_SWIFT_NAME(setLocation(latitude:longitude:));
+
 @end
 
 NS_ASSUME_NONNULL_END

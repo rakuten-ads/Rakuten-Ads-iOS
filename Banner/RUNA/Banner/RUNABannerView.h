@@ -3,6 +3,8 @@
 #ifndef RUNABannerView_h
 #define RUNABannerView_h
 
+#import "RUNAAdSession.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, RUNABannerViewPosition) {
@@ -46,6 +48,7 @@ struct RUNABannerViewEvent {
 @property(nonatomic) RUNABannerViewSize size;
 @property(nonatomic) RUNABannerViewPosition position;
 @property(nonatomic, nullable) NSDictionary* properties;
+@property(nonatomic, weak, nullable) RUNAAdSession* session;
 
 -(void) load;
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerView* view, struct RUNABannerViewEvent event)) handler;

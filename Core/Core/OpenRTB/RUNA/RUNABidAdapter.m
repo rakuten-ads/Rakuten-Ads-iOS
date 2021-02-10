@@ -21,16 +21,24 @@ NSInteger kRUNABidResponseUnfilled = 204;
 
 @implementation RUNABidAdapter
 
-- (nonnull NSArray *)getImp {
-    return nil;
+- (NSArray *)getImp {
+    return @[];
 }
 
-- (nullable NSDictionary *)getApp {
-    return nil;
+- (NSDictionary *)getApp {
+    return @{};
 }
 
-- (nullable NSDictionary *)getUser {
-    return nil;
+- (NSDictionary *)getUser {
+    return @{};
+}
+
+-(NSDictionary *)getGeo {
+    return @{};
+}
+
+-(NSDictionary *)getExt {
+    return @{};
 }
 
 - (nonnull NSString *)getURL {

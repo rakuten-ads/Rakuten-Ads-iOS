@@ -13,6 +13,7 @@
 #import "RUNABannerView.h"
 #endif
 
+#import "RUNAAdSessionInner.h"
 #import "RUNABannerAdapter.h"
 #import <RUNACore/RUNAValid.h>
 #import <RUNACore/RUNAAdWebView.h>
@@ -37,7 +38,6 @@ typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABann
 @property (nonatomic, readonly, nullable) RUNABanner* banner;
 @property (nonatomic, readonly, nullable) NSString* sessionId;
 @property (nonatomic, nullable) NSMutableArray<id<RUNAMeasurer>> *measurers;
-@property (nonatomic, nullable) RUNAAdWebViewMessageHandler* openPopupHandler;
 @property (nonatomic) RUNABannerViewError error;
 
 /*
@@ -48,6 +48,7 @@ typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABann
 @property (nonatomic, nullable) NSDictionary* userExt;
 @property (nonatomic) BOOL openMeasurementDisabled;
 @property (nonatomic) BOOL iframeWebContentEnabled;
+@property (nonatomic, nullable) RUNAGeo* geo;
 
 /*
  log
@@ -58,7 +59,8 @@ typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABann
 -(void) sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception;
 
 -(BOOL) isOpenMeasurementAvailable;
--(NSString*) descpritionState;
+
+-(NSDictionary*) descriptionDetail;
 
 @end
 

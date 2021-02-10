@@ -1,6 +1,5 @@
 #import "RUNALogger.h"
 
-BOOL gRUNALogVerboseEnabled = NO;
 const char* kSubSystem = "com.rakuten.ad.runa";
 const char* kCategory = "sdk";
 

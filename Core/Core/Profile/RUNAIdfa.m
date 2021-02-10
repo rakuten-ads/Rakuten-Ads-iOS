@@ -23,7 +23,7 @@
 
     if (@available(iOS 14, *)) {
         BOOL shouldGetIdfa = [ATTrackingManager trackingAuthorizationStatus] == ATTrackingManagerAuthorizationStatusAuthorized;
-        self->_idte = shouldGetIdfa;
+        self->_idte = shouldGetIdfa || [idfaManager isAdvertisingTrackingEnabled];
     } else {
         self->_idte = [idfaManager isAdvertisingTrackingEnabled];
     }

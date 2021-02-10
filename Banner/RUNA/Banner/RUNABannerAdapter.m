@@ -22,6 +22,7 @@
         self->_measuredURL = [ext getString:@"measured_url"];
         self->_inviewURL = [ext getString:@"inview_url"];
         self->_viewabilityProviderURL = [ext getString:@"viewability_provider_url"];
+        self->_advertiseId = [[ext getNumber:@"advid"] integerValue];
     }
 }
 
@@ -34,10 +35,10 @@
     for (NSString* adspotId in self.adspotIdList) {
         if (adspotId) {
             [impList addObject:@{
-                                 @"banner" : self.banner ?: [NSNull null],
+                                 @"banner" : self.banner ?: NSNull.null,
                                  @"ext" : @{
                                          @"adspot_id" : adspotId,
-                                         @"json" : self.json ?: [NSNull null],
+                                         @"json" : self.json ?: NSNull.null,
                                          }
                                  }];
         }
@@ -68,6 +69,32 @@
         return @[self.adspotId];
     }
     return nil;
+}
+
+- (NSDictionary *)getGeo {
+    if (self.geo) {
+        return @{
+            @"lat": @(self.geo.latitude),
+            @"lon": @(self.geo.longitude)
+        };
+    }
+    return nil;
+}
+
+-(NSDictionary *)getExt {
+    return @{
+        @"badvid" : self.blockAdList ?: @[]
+    };
+}
+
+@end
+
+@implementation RUNAGeo
+
+-(NSString *)description {
+    return [NSString stringWithFormat:@"{ lat: %f, lon: %f }",
+            self.latitude,
+            self.longitude];
 }
 
 @end
