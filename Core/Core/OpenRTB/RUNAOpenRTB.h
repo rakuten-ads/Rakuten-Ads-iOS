@@ -20,10 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol RUNAOpenRTBAdapterDelegate <NSObject>
 
 -(NSArray*) getImp;
--(nullable NSDictionary*) getApp;
--(nullable NSDictionary*) getUser;
--(nullable NSDictionary*) getGeo;
--(nullable NSDictionary*) getExt;
+-(NSDictionary*) getApp;
+-(NSDictionary*) getUser;
+-(NSDictionary*) getGeo;
+-(NSDictionary*) getExt;
 
 -(NSString*) getURL;
 -(void) onBidResponse:(NSHTTPURLResponse*) response withBidList:(NSArray*) bidList sessionId:(nullable NSString*) sessionId;

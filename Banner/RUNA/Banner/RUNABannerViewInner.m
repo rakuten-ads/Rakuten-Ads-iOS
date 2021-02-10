@@ -117,6 +117,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
             bannerAdapter.geo = self.geo;
             bannerAdapter.responseConsumer = self;
             bannerAdapter.blockAdList = self.session.blockAdList;
+            RUNALog("block ad list for current session: %@", self.session.blockAdList);
             
             RUNAOpenRTBRequest* request = [RUNAOpenRTBRequest new];
             request.openRTBAdapterDelegate = bannerAdapter;
@@ -408,7 +409,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
         if (!self.banner) {
             RUNALog("AdSpotInfo is empty");
             self.error = RUNABannerViewErrorInternal;
-            @throw [NSException exceptionWithName:@"load failed" reason:@"banner info is empty" userInfo:@{@"RUNABanner": [NSNull null]}];
+            @throw [NSException exceptionWithName:@"load failed" reason:@"banner info is empty" userInfo:@{@"RUNABanner": NSNull.null}];
         }
 
         if ([RUNAValid isEmptyString:self.banner.html]) {

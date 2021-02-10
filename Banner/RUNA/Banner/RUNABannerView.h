@@ -48,7 +48,7 @@ struct RUNABannerViewEvent {
 @property(nonatomic) RUNABannerViewSize size;
 @property(nonatomic) RUNABannerViewPosition position;
 @property(nonatomic, nullable) NSDictionary* properties;
-@property(nonatomic, assign, nullable) RUNAAdSession* session;
+@property(nonatomic, weak, nullable) RUNAAdSession* session;
 
 -(void) load;
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerView* view, struct RUNABannerViewEvent event)) handler;

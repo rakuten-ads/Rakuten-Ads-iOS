@@ -85,13 +85,13 @@ NSString* RUNA_LOG_USER_AGENT = @"RUNA SDK RemoteLog";
 - (NSDictionary*) device {
     UIScreen* screen = UIScreen.mainScreen;
     return @{
-        @"ua" : self.defines.userAgentInfo.userAgent,
-        @"model" : self.defines.deviceInfo.model,
-        @"build_name" : self.defines.deviceInfo.buildName,
+        @"ua" : self.defines.userAgentInfo.userAgent ?: NSNull.null,
+        @"model" : self.defines.deviceInfo.model ?: NSNull.null,
+        @"build_name" : self.defines.deviceInfo.buildName ?: NSNull.null,
         @"type" : [self getDeviceType],
-        @"ifa" : self.defines.idfaInfo.idfa,
+        @"ifa" : self.defines.idfaInfo.idfa ?: @"00000000-0000-0000-0000-000000000000",
         @"lmt" : self.defines.idfaInfo.trackingEnabled ? @0 : @1,
-        @"os_version" : self.defines.deviceInfo.osVersion,
+        @"os_version" : self.defines.deviceInfo.osVersion ?: NSNull.null,
         @"connection_method" : @(self.defines.deviceInfo.connectionMethod),
         @"h": @((int)screen.bounds.size.height),
         @"w": @((int)screen.bounds.size.width),
@@ -101,8 +101,8 @@ NSString* RUNA_LOG_USER_AGENT = @"RUNA SDK RemoteLog";
 
 - (NSDictionary*) app {
     return @{
-        @"app_id" : self.defines.appInfo.bundleIdentifier,
-        @"app_version" : self.defines.appInfo.bundleVersion,
+        @"app_id" : self.defines.appInfo.bundleIdentifier ?: NSNull.null,
+        @"app_version" : self.defines.appInfo.bundleVersion ?: NSNull.null,
     };
 }
 
