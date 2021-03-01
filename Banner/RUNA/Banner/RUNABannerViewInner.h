@@ -26,9 +26,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
+    RUNA_ADVIEW_STATE_INIT,
+    RUNA_ADVIEW_STATE_LOADING,
+    RUNA_ADVIEW_STATE_LOADED,
+    RUNA_ADVIEW_STATE_FAILED,
+    RUNA_ADVIEW_STATE_RENDERING,
+    RUNA_ADVIEW_STATE_MESSAGE_LISTENING,
+    RUNA_ADVIEW_STATE_SHOWED,
+    RUNA_ADVIEW_STATE_CLICKED,
+};
+
 typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABannerViewEvent event);
 
-@interface RUNABannerView()
+@interface RUNABannerView() <RUNABidResponseConsumerDelegate>
 
 /*
  inner properties
@@ -39,6 +50,8 @@ typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABann
 @property (nonatomic, readonly, nullable) NSString* sessionId;
 @property (nonatomic, nullable) NSMutableArray<id<RUNAMeasurer>> *measurers;
 @property (nonatomic) RUNABannerViewError error;
+@property (nonatomic, readonly) RUNABannerImp* imp;
+@property (nonatomic) NSString* uuid;
 
 /*
  external options

@@ -22,6 +22,8 @@
 
 /* Begin PBXBuildFile section */
 		3211A414231CA60900DB0225 /* RUNABannerViewMeasurable.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211A413231CA60900DB0225 /* RUNABannerViewMeasurable.m */; };
+		323DA56A25DF8209002ED988 /* RUNABannerGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 323DA56825DF8209002ED988 /* RUNABannerGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		323DA56B25DF8209002ED988 /* RUNABannerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 323DA56925DF8209002ED988 /* RUNABannerGroup.m */; };
 		32564D9C2227865100DB4DBF /* RUNABannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D9A2227865100DB4DBF /* RUNABannerAdapter.h */; };
 		32564D9D2227865100DB4DBF /* RUNABannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D9B2227865100DB4DBF /* RUNABannerAdapter.m */; };
 		325FF74121E605F100A899CF /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RUNACore.framework */; };
@@ -76,6 +78,8 @@
 /* Begin PBXFileReference section */
 		3211A413231CA60900DB0225 /* RUNABannerViewMeasurable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewMeasurable.m; sourceTree = "<group>"; };
 		3211A417231CA7F800DB0225 /* RUNABannerViewInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewInner.h; sourceTree = "<group>"; };
+		323DA56825DF8209002ED988 /* RUNABannerGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerGroup.h; sourceTree = "<group>"; };
+		323DA56925DF8209002ED988 /* RUNABannerGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerGroup.m; sourceTree = "<group>"; };
 		32564D9A2227865100DB4DBF /* RUNABannerAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerAdapter.h; sourceTree = "<group>"; };
 		32564D9B2227865100DB4DBF /* RUNABannerAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerAdapter.m; sourceTree = "<group>"; };
 		325FF74521F0577900A899CF /* RUNABanner.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = RUNABanner.modulemap; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 				32EFC6BB25AE8281006F85C8 /* RUNAAdSession.h */,
 				32EFC6C425AE82AA006F85C8 /* RUNAAdSessionInner.h */,
 				32EFC6BC25AE8281006F85C8 /* RUNAAdSession.m */,
+				323DA56825DF8209002ED988 /* RUNABannerGroup.h */,
+				323DA56925DF8209002ED988 /* RUNABannerGroup.m */,
 			);
 			path = Banner;
 			sourceTree = "<group>";
@@ -231,6 +237,7 @@
 				329753AB230A7D4C002A53CC /* RUNAMeasurement.h in Headers */,
 				32A693422237BBA800812DF9 /* RUNANativeAdAdapter.h in Headers */,
 				32EFC6C825AE8356006F85C8 /* RUNAAdSessionInner.h in Headers */,
+				323DA56A25DF8209002ED988 /* RUNABannerGroup.h in Headers */,
 				32EFC6BD25AE8281006F85C8 /* RUNAAdSession.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +392,7 @@
 				32EFC6BE25AE8281006F85C8 /* RUNAAdSession.m in Sources */,
 				32ED78BA236693AB007833DF /* RUNABannerViewExtension.m in Sources */,
 				3211A414231CA60900DB0225 /* RUNABannerViewMeasurable.m in Sources */,
+				323DA56B25DF8209002ED988 /* RUNABannerGroup.m in Sources */,
 				32564D9D2227865100DB4DBF /* RUNABannerAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

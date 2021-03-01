@@ -32,12 +32,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) double longitude;
 @end
 
+@interface RUNABannerImp : NSObject
+@property(nonatomic) NSString* adspotId;
+@property(nonatomic) NSDictionary* json;
+@property(nonatomic) NSDictionary* banner;
+@end
+
 @interface RUNABannerAdapter : RUNABidAdapter
 
-@property(nonatomic, copy) NSString* adspotId;
-@property(nonatomic) NSDictionary* json;
+@property(nonatomic) NSArray<RUNABannerImp*>* impList;
 @property(nonatomic) NSDictionary* appContent;
-@property(nonatomic) NSDictionary* banner;
 @property(nonatomic) NSDictionary* userExt;
 @property(nonatomic) RUNAGeo* geo;
 @property(nonatomic) NSArray* blockAdList;

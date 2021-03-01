@@ -32,16 +32,15 @@
 
 -(NSArray *)getImp {
     NSMutableArray* impList = [NSMutableArray array];
-    for (NSString* adspotId in self.adspotIdList) {
-        if (adspotId) {
-            [impList addObject:@{
-                                 @"banner" : self.banner ?: NSNull.null,
-                                 @"ext" : @{
-                                         @"adspot_id" : adspotId,
-                                         @"json" : self.json ?: NSNull.null,
-                                         }
-                                 }];
-        }
+    for (RUNABannerImp* imp in self.impList) {
+        [impList addObject:@{
+            @"banner" : imp.banner ?: NSNull.null,
+            @"ext" : @{
+                    @"adspot_id" : imp.adspotId ?: NSNull.null,
+                    @"json" : imp.json ?: NSNull.null,
+            }
+        }];
+
     }
     return impList;
 }
@@ -62,13 +61,6 @@
         };
     }
     return @{};
-}
-
--(NSArray<NSString *> *)adspotIdList {
-    if (self.adspotId) {
-        return @[self.adspotId];
-    }
-    return nil;
 }
 
 - (NSDictionary *)getGeo {
@@ -96,5 +88,9 @@
             self.latitude,
             self.longitude];
 }
+
+@end
+
+@implementation RUNABannerImp
 
 @end
