@@ -22,7 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		3211A414231CA60900DB0225 /* RUNABannerViewMeasurable.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211A413231CA60900DB0225 /* RUNABannerViewMeasurable.m */; };
-		32269B9825EF13AC002A623B /* RUNABannerGroupExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 32269B9625EF13AC002A623B /* RUNABannerGroupExtension.h */; };
+		32269B9825EF13AC002A623B /* RUNABannerGroupExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 32269B9625EF13AC002A623B /* RUNABannerGroupExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32269B9925EF13AC002A623B /* RUNABannerGroupExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 32269B9725EF13AC002A623B /* RUNABannerGroupExtension.m */; };
 		323DA56A25DF8209002ED988 /* RUNABannerGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 323DA56825DF8209002ED988 /* RUNABannerGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		323DA56B25DF8209002ED988 /* RUNABannerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 323DA56925DF8209002ED988 /* RUNABannerGroup.m */; };
