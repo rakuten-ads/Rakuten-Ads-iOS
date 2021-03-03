@@ -35,8 +35,8 @@ NSString* BASE_URL_BLANK = @"about:blank";
     self = [super initWithFrame:frame];
     if (self) {
         [self setInitState];
-        self.jsonProperties = [NSMutableDictionary dictionary];
         self->_imp = [RUNABannerImp new];
+        self.imp.json = [NSMutableDictionary dictionary];
         if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
             && !self.openMeasurementDisabled) {
             self.imp.banner = @{ @"api": @[@(7)] };
@@ -127,12 +127,10 @@ NSString* BASE_URL_BLANK = @"about:blank";
 
 -(void)setAdSpotId:(NSString *)adSpotId {
     self.imp.adspotId = adSpotId;
-    self->_adSpotId = [adSpotId copy];
 }
 
--(void)setJsonProperties:(NSMutableDictionary *)jsonProperties {
-    self.imp.json = jsonProperties;
-    self->_jsonProperties = [jsonProperties copy];
+- (NSString *)adSpotId {
+    return self.imp.adspotId;
 }
 
 -(void)setSize:(RUNABannerViewSize)size {
@@ -154,11 +152,11 @@ NSString* BASE_URL_BLANK = @"about:blank";
 }
 
 -(void)setProperties:(NSDictionary *)properties {
-    self.jsonProperties = [NSMutableDictionary dictionaryWithDictionary:properties];
+    self.imp.json = [NSMutableDictionary dictionaryWithDictionary:properties];
 }
 
 -(NSDictionary *)properties {
-    return self.jsonProperties;
+    return self.imp.json;
 }
 
 -(void) sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception {

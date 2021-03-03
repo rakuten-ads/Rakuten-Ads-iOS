@@ -56,7 +56,6 @@ typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABann
 /*
  external options
  */
-@property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
 @property (nonatomic, nullable) NSDictionary* appContent;
 @property (nonatomic, nullable) NSDictionary* userExt; /* include rzCookie */
 @property (nonatomic) BOOL openMeasurementDisabled;

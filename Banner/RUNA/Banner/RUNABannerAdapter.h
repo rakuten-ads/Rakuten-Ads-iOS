@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNABannerImp : NSObject
 @property(nonatomic) NSString* adspotId;
-@property(nonatomic) NSDictionary* json;
+@property(nonatomic) NSMutableDictionary* json;
 @property(nonatomic) NSDictionary* banner;
 @end
 
