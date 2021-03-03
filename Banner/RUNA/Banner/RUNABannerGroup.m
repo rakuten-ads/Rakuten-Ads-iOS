@@ -6,7 +6,7 @@
 //  Copyright © 2021 Rakuten MPD. All rights reserved.
 //
 
-#import "RUNABannerGroup.h"
+#import "RUNABannerGroupInner.h"
 #import "RUNABannerViewInner.h"
 
 typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerView* __nullable view, struct RUNABannerViewEvent event);
@@ -59,9 +59,11 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
                 }
 
                 [impList addObject:bannerView.imp];
-                bannerView.eventHandler = ^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
-                    self.eventHandler(self, view, event);
-                };
+                if (handler) {
+                    bannerView.eventHandler = ^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
+                        self.eventHandler(self, view, event);
+                    };
+                }
             }
 
             static dispatch_once_t onceToken;
@@ -72,6 +74,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 
             RUNABannerAdapter* bannerAdapter = [RUNABannerAdapter new];
             bannerAdapter.impList = impList;
+            bannerAdapter.userExt = self.userExt;
             bannerAdapter.responseConsumer = self;
 
             RUNAOpenRTBRequest* request = [RUNAOpenRTBRequest new];

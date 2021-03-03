@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "RUNABannerView.h"
 
+#ifndef RUNABannerGroup_h
+#define RUNABannerGroup_h
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNABannerGroup : NSObject
@@ -21,3 +24,5 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

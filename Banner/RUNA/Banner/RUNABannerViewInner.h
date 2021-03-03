@@ -58,7 +58,7 @@ typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABann
  */
 @property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
 @property (nonatomic, nullable) NSDictionary* appContent;
-@property (nonatomic, nullable) NSDictionary* userExt;
+@property (nonatomic, nullable) NSDictionary* userExt; /* include rzCookie */
 @property (nonatomic) BOOL openMeasurementDisabled;
 @property (nonatomic) BOOL iframeWebContentEnabled;
 @property (nonatomic, nullable) RUNAGeo* geo;
