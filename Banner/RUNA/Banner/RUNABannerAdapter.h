@@ -13,6 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface RUNABanner : NSObject<RUNAAdInfo>
 
+@property(nonatomic, readonly) NSString* impId;
 @property(nonatomic, readonly) NSString* html;
 @property(nonatomic, readonly) float width;
 @property(nonatomic, readonly) float height;
@@ -33,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface RUNABannerImp : NSObject
+
+@property(nonatomic) NSString* id;
 @property(nonatomic) NSString* adspotId;
 @property(nonatomic) NSMutableDictionary* json;
 @property(nonatomic) NSDictionary* banner;

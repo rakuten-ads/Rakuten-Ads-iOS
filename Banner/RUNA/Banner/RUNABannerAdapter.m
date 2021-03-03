@@ -13,6 +13,7 @@
 
 -(void)parse:(NSDictionary *)bidData {
     RUNAJSONObject* jsonBid = [RUNAJSONObject jsonWithRawDictionary:bidData];
+    self->_impId = [jsonBid getString:@"impid"];
     self->_html = [jsonBid getString:@"adm"];
     self->_width = [[jsonBid getNumber:@"w"] floatValue];
     self->_height = [[jsonBid getNumber:@"h"] floatValue];
@@ -34,6 +35,7 @@
     NSMutableArray* impList = [NSMutableArray array];
     for (RUNABannerImp* imp in self.impList) {
         [impList addObject:@{
+            @"id" : imp.id ?: NSNull.null,
             @"banner" : imp.banner ?: NSNull.null,
             @"ext" : @{
                     @"adspot_id" : imp.adspotId ?: NSNull.null,

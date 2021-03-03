@@ -13,6 +13,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 
 @interface RUNABannerGroup() <RUNABidResponseConsumerDelegate>
 
+@property (nonatomic) NSDictionary<NSString*, RUNABannerView*>* bannerDict;
 @property (nonatomic, nullable, copy) RUNABannerGroupEventHandler eventHandler;
 @property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
 @property (atomic, readonly) RUNABannerViewState state;
@@ -46,12 +47,31 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
     [self loadWithEventHandler:nil];
 }
 
+-(void)setBanners:(NSArray<RUNABannerView *> *)banners {
+    NSMutableDictionary* bannerDict = [NSMutableDictionary dictionary];
+    for (RUNABannerView* bannerView in banners) {
+        bannerView.imp.id = NSUUID.UUID.UUIDString;
+        [bannerDict setObject:bannerView forKey:bannerView.imp.id];
+    }
+    RUNADebug("set banners: %@", bannerDict);
+    self->_bannerDict = bannerDict;
+}
+
+-(NSArray<RUNABannerView *> *)banners {
+    return _bannerDict.allValues;
+}
+
 -(void)loadWithEventHandler:(void (^)(RUNABannerGroup * _Nonnull, RUNABannerView * _Nullable, struct RUNABannerViewEvent))handler {
+    if (self.bannerDict.count == 0) {
+        NSLog(@"[RUNA] banner group must not be empty!");
+        return;
+    }
+
     self.eventHandler = handler;
     dispatch_async(RUNADefines.sharedInstance.sharedQueue, ^{
         @try {
             NSMutableArray<RUNABannerImp*>* impList = [NSMutableArray array];
-            for (RUNABannerView* bannerView in self.banners) {
+            for (RUNABannerView* bannerView in self.bannerDict.allValues) {
                 if ([RUNAValid isEmptyString:bannerView.adSpotId]) {
                     NSLog(@"[RUNA] require adSpotId!");
                     self.error = RUNABannerViewErrorFatal;
@@ -106,9 +126,14 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
     [self triggerFailure];
 }
 
-- (void)onBidResponseSuccess:(nonnull NSArray<id<RUNAAdInfo>> *)adInfoList withSessionId:(nonnull NSString *)sessionId {
-    for (int i = 0; i < MIN(adInfoList.count, self.banners.count); i++) {
-        [self.banners[i] onBidResponseSuccess:@[adInfoList[i]] withSessionId:sessionId];
+- (void)onBidResponseSuccess:(nonnull NSArray<RUNABanner*> *)adInfoList withSessionId:(nonnull NSString *)sessionId {
+    for (RUNABanner* bannerInfo in adInfoList) {
+        RUNABannerView* bannerView = self.bannerDict[bannerInfo.impId];
+        if (bannerView) {
+            [bannerView onBidResponseSuccess:@[bannerInfo] withSessionId:sessionId];
+        } else {
+            RUNADebug("unmatch impid %@", bannerInfo.impId);
+        }
     }
 }
 
