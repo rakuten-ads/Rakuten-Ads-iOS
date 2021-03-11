@@ -80,6 +80,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
 }
 
 -(void) loadWithEventHandler:(RUNABannerViewEventHandler)handler {
+    RUNADebug("BannerView %p load: %@", self, self);
     if (self.state == RUNA_ADVIEW_STATE_LOADING
         || self.state == RUNA_ADVIEW_STATE_LOADED
         || self.state == RUNA_ADVIEW_STATE_RENDERING
@@ -191,9 +192,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
 -(void)removeFromSuperview {
     RUNADebug("banner removeFromSuperview");
     [super removeFromSuperview];
-    [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
-        [measurer finishMeasurement];
-    }];
 }
 
 -(void) applyContainerSize {
@@ -336,22 +334,23 @@ NSString* BASE_URL_BLANK = @"about:blank";
     
     // Web View
     self->_webView = [RUNAAdWebView new];
+    __weak typeof(self) weakSelf = self;
     [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
-        [self triggerSuccess];
+        [weakSelf triggerSuccess];
     }]];
     [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeCollapse handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
-        [self triggerFailure];
+        [weakSelf triggerFailure];
     }]];
     [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeRegister handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
-        self.state = RUNA_ADVIEW_STATE_MESSAGE_LISTENING;
+        weakSelf.state = RUNA_ADVIEW_STATE_MESSAGE_LISTENING;
     }]];
     [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeUnfilled handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
-        self.error = RUNABannerViewErrorUnfilled;
-        [self triggerFailure];
+        weakSelf.error = RUNABannerViewErrorUnfilled;
+        [weakSelf triggerFailure];
     }]];
 
     // active a2a if a2a framework imported
@@ -618,7 +617,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
 
 #if DEBUG
 -(void)dealloc {
-    RUNADebug("dealloc RUNABannerView %@", self);
+    RUNADebug("dealloc RUNABannerView %p: %@", self, self);
 }
 #endif
 @end
