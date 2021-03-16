@@ -10,6 +10,7 @@
 #import "RUNABannerViewInner.h"
 
 NSTimeInterval kMeasureIntervalInView = 1;
+int kMeasureMaxCount = 600;
 
 @interface RUNADefaultMeasureOption : NSOperation
 
@@ -20,6 +21,7 @@ NSTimeInterval kMeasureIntervalInView = 1;
 @interface RUNADefaultMeasurer()
 
 @property(nonatomic, weak, nullable) id<RUNADefaultMeasurement> measurableTarget;
+@property(nonatomic) int countDown;
 
 @property(atomic) BOOL shouldStopMeasureImp;
 @property(atomic) BOOL shouldStopMeasureInview;
@@ -29,6 +31,15 @@ NSTimeInterval kMeasureIntervalInView = 1;
 # pragma mark - RUNADefaultMeasurer
 
 @implementation RUNADefaultMeasurer
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.countDown = kMeasureMaxCount;
+    }
+    return self;
+}
 
 +(NSOperationQueue*) sharedQueue {
     static dispatch_once_t onceToken;
@@ -40,20 +51,20 @@ NSTimeInterval kMeasureIntervalInView = 1;
 }
 
 -(void)startMeasurement {
-    RUNADebug("measurement[default] start");
+    RUNADebug("measurement[default] start on target %p", self.measurableTarget);
     self.shouldStopMeasureImp = self.shouldStopMeasureImp || [self.measurableTarget measureImp];
-    RUNADebug("measurement[default] imp : %@", self.shouldStopMeasureImp ? @"stopped" : @"continue...");
+    RUNADebug("measurement[default] target %p imp : %@", self.measurableTarget, self.shouldStopMeasureImp ? @"stopped" : @"continue...");
 
     if (!self.shouldStopMeasureInview) {
         RUNADefaultMeasureOption* operation = [RUNADefaultMeasureOption new];
         operation.measurer = self;
-        RUNADebug("measurement[default] inview %p enqueue", operation);
+        RUNADebug("measurement[default] target %p inview %p enqueue", self.measurableTarget, operation);
         [[RUNADefaultMeasurer sharedQueue] addOperation:operation];
     }
 }
 
 -(void)finishMeasurement {
-    RUNADebug("measurement[default] finish");
+    RUNADebug("measurement[default] finish on target %p", self.measurableTarget);
     self.shouldStopMeasureInview = YES;
     self.shouldStopMeasureImp = YES;
 }
@@ -73,15 +84,18 @@ NSTimeInterval kMeasureIntervalInView = 1;
             RUNADefaultMeasurer* measurer = self.measurer;
             if (measurer.measurableTarget) {
                 measurer.shouldStopMeasureInview = measurer.shouldStopMeasureInview || [measurer.measurableTarget measureInview];
-                RUNADebug("measurement[default] inview : %@", measurer.shouldStopMeasureInview ? @"stopped" : @"continue...");
-                if (!measurer.shouldStopMeasureInview) {
+                if (!measurer.shouldStopMeasureInview && measurer.countDown > 0) {
+                    RUNADebug("measurement[default] inview : %@", @"continue...");
                     RUNADefaultMeasureOption* operation = [RUNADefaultMeasureOption new];
+                    measurer.countDown--;
                     operation.measurer = measurer;
                     RUNADebug("measurement[default] inview enqueue %p again", operation);
                     [[RUNADefaultMeasurer sharedQueue] addOperation:operation];
+                } else {
+                    RUNADebug("measurement[default] inview stopped by [should=%@ & countDown=%d]", measurer.shouldStopMeasureInview ? @"YES" : @"NO", measurer.countDown);
                 }
             } else {
-                RUNADebug("measurement[default] target disposed!");
+                RUNADebug("measurement[default] target %p disposed!", measurer.measurableTarget);
             }
         } @catch (NSException *exception) {
             RUNADebug("measurement[default] operation exception: %@", exception);
