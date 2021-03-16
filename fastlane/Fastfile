@@ -142,13 +142,13 @@ platform :ios do
       skip_import_validation: true, # workaround for xcode 12 EXCLUDE_ARCHS issue
     )
 
-    set_github_release(
-      repository_name: "rakuten-ads/Rakuten-Ads-iOS",
-      api_token: ENV["FASTLANE_GITHUB_TOKEN"],
-      name: version,
-      tag_name: version,
-      description: "release for #{version}",
-    )
+    # set_github_release(
+    #   repository_name: "rakuten-ads/Rakuten-Ads-iOS",
+    #   api_token: ENV["FASTLANE_GITHUB_TOKEN"],
+    #   name: version,
+    #   tag_name: version,
+    #   description: "release for #{version}",
+    # )
   end
 
   lane :release do |param|
