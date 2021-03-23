@@ -13,6 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface RUNABanner : NSObject<RUNAAdInfo>
 
+@property(nonatomic, readonly) NSString* impId;
 @property(nonatomic, readonly) NSString* html;
 @property(nonatomic, readonly) float width;
 @property(nonatomic, readonly) float height;
@@ -32,12 +33,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) double longitude;
 @end
 
+@interface RUNABannerImp : NSObject
+
+@property(nonatomic) NSString* id;
+@property(nonatomic) NSString* adspotId;
+@property(nonatomic) NSMutableDictionary* json;
+@property(nonatomic) NSDictionary* banner;
+@end
+
 @interface RUNABannerAdapter : RUNABidAdapter
 
-@property(nonatomic, copy) NSString* adspotId;
-@property(nonatomic) NSDictionary* json;
+@property(nonatomic) NSArray<RUNABannerImp*>* impList;
 @property(nonatomic) NSDictionary* appContent;
-@property(nonatomic) NSDictionary* banner;
 @property(nonatomic) NSDictionary* userExt;
 @property(nonatomic) RUNAGeo* geo;
 @property(nonatomic) NSArray* blockAdList;

@@ -28,7 +28,7 @@
 
 -(void)setPropertyGenre:(RUNABannerViewGenreProperty *)matchingGenre {
     if (matchingGenre) {
-        self.jsonProperties[@"genre"] = @{
+        self.imp.json[@"genre"] = @{
             @"master_id" : @(matchingGenre.masterId),
             @"code" : matchingGenre.code ?: NSNull.null,
             @"match" : matchingGenre.match ?: NSNull.null,
@@ -38,7 +38,7 @@
 
 -(void)setCustomTargeting:(NSDictionary *)target {
     if (target) {
-        self.jsonProperties[@"targeting"] = target;
+        self.imp.json[@"targeting"] = target;
     }
 }
 

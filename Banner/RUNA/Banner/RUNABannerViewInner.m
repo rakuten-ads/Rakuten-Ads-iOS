@@ -8,17 +8,6 @@
 
 #import "RUNABannerViewInner.h"
 
-typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
-    RUNA_ADVIEW_STATE_INIT,
-    RUNA_ADVIEW_STATE_LOADING,
-    RUNA_ADVIEW_STATE_LOADED,
-    RUNA_ADVIEW_STATE_FAILED,
-    RUNA_ADVIEW_STATE_RENDERING,
-    RUNA_ADVIEW_STATE_MESSAGE_LISTENING,
-    RUNA_ADVIEW_STATE_SHOWED,
-    RUNA_ADVIEW_STATE_CLICKED,
-};
-
 #if RUNA_PRODUCTION
     NSString* BASE_URL_RUNA_JS = @"https://s-dlv.rmp.rakuten.co.jp";
 #elif RUNA_STAGING
@@ -29,7 +18,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
 
 NSString* BASE_URL_BLANK = @"about:blank";
 
-@interface RUNABannerView() <WKNavigationDelegate, RUNABidResponseConsumerDelegate>
+@interface RUNABannerView() <WKNavigationDelegate>
 
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
@@ -46,7 +35,12 @@ NSString* BASE_URL_BLANK = @"about:blank";
     self = [super initWithFrame:frame];
     if (self) {
         [self setInitState];
-        self.jsonProperties = [NSMutableDictionary dictionary];
+        self->_imp = [RUNABannerImp new];
+        self.imp.json = [NSMutableDictionary dictionary];
+        if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
+            && !self.openMeasurementDisabled) {
+            self.imp.banner = @{ @"api": @[@(7)] };
+        }
     }
     return self;
 }
@@ -107,12 +101,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
             }
 
             RUNABannerAdapter* bannerAdapter = [RUNABannerAdapter new];
-            bannerAdapter.adspotId = self.adSpotId;
-            if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
-                && !self.openMeasurementDisabled) {
-                bannerAdapter.banner = @{ @"api": @[@(7)] };
-            }
-            bannerAdapter.json = self.jsonProperties;
+            bannerAdapter.impList = @[self.imp];
             bannerAdapter.appContent = self.appContent;
             bannerAdapter.userExt = self.userExt;
             bannerAdapter.geo = self.geo;
@@ -136,6 +125,14 @@ NSString* BASE_URL_BLANK = @"about:blank";
     });
 }
 
+-(void)setAdSpotId:(NSString *)adSpotId {
+    self.imp.adspotId = adSpotId;
+}
+
+- (NSString *)adSpotId {
+    return self.imp.adspotId;
+}
+
 -(void)setSize:(RUNABannerViewSize)size {
     self->_size = size;
 
@@ -155,11 +152,11 @@ NSString* BASE_URL_BLANK = @"about:blank";
 }
 
 -(void)setProperties:(NSDictionary *)properties {
-    self.jsonProperties = [NSMutableDictionary dictionaryWithDictionary:properties];
+    self.imp.json = [NSMutableDictionary dictionaryWithDictionary:properties];
 }
 
 -(NSDictionary *)properties {
-    return self.jsonProperties;
+    return self.imp.json;
 }
 
 -(void) sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception {
