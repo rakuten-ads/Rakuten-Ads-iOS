@@ -25,11 +25,12 @@
 
 -(BOOL)measureInview {
     if (!self.banner.inviewURL) {
-        RUNADebug("measure stopped by empty measure inview URL");
+        RUNADebug("measurement[default] measure stopped by empty measure inview URL");
         return YES;
     }
-    RUNADebug("measure inview rate: %f", self.visibility);
+    RUNADebug("measurement[default] measure inview rate: %f", self.visibility);
     if (self.visibility > 0.5) {
+        RUNADebug("measurement[default] send inview %p", self);
         RUNAURLStringRequest* request = [RUNAURLStringRequest new];
         request.httpTaskDelegate = self.banner.inviewURL;
         [request resume];
@@ -40,11 +41,11 @@
 
 -(BOOL)measureImp {
     if (!self.banner.measuredURL) {
-        RUNADebug("measure stopped by empty measure imp URL");
+        RUNADebug("measurement[default] measure stopped by empty measure imp URL");
         return YES;
     }
 
-    RUNADebug("measure imp");
+    RUNADebug("measurement[default] measure imp (%p)", self);
     RUNAURLStringRequest* request = [RUNAURLStringRequest new];
     request.httpTaskDelegate = self.banner.measuredURL;
     [request resume];
