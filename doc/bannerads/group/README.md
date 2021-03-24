@@ -10,7 +10,7 @@ RUNA SDK provides `RUNABannerGroup` to retrive a bunch of distinct banners once 
 
 ## How to use
 
-- Initalize a list of `RUNABannerView` instances by setting `adspotId` and other perspectives individually.
+- Initalize a list of `RUNABannerView` instances by setting `adspotId` and other properties individually.
 - Assign the list to a `RUNABannerGroup` instance.
 - Take `RUNABannerGroup` as a proxy for all `RUNABannerView` of the list, use the method `load` to request the multiple ad contents instead of the same method of each `RUNABannerView`.
 
