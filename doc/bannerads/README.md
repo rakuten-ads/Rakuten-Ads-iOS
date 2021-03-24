@@ -85,6 +85,11 @@ Add `pod 'OMAdapter'` into the `Podfile` will enable open measurement feature au
 
 See [Extension Module](./extension/README.md)
 
+### 1.8 Distinct banners in group
+
+Request distinct ad in a single request.
+See [Banner Group](./group/README.md)
+
 ## 2. Samples
 
 ### 2.1 Normal case
