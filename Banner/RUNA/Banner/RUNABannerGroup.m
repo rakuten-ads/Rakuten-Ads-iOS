@@ -63,20 +63,28 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 }
 
 -(void)loadWithEventHandler:(void (^)(RUNABannerGroup * _Nonnull, RUNABannerView * _Nullable, struct RUNABannerViewEvent))handler {
+    RUNADebug("banner group %p load: %@", self, self);
+    if (self.state == RUNA_ADVIEW_STATE_LOADING
+        || self.state == RUNA_ADVIEW_STATE_LOADED) {
+        RUNALog("banner group %p has started loading.", self);
+        return;
+    }
+
     if (self.bannerDict.count == 0) {
         NSLog(@"[RUNA] banner group must not be empty!");
         return;
     }
 
     self.eventHandler = handler;
+    self.state = RUNA_ADVIEW_STATE_LOADING;
     dispatch_async(RUNADefines.sharedInstance.sharedQueue, ^{
         @try {
             NSMutableArray<RUNABannerImp*>* impList = [NSMutableArray array];
             for (RUNABannerView* bannerView in self.bannerDict.allValues) {
                 if ([RUNAValid isEmptyString:bannerView.adSpotId]) {
-                    NSLog(@"[RUNA] require adSpotId!");
+                    NSLog(@"[RUNA] each banner requires adSpotId!");
                     self.error = RUNABannerViewErrorFatal;
-                    @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
+                    @throw [NSException exceptionWithName:@"group init failed" reason:@"adSpotId is empty" userInfo:nil];
                 }
 
                 [impList addObject:bannerView.imp];
@@ -135,6 +143,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 }
 
 - (void)onBidResponseSuccess:(nonnull NSArray<RUNABanner*> *)adInfoList withSessionId:(nonnull NSString *)sessionId {
+    self.state = RUNA_ADVIEW_STATE_LOADED;
     for (RUNABanner* bannerInfo in adInfoList) {
         RUNABannerView* bannerView = self.bannerDict[bannerInfo.impId];
         if (bannerView) {
