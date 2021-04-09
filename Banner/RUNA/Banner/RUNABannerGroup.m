@@ -37,7 +37,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 
 -(void)setState:(RUNABannerViewState)state {
     self->_state = state;
-    RUNADebug("set state %@", self.descriptionState);
+    RUNADebug("group set state %@", self.descriptionState);
 }
 
 -(RUNABannerViewState)state {
@@ -54,7 +54,6 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
         bannerView.imp.id = NSUUID.UUID.UUIDString;
         [bannerDict setObject:bannerView forKey:bannerView.imp.id];
     }
-    RUNADebug("set banners: %@", bannerDict);
     self->_bannerDict = bannerDict;
 }
 
@@ -119,12 +118,12 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
             [request resume];
 
         } @catch(NSException* exception) {
-            RUNALog("load exception: %@", exception);
+            RUNALog("group load exception: %@", exception);
             if (self.error == RUNABannerViewErrorNone) {
                 self.error = RUNABannerViewErrorInternal;
             }
 
-            [self sendRemoteLogWithMessage:@"banner load exception" andException:exception];
+            [self sendRemoteLogWithMessage:@"group banner load exception" andException:exception];
             [self triggerFailure];
         }
     });
@@ -133,7 +132,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 
 
 - (void)onBidResponseFailed:(nonnull NSHTTPURLResponse *)response error:(nullable NSError *)error {
-    RUNALog("Group load failed %@", error);
+    RUNALog("group load failed %@", error);
     if (response.statusCode == kRUNABidResponseUnfilled) {
         self.error = RUNABannerViewErrorUnfilled;
     } else if (error) {
@@ -191,6 +190,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
         [bannerDetails addObject:obj.descriptionDetail];
     }];
     error.ext = @{
+        @"group" : self.descriptionDetail,
         @"banners" : bannerDetails
     };
 
@@ -211,6 +211,18 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 
 -(NSString*) versionString {
     return [[[NSBundle bundleForClass:self.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+}
+
+-(NSDictionary *) descriptionDetail {
+    return @{
+        @"banners" : self.banners ?: NSNull.null,
+        @"state" : self.descriptionState,
+        @"user_extension" : self.userExt ?: NSNull.null,
+    };
+}
+
+-(NSString *)description {
+    return [NSString stringWithFormat: @"%@", self.descriptionDetail];
 }
 
 @end
