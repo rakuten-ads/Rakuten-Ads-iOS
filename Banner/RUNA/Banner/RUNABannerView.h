@@ -21,6 +21,8 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewEventType) {
     RUNABannerViewEventTypeSucceeded,
     RUNABannerViewEventTypeFailed,
     RUNABannerViewEventTypeClicked,
+    RUNABannerViewEventTypeGroupFailed,
+    RUNABannerViewEventTypeGroupFinished,
 };
 
 typedef NS_ENUM(NSUInteger, RUNABannerViewSize) {

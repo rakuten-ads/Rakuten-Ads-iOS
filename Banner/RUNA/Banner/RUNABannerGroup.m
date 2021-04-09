@@ -18,6 +18,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 @property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
 @property (atomic, readonly) RUNABannerViewState state;
 @property (nonatomic) RUNABannerViewError error;
+@property (nonatomic) int loadedBannerCounter;
 
 @end
 
@@ -82,6 +83,13 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
                 if (handler) {
                     bannerView.eventHandler = ^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
                         self.eventHandler(self, view, event);
+                        self.loadedBannerCounter++;
+                        RUNADebug("banner (%d/%lu) loaded", self.loadedBannerCounter, (unsigned long)self.banners.count);
+                        if (self.loadedBannerCounter == self.banners.count) {
+                            RUNADebug("banner group finished");
+                            struct RUNABannerViewEvent groupFinishedEvent = { RUNABannerViewEventTypeGroupFinished, RUNABannerViewErrorNone };
+                            self.eventHandler(self, nil, groupFinishedEvent);
+                        }
                     };
                 }
             }
@@ -153,7 +161,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
         RUNADebug("triggerFailure");
         @try {
             if (self.eventHandler) {
-                struct RUNABannerViewEvent event = { RUNABannerViewEventTypeFailed, self.error };
+                struct RUNABannerViewEvent event = { RUNABannerViewEventTypeGroupFailed, self.error };
                 self.eventHandler(self, nil, event);
             }
         } @catch(NSException* exception) {
