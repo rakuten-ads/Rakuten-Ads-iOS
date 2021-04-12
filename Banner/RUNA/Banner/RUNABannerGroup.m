@@ -18,6 +18,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 @property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
 @property (atomic, readonly) RUNABannerViewState state;
 @property (nonatomic) RUNABannerViewError error;
+@property (nonatomic) int loadedBannerCounter;
 
 @end
 
@@ -36,7 +37,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 
 -(void)setState:(RUNABannerViewState)state {
     self->_state = state;
-    RUNADebug("set state %@", self.descriptionState);
+    RUNADebug("group set state %@", self.descriptionState);
 }
 
 -(RUNABannerViewState)state {
@@ -53,7 +54,6 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
         bannerView.imp.id = NSUUID.UUID.UUIDString;
         [bannerDict setObject:bannerView forKey:bannerView.imp.id];
     }
-    RUNADebug("set banners: %@", bannerDict);
     self->_bannerDict = bannerDict;
 }
 
@@ -62,26 +62,41 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 }
 
 -(void)loadWithEventHandler:(void (^)(RUNABannerGroup * _Nonnull, RUNABannerView * _Nullable, struct RUNABannerViewEvent))handler {
+    RUNADebug("banner group %p load: %@", self, self);
+    if (self.state == RUNA_ADVIEW_STATE_LOADING
+        || self.state == RUNA_ADVIEW_STATE_LOADED) {
+        RUNALog("banner group %p has started loading.", self);
+        return;
+    }
+
     if (self.bannerDict.count == 0) {
         NSLog(@"[RUNA] banner group must not be empty!");
         return;
     }
 
     self.eventHandler = handler;
+    self.state = RUNA_ADVIEW_STATE_LOADING;
     dispatch_async(RUNADefines.sharedInstance.sharedQueue, ^{
         @try {
             NSMutableArray<RUNABannerImp*>* impList = [NSMutableArray array];
             for (RUNABannerView* bannerView in self.bannerDict.allValues) {
                 if ([RUNAValid isEmptyString:bannerView.adSpotId]) {
-                    NSLog(@"[RUNA] require adSpotId!");
+                    NSLog(@"[RUNA] each banner requires adSpotId!");
                     self.error = RUNABannerViewErrorFatal;
-                    @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
+                    @throw [NSException exceptionWithName:@"group init failed" reason:@"adSpotId is empty" userInfo:nil];
                 }
 
                 [impList addObject:bannerView.imp];
                 if (handler) {
                     bannerView.eventHandler = ^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
                         self.eventHandler(self, view, event);
+                        self.loadedBannerCounter++;
+                        RUNADebug("banner (%d/%lu) loaded", self.loadedBannerCounter, (unsigned long)self.banners.count);
+                        if (self.loadedBannerCounter == self.banners.count) {
+                            RUNADebug("banner group finished");
+                            struct RUNABannerViewEvent groupFinishedEvent = { RUNABannerViewEventTypeGroupFinished, RUNABannerViewErrorNone };
+                            self.eventHandler(self, nil, groupFinishedEvent);
+                        }
                     };
                 }
             }
@@ -103,12 +118,12 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
             [request resume];
 
         } @catch(NSException* exception) {
-            RUNALog("load exception: %@", exception);
+            RUNALog("group load exception: %@", exception);
             if (self.error == RUNABannerViewErrorNone) {
                 self.error = RUNABannerViewErrorInternal;
             }
 
-            [self sendRemoteLogWithMessage:@"banner load exception" andException:exception];
+            [self sendRemoteLogWithMessage:@"group banner load exception" andException:exception];
             [self triggerFailure];
         }
     });
@@ -117,7 +132,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 
 
 - (void)onBidResponseFailed:(nonnull NSHTTPURLResponse *)response error:(nullable NSError *)error {
-    RUNALog("Group load failed %@", error);
+    RUNALog("group load failed %@", error);
     if (response.statusCode == kRUNABidResponseUnfilled) {
         self.error = RUNABannerViewErrorUnfilled;
     } else if (error) {
@@ -127,6 +142,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 }
 
 - (void)onBidResponseSuccess:(nonnull NSArray<RUNABanner*> *)adInfoList withSessionId:(nonnull NSString *)sessionId {
+    self.state = RUNA_ADVIEW_STATE_LOADED;
     for (RUNABanner* bannerInfo in adInfoList) {
         RUNABannerView* bannerView = self.bannerDict[bannerInfo.impId];
         if (bannerView) {
@@ -153,7 +169,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
         RUNADebug("triggerFailure");
         @try {
             if (self.eventHandler) {
-                struct RUNABannerViewEvent event = { RUNABannerViewEventTypeFailed, self.error };
+                struct RUNABannerViewEvent event = { RUNABannerViewEventTypeGroupFailed, self.error };
                 self.eventHandler(self, nil, event);
             }
         } @catch(NSException* exception) {
@@ -174,6 +190,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
         [bannerDetails addObject:obj.descriptionDetail];
     }];
     error.ext = @{
+        @"group" : self.descriptionDetail,
         @"banners" : bannerDetails
     };
 
@@ -194,6 +211,18 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 
 -(NSString*) versionString {
     return [[[NSBundle bundleForClass:self.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+}
+
+-(NSDictionary *) descriptionDetail {
+    return @{
+        @"banners" : self.banners ?: NSNull.null,
+        @"state" : self.descriptionState,
+        @"user_extension" : self.userExt ?: NSNull.null,
+    };
+}
+
+-(NSString *)description {
+    return [NSString stringWithFormat: @"%@", self.descriptionDetail];
 }
 
 @end
