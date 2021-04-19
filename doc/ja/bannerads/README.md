@@ -86,6 +86,11 @@ Open Measurementを自動に有効するために`Podfile`に `pod 'OMAdapter'`�
 
 参照先: [拡張モジュール](./extension/README.md)
 
+### 1.8 バナーグループ設定
+
+一回複数異なる広告内容をリクエストします。
+参照先: [バナーグループ](./group/README.md)
+
 ## 2. 実装サンプル
 
 ### 2.1 一般の実装
