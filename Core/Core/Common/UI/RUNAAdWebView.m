@@ -68,6 +68,12 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
                 if (handler) {
                     handler.handle(sdkMessage);
                 }
+                // PoC
+                if ([sdkMessage.type isEqual:@"video_loaded"]) {
+                    [self evaluateJavaScript:@"window.cd.sendViewable(true)" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+                        RUNADebug("sendViewable: %@", result);
+                    }];
+                }
             }
         } @catch (NSException *exception) {
             RUNADebug("exception when waiting post message: %@", exception);
