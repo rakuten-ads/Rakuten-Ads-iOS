@@ -330,8 +330,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
     }
     
     // Web View
-    WKWebViewConfiguration* config = [WKWebViewConfiguration new];
-    config.allowsInlineMediaPlayback = YES;
     self->_webView = [RUNAAdWebView new];
     __weak typeof(self) weakSelf = self;
     [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handle:^(RUNAAdWebViewMessage * _Nonnull message) {
