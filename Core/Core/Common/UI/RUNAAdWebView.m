@@ -70,11 +70,9 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
                 if (handler) {
                     handler.handle(sdkMessage);
                 }
-                // PoC
+                // FIXME: PoC
                 if ([sdkMessage.type isEqual:@"video_loaded"]) {
-                    [self evaluateJavaScript:@"window.cd.sendViewable(true)" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-                        RUNADebug("sendViewable: %@", result);
-                    }];
+                    [self playVideo];
                 }
             }
         } @catch (NSException *exception) {
@@ -85,6 +83,36 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
             }
         }
     }
+}
+
+#pragma mark - Video Control Methods
+
+- (void)playVideo {
+    [self evaluateVideoJavaScript:YES scriptCompletionHandler:^{
+        // TODO: playing flag
+        RUNADebug("playing YES");
+    }];
+}
+
+- (void)stopVideo {
+    [self evaluateVideoJavaScript:NO scriptCompletionHandler:^{
+        // TODO: playing flag
+        RUNADebug("playing NO");
+    }];
+}
+
+- (void)evaluateVideoJavaScript:(BOOL)isVideoPlaying
+        scriptCompletionHandler:(void(^)(void))scriptCompletionHandler;{
+    NSString *sender = isVideoPlaying ? @"true" : @"false";
+    NSString *methodName = [NSString stringWithFormat:@"window.cd.sendViewable(%@)", sender];
+    
+    [self evaluateJavaScript:methodName
+           completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        if (error) {
+            return;
+        }
+        scriptCompletionHandler();
+    }];
 }
 
 @end
