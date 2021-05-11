@@ -379,9 +379,9 @@ NSString* BASE_URL_BLANK = @"about:blank";
     
     self.state = RUNA_ADVIEW_STATE_RENDERING;
     self.webView.translatesAutoresizingMaskIntoConstraints = NO;
-    self->_webViewConstraints = @[[self.webView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:0.25],
+    self->_webViewConstraints = @[[self.webView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
                                   [self.webView.topAnchor constraintEqualToAnchor:self.topAnchor],
-                                  [self.webView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-0.25],
+                                  [self.webView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
                                   [self.webView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor]
                                   ];
     [self addConstraints:self.webViewConstraints];
