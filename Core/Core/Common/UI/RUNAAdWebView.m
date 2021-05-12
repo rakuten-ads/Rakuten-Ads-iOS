@@ -83,22 +83,18 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
 
 #pragma mark - Video Control Methods
 
-- (void)playVideo {
-    [self evaluateVideoJavaScript:YES scriptCompletionHandler:^{
-        // TODO: playing flag
-        RUNADebug("playing YES");
-    }];
+- (void)playVideo:(void(^)(void))completionHandler {
+    [self evaluateVideoJavaScript:YES
+          scriptCompletionHandler:completionHandler];
 }
 
-- (void)stopVideo {
-    [self evaluateVideoJavaScript:NO scriptCompletionHandler:^{
-        // TODO: playing flag
-        RUNADebug("playing NO");
-    }];
+- (void)pauseVideo:(void(^)(void))completionHandler {
+    [self evaluateVideoJavaScript:NO
+          scriptCompletionHandler:completionHandler];
 }
 
 - (void)evaluateVideoJavaScript:(BOOL)isVideoPlaying
-        scriptCompletionHandler:(void(^)(void))scriptCompletionHandler;{
+        scriptCompletionHandler:(void(^)(void))scriptCompletionHandler {
     NSString *sender = isVideoPlaying ? @"true" : @"false";
     NSString *methodName = [NSString stringWithFormat:@"window.cd.sendViewable(%@)", sender];
     

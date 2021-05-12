@@ -30,7 +30,8 @@ NSString* BASE_URL_BLANK = @"about:blank";
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* webViewConstraints;
 @property (atomic, readonly) RUNABannerViewState state;
-@property (atomic, readonly) RUNAMediaType mediaType;
+@property (nonatomic) RUNAVideoState videoState;
+@property (nonatomic) RUNAMediaType mediaType;
 
 @end
 
@@ -73,16 +74,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
 
 -(RUNABannerViewState)state {
     return self->_state;
-}
-
-@synthesize mediaType = _mediaType;
-
-- (void)setMediaType:(RUNAMediaType)mediaType {
-    self->_mediaType = mediaType;
-}
-
-- (RUNAMediaType)mediaType {
-    return self->_mediaType;
 }
 
 #pragma mark - APIs
@@ -378,9 +369,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
     }]];
     [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoLoaded handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
-        // TODO: RUNA_ADVIEW_STATE_VIDEO_PLAYING or STOPPED?
-        //[weakSelf.webView playVideo];
-        // ステータスをVIDEO_LOADEDにすればよさそう
+        weakSelf.videoState = RUNA_VIDEO_VIDEO_LOADED;
     }]];
 
     // active a2a if a2a framework imported
@@ -415,6 +404,25 @@ NSString* BASE_URL_BLANK = @"about:blank";
                                   [self.webView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor]
                                   ];
     [self addConstraints:self.webViewConstraints];
+}
+
+- (void)playVideo {
+    if (self.videoState == RUNA_VIDEO_VIDEO_LOADED ||
+        self.videoState == RUNA_VIDEO_VIDEO_PAUSED) {
+        RUNADebug("play video");
+        [self.webView playVideo:^{
+            self.videoState = RUNA_VIDEO_VIDEO_PLAYING;
+        }];
+    }
+}
+
+- (void)pauseVideo {
+    if (self.videoState == RUNA_VIDEO_VIDEO_PLAYING) {
+        RUNADebug("pause video");
+        [self.webView pauseVideo:^{
+            self.videoState = RUNA_VIDEO_VIDEO_PAUSED;
+        }];
+    }
 }
 
 #pragma mark - implement RUNABidResponseConsumer
@@ -606,7 +614,15 @@ NSString* BASE_URL_BLANK = @"about:blank";
 
 # pragma mark - RUNAViewableObserverDelegate method
 
-- (void)didMeasurementInView {
+- (void)didMeasurementInView:(BOOL)measureInview {
+    if (self.mediaType != RUNA_MEDIA_TYPE_VIDEO) {
+        return;
+    }
+    if (measureInview) {
+        [self playVideo];
+        return;
+    }
+    [self pauseVideo];
 }
 
 # pragma mark - helping method

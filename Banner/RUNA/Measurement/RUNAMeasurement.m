@@ -85,12 +85,11 @@ int kMeasureMaxCount = 600;
         @try {
             RUNADefaultMeasurer* measurer = self.measurer;
             if (measurer.measurableTarget) {
-                measurer.shouldStopMeasureInview = measurer.shouldStopMeasureInview || [measurer.measurableTarget measureInview];
+                BOOL measureInview = [measurer.measurableTarget measureInview];
+                [self executeInviewObserver:measurer measureInview:measureInview];
+                measurer.shouldStopMeasureInview = measurer.shouldStopMeasureInview || measureInview;
                 if (!measurer.shouldStopMeasureInview && measurer.countDown > 0) {
                     RUNADebug("measurement[default] inview : %@", @"continue...");
-                    if (measurer.viewableObserverDelegate) {
-                        [measurer.viewableObserverDelegate didMeasurementInView];
-                    }
                     RUNADefaultMeasureOption* operation = [RUNADefaultMeasureOption new];
                     measurer.countDown--;
                     operation.measurer = measurer;
@@ -107,6 +106,14 @@ int kMeasureMaxCount = 600;
             [self sendRemoteLogWithMessage:@"measurement[default] operation exception" andException:exception];
         }
     });
+}
+
+-(void) executeInviewObserver:(RUNADefaultMeasurer*)measurer
+                measureInview:(BOOL)measureInview {
+    id<RUNAViewableObserverDelegate> delegate = measurer.viewableObserverDelegate;
+    if (delegate && [delegate respondsToSelector:@selector(didMeasurementInView:)]) {
+        [measurer.viewableObserverDelegate didMeasurementInView:measureInview];
+    }
 }
 
 -(void) sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception {

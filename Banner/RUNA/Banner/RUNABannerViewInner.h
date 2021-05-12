@@ -37,6 +37,13 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
     RUNA_ADVIEW_STATE_CLICKED,
 };
 
+typedef NS_ENUM(NSUInteger, RUNAVideoState) {
+    RUNA_VIDEO_UNKNOWN,
+    RUNA_VIDEO_VIDEO_LOADED,
+    RUNA_VIDEO_VIDEO_PLAYING,
+    RUNA_VIDEO_VIDEO_PAUSED,
+};
+
 typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABannerViewEvent event);
 
 @interface RUNABannerView() <RUNABidResponseConsumerDelegate>
