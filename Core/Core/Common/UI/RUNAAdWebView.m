@@ -70,10 +70,6 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
                 if (handler) {
                     handler.handle(sdkMessage);
                 }
-                // FIXME: PoC
-                if ([sdkMessage.type isEqual:@"video_loaded"]) {
-                    [self playVideo];
-                }
             }
         } @catch (NSException *exception) {
             RUNADebug("exception when waiting post message: %@", exception);

@@ -15,6 +15,8 @@ NSString *kSdkMessageTypeCollapse = @"collapse";
 NSString *kSdkMessageTypeRegister = @"register";
 NSString *kSdkMessageTypeUnfilled = @"unfilled";
 NSString *kSdkMessageTypeOpenPopup = @"open_popup";
+NSString *kSdkMessageTypeVideo = @"video";
+NSString *kSdkMessageTypeVideoLoaded = @"video_loaded";
 
 @implementation RUNAAdWebViewMessage
 
