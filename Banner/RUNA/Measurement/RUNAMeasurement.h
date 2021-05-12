@@ -15,7 +15,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+#pragma mark - Viewable Observer Delegate
+
+@protocol RUNAViewableObserverDelegate <NSObject>
+
+- (void)didMeasurementInView;
+
+@end
+
 @protocol RUNAMeasurer <NSObject>
+
+@property(nonatomic, weak, nullable) id<RUNAViewableObserverDelegate> viewableObserverDelegate;
 
 -(void) setMeasureTarget:(id<RUNAMeasurable>) target;
 -(void) startMeasurement;

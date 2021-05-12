@@ -32,6 +32,8 @@ int kMeasureMaxCount = 600;
 
 @implementation RUNADefaultMeasurer
 
+@synthesize viewableObserverDelegate;
+
 - (instancetype)init
 {
     self = [super init];
@@ -86,6 +88,9 @@ int kMeasureMaxCount = 600;
                 measurer.shouldStopMeasureInview = measurer.shouldStopMeasureInview || [measurer.measurableTarget measureInview];
                 if (!measurer.shouldStopMeasureInview && measurer.countDown > 0) {
                     RUNADebug("measurement[default] inview : %@", @"continue...");
+                    if (measurer.viewableObserverDelegate) {
+                        [measurer.viewableObserverDelegate didMeasurementInView];
+                    }
                     RUNADefaultMeasureOption* operation = [RUNADefaultMeasureOption new];
                     measurer.countDown--;
                     operation.measurer = measurer;

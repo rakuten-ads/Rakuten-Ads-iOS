@@ -16,14 +16,21 @@
     NSString* BASE_URL_RUNA_JS = @"https://dev-s-dlv.rmp.rakuten.co.jp";
 #endif
 
+typedef NS_ENUM(NSUInteger, RUNAMediaType) {
+    RUNA_MEDIA_TYPE_UNKOWN,
+    RUNA_MEDIA_TYPE_BANNER,
+    RUNA_MEDIA_TYPE_VIDEO,
+};
+
 NSString* BASE_URL_BLANK = @"about:blank";
 
-@interface RUNABannerView() <WKNavigationDelegate>
+@interface RUNABannerView() <WKNavigationDelegate, RUNAViewableObserverDelegate>
 
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* webViewConstraints;
 @property (atomic, readonly) RUNABannerViewState state;
+@property (atomic, readonly) RUNAMediaType mediaType;
 
 @end
 
@@ -66,6 +73,16 @@ NSString* BASE_URL_BLANK = @"about:blank";
 
 -(RUNABannerViewState)state {
     return self->_state;
+}
+
+@synthesize mediaType = _mediaType;
+
+- (void)setMediaType:(RUNAMediaType)mediaType {
+    self->_mediaType = mediaType;
+}
+
+- (RUNAMediaType)mediaType {
+    return self->_mediaType;
 }
 
 #pragma mark - APIs
@@ -334,6 +351,9 @@ NSString* BASE_URL_BLANK = @"about:blank";
     __weak typeof(self) weakSelf = self;
     [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
+        if (weakSelf.mediaType != RUNA_MEDIA_TYPE_VIDEO) {
+            weakSelf.mediaType = RUNA_MEDIA_TYPE_BANNER;
+        }
         [weakSelf triggerSuccess];
     }]];
     [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeCollapse handle:^(RUNAAdWebViewMessage * _Nonnull message) {
@@ -348,6 +368,19 @@ NSString* BASE_URL_BLANK = @"about:blank";
         RUNADebug("handle %@", message.type);
         weakSelf.error = RUNABannerViewErrorUnfilled;
         [weakSelf triggerFailure];
+    }]];
+    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideo handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+        RUNADebug("handle %@", message.type);
+        weakSelf.mediaType = RUNA_MEDIA_TYPE_VIDEO;
+        [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
+            measurer.viewableObserverDelegate = self;
+        }];
+    }]];
+    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoLoaded handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+        RUNADebug("handle %@", message.type);
+        // TODO: RUNA_ADVIEW_STATE_VIDEO_PLAYING or STOPPED?
+        //[weakSelf.webView playVideo];
+        // ステータスをVIDEO_LOADEDにすればよさそう
     }]];
 
     // active a2a if a2a framework imported
@@ -568,6 +601,12 @@ NSString* BASE_URL_BLANK = @"about:blank";
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     RUNALog("AD view didFailNavigation %@", error);
+}
+
+
+# pragma mark - RUNAViewableObserverDelegate method
+
+- (void)didMeasurementInView {
 }
 
 # pragma mark - helping method
