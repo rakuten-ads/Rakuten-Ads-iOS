@@ -409,7 +409,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
 - (void)playVideo {
     if (self.videoState == RUNA_VIDEO_VIDEO_LOADED ||
         self.videoState == RUNA_VIDEO_VIDEO_PAUSED) {
-        RUNADebug("play video");
         [self.webView playVideo:^{
             self.videoState = RUNA_VIDEO_VIDEO_PLAYING;
         }];
@@ -418,7 +417,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
 
 - (void)pauseVideo {
     if (self.videoState == RUNA_VIDEO_VIDEO_PLAYING) {
-        RUNADebug("pause video");
         [self.webView pauseVideo:^{
             self.videoState = RUNA_VIDEO_VIDEO_PAUSED;
         }];
