@@ -21,10 +21,14 @@ int kMeasureMaxCount = 600;
 @interface RUNADefaultMeasurer()
 
 @property(nonatomic, weak, nullable) id<RUNADefaultMeasurement> measurableTarget;
+@property(nonatomic, weak, nullable) id<RUNAViewableObserverDelegate> viewableObserverDelegate;
 @property(nonatomic) int countDown;
+// continue observing inview in video ads.
+@property(nonatomic) BOOL isVideoMeasuring;
 
 @property(atomic) BOOL shouldStopMeasureImp;
 @property(atomic) BOOL shouldStopMeasureInview;
+@property(atomic) BOOL isSentMeasureImp;
 
 @end
 
@@ -85,9 +89,13 @@ int kMeasureMaxCount = 600;
         @try {
             RUNADefaultMeasurer* measurer = self.measurer;
             if (measurer.measurableTarget) {
-                BOOL measureInview = [measurer.measurableTarget measureInview];
-                [self executeInviewObserver:measurer measureInview:measureInview];
-                measurer.shouldStopMeasureInview = measurer.shouldStopMeasureInview || measureInview;
+                BOOL isMeasuredInview = [measurer.measurableTarget measureInview];
+                [self executeInviewObserver:measurer measureInview:isMeasuredInview];
+                if (isMeasuredInview && !measurer.isSentMeasureImp) {
+                    measurer.isSentMeasureImp = [measurer.measurableTarget sendMeasureImp];
+                }
+                measurer.shouldStopMeasureInview =
+                (measurer.shouldStopMeasureInview || isMeasuredInview) && !measurer.isVideoMeasuring;
                 if (!measurer.shouldStopMeasureInview && measurer.countDown > 0) {
                     RUNADebug("measurement[default] inview : %@", @"continue...");
                     RUNADefaultMeasureOption* operation = [RUNADefaultMeasureOption new];

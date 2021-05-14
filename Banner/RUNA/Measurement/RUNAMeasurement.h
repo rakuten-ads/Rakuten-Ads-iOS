@@ -25,9 +25,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol RUNAMeasurer <NSObject>
 
-@property(nonatomic, weak, nullable) id<RUNAViewableObserverDelegate> viewableObserverDelegate;
-
--(void) setMeasureTarget:(id<RUNAMeasurable>) target;
+-(void) setMeasureTarget:(id<RUNAMeasurable>)target;
+-(void) setViewableObserverDelegate:(id<RUNAViewableObserverDelegate>)viewableObserverDelegate;
+-(void) setIsVideoMeasuring:(BOOL)isVideoMeasuring;
 -(void) startMeasurement;
 -(void) finishMeasurement;
 
@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(id<RUNAMeasurer>) getDefaultMeasurer;
 -(BOOL) measureImp;
 -(BOOL) measureInview;
+-(BOOL) sendMeasureImp;
 
 @end
 

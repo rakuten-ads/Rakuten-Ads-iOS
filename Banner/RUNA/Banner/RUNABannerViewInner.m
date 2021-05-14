@@ -364,7 +364,8 @@ NSString* BASE_URL_BLANK = @"about:blank";
         RUNADebug("handle %@", message.type);
         weakSelf.mediaType = RUNA_MEDIA_TYPE_VIDEO;
         [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
-            measurer.viewableObserverDelegate = self;
+            [measurer setViewableObserverDelegate:self];
+            [measurer setIsVideoMeasuring:YES];
         }];
     }]];
     [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoLoaded handle:^(RUNAAdWebViewMessage * _Nonnull message) {

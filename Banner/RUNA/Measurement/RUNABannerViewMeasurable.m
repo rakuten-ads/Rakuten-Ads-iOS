@@ -29,14 +29,15 @@
         return YES;
     }
     RUNADebug("measurement[default] measure inview rate: %f", self.visibility);
-    if (self.visibility > 0.5) {
-        RUNADebug("measurement[default] send inview %p", self);
-        RUNAURLStringRequest* request = [RUNAURLStringRequest new];
-        request.httpTaskDelegate = self.banner.inviewURL;
-        [request resume];
-        return YES;
-    }
-    return NO;
+    return self.visibility > 0.5;
+}
+
+-(BOOL)sendMeasureImp {
+    RUNADebug("measurement[default] send inview %p", self);
+    RUNAURLStringRequest* request = [RUNAURLStringRequest new];
+    request.httpTaskDelegate = self.banner.inviewURL;
+    [request resume];
+    return YES;
 }
 
 -(BOOL)measureImp {
