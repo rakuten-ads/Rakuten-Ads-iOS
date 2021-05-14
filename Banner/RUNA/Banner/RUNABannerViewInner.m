@@ -612,11 +612,11 @@ NSString* BASE_URL_BLANK = @"about:blank";
 
 # pragma mark - RUNAViewableObserverDelegate method
 
-- (void)didMeasurementInView:(BOOL)measureInview {
+- (void)didMeasurementInView:(BOOL)isMeasuredInview {
     if (self.mediaType != RUNA_MEDIA_TYPE_VIDEO) {
         return;
     }
-    if (measureInview) {
+    if (isMeasuredInview) {
         [self playVideo];
         return;
     }

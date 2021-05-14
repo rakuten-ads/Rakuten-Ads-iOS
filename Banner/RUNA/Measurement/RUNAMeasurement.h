@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol RUNAViewableObserverDelegate <NSObject>
 
-- (void)didMeasurementInView:(BOOL)measureInview;
+- (void)didMeasurementInView:(BOOL)isMeasuredInview;
 
 @end
 

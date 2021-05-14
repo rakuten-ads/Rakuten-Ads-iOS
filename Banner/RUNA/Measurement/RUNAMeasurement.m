@@ -73,6 +73,7 @@ int kMeasureMaxCount = 600;
     RUNADebug("measurement[default] finish on target %p", self.measurableTarget);
     self.shouldStopMeasureInview = YES;
     self.shouldStopMeasureImp = YES;
+    self.isSentMeasureImp = NO;
 }
 
 - (void)setMeasureTarget:(id<RUNADefaultMeasurement>)measurableTarget {
@@ -90,12 +91,10 @@ int kMeasureMaxCount = 600;
             RUNADefaultMeasurer* measurer = self.measurer;
             if (measurer.measurableTarget) {
                 BOOL isMeasuredInview = [measurer.measurableTarget measureInview];
-                [self executeInviewObserver:measurer measureInview:isMeasuredInview];
-                if (isMeasuredInview && !measurer.isSentMeasureImp) {
-                    measurer.isSentMeasureImp = [measurer.measurableTarget sendMeasureImp];
-                }
+                [self executeInviewObserver:measurer isInview:isMeasuredInview];
+                [self sendMeasureImpIfNeeded:measurer isInview:isMeasuredInview];
                 measurer.shouldStopMeasureInview =
-                (measurer.shouldStopMeasureInview || isMeasuredInview) && !measurer.isVideoMeasuring;
+                [self shouldStopMeasuring:measurer isInview:isMeasuredInview];
                 if (!measurer.shouldStopMeasureInview && measurer.countDown > 0) {
                     RUNADebug("measurement[default] inview : %@", @"continue...");
                     RUNADefaultMeasureOption* operation = [RUNADefaultMeasureOption new];
@@ -116,11 +115,30 @@ int kMeasureMaxCount = 600;
     });
 }
 
+- (void)sendMeasureImpIfNeeded:(RUNADefaultMeasurer*)measurer
+                      isInview:(BOOL)isInview {
+    if (!isInview || measurer.isSentMeasureImp) {
+        return;
+    }
+    measurer.isSentMeasureImp = [measurer.measurableTarget sendMeasureImp];
+}
+
+- (BOOL)shouldStopMeasuring:(RUNADefaultMeasurer*)measurer
+                   isInview:(BOOL)isInview {
+    if (measurer.isVideoMeasuring) {
+        return NO;
+    }
+    return measurer.shouldStopMeasureInview || isInview;
+}
+
 - (void)executeInviewObserver:(RUNADefaultMeasurer*)measurer
-                measureInview:(BOOL)measureInview {
+                     isInview:(BOOL)isInview {
+    if (!measurer.isVideoMeasuring) {
+        return;
+    }
     id<RUNAViewableObserverDelegate> delegate = measurer.viewableObserverDelegate;
     if (delegate && [delegate respondsToSelector:@selector(didMeasurementInView:)]) {
-        [delegate didMeasurementInView:measureInview];
+        [delegate didMeasurementInView:isInview];
     }
 }
 
