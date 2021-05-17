@@ -372,6 +372,13 @@ NSString* BASE_URL_BLANK = @"about:blank";
         RUNADebug("handle %@", message.type);
         weakSelf.videoState = RUNA_VIDEO_VIDEO_LOADED;
     }]];
+    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoEnded handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+        RUNADebug("handle %@", message.type);
+        weakSelf.videoState = RUNA_VIDEO_VIDEO_ENDED;
+        [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
+            [measurer finishMeasurement];
+        }];
+    }]];
 
     // active a2a if a2a framework imported
 #pragma clang diagnostic push

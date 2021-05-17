@@ -18,6 +18,7 @@ FOUNDATION_EXPORT NSString *kSdkMessageTypeUnfilled;
 FOUNDATION_EXPORT NSString *kSdkMessageTypeOpenPopup;
 FOUNDATION_EXPORT NSString *kSdkMessageTypeVideo;
 FOUNDATION_EXPORT NSString *kSdkMessageTypeVideoLoaded;
+FOUNDATION_EXPORT NSString *kSdkMessageTypeVideoEnded;
 
 @interface RUNAAdWebViewMessage : NSObject
 

@@ -73,6 +73,7 @@ int kMeasureMaxCount = 600;
     RUNADebug("measurement[default] finish on target %p", self.measurableTarget);
     self.shouldStopMeasureInview = YES;
     self.shouldStopMeasureImp = YES;
+    self.isVideoMeasuring = NO;
     self.isSentMeasureImp = NO;
 }
 
