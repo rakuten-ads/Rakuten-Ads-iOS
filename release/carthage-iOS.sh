@@ -38,16 +38,23 @@ fi
 
 SDK_NAME=${SDK_PRODUCT_NAME}_iOS_${SDK_VERSION_STRING}.framework.zip
 SDK_OUTPUT=${SDK_OUTPUT_DIR}/$SDK_NAME
+rm -f $SDK_OUTPUT
 echo "carthage archive to $SDK_OUTPUT for ${SDK_PRODUCT_NAME}"
 carthage archive --output $SDK_OUTPUT ${SDK_PRODUCT_NAME}
 if test -f $SDK_OUTPUT; then
 	echo "-----prune dSYM files -----"
 	cd $SDK_OUTPUT_DIR
+	rm -fr ./Carthage
 	unzip -o $SDK_NAME -d .
-	find . -name *.dSYM -o -name *.bcsymbolmap | xargs rm -r
+
+	SDK_DSYM_PATH=DSYM_$SDK_VERSION_STRING
+	rm -fr $SDK_DSYM_PATH
+	mkdir $SDK_DSYM_PATH
+	find ./Carthage -name *.dSYM -o -name *.bcsymbolmap | xargs -I{} mv {} $SDK_DSYM_PATH/
 	rm $SDK_NAME
+
+	# find . -name *.dSYM -o -name *.bcsymbolmap | xargs rm -r
 	zip -r $SDK_NAME ./Carthage -x .DS_Store
-	rm -r ./Carthage
 	open .
 fi
 
