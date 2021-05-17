@@ -370,11 +370,11 @@ NSString* BASE_URL_BLANK = @"about:blank";
     }]];
     [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoLoaded handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
-        weakSelf.videoState = RUNA_VIDEO_VIDEO_LOADED;
+        weakSelf.videoState = RUNA_VIDEO_STATE_LOADED;
     }]];
     [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoEnded handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
-        weakSelf.videoState = RUNA_VIDEO_VIDEO_ENDED;
+        weakSelf.videoState = RUNA_VIDEO_STATE_ENDED;
         [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
             [measurer finishMeasurement];
         }];
@@ -415,17 +415,17 @@ NSString* BASE_URL_BLANK = @"about:blank";
 }
 
 - (void)playVideo {
-    if (self.videoState != RUNA_VIDEO_VIDEO_PLAYING) {
+    if (self.videoState != RUNA_VIDEO_STATE_PLAYING) {
         [self.webView playVideo:^{
-            self.videoState = RUNA_VIDEO_VIDEO_PLAYING;
+            self.videoState = RUNA_VIDEO_STATE_PLAYING;
         }];
     }
 }
 
 - (void)pauseVideo {
-    if (self.videoState == RUNA_VIDEO_VIDEO_PLAYING) {
+    if (self.videoState == RUNA_VIDEO_STATE_PLAYING) {
         [self.webView pauseVideo:^{
-            self.videoState = RUNA_VIDEO_VIDEO_PAUSED;
+            self.videoState = RUNA_VIDEO_STATE_PAUSED;
         }];
     }
 }

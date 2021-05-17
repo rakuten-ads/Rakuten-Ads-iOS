@@ -38,11 +38,11 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
 };
 
 typedef NS_ENUM(NSUInteger, RUNAVideoState) {
-    RUNA_VIDEO_UNKNOWN_STATE,
-    RUNA_VIDEO_VIDEO_LOADED,
-    RUNA_VIDEO_VIDEO_PLAYING,
-    RUNA_VIDEO_VIDEO_PAUSED,
-    RUNA_VIDEO_VIDEO_ENDED,
+    RUNA_VIDEO_STATE_UNKNOWN,
+    RUNA_VIDEO_STATE_LOADED,
+    RUNA_VIDEO_STATE_PLAYING,
+    RUNA_VIDEO_STATE_PAUSED,
+    RUNA_VIDEO_STATE_ENDED,
 };
 
 typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABannerViewEvent event);
