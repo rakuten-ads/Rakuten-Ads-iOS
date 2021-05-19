@@ -17,7 +17,6 @@ NSString *kSdkMessageTypeUnfilled = @"unfilled";
 NSString *kSdkMessageTypeOpenPopup = @"open_popup";
 NSString *kSdkMessageTypeVideo = @"video";
 NSString *kSdkMessageTypeVideoLoaded = @"video_loaded";
-NSString *kSdkMessageTypeVideoEnded = @"video_ended";
 
 @implementation RUNAAdWebViewMessage
 

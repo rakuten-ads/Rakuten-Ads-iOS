@@ -42,7 +42,6 @@ typedef NS_ENUM(NSUInteger, RUNAVideoState) {
     RUNA_VIDEO_STATE_LOADED,
     RUNA_VIDEO_STATE_PLAYING,
     RUNA_VIDEO_STATE_PAUSED,
-    RUNA_VIDEO_STATE_ENDED,
 };
 
 typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABannerViewEvent event);
