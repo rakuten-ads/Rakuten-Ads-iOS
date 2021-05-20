@@ -17,7 +17,6 @@
 -(instancetype)initWithFrame:(CGRect)frame {
     WKWebViewConfiguration* config = [WKWebViewConfiguration new];
     config.allowsInlineMediaPlayback = YES;
-    config.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypeVideo;
     self = [super initWithFrame:frame configuration:config];
     if (self) {
         [self setScalesPageToFit];
