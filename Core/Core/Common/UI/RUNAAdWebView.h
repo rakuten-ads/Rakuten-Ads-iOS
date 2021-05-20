@@ -17,8 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,readonly) NSDictionary<NSString*, RUNAAdWebViewMessageHandler*>* messageHandlers;
 
 - (void)addMessageHandler:(RUNAAdWebViewMessageHandler*) handler;
-- (void)playVideo:(void (^)(void))completionHandler;
-- (void)pauseVideo:(void (^)(void))completionHandler;
 
 @end
 

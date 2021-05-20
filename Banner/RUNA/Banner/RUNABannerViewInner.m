@@ -407,22 +407,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
     [self addConstraints:self.webViewConstraints];
 }
 
-- (void)playVideo {
-    if (self.videoState != RUNA_VIDEO_STATE_PLAYING) {
-        [self.webView playVideo:^{
-            self.videoState = RUNA_VIDEO_STATE_PLAYING;
-        }];
-    }
-}
-
-- (void)pauseVideo {
-    if (self.videoState == RUNA_VIDEO_STATE_PLAYING) {
-        [self.webView pauseVideo:^{
-            self.videoState = RUNA_VIDEO_STATE_PAUSED;
-        }];
-    }
-}
-
 #pragma mark - implement RUNABidResponseConsumer
 - (void)onBidResponseFailed:(NSHTTPURLResponse *)response error:(NSError *)error {
     if (response.statusCode == kRUNABidResponseUnfilled) {
@@ -621,6 +605,37 @@ NSString* BASE_URL_BLANK = @"about:blank";
         return;
     }
     [self pauseVideo];
+}
+
+# pragma mark - Video Control Methods
+
+- (void)playVideo {
+    if (self.videoState != RUNA_VIDEO_STATE_PLAYING) {
+        [self evaluateVideoJavaScript:YES scriptCompletionHandler:^{
+            self.videoState = RUNA_VIDEO_STATE_PLAYING;
+        }];
+    }
+}
+
+- (void)pauseVideo {
+    if (self.videoState == RUNA_VIDEO_STATE_PLAYING) {
+        [self evaluateVideoJavaScript:NO scriptCompletionHandler:^{
+            self.videoState = RUNA_VIDEO_STATE_PAUSED;
+        }];
+    }
+}
+
+- (void)evaluateVideoJavaScript:(BOOL)isVideoPlaying
+        scriptCompletionHandler:(void (^)(void))completionHandler {
+    NSString *sender = isVideoPlaying ? @"true" : @"false";
+    NSString *functionName = [NSString stringWithFormat:@"window.cd.sendViewable(%@)", sender];
+    [self.webView evaluateJavaScript:functionName
+           completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        if (error) {
+            return;
+        }
+        completionHandler();
+    }];
 }
 
 # pragma mark - helping method
