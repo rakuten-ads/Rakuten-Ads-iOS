@@ -633,6 +633,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
     [self.webView evaluateJavaScript:functionName
            completionHandler:^(id _Nullable result, NSError * _Nullable error) {
         if (error) {
+            RUNALog("failed to evaluate video javascript: %@", error);
             return;
         }
         completionHandler();
