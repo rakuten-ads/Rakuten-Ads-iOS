@@ -94,8 +94,7 @@ int kMeasureMaxCount = 600;
                 BOOL isMeasuredInview = [measurer.measurableTarget measureInview];
                 [self executeInviewObserver:measurer isInview:isMeasuredInview];
                 [self sendMeasureImpIfNeeded:measurer isInview:isMeasuredInview];
-                measurer.shouldStopMeasureInview =
-                [self shouldStopMeasuring:measurer isInview:isMeasuredInview];
+                measurer.shouldStopMeasureInview = [self shouldStopMeasuring:measurer isInview:isMeasuredInview];
                 if (!measurer.shouldStopMeasureInview && measurer.countDown > 0) {
                     RUNADebug("measurement[default] inview : %@", @"continue...");
                     RUNADefaultMeasureOption* operation = [RUNADefaultMeasureOption new];
@@ -134,9 +133,6 @@ int kMeasureMaxCount = 600;
 
 - (void)executeInviewObserver:(RUNADefaultMeasurer*)measurer
                      isInview:(BOOL)isInview {
-    if (!measurer.isVideoMeasuring) {
-        return;
-    }
     id<RUNAViewableObserverDelegate> delegate = measurer.viewableObserverDelegate;
     if (delegate && [delegate respondsToSelector:@selector(didMeasurementInView:)]) {
         [delegate didMeasurementInView:isInview];

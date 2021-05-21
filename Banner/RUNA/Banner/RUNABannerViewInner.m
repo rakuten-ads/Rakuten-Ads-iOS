@@ -57,6 +57,8 @@ NSString* BASE_URL_BLANK = @"about:blank";
     self.hidden = YES;
     self.state = RUNA_ADVIEW_STATE_INIT;
     self.error = RUNABannerViewErrorNone;
+    self.videoState = RUNA_VIDEO_STATE_UNKNOWN;
+    self.mediaType = RUNA_MEDIA_TYPE_UNKOWN;
     [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
         [measurer finishMeasurement];
     }];
@@ -597,6 +599,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
 # pragma mark - RUNAViewableObserverDelegate method
 
 - (void)didMeasurementInView:(BOOL)isMeasuredInview {
+    // Do nothing when mediaType is Banner ads
     if (self.mediaType != RUNA_MEDIA_TYPE_VIDEO) {
         return;
     }
@@ -632,6 +635,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
     [self.webView evaluateJavaScript:functionName
            completionHandler:^(id _Nullable result, NSError * _Nullable error) {
         if (error) {
+            RUNALog("video javascript evaluating error: %@", error);
             return;
         }
         completionHandler();
