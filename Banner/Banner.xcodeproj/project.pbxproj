@@ -44,6 +44,8 @@
 		32F258F121E58689001FD9C0 /* RUNABanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F258E321E58689001FD9C0 /* RUNABanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F2596021E597E5001FD9C0 /* RUNABannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595121E597E5001FD9C0 /* RUNABannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F2596121E597E5001FD9C0 /* RUNABannerViewInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595221E597E5001FD9C0 /* RUNABannerViewInner.m */; };
+		544DBC8226565D76009BD04E /* RUNABannerViewMeasurableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 544DBC8126565D76009BD04E /* RUNABannerViewMeasurableTest.m */; };
+		544DBC9226566108009BD04E /* MainTest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 544DBC9126566108009BD04E /* MainTest.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +113,8 @@
 		32F2595221E597E5001FD9C0 /* RUNABannerViewInner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewInner.m; sourceTree = "<group>"; };
 		32F25A1221E5A4E5001FD9C0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		32F25A1721E5A96C001FD9C0 /* Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core.xcodeproj; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
+		544DBC8126565D76009BD04E /* RUNABannerViewMeasurableTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewMeasurableTest.m; sourceTree = "<group>"; };
+		544DBC9126566108009BD04E /* MainTest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainTest.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,8 +218,10 @@
 		32F258ED21E58689001FD9C0 /* RUNATests */ = {
 			isa = PBXGroup;
 			children = (
+				544DBC8026565BA4009BD04E /* Measurement */,
 				32F258EE21E58689001FD9C0 /* RUNATests.m */,
 				32F258F021E58689001FD9C0 /* Info.plist */,
+				544DBC9126566108009BD04E /* MainTest.storyboard */,
 			);
 			path = RUNATests;
 			sourceTree = "<group>";
@@ -227,6 +233,14 @@
 				32F25A1F21E5A96C001FD9C0 /* CoreTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		544DBC8026565BA4009BD04E /* Measurement */ = {
+			isa = PBXGroup;
+			children = (
+				544DBC8126565D76009BD04E /* RUNABannerViewMeasurableTest.m */,
+			);
+			path = Measurement;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +373,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				544DBC9226566108009BD04E /* MainTest.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32F258EF21E58689001FD9C0 /* RUNATests.m in Sources */,
+				544DBC8226565D76009BD04E /* RUNABannerViewMeasurableTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
