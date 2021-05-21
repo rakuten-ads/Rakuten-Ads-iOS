@@ -57,6 +57,8 @@ NSString* BASE_URL_BLANK = @"about:blank";
     self.hidden = YES;
     self.state = RUNA_ADVIEW_STATE_INIT;
     self.error = RUNABannerViewErrorNone;
+    self.videoState = RUNA_VIDEO_STATE_UNKNOWN;
+    self.mediaType = RUNA_MEDIA_TYPE_UNKOWN;
     [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
         [measurer finishMeasurement];
     }];
