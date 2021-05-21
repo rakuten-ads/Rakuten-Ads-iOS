@@ -133,9 +133,6 @@ int kMeasureMaxCount = 600;
 
 - (void)executeInviewObserver:(RUNADefaultMeasurer*)measurer
                      isInview:(BOOL)isInview {
-    if (!measurer.isVideoMeasuring) {
-        return;
-    }
     id<RUNAViewableObserverDelegate> delegate = measurer.viewableObserverDelegate;
     if (delegate && [delegate respondsToSelector:@selector(didMeasurementInView:)]) {
         [delegate didMeasurementInView:isInview];

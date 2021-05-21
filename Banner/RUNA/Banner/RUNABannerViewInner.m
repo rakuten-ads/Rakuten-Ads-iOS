@@ -597,6 +597,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
 # pragma mark - RUNAViewableObserverDelegate method
 
 - (void)didMeasurementInView:(BOOL)isMeasuredInview {
+    // Do nothing when mediaType is Banner ads
     if (self.mediaType != RUNA_MEDIA_TYPE_VIDEO) {
         return;
     }
