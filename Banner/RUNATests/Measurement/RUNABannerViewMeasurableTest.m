@@ -18,17 +18,17 @@
 
 @interface RUNABannerViewMeasurableTest : XCTestCase
 @property (nonatomic) MainViewController *viewController;
-@property (nonatomic) UIWindow *window;
+@property (nonatomic) UIWindow *dummyWindow;
 @property (nonatomic) RUNABannerView *bannerView;
 @end
 
 @implementation RUNABannerViewMeasurableTest
 
 @synthesize viewController = _viewController;
-@synthesize window = _window;
+@synthesize dummyWindow = _dummyWindow;
 
 - (void)setUp {
-    self.window = [[UIWindow alloc] initWithFrame:self.viewController.view.frame];
+    self.dummyWindow = [[UIWindow alloc] initWithFrame:self.viewController.view.frame];
     self.viewController = [MainViewController new];
     [super setUp];
 }
@@ -53,7 +53,7 @@
 }
 
 - (BOOL)isVisible {
-    float visibility = [self.bannerView getVisibility:self.window rootViewController:self.viewController];
+    float visibility = [self.bannerView getVisibility:self.dummyWindow rootViewController:self.viewController];
     return [self.bannerView isVisible:visibility];
 }
 
