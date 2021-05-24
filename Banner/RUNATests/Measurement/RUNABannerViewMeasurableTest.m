@@ -36,10 +36,9 @@
 - (void)testMeasureInview {
     [self.viewController loadViewIfNeeded];
     self.bannerView = self.viewController.bannerView;
-    // TODO: load method to spy method
+    
     // Hidden banner
     XCTAssertFalse([self isVisible]);
-
     // Not hidden banner
     self.bannerView.hidden = NO;
     XCTAssertTrue([self isVisible]);
