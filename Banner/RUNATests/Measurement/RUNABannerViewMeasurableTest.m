@@ -7,37 +7,54 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "RUNABannerView.h"
+#import "RUNAMeasurement.h"
+#import "MainViewController.h"
+
+@interface RUNABannerView (PrivateMethod)
+- (float)getVisibility:(UIWindow *)window
+    rootViewController:(UIViewController *)rootViewController;
+- (BOOL)isVisible:(float)visibility;
+@end
 
 @interface RUNABannerViewMeasurableTest : XCTestCase
-
-@property (nonatomic, weak) UIViewController *viewController;
-@property (nonatomic, weak) RUNABannerView *bannerView;
-
+@property (nonatomic) MainViewController *viewController;
+@property (nonatomic) UIWindow *window;
+@property (nonatomic) RUNABannerView *bannerView;
 @end
 
 @implementation RUNABannerViewMeasurableTest
 
+@synthesize viewController = _viewController;
+@synthesize window = _window;
+
 - (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    self.viewController = [storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+    self.window = [[UIWindow alloc] initWithFrame:self.viewController.view.frame];
+    self.viewController = [MainViewController new];
+    [super setUp];
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+- (void)testMeasureInview {
+    [self.viewController loadViewIfNeeded];
+    self.bannerView = self.viewController.bannerView;
+    // TODO: load method to spy method
+    // Hidden banner
+    XCTAssertFalse([self isVisible]);
+
+    // Not hidden banner
+    self.bannerView.hidden = NO;
+    XCTAssertTrue([self isVisible]);
+    
+    // Outview: default
+    self.bannerView.frame = CGRectMake(0, kBannerHeight * -1, kBannerWidth, kBannerHeight);
+    XCTAssertFalse([self isVisible]);
+    // Outview: threshold
+    self.bannerView.frame = CGRectMake(0, kBannerHeight * -0.5, kBannerWidth, kBannerHeight);
+    XCTAssertFalse([self isVisible]);
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (BOOL)isVisible {
+    float visibility = [self.bannerView getVisibility:self.window rootViewController:self.viewController];
+    return [self.bannerView isVisible:visibility];
 }
 
 @end
