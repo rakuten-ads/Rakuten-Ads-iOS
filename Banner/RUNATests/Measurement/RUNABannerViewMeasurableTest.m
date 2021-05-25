@@ -7,10 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "RUNAMeasurement.h"
+#import "RUNABannerView.h"
 #import "MainViewController.h"
 
-@interface RUNABannerView (PrivateMethod)
+@interface RUNABannerView (Spy)
 - (float)getVisibility:(UIWindow *)window
     rootViewController:(UIViewController *)rootViewController;
 - (BOOL)isVisible:(float)visibility;

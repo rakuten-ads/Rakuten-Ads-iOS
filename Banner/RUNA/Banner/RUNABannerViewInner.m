@@ -399,6 +399,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
     NSString* baseURLJs = [RUNAInfoPlist sharedInstance].baseURLJs ?: BASE_URL_RUNA_JS;
     [self.webView loadHTMLString:html baseURL:[NSURL URLWithString:baseURLJs]];
     
+    // 別メソッドに切り出す
     self.state = RUNA_ADVIEW_STATE_RENDERING;
     self.webView.translatesAutoresizingMaskIntoConstraints = NO;
     self->_webViewConstraints = @[[self.webView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
@@ -407,6 +408,10 @@ NSString* BASE_URL_BLANK = @"about:blank";
                                   [self.webView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor]
                                   ];
     [self addConstraints:self.webViewConstraints];
+}
+
+- (void)render {
+    
 }
 
 #pragma mark - implement RUNABidResponseConsumer
