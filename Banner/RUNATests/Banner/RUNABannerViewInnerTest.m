@@ -17,23 +17,17 @@
 @end
 
 @interface RUNABannerViewInnerTest : XCTestCase
-@property (nonatomic) RUNABannerView *bannerView;
 @end
 
 @implementation RUNABannerViewInnerTest
-@synthesize bannerView = _bannerView;
-
-- (void)setUp {
-    NSDictionary *dummyResponse = @{@"adm":@"<script type=\"text/javascript\">window.onload = function() {window.webkit.messageHandlers.runaSdkInterface.postMessage({\"type\":\"video_loaded\"});}</script>"};
-    self.bannerView = [[RUNABannerView alloc]initWithBidResponse:dummyResponse];
-}
 
 - (void)testVideoState {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"test"];
-    [self.bannerView applyAdView];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
+    RUNABannerView *actual = [[RUNABannerView alloc]initWithEventType:@"video_loaded"];
+    [actual applyAdView];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC),
                    dispatch_get_main_queue(), ^{
-        XCTAssertEqual(self.bannerView.videoState, RUNA_VIDEO_STATE_LOADED);
+        XCTAssertEqual(actual.videoState, RUNA_VIDEO_STATE_LOADED);
         [expectation fulfill];
     });
     [self waitForExpectationsWithTimeout:3.0 handler:nil];

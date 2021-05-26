@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNABannerView (Stub)
-- (instancetype)initWithBidResponse:(NSDictionary *)response;
+- (instancetype)initWithEventType:(NSString *)type;
 @end
 
 NS_ASSUME_NONNULL_END
