@@ -7,7 +7,6 @@
 //
 
 #import "RUNABannerView+Stub.h"
-#import "RUNABanner+Stub.h"
 
 @interface RUNABanner (Stub)
 - (void)parse:(NSDictionary *)bidData;
@@ -18,9 +17,10 @@
 - (instancetype)initWithBidResponse:(NSDictionary *)response {
     self = [self init];
     if (self) {
-        RUNABanner *banner = [RUNABanner alloc]initWithHtml:@"dummyHTML";
+        RUNABanner *banner = [RUNABanner new];
         [banner parse:response];
         [self setValue:banner forKey:@"banner"];
+        [self setValue:@YES forKey:@"openMeasurementDisabled"];
     }
     return self;
 }

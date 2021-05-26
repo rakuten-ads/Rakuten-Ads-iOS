@@ -52,9 +52,6 @@
 		54BF0313265CF1DB00B2CCE4 /* RUNABannerView+Stub.h in Headers */ = {isa = PBXBuildFile; fileRef = 54BF0311265CF1DB00B2CCE4 /* RUNABannerView+Stub.h */; };
 		54BF0314265CF1DB00B2CCE4 /* RUNABannerView+Stub.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF0312265CF1DB00B2CCE4 /* RUNABannerView+Stub.m */; };
 		54BF0315265CF1DB00B2CCE4 /* RUNABannerView+Stub.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF0312265CF1DB00B2CCE4 /* RUNABannerView+Stub.m */; };
-		54BF0328265CF68200B2CCE4 /* RUNABanner+Stub.h in Headers */ = {isa = PBXBuildFile; fileRef = 54BF0326265CF68200B2CCE4 /* RUNABanner+Stub.h */; };
-		54BF0329265CF68200B2CCE4 /* RUNABanner+Stub.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF0327265CF68200B2CCE4 /* RUNABanner+Stub.m */; };
-		54BF032A265CF68200B2CCE4 /* RUNABanner+Stub.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF0327265CF68200B2CCE4 /* RUNABanner+Stub.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,8 +125,6 @@
 		54BF02F9265CD2CC00B2CCE4 /* RUNABannerViewInnerTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewInnerTest.m; sourceTree = "<group>"; };
 		54BF0311265CF1DB00B2CCE4 /* RUNABannerView+Stub.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RUNABannerView+Stub.h"; sourceTree = "<group>"; };
 		54BF0312265CF1DB00B2CCE4 /* RUNABannerView+Stub.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RUNABannerView+Stub.m"; sourceTree = "<group>"; };
-		54BF0326265CF68200B2CCE4 /* RUNABanner+Stub.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RUNABanner+Stub.h"; sourceTree = "<group>"; };
-		54BF0327265CF68200B2CCE4 /* RUNABanner+Stub.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RUNABanner+Stub.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,8 +267,6 @@
 			isa = PBXGroup;
 			children = (
 				54BF02F9265CD2CC00B2CCE4 /* RUNABannerViewInnerTest.m */,
-				54BF0326265CF68200B2CCE4 /* RUNABanner+Stub.h */,
-				54BF0327265CF68200B2CCE4 /* RUNABanner+Stub.m */,
 				54BF0311265CF1DB00B2CCE4 /* RUNABannerView+Stub.h */,
 				54BF0312265CF1DB00B2CCE4 /* RUNABannerView+Stub.m */,
 			);
@@ -296,7 +289,6 @@
 				54BF02A92657A8F100B2CCE4 /* MainViewController.h in Headers */,
 				54BF0313265CF1DB00B2CCE4 /* RUNABannerView+Stub.h in Headers */,
 				32F258F121E58689001FD9C0 /* RUNABanner.h in Headers */,
-				54BF0328265CF68200B2CCE4 /* RUNABanner+Stub.h in Headers */,
 				329753AB230A7D4C002A53CC /* RUNAMeasurement.h in Headers */,
 				32A693422237BBA800812DF9 /* RUNANativeAdAdapter.h in Headers */,
 				32EFC6C825AE8356006F85C8 /* RUNAAdSessionInner.h in Headers */,
@@ -460,7 +452,6 @@
 				3211A414231CA60900DB0225 /* RUNABannerViewMeasurable.m in Sources */,
 				323DA56B25DF8209002ED988 /* RUNABannerGroup.m in Sources */,
 				32564D9D2227865100DB4DBF /* RUNABannerAdapter.m in Sources */,
-				54BF0329265CF68200B2CCE4 /* RUNABanner+Stub.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,7 +462,6 @@
 				32F258EF21E58689001FD9C0 /* RUNATests.m in Sources */,
 				54BF02AB2657A8F100B2CCE4 /* MainViewController.m in Sources */,
 				54BF0315265CF1DB00B2CCE4 /* RUNABannerView+Stub.m in Sources */,
-				54BF032A265CF68200B2CCE4 /* RUNABanner+Stub.m in Sources */,
 				544DBC8226565D76009BD04E /* RUNABannerViewMeasurableTest.m in Sources */,
 				54BF02FA265CD2CC00B2CCE4 /* RUNABannerViewInnerTest.m in Sources */,
 			);
