@@ -16,12 +16,6 @@
     NSString* BASE_URL_RUNA_JS = @"https://dev-s-dlv.rmp.rakuten.co.jp";
 #endif
 
-typedef NS_ENUM(NSUInteger, RUNAMediaType) {
-    RUNA_MEDIA_TYPE_UNKOWN,
-    RUNA_MEDIA_TYPE_BANNER,
-    RUNA_MEDIA_TYPE_VIDEO,
-};
-
 NSString* BASE_URL_BLANK = @"about:blank";
 
 @interface RUNABannerView() <WKNavigationDelegate, RUNAViewableObserverDelegate>
