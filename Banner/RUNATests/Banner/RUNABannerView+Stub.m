@@ -26,7 +26,7 @@
 }
 
 - (NSDictionary *)dummyResponse:(NSString *)type {
-    NSString *path = [[NSBundle bundleForClass:[self class]]pathForResource:@"dummyEvent"ofType:@"js"];
+    NSString *path = [[NSBundle bundleForClass:[self class]]pathForResource:@"mock" ofType:@"js"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSString *script = [[NSString alloc]initWithBytes:[data bytes]
                                                length:[data length]
