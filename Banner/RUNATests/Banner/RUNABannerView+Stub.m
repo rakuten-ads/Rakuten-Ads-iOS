@@ -26,8 +26,13 @@
 }
 
 - (NSDictionary *)dummyResponse:(NSString *)type {
-    NSString *html = [NSString stringWithFormat:@"<script type=\"text/javascript\">window.onload = function() {window.webkit.messageHandlers.runaSdkInterface.postMessage({\"type\":\"%@\"});}</script>", type];
-    return @{@"adm": html};
+    NSString *path = [[NSBundle bundleForClass:[self class]]pathForResource:@"dummyEvent"ofType:@"js"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSString *script = [[NSString alloc]initWithBytes:[data bytes]
+                                               length:[data length]
+                                             encoding:NSUTF8StringEncoding];
+    NSString *replaced = [script stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    return @{@"adm": [NSString stringWithFormat:replaced, type]};
 }
 
 @end
