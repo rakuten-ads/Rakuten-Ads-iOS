@@ -8,7 +8,7 @@
 
 #import "RUNABannerView+Stub.h"
 
-@interface RUNABanner (Stub)
+@interface RUNABanner (Spy)
 - (void)parse:(NSDictionary *)bidData;
 @end
 
