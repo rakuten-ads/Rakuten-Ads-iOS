@@ -17,17 +17,28 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Viewable Observer Delegate
 
-@protocol RUNAViewableObserverDelegate <NSObject>
+@protocol RUNAMeasurerDelegate <NSObject>
 
-- (void)didMeasurementInView:(BOOL)isMeasuredInview;
+@optional
+/**
+ @param isImp result of imp measured
+ @return YES for completing measurement, otherwise false
+ */
+- (BOOL)didMeasureImp:(BOOL) isImp;
+
+/**
+ @param isInview result of in view measured
+ @return YES for completing measurement, otherwise false
+ */
+
+- (BOOL)didMeasureInview:(BOOL)isInview;
 
 @end
 
 @protocol RUNAMeasurer <NSObject>
 
 -(void) setMeasureTarget:(id<RUNAMeasurable>)target;
--(void) setViewableObserverDelegate:(id<RUNAViewableObserverDelegate>)viewableObserverDelegate;
--(void) setIsVideoMeasuring:(BOOL)isVideoMeasuring;
+-(void) setMeasurerDelegate:(id<RUNAMeasurerDelegate>)measurerDelegate;
 -(void) startMeasurement;
 -(void) finishMeasurement;
 
@@ -40,7 +51,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(id<RUNAMeasurer>) getDefaultMeasurer;
 -(BOOL) measureImp;
 -(BOOL) measureInview;
--(BOOL) sendMeasureImp;
 
 @end
 

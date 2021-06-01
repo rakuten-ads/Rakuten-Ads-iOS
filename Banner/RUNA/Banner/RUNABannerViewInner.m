@@ -17,10 +17,9 @@
 #endif
 
 NSString* BASE_URL_BLANK = @"about:blank";
+NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 
-NSString *kSdkMessageHandlerName = @"runaSdkInterface";
-
-@interface RUNABannerView() <WKNavigationDelegate, RUNAViewableObserverDelegate>
+@interface RUNABannerView() <WKNavigationDelegate, RUNAMeasurerDelegate>
 
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
@@ -28,6 +27,7 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
 @property (atomic, readonly) RUNABannerViewState state;
 @property (nonatomic) RUNAVideoState videoState;
 @property (nonatomic) RUNAMediaType mediaType;
+@property (atomic) BOOL hasSentMeasureInview;
 
 @end
 
@@ -375,8 +375,9 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
         weakSelf.mediaType = RUNA_MEDIA_TYPE_VIDEO;
         __strong typeof(weakSelf) strongSelf = weakSelf;
         [strongSelf.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
-            [measurer setViewableObserverDelegate:strongSelf];
-            [measurer setIsVideoMeasuring:YES];
+            if ([measurer isKindOfClass:RUNADefaultMeasurer.class]) {
+                [(RUNADefaultMeasurer*)measurer setMeasurerDelegate:strongSelf];
+            }
         }];
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoLoaded handle:^(RUNAAdWebViewMessage * _Nonnull message) {
@@ -606,19 +607,44 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
 }
 
 
-# pragma mark - RUNAViewableObserverDelegate method
+# pragma mark - RUNAmeasurerDelegate method
+-(BOOL)didMeasureImp:(BOOL)isImp {
+    if (isImp && self.banner.measuredURL) {
+        RUNADebug("measurement[default] measure imp (%p)", self);
+        RUNAURLStringRequest* request = [RUNAURLStringRequest new];
+        request.httpTaskDelegate = self.banner.measuredURL;
+        [request resume];
+    }
+    return isImp;
+}
 
-- (void)didMeasurementInView:(BOOL)isMeasuredInview {
+- (BOOL)didMeasureInview:(BOOL)isInview {
+    if (isInview) {
+        if (!self.hasSentMeasureInview && self.banner.inviewURL) {
+            [self sendMeasureInview];
+        }
+    }
+
     // Do nothing when mediaType is Banner ads
     if (self.mediaType != RUNA_MEDIA_TYPE_VIDEO) {
-        return;
+        return true;
     }
-    if (isMeasuredInview) {
+    if (isInview) {
         [self playVideo];
     } else {
         [self pauseVideo];
     }
+    return false;
 }
+
+-(BOOL)sendMeasureInview {
+    RUNADebug("measurement[default] send inview %p", self);
+    RUNAURLStringRequest* request = [RUNAURLStringRequest new];
+    request.httpTaskDelegate = self.banner.inviewURL;
+    [request resume];
+    return YES;
+}
+
 
 # pragma mark - Video Control Methods
 

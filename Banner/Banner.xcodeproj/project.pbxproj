@@ -34,6 +34,8 @@
 		32A693422237BBA800812DF9 /* RUNANativeAdAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A693402237BBA800812DF9 /* RUNANativeAdAdapter.h */; };
 		32A693462240E31700812DF9 /* RUNANativeAd.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A693442240E31700812DF9 /* RUNANativeAd.h */; };
 		32A6934B22422FCD00812DF9 /* RUNANativeAdInner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A6934922422FCD00812DF9 /* RUNANativeAdInner.h */; };
+		32BEBF4326669A5A0087BEF7 /* RUNAViewabilityProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEBF3F26669A590087BEF7 /* RUNAViewabilityProvider.m */; };
+		32BEBF4426669A5A0087BEF7 /* RUNAViewabilityProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 32BEBF4226669A590087BEF7 /* RUNAViewabilityProvider.h */; };
 		32ED78B9236693AB007833DF /* RUNABannerViewExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 32ED78B7236693AB007833DF /* RUNABannerViewExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32ED78BA236693AB007833DF /* RUNABannerViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 32ED78B8236693AB007833DF /* RUNABannerViewExtension.m */; };
 		32EFC6BD25AE8281006F85C8 /* RUNAAdSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 32EFC6BB25AE8281006F85C8 /* RUNAAdSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -123,6 +125,8 @@
 		32A693452240E31700812DF9 /* RUNANativeAdProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNANativeAdProvider.m; sourceTree = "<group>"; };
 		32A6934922422FCD00812DF9 /* RUNANativeAdInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNANativeAdInner.h; sourceTree = "<group>"; };
 		32A6934A22422FCD00812DF9 /* RUNANativeAdInner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNANativeAdInner.m; sourceTree = "<group>"; };
+		32BEBF3F26669A590087BEF7 /* RUNAViewabilityProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNAViewabilityProvider.m; sourceTree = "<group>"; };
+		32BEBF4226669A590087BEF7 /* RUNAViewabilityProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUNAViewabilityProvider.h; sourceTree = "<group>"; };
 		32ED78B7236693AB007833DF /* RUNABannerViewExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewExtension.h; sourceTree = "<group>"; };
 		32ED78B8236693AB007833DF /* RUNABannerViewExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewExtension.m; sourceTree = "<group>"; };
 		32EFC6BB25AE8281006F85C8 /* RUNAAdSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAdSession.h; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 				329753A9230A7D4C002A53CC /* RUNAMeasurement.h */,
 				329753AA230A7D4C002A53CC /* RUNAMeasurement.m */,
 				3211A413231CA60900DB0225 /* RUNABannerViewMeasurable.m */,
+				32BEBF4226669A590087BEF7 /* RUNAViewabilityProvider.h */,
+				32BEBF3F26669A590087BEF7 /* RUNAViewabilityProvider.m */,
 			);
 			path = Measurement;
 			sourceTree = "<group>";
@@ -345,6 +351,7 @@
 				32ED78B9236693AB007833DF /* RUNABannerViewExtension.h in Headers */,
 				32F258F121E58689001FD9C0 /* RUNABanner.h in Headers */,
 				329753AB230A7D4C002A53CC /* RUNAMeasurement.h in Headers */,
+				32BEBF4426669A5A0087BEF7 /* RUNAViewabilityProvider.h in Headers */,
 				32A693422237BBA800812DF9 /* RUNANativeAdAdapter.h in Headers */,
 				32EFC6C825AE8356006F85C8 /* RUNAAdSessionInner.h in Headers */,
 				323DA56A25DF8209002ED988 /* RUNABannerGroup.h in Headers */,
@@ -511,6 +518,7 @@
 				32ED78BA236693AB007833DF /* RUNABannerViewExtension.m in Sources */,
 				3211A414231CA60900DB0225 /* RUNABannerViewMeasurable.m in Sources */,
 				323DA56B25DF8209002ED988 /* RUNABannerGroup.m in Sources */,
+				32BEBF4326669A5A0087BEF7 /* RUNAViewabilityProvider.m in Sources */,
 				32564D9D2227865100DB4DBF /* RUNABannerAdapter.m in Sources */,
 				540496A62684298E0003CBC8 /* RUNANativeAdAdapter.m in Sources */,
 			);
