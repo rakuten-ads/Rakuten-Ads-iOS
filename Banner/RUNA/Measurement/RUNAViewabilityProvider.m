@@ -86,7 +86,7 @@
 
 @interface RUNAViewabilityProvider()
 
-@property(nonatomic) NSMutableDictionary<NSString*, RUNAViewabilityTarget*>* targetDict;
+@property(nonatomic) NSMutableDictionary<NSString*, RUNADefaultMeasurer*>* measuerDict;
 
 @end
 
@@ -96,7 +96,7 @@
 {
     self = [super init];
     if (self) {
-        self.targetDict = [NSMutableDictionary dictionary];
+        self.measuerDict = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -110,12 +110,15 @@
     RUNAViewabilityTarget* target = [[RUNAViewabilityTarget alloc] initWithView:view];
     target.viewImpURL = url;
     target.completionHandler = handler;
-    [self.targetDict setObject:target forKey:target.identifier];
+    RUNADefaultMeasurer* measuer = [target getDefaultMeasurer];
+    [self.measuerDict setObject:measuer forKey:target.identifier];
+    [measuer startMeasurement];
 }
 
 -(void)unregsiterTargetView:(UIView *)view {
     NSString* identifier = [NSString stringWithFormat:@"%lu", (unsigned long)view.hash];
-    [self.targetDict removeObjectForKey: identifier];
+    [self.measuerDict[identifier] finishMeasurement];
+    [self.measuerDict removeObjectForKey: identifier];
 }
 
 +(instancetype)sharedInstance {
