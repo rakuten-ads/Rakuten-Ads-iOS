@@ -627,14 +627,14 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 
     // Do nothing when mediaType is Banner ads
     if (self.mediaType != RUNA_MEDIA_TYPE_VIDEO) {
-        return true;
+        return YES;
     }
     if (isInview) {
         [self playVideo];
     } else {
         [self pauseVideo];
     }
-    return false;
+    return NO;
 }
 
 -(BOOL)sendMeasureInview {
