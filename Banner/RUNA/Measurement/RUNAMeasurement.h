@@ -30,7 +30,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param isInview result of in view measured
  @return YES for completing measurement, otherwise false
  */
-
 - (BOOL)didMeasureInview:(BOOL)isInview;
 
 @end
