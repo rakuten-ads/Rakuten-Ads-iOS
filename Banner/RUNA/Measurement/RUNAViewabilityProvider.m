@@ -47,7 +47,7 @@
     return self.visibility > 0.5;
 }
 
-- (BOOL)sendMeasureImp {
+- (BOOL)sendMeasureViewImp {
     if (self.viewImpURL) {
         RUNADebug("measurement[default] send inview %p", self);
         RUNAURLStringRequest* request = [RUNAURLStringRequest new];
@@ -56,7 +56,6 @@
     }
     return true;
 }
-
 
 -(float)visibility {
     float areaOfAdView = self.view.frame.size.width * self.view.frame.size.height;
@@ -75,11 +74,15 @@
     return 0;
 }
 
-- (void)didMeasurementInView:(BOOL)isMeasuredInview {
-    if (self.completionHandler
-        && isMeasuredInview) {
-        self.completionHandler(self.view);
+-(BOOL)didMeasureInview:(BOOL)isInview {
+    if (isInview) {
+        [self sendMeasureViewImp];
+        if (self.completionHandler) {
+            self.completionHandler(self.view);
+        }
+        return YES;
     }
+    return NO;
 }
 
 @end
