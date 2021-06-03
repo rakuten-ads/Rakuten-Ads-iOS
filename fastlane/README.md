@@ -50,7 +50,11 @@ fastlane ios github_release_tag
 ```
 fastlane ios release
 ```
-
+## Tests
+### scan
+```
+fastlane scan
+```
 
 ----
 
