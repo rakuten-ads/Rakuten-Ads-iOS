@@ -1,7 +1,8 @@
 # Parameters: https://docs.fastlane.tools/actions/scan/
 scheme "Banner"
 project "Banner/Banner.xcodeproj"
-clean true
+clean(true)
 skip_build(true)
 open_report(true)
-
+code_coverage(true)
+force_quit_simulator(true)
