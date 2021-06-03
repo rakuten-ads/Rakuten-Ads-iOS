@@ -15,7 +15,9 @@
 @synthesize messageHandlers = _messageHandlers;
 
 -(instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
+    WKWebViewConfiguration* config = [WKWebViewConfiguration new];
+    config.allowsInlineMediaPlayback = YES;
+    self = [super initWithFrame:frame configuration:config];
     if (self) {
         [self setScalesPageToFit];
         [self setBackgroundColor:UIColor.clearColor];
