@@ -18,6 +18,7 @@
 @property (nonatomic, readonly) RUNAMediaType mediaType;
 - (void)setInitState;
 - (BOOL)disabledLoad;
+- (void)load;
 - (void)applyAdView;
 - (void)playVideo;
 - (void)pauseVideo;
@@ -63,8 +64,34 @@
     XCTAssertFalse([bannerView disabledLoad]);
 }
 
+- (void)testLoad {
+    // TODO: Create dummy BidResponse Json
+    RUNABannerView *bannerView = [RUNABannerView new];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
+    expectation.expectedFulfillmentCount = 2;
+
+    [self execute:expectation delayTime:1.0 targetMethod:^{
+        // valid adSpotId in dev
+        bannerView.adSpotId = @"693";
+        [bannerView load];
+    } assertionBlock:^{
+        XCTAssertNil(bannerView.eventHandler);
+        XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_LOADING);
+    }];
+    
+    [self execute:expectation delayTime:2.0 targetMethod:^{
+        // invalid adSpotId
+        bannerView.adSpotId = @"invalidId";
+        [bannerView load];
+    } assertionBlock:^{
+        XCTAssertNil(bannerView.eventHandler);
+        XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_FAILED);
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:nil];
+}
+
 // TODO: implement tests
-// load
 // loadWithEventHandler
 // triggerSuccess
 // triggerFailure
@@ -157,6 +184,8 @@
     
     [self waitForExpectationsWithTimeout:7.0 handler:nil];
 }
+
+#pragma mark - Helper Method
 
 - (void)execute:(XCTestExpectation *)expectation
       delayTime:(int64_t)delayTime
