@@ -27,6 +27,22 @@
 
 @implementation RUNABannerViewInnerTest
 
+- (void)testIntialize {
+    RUNABannerView *bannerView = [[RUNABannerView alloc]initWithFrame:CGRectZero];
+    XCTAssertNotNil(bannerView.imp);
+    XCTAssertNotNil(bannerView.imp.json);
+    XCTAssertEqual(bannerView.imp.json.allKeys.count, (NSUInteger)0);
+    // Initial State
+    XCTAssertTrue(bannerView.hidden);
+    XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_INIT);
+    XCTAssertEqual(bannerView.error, RUNABannerViewErrorNone);
+    XCTAssertEqual(bannerView.videoState, RUNA_VIDEO_STATE_UNKNOWN);
+    XCTAssertEqual(bannerView.mediaType, RUNA_MEDIA_TYPE_UNKOWN);
+    XCTAssertNotNil(bannerView.measurers);
+    XCTAssertNotNil(bannerView.logAdInfo);
+    XCTAssertNotNil(bannerView.logUserInfo);
+}
+
 - (void)testScriptMessageEvent {
     RUNABannerView *actual;
     XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
