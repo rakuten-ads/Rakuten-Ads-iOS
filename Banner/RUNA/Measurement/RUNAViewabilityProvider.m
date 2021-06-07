@@ -16,6 +16,7 @@
 @property(nonatomic, weak) UIView* view;
 @property(nonatomic, copy, nullable) NSString* viewImpURL;
 @property(nonatomic, copy, nullable) RUNAViewabilityCompletionHandler completionHandler;
+@property(nonatomic, readonly) id<RUNAMeasurer> measurer;
 
 @end
 
@@ -32,14 +33,17 @@
 }
 
 -(id<RUNAMeasurer>) getDefaultMeasurer {
-    RUNADefaultMeasurer* measurer = [RUNADefaultMeasurer new];
-    [measurer setMeasureTarget:self];
-    [measurer setMeasurerDelegate:self];
-    return measurer;
+    if (!self->_measurer) {
+        self->_measurer = [RUNADefaultMeasurer new];
+        [self->_measurer setMeasureTarget:self];
+        [self->_measurer setMeasurerDelegate:self];
+    }
+    return self->_measurer;
 }
 
 -(BOOL)measureImp {
-    return true;
+    RUNADebug("measurement[default] skip measure imp");
+    return YES;
 }
 
 -(BOOL)measureInview {
@@ -54,7 +58,7 @@
         request.httpTaskDelegate = self.viewImpURL;
         [request resume];
     }
-    return true;
+    return YES;
 }
 
 -(float)visibility {
@@ -89,7 +93,7 @@
 
 @interface RUNAViewabilityProvider()
 
-@property(nonatomic) NSMutableDictionary<NSString*, RUNADefaultMeasurer*>* measuerDict;
+@property(nonatomic) NSMutableDictionary<NSString*, RUNAViewabilityTarget*>* targetDict;
 
 @end
 
@@ -99,7 +103,7 @@
 {
     self = [super init];
     if (self) {
-        self.measuerDict = [NSMutableDictionary dictionary];
+        self.targetDict = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -113,15 +117,14 @@
     RUNAViewabilityTarget* target = [[RUNAViewabilityTarget alloc] initWithView:view];
     target.viewImpURL = url;
     target.completionHandler = handler;
-    RUNADefaultMeasurer* measuer = [target getDefaultMeasurer];
-    [self.measuerDict setObject:measuer forKey:target.identifier];
-    [measuer startMeasurement];
+    [self.targetDict setObject:target forKey:target.identifier];
+    [[target getDefaultMeasurer] startMeasurement];
 }
 
 -(void)unregsiterTargetView:(UIView *)view {
     NSString* identifier = [NSString stringWithFormat:@"%lu", (unsigned long)view.hash];
-    [self.measuerDict[identifier] finishMeasurement];
-    [self.measuerDict removeObjectForKey: identifier];
+    [self.targetDict[identifier].measurer finishMeasurement];
+    [self.targetDict removeObjectForKey: identifier];
 }
 
 +(instancetype)sharedInstance {

@@ -73,11 +73,11 @@ int kMeasureMaxCount = 600;
 }
 
 - (void)setMeasureTarget:(id<RUNADefaultMeasurement>)measurableTarget {
-    self.measurableTarget = measurableTarget;
+    self->_measurableTarget = measurableTarget;
 }
 
 - (void)setMeasurerDelegate:(id<RUNAMeasurerDelegate>)measurerDelegate {
-    self.measurerDelegate = measurerDelegate;
+    self->_measurerDelegate = measurerDelegate;
 }
 
 
