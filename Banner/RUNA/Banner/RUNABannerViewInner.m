@@ -18,12 +18,14 @@
 
 NSString* BASE_URL_BLANK = @"about:blank";
 
-@interface RUNABannerView() <WKNavigationDelegate>
+@interface RUNABannerView() <WKNavigationDelegate, RUNAViewableObserverDelegate>
 
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* webViewConstraints;
 @property (atomic, readonly) RUNABannerViewState state;
+@property (nonatomic) RUNAVideoState videoState;
+@property (nonatomic) RUNAMediaType mediaType;
 
 @end
 
@@ -49,6 +51,8 @@ NSString* BASE_URL_BLANK = @"about:blank";
     self.hidden = YES;
     self.state = RUNA_ADVIEW_STATE_INIT;
     self.error = RUNABannerViewErrorNone;
+    self.videoState = RUNA_VIDEO_STATE_UNKNOWN;
+    self.mediaType = RUNA_MEDIA_TYPE_UNKOWN;
     [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
         [measurer finishMeasurement];
     }];
@@ -334,6 +338,9 @@ NSString* BASE_URL_BLANK = @"about:blank";
     __weak typeof(self) weakSelf = self;
     [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
+        if (weakSelf.mediaType != RUNA_MEDIA_TYPE_VIDEO) {
+            weakSelf.mediaType = RUNA_MEDIA_TYPE_BANNER;
+        }
         [weakSelf triggerSuccess];
     }]];
     [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeCollapse handle:^(RUNAAdWebViewMessage * _Nonnull message) {
@@ -348,6 +355,18 @@ NSString* BASE_URL_BLANK = @"about:blank";
         RUNADebug("handle %@", message.type);
         weakSelf.error = RUNABannerViewErrorUnfilled;
         [weakSelf triggerFailure];
+    }]];
+    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideo handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+        RUNADebug("handle %@", message.type);
+        weakSelf.mediaType = RUNA_MEDIA_TYPE_VIDEO;
+        [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
+            [measurer setViewableObserverDelegate:self];
+            [measurer setIsVideoMeasuring:YES];
+        }];
+    }]];
+    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoLoaded handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+        RUNADebug("handle %@", message.type);
+        weakSelf.videoState = RUNA_VIDEO_STATE_LOADED;
     }]];
 
     // active a2a if a2a framework imported
@@ -568,6 +587,53 @@ NSString* BASE_URL_BLANK = @"about:blank";
 
 - (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
     RUNALog("AD view didFailNavigation %@", error);
+}
+
+
+# pragma mark - RUNAViewableObserverDelegate method
+
+- (void)didMeasurementInView:(BOOL)isMeasuredInview {
+    // Do nothing when mediaType is Banner ads
+    if (self.mediaType != RUNA_MEDIA_TYPE_VIDEO) {
+        return;
+    }
+    if (isMeasuredInview) {
+        [self playVideo];
+        return;
+    }
+    [self pauseVideo];
+}
+
+# pragma mark - Video Control Methods
+
+- (void)playVideo {
+    if (self.videoState != RUNA_VIDEO_STATE_PLAYING) {
+        [self evaluateVideoJavaScript:YES scriptCompletionHandler:^{
+            self.videoState = RUNA_VIDEO_STATE_PLAYING;
+        }];
+    }
+}
+
+- (void)pauseVideo {
+    if (self.videoState == RUNA_VIDEO_STATE_PLAYING) {
+        [self evaluateVideoJavaScript:NO scriptCompletionHandler:^{
+            self.videoState = RUNA_VIDEO_STATE_PAUSED;
+        }];
+    }
+}
+
+- (void)evaluateVideoJavaScript:(BOOL)isVideoPlaying
+        scriptCompletionHandler:(void (^)(void))completionHandler {
+    NSString *sender = isVideoPlaying ? @"true" : @"false";
+    NSString *functionName = [NSString stringWithFormat:@"window.cd.sendViewable(%@)", sender];
+    [self.webView evaluateJavaScript:functionName
+           completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        if (error) {
+            RUNALog("video javascript evaluating error: %@", error);
+            return;
+        }
+        completionHandler();
+    }];
 }
 
 # pragma mark - helping method

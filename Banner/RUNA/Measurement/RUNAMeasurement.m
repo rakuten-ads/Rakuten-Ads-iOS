@@ -21,16 +21,22 @@ int kMeasureMaxCount = 600;
 @interface RUNADefaultMeasurer()
 
 @property(nonatomic, weak, nullable) id<RUNADefaultMeasurement> measurableTarget;
+@property(nonatomic, weak, nullable) id<RUNAViewableObserverDelegate> viewableObserverDelegate;
 @property(nonatomic) int countDown;
+// continue observing inview in video ads.
+@property(nonatomic) BOOL isVideoMeasuring;
 
 @property(atomic) BOOL shouldStopMeasureImp;
 @property(atomic) BOOL shouldStopMeasureInview;
+@property(atomic) BOOL isSentMeasureImp;
 
 @end
 
 # pragma mark - RUNADefaultMeasurer
 
 @implementation RUNADefaultMeasurer
+
+@synthesize viewableObserverDelegate;
 
 - (instancetype)init
 {
@@ -41,7 +47,7 @@ int kMeasureMaxCount = 600;
     return self;
 }
 
-+(NSOperationQueue*) sharedQueue {
++ (NSOperationQueue*)sharedQueue {
     static dispatch_once_t onceToken;
     static NSOperationQueue* queue;
     dispatch_once(&onceToken, ^{
@@ -50,7 +56,7 @@ int kMeasureMaxCount = 600;
     return queue;
 }
 
--(void)startMeasurement {
+- (void)startMeasurement {
     RUNADebug("measurement[default] start on target %p", self.measurableTarget);
     self.shouldStopMeasureImp = self.shouldStopMeasureImp || [self.measurableTarget measureImp];
     RUNADebug("measurement[default] target %p imp : %@", self.measurableTarget, self.shouldStopMeasureImp ? @"stopped" : @"continue...");
@@ -63,13 +69,15 @@ int kMeasureMaxCount = 600;
     }
 }
 
--(void)finishMeasurement {
+- (void)finishMeasurement {
     RUNADebug("measurement[default] finish on target %p", self.measurableTarget);
     self.shouldStopMeasureInview = YES;
     self.shouldStopMeasureImp = YES;
+    self.isVideoMeasuring = NO;
+    self.isSentMeasureImp = NO;
 }
 
--(void)setMeasureTarget:(id<RUNADefaultMeasurement>)measurableTarget {
+- (void)setMeasureTarget:(id<RUNADefaultMeasurement>)measurableTarget {
     self.measurableTarget = measurableTarget;
 }
 @end
@@ -77,13 +85,16 @@ int kMeasureMaxCount = 600;
 # pragma mark - RUNADefaultMeasureOption
 @implementation RUNADefaultMeasureOption
 
--(void)main {
+- (void)main {
     RUNADebug("measurement[default] inview %p dequeue", self);
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kMeasureIntervalInView * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         @try {
             RUNADefaultMeasurer* measurer = self.measurer;
             if (measurer.measurableTarget) {
-                measurer.shouldStopMeasureInview = measurer.shouldStopMeasureInview || [measurer.measurableTarget measureInview];
+                BOOL isMeasuredInview = [measurer.measurableTarget measureInview];
+                [self executeInviewObserver:measurer isInview:isMeasuredInview];
+                [self sendMeasureImpIfNeeded:measurer isInview:isMeasuredInview];
+                measurer.shouldStopMeasureInview = [self shouldStopMeasuring:measurer isInview:isMeasuredInview];
                 if (!measurer.shouldStopMeasureInview && measurer.countDown > 0) {
                     RUNADebug("measurement[default] inview : %@", @"continue...");
                     RUNADefaultMeasureOption* operation = [RUNADefaultMeasureOption new];
@@ -104,7 +115,31 @@ int kMeasureMaxCount = 600;
     });
 }
 
--(void) sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception {
+- (void)sendMeasureImpIfNeeded:(RUNADefaultMeasurer*)measurer
+                      isInview:(BOOL)isInview {
+    if (!isInview || measurer.isSentMeasureImp) {
+        return;
+    }
+    measurer.isSentMeasureImp = [measurer.measurableTarget sendMeasureImp];
+}
+
+- (BOOL)shouldStopMeasuring:(RUNADefaultMeasurer*)measurer
+                   isInview:(BOOL)isInview {
+    if (measurer.isVideoMeasuring) {
+        return NO;
+    }
+    return measurer.shouldStopMeasureInview || isInview;
+}
+
+- (void)executeInviewObserver:(RUNADefaultMeasurer*)measurer
+                     isInview:(BOOL)isInview {
+    id<RUNAViewableObserverDelegate> delegate = measurer.viewableObserverDelegate;
+    if (delegate && [delegate respondsToSelector:@selector(didMeasurementInView:)]) {
+        [delegate didMeasurementInView:isInview];
+    }
+}
+
+- (void)sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception {
     if ([self.measurer.measurableTarget isKindOfClass:[RUNABannerView class]]) {
         [(RUNABannerView*)self.measurer.measurableTarget sendRemoteLogWithMessage:message andException:exception];
     }
