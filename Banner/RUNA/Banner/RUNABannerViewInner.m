@@ -73,20 +73,28 @@ NSString* BASE_URL_BLANK = @"about:blank";
 }
 
 #pragma mark - APIs
+-(BOOL)disabledLoad {
+    RUNABannerViewState state = self.state;
+    return state == RUNA_ADVIEW_STATE_LOADING
+        || state == RUNA_ADVIEW_STATE_LOADED
+        || state == RUNA_ADVIEW_STATE_RENDERING
+        || state == RUNA_ADVIEW_STATE_MESSAGE_LISTENING;
+}
+
 -(void)load {
     [self loadWithEventHandler:nil];
 }
 
 -(void) loadWithEventHandler:(RUNABannerViewEventHandler)handler {
     RUNADebug("BannerView %p load: %@", self, self);
-    if (self.state == RUNA_ADVIEW_STATE_LOADING
-        || self.state == RUNA_ADVIEW_STATE_LOADED
-        || self.state == RUNA_ADVIEW_STATE_RENDERING
-        || self.state == RUNA_ADVIEW_STATE_MESSAGE_LISTENING) {
-        RUNALog("BannerView %p has started loading.", self);
+    
+    if ([self disabledLoad]) {
+        RUNALog("BannerView %p has stopped loading.", self);
         return;
     }
 
+    RUNALog("BannerView %p has started loading.", self);
+    
     [self setInitState];
     self.state = RUNA_ADVIEW_STATE_LOADING;
     self.eventHandler = handler;

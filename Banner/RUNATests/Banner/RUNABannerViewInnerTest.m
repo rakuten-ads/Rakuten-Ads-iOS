@@ -12,11 +12,12 @@
 
 @interface RUNABannerView (Spy)
 @property (nonatomic) RUNABanner *banner;
-@property (nonatomic, readonly) RUNABannerViewState state;
+@property (nonatomic) RUNABannerViewState state;
 @property (nonatomic, readonly) RUNABannerViewError error;
 @property (nonatomic, readonly) RUNAVideoState videoState;
 @property (nonatomic, readonly) RUNAMediaType mediaType;
 - (void)setInitState;
+- (BOOL)disabledLoad;
 - (void)applyAdView;
 - (void)playVideo;
 - (void)pauseVideo;
@@ -42,6 +43,31 @@
     XCTAssertNotNil(bannerView.logAdInfo);
     XCTAssertNotNil(bannerView.logUserInfo);
 }
+
+- (void)testDisabledLoad {
+    RUNABannerView *bannerView = [[RUNABannerView alloc]initWithFrame:CGRectZero];
+    XCTAssertFalse([bannerView disabledLoad]);
+    bannerView.state = RUNA_ADVIEW_STATE_LOADING;
+    XCTAssertTrue([bannerView disabledLoad]);
+    bannerView.state = RUNA_ADVIEW_STATE_LOADED;
+    XCTAssertTrue([bannerView disabledLoad]);
+    bannerView.state = RUNA_ADVIEW_STATE_FAILED;
+    XCTAssertFalse([bannerView disabledLoad]);
+    bannerView.state = RUNA_ADVIEW_STATE_RENDERING;
+    XCTAssertTrue([bannerView disabledLoad]);
+    bannerView.state = RUNA_ADVIEW_STATE_MESSAGE_LISTENING;
+    XCTAssertTrue([bannerView disabledLoad]);
+    bannerView.state = RUNA_ADVIEW_STATE_SHOWED;
+    XCTAssertFalse([bannerView disabledLoad]);
+    bannerView.state = RUNA_ADVIEW_STATE_CLICKED;
+    XCTAssertFalse([bannerView disabledLoad]);
+}
+
+// TODO: implement tests
+// load
+// loadWithEventHandler
+// triggerSuccess
+// triggerFailure
 
 - (void)testScriptMessageEvent {
     RUNABannerView *actual;
