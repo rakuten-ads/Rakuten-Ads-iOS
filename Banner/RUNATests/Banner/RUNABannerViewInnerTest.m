@@ -115,6 +115,10 @@
             XCTAssertEqual(event.eventType, RUNABannerViewEventTypeSucceeded);
         }];
     } assertionBlock:^{
+        // onBidResponseSuccess state
+        XCTAssertNotNil(bannerView.sessionId);
+        XCTAssertNotNil(bannerView.banner);
+        // success state
         XCTAssertNotNil(bannerView.eventHandler);
         XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_SHOWED);
     }];
