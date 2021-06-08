@@ -73,7 +73,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
 }
 
 #pragma mark - APIs
--(BOOL)disabledLoad {
+-(BOOL)isLoading {
     RUNABannerViewState state = self.state;
     return state == RUNA_ADVIEW_STATE_LOADING
         || state == RUNA_ADVIEW_STATE_LOADED
@@ -88,8 +88,8 @@ NSString* BASE_URL_BLANK = @"about:blank";
 -(void) loadWithEventHandler:(RUNABannerViewEventHandler)handler {
     RUNADebug("BannerView %p load: %@", self, self);
     
-    if ([self disabledLoad]) {
-        RUNALog("BannerView %p has stopped loading.", self);
+    if ([self isLoading]) {
+        RUNALog("BannerView %p has started loading.", self);
         return;
     }
 
@@ -472,12 +472,12 @@ NSString* BASE_URL_BLANK = @"about:blank";
     return banner;
 }
 
--(BOOL)isTriggerSuspended {
+-(BOOL)isFinished {
     return self.state == RUNA_ADVIEW_STATE_SHOWED || self.state == RUNA_ADVIEW_STATE_FAILED;
 }
 
 -(void) triggerSuccess {
-    if ([self isTriggerSuspended]) {
+    if ([self isFinished]) {
         return;
     }
 
@@ -501,7 +501,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
 }
 
 -(void) triggerFailure {
-    if ([self isTriggerSuspended]) {
+    if ([self isFinished]) {
         return;
     }
 

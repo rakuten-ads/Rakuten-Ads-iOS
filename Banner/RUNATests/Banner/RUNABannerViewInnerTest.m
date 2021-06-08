@@ -23,9 +23,9 @@ NSString *const kValidAdspotId = @"693";
 @property (nonatomic, readonly) RUNAVideoState videoState;
 @property (nonatomic, readonly) RUNAMediaType mediaType;
 - (void)setInitState;
-- (BOOL)disabledLoad;
+- (BOOL)isLoading;
 - (void)applyAdView;
-- (BOOL)isTriggerSuspended;
+- (BOOL)isFinished;
 - (void)triggerSuccess;
 - (void)triggerFailure;
 - (void)playVideo;
@@ -55,23 +55,23 @@ NSString *const kValidAdspotId = @"693";
 
 # pragma mark - APT Tests
 
-- (void)testDisabledLoad {
+- (void)testIsLoading {
     RUNABannerView *bannerView = [[RUNABannerView alloc]initWithFrame:CGRectZero];
-    XCTAssertFalse([bannerView disabledLoad]);
+    XCTAssertFalse([bannerView isLoading]);
     bannerView.state = RUNA_ADVIEW_STATE_LOADING;
-    XCTAssertTrue([bannerView disabledLoad]);
+    XCTAssertTrue([bannerView isLoading]);
     bannerView.state = RUNA_ADVIEW_STATE_LOADED;
-    XCTAssertTrue([bannerView disabledLoad]);
+    XCTAssertTrue([bannerView isLoading]);
     bannerView.state = RUNA_ADVIEW_STATE_FAILED;
-    XCTAssertFalse([bannerView disabledLoad]);
+    XCTAssertFalse([bannerView isLoading]);
     bannerView.state = RUNA_ADVIEW_STATE_RENDERING;
-    XCTAssertTrue([bannerView disabledLoad]);
+    XCTAssertTrue([bannerView isLoading]);
     bannerView.state = RUNA_ADVIEW_STATE_MESSAGE_LISTENING;
-    XCTAssertTrue([bannerView disabledLoad]);
+    XCTAssertTrue([bannerView isLoading]);
     bannerView.state = RUNA_ADVIEW_STATE_SHOWED;
-    XCTAssertFalse([bannerView disabledLoad]);
+    XCTAssertFalse([bannerView isLoading]);
     bannerView.state = RUNA_ADVIEW_STATE_CLICKED;
-    XCTAssertFalse([bannerView disabledLoad]);
+    XCTAssertFalse([bannerView isLoading]);
 }
 
 - (void)testLoad {
@@ -207,23 +207,23 @@ NSString *const kValidAdspotId = @"693";
     // TODO: Create dummy BidResponse
 }
 
-- (void)testIsTriggerSuspended {
+- (void)testIsFinished {
     RUNABannerView *bannerView = [RUNABannerView new];
-    XCTAssertFalse([bannerView isTriggerSuspended]);
+    XCTAssertFalse([bannerView isFinished]);
     bannerView.state = RUNA_ADVIEW_STATE_LOADING;
-    XCTAssertFalse([bannerView isTriggerSuspended]);
+    XCTAssertFalse([bannerView isFinished]);
     bannerView.state = RUNA_ADVIEW_STATE_LOADED;
-    XCTAssertFalse([bannerView isTriggerSuspended]);
+    XCTAssertFalse([bannerView isFinished]);
     bannerView.state = RUNA_ADVIEW_STATE_FAILED;
-    XCTAssertTrue([bannerView isTriggerSuspended]);
+    XCTAssertTrue([bannerView isFinished]);
     bannerView.state = RUNA_ADVIEW_STATE_RENDERING;
-    XCTAssertFalse([bannerView isTriggerSuspended]);
+    XCTAssertFalse([bannerView isFinished]);
     bannerView.state = RUNA_ADVIEW_STATE_MESSAGE_LISTENING;
-    XCTAssertFalse([bannerView isTriggerSuspended]);
+    XCTAssertFalse([bannerView isFinished]);
     bannerView.state = RUNA_ADVIEW_STATE_SHOWED;
-    XCTAssertTrue([bannerView isTriggerSuspended]);
+    XCTAssertTrue([bannerView isFinished]);
     bannerView.state = RUNA_ADVIEW_STATE_CLICKED;
-    XCTAssertFalse([bannerView isTriggerSuspended]);
+    XCTAssertFalse([bannerView isFinished]);
 }
 
 - (void)testTriggerSuccess {
