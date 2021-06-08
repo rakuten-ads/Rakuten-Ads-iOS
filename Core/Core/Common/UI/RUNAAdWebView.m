@@ -81,4 +81,10 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
     }
 }
 
+- (void)removeFromSuperview {
+    [super removeFromSuperview];
+    RUNADebug("remove webview from superview");
+    [self.configuration.userContentController removeScriptMessageHandlerForName:kSdkMessageHandlerName];
+}
+
 @end

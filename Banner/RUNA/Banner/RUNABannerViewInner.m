@@ -193,9 +193,13 @@ NSString* BASE_URL_BLANK = @"about:blank";
 #pragma mark - UI frame control
 -(void)didMoveToSuperview {
     RUNADebug("didMoveToSuperview");
-    [self applyContainerSize];
-    [self applyContainerPosition];
-    [self layoutIfNeeded];
+    if (self.superview) {
+        [self applyContainerSize];
+        [self applyContainerPosition];
+        [self layoutIfNeeded];
+    } else {
+        RUNADebug("removeFromSuperview leads here when superview is nil");
+    }
 }
 
 -(void)removeFromSuperview {
@@ -367,8 +371,9 @@ NSString* BASE_URL_BLANK = @"about:blank";
     [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideo handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
         weakSelf.mediaType = RUNA_MEDIA_TYPE_VIDEO;
-        [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
-            [measurer setViewableObserverDelegate:self];
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
+            [measurer setViewableObserverDelegate:strongSelf];
             [measurer setIsVideoMeasuring:YES];
         }];
     }]];

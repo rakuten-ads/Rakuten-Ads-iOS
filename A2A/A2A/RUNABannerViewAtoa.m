@@ -39,7 +39,7 @@
         if (strongSelf.eventHandler) {
             @try {
                 struct RUNABannerViewEvent event = { RUNABannerViewEventTypeClicked, strongSelf.error };
-                strongSelf.eventHandler(self, event);
+                strongSelf.eventHandler(strongSelf, event);
             } @catch (NSException *exception) {
                 RUNADebug("exception on popup event: %@", exception);
                 [strongSelf a2a_sendRemoteLogWithMessage:@"exception on popup event" andException:exception];
