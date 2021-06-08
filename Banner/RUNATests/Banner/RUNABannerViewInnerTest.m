@@ -65,6 +65,7 @@
 }
 
 - (void)testLoad {
+    // As requesting dev, duration is long time setting.
     RUNABannerView *bannerView = [RUNABannerView new];
     {
         XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
