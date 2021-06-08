@@ -75,40 +75,14 @@ NSString *const kValidAdspotId = @"693";
 }
 
 - (void)testLoad {
-    // As requesting dev, duration is long time setting.
     RUNABannerView *bannerView = [RUNABannerView new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
     
-    [self execute:expectation delayTime:7.0 targetMethod:^{
+    [self execute:expectation delayTime:5.0 targetMethod:^{
         bannerView.adSpotId = kValidAdspotId;
         [bannerView load];
     } assertionBlock:^{
-        // onBidResponseSuccess state
-        XCTAssertNotNil(bannerView.sessionId);
-        XCTAssertNotNil(bannerView.banner);
-        // success state
         XCTAssertNil(bannerView.eventHandler);
-        XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_SHOWED);
-    }];
-    
-    [self waitForExpectationsWithTimeout:10.0 handler:nil];
-}
-
-// As requesting dev, separate falure test.
-- (void)testLoadFailure {
-    RUNABannerView *bannerView = [RUNABannerView new];
-    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
-    
-    [self execute:expectation delayTime:7.0 targetMethod:^{
-        // invalid adSpotId
-        bannerView.adSpotId = @"invalidId";
-        [bannerView load];
-    } assertionBlock:^{
-        // onBidResponseFailed state
-        XCTAssertEqual(bannerView.error, RUNABannerViewErrorUnfilled);
-        // failed state
-        XCTAssertNil(bannerView.eventHandler);
-        XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_FAILED);
     }];
     
     [self waitForExpectationsWithTimeout:10.0 handler:nil];
@@ -118,20 +92,41 @@ NSString *const kValidAdspotId = @"693";
     RUNABannerView *bannerView = [RUNABannerView new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
 
-    [self execute:expectation delayTime:7.0 targetMethod:^{
+    [self execute:expectation delayTime:5.0 targetMethod:^{
         bannerView.adSpotId = kValidAdspotId;
         [bannerView loadWithEventHandler:
          ^(RUNABannerView * _Nonnull view,
            struct RUNABannerViewEvent event) {
             XCTAssertEqual(event.eventType, RUNABannerViewEventTypeSucceeded);
+            XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_SHOWED);
         }];
     } assertionBlock:^{
-        // onBidResponseSuccess state
+        XCTAssertNotNil(bannerView.eventHandler);
+        // onBidResponse Success
         XCTAssertNotNil(bannerView.sessionId);
         XCTAssertNotNil(bannerView.banner);
-        // success state
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:nil];
+}
+
+- (void)testLoadWithEventHandlerFailure {
+    RUNABannerView *bannerView = [RUNABannerView new];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
+
+    [self execute:expectation delayTime:5.0 targetMethod:^{
+        bannerView.adSpotId = @"0001"; // Invalid adSpotId
+        [bannerView loadWithEventHandler:
+         ^(RUNABannerView * _Nonnull view,
+           struct RUNABannerViewEvent event) {
+            XCTAssertEqual(event.eventType, RUNABannerViewEventTypeFailed);
+            XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_FAILED);
+        }];
+    } assertionBlock:^{
         XCTAssertNotNil(bannerView.eventHandler);
-        XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_SHOWED);
+        // onBidResponse Failure
+        XCTAssertNil(bannerView.sessionId);
+        XCTAssertNil(bannerView.banner);
     }];
     
     [self waitForExpectationsWithTimeout:10.0 handler:nil];
