@@ -79,7 +79,7 @@ NSString *const kValidAdspotId = @"693";
     RUNABannerView *bannerView = [RUNABannerView new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
     
-    [self execute:expectation delayTime:5.0 targetMethod:^{
+    [self execute:expectation delayTime:7.0 targetMethod:^{
         bannerView.adSpotId = kValidAdspotId;
         [bannerView load];
     } assertionBlock:^{
@@ -99,7 +99,7 @@ NSString *const kValidAdspotId = @"693";
     RUNABannerView *bannerView = [RUNABannerView new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
     
-    [self execute:expectation delayTime:5.0 targetMethod:^{
+    [self execute:expectation delayTime:7.0 targetMethod:^{
         // invalid adSpotId
         bannerView.adSpotId = @"invalidId";
         [bannerView load];
@@ -118,7 +118,7 @@ NSString *const kValidAdspotId = @"693";
     RUNABannerView *bannerView = [RUNABannerView new];
     XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
 
-    [self execute:expectation delayTime:5.0 targetMethod:^{
+    [self execute:expectation delayTime:7.0 targetMethod:^{
         bannerView.adSpotId = kValidAdspotId;
         [bannerView loadWithEventHandler:
          ^(RUNABannerView * _Nonnull view,
@@ -177,7 +177,7 @@ NSString *const kValidAdspotId = @"693";
     XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
     expectation.expectedFulfillmentCount = 2;
     
-    [self execute:expectation delayTime:4.0 targetMethod:^{
+    [self execute:expectation delayTime:7.0 targetMethod:^{
         bannerView.size = RUNABannerViewSizeAspectFit;
         bannerView.position = RUNABannerViewPositionTop;
         [bannerView load];
@@ -191,14 +191,14 @@ NSString *const kValidAdspotId = @"693";
         [bannerView load];
     }];
     
-    [self execute:expectation delayTime:10.0 targetMethod:^{
+    [self execute:expectation delayTime:12.0 targetMethod:^{
     } assertionBlock:^{
         XCTAssertNil(bannerView.sizeConstraints);
         XCTAssertNil(bannerView.positionConstraints);
         XCTAssertFalse(bannerView.translatesAutoresizingMaskIntoConstraints);
     }];
     
-    [self waitForExpectationsWithTimeout:10.0 handler:nil];
+    [self waitForExpectationsWithTimeout:15.0 handler:nil];
 }
 
 # pragma mark - Response Tests
