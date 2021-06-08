@@ -76,6 +76,10 @@
             bannerView.adSpotId = @"693";
             [bannerView load];
         } assertionBlock:^{
+            // onBidResponseSuccess state
+            XCTAssertNotNil(bannerView.sessionId);
+            XCTAssertNotNil(bannerView.banner);
+            // success state
             XCTAssertNil(bannerView.eventHandler);
             XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_SHOWED);
         }];
@@ -88,6 +92,9 @@
             bannerView.adSpotId = @"invalidId";
             [bannerView load];
         } assertionBlock:^{
+            // onBidResponseFailed state
+            XCTAssertEqual(bannerView.error, RUNABannerViewErrorUnfilled);
+            // failed state
             XCTAssertNil(bannerView.eventHandler);
             XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_FAILED);
         }];
