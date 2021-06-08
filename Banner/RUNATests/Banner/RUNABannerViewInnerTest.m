@@ -9,10 +9,13 @@
 #import <XCTest/XCTest.h>
 #import "RUNABannerView+Stub.h"
 #import "RUNABannerViewInner.h"
+#import "MainViewController.h"
 
 @interface RUNABannerView (Spy)
 @property (nonatomic) RUNABanner *banner;
 @property (nonatomic) RUNABannerViewState state;
+@property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
+@property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) RUNABannerViewError error;
 @property (nonatomic, readonly) RUNAVideoState videoState;
 @property (nonatomic, readonly) RUNAMediaType mediaType;
@@ -46,6 +49,8 @@
     XCTAssertNotNil(bannerView.logAdInfo);
     XCTAssertNotNil(bannerView.logUserInfo);
 }
+
+# pragma mark - APT Tests
 
 - (void)testDisabledLoad {
     RUNABannerView *bannerView = [[RUNABannerView alloc]initWithFrame:CGRectZero];
@@ -129,6 +134,70 @@
     }];
     
     [self waitForExpectationsWithTimeout:10.0 handler:nil];
+}
+
+- (void)testSetSize {
+    RUNABannerView *bannerView = [RUNABannerView new];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
+    
+    XCTAssertEqual(bannerView.size, RUNABannerViewSizeDefault);
+
+    [self execute:expectation delayTime:1.0 targetMethod:^{
+        [bannerView setSize:RUNABannerViewSizeAspectFit];
+    } assertionBlock:^{
+        XCTAssertEqual(bannerView.size, RUNABannerViewSizeAspectFit);
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:nil];
+}
+
+- (void)testSetPosition {
+    RUNABannerView *bannerView = [RUNABannerView new];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
+    
+    XCTAssertEqual(bannerView.position, RUNABannerViewPositionCustom);
+
+    [self execute:expectation delayTime:1.0 targetMethod:^{
+        [bannerView setPosition:RUNABannerViewPositionTop];
+    } assertionBlock:^{
+        XCTAssertEqual(bannerView.position, RUNABannerViewPositionTop);
+    }];
+    
+    [self waitForExpectationsWithTimeout:3.0 handler:nil];
+}
+
+- (void)testApplyIntegration {
+    MainViewController *viewController = [MainViewController new];
+    [viewController loadViewIfNeeded];
+    
+    RUNABannerView *bannerView = viewController.bannerView;
+    bannerView.adSpotId = @"693";
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
+    expectation.expectedFulfillmentCount = 2;
+    
+    [self execute:expectation delayTime:5.0 targetMethod:^{
+        bannerView.size = RUNABannerViewSizeAspectFit;
+        bannerView.position = RUNABannerViewPositionTop;
+        [bannerView load];
+    } assertionBlock:^{
+        XCTAssertEqual(bannerView.sizeConstraints.count, (NSUInteger)2);
+        XCTAssertEqual(bannerView.positionConstraints.count, (NSUInteger)2);
+        XCTAssertFalse(bannerView.translatesAutoresizingMaskIntoConstraints);
+        // Custom Params Test
+        bannerView.size = RUNABannerViewSizeCustom;
+        bannerView.position = RUNABannerViewPositionCustom;
+        [bannerView load];
+    }];
+    
+    [self execute:expectation delayTime:10.0 targetMethod:^{
+    } assertionBlock:^{
+        XCTAssertNil(bannerView.sizeConstraints);
+        XCTAssertNil(bannerView.positionConstraints);
+        XCTAssertFalse(bannerView.translatesAutoresizingMaskIntoConstraints);
+    }];
+    
+    [self waitForExpectationsWithTimeout:15.0 handler:nil];
 }
 
 # pragma mark - Response Tests
