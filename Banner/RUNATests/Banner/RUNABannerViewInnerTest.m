@@ -11,6 +11,9 @@
 #import "RUNABannerViewInner.h"
 #import "MainViewController.h"
 
+// for staging
+NSString *const kValidAdspotId = @"693";
+
 @interface RUNABannerView (Spy)
 @property (nonatomic) RUNABanner *banner;
 @property (nonatomic) RUNABannerViewState state;
@@ -77,8 +80,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
     
     [self execute:expectation delayTime:5.0 targetMethod:^{
-        // valid adSpotId in dev
-        bannerView.adSpotId = @"693";
+        bannerView.adSpotId = kValidAdspotId;
         [bannerView load];
     } assertionBlock:^{
         // onBidResponseSuccess state
@@ -117,8 +119,7 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
 
     [self execute:expectation delayTime:5.0 targetMethod:^{
-        // valid adSpotId in dev
-        bannerView.adSpotId = @"693";
+        bannerView.adSpotId = kValidAdspotId;
         [bannerView loadWithEventHandler:
          ^(RUNABannerView * _Nonnull view,
            struct RUNABannerViewEvent event) {
@@ -171,12 +172,12 @@
     [viewController loadViewIfNeeded];
     
     RUNABannerView *bannerView = viewController.bannerView;
-    bannerView.adSpotId = @"693";
+    bannerView.adSpotId = kValidAdspotId;
     
     XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
     expectation.expectedFulfillmentCount = 2;
     
-    [self execute:expectation delayTime:5.0 targetMethod:^{
+    [self execute:expectation delayTime:4.0 targetMethod:^{
         bannerView.size = RUNABannerViewSizeAspectFit;
         bannerView.position = RUNABannerViewPositionTop;
         [bannerView load];
@@ -197,7 +198,7 @@
         XCTAssertFalse(bannerView.translatesAutoresizingMaskIntoConstraints);
     }];
     
-    [self waitForExpectationsWithTimeout:15.0 handler:nil];
+    [self waitForExpectationsWithTimeout:10.0 handler:nil];
 }
 
 # pragma mark - Response Tests
