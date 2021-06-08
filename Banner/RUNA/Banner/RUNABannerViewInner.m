@@ -472,8 +472,12 @@ NSString* BASE_URL_BLANK = @"about:blank";
     return banner;
 }
 
+-(BOOL)isTriggerSuspended {
+    return self.state == RUNA_ADVIEW_STATE_SHOWED || self.state == RUNA_ADVIEW_STATE_FAILED;
+}
+
 -(void) triggerSuccess {
-    if (self.state == RUNA_ADVIEW_STATE_SHOWED || self.state == RUNA_ADVIEW_STATE_FAILED) {
+    if ([self isTriggerSuspended]) {
         return;
     }
 
@@ -497,7 +501,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
 }
 
 -(void) triggerFailure {
-    if (self.state == RUNA_ADVIEW_STATE_FAILED || self.state == RUNA_ADVIEW_STATE_SHOWED) {
+    if ([self isTriggerSuspended]) {
         return;
     }
 

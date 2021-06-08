@@ -18,8 +18,10 @@
 @property (nonatomic, readonly) RUNAMediaType mediaType;
 - (void)setInitState;
 - (BOOL)disabledLoad;
-- (void)load;
 - (void)applyAdView;
+- (BOOL)isTriggerSuspended;
+- (void)triggerSuccess;
+- (void)triggerFailure;
 - (void)playVideo;
 - (void)pauseVideo;
 @end
@@ -113,9 +115,68 @@
     [self waitForExpectationsWithTimeout:10.0 handler:nil];
 }
 
-// TODO: implement tests
-// triggerSuccess
-// triggerFailure
+# pragma mark - Response Tests
+
+- (void)testParse {
+    // TODO: Create dummy BidResponse
+}
+
+- (void)testIsTriggerSuspended {
+    RUNABannerView *bannerView = [RUNABannerView new];
+    XCTAssertFalse([bannerView isTriggerSuspended]);
+    bannerView.state = RUNA_ADVIEW_STATE_LOADING;
+    XCTAssertFalse([bannerView isTriggerSuspended]);
+    bannerView.state = RUNA_ADVIEW_STATE_LOADED;
+    XCTAssertFalse([bannerView isTriggerSuspended]);
+    bannerView.state = RUNA_ADVIEW_STATE_FAILED;
+    XCTAssertTrue([bannerView isTriggerSuspended]);
+    bannerView.state = RUNA_ADVIEW_STATE_RENDERING;
+    XCTAssertFalse([bannerView isTriggerSuspended]);
+    bannerView.state = RUNA_ADVIEW_STATE_MESSAGE_LISTENING;
+    XCTAssertFalse([bannerView isTriggerSuspended]);
+    bannerView.state = RUNA_ADVIEW_STATE_SHOWED;
+    XCTAssertTrue([bannerView isTriggerSuspended]);
+    bannerView.state = RUNA_ADVIEW_STATE_CLICKED;
+    XCTAssertFalse([bannerView isTriggerSuspended]);
+}
+
+- (void)testTriggerSuccess {
+    RUNABannerView *bannerView = [RUNABannerView new];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
+
+    [self execute:expectation delayTime:3.0 targetMethod:^{
+        bannerView.eventHandler = ^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
+            XCTAssertEqual(event.eventType, RUNABannerViewEventTypeSucceeded);
+        };
+        [bannerView triggerSuccess];
+    } assertionBlock:^{
+        // TODO: advertiseId test
+        XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_SHOWED);
+        XCTAssertFalse(bannerView.hidden);
+    }];
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:nil];
+}
+
+- (void)testTriggerFailure {
+    RUNABannerView *bannerView = [RUNABannerView new];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
+
+    [self execute:expectation delayTime:3.0 targetMethod:^{
+        bannerView.eventHandler = ^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
+            XCTAssertEqual(event.eventType, RUNABannerViewEventTypeFailed);
+        };
+        [bannerView triggerFailure];
+    } assertionBlock:^{
+        XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_FAILED);
+        XCTAssertTrue(bannerView.hidden);
+        XCTAssertNil(bannerView.webView.navigationDelegate);
+    }];
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:nil];
+}
+
+# pragma mark - Video Tests
 
 - (void)testScriptMessageEvent {
     RUNABannerView *actual;
