@@ -382,14 +382,6 @@ NSString* BASE_URL_BLANK = @"about:blank";
         weakSelf.videoState = RUNA_VIDEO_STATE_LOADED;
     }]];
 
-    // active a2a if a2a framework imported
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-    if ([self respondsToSelector:@selector(a2a_active)]) {
-        [self performSelector:@selector(a2a_active)];
-    }
-#pragma clang diagnostic pop
-
     self.webView.navigationDelegate = self;
     [self addSubview:self.webView];
     
