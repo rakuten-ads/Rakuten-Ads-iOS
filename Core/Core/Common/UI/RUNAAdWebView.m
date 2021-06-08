@@ -8,11 +8,7 @@
 
 #import "RUNAAdWebView.h"
 
-@implementation RUNAAdWebView {
-    NSMutableDictionary<NSString*, RUNAAdWebViewMessageHandler*>* _messageHandlers;
-}
-
-@synthesize messageHandlers = _messageHandlers;
+@implementation RUNAAdWebView
 
 -(instancetype)initWithFrame:(CGRect)frame {
     WKWebViewConfiguration* config = [WKWebViewConfiguration new];
@@ -47,44 +43,6 @@ NSString *jScriptViewport =
 - (void)setScalesPageToFit {
     WKUserScript *userScript = [[WKUserScript alloc] initWithSource:jScriptViewport injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
     [self.configuration.userContentController addUserScript:userScript];
-}
-
-NSString *kSdkMessageHandlerName = @"runaSdkInterface";
--(void)addMessageHandler:(RUNAAdWebViewMessageHandler *)handler {
-    if (!self.messageHandlers) {
-        [self.configuration.userContentController addScriptMessageHandler:self name:kSdkMessageHandlerName];
-        self->_messageHandlers = [NSMutableDictionary dictionary];
-    }
-    [self->_messageHandlers setObject:handler forKey:handler.type];
-}
-
--(void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
-    RUNADebug("received posted raw message name %@: %@", [message name], [message body]);
-    if ([message.name isEqualToString:kSdkMessageHandlerName]
-        && message.body) {
-        @try {
-            if ([message.body isKindOfClass:[NSDictionary class]]) {
-                RUNAAdWebViewMessage* sdkMessage = [RUNAAdWebViewMessage parse:(NSDictionary*)message.body];
-                RUNADebug("translate to sdk message %@", sdkMessage);
-                RUNAAdWebViewMessageHandler* handler = self.messageHandlers[sdkMessage.type];
-                if (handler) {
-                    handler.handle(sdkMessage);
-                }
-            }
-        } @catch (NSException *exception) {
-            RUNADebug("exception when waiting post message: %@", exception);
-            RUNAAdWebViewMessageHandler* handler = self.messageHandlers[kSdkMessageTypeOther];
-            if (handler) {
-                handler.handle(nil);
-            }
-        }
-    }
-}
-
-- (void)removeFromSuperview {
-    [super removeFromSuperview];
-    RUNADebug("remove webview from superview");
-    [self.configuration.userContentController removeScriptMessageHandlerForName:kSdkMessageHandlerName];
 }
 
 @end

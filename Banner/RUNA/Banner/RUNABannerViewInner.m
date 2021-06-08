@@ -18,6 +18,8 @@
 
 NSString* BASE_URL_BLANK = @"about:blank";
 
+NSString *kSdkMessageHandlerName = @"runaSdkInterface";
+
 @interface RUNABannerView() <WKNavigationDelegate, RUNAViewableObserverDelegate>
 
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
@@ -348,27 +350,29 @@ NSString* BASE_URL_BLANK = @"about:blank";
     // Web View
     self->_webView = [RUNAAdWebView new];
     __weak typeof(self) weakSelf = self;
-    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+
+    RUNAAdWebViewMessageManager* messageManager = [[RUNAAdWebViewMessageManager alloc] initWithName:kSdkMessageHandlerName];
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
         if (weakSelf.mediaType != RUNA_MEDIA_TYPE_VIDEO) {
             weakSelf.mediaType = RUNA_MEDIA_TYPE_BANNER;
         }
         [weakSelf triggerSuccess];
     }]];
-    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeCollapse handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeCollapse handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
         [weakSelf triggerFailure];
     }]];
-    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeRegister handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeRegister handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
         weakSelf.state = RUNA_ADVIEW_STATE_MESSAGE_LISTENING;
     }]];
-    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeUnfilled handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeUnfilled handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
         weakSelf.error = RUNABannerViewErrorUnfilled;
         [weakSelf triggerFailure];
     }]];
-    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideo handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideo handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
         weakSelf.mediaType = RUNA_MEDIA_TYPE_VIDEO;
         __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -377,11 +381,12 @@ NSString* BASE_URL_BLANK = @"about:blank";
             [measurer setIsVideoMeasuring:YES];
         }];
     }]];
-    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoLoaded handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoLoaded handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
         weakSelf.videoState = RUNA_VIDEO_STATE_LOADED;
     }]];
 
+    [self.webView.configuration.userContentController addScriptMessageHandler:messageManager name:kSdkMessageHandlerName];
     self.webView.navigationDelegate = self;
     [self addSubview:self.webView];
     

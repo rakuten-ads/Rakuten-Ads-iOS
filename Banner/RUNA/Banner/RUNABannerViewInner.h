@@ -20,6 +20,7 @@
 #import <RUNACore/RUNADefines.h>
 #import <RUNACore/RUNAInfoPlist.h>
 #import <RUNACore/RUNAAdWebViewMessage.h>
+#import <RUNACore/RUNAAdWebViewMessageManager.h>
 #import <RUNACore/RUNARemoteLogger.h>
 #import <RUNACore/RUNARemoteLogEntity.h>
 #import "RUNAMeasurement.h"
