@@ -21,7 +21,6 @@
 }
 
 -(void)addMessageHandler:(RUNAAdWebViewMessageHandler *)handler {
-//        [self.configuration.userContentController addScriptMessageHandler:self name:kSdkMessageHandlerName];
     [self->_messageHandlers setObject:handler forKey:handler.type];
 }
 
