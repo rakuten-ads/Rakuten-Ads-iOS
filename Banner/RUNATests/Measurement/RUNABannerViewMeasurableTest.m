@@ -7,10 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "RUNABannerView.h"
+#import "RUNABannerViewInner.h"
 #import "MainViewController.h"
 
 @interface RUNABannerView (Spy)
+- (BOOL)measureInview;
 - (float)getVisibility:(UIWindow *)window
     rootViewController:(UIViewController *)rootViewController;
 - (BOOL)isVisible:(float)visibility;
@@ -30,11 +31,17 @@
 - (void)setUp {
     self.dummyWindow = [[UIWindow alloc] initWithFrame:self.viewController.view.frame];
     self.viewController = [MainViewController new];
+    [self.viewController loadViewIfNeeded];
     [super setUp];
 }
 
 - (void)testMeasureInview {
-    [self.viewController loadViewIfNeeded];
+    // Case: banner.inviewURL is nil
+    RUNABannerView *bannerView = [RUNABannerView new];
+    XCTAssertTrue([bannerView measureInview]);
+}
+
+- (void)testIsVisible {
     self.bannerView = self.viewController.bannerView;
     
     // Hidden banner
@@ -50,6 +57,8 @@
     self.bannerView.frame = CGRectMake(0, kBannerHeight * -0.5, kBannerWidth, kBannerHeight);
     XCTAssertFalse([self isVisible]);
 }
+
+#pragma mark - Helper Method
 
 - (BOOL)isVisible {
     float visibility = [self.bannerView getVisibility:self.dummyWindow rootViewController:self.viewController];
