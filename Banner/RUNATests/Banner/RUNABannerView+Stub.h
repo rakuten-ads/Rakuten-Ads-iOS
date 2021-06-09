@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNABannerView (Stub)
 - (instancetype)initWithEventType:(NSString *)type;
+- (instancetype)initWithBidData;
 @end
 
 NS_ASSUME_NONNULL_END
