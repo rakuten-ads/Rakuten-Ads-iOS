@@ -42,13 +42,15 @@
 }
 
 -(BOOL)measureImp {
-    RUNADebug("measurement[default] skip measure imp");
+    RUNADebug("measurement[Viewable] skip measure imp");
     return YES;
 }
 
 -(BOOL)measureInview {
-    RUNADebug("measurement[default] measure inview rate: %f", self.visibility);
-    return self.visibility > 0.5;
+    UIViewController *rootVc = [[[UIApplication sharedApplication]keyWindow]rootViewController];
+    float visibility = [self getVisibility:self.view.window rootViewController:rootVc];
+    RUNADebug("measurement[Viewable] measure inview rate: %f", visibility);
+    return [self isVisible:visibility];
 }
 
 - (BOOL)sendMeasureViewImp {
@@ -61,21 +63,26 @@
     return YES;
 }
 
--(float)visibility {
+-(float)getVisibility:(UIWindow *)window
+   rootViewController:(UIViewController *)rootViewController {
     float areaOfAdView = self.view.frame.size.width * self.view.frame.size.height;
-    UIView* rootView = UIApplication.sharedApplication.keyWindow.rootViewController.view;
+    UIView* rootView = rootViewController.view;
     CGRect abstractFrame = [self.view convertRect:self.view.bounds toView:rootView];
     CGRect intersectionFrame = CGRectIntersection(rootView.frame, abstractFrame);
 
-    RUNADebug("get abstractFrame %@ of self %@ in root %@", NSStringFromCGRect(abstractFrame), NSStringFromCGRect(self.view.frame), NSStringFromCGRect(rootView.frame));
+    RUNADebug("measurement[Viewable] get abstractFrame %@ of self %@ in root %@", NSStringFromCGRect(abstractFrame), NSStringFromCGRect(self.view.frame), NSStringFromCGRect(rootView.frame));
     if (!self.view.isHidden
-        && self.view.window
+        && window
         && areaOfAdView > 0
         && !CGRectIsNull(intersectionFrame)) {
         float areaOfIntersection = intersectionFrame.size.width * intersectionFrame.size.height;
         return areaOfIntersection / areaOfAdView;
     }
     return 0;
+}
+
+-(BOOL)isVisible:(float)visibility {
+    return visibility > 0.5;
 }
 
 -(BOOL)didMeasureInview:(BOOL)isInview {
