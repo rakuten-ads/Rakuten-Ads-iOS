@@ -200,7 +200,17 @@ NSString *const kValidAdspotId = @"693";
 # pragma mark - Response Tests
 
 - (void)testParse {
-    // TODO: Create dummy BidResponse
+    RUNABannerView *bannerView = [RUNABannerView new];
+    RUNABanner *banner = [bannerView parse:[RUNABannerView dummyBidData]];
+    XCTAssertNotNil(banner);
+    XCTAssertNotNil(banner.impId);
+    XCTAssertNotNil(banner.html);
+    XCTAssertEqual(banner.width, 1280.f);
+    XCTAssertEqual(banner.height, 720.f);
+    XCTAssertNotNil(banner.measuredURL);
+    XCTAssertNotNil(banner.inviewURL);
+    XCTAssertNotNil(banner.viewabilityProviderURL);
+    XCTAssertNotEqual(banner.advertiseId, (NSInteger)480);
 }
 
 - (void)testIsFinished {

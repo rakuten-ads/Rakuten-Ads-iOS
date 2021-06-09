@@ -2,7 +2,7 @@
     "id": "bd6c6fba-0eea-40e2-b7eb-22f613c02299",
     "impid": "1/1",
     "price": 0,
-    "adm": "",
+    "adm": "<div></div>",
     "cid": "4376",
     "crid": "710",
     "w": 1280,
@@ -10,6 +10,7 @@
     "ext": {
         "measured_url": "https://dev-s-evt.rmp.rakuten.co.jp/measured?dat=AajbOqvDn2lRHuyHaiYZNg-ZhJ7hbvXDc4n_lU1iP_KgRCbNGACw0eOmObYDDWIfELkRofnLc4NUEx5wYhDoNeJuOiZoOvShnREsXxXAWsDb6JzDiPC6tvN69exbFWMUfJ6B70_VZUC3J7qpKBM8CFncd5miWuwFzYc-S1BEwJfzns1ytRuC07H-odfivTHXOkSkZkZRTUZ7VPM_hFapgBr3Wd2_W4oIP63_QoLISWvtPjvcgWo7-oc1xVBByaQUXyoMOxGIyzTkhTE6X49IOxNDoR7dPzGAiO2BrqOttivuLGX5rpfQ38XxUIHx-2n2SIQLqWFNch9k3IA3bu8oQ2mAaQ49OW2FemVFc2qwLIvFzqQWgekPb9K32NeYNYyzaXwGaLcBEdLaCGW8Z-pqpT3nJhw5XL7o3UyE1LZr-B_iwk8l4r8zIEqe5sEDraJfeBEOaRnaBM-HLIEDHYbaWMK1NdNO6kUHliGcWOUo3_CFkxrAo6TDzYcsTy6PUonfT2KUJfRQqFzA3qNqUgfCqg9xVFEEiMc4xu9Mts1AcyZWRG2yjztEFV5WIVldYbFYCkth8R-tpu-kPiYwNCedDXHRrcDN6u6FNa_oTTiowe85IrS_sF-7KIVKJeIFkqxF1uVaWt3Z5LWvYv9QguGzbsoEIM2WtYplWXqdu99HWtYrfZFV85k96DDl7R0dxx_xEDl3auumsxYKC6INc4maTKA1Rxm2aDllPhnCHwW9nFnT0dutkzG3jYKqDLTWXVsKipSGQNhiY4Ca9BG_GkTaAvAGZMWmWtGZISHPjoUPX4gvH4J7qeCaCwAVVAHEv_HbPTcignecIl8CYP--omfAZuQ9OPvJrzmxROXptdAYFCrhGwcoanJdJEJb-442HitzyGGntGOqRjunT8wuKyc_VIF2Erxq3jGkWBAqV3PsPli_aDaa5j4797ENYkHfvN3sKyV3z9kgvgo&cachebuster=9188188950644676720",
         "inview_url": "https://dev-s-evt.rmp.rakuten.co.jp/inview?dat=AajbOqvDn2lRHuyHaiYZNg-ZhJ7hbvXDc4n_lU1iP_KgRCbNGACw0eOmObYDDWIfELkRofnLc4NUEx5wYhDoNeJuOiZoOvShnREsXxXAWsDb6JzDiPC6tvN69exbFWMUfJ6B70_VZUC3J7qpKBM8CFncd5miWuwFzYc-S1BEwJfzns1ytRuC07H-odfivTHXOkSkZkZRTUZ7VPM_hFapgBr3Wd2_W4oIP63_QoLISWvtPjvcgWo7-oc1xVBByaQUXyoMOxGIyzTkhTE6X49IOxNDoR7dPzGAiO2BrqOttivuLGX5rpfQ38XxUIHx-2n2SIQLqWFNch9k3IA3bu8oQ2mAaQ49OW2FemVFc2qwLIvFzqQWgekPb9K32NeYNYyzaXwGaLcBEdLaCGW8Z-pqpT3nJhw5XL7o3UyE1LZr-B_iwk8l4r8zIEqe5sEDraJfeBEOaRnaBM-HLIEDHYbaWMK1NdNO6kUHliGcWOUo3_CFkxrAo6TDzYcsTy6PUonfT2KUJfRQqFzA3qNqUgfCqg9xVFEEiMc4xu9Mts1AcyZWRG2yjztEFV5WIVldYbFYCkth8R-tpu-kPiYwNCedDXHRrcDN6u6FNa_oTTiowe85IrS_sF-7KIVKJeIFkqxF1uVaWt3Z5LWvYv9QguGzbsoEIM2WtYplWXqdu99HWtYrfZFV85k96DDl7R0dxx_xEDl3auumsxYKC6INc4maTKA1Rxm2aDllPhnCHwW9nFnT0dutkzG3jYKqDLTWXVsKipSGQNhiY4Ca9BG_GkTaAvAGZMWmWtGZISHPjoUPX4gvH4J7qeCaCwAVVAHEv_HbPTcignecIl8CYP--omfAZuQ9OPvJrzmxROXptdAYFCrhGwcoanJdJEJb-442HitzyGGntGOqRjunT8wuKyc_VIF2Erxq3jGkWBAqV3PsPli_aDaa5j4797ENYkHfvN3sKyV3z9kgvgo&cachebuster=9188188950644676720",
-        "advid": 460
+        "advid": 460,
+        "viewability_provider_url": "https://dev-s-evt.rmp.rakuten.co.jp"
     }
 }

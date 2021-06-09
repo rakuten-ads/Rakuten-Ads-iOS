@@ -15,9 +15,9 @@
 @implementation RUNABannerView (Stub)
 
 - (instancetype)initWithEventType:(NSString *)type {
-    self = [self init];
+    self = [self initWithFrame:CGRectZero];
     if (self) {
-        NSMutableDictionary *bidData = [[NSMutableDictionary alloc]initWithDictionary:[self dummyBidData]];
+        NSMutableDictionary *bidData = [[NSMutableDictionary alloc]initWithDictionary:[RUNABannerView dummyBidData]];
         bidData[@"adm"] = [self adm:type];
         RUNABanner *banner = [RUNABanner new];
         [banner parse:(NSDictionary*)bidData];
@@ -28,11 +28,10 @@
 }
 
 - (instancetype)initWithBidData {
-    self = [self init];
+    self = [self initWithFrame:CGRectZero];
     if (self) {
-        NSDictionary *bidData = [self dummyBidData];
         RUNABanner *banner = [RUNABanner new];
-        [banner parse:bidData];
+        [banner parse:[RUNABannerView dummyBidData]];
         [self setValue:banner forKey:@"banner"];
         [self setValue:@YES forKey:@"openMeasurementDisabled"];
     }
@@ -49,7 +48,7 @@
     return [NSString stringWithFormat:replaced, type];
 }
 
-- (NSDictionary *)dummyBidData {
++ (NSDictionary *)dummyBidData {
     NSString *path = [[NSBundle bundleForClass:[self class]]pathForResource:@"bid" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];;
