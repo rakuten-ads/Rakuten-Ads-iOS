@@ -35,22 +35,26 @@
 }
 
 -(BOOL)sendMeasureImp {
+    if (!self.banner.inviewURL) {
+        RUNADebug("measurement[default] measure stopped by empty inview URL");
+        return NO;
+    }
     RUNADebug("measurement[default] send inview %p", self);
-    RUNAURLStringRequest* request = [RUNAURLStringRequest new];
-    request.httpTaskDelegate = self.banner.inviewURL;
-    [request resume];
-    return YES;
+    return [self sendRequest:self.banner.inviewURL];
 }
 
 -(BOOL)measureImp {
     if (!self.banner.measuredURL) {
         RUNADebug("measurement[default] measure stopped by empty measure imp URL");
-        return YES;
+        return NO;
     }
-
     RUNADebug("measurement[default] measure imp (%p)", self);
+    return [self sendRequest:self.banner.measuredURL];
+}
+
+- (BOOL)sendRequest:(NSString *)url {
     RUNAURLStringRequest* request = [RUNAURLStringRequest new];
-    request.httpTaskDelegate = self.banner.measuredURL;
+    request.httpTaskDelegate = url;
     [request resume];
     return YES;
 }
