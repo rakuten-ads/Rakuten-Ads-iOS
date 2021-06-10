@@ -37,7 +37,7 @@
 -(BOOL)sendMeasureImp {
     if (!self.banner.inviewURL) {
         RUNADebug("measurement[default] measure stopped by empty inview URL");
-        return NO;
+        return YES;
     }
     RUNADebug("measurement[default] send inview %p", self);
     return [self sendRequest:self.banner.inviewURL];
@@ -46,7 +46,7 @@
 -(BOOL)measureImp {
     if (!self.banner.measuredURL) {
         RUNADebug("measurement[default] measure stopped by empty measure imp URL");
-        return NO;
+        return YES;
     }
     RUNADebug("measurement[default] measure imp (%p)", self);
     return [self sendRequest:self.banner.measuredURL];
