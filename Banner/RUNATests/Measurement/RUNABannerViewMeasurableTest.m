@@ -12,6 +12,8 @@
 
 @interface RUNABannerView (Spy)
 - (BOOL)measureInview;
+- (BOOL)sendMeasureImp;
+- (BOOL)measureImp;
 - (float)getVisibility:(UIWindow *)window
     rootViewController:(UIViewController *)rootViewController;
 - (BOOL)isVisible:(float)visibility;
@@ -41,15 +43,25 @@
     XCTAssertTrue([bannerView measureInview]);
 }
 
+- (void)testSendMeasureImp {
+    // Case: banner.inviewURL is nil
+    RUNABannerView *bannerView = [RUNABannerView new];
+    XCTAssertTrue([bannerView sendMeasureImp]);
+}
+
+- (void)testMeasureImp {
+    // Case: banner.measuredURL is nil
+    RUNABannerView *bannerView = [RUNABannerView new];
+    XCTAssertTrue([bannerView measureImp]);
+}
+
 - (void)testIsVisible {
     self.bannerView = self.viewController.bannerView;
-    
     // Hidden banner
     XCTAssertFalse([self isVisible]);
     // Not hidden banner
     self.bannerView.hidden = NO;
     XCTAssertTrue([self isVisible]);
-    
     // Outview: default
     self.bannerView.frame = CGRectMake(0, kBannerHeight * -1, kBannerWidth, kBannerHeight);
     XCTAssertFalse([self isVisible]);
