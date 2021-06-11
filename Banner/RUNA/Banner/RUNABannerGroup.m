@@ -88,14 +88,20 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 
                 [impList addObject:bannerView.imp];
                 if (handler) {
+                    __weak typeof(self) weakSelf = self;
                     bannerView.eventHandler = ^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
-                        self.eventHandler(self, view, event);
-                        self.loadedBannerCounter++;
-                        RUNADebug("banner (%d/%lu) loaded", self.loadedBannerCounter, (unsigned long)self.banners.count);
-                        if (self.loadedBannerCounter == self.banners.count) {
+                        __strong typeof(weakSelf) strongSelf = weakSelf;
+                        if (!strongSelf) {
+                            RUNADebug("banner group: banner view disposed!");
+                            return;
+                        }
+                        strongSelf.eventHandler(strongSelf, view, event);
+                        strongSelf.loadedBannerCounter++;
+                        RUNADebug("banner (%d/%lu) loaded", strongSelf.loadedBannerCounter, (unsigned long)strongSelf.banners.count);
+                        if (strongSelf.loadedBannerCounter == strongSelf.banners.count) {
                             RUNADebug("banner group finished");
                             struct RUNABannerViewEvent groupFinishedEvent = { RUNABannerViewEventTypeGroupFinished, RUNABannerViewErrorNone };
-                            self.eventHandler(self, nil, groupFinishedEvent);
+                            strongSelf.eventHandler(strongSelf, nil, groupFinishedEvent);
                         }
                     };
                 }
