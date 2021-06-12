@@ -159,42 +159,6 @@ NSString *const kValidAdspotId = @"693";
 //    [self waitForExpectationsWithTimeout:3.0 handler:nil];
 //}
 
-- (void)testApplyContainerPosition {
-    RUNABannerView *bannerView = [self getBannerViewOnViewController];
-    bannerView.state = RUNA_ADVIEW_STATE_SHOWED; // mock state
-    
-    NSArray *params = @[@(RUNABannerViewPositionCustom),
-                        @(RUNABannerViewPositionTop),
-                        @(RUNABannerViewPositionBottom),
-                        @(RUNABannerViewPositionTopLeft),
-                        @(RUNABannerViewPositionTopRight),
-                        @(RUNABannerViewPositionBottomLeft),
-                        @(RUNABannerViewPositionBottomRight)];
-    
-    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
-    expectation.expectedFulfillmentCount = params.count;
-    
-    [params enumerateObjectsUsingBlock:^(NSNumber *value, NSUInteger idx, BOOL *stop) {
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            RUNABannerViewPosition position = (NSUInteger)value;
-            [self execute:expectation delayTime:1.0 targetMethod:^{
-                [bannerView setPosition:position];
-            } assertionBlock:^{
-                if (position != RUNABannerViewPositionCustom) {
-                    XCTAssertEqual(bannerView.position, RUNABannerViewPositionTop);
-                    XCTAssertFalse(bannerView.translatesAutoresizingMaskIntoConstraints);
-                    XCTAssertEqual(bannerView.positionConstraints.count, (NSUInteger)2);
-                }
-                dispatch_semaphore_signal(semaphore);
-            }];
-        });
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    }];
-    
-    [self waitForExpectationsWithTimeout:10.0 handler:nil];
-}
-
 - (void)testApplyIntegration {
     RUNABannerView *bannerView = [self getBannerViewOnViewController];
     bannerView.adSpotId = kValidAdspotId;
@@ -395,6 +359,34 @@ NSString *const kValidAdspotId = @"693";
     }];
     
     [self waitForExpectationsWithTimeout:7.0 handler:nil];
+}
+
+- (void)testApplyContainerPosition {
+    RUNABannerView *bannerView = [self getBannerViewOnViewController];
+    bannerView.state = RUNA_ADVIEW_STATE_SHOWED; // mock state
+    
+    NSArray *params = @[@(RUNABannerViewPositionCustom),
+                        @(RUNABannerViewPositionTop),
+                        @(RUNABannerViewPositionBottom),
+                        @(RUNABannerViewPositionTopLeft),
+                        @(RUNABannerViewPositionTopRight),
+                        @(RUNABannerViewPositionBottomLeft),
+                        @(RUNABannerViewPositionBottomRight)];
+    
+    [params enumerateObjectsUsingBlock:^(NSNumber *value, NSUInteger idx, BOOL *stop) {
+        RUNABannerViewPosition position = [value integerValue];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [bannerView setPosition:position];
+            sleep(2);
+            if (value != RUNABannerViewPositionCustom) {
+                XCTAssertEqual(bannerView.position, position);
+                XCTAssertFalse(bannerView.translatesAutoresizingMaskIntoConstraints);
+                XCTAssertEqual(bannerView.positionConstraints.count, (NSUInteger)2);
+            } else {
+                XCTAssertNil(bannerView.positionConstraints);
+            }
+        });
+    }];
 }
 
 #pragma mark - Helper Method
