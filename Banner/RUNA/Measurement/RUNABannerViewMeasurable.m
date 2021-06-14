@@ -37,10 +37,11 @@
 -(BOOL)sendMeasureImp {
     if (!self.banner.inviewURL) {
         RUNADebug("measurement[default] skip sending measure inview URL as empty");
-        return NO;
+        return YES;
     }
     RUNADebug("measurement[default] send inview %p", self);
-    return [self sendRequest:self.banner.inviewURL];
+    [self sendRequest:self.banner.inviewURL];
+    return YES;
 }
 
 -(BOOL)measureImp {
@@ -49,14 +50,14 @@
         return YES;
     }
     RUNADebug("measurement[default] measure imp (%p)", self);
-    return [self sendRequest:self.banner.measuredURL];
+    [self sendRequest:self.banner.measuredURL];
+    return YES;
 }
 
-- (BOOL)sendRequest:(NSString *)url {
+- (void)sendRequest:(NSString *)url {
     RUNAURLStringRequest* request = [RUNAURLStringRequest new];
     request.httpTaskDelegate = url;
     [request resume];
-    return YES;
 }
 
 -(float)getVisibility:(UIWindow *)window
