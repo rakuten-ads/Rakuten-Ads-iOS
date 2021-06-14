@@ -124,9 +124,6 @@ NSString *const kValidAdspotId = @"693";
         }];
     } assertionBlock:^{
         XCTAssertNotNil(bannerView.eventHandler);
-        // onBidResponse Failure
-        XCTAssertNil(bannerView.sessionId);
-        XCTAssertNil(bannerView.banner);
     }];
     
     [self waitForExpectationsWithTimeout:10.0 handler:nil];
@@ -163,16 +160,12 @@ NSString *const kValidAdspotId = @"693";
 }
 
 - (void)testApplyIntegration {
-    MainViewController *viewController = [MainViewController new];
-    [viewController loadViewIfNeeded];
-    
-    RUNABannerView *bannerView = viewController.bannerView;
+    RUNABannerView *bannerView = [self getBannerViewOnViewController];
     bannerView.adSpotId = kValidAdspotId;
     
     XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
-    expectation.expectedFulfillmentCount = 2;
     
-    [self execute:expectation delayTime:7.0 targetMethod:^{
+    [self execute:expectation delayTime:5.0 targetMethod:^{
         bannerView.size = RUNABannerViewSizeAspectFit;
         bannerView.position = RUNABannerViewPositionTop;
         [bannerView load];
@@ -180,26 +173,44 @@ NSString *const kValidAdspotId = @"693";
         XCTAssertEqual(bannerView.sizeConstraints.count, (NSUInteger)2);
         XCTAssertEqual(bannerView.positionConstraints.count, (NSUInteger)2);
         XCTAssertFalse(bannerView.translatesAutoresizingMaskIntoConstraints);
-        // Custom Params Test
-        bannerView.size = RUNABannerViewSizeCustom;
-        bannerView.position = RUNABannerViewPositionCustom;
-        [bannerView load];
     }];
     
-    [self execute:expectation delayTime:12.0 targetMethod:^{
+    [self waitForExpectationsWithTimeout:10.0 handler:nil];
+}
+
+- (void)testApplyCustomIntegration {
+    RUNABannerView *bannerView = [self getBannerViewOnViewController];
+    bannerView.adSpotId = kValidAdspotId;
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
+    
+    [self execute:expectation delayTime:5.0 targetMethod:^{
+        bannerView.position = RUNABannerViewPositionCustom;
+        bannerView.size = RUNABannerViewSizeCustom;
+        [bannerView load];
     } assertionBlock:^{
         XCTAssertNil(bannerView.sizeConstraints);
         XCTAssertNil(bannerView.positionConstraints);
-        XCTAssertFalse(bannerView.translatesAutoresizingMaskIntoConstraints);
+        XCTAssertTrue(bannerView.translatesAutoresizingMaskIntoConstraints);
     }];
     
-    [self waitForExpectationsWithTimeout:15.0 handler:nil];
+    [self waitForExpectationsWithTimeout:10.0 handler:nil];
 }
 
 # pragma mark - Response Tests
 
 - (void)testParse {
-    // TODO: Create dummy BidResponse
+    RUNABannerView *bannerView = [RUNABannerView new];
+    RUNABanner *banner = [bannerView parse:[RUNABannerView dummyBidData]];
+    XCTAssertNotNil(banner);
+    XCTAssertNotNil(banner.impId);
+    XCTAssertNotNil(banner.html);
+    XCTAssertEqual(banner.width, 1280.f);
+    XCTAssertEqual(banner.height, 720.f);
+    XCTAssertNotNil(banner.measuredURL);
+    XCTAssertNotNil(banner.inviewURL);
+    XCTAssertNotNil(banner.viewabilityProviderURL);
+    XCTAssertNotEqual(banner.advertiseId, (NSInteger)480);
 }
 
 - (void)testIsFinished {
@@ -360,6 +371,12 @@ NSString *const kValidAdspotId = @"693";
         assertionBlock();
         [expectation fulfill];
     });
+}
+
+- (RUNABannerView*)getBannerViewOnViewController {
+    MainViewController *viewController = [MainViewController new];
+    [viewController loadViewIfNeeded];
+    return viewController.bannerView;
 }
 
 @end

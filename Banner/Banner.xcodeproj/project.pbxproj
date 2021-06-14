@@ -43,6 +43,8 @@
 		32F258F121E58689001FD9C0 /* RUNABanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F258E321E58689001FD9C0 /* RUNABanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F2596021E597E5001FD9C0 /* RUNABannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595121E597E5001FD9C0 /* RUNABannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F2596121E597E5001FD9C0 /* RUNABannerViewInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595221E597E5001FD9C0 /* RUNABannerViewInner.m */; };
+		541D745A267095390036038F /* bid.json in Resources */ = {isa = PBXBuildFile; fileRef = 541D7459267095390036038F /* bid.json */; };
+		541D746126709A080036038F /* bid.json in Resources */ = {isa = PBXBuildFile; fileRef = 541D7459267095390036038F /* bid.json */; };
 		544DBC8226565D76009BD04E /* RUNABannerViewMeasurableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 544DBC8126565D76009BD04E /* RUNABannerViewMeasurableTest.m */; };
 		54B83C062660693400A64540 /* mock.js in Resources */ = {isa = PBXBuildFile; fileRef = 54B83C052660693400A64540 /* mock.js */; };
 		54B83C072660693400A64540 /* mock.js in Resources */ = {isa = PBXBuildFile; fileRef = 54B83C052660693400A64540 /* mock.js */; };
@@ -120,6 +122,7 @@
 		32F2595221E597E5001FD9C0 /* RUNABannerViewInner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewInner.m; sourceTree = "<group>"; };
 		32F25A1221E5A4E5001FD9C0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		32F25A1721E5A96C001FD9C0 /* Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core.xcodeproj; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
+		541D7459267095390036038F /* bid.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bid.json; sourceTree = "<group>"; };
 		544DBC8126565D76009BD04E /* RUNABannerViewMeasurableTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewMeasurableTest.m; sourceTree = "<group>"; };
 		54B83C052660693400A64540 /* mock.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mock.js; sourceTree = "<group>"; };
 		54BF02A72657A8F100B2CCE4 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				54B83C052660693400A64540 /* mock.js */,
+				541D7459267095390036038F /* bid.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -278,9 +282,9 @@
 		54BF02F8265CD2A500B2CCE4 /* Banner */ = {
 			isa = PBXGroup;
 			children = (
-				54BF02F9265CD2CC00B2CCE4 /* RUNABannerViewInnerTest.m */,
 				54BF0311265CF1DB00B2CCE4 /* RUNABannerView+Stub.h */,
 				54BF0312265CF1DB00B2CCE4 /* RUNABannerView+Stub.m */,
+				54BF02F9265CD2CC00B2CCE4 /* RUNABannerViewInnerTest.m */,
 			);
 			path = Banner;
 			sourceTree = "<group>";
@@ -418,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54B83C062660693400A64540 /* mock.js in Resources */,
+				541D746126709A080036038F /* bid.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +430,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				541D745A267095390036038F /* bid.json in Resources */,
 				54B83C072660693400A64540 /* mock.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

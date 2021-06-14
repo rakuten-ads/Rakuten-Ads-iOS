@@ -15,24 +15,44 @@
 @implementation RUNABannerView (Stub)
 
 - (instancetype)initWithEventType:(NSString *)type {
-    self = [self init];
+    self = [self initWithFrame:CGRectZero];
     if (self) {
+        NSMutableDictionary *bidData = [[NSMutableDictionary alloc]initWithDictionary:[RUNABannerView dummyBidData]];
+        bidData[@"adm"] = [self adm:type];
         RUNABanner *banner = [RUNABanner new];
-        [banner parse:[self dummyResponse:type]];
+        [banner parse:(NSDictionary*)bidData];
         [self setValue:banner forKey:@"banner"];
         [self setValue:@YES forKey:@"openMeasurementDisabled"];
     }
     return self;
 }
 
-- (NSDictionary *)dummyResponse:(NSString *)type {
+- (instancetype)initWithBidData {
+    self = [self initWithFrame:CGRectZero];
+    if (self) {
+        RUNABanner *banner = [RUNABanner new];
+        [banner parse:[RUNABannerView dummyBidData]];
+        [self setValue:banner forKey:@"banner"];
+        [self setValue:@YES forKey:@"openMeasurementDisabled"];
+    }
+    return self;
+}
+
+- (NSString *)adm:(NSString *)type {
     NSString *path = [[NSBundle bundleForClass:[self class]]pathForResource:@"mock" ofType:@"js"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSString *script = [[NSString alloc]initWithBytes:[data bytes]
                                                length:[data length]
                                              encoding:NSUTF8StringEncoding];
     NSString *replaced = [script stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    return @{@"adm": [NSString stringWithFormat:replaced, type]};
+    return [NSString stringWithFormat:replaced, type];
+}
+
++ (NSDictionary *)dummyBidData {
+    NSString *path = [[NSBundle bundleForClass:[self class]]pathForResource:@"bid" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];;
+    return dic;
 }
 
 @end
