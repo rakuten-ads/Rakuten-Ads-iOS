@@ -42,6 +42,8 @@
 		321FE41425805CF300D9A8CD /* RUNARemoteLogEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 321FE41225805CF300D9A8CD /* RUNARemoteLogEntity.m */; };
 		32696FFA2567907500602E5C /* RUNAInfoPlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 32696FF82567907500602E5C /* RUNAInfoPlist.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32696FFB2567907500602E5C /* RUNAInfoPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 32696FF92567907500602E5C /* RUNAInfoPlist.m */; };
+		32BEBF80266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 32BEBF7E266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		32BEBF81266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEBF7F266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m */; };
 		32CAC0DD22164E6400BB4CC4 /* RUNAAppInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32CAC0DE22164E6400BB4CC4 /* RUNAAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAC0DC22164E6400BB4CC4 /* RUNAAppInfo.m */; };
 		32EE7C032578A9B100CF7B4A /* RUNARemoteLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 32EE7C012578A9B100CF7B4A /* RUNARemoteLogger.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -102,6 +104,8 @@
 		325FF73F21E5EDDF00A899CF /* runacore.private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = runacore.private.modulemap; sourceTree = "<group>"; };
 		32696FF82567907500602E5C /* RUNAInfoPlist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAInfoPlist.h; sourceTree = "<group>"; };
 		32696FF92567907500602E5C /* RUNAInfoPlist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAInfoPlist.m; sourceTree = "<group>"; };
+		32BEBF7E266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAdWebViewMessageManager.h; sourceTree = "<group>"; };
+		32BEBF7F266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewMessageManager.m; sourceTree = "<group>"; };
 		32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAppInfo.h; sourceTree = "<group>"; };
 		32CAC0DC22164E6400BB4CC4 /* RUNAAppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAppInfo.m; sourceTree = "<group>"; };
 		32EE7C012578A9B100CF7B4A /* RUNARemoteLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNARemoteLogger.h; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 				3210CFF1247614DC00E93FF2 /* RUNAAdWebView.m */,
 				3210CFF2247614DC00E93FF2 /* RUNAUIViewController+.h */,
 				3210CFF3247614DC00E93FF2 /* RUNAUIViewController+.m */,
+				32BEBF7E266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.h */,
+				32BEBF7F266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -336,6 +342,7 @@
 				32696FFA2567907500602E5C /* RUNAInfoPlist.h in Headers */,
 				32F259D721E599F5001FD9C0 /* RUNAWebUserAgent.h in Headers */,
 				32F259DE21E599F5001FD9C0 /* RUNAJSONObject.h in Headers */,
+				32BEBF80266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.h in Headers */,
 				32F259DD21E599F5001FD9C0 /* RUNAURLCoder.h in Headers */,
 				32EE7C032578A9B100CF7B4A /* RUNARemoteLogger.h in Headers */,
 				320313B224C182AD002D9727 /* RUNACacheFile.h in Headers */,
@@ -480,6 +487,7 @@
 				3210D0072476684A00E93FF2 /* RUNAUIViewController+.m in Sources */,
 				32F259D621E599F5001FD9C0 /* RUNAIdfa.m in Sources */,
 				32F259DC21E599F5001FD9C0 /* RUNAValid.m in Sources */,
+				32BEBF81266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m in Sources */,
 				3210D0052476684100E93FF2 /* RUNAAdWebViewMessage.m in Sources */,
 				32696FFB2567907500602E5C /* RUNAInfoPlist.m in Sources */,
 				32F259E121E599F5001FD9C0 /* RUNAURLCoder.m in Sources */,
