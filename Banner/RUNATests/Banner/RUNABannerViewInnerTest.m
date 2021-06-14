@@ -9,7 +9,6 @@
 #import <XCTest/XCTest.h>
 #import "RUNABannerView+Stub.h"
 #import "RUNABannerViewInner.h"
-#import "MainViewController.h"
 
 // for staging
 NSString *const kValidAdspotId = @"693";
@@ -130,72 +129,76 @@ NSString *const kValidAdspotId = @"693";
 }
 
 - (void)testSetSize {
-    RUNABannerView *bannerView = [RUNABannerView new];
-    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
+    NSArray *params = @[@(RUNABannerViewSizeAspectFit),
+                        @(RUNABannerViewSizeCustom),
+                        @(RUNABannerViewSizeDefault)];
     
-    XCTAssertEqual(bannerView.size, RUNABannerViewSizeDefault);
-
-    [self execute:expectation delayTime:1.0 targetMethod:^{
-        [bannerView setSize:RUNABannerViewSizeAspectFit];
-    } assertionBlock:^{
-        XCTAssertEqual(bannerView.size, RUNABannerViewSizeAspectFit);
+    RUNABannerView *bannerView = [self getBannerViewOnViewController];
+    bannerView.state = RUNA_ADVIEW_STATE_SHOWED; // mock state
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"setSize"];
+    expectation.expectedFulfillmentCount = params.count;
+    
+    XCTAssertEqual(bannerView.size, RUNABannerViewSizeDefault); // default value
+    
+    [params enumerateObjectsUsingBlock:^(NSNumber *value, NSUInteger idx, BOOL *stop) {
+        RUNABannerViewSize size = [value integerValue];
+        
+        [self syncExecute:expectation delayTime:1.0 targetMethod:^{
+            [bannerView setSize:size];
+        } assertionBlock:^{
+            XCTAssertEqual(bannerView.size, size);
+            if (size == RUNABannerViewSizeCustom) {
+                XCTAssertNil(bannerView.sizeConstraints);
+                // TBD: YESであるべき？その場合は本実装も修正する
+                //XCTAssertTrue(bannerView.translatesAutoresizingMaskIntoConstraints);
+            } else {
+                XCTAssertEqual(bannerView.sizeConstraints.count, (NSUInteger)2);
+                XCTAssertFalse(bannerView.translatesAutoresizingMaskIntoConstraints);
+            }
+        }];
     }];
     
-    [self waitForExpectationsWithTimeout:3.0 handler:nil];
+    [self waitForExpectationsWithTimeout:5.0 handler:nil];
 }
 
-//- (void)testSetPosition {
-//    RUNABannerView *bannerView = [RUNABannerView new];
-//    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
-//
-//    XCTAssertEqual(bannerView.position, RUNABannerViewPositionCustom);
-//
-//    [self execute:expectation delayTime:1.0 targetMethod:^{
-//        [bannerView setPosition:RUNABannerViewPositionTop];
-//    } assertionBlock:^{
-//        XCTAssertEqual(bannerView.position, RUNABannerViewPositionTop);
-//    }];
-//
-//    [self waitForExpectationsWithTimeout:3.0 handler:nil];
-//}
-
-- (void)testApplyIntegration {
+- (void)testSetPosition {
+    NSArray *params = @[@(RUNABannerViewPositionTop),
+                        @(RUNABannerViewPositionBottom),
+                        @(RUNABannerViewPositionTopLeft),
+                        @(RUNABannerViewPositionTopRight),
+                        @(RUNABannerViewPositionBottomLeft),
+                        @(RUNABannerViewPositionBottomRight),
+                        @(RUNABannerViewPositionCustom)];
+    
     RUNABannerView *bannerView = [self getBannerViewOnViewController];
-    bannerView.adSpotId = kValidAdspotId;
+    bannerView.state = RUNA_ADVIEW_STATE_SHOWED; // mock state
     
-    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"setPosition"];
+    expectation.expectedFulfillmentCount = params.count;
     
-    [self execute:expectation delayTime:5.0 targetMethod:^{
-        bannerView.size = RUNABannerViewSizeAspectFit;
-        bannerView.position = RUNABannerViewPositionTop;
-        [bannerView load];
-    } assertionBlock:^{
-        XCTAssertEqual(bannerView.sizeConstraints.count, (NSUInteger)2);
-        XCTAssertEqual(bannerView.positionConstraints.count, (NSUInteger)2);
-        XCTAssertFalse(bannerView.translatesAutoresizingMaskIntoConstraints);
+    XCTAssertEqual(bannerView.position, RUNABannerViewPositionCustom); // default value
+    
+    [params enumerateObjectsUsingBlock:^(NSNumber *value, NSUInteger idx, BOOL *stop) {
+        RUNABannerViewPosition position = [value integerValue];
+        
+        [self syncExecute:expectation delayTime:1.0 targetMethod:^{
+            [bannerView setPosition:position];
+        } assertionBlock:^{
+            XCTAssertEqual(bannerView.position, position);
+            if (position == RUNABannerViewPositionCustom) {
+                XCTAssertNil(bannerView.positionConstraints);
+                // TBD: YESであるべき？その場合は本実装も修正する
+                //XCTAssertTrue(bannerView.translatesAutoresizingMaskIntoConstraints);
+            } else {
+                XCTAssertEqual(bannerView.positionConstraints.count, (NSUInteger)2);
+                XCTAssertFalse(bannerView.translatesAutoresizingMaskIntoConstraints);
+            }
+        }];
     }];
     
     [self waitForExpectationsWithTimeout:10.0 handler:nil];
 }
-
-//- (void)testApplyCustomIntegration {
-//    RUNABannerView *bannerView = [self getBannerViewOnViewController];
-//    bannerView.adSpotId = kValidAdspotId;
-//
-//    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
-//
-//    [self execute:expectation delayTime:5.0 targetMethod:^{
-//        bannerView.position = RUNABannerViewPositionCustom;
-//        bannerView.size = RUNABannerViewSizeCustom;
-//        [bannerView load];
-//    } assertionBlock:^{
-//        XCTAssertNil(bannerView.sizeConstraints);
-//        XCTAssertNil(bannerView.positionConstraints);
-//        XCTAssertTrue(bannerView.translatesAutoresizingMaskIntoConstraints);
-//    }];
-//
-//    [self waitForExpectationsWithTimeout:10.0 handler:nil];
-//}
 
 # pragma mark - Response Tests
 
@@ -354,41 +357,6 @@ NSString *const kValidAdspotId = @"693";
     [self waitForExpectationsWithTimeout:7.0 handler:nil];
 }
 
-- (void)testApplyContainerPosition {
-    NSArray *params = @[@(RUNABannerViewPositionTop),
-                        @(RUNABannerViewPositionBottom),
-                        @(RUNABannerViewPositionTopLeft),
-                        @(RUNABannerViewPositionTopRight),
-                        @(RUNABannerViewPositionBottomLeft),
-                        @(RUNABannerViewPositionBottomRight),
-                        @(RUNABannerViewPositionCustom)];
-    
-    RUNABannerView *bannerView = [self getBannerViewOnViewController];
-    bannerView.state = RUNA_ADVIEW_STATE_SHOWED; // mock state
-    
-    XCTestExpectation *expectation = [self expectationWithDescription:@"setPosition"];
-    expectation.expectedFulfillmentCount = params.count;
-    
-    [params enumerateObjectsUsingBlock:^(NSNumber *value, NSUInteger idx, BOOL *stop) {
-        RUNABannerViewPosition position = [value integerValue];
-        
-        [self syncExecute:expectation delayTime:1.0 targetMethod:^{
-            [bannerView setPosition:position];
-        } assertionBlock:^{
-            if (position == RUNABannerViewPositionCustom) {
-                XCTAssertNil(bannerView.positionConstraints);
-                // TBD: YESであるべき？その場合は本実装も修正する
-                //XCTAssertTrue(bannerView.translatesAutoresizingMaskIntoConstraints);
-            } else {
-                XCTAssertEqual(bannerView.positionConstraints.count, (NSUInteger)2);
-                XCTAssertFalse(bannerView.translatesAutoresizingMaskIntoConstraints);
-            }
-        }];
-    }];
-    
-    [self waitForExpectationsWithTimeout:10.0 handler:nil];
-}
-
 #pragma mark - Helper Method
 
 - (void)execute:(XCTestExpectation *)expectation
@@ -416,9 +384,12 @@ NSString *const kValidAdspotId = @"693";
 }
 
 - (RUNABannerView*)getBannerViewOnViewController {
-    MainViewController *viewController = [MainViewController new];
+    UIViewController *viewController = [UIViewController new];
+    RUNABannerView *bannerView = [[RUNABannerView alloc]initWithBidData];
+    bannerView.frame = CGRectMake(0, 0, 200, 50);
+    [viewController.view addSubview:bannerView];
     [viewController loadViewIfNeeded];
-    return viewController.bannerView;
+    return bannerView;
 }
 
 @end
