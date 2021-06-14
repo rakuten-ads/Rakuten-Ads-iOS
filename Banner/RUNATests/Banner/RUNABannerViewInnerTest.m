@@ -372,7 +372,7 @@ NSString *const kValidAdspotId = @"693";
 }
 
 - (void)syncExecute:(XCTestExpectation *)expectation
-          delayTime:(int64_t)delayTime
+          delayTime:(NSTimeInterval)delayTime
        targetMethod:(void (^)(void))targetMethod
      assertionBlock:(void (^)(void))assertionBlock {
     dispatch_async(dispatch_get_main_queue(), ^{
