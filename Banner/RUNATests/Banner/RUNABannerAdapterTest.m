@@ -89,6 +89,34 @@
     }
 }
 
+- (void)testGetApp {
+    {
+        // Case: default
+        NSDictionary *content = @{
+            @"title" : @"title",
+            @"keywords" : @"keywords",
+            @"url" : @"url"
+        };
+        RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
+        bannerAdapter.appContent = content;
+        NSDictionary *appContent = bannerAdapter.getApp;
+        
+        XCTAssertNotNil(appContent);
+        XCTAssertEqual(appContent.allKeys.count, (NSUInteger)1);
+        
+        NSDictionary *value = appContent[@"content"];
+        XCTAssertEqual(value.allKeys.count, (NSUInteger)3);
+    }
+    {
+        // Case: empty
+        RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
+        NSDictionary *appContent = bannerAdapter.getApp;
+        
+        XCTAssertNotNil(appContent);
+        XCTAssertEqual(appContent.allKeys.count, (NSUInteger)0);
+    }
+}
+
 #pragma mark - Helper Methods
 
 // TODO: To be common
