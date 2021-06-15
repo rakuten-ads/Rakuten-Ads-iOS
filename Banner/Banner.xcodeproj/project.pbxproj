@@ -56,6 +56,7 @@
 		54BF0314265CF1DB00B2CCE4 /* RUNABannerView+Stub.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF0312265CF1DB00B2CCE4 /* RUNABannerView+Stub.m */; };
 		54BF0315265CF1DB00B2CCE4 /* RUNABannerView+Stub.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF0312265CF1DB00B2CCE4 /* RUNABannerView+Stub.m */; };
 		54BF0404265F974100B2CCE4 /* RUNATests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF0401265F974100B2CCE4 /* RUNATests.m */; };
+		54FF0E982678688F0009D5F6 /* RUNABannerAdapterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FF0E972678688F0009D5F6 /* RUNABannerAdapterTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		54BF0311265CF1DB00B2CCE4 /* RUNABannerView+Stub.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RUNABannerView+Stub.h"; sourceTree = "<group>"; };
 		54BF0312265CF1DB00B2CCE4 /* RUNABannerView+Stub.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RUNABannerView+Stub.m"; sourceTree = "<group>"; };
 		54BF0401265F974100B2CCE4 /* RUNATests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNATests.m; sourceTree = "<group>"; };
+		54FF0E972678688F0009D5F6 /* RUNABannerAdapterTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerAdapterTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +287,7 @@
 				54BF0311265CF1DB00B2CCE4 /* RUNABannerView+Stub.h */,
 				54BF0312265CF1DB00B2CCE4 /* RUNABannerView+Stub.m */,
 				54BF02F9265CD2CC00B2CCE4 /* RUNABannerViewInnerTest.m */,
+				54FF0E972678688F0009D5F6 /* RUNABannerAdapterTest.m */,
 			);
 			path = Banner;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				544DBC8226565D76009BD04E /* RUNABannerViewMeasurableTest.m in Sources */,
 				54BF02FA265CD2CC00B2CCE4 /* RUNABannerViewInnerTest.m in Sources */,
 				54BF0404265F974100B2CCE4 /* RUNATests.m in Sources */,
+				54FF0E982678688F0009D5F6 /* RUNABannerAdapterTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
