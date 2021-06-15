@@ -19,21 +19,15 @@
 @end
 
 @interface RUNABannerAdapterTest : XCTestCase
-@property (nonatomic) RUNABanner *banner;
 @end
 
 @implementation RUNABannerAdapterTest
-@synthesize banner = _banner;
 
 #pragma mark - RUNABanner
 
-- (void)setUp {
-    self.banner = [RUNABanner new];
-    [self.banner parse:[self dummyBidData]];
-}
-
 - (void)testParse {
-    RUNABanner *banner = self.banner;
+    RUNABanner *banner = [RUNABanner new];
+    [banner parse:[self dummyBidData]];
     // FIXME: json value
     XCTAssertEqualObjects(banner.impId, @"1/1");
     XCTAssertEqualObjects(banner.html, @"<div></div>");
