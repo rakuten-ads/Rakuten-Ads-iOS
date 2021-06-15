@@ -13,18 +13,29 @@
 - (void)parse:(NSDictionary *)bidData;
 @end
 
+@interface RUNABannerAdapter (Spy)
+- (void)parse:(NSDictionary *)bidData;
+- (NSArray *)getImp;
+@end
+
 @interface RUNABannerAdapterTest : XCTestCase
+@property (nonatomic) RUNABanner *banner;
 @end
 
 @implementation RUNABannerAdapterTest
+@synthesize banner = _banner;
 
 #pragma mark - RUNABanner
 
+- (void)setUp {
+    // TODO: temp setUp
+    self.banner = [RUNABanner new];
+    [self.banner parse:[self dummyBidData]];
+}
+
 - (void)testParse {
-    NSDictionary *bidData = [self dummyBidData];
-    RUNABanner *banner = [RUNABanner new];
-    [banner parse:bidData];
-    
+    RUNABanner *banner = self.banner;
+    // FIXME: fix json value
     XCTAssertEqualObjects(banner.impId, @"1/1");
     XCTAssertEqualObjects(banner.html, @"<div></div>");
     XCTAssertEqual(banner.width, 1280);
@@ -37,6 +48,46 @@
 
 #pragma mark - RUNABannerAdapter
 
+- (void)testGetImp {
+    RUNABannerImp *imp;
+    {   // Case: default
+        imp = [RUNABannerImp new];
+        imp.id = @"id";
+        imp.adspotId = @"adspotId";
+        imp.banner = @{@"api": @[@(7)]}; // default value
+        imp.json = [[NSMutableDictionary alloc]initWithDictionary:@{@"key": @"value"}];
+        
+        RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
+        bannerAdapter.impList = @[imp];
+        NSArray *actuals = bannerAdapter.getImp;
+        
+        XCTAssertEqual(actuals.count, (NSUInteger)1);
+        XCTAssertEqualObjects(actuals[0][@"id"], @"id");
+        XCTAssertEqualObjects(actuals[0][@"banner"], @{@"api": @[@(7)]});
+        XCTAssertNotNil(actuals[0][@"ext"]);
+        XCTAssertEqualObjects(actuals[0][@"ext"][@"adspot_id"], @"adspotId");
+        XCTAssertEqualObjects(actuals[0][@"ext"][@"json"], @{@"key": @"value"});
+    }
+    {
+        // Case: empty
+        RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
+        bannerAdapter.impList = @[[RUNABannerImp new]];
+        NSArray *actuals = bannerAdapter.getImp;
+        
+        XCTAssertEqual(actuals.count, (NSUInteger)1);
+        XCTAssertEqualObjects(actuals[0][@"id"], NSNull.null);
+        XCTAssertEqualObjects(actuals[0][@"banner"], NSNull.null);
+        XCTAssertNotNil(actuals[0][@"ext"]);
+        XCTAssertEqualObjects(actuals[0][@"ext"][@"adspot_id"], NSNull.null);
+        XCTAssertEqualObjects(actuals[0][@"ext"][@"json"], NSNull.null);
+    }
+    {
+        // Case: null
+        RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
+        NSArray *actuals = bannerAdapter.getImp;
+        XCTAssertEqual(actuals.count, (NSUInteger)0);
+    }
+}
 
 #pragma mark - Helper Methods
 
