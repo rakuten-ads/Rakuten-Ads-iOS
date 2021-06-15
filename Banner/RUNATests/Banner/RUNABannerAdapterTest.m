@@ -28,14 +28,13 @@
 #pragma mark - RUNABanner
 
 - (void)setUp {
-    // TODO: temp setUp
     self.banner = [RUNABanner new];
     [self.banner parse:[self dummyBidData]];
 }
 
 - (void)testParse {
     RUNABanner *banner = self.banner;
-    // FIXME: fix json value
+    // FIXME: json value
     XCTAssertEqualObjects(banner.impId, @"1/1");
     XCTAssertEqualObjects(banner.html, @"<div></div>");
     XCTAssertEqual(banner.width, 1280);
@@ -56,11 +55,9 @@
         imp.adspotId = @"adspotId";
         imp.banner = @{@"api": @[@(7)]}; // default value
         imp.json = [[NSMutableDictionary alloc]initWithDictionary:@{@"key": @"value"}];
-        
         RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
         bannerAdapter.impList = @[imp];
         NSArray *actuals = bannerAdapter.getImp;
-        
         XCTAssertEqual(actuals.count, (NSUInteger)1);
         XCTAssertEqualObjects(actuals[0][@"id"], @"id");
         XCTAssertEqualObjects(actuals[0][@"banner"], @{@"api": @[@(7)]});
@@ -73,7 +70,6 @@
         RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
         bannerAdapter.impList = @[[RUNABannerImp new]];
         NSArray *actuals = bannerAdapter.getImp;
-        
         XCTAssertEqual(actuals.count, (NSUInteger)1);
         XCTAssertEqualObjects(actuals[0][@"id"], NSNull.null);
         XCTAssertEqualObjects(actuals[0][@"banner"], NSNull.null);
@@ -100,10 +96,8 @@
         RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
         bannerAdapter.appContent = content;
         NSDictionary *appContent = bannerAdapter.getApp;
-        
         XCTAssertNotNil(appContent);
         XCTAssertEqual(appContent.allKeys.count, (NSUInteger)1);
-        
         NSDictionary *value = appContent[@"content"];
         XCTAssertEqual(value.allKeys.count, (NSUInteger)3);
     }
@@ -111,15 +105,74 @@
         // Case: empty
         RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
         NSDictionary *appContent = bannerAdapter.getApp;
-        
         XCTAssertNotNil(appContent);
         XCTAssertEqual(appContent.allKeys.count, (NSUInteger)0);
     }
 }
 
+- (void)testGetUser {
+    {
+        // Case: default
+        NSDictionary *content = @{
+            @"rz" : @"rz"
+        };
+        RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
+        bannerAdapter.userExt = content;
+        NSDictionary *userExt = bannerAdapter.getUser;
+        XCTAssertNotNil(userExt);
+        XCTAssertEqual(userExt.allKeys.count, (NSUInteger)1);
+        NSDictionary *value = userExt[@"ext"];
+        XCTAssertEqual(value.allKeys.count, (NSUInteger)1);
+    }
+    {
+        // Case: empty
+        RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
+        NSDictionary *userExt = bannerAdapter.getUser;
+        XCTAssertNotNil(userExt);
+        XCTAssertEqual(userExt.allKeys.count, (NSUInteger)0);
+    }
+}
+
+- (void)testGetGeo {
+    {
+        // Case: default
+        RUNAGeo *content = [RUNAGeo new];
+        content.latitude = 100.0;
+        content.longitude = 120.0;
+        RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
+        bannerAdapter.geo = content;
+        NSDictionary *geo = bannerAdapter.getGeo;
+        XCTAssertNotNil(geo);
+        XCTAssertEqual(geo.allKeys.count, (NSUInteger)2);
+    }
+    {
+        // Case: nil
+        RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
+        NSDictionary *geo = bannerAdapter.getGeo;
+        XCTAssertNil(geo);
+    }
+}
+
+- (void)testGetExt {
+    {
+        // Case: default
+        NSArray *items = @[@(1),@(2),@(3)];
+        RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
+        bannerAdapter.blockAdList = items;
+        NSDictionary *ext = bannerAdapter.getExt;
+        XCTAssertNotNil(ext);
+        XCTAssertEqualObjects(ext[@"badvid"], items);
+    }
+    {
+        // Case: empty
+        RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
+        NSDictionary *ext = bannerAdapter.getExt;
+        XCTAssertEqualObjects(ext[@"badvid"], @[]);
+    }
+}
+
 #pragma mark - Helper Methods
 
-// TODO: To be common
 - (NSDictionary *)dummyBidData {
     NSString *path = [[NSBundle bundleForClass:[self class]]pathForResource:@"bid" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:path];
