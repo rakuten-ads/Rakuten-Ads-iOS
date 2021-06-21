@@ -326,36 +326,36 @@ NSString *const kValidAdspotId = @"693";
     [self waitForExpectationsWithTimeout:30.0 handler:nil];
 }
 
-//- (void)testEvaluateJavaScript {
-//    RUNABannerView *actual = [[RUNABannerView alloc]initWithEventType:@"video_loaded"];
-//    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
-//    expectation.expectedFulfillmentCount = 3;
-//
-//    // Case: InitialStatus
-//    XCTAssertEqual(actual.mediaType, RUNA_MEDIA_TYPE_UNKOWN);
-//    XCTAssertEqual(actual.videoState, RUNA_VIDEO_STATE_UNKNOWN);
-//
-//    // Case: PlayVideo
-//    [self execute:expectation delayTime:1.0 targetMethod:^{
-//        [actual applyAdView];
-//    } assertionBlock:^{
-//        XCTAssertEqual(actual.videoState, RUNA_VIDEO_STATE_LOADED);
-//        [actual playVideo];
-//    }];
-//    [self execute:expectation delayTime:3.0 targetMethod:^{
-//    } assertionBlock:^{
-//        XCTAssertEqual(actual.videoState, RUNA_VIDEO_STATE_PLAYING);
-//        [actual pauseVideo];
-//    }];
-//
-//    // Case: PauseVideo
-//    [self execute:expectation delayTime:5.0 targetMethod:^{
-//    } assertionBlock:^{
-//        XCTAssertEqual(actual.videoState, RUNA_VIDEO_STATE_PAUSED);
-//    }];
-//
-//    [self waitForExpectationsWithTimeout:7.0 handler:nil];
-//}
+- (void)testEvaluateJavaScript {
+    RUNABannerView *actual = [[RUNABannerView alloc]initWithEventType:@"video_loaded"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
+    expectation.expectedFulfillmentCount = 3;
+
+    // Case: InitialStatus
+    XCTAssertEqual(actual.mediaType, RUNA_MEDIA_TYPE_UNKOWN);
+    XCTAssertEqual(actual.videoState, RUNA_VIDEO_STATE_UNKNOWN);
+
+    // Case: PlayVideo
+    [self execute:expectation delayTime:3.0 targetMethod:^{
+        [actual applyAdView];
+    } assertionBlock:^{
+        XCTAssertEqual(actual.videoState, RUNA_VIDEO_STATE_LOADED);
+        [actual playVideo];
+    }];
+    [self execute:expectation delayTime:7.0 targetMethod:^{
+    } assertionBlock:^{
+        XCTAssertEqual(actual.videoState, RUNA_VIDEO_STATE_PLAYING);
+        [actual pauseVideo];
+    }];
+
+    // Case: PauseVideo
+    [self execute:expectation delayTime:10.0 targetMethod:^{
+    } assertionBlock:^{
+        XCTAssertEqual(actual.videoState, RUNA_VIDEO_STATE_PAUSED);
+    }];
+
+    [self waitForExpectationsWithTimeout:15.0 handler:nil];
+}
 
 #pragma mark - Helper Method
 
