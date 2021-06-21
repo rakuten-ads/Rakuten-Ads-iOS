@@ -274,64 +274,54 @@ NSString *const kValidAdspotId = @"693";
 # pragma mark - Video Tests
 
 - (void)testScriptMessageEvent {
+    RUNABannerView *actual;
     XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
     expectation.expectedFulfillmentCount = 6;
+
     // Case: expand
-    {
-        RUNABannerView *actual = [[RUNABannerView alloc]initWithEventType:@"expand"];
-        [self execute:expectation delayTime:1.0 targetMethod:^{
-            [actual applyAdView];
-        } assertionBlock:^{
-            XCTAssertEqual(actual.mediaType, RUNA_MEDIA_TYPE_BANNER);
-            XCTAssertEqual(actual.state, RUNA_ADVIEW_STATE_SHOWED);
-        }];
-    }
+    actual = [[RUNABannerView alloc]initWithEventType:@"expand"];
+    [self execute:expectation delayTime:1.0 targetMethod:^{
+        [actual applyAdView];
+    } assertionBlock:^{
+        XCTAssertEqual(actual.mediaType, RUNA_MEDIA_TYPE_BANNER);
+        XCTAssertEqual(actual.state, RUNA_ADVIEW_STATE_SHOWED);
+    }];
     // Case: collapse
-    {
-        RUNABannerView *actual = [[RUNABannerView alloc]initWithEventType:@"collapse"];
-        [self execute:expectation delayTime:1.0 targetMethod:^{
-            [actual applyAdView];
-        } assertionBlock:^{
-            XCTAssertEqual(actual.state, RUNA_ADVIEW_STATE_FAILED);
-        }];
-    }
+    actual = [[RUNABannerView alloc]initWithEventType:@"collapse"];
+    [self execute:expectation delayTime:1.0 targetMethod:^{
+        [actual applyAdView];
+    } assertionBlock:^{
+        XCTAssertEqual(actual.state, RUNA_ADVIEW_STATE_FAILED);
+    }];
     // Case: register
-    {
-        RUNABannerView *actual = [[RUNABannerView alloc]initWithEventType:@"register"];
-        [self execute:expectation delayTime:1.0 targetMethod:^{
-            [actual applyAdView];
-        } assertionBlock:^{
-            XCTAssertEqual(actual.state, RUNA_ADVIEW_STATE_MESSAGE_LISTENING);
-        }];
-    }
+    actual = [[RUNABannerView alloc]initWithEventType:@"register"];
+    [self execute:expectation delayTime:1.0 targetMethod:^{
+        [actual applyAdView];
+    } assertionBlock:^{
+        XCTAssertEqual(actual.state, RUNA_ADVIEW_STATE_MESSAGE_LISTENING);
+    }];
     // Case: unfilled
-    {
-        RUNABannerView *actual = [[RUNABannerView alloc]initWithEventType:@"unfilled"];
-        [self execute:expectation delayTime:1.0 targetMethod:^{
-            [actual applyAdView];
-        } assertionBlock:^{
-            XCTAssertEqual(actual.error, RUNABannerViewErrorUnfilled);
-            XCTAssertEqual(actual.state, RUNA_ADVIEW_STATE_FAILED);
-        }];
-    }
+    actual = [[RUNABannerView alloc]initWithEventType:@"unfilled"];
+    [self execute:expectation delayTime:1.0 targetMethod:^{
+        [actual applyAdView];
+    } assertionBlock:^{
+        XCTAssertEqual(actual.error, RUNABannerViewErrorUnfilled);
+        XCTAssertEqual(actual.state, RUNA_ADVIEW_STATE_FAILED);
+    }];
     // Case: video
-    {
-        RUNABannerView *actual = [[RUNABannerView alloc]initWithEventType:@"video"];
-        [self execute:expectation delayTime:1.0 targetMethod:^{
-            [actual applyAdView];
-        } assertionBlock:^{
-            XCTAssertEqual(actual.mediaType, RUNA_MEDIA_TYPE_VIDEO);
-        }];
-    }
+    actual = [[RUNABannerView alloc]initWithEventType:@"video"];
+    [self execute:expectation delayTime:1.0 targetMethod:^{
+        [actual applyAdView];
+    } assertionBlock:^{
+        XCTAssertEqual(actual.mediaType, RUNA_MEDIA_TYPE_VIDEO);
+    }];
     // Case: video_loaded
-    {
-        RUNABannerView *actual = [[RUNABannerView alloc]initWithEventType:@"video_loaded"];
-        [self execute:expectation delayTime:1.0 targetMethod:^{
-            [actual applyAdView];
-        } assertionBlock:^{
-            XCTAssertEqual(actual.videoState, RUNA_VIDEO_STATE_LOADED);
-        }];
-    }
+    actual = [[RUNABannerView alloc]initWithEventType:@"video_loaded"];
+    [self execute:expectation delayTime:1.0 targetMethod:^{
+        [actual applyAdView];
+    } assertionBlock:^{
+        XCTAssertEqual(actual.videoState, RUNA_VIDEO_STATE_LOADED);
+    }];
 
     [self waitForExpectationsWithTimeout:10.0 handler:nil];
 }
