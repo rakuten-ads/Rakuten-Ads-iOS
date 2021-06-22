@@ -11,10 +11,12 @@
 #import "RUNABannerGroup.h"
 #import "RUNABannerViewInner.h"
 
+typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerView* __nullable view, struct RUNABannerViewEvent event);
+
 @interface RUNABannerGroup (Spy)
 @property (nonatomic) RUNABannerViewState state;
 @property (nonatomic, readonly) NSDictionary<NSString*, RUNABannerView*> *bannerDict;
-@property (nonatomic) RUNABannerViewEventHandler eventHandler;
+@property (nonatomic, nullable, copy) RUNABannerGroupEventHandler eventHandler;
 @property (nonatomic) RUNABannerViewError error;
 - (instancetype)init;
 - (NSArray<RUNABannerView*>*)banners;
@@ -71,12 +73,10 @@
         XCTestExpectation *expectation = [self expectationWithDescription:@"triggerFailure"];
         RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
         [self execute:expectation delayTime:3.0 targetMethod:^{
-            group.eventHandler = ^(RUNABannerView * _Nonnull view,
-                                   struct RUNABannerViewEvent event) {
-                XCTAssertNotNil(view);
-                // FIXME: Test results do not meet expectations
-                //XCTAssertEqual(event.eventType, RUNABannerViewEventTypeGroupFailed);
-                XCTAssertEqual(event.error, RUNABannerViewErrorFatal);
+            group.eventHandler = ^(RUNABannerGroup *group, RUNABannerView * _Nullable view, struct RUNABannerViewEvent event) {
+                XCTAssertNotNil(group);
+                XCTAssertEqual(event.eventType, RUNABannerViewEventTypeGroupFailed);
+                XCTAssertEqual(event.error, RUNABannerViewErrorNone);
             };
             [group triggerFailure];
         } assertionBlock:^{
