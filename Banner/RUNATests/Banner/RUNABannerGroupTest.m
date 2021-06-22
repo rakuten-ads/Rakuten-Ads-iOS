@@ -10,6 +10,7 @@
 #import "RUNATests+Extension.h"
 #import "RUNABannerGroup.h"
 #import "RUNABannerViewInner.h"
+#import "RUNABannerView+Mock.h"
 
 typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerView* __nullable view, struct RUNABannerViewEvent event);
 
@@ -19,8 +20,10 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
 @property (nonatomic, nullable, copy) RUNABannerGroupEventHandler eventHandler;
 @property (nonatomic) RUNABannerViewError error;
 - (instancetype)init;
-- (NSArray<RUNABannerView*>*)banners;
+- (NSArray<RUNABannerView*> *)banners;
 - (void)triggerFailure;
+- (id<RUNAAdInfo>)parse:(NSDictionary *)bid;
+- (NSDictionary *)descriptionDetail;
 @end
 
 @interface RUNABannerGroupTest : XCTestCase
@@ -63,8 +66,17 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
     XCTAssertEqual(actuals.count, (NSUInteger)2);
 }
 
-// TODO: Implementation
 - (void)testParse {
+    RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
+    RUNABanner *banner = [group parse:[RUNABannerView dummyBidData]];
+    XCTAssertEqualObjects(banner.impId, @"1/1");
+    XCTAssertEqualObjects(banner.html, @"<div></div>");
+    XCTAssertEqual(banner.width, 1280);
+    XCTAssertEqual(banner.height, 720);
+    XCTAssertEqualObjects(banner.measuredURL, @"https://stg-s-evt.rmp.rakuten.co.jp/measured?dat=test");
+    XCTAssertEqualObjects(banner.inviewURL, @"https://stg-s-evt.rmp.rakuten.co.jp/inview?dat=test");
+    XCTAssertEqualObjects(banner.viewabilityProviderURL, @"https://stg-s-evt.rmp.rakuten.co.jp/viewability?dat=test");
+    XCTAssertEqual(banner.advertiseId, 123);
 }
 
 - (void)testTriggerFailure {

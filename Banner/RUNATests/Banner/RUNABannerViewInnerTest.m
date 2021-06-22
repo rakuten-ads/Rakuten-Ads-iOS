@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "RUNATests+Extension.h"
-#import "RUNABannerView+Stub.h"
+#import "RUNABannerView+Mock.h"
 #import "RUNABannerViewInner.h"
 
 // for staging

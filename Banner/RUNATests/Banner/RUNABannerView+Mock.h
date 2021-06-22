@@ -1,5 +1,5 @@
 //
-//  RUNABannerView+Stub.h
+//  RUNABannerView+Mock.h
 //  Banner
 //
 //  Created by Sato, Akihiko | Akkie on 2021/05/25.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RUNABannerView (Stub)
+@interface RUNABannerView (Mock)
 - (instancetype)initWithEventType:(NSString *)type;
 - (instancetype)initWithBidData;
 + (NSDictionary *)dummyBidData;
