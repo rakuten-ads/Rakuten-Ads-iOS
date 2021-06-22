@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+// FIXME:
+#import "RUNATests+Extension.h"
 #import "RUNABannerGroup.h"
 #import "RUNABannerViewInner.h"
 
@@ -15,6 +17,7 @@
 @property (nonatomic, readonly) NSDictionary<NSString*, RUNABannerView*> *bannerDict;
 - (instancetype)init;
 - (NSArray<RUNABannerView*>*)banners;
+- (void)triggerFailure;
 @end
 
 @interface RUNABannerGroupTest : XCTestCase
@@ -55,6 +58,23 @@
     [group setBanners:@[[RUNABannerView new], [RUNABannerView new]]];
     NSArray *actuals = [group banners];
     XCTAssertEqual(actuals.count, (NSUInteger)2);
+}
+
+// TODO: Implementation
+- (void)testParse {
+}
+
+- (void)testTriggerFailure {
+    RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"triggerFailure"];
+
+    [self execute:expectation delayTime:3.0 targetMethod:^{
+        [group triggerFailure];
+    } assertionBlock:^{
+        //XCTAssertFalse(bannerView.hidden);
+    }];
+    
+    [self waitForExpectationsWithTimeout:5.0 handler:nil];
 }
 
 @end
