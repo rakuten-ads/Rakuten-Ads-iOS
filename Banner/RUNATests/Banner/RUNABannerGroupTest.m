@@ -174,26 +174,4 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
     }
 }
 
-- (void)testDescription {
-    RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
-    group.userExt = @{@"key": @"value"};
-    [group setBanners:@[[[RUNABannerView alloc]initWithBidData]]];
-    
-    NSString *expected = [self descriptionTemplate];
-    NSString *value = [group description];
-    //NSLog(@"%@", expected);
-    //NSLog(@"%@", value);
-    XCTAssertEqualObjects([group description], expected);
-}
-
-#pragma mark - Helper Method
-
-- (NSString *)descriptionTemplate {
-    NSString *path = [[NSBundle bundleForClass:[self class]]pathForResource:@"groupDiscription" ofType:@"txt"];
-    NSData *data = [NSData dataWithContentsOfFile:path];
-    NSString *text = [[NSString alloc]initWithBytes:[data bytes]
-                                               length:[data length]
-                                             encoding:NSUTF8StringEncoding];
-    return [text substringToIndex:[text length] - 1];
-}
 @end
