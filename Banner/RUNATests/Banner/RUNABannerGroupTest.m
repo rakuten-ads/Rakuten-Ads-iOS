@@ -23,6 +23,7 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
 - (NSArray<RUNABannerView*> *)banners;
 - (void)triggerFailure;
 - (id<RUNAAdInfo>)parse:(NSDictionary *)bid;
+- (NSString *)descriptionState;
 - (NSDictionary *)descriptionDetail;
 @end
 
@@ -120,6 +121,26 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
         }];
         [self waitForExpectationsWithTimeout:5.0 handler:nil];
     }
+}
+
+- (void)testDescriptionState {
+    RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
+    group.state = RUNA_ADVIEW_STATE_INIT;
+    XCTAssertEqualObjects([group descriptionState], @"INIT");
+    group.state = RUNA_ADVIEW_STATE_LOADING;
+    XCTAssertEqualObjects([group descriptionState], @"LOADING");
+    group.state = RUNA_ADVIEW_STATE_LOADED;
+    XCTAssertEqualObjects([group descriptionState], @"LOADED");
+    group.state = RUNA_ADVIEW_STATE_FAILED;
+    XCTAssertEqualObjects([group descriptionState], @"FAILED");
+    group.state = RUNA_ADVIEW_STATE_RENDERING;
+    XCTAssertEqualObjects([group descriptionState], @"RENDERING");
+    group.state = RUNA_ADVIEW_STATE_MESSAGE_LISTENING;
+    XCTAssertEqualObjects([group descriptionState], @"MESSAGE_LISTENING");
+    group.state = RUNA_ADVIEW_STATE_SHOWED;
+    XCTAssertEqualObjects([group descriptionState], @"SHOWED");
+    group.state = RUNA_ADVIEW_STATE_CLICKED;
+    XCTAssertEqualObjects([group descriptionState], @"CLICKED");
 }
 
 @end
