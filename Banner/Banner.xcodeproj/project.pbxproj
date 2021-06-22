@@ -44,12 +44,14 @@
 		32F2596021E597E5001FD9C0 /* RUNABannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595121E597E5001FD9C0 /* RUNABannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F2596121E597E5001FD9C0 /* RUNABannerViewInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595221E597E5001FD9C0 /* RUNABannerViewInner.m */; };
 		541D745A267095390036038F /* bid.json in Resources */ = {isa = PBXBuildFile; fileRef = 541D7459267095390036038F /* bid.json */; };
-		541D746126709A080036038F /* bid.json in Resources */ = {isa = PBXBuildFile; fileRef = 541D7459267095390036038F /* bid.json */; };
 		5434A129268085D4007C77C2 /* RUNABannerGroupTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5434A128268085D4007C77C2 /* RUNABannerGroupTest.m */; };
 		5434A13D26818072007C77C2 /* RUNATests+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5434A13C26818072007C77C2 /* RUNATests+Extension.m */; };
 		5434A14226818083007C77C2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5434A14126818083007C77C2 /* XCTest.framework */; };
 		544DBC8226565D76009BD04E /* RUNABannerViewMeasurableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 544DBC8126565D76009BD04E /* RUNABannerViewMeasurableTest.m */; };
-		54B83C062660693400A64540 /* mock.js in Resources */ = {isa = PBXBuildFile; fileRef = 54B83C052660693400A64540 /* mock.js */; };
+		54980CDE2681D05300417C24 /* groupDiscription.txt in Resources */ = {isa = PBXBuildFile; fileRef = 54980CDD2681D01000417C24 /* groupDiscription.txt */; };
+		54980CDF2681D07900417C24 /* mock.js in Resources */ = {isa = PBXBuildFile; fileRef = 54B83C052660693400A64540 /* mock.js */; };
+		54980CE02681D07B00417C24 /* bid.json in Resources */ = {isa = PBXBuildFile; fileRef = 541D7459267095390036038F /* bid.json */; };
+		54980CE12681D08300417C24 /* groupDiscription.txt in Resources */ = {isa = PBXBuildFile; fileRef = 54980CDD2681D01000417C24 /* groupDiscription.txt */; };
 		54B83C072660693400A64540 /* mock.js in Resources */ = {isa = PBXBuildFile; fileRef = 54B83C052660693400A64540 /* mock.js */; };
 		54BF02A92657A8F100B2CCE4 /* MainViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 54BF02A72657A8F100B2CCE4 /* MainViewController.h */; };
 		54BF02AA2657A8F100B2CCE4 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF02A82657A8F100B2CCE4 /* MainViewController.m */; };
@@ -131,6 +133,7 @@
 		5434A13C26818072007C77C2 /* RUNATests+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RUNATests+Extension.m"; sourceTree = "<group>"; };
 		5434A14126818083007C77C2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		544DBC8126565D76009BD04E /* RUNABannerViewMeasurableTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewMeasurableTest.m; sourceTree = "<group>"; };
+		54980CDD2681D01000417C24 /* groupDiscription.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = groupDiscription.txt; sourceTree = "<group>"; };
 		54B83C052660693400A64540 /* mock.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mock.js; sourceTree = "<group>"; };
 		54BF02A72657A8F100B2CCE4 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		54BF02A82657A8F100B2CCE4 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -291,6 +294,7 @@
 			children = (
 				54B83C052660693400A64540 /* mock.js */,
 				541D7459267095390036038F /* bid.json */,
+				54980CDD2681D01000417C24 /* groupDiscription.txt */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -441,8 +445,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54B83C062660693400A64540 /* mock.js in Resources */,
-				541D746126709A080036038F /* bid.json in Resources */,
+				54980CDF2681D07900417C24 /* mock.js in Resources */,
+				54980CE12681D08300417C24 /* groupDiscription.txt in Resources */,
+				54980CE02681D07B00417C24 /* bid.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +456,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				541D745A267095390036038F /* bid.json in Resources */,
+				54980CDE2681D05300417C24 /* groupDiscription.txt in Resources */,
 				54B83C072660693400A64540 /* mock.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

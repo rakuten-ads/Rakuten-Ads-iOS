@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "RUNATests+Extension.h"
 #import "RUNABannerGroup.h"
+#import "RUNABannerGroupInner.h"
 #import "RUNABannerViewInner.h"
 #import "RUNABannerView+Mock.h"
 
@@ -25,10 +26,11 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
 - (id<RUNAAdInfo>)parse:(NSDictionary *)bid;
 - (NSString *)descriptionState;
 - (NSDictionary *)descriptionDetail;
+- (NSString *)versionString;
+- (NSString *)description;
 @end
 
 @interface RUNABannerGroupTest : XCTestCase
-
 @end
 
 @implementation RUNABannerGroupTest
@@ -143,4 +145,55 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
     XCTAssertEqualObjects([group descriptionState], @"CLICKED");
 }
 
+- (void)testVersionString {
+    NSString *version = [[[NSBundle bundleForClass:self.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    XCTAssertEqualObjects(version, @"0.1.4");
+}
+
+- (void)testDescriptionDetail {
+    {
+        // Case: Default
+        RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
+        NSDictionary *ext = @{@"key": @"value"};
+        group.userExt = ext;
+        [group setBanners:@[[RUNABannerView new], [RUNABannerView new]]];
+        NSDictionary *actual = [group descriptionDetail];
+        XCTAssertEqual(actual.allKeys.count, (NSUInteger)3);
+        XCTAssertEqualObjects(actual[@"banners"], group.banners);
+        XCTAssertEqualObjects(actual[@"state"], @"INIT");
+        XCTAssertEqualObjects(actual[@"user_extension"], ext);
+    }
+    {
+        // Case: NSNull
+        RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
+        NSDictionary *actual = [group descriptionDetail];
+        XCTAssertEqual(actual.allKeys.count, (NSUInteger)3);
+        XCTAssertEqualObjects(actual[@"banners"], NSNull.null);
+        XCTAssertEqualObjects(actual[@"state"], @"INIT");
+        XCTAssertEqualObjects(actual[@"user_extension"], NSNull.null);
+    }
+}
+
+- (void)testDescription {
+    RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
+    group.userExt = @{@"key": @"value"};
+    [group setBanners:@[[[RUNABannerView alloc]initWithBidData]]];
+    
+    NSString *expected = [self descriptionTemplate];
+    NSString *value = [group description];
+    //NSLog(@"%@", expected);
+    //NSLog(@"%@", value);
+    XCTAssertEqualObjects([group description], expected);
+}
+
+#pragma mark - Helper Method
+
+- (NSString *)descriptionTemplate {
+    NSString *path = [[NSBundle bundleForClass:[self class]]pathForResource:@"groupDiscription" ofType:@"txt"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    NSString *text = [[NSString alloc]initWithBytes:[data bytes]
+                                               length:[data length]
+                                             encoding:NSUTF8StringEncoding];
+    return [text substringToIndex:[text length] - 1];
+}
 @end
