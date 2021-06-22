@@ -1,9 +1,0 @@
-{
-    banners =     (
-        "{\n    adspotId = \"<null>\";\n    appContent = \"<null>\";\n    geo = \"<null>\";\n    \"iframe_enabled\" = NO;\n    \"om_available\" = NO;\n    \"om_disabled\" = YES;\n    postion = 0;\n    properties =     {\n    };\n    size = 0;\n    state = INIT;\n    \"user_extension\" = \"<null>\";\n}"
-    );
-    state = INIT;
-    "user_extension" =     {
-        key = value;
-    };
-}
