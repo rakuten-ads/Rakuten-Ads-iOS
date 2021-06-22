@@ -621,22 +621,17 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
 # pragma mark - Video Control Methods
 
 - (void)playVideo {
-    if (self.videoState == RUNA_VIDEO_STATE_LOADED
-        || self.videoState == RUNA_VIDEO_STATE_PAUSED) {
-        RUNADebug("evalute play");
+    if (self.videoState != RUNA_VIDEO_STATE_PLAYING) {
         [self evaluateVideoJavaScript:YES scriptCompletionHandler:^{
             self.videoState = RUNA_VIDEO_STATE_PLAYING;
-            RUNADebug("video playing");
         }];
     }
 }
 
 - (void)pauseVideo {
     if (self.videoState == RUNA_VIDEO_STATE_PLAYING) {
-        RUNADebug("evalute pause");
         [self evaluateVideoJavaScript:NO scriptCompletionHandler:^{
             self.videoState = RUNA_VIDEO_STATE_PAUSED;
-            RUNADebug("video paused");
         }];
     }
 }
