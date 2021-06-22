@@ -247,8 +247,6 @@
 				544DBD182657927C009BD04E /* UI */,
 				544DBC8026565BA4009BD04E /* Measurement */,
 				54BF02F8265CD2A500B2CCE4 /* Banner */,
-				5434A13B26818072007C77C2 /* RUNATests+Extension.h */,
-				5434A13C26818072007C77C2 /* RUNATests+Extension.m */,
 				32F258F021E58689001FD9C0 /* Info.plist */,
 			);
 			path = RUNATests;
@@ -300,6 +298,8 @@
 		54BF02F8265CD2A500B2CCE4 /* Banner */ = {
 			isa = PBXGroup;
 			children = (
+				5434A13B26818072007C77C2 /* RUNATests+Extension.h */,
+				5434A13C26818072007C77C2 /* RUNATests+Extension.m */,
 				54BF0311265CF1DB00B2CCE4 /* RUNABannerView+Stub.h */,
 				54BF0312265CF1DB00B2CCE4 /* RUNABannerView+Stub.m */,
 				54BF02F9265CD2CC00B2CCE4 /* RUNABannerViewInnerTest.m */,
