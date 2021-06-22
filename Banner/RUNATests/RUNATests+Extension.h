@@ -11,7 +11,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XCTest (Extension)
-
+- (void)execute:(XCTestExpectation *)expectation
+      delayTime:(int64_t)delayTime
+   targetMethod:(void (^)(void))targetMethod
+ assertionBlock:(void (^)(void))assertionBlock;
+- (void)syncExecute:(XCTestExpectation *)expectation
+          delayTime:(NSTimeInterval)delayTime
+       targetMethod:(void (^)(void))targetMethod
+     assertionBlock:(void (^)(void))assertionBlock;
 @end
 
 NS_ASSUME_NONNULL_END
