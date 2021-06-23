@@ -205,6 +205,8 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
     XCTAssertEqualObjects([group descriptionState], @"SHOWED");
     group.state = RUNA_ADVIEW_STATE_CLICKED;
     XCTAssertEqualObjects([group descriptionState], @"CLICKED");
+    group.state = -1;
+    XCTAssertEqualObjects([group descriptionState], @"unknown");
 }
 
 - (void)testVersionString {
