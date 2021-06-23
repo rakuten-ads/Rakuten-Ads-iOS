@@ -46,6 +46,7 @@
 		541D745A267095390036038F /* bid.json in Resources */ = {isa = PBXBuildFile; fileRef = 541D7459267095390036038F /* bid.json */; };
 		5422362B2682D3EF00DC4229 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RUNACore.framework */; };
 		542236352682F4B200DC4229 /* RUNABannerViewExtensionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 542236342682F4B200DC4229 /* RUNABannerViewExtensionTest.m */; };
+		542236382683178D00DC4229 /* RUNANativeAdAdapteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 542236372683178D00DC4229 /* RUNANativeAdAdapteTest.m */; };
 		5434A129268085D4007C77C2 /* RUNABannerGroupTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5434A128268085D4007C77C2 /* RUNABannerGroupTest.m */; };
 		5434A13D26818072007C77C2 /* RUNATests+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5434A13C26818072007C77C2 /* RUNATests+Extension.m */; };
 		5434A14226818083007C77C2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5434A14126818083007C77C2 /* XCTest.framework */; };
@@ -129,6 +130,7 @@
 		32F25A1721E5A96C001FD9C0 /* Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core.xcodeproj; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
 		541D7459267095390036038F /* bid.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bid.json; sourceTree = "<group>"; };
 		542236342682F4B200DC4229 /* RUNABannerViewExtensionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewExtensionTest.m; sourceTree = "<group>"; };
+		542236372683178D00DC4229 /* RUNANativeAdAdapteTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNANativeAdAdapteTest.m; sourceTree = "<group>"; };
 		5434A128268085D4007C77C2 /* RUNABannerGroupTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerGroupTest.m; sourceTree = "<group>"; };
 		5434A13B26818072007C77C2 /* RUNATests+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RUNATests+Extension.h"; sourceTree = "<group>"; };
 		5434A13C26818072007C77C2 /* RUNATests+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RUNATests+Extension.m"; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			children = (
 				54B83C042660691500A64540 /* Resources */,
 				544DBD182657927C009BD04E /* UI */,
+				542236362683174400DC4229 /* NativeAd */,
 				544DBC8026565BA4009BD04E /* Measurement */,
 				54BF02F8265CD2A500B2CCE4 /* Banner */,
 				32F258F021E58689001FD9C0 /* Info.plist */,
@@ -263,6 +266,14 @@
 				32F25A1F21E5A96C001FD9C0 /* CoreTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		542236362683174400DC4229 /* NativeAd */ = {
+			isa = PBXGroup;
+			children = (
+				542236372683178D00DC4229 /* RUNANativeAdAdapteTest.m */,
+			);
+			path = NativeAd;
 			sourceTree = "<group>";
 		};
 		5434A14026818083007C77C2 /* Frameworks */ = {
@@ -505,6 +516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5434A129268085D4007C77C2 /* RUNABannerGroupTest.m in Sources */,
+				542236382683178D00DC4229 /* RUNANativeAdAdapteTest.m in Sources */,
 				5434A13D26818072007C77C2 /* RUNATests+Extension.m in Sources */,
 				54BF02AB2657A8F100B2CCE4 /* MainViewController.m in Sources */,
 				54BF0315265CF1DB00B2CCE4 /* RUNABannerView+Mock.m in Sources */,
