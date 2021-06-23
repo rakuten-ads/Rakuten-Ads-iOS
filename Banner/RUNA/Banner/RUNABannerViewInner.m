@@ -692,9 +692,10 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
     _state == RUNA_ADVIEW_STATE_CLICKED ? @"CLICKED" : @"unknown";
 }
 
-#if DEBUG
+
 -(void)dealloc {
     RUNADebug("dealloc RUNABannerView %p: %@", self, self);
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:kSdkMessageHandlerName];
 }
-#endif
+
 @end
