@@ -151,8 +151,6 @@ NSString *const kValidAdspotId = @"693";
             XCTAssertEqual(bannerView.size, size);
             if (size == RUNABannerViewSizeCustom) {
                 XCTAssertNil(bannerView.sizeConstraints);
-                // TBD: YESであるべき？その場合は本実装も修正する
-                //XCTAssertTrue(bannerView.translatesAutoresizingMaskIntoConstraints);
             } else {
                 XCTAssertEqual(bannerView.sizeConstraints.count, (NSUInteger)2);
                 XCTAssertFalse(bannerView.translatesAutoresizingMaskIntoConstraints);
@@ -189,8 +187,6 @@ NSString *const kValidAdspotId = @"693";
             XCTAssertEqual(bannerView.position, position);
             if (position == RUNABannerViewPositionCustom) {
                 XCTAssertNil(bannerView.positionConstraints);
-                // TBD: YESであるべき？その場合は本実装も修正する
-                //XCTAssertTrue(bannerView.translatesAutoresizingMaskIntoConstraints);
             } else {
                 XCTAssertEqual(bannerView.positionConstraints.count, (NSUInteger)2);
                 XCTAssertFalse(bannerView.translatesAutoresizingMaskIntoConstraints);
