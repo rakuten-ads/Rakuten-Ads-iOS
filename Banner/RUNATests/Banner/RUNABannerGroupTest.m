@@ -11,6 +11,7 @@
 #import "RUNABannerGroup.h"
 #import "RUNABannerGroupInner.h"
 #import "RUNABannerViewInner.h"
+#import "RUNABannerAdapter.h"
 #import "RUNABannerView+Mock.h"
 
 typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerView* __nullable view, struct RUNABannerViewEvent event);
@@ -24,6 +25,8 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
 - (NSArray<RUNABannerView*> *)banners;
 - (void)triggerFailure;
 - (id<RUNAAdInfo>)parse:(NSDictionary *)bid;
+- (void)onBidResponseFailed:(nonnull NSHTTPURLResponse *)response error:(nullable NSError *)error;
+- (void)onBidResponseSuccess:(nonnull NSArray<RUNABanner*> *)adInfoList withSessionId:(nonnull NSString *)sessionId;
 - (NSString *)descriptionState;
 - (NSDictionary *)descriptionDetail;
 - (NSString *)versionString;
@@ -80,6 +83,34 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
     XCTAssertEqualObjects(banner.inviewURL, @"https://stg-s-evt.rmp.rakuten.co.jp/inview?dat=test");
     XCTAssertEqualObjects(banner.viewabilityProviderURL, @"https://stg-s-evt.rmp.rakuten.co.jp/viewability?dat=test");
     XCTAssertEqual(banner.advertiseId, 123);
+}
+
+- (void)testOnBidResponseFailed {
+    RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
+    NSURL *url = [[NSURL alloc]initWithString:@"dummyUrl"];
+    {
+        // Case: Unfilled
+        XCTestExpectation *expectation = [self expectationWithDescription:@"onBidResponseFailed"];
+        [self execute:expectation delayTime:3.0 targetMethod:^{
+            NSHTTPURLResponse *mockResponse = [[NSHTTPURLResponse alloc]initWithURL:url statusCode:kRUNABidResponseUnfilled HTTPVersion:nil headerFields:nil];
+            [group onBidResponseFailed:mockResponse error:nil];
+        } assertionBlock:^{
+            XCTAssertEqual(group.error, RUNABannerViewErrorUnfilled);
+        }];
+        [self waitForExpectationsWithTimeout:5.0 handler:nil];
+    }
+    {
+        // Case: Error
+        XCTestExpectation *expectation = [self expectationWithDescription:@"onBidResponseFailed"];
+        [self execute:expectation delayTime:3.0 targetMethod:^{
+            NSHTTPURLResponse *mockResponse = [[NSHTTPURLResponse alloc]initWithURL:url statusCode:400 HTTPVersion:nil headerFields:nil];
+            NSError *error = [NSError errorWithDomain:@"dummyDomain" code:400 userInfo:@{}];
+            [group onBidResponseFailed:mockResponse error:error];
+        } assertionBlock:^{
+            XCTAssertEqual(group.error, RUNABannerViewErrorNetwork);
+        }];
+        [self waitForExpectationsWithTimeout:5.0 handler:nil];
+    }
 }
 
 - (void)testTriggerFailure {

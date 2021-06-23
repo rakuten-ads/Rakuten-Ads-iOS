@@ -44,6 +44,7 @@
 		32F2596021E597E5001FD9C0 /* RUNABannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595121E597E5001FD9C0 /* RUNABannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F2596121E597E5001FD9C0 /* RUNABannerViewInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595221E597E5001FD9C0 /* RUNABannerViewInner.m */; };
 		541D745A267095390036038F /* bid.json in Resources */ = {isa = PBXBuildFile; fileRef = 541D7459267095390036038F /* bid.json */; };
+		5422362B2682D3EF00DC4229 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RUNACore.framework */; };
 		5434A129268085D4007C77C2 /* RUNABannerGroupTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5434A128268085D4007C77C2 /* RUNABannerGroupTest.m */; };
 		5434A13D26818072007C77C2 /* RUNATests+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5434A13C26818072007C77C2 /* RUNATests+Extension.m */; };
 		5434A14226818083007C77C2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5434A14126818083007C77C2 /* XCTest.framework */; };
@@ -154,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5434A14226818083007C77C2 /* XCTest.framework in Frameworks */,
+				5422362B2682D3EF00DC4229 /* RUNACore.framework in Frameworks */,
 				32F258EA21E58689001FD9C0 /* RUNABanner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
