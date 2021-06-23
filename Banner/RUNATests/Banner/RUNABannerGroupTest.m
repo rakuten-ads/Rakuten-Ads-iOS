@@ -113,6 +113,37 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
     }
 }
 
+- (void)testOnBidResponseSuccess {
+    RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
+    [group setBanners:@[[RUNABannerView new]]];
+    {
+        // Case: Default
+        XCTestExpectation *expectation = [self expectationWithDescription:@"onBidResponseSuccess"];
+        
+        RUNABanner *banner = [RUNABanner new]; // mock
+        NSMutableDictionary *bidData = [[NSMutableDictionary alloc]initWithDictionary:[RUNABannerView dummyBidData]];
+        bidData[@"impid"] = group.bannerDict.allKeys[0];
+        [banner parse:bidData];
+        
+        [self execute:expectation delayTime:3.0 targetMethod:^{   
+            [group onBidResponseSuccess:@[banner] withSessionId:@"sessionId"];
+        } assertionBlock:^{
+            XCTAssertEqual(group.state, RUNA_ADVIEW_STATE_LOADED);
+        }];
+        [self waitForExpectationsWithTimeout:5.0 handler:nil];
+    }
+    {
+        // Case: Empty Banner
+        XCTestExpectation *expectation = [self expectationWithDescription:@"onBidResponseSuccess"];
+        [self execute:expectation delayTime:3.0 targetMethod:^{
+            [group onBidResponseSuccess:@[[RUNABanner new]] withSessionId:@"dummyId"];
+        } assertionBlock:^{
+            XCTAssertEqual(group.state, RUNA_ADVIEW_STATE_LOADED);
+        }];
+        [self waitForExpectationsWithTimeout:5.0 handler:nil];
+    }
+}
+
 - (void)testTriggerFailure {
     {
         // Case: Default
