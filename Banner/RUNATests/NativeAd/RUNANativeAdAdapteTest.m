@@ -10,20 +10,7 @@
 #import "RUNANativeAdAdapter.h"
 
 @interface RUNANativeAdAdapter (Spy)
-- (instancetype)initWithAdspotId:(NSString *)adspotId;
-- (NSArray *)getImp;
 - (NSArray<NSString*> *)adspotIdList;
-@end
-
-@implementation RUNANativeAdAdapter (Spy)
-// TBD
-- (instancetype)initWithAdspotId:(NSString *)adspotId {
-    self = [super init];
-    if (self) {
-        self.adspotId = adspotId;
-    }
-    return self;
-}
 @end
 
 @interface RUNANativeAdAdapteTest : XCTestCase
@@ -32,16 +19,18 @@
 @implementation RUNANativeAdAdapteTest
 
 - (void)testGetImp {
-    RUNANativeAdAdapter *adapter = [[RUNANativeAdAdapter alloc]initWithAdspotId:@"999"];
-//    adapter.adspotId = @"999";
-//    NSArray *actuals = [adapter getImp];
-//    XCTAssertEqual(actuals.count, (NSUInteger)1);
-//    NSString *value = (NSString*)((NSDictionary*)actuals[0])[@"ext"][@"adspot_id"];
-//    XCTAssertEqualObjects(value, adapter.adspotId);
+    RUNANativeAdAdapter *adapter = [RUNANativeAdAdapter new];
+    adapter.adspotId = @"999";
+    NSArray *actuals = [adapter getImp];
+    XCTAssertEqual(actuals.count, (NSUInteger)1);
+    NSString *value = (NSString*)((NSDictionary*)actuals[0])[@"ext"][@"adspot_id"];
+    XCTAssertEqualObjects(value, adapter.adspotId);
 }
 
 - (void)testAdspotIdList {
-    
+    RUNANativeAdAdapter *adapter = [RUNANativeAdAdapter new];
+    NSArray *list = [adapter adspotIdList];
+    XCTAssertNil(list);
 }
 
 @end
