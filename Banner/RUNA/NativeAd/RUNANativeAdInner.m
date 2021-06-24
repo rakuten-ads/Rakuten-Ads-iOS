@@ -226,6 +226,7 @@ int RUNANativeAdAssetRequiredYes = 1;
         } else if ([asset isKindOfClass:RUNANativeAdAssetData.class]) {
             [nativeAds setData:(RUNANativeAdAssetData*)asset];
         } else if ([asset isKindOfClass:RUNANativeAdAssetLink.class]) {
+            // FIXME: factoryAsset method does not return this type
             nativeAds->_assetLink = (RUNANativeAdAssetLink*)asset;
         }
     }
