@@ -10,9 +10,15 @@
 #import "RUNANativeAd.h"
 #import "RUNANativeAdInner.h"
 
+// for description method
+@interface RUNANativeAdAssetVideo (Spy)
+@property(nonatomic) NSString *vasttag;
+@end
+
 @interface RUNANativeAd (Spy)
 - (void)setImage:(RUNANativeAdAssetImage *)img;
 - (void)setData:(RUNANativeAdAssetData *)data;
+- (NSString *)description;
 @end
 
 @interface RUNANativeAdTest : XCTestCase
@@ -183,6 +189,39 @@
         XCTAssertNil(ad.ctatext);
         XCTAssertNil(ad.rating);
     }
+}
+
+- (void)testDescription {
+    RUNANativeAd *ad = [RUNANativeAd new];
+    
+    RUNANativeAdAssetTitle *title = [RUNANativeAdAssetTitle new];
+    [title parse:[RUNAJSONObject jsonWithRawDictionary:@{@"title.text":@"text"}]];
+    ad.assetTitle = title;
+    
+    RUNANativeAdAssetImage *image = [RUNANativeAdAssetImage new];
+    [image parse:[RUNAJSONObject jsonWithRawDictionary:@{@"img.url":@"image_url", @"img.type": @(RUNANativeAdAssetImageTypeIcon)}]];
+    ad.assetImgs = @[image];
+    
+    RUNANativeAdAssetLink *link = [RUNANativeAdAssetLink new];
+    [link parse:[RUNAJSONObject jsonWithRawDictionary:@{@"url":@"link_url"}]];
+    ad.assetLink = link;
+    
+    RUNANativeAdAssetData *data = [RUNANativeAdAssetData new];
+    [data parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.value":@"value", @"data.type":@(RUNANativeAdAssetDataTypeSponsored)}]];
+    ad.assetDatas = @[data];
+    
+    // FIXME: 
+//    // NOTE: TestCase
+//    RUNANativeAdAssetVideo *video = [RUNANativeAdAssetVideo new];
+//    ad.assetVideo = video;
+    
+    XCTAssertEqualObjects([ad description], @"{ \n"
+                          @"asset title: Asset Title: text\n"
+                          @"asset imgs: [Asset Image] Icon: image_url\n"
+                          @"asset link: [Asset Link] URL: link_url\n"
+                          @"asset datas: [Asset Data] sponsored: value\n"
+                          @"asset video: (null)\n"
+                          @" }");
 }
 
 @end
