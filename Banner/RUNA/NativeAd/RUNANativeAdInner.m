@@ -311,10 +311,12 @@ int RUNANativeAdAssetRequiredYes = 1;
         case RUNANativeAdAssetDataTypeCtatext:
             self->_ctatext = data.value;
             break;
-        case RUNANativeAdAssetDataTypeRating:;
-            double r = [data.value doubleValue];
-            if (r > 0) {
-                self->_rating = [NSNumber numberWithDouble:r];
+        case RUNANativeAdAssetDataTypeRating:
+            {
+                double r = [data.value doubleValue];
+                if (r > 0) {
+                    self->_rating = [NSNumber numberWithDouble:r];
+                }
             }
             break;
         default:
