@@ -12,7 +12,16 @@
 #import "RUNANativeAdInner.h"
 
 @interface RUNANativeAdAsset (Spy)
-@property(nonatomic, readonly, getter=isRequired) BOOL required;
+@property(nonatomic, readonly) BOOL required;
+@end
+
+@interface RUNANativeAdAssetImage (Spy)
+@property(nonatomic) NSString *url;
+@property(nonatomic) int w;
+@property(nonatomic) int h;
+@property(nonatomic) int type;
+- (void)parse:(RUNAJSONObject *)assetJson;
+- (NSString *)description;
 @end
 
 @interface RUNANativeAdInnerTest : XCTestCase
@@ -49,6 +58,42 @@
         RUNANativeAdAsset *asset = [RUNANativeAdAsset factoryAsset:@{@"data":@{}}];
         XCTAssertNotNil(asset);
         XCTAssertTrue([asset isMemberOfClass:RUNANativeAdAssetData.class]);
+    }
+}
+
+#pragma mark - RUNANativeAdAssetImageTest
+
+- (void)testParseImage {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"img.url":@"url", @"img.w":@320, @"img.h":@50, @"img.type": @1}];
+    {
+        RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
+        XCTAssertEqualObjects(asset.url, @"url");
+        XCTAssertEqual(asset.w, 320);
+        XCTAssertEqual(asset.h, 50);
+        XCTAssertEqual(asset.type, RUNANativeAdAssetImageTypeIcon);
+        XCTAssertEqualObjects([asset description], @"[Asset Image] Icon: url");
+    }
+    {
+        RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
+        dic[@"img.type"] = @3;
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
+        XCTAssertEqual(asset.type, RUNANativeAdAssetImageTypeMain);
+        XCTAssertEqualObjects([asset description], @"[Asset Image] Main: url");
+    }
+    {
+        RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
+        dic[@"img.type"] = @500;
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
+        XCTAssertEqual(asset.type, RUNANativeAdAssetImageTypeOther);
+        XCTAssertEqualObjects([asset description], @"[Asset Image] unkown: url");
+    }
+    {
+        RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
+        dic[@"img.type"] = @0;
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
+        XCTAssertEqual(asset.type, RUNANativeAdAssetImageTypeOther);
+        XCTAssertEqualObjects([asset description], @"[Asset Image] unkown: url");
     }
 }
 
