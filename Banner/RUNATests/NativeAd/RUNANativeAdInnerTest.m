@@ -39,6 +39,21 @@
 - (NSString *)description;
 @end
 
+@interface RUNANativeAdAssetLink (Spy)
+@property(nonatomic, readonly) NSString *url;
+@property(nonatomic, readonly) NSString *fallback;
+@property(nonatomic, readonly) NSArray<NSString*> *clicktrackers;
+- (void)parse:(RUNAJSONObject *)assetJson;
+- (NSString *)getUrl;
+- (NSString *)description;
+@end
+
+@interface RUNANativeAdEventTracker (Spy)
+@property(nonatomic, readonly) int event;
+@property(nonatomic, readonly) int method;
+@property(nonatomic, readonly) RUNAURLString *url;
+@end
+
 @interface RUNANativeAdInnerTest : XCTestCase
 @end
 
@@ -79,36 +94,36 @@
 #pragma mark - RUNANativeAdAssetImageTest
 
 - (void)testAssetImage {
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"img.url":@"url", @"img.w":@320, @"img.h":@50, @"img.type": @1}];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"img.url":@"https://www.google.com", @"img.w":@320, @"img.h":@50, @"img.type": @1}];
     {
         RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
-        XCTAssertEqualObjects(asset.url, @"url");
+        XCTAssertEqualObjects(asset.url, @"https://www.google.com");
         XCTAssertEqual(asset.w, 320);
         XCTAssertEqual(asset.h, 50);
         XCTAssertEqual(asset.type, RUNANativeAdAssetImageTypeIcon);
-        XCTAssertEqualObjects([asset description], @"[Asset Image] Icon: url");
+        XCTAssertEqualObjects([asset description], @"[Asset Image] Icon: https://www.google.com");
     }
     {
         RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
         dic[@"img.type"] = @3;
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
         XCTAssertEqual(asset.type, RUNANativeAdAssetImageTypeMain);
-        XCTAssertEqualObjects([asset description], @"[Asset Image] Main: url");
+        XCTAssertEqualObjects([asset description], @"[Asset Image] Main: https://www.google.com");
     }
     {
         RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
         dic[@"img.type"] = @500;
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
         XCTAssertEqual(asset.type, RUNANativeAdAssetImageTypeOther);
-        XCTAssertEqualObjects([asset description], @"[Asset Image] unkown: url");
+        XCTAssertEqualObjects([asset description], @"[Asset Image] unkown: https://www.google.com");
     }
     {
         RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
         dic[@"img.type"] = @0;
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
         XCTAssertEqual(asset.type, RUNANativeAdAssetImageTypeOther);
-        XCTAssertEqualObjects([asset description], @"[Asset Image] unkown: url");
+        XCTAssertEqualObjects([asset description], @"[Asset Image] unkown: https://www.google.com");
     }
 }
 
@@ -170,6 +185,34 @@
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
         XCTAssertEqualObjects([asset description], @"[Asset Data] specific: value");
     }
+}
+
+#pragma mark - RUNANativeAdAssetLink
+
+- (void)testAssetLink {
+    RUNANativeAdAssetLink *asset = [RUNANativeAdAssetLink new];
+    NSDictionary *dic = @{@"url":@"https://www.google.com", @"fallback":@"fallback", @"clicktrackers":@[@"hoge", @"fuga"]};
+    [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
+    XCTAssertEqualObjects(asset.url, @"https://www.google.com");
+    XCTAssertEqualObjects(asset.fallback, @"fallback");
+    XCTAssertEqual(asset.clicktrackers.count, (NSUInteger)2);
+    XCTAssertEqualObjects(asset.clicktrackers[0], @"hoge");
+    XCTAssertEqualObjects(asset.clicktrackers[1], @"fuga");
+    XCTAssertEqualObjects([asset getUrl], @"https://www.google.com");
+    XCTAssertEqualObjects([asset description], @"[Asset Link] URL: https://www.google.com");
+}
+
+#pragma mark - RUNANativeAdEventTracker
+
+- (void)testAdEventTracker {
+    RUNANativeAdEventTracker *asset = [RUNANativeAdEventTracker new];
+    NSDictionary *dic = @{@"url":@"https://www.google.com", @"event":@1, @"method":@2};
+    [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
+    XCTAssertEqualObjects(asset.url, @"https://www.google.com");
+    XCTAssertEqual(asset.event, 1);
+    XCTAssertEqual(asset.method, 2);
+    XCTAssertEqualObjects([asset getUrl], @"https://www.google.com");
+    XCTAssertEqualObjects([asset description], @"[Native Ad Event Tracker] method=2: https://www.google.com");
 }
 
 @end
