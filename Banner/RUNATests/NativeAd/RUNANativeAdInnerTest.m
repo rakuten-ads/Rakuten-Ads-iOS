@@ -16,10 +16,25 @@
 @end
 
 @interface RUNANativeAdAssetImage (Spy)
-@property(nonatomic) NSString *url;
-@property(nonatomic) int w;
-@property(nonatomic) int h;
-@property(nonatomic) int type;
+@property(nonatomic, readonly) NSString *url;
+@property(nonatomic, readonly) int w;
+@property(nonatomic, readonly) int h;
+@property(nonatomic, readonly) int type;
+- (void)parse:(RUNAJSONObject *)assetJson;
+- (NSString *)description;
+@end
+
+@interface RUNANativeAdAssetTitle (Spy)
+@property(nonatomic, readonly) NSString *text;
+- (void)parse:(RUNAJSONObject *)assetJson;
+- (NSString *)description;
+@end
+
+@interface RUNANativeAdAssetData (Spy)
+@property(nonatomic, readonly) NSString *value;
+@property(nonatomic, readonly) int type;
+@property(nonatomic, readonly) int len;
+@property(nonatomic, readonly) NSDictionary *ext;
 - (void)parse:(RUNAJSONObject *)assetJson;
 - (NSString *)description;
 @end
@@ -63,7 +78,7 @@
 
 #pragma mark - RUNANativeAdAssetImageTest
 
-- (void)testParseImage {
+- (void)testAssetImage {
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"img.url":@"url", @"img.w":@320, @"img.h":@50, @"img.type": @1}];
     {
         RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
@@ -94,6 +109,66 @@
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
         XCTAssertEqual(asset.type, RUNANativeAdAssetImageTypeOther);
         XCTAssertEqualObjects([asset description], @"[Asset Image] unkown: url");
+    }
+}
+
+#pragma mark - RUNANativeAdAssetTitle
+
+- (void)testAssetTitle {
+    RUNANativeAdAssetTitle *asset = [RUNANativeAdAssetTitle new];
+    [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"title.text":@"hogefuga"}]];
+    XCTAssertEqualObjects(asset.text, @"hogefuga");
+    XCTAssertEqualObjects([asset description], @"Asset Title: hogefuga");
+}
+
+#pragma mark - RUNANativeAdAssetData
+
+- (void)testAssetData {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"data.value":@"value", @"data.type":@(RUNANativeAdAssetDataTypeSponsored), @"data.len":@9999, @"data.ext": @{@"key":@"value"}}];
+    {
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
+        XCTAssertEqualObjects(asset.value, @"value");
+        XCTAssertEqual(asset.type, RUNANativeAdAssetDataTypeSponsored);
+        XCTAssertEqual(asset.len, 9999);
+        XCTAssertEqualObjects(asset.ext, @{@"key":@"value"});
+        XCTAssertEqualObjects([asset description], @"[Asset Data] sponsored: value");
+    }
+    {
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        dic[@"data.type"] = @(RUNANativeAdAssetDataTypeDesc);
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
+        XCTAssertEqualObjects([asset description], @"[Asset Data] desc: value");
+    }
+    {
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        dic[@"data.type"] = @(RUNANativeAdAssetDataTypeRating);
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
+        XCTAssertEqualObjects([asset description], @"[Asset Data] rating: value");
+    }
+    {
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        dic[@"data.type"] = @(RUNANativeAdAssetDataTypePrice);
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
+        XCTAssertEqualObjects([asset description], @"[Asset Data] price: value");
+    }
+    {
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        dic[@"data.type"] = @(RUNANativeAdAssetDataTypeSaleprice);
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
+        XCTAssertEqualObjects([asset description], @"[Asset Data] saleprice: value");
+    }
+    {
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        dic[@"data.type"] = @(RUNANativeAdAssetDataTypeCtatext);
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
+        XCTAssertEqualObjects([asset description], @"[Asset Data] ctatext: value");
+    }
+    {
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        dic[@"data.type"] = @(-1);
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
+        XCTAssertEqualObjects([asset description], @"[Asset Data] specific: value");
     }
 }
 
