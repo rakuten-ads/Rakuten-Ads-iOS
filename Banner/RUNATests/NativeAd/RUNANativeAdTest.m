@@ -11,6 +11,7 @@
 #import "RUNANativeAdInner.h"
 
 @interface RUNANativeAd (Spy)
+- (void)setImage:(RUNANativeAdAssetImage *)img;
 @end
 
 @interface RUNANativeAdTest : XCTestCase
@@ -49,6 +50,36 @@
         // Case: admJson from json string
         NSString *jsonString = @"{\"dummy\":{\"id\":1,\"type\":\"type\"}}";
         XCTAssertNotNil([RUNANativeAd parse:@{@"adm":jsonString}]);
+    }
+}
+
+- (void)testSetImage {
+    {
+        RUNANativeAd *ad = [RUNANativeAd new];
+        RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"img.type": @(RUNANativeAdAssetImageTypeIcon)}]];
+        [ad setImage:asset];
+        XCTAssertEqual(ad.assetImgs.count, (NSUInteger)1);
+        XCTAssertNotNil(ad.iconImg);
+        XCTAssertNil(ad.mainImg);
+    }
+    {
+        RUNANativeAd *ad = [RUNANativeAd new];
+        RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"img.type": @(RUNANativeAdAssetImageTypeMain)}]];
+        [ad setImage:asset];
+        XCTAssertEqual(ad.assetImgs.count, (NSUInteger)1);
+        XCTAssertNil(ad.iconImg);
+        XCTAssertNotNil(ad.mainImg);
+    }
+    {
+        RUNANativeAd *ad = [RUNANativeAd new];
+        RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"img.type": @(RUNANativeAdAssetImageTypeOther)}]];
+        [ad setImage:asset];
+        XCTAssertEqual(ad.assetImgs.count, (NSUInteger)1);
+        XCTAssertNil(ad.iconImg);
+        XCTAssertNil(ad.mainImg);
     }
 }
 

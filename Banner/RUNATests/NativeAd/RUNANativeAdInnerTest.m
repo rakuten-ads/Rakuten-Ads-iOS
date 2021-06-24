@@ -94,7 +94,7 @@
 #pragma mark - RUNANativeAdAssetImageTest
 
 - (void)testAssetImage {
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"img.url":@"https://www.google.com", @"img.w":@320, @"img.h":@50, @"img.type": @1}];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:@{@"img.url":@"https://www.google.com", @"img.w":@320, @"img.h":@50, @"img.type": @(RUNANativeAdAssetImageTypeIcon)}];
     {
         RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
