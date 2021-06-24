@@ -120,13 +120,27 @@ int RUNANativeAdAssetRequiredYes = 1;
 {
     NSString* type = nil;
     switch (self.type) {
-        case RUNANativeAdAssetDataTypeDesc: type = @"desc"; break;
-        case RUNANativeAdAssetDataTypePrice: type = @"price"; break;
-        case RUNANativeAdAssetDataTypeSaleprice: type = @"saleprice"; break;
-        case RUNANativeAdAssetDataTypeSponsored: type = @"sponsored"; break;
-        case RUNANativeAdAssetDataTypeCtatext: type = @"ctatext"; break;
-        case RUNANativeAdAssetDataTypeRating: type = @"rating"; break;
-        default: type = @"specific"; break;
+        case RUNANativeAdAssetDataTypeDesc:
+            type = @"desc";
+            break;
+        case RUNANativeAdAssetDataTypePrice:
+            type = @"price";
+            break;
+        case RUNANativeAdAssetDataTypeSaleprice:
+            type = @"saleprice";
+            break;
+        case RUNANativeAdAssetDataTypeSponsored:
+            type = @"sponsored";
+            break;
+        case RUNANativeAdAssetDataTypeCtatext:
+            type = @"ctatext";
+            break;
+        case RUNANativeAdAssetDataTypeRating:
+            type = @"rating";
+            break;
+        default:
+            type = @"specific";
+            break;
     }
     return [NSString stringWithFormat:@"[Asset Data] %@: %@", type, self.value];
 }
