@@ -54,7 +54,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     self.state = RUNA_ADVIEW_STATE_INIT;
     self.error = RUNABannerViewErrorNone;
     self.videoState = RUNA_VIDEO_STATE_UNKNOWN;
-    self.mediaType = RUNA_MEDIA_TYPE_UNKOWN;
+    self.mediaType = RUNA_MEDIA_TYPE_BANNER;
     [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
         [measurer finishMeasurement];
     }];
@@ -352,9 +352,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     RUNAAdWebViewMessageManager* messageManager = [[RUNAAdWebViewMessageManager alloc] initWithName:kSdkMessageHandlerName];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
-        if (weakSelf.mediaType != RUNA_MEDIA_TYPE_VIDEO) {
-            weakSelf.mediaType = RUNA_MEDIA_TYPE_BANNER;
-        }
         [weakSelf triggerSuccess];
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeCollapse handle:^(RUNAAdWebViewMessage * _Nonnull message) {
@@ -559,7 +556,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
                 @try {
                     if (self.mediaType == RUNA_MEDIA_TYPE_VIDEO) {
                         self.videoState = RUNA_VIDEO_STATE_STOP;
-                        [self evaluateVideoJavaScript:NO];
+                        [self pauseVideo];
                     }
                     struct RUNABannerViewEvent event = { RUNABannerViewEventTypeClicked, self.error };
                     self.eventHandler(self, event);
@@ -619,22 +616,21 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 }
 
 - (BOOL)didMeasureInview:(BOOL)isInview {
-    if (isInview) {
-        if (!self.hasSentMeasureInview && self.banner.inviewURL) {
-            [self sendMeasureInview];
-        }
+    if (isInview && !self.hasSentMeasureInview && self.banner.inviewURL) {
+        [self sendMeasureInview];
+        self.hasSentMeasureInview = YES;
     }
 
-    // Do nothing when mediaType is Banner ads
-    if (self.mediaType != RUNA_MEDIA_TYPE_VIDEO) {
+    if (self.mediaType == RUNA_MEDIA_TYPE_VIDEO) {
+        if (isInview) {
+            [self playVideo];
+        } else {
+            [self pauseVideo];
+        }
+        return NO;
+    } else {
         return YES;
     }
-    if (isInview) {
-        [self playVideo];
-    } else {
-        [self pauseVideo];
-    }
-    return NO;
 }
 
 -(BOOL)sendMeasureInview {
@@ -651,22 +647,23 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 - (void)playVideo {
     if (self.videoState == RUNA_VIDEO_STATE_LOADED || self.videoState == RUNA_VIDEO_STATE_PAUSED) {
         self.videoState = RUNA_VIDEO_STATE_PLAYING;
-        [self evaluateVideoJavaScript:YES];
+        [self notifyVideoViewableChanged:YES];
     }
 }
 
 - (void)pauseVideo {
     if (self.videoState == RUNA_VIDEO_STATE_PLAYING || self.videoState == RUNA_VIDEO_STATE_STOP) {
         self.videoState = RUNA_VIDEO_STATE_PAUSED;
-        [self evaluateVideoJavaScript:NO];
+        [self notifyVideoViewableChanged:NO];
     }
 }
 
-- (void)evaluateVideoJavaScript:(BOOL)isVideoPlaying {
-    NSString *sender = isVideoPlaying ? @"true" : @"false";
-    NSString *functionName = [NSString stringWithFormat:@"window.cd.sendViewable(%@)", sender];
+- (void)notifyVideoViewableChanged:(BOOL)isInView {
+    NSString *viewable = isInView ? @"true" : @"false";
+    NSString *functionName = [NSString stringWithFormat:@"window.cd.sendViewable(%@)", viewable];
     [self.webView evaluateJavaScript:functionName
            completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        RUNADebug("evalute javascript: viewable %@", viewable);
         if (error) {
             RUNALog("video javascript evaluating error: %@", error);
         }

@@ -47,7 +47,6 @@ typedef NS_ENUM(NSUInteger, RUNAVideoState) {
 };
 
 typedef NS_ENUM(NSUInteger, RUNAMediaType) {
-    RUNA_MEDIA_TYPE_UNKOWN,
     RUNA_MEDIA_TYPE_BANNER,
     RUNA_MEDIA_TYPE_VIDEO,
 };
