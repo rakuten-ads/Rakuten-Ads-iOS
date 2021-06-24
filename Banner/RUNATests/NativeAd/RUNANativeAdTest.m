@@ -12,6 +12,7 @@
 
 @interface RUNANativeAd (Spy)
 - (void)setImage:(RUNANativeAdAssetImage *)img;
+- (void)setData:(RUNANativeAdAssetData *)data;
 @end
 
 @interface RUNANativeAdTest : XCTestCase
@@ -80,6 +81,107 @@
         XCTAssertEqual(ad.assetImgs.count, (NSUInteger)1);
         XCTAssertNil(ad.iconImg);
         XCTAssertNil(ad.mainImg);
+    }
+}
+
+- (void)testSetData {
+    {
+        RUNANativeAd *ad = [RUNANativeAd new];
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.type":@(RUNANativeAdAssetDataTypeSponsored), @"data.value":@"value"}]];
+        [ad setData:asset];
+        XCTAssertEqual(ad.assetDatas.count, (NSUInteger)1);
+        XCTAssertEqualObjects(ad.sponsor, @"value");
+        XCTAssertNil(ad.desc);
+        XCTAssertNil(ad.price);
+        XCTAssertNil(ad.salePrice);
+        XCTAssertNil(ad.ctatext);
+        XCTAssertNil(ad.rating);
+    }
+    {
+        RUNANativeAd *ad = [RUNANativeAd new];
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.type":@(RUNANativeAdAssetDataTypeDesc), @"data.value":@"value"}]];
+        [ad setData:asset];
+        XCTAssertEqual(ad.assetDatas.count, (NSUInteger)1);
+        XCTAssertNil(ad.sponsor);
+        XCTAssertEqualObjects(ad.desc, @"value");
+        XCTAssertNil(ad.price);
+        XCTAssertNil(ad.salePrice);
+        XCTAssertNil(ad.ctatext);
+        XCTAssertNil(ad.rating);
+    }
+    {
+        RUNANativeAd *ad = [RUNANativeAd new];
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.type":@(RUNANativeAdAssetDataTypeRating), @"data.value":@"1"}]];
+        [ad setData:asset];
+        XCTAssertEqual(ad.assetDatas.count, (NSUInteger)1);
+        XCTAssertNil(ad.sponsor);
+        XCTAssertNil(ad.desc);
+        XCTAssertNil(ad.price);
+        XCTAssertNil(ad.salePrice);
+        XCTAssertNil(ad.ctatext);
+        XCTAssertEqual(ad.rating, [NSNumber numberWithDouble:[@"1" doubleValue]]);
+    }
+    {
+        RUNANativeAd *ad = [RUNANativeAd new];
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.type":@(RUNANativeAdAssetDataTypeRating), @"data.value":@"-1"}]];
+        [ad setData:asset];
+        XCTAssertNil(ad.rating);
+    }
+    {
+        RUNANativeAd *ad = [RUNANativeAd new];
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.type":@(RUNANativeAdAssetDataTypePrice), @"data.value":@"value"}]];
+        [ad setData:asset];
+        XCTAssertEqual(ad.assetDatas.count, (NSUInteger)1);
+        XCTAssertNil(ad.sponsor);
+        XCTAssertNil(ad.desc);
+        XCTAssertEqualObjects(ad.price, @"value");
+        XCTAssertNil(ad.salePrice);
+        XCTAssertNil(ad.ctatext);
+        XCTAssertNil(ad.rating);
+    }
+    {
+        RUNANativeAd *ad = [RUNANativeAd new];
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.type":@(RUNANativeAdAssetDataTypeSaleprice), @"data.value":@"value"}]];
+        [ad setData:asset];
+        XCTAssertEqual(ad.assetDatas.count, (NSUInteger)1);
+        XCTAssertNil(ad.sponsor);
+        XCTAssertNil(ad.desc);
+        XCTAssertNil(ad.price);
+        XCTAssertEqualObjects(ad.salePrice, @"value");
+        XCTAssertNil(ad.ctatext);
+        XCTAssertNil(ad.rating);
+    }
+    {
+        RUNANativeAd *ad = [RUNANativeAd new];
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.type":@(RUNANativeAdAssetDataTypeCtatext), @"data.value":@"value"}]];
+        [ad setData:asset];
+        XCTAssertEqual(ad.assetDatas.count, (NSUInteger)1);
+        XCTAssertNil(ad.sponsor);
+        XCTAssertNil(ad.desc);
+        XCTAssertNil(ad.price);
+        XCTAssertNil(ad.salePrice);
+        XCTAssertEqualObjects(ad.ctatext, @"value");
+        XCTAssertNil(ad.rating);
+    }
+    {
+        RUNANativeAd *ad = [RUNANativeAd new];
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.type":@(100), @"data.value":@"value"}]];
+        [ad setData:asset];
+        XCTAssertEqual(ad.assetDatas.count, (NSUInteger)1);
+        XCTAssertNil(ad.sponsor);
+        XCTAssertNil(ad.desc);
+        XCTAssertNil(ad.price);
+        XCTAssertNil(ad.salePrice);
+        XCTAssertNil(ad.ctatext);
+        XCTAssertNil(ad.rating);
     }
 }
 
