@@ -43,23 +43,19 @@
 		32F258F121E58689001FD9C0 /* RUNABanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F258E321E58689001FD9C0 /* RUNABanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F2596021E597E5001FD9C0 /* RUNABannerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2595121E597E5001FD9C0 /* RUNABannerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F2596121E597E5001FD9C0 /* RUNABannerViewInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595221E597E5001FD9C0 /* RUNABannerViewInner.m */; };
+		5404969226832DF60003CBC8 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RUNACore.framework */; };
+		54049695268421390003CBC8 /* RUNANativeAdAdapteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 54049694268421390003CBC8 /* RUNANativeAdAdapteTest.m */; };
+		540496982684230B0003CBC8 /* mock.js in Resources */ = {isa = PBXBuildFile; fileRef = 54B83C052660693400A64540 /* mock.js */; };
+		540496992684230E0003CBC8 /* bid.json in Resources */ = {isa = PBXBuildFile; fileRef = 541D7459267095390036038F /* bid.json */; };
 		541D745A267095390036038F /* bid.json in Resources */ = {isa = PBXBuildFile; fileRef = 541D7459267095390036038F /* bid.json */; };
-		5422362B2682D3EF00DC4229 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RUNACore.framework */; };
 		542236352682F4B200DC4229 /* RUNABannerViewExtensionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 542236342682F4B200DC4229 /* RUNABannerViewExtensionTest.m */; };
-		542236382683178D00DC4229 /* RUNANativeAdAdapteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 542236372683178D00DC4229 /* RUNANativeAdAdapteTest.m */; };
 		5434A129268085D4007C77C2 /* RUNABannerGroupTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5434A128268085D4007C77C2 /* RUNABannerGroupTest.m */; };
 		5434A13D26818072007C77C2 /* RUNATests+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5434A13C26818072007C77C2 /* RUNATests+Extension.m */; };
 		5434A14226818083007C77C2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5434A14126818083007C77C2 /* XCTest.framework */; };
 		544DBC8226565D76009BD04E /* RUNABannerViewMeasurableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 544DBC8126565D76009BD04E /* RUNABannerViewMeasurableTest.m */; };
-		54980CDF2681D07900417C24 /* mock.js in Resources */ = {isa = PBXBuildFile; fileRef = 54B83C052660693400A64540 /* mock.js */; };
-		54980CE02681D07B00417C24 /* bid.json in Resources */ = {isa = PBXBuildFile; fileRef = 541D7459267095390036038F /* bid.json */; };
 		54B83C072660693400A64540 /* mock.js in Resources */ = {isa = PBXBuildFile; fileRef = 54B83C052660693400A64540 /* mock.js */; };
-		54BF02A92657A8F100B2CCE4 /* MainViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 54BF02A72657A8F100B2CCE4 /* MainViewController.h */; };
-		54BF02AA2657A8F100B2CCE4 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF02A82657A8F100B2CCE4 /* MainViewController.m */; };
 		54BF02AB2657A8F100B2CCE4 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF02A82657A8F100B2CCE4 /* MainViewController.m */; };
 		54BF02FA265CD2CC00B2CCE4 /* RUNABannerViewInnerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF02F9265CD2CC00B2CCE4 /* RUNABannerViewInnerTest.m */; };
-		54BF0313265CF1DB00B2CCE4 /* RUNABannerView+Mock.h in Headers */ = {isa = PBXBuildFile; fileRef = 54BF0311265CF1DB00B2CCE4 /* RUNABannerView+Mock.h */; };
-		54BF0314265CF1DB00B2CCE4 /* RUNABannerView+Mock.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF0312265CF1DB00B2CCE4 /* RUNABannerView+Mock.m */; };
 		54BF0315265CF1DB00B2CCE4 /* RUNABannerView+Mock.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF0312265CF1DB00B2CCE4 /* RUNABannerView+Mock.m */; };
 		54FF0E982678688F0009D5F6 /* RUNABannerAdapterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FF0E972678688F0009D5F6 /* RUNABannerAdapterTest.m */; };
 /* End PBXBuildFile section */
@@ -92,6 +88,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 32F258C521E5866D001FD9C0;
 			remoteInfo = CoreTests;
+		};
+		54049696268421E40003CBC8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32F25A1721E5A96C001FD9C0 /* Core.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 32F258BB21E5866C001FD9C0;
+			remoteInfo = Core;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -128,9 +131,9 @@
 		32F2595221E597E5001FD9C0 /* RUNABannerViewInner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewInner.m; sourceTree = "<group>"; };
 		32F25A1221E5A4E5001FD9C0 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		32F25A1721E5A96C001FD9C0 /* Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core.xcodeproj; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
+		54049694268421390003CBC8 /* RUNANativeAdAdapteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNANativeAdAdapteTest.m; sourceTree = "<group>"; };
 		541D7459267095390036038F /* bid.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bid.json; sourceTree = "<group>"; };
 		542236342682F4B200DC4229 /* RUNABannerViewExtensionTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewExtensionTest.m; sourceTree = "<group>"; };
-		542236372683178D00DC4229 /* RUNANativeAdAdapteTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNANativeAdAdapteTest.m; sourceTree = "<group>"; };
 		5434A128268085D4007C77C2 /* RUNABannerGroupTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerGroupTest.m; sourceTree = "<group>"; };
 		5434A13B26818072007C77C2 /* RUNATests+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RUNATests+Extension.h"; sourceTree = "<group>"; };
 		5434A13C26818072007C77C2 /* RUNATests+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RUNATests+Extension.m"; sourceTree = "<group>"; };
@@ -158,9 +161,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5434A14226818083007C77C2 /* XCTest.framework in Frameworks */,
-				5422362B2682D3EF00DC4229 /* RUNACore.framework in Frameworks */,
 				32F258EA21E58689001FD9C0 /* RUNABanner.framework in Frameworks */,
+				5404969226832DF60003CBC8 /* RUNACore.framework in Frameworks */,
+				5434A14226818083007C77C2 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +274,7 @@
 		542236362683174400DC4229 /* NativeAd */ = {
 			isa = PBXGroup;
 			children = (
-				542236372683178D00DC4229 /* RUNANativeAdAdapteTest.m */,
+				54049694268421390003CBC8 /* RUNANativeAdAdapteTest.m */,
 			);
 			path = NativeAd;
 			sourceTree = "<group>";
@@ -338,8 +341,6 @@
 				32564D9C2227865100DB4DBF /* RUNABannerAdapter.h in Headers */,
 				32F2596021E597E5001FD9C0 /* RUNABannerView.h in Headers */,
 				32ED78B9236693AB007833DF /* RUNABannerViewExtension.h in Headers */,
-				54BF02A92657A8F100B2CCE4 /* MainViewController.h in Headers */,
-				54BF0313265CF1DB00B2CCE4 /* RUNABannerView+Mock.h in Headers */,
 				32F258F121E58689001FD9C0 /* RUNABanner.h in Headers */,
 				329753AB230A7D4C002A53CC /* RUNAMeasurement.h in Headers */,
 				32A693422237BBA800812DF9 /* RUNANativeAdAdapter.h in Headers */,
@@ -383,6 +384,7 @@
 			);
 			dependencies = (
 				32F258EC21E58689001FD9C0 /* PBXTargetDependency */,
+				54049697268421E40003CBC8 /* PBXTargetDependency */,
 			);
 			name = BannerTests;
 			productName = RUNATests;
@@ -457,8 +459,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54980CDF2681D07900417C24 /* mock.js in Resources */,
-				54980CE02681D07B00417C24 /* bid.json in Resources */,
+				540496982684230B0003CBC8 /* mock.js in Resources */,
+				540496992684230E0003CBC8 /* bid.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,10 +502,8 @@
 			files = (
 				329753AC230A7D4C002A53CC /* RUNAMeasurement.m in Sources */,
 				32F2596121E597E5001FD9C0 /* RUNABannerViewInner.m in Sources */,
-				54BF0314265CF1DB00B2CCE4 /* RUNABannerView+Mock.m in Sources */,
 				32EFC6BE25AE8281006F85C8 /* RUNAAdSession.m in Sources */,
 				32269B9925EF13AC002A623B /* RUNABannerGroupExtension.m in Sources */,
-				54BF02AA2657A8F100B2CCE4 /* MainViewController.m in Sources */,
 				32ED78BA236693AB007833DF /* RUNABannerViewExtension.m in Sources */,
 				3211A414231CA60900DB0225 /* RUNABannerViewMeasurable.m in Sources */,
 				323DA56B25DF8209002ED988 /* RUNABannerGroup.m in Sources */,
@@ -516,7 +516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5434A129268085D4007C77C2 /* RUNABannerGroupTest.m in Sources */,
-				542236382683178D00DC4229 /* RUNANativeAdAdapteTest.m in Sources */,
+				54049695268421390003CBC8 /* RUNANativeAdAdapteTest.m in Sources */,
 				5434A13D26818072007C77C2 /* RUNATests+Extension.m in Sources */,
 				54BF02AB2657A8F100B2CCE4 /* MainViewController.m in Sources */,
 				54BF0315265CF1DB00B2CCE4 /* RUNABannerView+Mock.m in Sources */,
@@ -539,6 +539,11 @@
 			isa = PBXTargetDependency;
 			target = 32F258DF21E58689001FD9C0 /* Banner */;
 			targetProxy = 32F258EB21E58689001FD9C0 /* PBXContainerItemProxy */;
+		};
+		54049697268421E40003CBC8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Core;
+			targetProxy = 54049696268421E40003CBC8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
