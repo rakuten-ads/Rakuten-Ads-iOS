@@ -210,17 +210,13 @@
     [data parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.value":@"value", @"data.type":@(RUNANativeAdAssetDataTypeSponsored)}]];
     ad.assetDatas = @[data];
     
-    // FIXME: 
-//    // NOTE: TestCase
-//    RUNANativeAdAssetVideo *video = [RUNANativeAdAssetVideo new];
-//    ad.assetVideo = video;
-    
+    // NOTE: assetVideo is not supported for native ads.
     XCTAssertEqualObjects([ad description], @"{ \n"
                           @"asset title: Asset Title: text\n"
                           @"asset imgs: [Asset Image] Icon: image_url\n"
                           @"asset link: [Asset Link] URL: link_url\n"
                           @"asset datas: [Asset Data] sponsored: value\n"
-                          @"asset video: (null)\n"
+                          //@"asset video: (null)\n"
                           @" }");
 }
 

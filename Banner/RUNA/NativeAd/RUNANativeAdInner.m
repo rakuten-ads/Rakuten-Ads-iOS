@@ -331,13 +331,15 @@ int RUNANativeAdAssetRequiredYes = 1;
             @"asset imgs: %@\n"
             @"asset link: %@\n"
             @"asset datas: %@\n"
-            @"asset video: %@\n"
+            // Not support for native ads.
+            //@"asset video: %@\n"
             @" }",
             self.assetTitle,
             [self.assetImgs componentsJoinedByString:@","],
             self.assetLink,
             [self.assetDatas componentsJoinedByString:@","],
-            self.assetVideo,
+            // Not support for native ads.
+            //self.assetVideo,
             nil];
 }
 
