@@ -257,4 +257,21 @@
     [self waitForExpectationsWithTimeout:10.0 handler:nil];
 }
 
+- (void)testFireImpression {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"fireClick"];
+
+    RUNANativeAd *ad = [RUNANativeAd new];
+    RUNANativeAdEventTracker *tracker = [RUNANativeAdEventTracker new];
+    [tracker parse:[RUNAJSONObject jsonWithRawDictionary:@{@"url":@"url"}]];    
+    ad.eventTrackers = @[tracker];
+    
+    [self execute:expectation delayTime:5.0 targetMethod:^{
+        [ad fireImpression];
+    } assertionBlock:^{
+        XCTAssertNoThrow(ad);
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:nil];
+}
+
 @end
