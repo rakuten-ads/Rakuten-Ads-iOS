@@ -258,7 +258,7 @@
 }
 
 - (void)testFireImpression {
-    XCTestExpectation *expectation = [self expectationWithDescription:@"fireClick"];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"fireImpression "];
 
     RUNANativeAd *ad = [RUNANativeAd new];
     RUNANativeAdEventTracker *tracker = [RUNANativeAdEventTracker new];
