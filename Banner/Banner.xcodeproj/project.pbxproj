@@ -263,6 +263,8 @@
 				542236362683174400DC4229 /* NativeAd */,
 				544DBC8026565BA4009BD04E /* Measurement */,
 				54BF02F8265CD2A500B2CCE4 /* Banner */,
+				5434A13B26818072007C77C2 /* RUNATests+Extension.h */,
+				5434A13C26818072007C77C2 /* RUNATests+Extension.m */,
 				32F258F021E58689001FD9C0 /* Info.plist */,
 			);
 			path = RUNATests;
@@ -330,8 +332,6 @@
 				54FF0E972678688F0009D5F6 /* RUNABannerAdapterTest.m */,
 				5434A128268085D4007C77C2 /* RUNABannerGroupTest.m */,
 				542236342682F4B200DC4229 /* RUNABannerViewExtensionTest.m */,
-				5434A13B26818072007C77C2 /* RUNATests+Extension.h */,
-				5434A13C26818072007C77C2 /* RUNATests+Extension.m */,
 			);
 			path = Banner;
 			sourceTree = "<group>";
@@ -658,7 +658,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/RUNA/**";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/RUNA/**",
+					"$(PROJECT_DIR)/RUNATests/**",
+				);
 				INFOPLIST_FILE = RUNATests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -879,7 +882,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/RUNA/**";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/RUNA/**",
+					"$(PROJECT_DIR)/RUNATests/**",
+				);
 				INFOPLIST_FILE = RUNATests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -896,7 +902,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/RUNA/**";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/RUNA/**",
+					"$(PROJECT_DIR)/RUNATests/**",
+				);
 				INFOPLIST_FILE = RUNATests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

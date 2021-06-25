@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "RUNANativeAd.h"
 #import "RUNANativeAdInner.h"
+#import "RUNATests+Extension.h"
 
 @interface RUNANativeAd (Spy)
 - (void)setImage:(RUNANativeAdAssetImage *)img;
@@ -232,11 +233,28 @@
     RUNANativeAdAssetData *data2 = [RUNANativeAdAssetData new];
     [data2 parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.type":@(RUNANativeAdAssetDataTypeOther), @"data.value":@"value"}]];
     RUNANativeAdAssetTitle *data3 = [RUNANativeAdAssetTitle new]; // defferent type
-    ad.assetDatas = @[data1, data2, data3];    
+    ad.assetDatas = @[data1, data2, data3];
     NSArray<RUNANativeAdAssetData*> *actuals = [ad specificData];
     XCTAssertEqual(actuals.count, (NSUInteger)1);
     XCTAssertEqual(actuals[0].type, RUNANativeAdAssetDataTypeOther);
     XCTAssertEqualObjects(actuals[0].value, @"value");
+}
+
+- (void)testFireClick {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"fireClick"];
+
+    RUNANativeAd *ad = [RUNANativeAd new];
+    RUNANativeAdAssetLink *link = [RUNANativeAdAssetLink new];
+    [link parse:[RUNAJSONObject jsonWithRawDictionary:@{@"url":@"link_url", @"clicktrackers":@[@"clicktrackers"]}]];
+    ad.assetLink = link;
+    
+    [self execute:expectation delayTime:5.0 targetMethod:^{
+        [ad fireClick];
+    } assertionBlock:^{
+        XCTAssertNoThrow(ad);
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:nil];
 }
 
 @end
