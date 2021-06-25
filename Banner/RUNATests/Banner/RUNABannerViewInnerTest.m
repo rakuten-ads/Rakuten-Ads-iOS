@@ -74,19 +74,19 @@ NSString *const kValidAdspotId = @"693";
     XCTAssertFalse([bannerView isLoading]);
 }
 
-//- (void)testLoad {
-//    RUNABannerView *bannerView = [RUNABannerView new];
-//    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
-//
-//    [self execute:expectation delayTime:5.0 targetMethod:^{
-//        bannerView.adSpotId = kValidAdspotId;
-//        [bannerView load];
-//    } assertionBlock:^{
-//        XCTAssertNil(bannerView.eventHandler);
-//    }];
-//
-//    [self waitForExpectationsWithTimeout:10.0 handler:nil];
-//}
+- (void)testLoad {
+    RUNABannerView *bannerView = [RUNABannerView new];
+    XCTestExpectation *expectation = [self expectationWithDescription:@"desc"];
+
+    [self execute:expectation delayTime:5.0 targetMethod:^{
+        bannerView.adSpotId = kValidAdspotId;
+        [bannerView load];
+    } assertionBlock:^{
+        XCTAssertNil(bannerView.eventHandler);
+    }];
+
+    [self waitForExpectationsWithTimeout:10.0 handler:nil];
+}
 //
 //- (void)testLoadWithEventHandler {
 //    RUNABannerView *bannerView = [RUNABannerView new];
