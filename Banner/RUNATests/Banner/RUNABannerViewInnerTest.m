@@ -20,7 +20,7 @@ NSString *const kDummyAdspotId = @"99999";
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) RUNABannerViewError error;
 @property (nonatomic, readonly) RUNAVideoState videoState;
-@property (nonatomic, readonly) RUNAMediaType mediaType;
+@property (nonatomic) RUNAMediaType mediaType;
 - (void)setInitState;
 - (BOOL)isLoading;
 - (void)applyAdView;
@@ -30,6 +30,7 @@ NSString *const kDummyAdspotId = @"99999";
 - (BOOL)isFinished;
 - (void)triggerSuccess;
 - (void)triggerFailure;
+- (void)didMeasurementInView:(BOOL)isMeasuredInview;
 - (void)playVideo;
 - (void)pauseVideo;
 @end
@@ -325,6 +326,22 @@ NSString *const kDummyAdspotId = @"99999";
 }
 
 # pragma mark - Video Tests
+
+// Test to confirm the passage of method for coverage
+- (void)testDidMeasurementInView {
+    {
+        RUNABannerView *bannerView = [RUNABannerView new];
+        bannerView.mediaType = RUNA_MEDIA_TYPE_BANNER;
+        XCTAssertNoThrow([bannerView didMeasurementInView:YES]);
+    }
+    {
+        RUNABannerView *bannerView = [RUNABannerView new];
+        bannerView.mediaType = RUNA_MEDIA_TYPE_VIDEO;
+        XCTAssertNoThrow([bannerView didMeasurementInView:YES]);
+        XCTAssertNoThrow([bannerView didMeasurementInView:NO]);
+    }
+}
+
 // Set a longer waiting time due to concerns about the specifications of the virtual environment
 - (void)testScriptMessageEvent {
     RUNABannerView *actual;
