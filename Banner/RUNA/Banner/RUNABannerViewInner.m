@@ -231,7 +231,6 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
                 self.translatesAutoresizingMaskIntoConstraints = NO;
                 [self.superview addConstraints:self.sizeConstraints];
                 break;
-
             case RUNABannerViewSizeDefault:
                 self->_sizeConstraints = @[[self.widthAnchor constraintEqualToConstant:self.banner.width],
                                            [self.heightAnchor constraintEqualToConstant:self.banner.height],
@@ -239,7 +238,6 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
                 self.translatesAutoresizingMaskIntoConstraints = NO;
                 [self addConstraints:self.sizeConstraints];
                 break;
-
             case RUNABannerViewSizeCustom: default:
                 self->_sizeConstraints = nil;
         }

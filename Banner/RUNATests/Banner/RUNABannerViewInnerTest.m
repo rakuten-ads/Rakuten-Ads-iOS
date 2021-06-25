@@ -24,6 +24,7 @@ NSString *const kDummyAdspotId = @"99999";
 - (void)setInitState;
 - (BOOL)isLoading;
 - (void)applyAdView;
+- (void)applyPositionWithParentView;
 - (BOOL)isFinished;
 - (void)triggerSuccess;
 - (void)triggerFailure;
@@ -154,6 +155,46 @@ NSString *const kDummyAdspotId = @"99999";
     }];
     
     [self waitForExpectationsWithTimeout:10.0 handler:nil];
+}
+
+- (void)testApplyPositionWithParentView {
+    RUNABannerView *bannerView = [self getBannerViewOnViewController];
+    
+    NSArray *params = @[@(RUNABannerViewPositionTop),
+                        @(RUNABannerViewPositionBottom),
+                        @(RUNABannerViewPositionTopLeft),
+                        @(RUNABannerViewPositionTopRight),
+                        @(RUNABannerViewPositionBottomLeft),
+                        @(RUNABannerViewPositionBottomRight),
+                        @(RUNABannerViewPositionCustom)];
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"setPosition"];
+    expectation.expectedFulfillmentCount = params.count;
+    
+    XCTAssertEqual(bannerView.position, RUNABannerViewPositionCustom); // default value
+    
+    [params enumerateObjectsUsingBlock:^(NSNumber *value, NSUInteger idx, BOOL *stop) {
+        RUNABannerViewPosition position = [value integerValue];
+        [self syncExecute:expectation delayTime:1.0 targetMethod:^{
+            [bannerView setPosition:position];
+            [bannerView applyPositionWithParentView];
+        } assertionBlock:^{
+            XCTAssertEqual(bannerView.position, position);
+            if (position == RUNABannerViewPositionCustom) {
+                XCTAssertNil(bannerView.positionConstraints);
+            } else {
+                XCTAssertEqual(bannerView.positionConstraints.count, (NSUInteger)2);
+            }
+        }];
+    }];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:nil];
+}
+
+// Test to confirm the passage of method for coverage
+- (void)testSendRemoteLogWithMessage {
+    RUNABannerView *bannerView = [RUNABannerView new];
+    XCTAssertNoThrow([bannerView sendRemoteLogWithMessage:@"message" andException:[NSException exceptionWithName:@"name" reason:@"reason" userInfo:@{@"kye":@"value"}]]);
 }
 
 # pragma mark - Response Tests
