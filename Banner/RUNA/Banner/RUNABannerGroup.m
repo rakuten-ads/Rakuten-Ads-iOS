@@ -136,7 +136,6 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 
 }
 
-
 - (void)onBidResponseFailed:(nonnull NSHTTPURLResponse *)response error:(nullable NSError *)error {
     RUNALog("group load failed %@", error);
     if (response.statusCode == kRUNABidResponseUnfilled) {
