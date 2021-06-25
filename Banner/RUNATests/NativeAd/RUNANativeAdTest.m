@@ -10,11 +10,6 @@
 #import "RUNANativeAd.h"
 #import "RUNANativeAdInner.h"
 
-// for description method
-@interface RUNANativeAdAssetVideo (Spy)
-@property(nonatomic) NSString *vasttag;
-@end
-
 @interface RUNANativeAd (Spy)
 - (void)setImage:(RUNANativeAdAssetImage *)img;
 - (void)setData:(RUNANativeAdAssetData *)data;
@@ -179,7 +174,7 @@
     {
         RUNANativeAd *ad = [RUNANativeAd new];
         RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
-        [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.type":@(100), @"data.value":@"value"}]];
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.type":@(RUNANativeAdAssetDataTypeOther), @"data.value":@"value"}]];
         [ad setData:asset];
         XCTAssertEqual(ad.assetDatas.count, (NSUInteger)1);
         XCTAssertNil(ad.sponsor);
@@ -195,7 +190,7 @@
     RUNANativeAd *ad = [RUNANativeAd new];
     
     RUNANativeAdAssetTitle *title = [RUNANativeAdAssetTitle new];
-    [title parse:[RUNAJSONObject jsonWithRawDictionary:@{@"title.text":@"text"}]];
+    [title parse:[RUNAJSONObject jsonWithRawDictionary:@{@"title.text":@"title"}]];
     ad.assetTitle = title;
     
     RUNANativeAdAssetImage *image = [RUNANativeAdAssetImage new];
@@ -212,12 +207,36 @@
     
     // NOTE: assetVideo is not supported for native ads.
     XCTAssertEqualObjects([ad description], @"{ \n"
-                          @"asset title: Asset Title: text\n"
+                          @"asset title: Asset Title: title\n"
                           @"asset imgs: [Asset Image] Icon: image_url\n"
                           @"asset link: [Asset Link] URL: link_url\n"
                           @"asset datas: [Asset Data] sponsored: value\n"
                           //@"asset video: (null)\n"
                           @" }");
+}
+
+#pragma mark - Public API
+
+- (void)testGetTitle {
+    RUNANativeAd *ad = [RUNANativeAd new];
+    RUNANativeAdAssetTitle *title = [RUNANativeAdAssetTitle new];
+    [title parse:[RUNAJSONObject jsonWithRawDictionary:@{@"title.text":@"title"}]];
+    ad.assetTitle = title;
+    XCTAssertEqualObjects([ad title], @"title");
+}
+
+- (void)testSpecificData {
+    RUNANativeAd *ad = [RUNANativeAd new];
+    RUNANativeAdAssetData *data1 = [RUNANativeAdAssetData new];
+    [data1 parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.type":@(RUNANativeAdAssetDataTypeSponsored)}]];
+    RUNANativeAdAssetData *data2 = [RUNANativeAdAssetData new];
+    [data2 parse:[RUNAJSONObject jsonWithRawDictionary:@{@"data.type":@(RUNANativeAdAssetDataTypeOther), @"data.value":@"value"}]];
+    RUNANativeAdAssetTitle *data3 = [RUNANativeAdAssetTitle new]; // defferent type
+    ad.assetDatas = @[data1, data2, data3];    
+    NSArray<RUNANativeAdAssetData*> *actuals = [ad specificData];
+    XCTAssertEqual(actuals.count, (NSUInteger)1);
+    XCTAssertEqual(actuals[0].type, RUNANativeAdAssetDataTypeOther);
+    XCTAssertEqualObjects(actuals[0].value, @"value");
 }
 
 @end

@@ -353,7 +353,7 @@ int RUNANativeAdAssetRequiredYes = 1;
     return [[self.assetDatas filteredArrayUsingPredicate:
              [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
         if ([evaluatedObject isKindOfClass:[RUNANativeAdAssetData class]]) {
-            return ((RUNANativeAdAssetData*)evaluatedObject).type >= 500;
+            return ((RUNANativeAdAssetData*)evaluatedObject).type >= RUNANativeAdAssetDataTypeOther;
         }
         return NO;
     }]] copy];

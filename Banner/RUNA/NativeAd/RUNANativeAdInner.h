@@ -58,6 +58,7 @@ typedef NS_ENUM(NSUInteger, RUNANativeAdAssetDataType) {
     RUNANativeAdAssetDataTypePrice,
     RUNANativeAdAssetDataTypeSaleprice,
     RUNANativeAdAssetDataTypeCtatext,
+    RUNANativeAdAssetDataTypeOther = 500,
 };
 
 

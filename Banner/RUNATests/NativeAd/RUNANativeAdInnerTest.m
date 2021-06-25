@@ -181,6 +181,12 @@
     }
     {
         RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
+        dic[@"data.type"] = @(RUNANativeAdAssetDataTypeOther);
+        [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
+        XCTAssertEqualObjects([asset description], @"[Asset Data] specific: value");
+    }
+    {
+        RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
         dic[@"data.type"] = @(-1);
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
         XCTAssertEqualObjects([asset description], @"[Asset Data] specific: value");
