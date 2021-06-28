@@ -10,6 +10,7 @@
 #import "RUNATests+Extension.h"
 #import "RUNABannerGroup.h"
 #import "RUNABannerGroupInner.h"
+#import "RUNABannerGroupExtension.h"
 #import "RUNABannerViewInner.h"
 #import "RUNABannerAdapter.h"
 #import "RUNABannerView+Mock.h"
@@ -236,6 +237,13 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
         XCTAssertEqualObjects(actual[@"state"], @"INIT");
         XCTAssertEqualObjects(actual[@"user_extension"], NSNull.null);
     }
+}
+
+- (void)testSetRz {
+    RUNABannerGroup *group = [RUNABannerGroup new];
+    [group setRz:@"rzValue"];
+    XCTAssertNotNil(group.userExt);
+    XCTAssertEqualObjects(group.userExt[@"rz"], @"rzValue");
 }
 
 @end
