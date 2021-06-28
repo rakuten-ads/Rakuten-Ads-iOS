@@ -58,6 +58,8 @@
 		5434A14226818083007C77C2 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5434A14126818083007C77C2 /* XCTest.framework */; };
 		544DBC8226565D76009BD04E /* RUNABannerViewMeasurableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 544DBC8126565D76009BD04E /* RUNABannerViewMeasurableTest.m */; };
 		54A8C7C9268970760094F6BE /* RUNAAdSessioTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7C8268970760094F6BE /* RUNAAdSessioTest.m */; };
+		54A8C7D3268994C40094F6BE /* RUNANativeAdProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7D2268994C40094F6BE /* RUNANativeAdProviderTest.m */; };
+		54A8C7D4268999BE0094F6BE /* RUNANativeAdProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A693452240E31700812DF9 /* RUNANativeAdProvider.m */; };
 		54B83C072660693400A64540 /* mock.js in Resources */ = {isa = PBXBuildFile; fileRef = 54B83C052660693400A64540 /* mock.js */; };
 		54BF02FA265CD2CC00B2CCE4 /* RUNABannerViewInnerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF02F9265CD2CC00B2CCE4 /* RUNABannerViewInnerTest.m */; };
 		54BF0315265CF1DB00B2CCE4 /* RUNABannerView+Mock.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BF0312265CF1DB00B2CCE4 /* RUNABannerView+Mock.m */; };
@@ -146,6 +148,7 @@
 		5434A14126818083007C77C2 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		544DBC8126565D76009BD04E /* RUNABannerViewMeasurableTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewMeasurableTest.m; sourceTree = "<group>"; };
 		54A8C7C8268970760094F6BE /* RUNAAdSessioTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdSessioTest.m; sourceTree = "<group>"; };
+		54A8C7D2268994C40094F6BE /* RUNANativeAdProviderTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNANativeAdProviderTest.m; sourceTree = "<group>"; };
 		54B83C052660693400A64540 /* mock.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mock.js; sourceTree = "<group>"; };
 		54BF02F9265CD2CC00B2CCE4 /* RUNABannerViewInnerTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewInnerTest.m; sourceTree = "<group>"; };
 		54BF0311265CF1DB00B2CCE4 /* RUNABannerView+Mock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RUNABannerView+Mock.h"; sourceTree = "<group>"; };
@@ -283,6 +286,7 @@
 				540496AA268455C30003CBC8 /* RUNANativeAdTest.m */,
 				540496A826842B110003CBC8 /* RUNANativeAdInnerTest.m */,
 				54049694268421390003CBC8 /* RUNANativeAdAdapteTest.m */,
+				54A8C7D2268994C40094F6BE /* RUNANativeAdProviderTest.m */,
 			);
 			path = NativeAd;
 			sourceTree = "<group>";
@@ -498,6 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54A8C7D4268999BE0094F6BE /* RUNANativeAdProvider.m in Sources */,
 				540496A7268429B10003CBC8 /* RUNANativeAdInner.m in Sources */,
 				329753AC230A7D4C002A53CC /* RUNAMeasurement.m in Sources */,
 				32F2596121E597E5001FD9C0 /* RUNABannerViewInner.m in Sources */,
@@ -517,6 +522,7 @@
 			files = (
 				540496AB268455C30003CBC8 /* RUNANativeAdTest.m in Sources */,
 				5434A129268085D4007C77C2 /* RUNABannerGroupTest.m in Sources */,
+				54A8C7D3268994C40094F6BE /* RUNANativeAdProviderTest.m in Sources */,
 				54A8C7C9268970760094F6BE /* RUNAAdSessioTest.m in Sources */,
 				54049695268421390003CBC8 /* RUNANativeAdAdapteTest.m in Sources */,
 				5434A13D26818072007C77C2 /* RUNATests+Extension.m in Sources */,
