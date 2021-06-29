@@ -49,7 +49,6 @@
 		32EE7C032578A9B100CF7B4A /* RUNARemoteLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 32EE7C012578A9B100CF7B4A /* RUNARemoteLogger.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32EE7C042578A9B100CF7B4A /* RUNARemoteLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE7C022578A9B100CF7B4A /* RUNARemoteLogger.m */; };
 		32F258C621E5866D001FD9C0 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258BC21E5866C001FD9C0 /* RUNACore.framework */; };
-		32F258CB21E5866D001FD9C0 /* CoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F258CA21E5866D001FD9C0 /* CoreTests.m */; };
 		32F259D321E599F5001FD9C0 /* RUNACore.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259B921E599F4001FD9C0 /* RUNACore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F259D421E599F5001FD9C0 /* RUNAWebUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259BB21E599F4001FD9C0 /* RUNAWebUserAgent.m */; };
 		32F259D521E599F5001FD9C0 /* RUNADevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259BC21E599F4001FD9C0 /* RUNADevice.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -69,6 +68,7 @@
 		32F259E521E599F5001FD9C0 /* RUNALogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259CF21E599F4001FD9C0 /* RUNALogger.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259E621E599F5001FD9C0 /* RUNAMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259D021E599F4001FD9C0 /* RUNAMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259E721E599F5001FD9C0 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32F259D121E599F4001FD9C0 /* PrefixHeader.pch */; settings = {ATTRIBUTES = (Private, ); }; };
+		54A8C7E1268B03230094F6BE /* RUNAAdWebViewMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7E0268B03230094F6BE /* RUNAAdWebViewMessageTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,7 +112,6 @@
 		32EE7C022578A9B100CF7B4A /* RUNARemoteLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNARemoteLogger.m; sourceTree = "<group>"; };
 		32F258BC21E5866C001FD9C0 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F258C521E5866D001FD9C0 /* CoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		32F258CA21E5866D001FD9C0 /* CoreTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreTests.m; sourceTree = "<group>"; };
 		32F258CC21E5866D001FD9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32F259B921E599F4001FD9C0 /* RUNACore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUNACore.h; sourceTree = "<group>"; };
 		32F259BB21E599F4001FD9C0 /* RUNAWebUserAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNAWebUserAgent.m; sourceTree = "<group>"; };
@@ -135,6 +134,7 @@
 		32F259D121E599F4001FD9C0 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		32F259D221E599F5001FD9C0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32F25A2221E5CFBC001FD9C0 /* runacore.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = runacore.modulemap; sourceTree = "<group>"; };
+		54A8C7E0268B03230094F6BE /* RUNAAdWebViewMessageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewMessageTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,7 +252,7 @@
 		32F258C921E5866D001FD9C0 /* CoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				32F258CA21E5866D001FD9C0 /* CoreTests.m */,
+				54A8C7DE268B03040094F6BE /* Common */,
 				32F258CC21E5866D001FD9C0 /* Info.plist */,
 			);
 			path = CoreTests;
@@ -326,6 +326,22 @@
 				321FE41225805CF300D9A8CD /* RUNARemoteLogEntity.m */,
 			);
 			path = Log;
+			sourceTree = "<group>";
+		};
+		54A8C7DE268B03040094F6BE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				54A8C7DF268B03130094F6BE /* UI */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		54A8C7DF268B03130094F6BE /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				54A8C7E0268B03230094F6BE /* RUNAAdWebViewMessageTests.m */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -511,7 +527,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32F258CB21E5866D001FD9C0 /* CoreTests.m in Sources */,
+				54A8C7E1268B03230094F6BE /* RUNAAdWebViewMessageTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
