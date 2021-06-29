@@ -10,6 +10,7 @@
 #import "RUNATests+Extension.h"
 #import "RUNABannerGroup.h"
 #import "RUNABannerGroupInner.h"
+#import "RUNABannerGroupExtension.h"
 #import "RUNABannerViewInner.h"
 #import "RUNABannerAdapter.h"
 #import "RUNABannerView+Mock.h"
@@ -70,6 +71,68 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
     [group setBanners:@[[RUNABannerView new], [RUNABannerView new]]];
     NSArray *actuals = [group banners];
     XCTAssertEqual(actuals.count, (NSUInteger)2);
+}
+
+// Test to confirm the passage of method for coverage
+- (void)testLoad {
+    RUNABannerGroupEventHandler emptyHandler = ^(RUNABannerGroup * _Nonnull group, RUNABannerView * _Nullable view, struct RUNABannerViewEvent event) {
+    };
+    {
+        // Case: BannerDict count is 0
+        RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
+        XCTAssertNoThrow([group load]);
+    }
+    {
+        // Case: Not load state RUNA_ADVIEW_STATE_LOADING
+        RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
+        XCTestExpectation *expectation = [self expectationWithDescription:@"load"];
+        [self execute:expectation delayTime:3.0 targetMethod:^{
+            group.state = RUNA_ADVIEW_STATE_LOADING;
+            [group loadWithEventHandler:emptyHandler];
+        } assertionBlock:^{
+            XCTAssertNil(group.eventHandler);
+        }];
+        [self waitForExpectationsWithTimeout:5.0 handler:nil];
+    }
+    {
+        // Case: Not load state RUNA_ADVIEW_STATE_LOADED
+        RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
+        XCTestExpectation *expectation = [self expectationWithDescription:@"load"];
+        [self execute:expectation delayTime:3.0 targetMethod:^{
+            group.state = RUNA_ADVIEW_STATE_LOADED;
+            [group loadWithEventHandler:emptyHandler];
+        } assertionBlock:^{
+            XCTAssertNil(group.eventHandler);
+        }];
+        [self waitForExpectationsWithTimeout:5.0 handler:nil];
+    }
+    {
+        // Case: Empty adSpotId
+        RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
+        [group setBanners:@[[RUNABannerView new]]];
+        XCTestExpectation *expectation = [self expectationWithDescription:@"load"];
+        [self execute:expectation delayTime:3.0 targetMethod:^{
+            [group loadWithEventHandler:emptyHandler];
+        } assertionBlock:^{
+            XCTAssertEqual(group.error, RUNABannerViewErrorFatal);
+            XCTAssertNotNil(group.eventHandler);
+        }];
+        [self waitForExpectationsWithTimeout:5.0 handler:nil];
+    }
+    {
+        // Case: Default
+        RUNABannerGroup *group = [[RUNABannerGroup alloc]init];
+        RUNABannerView *bannerView = [RUNABannerView new];
+        bannerView.adSpotId = @"111";
+        [group setBanners:@[bannerView]];
+        XCTestExpectation *expectation = [self expectationWithDescription:@"load"];
+        [self execute:expectation delayTime:3.0 targetMethod:^{
+            XCTAssertNoThrow([group loadWithEventHandler:emptyHandler]);
+        } assertionBlock:^{
+            XCTAssertNotNil(group.eventHandler);
+        }];
+        [self waitForExpectationsWithTimeout:5.0 handler:nil];
+    }
 }
 
 - (void)testParse {
@@ -236,6 +299,13 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
         XCTAssertEqualObjects(actual[@"state"], @"INIT");
         XCTAssertEqualObjects(actual[@"user_extension"], NSNull.null);
     }
+}
+
+- (void)testSetRz {
+    RUNABannerGroup *group = [RUNABannerGroup new];
+    [group setRz:@"rzValue"];
+    XCTAssertNotNil(group.userExt);
+    XCTAssertEqualObjects(group.userExt[@"rz"], @"rzValue");
 }
 
 @end
