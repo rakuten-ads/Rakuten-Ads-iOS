@@ -28,7 +28,6 @@
     // Use XCTAssert and related functions to verify your tests produce the correct results.
     NSLog(@"version number = %lf", RUNACoreVersionNumber);
     NSLog(@"version = %s", RUNACoreVersionString);
-    XCTAssertEqual(1, 2);
 }
 
 - (void)testPerformanceExample {
