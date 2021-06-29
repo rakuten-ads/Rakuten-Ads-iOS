@@ -1,25 +1,184 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+# usage sample:
+# - bundle exec fastlane release sdk_dryrun:true module:Core=0.2.1,Banner=0.2.2 sdk_skip_build:true
+# - bundle exec fastlane release
+
 default_platform(:ios)
 
 platform :ios do
-  lane :scan do
-    run_tests(
-  	project: "Banner/Banner.xcodeproj",
-  	scheme: "Banner",
-  	clean: false,
-	skip_build: true,
-	open_report: true,
-	code_coverage: true,
-	force_quit_simulator: true
-	)
-    run_tests(
-  	project: "Core/Core.xcodeproj",
-  	scheme: "Core",
-  	clean: false,
-	skip_build: true,
-	open_report: true,
-	code_coverage: true,
-	force_quit_simulator: true
-	)
+
+  @sdk_map = {
+    sdk_env: "prod", # "dev", "prod"
+    sdk_configuration: "Release", # "Debug", "Release"
+    sdk_dryrun: false,
+    sdk_skip_build: false,
+    # sdk_module_current: nil,
+    # sdk_release_version: nil,
+    # sdk_xcodeproj_path: nil,
+    # sdk_output_dir: nil,
+  }
+  p @sdk_map
+
+  @sdk_module_names = ["Core", "Banner", "OMAdapter", "A2A"]
+
+  def set_env param
+    if param.count > 0
+      @sdk_map.merge!(param)
+      p "merged SDK MAP: #{@sdk_map}"
+    end
+
+    if !@sdk_map[:sdk_module_current]
+      p "Not found parameter :sdk_module_current. Pick one from #{@sdk_module_names} !"
+      exit!
+    end
+
+    if !@sdk_map[:sdk_xcodeproj_path] 
+      @sdk_map[:sdk_xcodeproj_path] = "#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_module_current]}.xcodeproj"
+    end
+
+    version_in_plist = get_version_number(
+      target: @sdk_map[:sdk_module_current],
+      xcodeproj: @sdk_map[:sdk_xcodeproj_path]
+    )
+    if @sdk_map[:sdk_release_version] != version_in_plist
+      p "incorrect release version to plist #{@sdk_map[:sdk_release_version]} != #{version_in_plist}!"
+      exit!
+    end
+
+    @sdk_map[:sdk_output_dir] = "build/#{@sdk_map[:sdk_configuration]}"
+
+    p "sdk map: #{@sdk_map}"
+  end
+
+  lane :package do |param|
+    set_env param
+    p "xcodebuild #{@sdk_map[:sdk_xcodeproj_path]} for #{@sdk_map[:sdk_configuration]} into #{@sdk_map[:sdk_output_dir]}"
+
+    if @sdk_map[:sdk_skip_build]
+      p "skip build #{@sdk_map[:sdk_module_current]}"
+      next
+    end
+
+    xcodebuild(
+      raw_buildlog: true,
+      project: @sdk_map[:sdk_xcodeproj_path],
+      target: "Aggregate",
+      configuration: @sdk_map[:sdk_configuration],
+      build_settings: { :SDK_OUTPUT_DIR => @sdk_map[:sdk_output_dir] },
+    )
+  end
+
+  lane :deploy_to_gcs_dev do |param|
+    set_env param
+
+    project = "rd2n-dev"
+    bucket = "rssp-dev-cdn"
+    source_file = "../#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{param[:file_name]}"
+    target_file = "gs://#{bucket}/sdk/ios/#{@sdk_map[:sdk_env]}/#{@sdk_map[:sdk_release_version]}/#{param[:file_name]}"
+    
+    puts("cp #{source_file} #{target_file}")
+    if @sdk_map[:sdk_dryrun]
+      next
+    end
+
+    system("gsutil cp #{source_file} #{target_file}")
+  end
+
+  lane :deploy_to_gcs do |param|
+      p "TODO"
+  end
+
+  lane :update_podspec do |param|
+    set_env param
+
+    path = "release/cocoapods/RUNA#{@sdk_map[:sdk_module_current]}.podspec"
+
+    puts("publish #{path} #{@sdk_map[:sdk_release_version]}")
+    if @sdk_map[:sdk_dryrun]
+      next
+    end
+
+    pod_push(
+      path: path,
+      repo: 'Rakuten-Ads-iOS',
+      skip_tests: true,
+      verbose: true,
+      skip_import_validation: true, # workaround for xcode 12 EXCLUDE_ARCHS issue
+    )
+  end
+
+  lane :update_carthage do |param|
+    p "TODO update_carthage"
+  end
+
+  lane :github_release_tag do |param|
+    path = "release/cocoapods/RUNA.podspec"
+    version = version_get_podspec(path: path)
+
+    p "push release tag #{version}"
+    if @sdk_map[:sdk_dryrun]
+      next
+    end
+
+    pod_push(
+      path: path,
+      repo: 'Rakuten-Ads-iOS',
+      skip_tests: true,
+      verbose: true,
+      skip_import_validation: true, # workaround for xcode 12 EXCLUDE_ARCHS issue
+    )
+
+    # set_github_release(
+    #   repository_name: "rakuten-ads/Rakuten-Ads-iOS",
+    #   api_token: ENV["FASTLANE_GITHUB_TOKEN"],
+    #   name: version,
+    #   tag_name: version,
+    #   description: "release for #{version}",
+    # )
+  end
+
+  lane :release do |param|
+    if param[:module]
+      modules = param[:module].split(",")
+    end
+
+    modules.each do |aModule|
+      @sdk_map = {
+        sdk_env: "prod",
+        sdk_configuration: "Release",
+        sdk_dryrun: false,
+        sdk_skip_build: false,
+        # sdk_module_current: nil,
+        # sdk_release_version: nil,
+        # sdk_xcodeproj_path: nil,
+        # sdk_output_dir: nil,
+      }
+      @sdk_map[:sdk_module_current] = aModule.split("=")[0]
+      @sdk_map[:sdk_release_version] = aModule.split("=")[1]
+
+      set_env param
+      package
+      deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
+      update_carthage
+      update_podspec
+    end
+
+    github_release_tag
+
   end
 end
 
