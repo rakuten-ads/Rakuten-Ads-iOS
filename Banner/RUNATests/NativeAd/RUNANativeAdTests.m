@@ -1,5 +1,5 @@
 //
-//  RUNANativeAdTest.m
+//  RUNANativeAdTests.m
 //  BannerTests
 //
 //  Created by Sato, Akihiko | Akkie on 2021/06/24.
@@ -16,10 +16,10 @@
 - (void)setData:(RUNANativeAdAssetData *)data;
 @end
 
-@interface RUNANativeAdTest : XCTestCase
+@interface RUNANativeAdTests : XCTestCase
 @end
 
-@implementation RUNANativeAdTest
+@implementation RUNANativeAdTests
 
 #pragma mark - RUNANativeAd
 

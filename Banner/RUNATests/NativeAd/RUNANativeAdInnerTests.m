@@ -1,5 +1,5 @@
 //
-//  RUNANativeAdInnerTest.m
+//  RUNANativeAdInnerTests.m
 //  BannerTests
 //
 //  Created by Sato, Akihiko | Akkie on 2021/06/24.
@@ -50,10 +50,10 @@
 @property(nonatomic, readonly) RUNAURLString *url;
 @end
 
-@interface RUNANativeAdInnerTest : XCTestCase
+@interface RUNANativeAdInnerTests : XCTestCase
 @end
 
-@implementation RUNANativeAdInnerTest
+@implementation RUNANativeAdInnerTests
 
 #pragma mark - RUNANativeAdAssetTest
 

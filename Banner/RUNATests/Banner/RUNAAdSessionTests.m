@@ -1,5 +1,5 @@
 //
-//  RUNAAdSessioTest.m
+//  RUNAAdSessionTests.m
 //  BannerTests
 //
 //  Created by Sato, Akihiko | Akkie on 2021/06/28.
@@ -9,10 +9,10 @@
 #import <XCTest/XCTest.h>
 #import "RUNAAdSessionInner.h"
 
-@interface RUNAAdSessioTest : XCTestCase
+@interface RUNAAdSessionTests : XCTestCase
 @end
 
-@implementation RUNAAdSessioTest
+@implementation RUNAAdSessionTests
 
 - (void)testInit {
     RUNAAdSession *session = [[RUNAAdSession alloc]init];

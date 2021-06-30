@@ -21,13 +21,13 @@ const CGFloat kBannerWidth = 200.f;
 - (BOOL)isVisible:(float)visibility;
 @end
 
-@interface RUNABannerViewMeasurableTest : XCTestCase
+@interface RUNABannerViewMeasurableTests : XCTestCase
 @property (nonatomic) UIViewController *viewController;
 @property (nonatomic) UIWindow *dummyWindow;
 @property (nonatomic) RUNABannerView *bannerView;
 @end
 
-@implementation RUNABannerViewMeasurableTest
+@implementation RUNABannerViewMeasurableTests
 
 @synthesize viewController = _viewController;
 @synthesize dummyWindow = _dummyWindow;

@@ -1,5 +1,5 @@
 //
-//  RUNABannerViewInnerTest.m
+//  RUNABannerViewInnerTests.m
 //  BannerTests
 //
 //  Created by Sato, Akihiko | Akkie on 2021/05/25.
@@ -35,10 +35,10 @@ NSString *const kDummyAdspotId = @"99999";
 - (void)pauseVideo;
 @end
 
-@interface RUNABannerViewInnerTest : XCTestCase
+@interface RUNABannerViewInnerTests : XCTestCase
 @end
 
-@implementation RUNABannerViewInnerTest
+@implementation RUNABannerViewInnerTests
 
 - (void)testIntialize {
     RUNABannerView *bannerView = [[RUNABannerView alloc]initWithFrame:CGRectZero];

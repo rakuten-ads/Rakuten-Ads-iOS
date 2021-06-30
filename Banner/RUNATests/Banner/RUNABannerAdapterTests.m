@@ -1,5 +1,5 @@
 //
-//  RUNABannerAdapterTest.m
+//  RUNABannerAdapterTests.m
 //  BannerTests
 //
 //  Created by Sato, Akihiko | Akkie on 2021/06/15.
@@ -18,10 +18,10 @@
 - (NSArray *)getImp;
 @end
 
-@interface RUNABannerAdapterTest : XCTestCase
+@interface RUNABannerAdapterTests : XCTestCase
 @end
 
-@implementation RUNABannerAdapterTest
+@implementation RUNABannerAdapterTests
 
 #pragma mark - RUNABanner
 

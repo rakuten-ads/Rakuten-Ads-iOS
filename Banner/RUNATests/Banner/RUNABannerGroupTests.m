@@ -33,10 +33,10 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
 - (NSString *)versionString;
 @end
 
-@interface RUNABannerGroupTest : XCTestCase
+@interface RUNABannerGroupTests : XCTestCase
 @end
 
-@implementation RUNABannerGroupTest
+@implementation RUNABannerGroupTests
 
 - (void)testInit {
     RUNABannerGroup *group = [[RUNABannerGroup alloc]init];

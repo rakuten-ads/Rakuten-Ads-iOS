@@ -1,5 +1,5 @@
 //
-//  RUNANativeAdAdapteTest.m
+//  RUNANativeAdAdapteTests.m
 //  BannerTests
 //
 //  Created by Sato, Akihiko | Akkie on 2021/06/23.
@@ -13,10 +13,10 @@
 - (NSArray<NSString*> *)adspotIdList;
 @end
 
-@interface RUNANativeAdAdapteTest : XCTestCase
+@interface RUNANativeAdAdapteTests : XCTestCase
 @end
 
-@implementation RUNANativeAdAdapteTest
+@implementation RUNANativeAdAdapteTests
 
 - (void)testGetImp {
     RUNANativeAdAdapter *adapter = [RUNANativeAdAdapter new];

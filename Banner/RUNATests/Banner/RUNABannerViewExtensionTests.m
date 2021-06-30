@@ -1,5 +1,5 @@
 //
-//  RUNABannerViewExtensionTest.m
+//  RUNABannerViewExtensionTests.m
 //  BannerTests
 //
 //  Created by Sato, Akihiko | Akkie on 2021/06/23.
@@ -30,11 +30,11 @@
 - (void)setLocationWithLatitude:(double)lat longitude:(double)lon;
 @end
 
-@interface RUNABannerViewExtensionTest : XCTestCase
+@interface RUNABannerViewExtensionTests : XCTestCase
 @property (nonatomic) RUNABannerViewGenreProperty *actual;
 @end
 
-@implementation RUNABannerViewExtensionTest
+@implementation RUNABannerViewExtensionTests
 @synthesize actual = _actual;
 
 - (void)setUp {
