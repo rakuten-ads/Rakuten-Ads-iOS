@@ -70,6 +70,7 @@
 		32F259E721E599F5001FD9C0 /* PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32F259D121E599F4001FD9C0 /* PrefixHeader.pch */; settings = {ATTRIBUTES = (Private, ); }; };
 		54A8C7E1268B03230094F6BE /* RUNAAdWebViewMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7E0268B03230094F6BE /* RUNAAdWebViewMessageTests.m */; };
 		54A8C7E6268C23A10094F6BE /* RUNAIdfaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7E5268C23A10094F6BE /* RUNAIdfaTests.m */; };
+		54A8C7E8268C32290094F6BE /* RUNAAdWebViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7E7268C32290094F6BE /* RUNAAdWebViewTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		32F25A2221E5CFBC001FD9C0 /* runacore.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = runacore.modulemap; sourceTree = "<group>"; };
 		54A8C7E0268B03230094F6BE /* RUNAAdWebViewMessageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewMessageTests.m; sourceTree = "<group>"; };
 		54A8C7E5268C23A10094F6BE /* RUNAIdfaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAIdfaTests.m; sourceTree = "<group>"; };
+		54A8C7E7268C32290094F6BE /* RUNAAdWebViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				54A8C7E0268B03230094F6BE /* RUNAAdWebViewMessageTests.m */,
+				54A8C7E7268C32290094F6BE /* RUNAAdWebViewTests.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54A8C7E8268C32290094F6BE /* RUNAAdWebViewTests.m in Sources */,
 				54A8C7E1268B03230094F6BE /* RUNAAdWebViewMessageTests.m in Sources */,
 				54A8C7E6268C23A10094F6BE /* RUNAIdfaTests.m in Sources */,
 			);
