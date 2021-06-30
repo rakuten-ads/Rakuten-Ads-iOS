@@ -169,7 +169,8 @@
     RUNAGeo *geo = [RUNAGeo new];
     geo.latitude = 100.0;
     geo.longitude = 120.0;
-    XCTAssertEqualObjects(geo.description, @"{ lat: 100.000000, lon: 120.000000 }");
+    NSString *desription = [NSString stringWithFormat:@"%@", geo];
+    XCTAssertEqualObjects(desription, @"{ lat: 100.000000, lon: 120.000000 }");
 }
 
 #pragma mark - Helper Methods
