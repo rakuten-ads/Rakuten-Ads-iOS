@@ -14,7 +14,6 @@
 @interface RUNANativeAd (Spy)
 - (void)setImage:(RUNANativeAdAssetImage *)img;
 - (void)setData:(RUNANativeAdAssetData *)data;
-- (NSString *)description;
 @end
 
 @interface RUNANativeAdTest : XCTestCase
@@ -207,7 +206,8 @@
     ad.assetDatas = @[data];
     
     // NOTE: assetVideo is not supported for native ads.
-    XCTAssertEqualObjects([ad description], @"{ \n"
+    NSString *description = [NSString stringWithFormat:@"%@", ad];
+    XCTAssertEqualObjects(description, @"{ \n"
                           @"asset title: Asset Title: title\n"
                           @"asset imgs: [Asset Image] Icon: image_url\n"
                           @"asset link: [Asset Link] URL: link_url\n"

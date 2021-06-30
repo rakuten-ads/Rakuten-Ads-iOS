@@ -21,13 +21,11 @@
 @property(nonatomic, readonly) int h;
 @property(nonatomic, readonly) int type;
 - (void)parse:(RUNAJSONObject *)assetJson;
-- (NSString *)description;
 @end
 
 @interface RUNANativeAdAssetTitle (Spy)
 @property(nonatomic, readonly) NSString *text;
 - (void)parse:(RUNAJSONObject *)assetJson;
-- (NSString *)description;
 @end
 
 @interface RUNANativeAdAssetData (Spy)
@@ -36,7 +34,6 @@
 @property(nonatomic, readonly) int len;
 @property(nonatomic, readonly) NSDictionary *ext;
 - (void)parse:(RUNAJSONObject *)assetJson;
-- (NSString *)description;
 @end
 
 @interface RUNANativeAdAssetLink (Spy)
@@ -45,7 +42,6 @@
 @property(nonatomic, readonly) NSArray<NSString*> *clicktrackers;
 - (void)parse:(RUNAJSONObject *)assetJson;
 - (NSString *)getUrl;
-- (NSString *)description;
 @end
 
 @interface RUNANativeAdEventTracker (Spy)
@@ -102,28 +98,32 @@
         XCTAssertEqual(asset.w, 320);
         XCTAssertEqual(asset.h, 50);
         XCTAssertEqual(asset.type, RUNANativeAdAssetImageTypeIcon);
-        XCTAssertEqualObjects([asset description], @"[Asset Image] Icon: https://www.google.com");
+        NSString *description = [NSString stringWithFormat:@"%@", asset];
+        XCTAssertEqualObjects(description, @"[Asset Image] Icon: https://www.google.com");
     }
     {
         RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
         dic[@"img.type"] = @3;
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
         XCTAssertEqual(asset.type, RUNANativeAdAssetImageTypeMain);
-        XCTAssertEqualObjects([asset description], @"[Asset Image] Main: https://www.google.com");
+        NSString *description = [NSString stringWithFormat:@"%@", asset];
+        XCTAssertEqualObjects(description, @"[Asset Image] Main: https://www.google.com");
     }
     {
         RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
         dic[@"img.type"] = @500;
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
         XCTAssertEqual(asset.type, RUNANativeAdAssetImageTypeOther);
-        XCTAssertEqualObjects([asset description], @"[Asset Image] unkown: https://www.google.com");
+        NSString *description = [NSString stringWithFormat:@"%@", asset];
+        XCTAssertEqualObjects(description, @"[Asset Image] unkown: https://www.google.com");
     }
     {
         RUNANativeAdAssetImage *asset = [RUNANativeAdAssetImage new];
         dic[@"img.type"] = @0;
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
         XCTAssertEqual(asset.type, RUNANativeAdAssetImageTypeOther);
-        XCTAssertEqualObjects([asset description], @"[Asset Image] unkown: https://www.google.com");
+        NSString *description = [NSString stringWithFormat:@"%@", asset];
+        XCTAssertEqualObjects(description, @"[Asset Image] unkown: https://www.google.com");
     }
 }
 
@@ -133,7 +133,8 @@
     RUNANativeAdAssetTitle *asset = [RUNANativeAdAssetTitle new];
     [asset parse:[RUNAJSONObject jsonWithRawDictionary:@{@"title.text":@"hogefuga"}]];
     XCTAssertEqualObjects(asset.text, @"hogefuga");
-    XCTAssertEqualObjects([asset description], @"Asset Title: hogefuga");
+    NSString *description = [NSString stringWithFormat:@"%@", asset];
+    XCTAssertEqualObjects(description, @"Asset Title: hogefuga");
 }
 
 #pragma mark - RUNANativeAdAssetData
@@ -147,49 +148,57 @@
         XCTAssertEqual(asset.type, RUNANativeAdAssetDataTypeSponsored);
         XCTAssertEqual(asset.len, 9999);
         XCTAssertEqualObjects(asset.ext, @{@"key":@"value"});
-        XCTAssertEqualObjects([asset description], @"[Asset Data] sponsored: value");
+        NSString *description = [NSString stringWithFormat:@"%@", asset];
+        XCTAssertEqualObjects(description, @"[Asset Data] sponsored: value");
     }
     {
         RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
         dic[@"data.type"] = @(RUNANativeAdAssetDataTypeDesc);
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
-        XCTAssertEqualObjects([asset description], @"[Asset Data] desc: value");
+        NSString *description = [NSString stringWithFormat:@"%@", asset];
+        XCTAssertEqualObjects(description, @"[Asset Data] desc: value");
     }
     {
         RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
         dic[@"data.type"] = @(RUNANativeAdAssetDataTypeRating);
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
-        XCTAssertEqualObjects([asset description], @"[Asset Data] rating: value");
+        NSString *description = [NSString stringWithFormat:@"%@", asset];
+        XCTAssertEqualObjects(description, @"[Asset Data] rating: value");
     }
     {
         RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
         dic[@"data.type"] = @(RUNANativeAdAssetDataTypePrice);
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
-        XCTAssertEqualObjects([asset description], @"[Asset Data] price: value");
+        NSString *description = [NSString stringWithFormat:@"%@", asset];
+        XCTAssertEqualObjects(description, @"[Asset Data] price: value");
     }
     {
         RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
         dic[@"data.type"] = @(RUNANativeAdAssetDataTypeSaleprice);
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
-        XCTAssertEqualObjects([asset description], @"[Asset Data] saleprice: value");
+        NSString *description = [NSString stringWithFormat:@"%@", asset];
+        XCTAssertEqualObjects(description, @"[Asset Data] saleprice: value");
     }
     {
         RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
         dic[@"data.type"] = @(RUNANativeAdAssetDataTypeCtatext);
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
-        XCTAssertEqualObjects([asset description], @"[Asset Data] ctatext: value");
+        NSString *description = [NSString stringWithFormat:@"%@", asset];
+        XCTAssertEqualObjects(description, @"[Asset Data] ctatext: value");
     }
     {
         RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
         dic[@"data.type"] = @(RUNANativeAdAssetDataTypeOther);
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
-        XCTAssertEqualObjects([asset description], @"[Asset Data] specific: value");
+        NSString *description = [NSString stringWithFormat:@"%@", asset];
+        XCTAssertEqualObjects(description, @"[Asset Data] specific: value");
     }
     {
         RUNANativeAdAssetData *asset = [RUNANativeAdAssetData new];
         dic[@"data.type"] = @(-1);
         [asset parse:[RUNAJSONObject jsonWithRawDictionary:dic]];
-        XCTAssertEqualObjects([asset description], @"[Asset Data] specific: value");
+        NSString *description = [NSString stringWithFormat:@"%@", asset];
+        XCTAssertEqualObjects(description, @"[Asset Data] specific: value");
     }
 }
 
@@ -205,7 +214,8 @@
     XCTAssertEqualObjects(asset.clicktrackers[0], @"hoge");
     XCTAssertEqualObjects(asset.clicktrackers[1], @"fuga");
     XCTAssertEqualObjects([asset getUrl], @"https://www.google.com");
-    XCTAssertEqualObjects([asset description], @"[Asset Link] URL: https://www.google.com");
+    NSString *description = [NSString stringWithFormat:@"%@", asset];
+    XCTAssertEqualObjects(description, @"[Asset Link] URL: https://www.google.com");
 }
 
 #pragma mark - RUNANativeAdEventTracker
@@ -218,7 +228,8 @@
     XCTAssertEqual(asset.event, 1);
     XCTAssertEqual(asset.method, 2);
     XCTAssertEqualObjects([asset getUrl], @"https://www.google.com");
-    XCTAssertEqualObjects([asset description], @"[Native Ad Event Tracker] method=2: https://www.google.com");
+    NSString *description = [NSString stringWithFormat:@"%@", asset];
+    XCTAssertEqualObjects(description, @"[Native Ad Event Tracker] method=2: https://www.google.com");
 }
 
 @end
