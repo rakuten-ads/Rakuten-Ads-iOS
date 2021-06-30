@@ -73,6 +73,7 @@
 		54A8C7E8268C32290094F6BE /* RUNAAdWebViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7E7268C32290094F6BE /* RUNAAdWebViewTests.m */; };
 		54A8C7EB268C367E0094F6BE /* RUNAURLStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7EA268C367E0094F6BE /* RUNAURLStringTests.m */; };
 		54A8C7ED268C3F0C0094F6BE /* RUNADefinesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7EC268C3F0C0094F6BE /* RUNADefinesTests.m */; };
+		54A8C7F1268C4BA40094F6BE /* RUNAInfoPlistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7F0268C4BA40094F6BE /* RUNAInfoPlistTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +144,7 @@
 		54A8C7E7268C32290094F6BE /* RUNAAdWebViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewTests.m; sourceTree = "<group>"; };
 		54A8C7EA268C367E0094F6BE /* RUNAURLStringTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAURLStringTests.m; sourceTree = "<group>"; };
 		54A8C7EC268C3F0C0094F6BE /* RUNADefinesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNADefinesTests.m; sourceTree = "<group>"; };
+		54A8C7F0268C4BA40094F6BE /* RUNAInfoPlistTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAInfoPlistTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +345,7 @@
 				54A8C7E9268C366D0094F6BE /* Extension */,
 				54A8C7DF268B03130094F6BE /* UI */,
 				54A8C7EC268C3F0C0094F6BE /* RUNADefinesTests.m */,
+				54A8C7F0268C4BA40094F6BE /* RUNAInfoPlistTests.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 			files = (
 				54A8C7E8268C32290094F6BE /* RUNAAdWebViewTests.m in Sources */,
 				54A8C7E1268B03230094F6BE /* RUNAAdWebViewMessageTests.m in Sources */,
+				54A8C7F1268C4BA40094F6BE /* RUNAInfoPlistTests.m in Sources */,
 				54A8C7EB268C367E0094F6BE /* RUNAURLStringTests.m in Sources */,
 				54A8C7ED268C3F0C0094F6BE /* RUNADefinesTests.m in Sources */,
 				54A8C7E6268C23A10094F6BE /* RUNAIdfaTests.m in Sources */,
