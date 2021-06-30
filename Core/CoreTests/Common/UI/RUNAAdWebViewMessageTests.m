@@ -12,6 +12,9 @@
 @interface RUNAAdWebViewMessageTests : XCTestCase
 @end
 
+@interface RUNAAdWebViewMessageHandlerTests : XCTestCase
+@end
+
 @implementation RUNAAdWebViewMessageTests
 
 - (void)testParse {
@@ -26,6 +29,22 @@
   
     NSString *description = [NSString stringWithFormat:@"%@", message];
     XCTAssertEqualObjects(description, @"{ vendor: vendor, type: type, url: url }");
+}
+
+@end
+
+@implementation RUNAAdWebViewMessageHandlerTests
+
+- (void)testMessageHandler {
+    RUNAAdWebViewMessageHandle handle = ^(RUNAAdWebViewMessage * _Nullable message) {};
+    
+    RUNAAdWebViewMessageHandler *handler1 = [[RUNAAdWebViewMessageHandler alloc]initWithType:@"type1" handle:handle];
+    XCTAssertEqualObjects(handler1.type, @"type1");
+    XCTAssertNotNil(handler1.handle);
+    
+    RUNAAdWebViewMessageHandler *handler2 = [RUNAAdWebViewMessageHandler messageHandlerWithType:@"type2" handle:handle];
+    XCTAssertEqualObjects(handler2.type, @"type2");
+    XCTAssertNotNil(handler2.handle);
 }
 
 @end
