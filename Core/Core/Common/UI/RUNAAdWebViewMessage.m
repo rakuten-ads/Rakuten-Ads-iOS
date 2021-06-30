@@ -30,7 +30,7 @@ NSString *kSdkMessageTypeVideoLoaded = @"video_loaded";
 }
 
 -(NSString *)description {
-    return [NSString stringWithFormat:@"{"
+    return [NSString stringWithFormat:@"{ "
             @"vendor: %@"
             @", type: %@"
             @", url: %@"

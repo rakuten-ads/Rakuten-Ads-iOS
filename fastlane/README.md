@@ -16,11 +16,45 @@ or alternatively using `brew install fastlane`
 
 # Available Actions
 ## iOS
-### ios scan
+### ios package
 ```
-fastlane ios scan
+fastlane ios package
 ```
 
+### ios deploy_to_gcs_dev
+```
+fastlane ios deploy_to_gcs_dev
+```
+
+### ios deploy_to_gcs
+```
+fastlane ios deploy_to_gcs
+```
+
+### ios update_podspec
+```
+fastlane ios update_podspec
+```
+
+### ios update_carthage
+```
+fastlane ios update_carthage
+```
+
+### ios github_release_tag
+```
+fastlane ios github_release_tag
+```
+
+### ios release
+```
+fastlane ios release
+```
+## Tests
+### scan
+```
+fastlane scan
+```
 
 ----
 

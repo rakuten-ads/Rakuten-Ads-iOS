@@ -1,5 +1,5 @@
 //
-//  RUNANativeAdProviderTest.m
+//  RUNANativeAdProviderTests.m
 //  BannerTests
 //
 //  Created by Sato, Akihiko | Akkie on 2021/06/28.
@@ -19,11 +19,11 @@ typedef void (^RUNANativeAdEventHandler)(RUNANativeAdProvider* loader, NSArray<R
 - (RUNANativeAd*)parse:(NSDictionary *)bid;
 @end
 
-@interface RUNANativeAdProviderTest : XCTestCase
+@interface RUNANativeAdProviderTests : XCTestCase
 @property (nonatomic) RUNANativeAdProvider *provider;
 @end
 
-@implementation RUNANativeAdProviderTest
+@implementation RUNANativeAdProviderTests
 @synthesize provider = _provider;
 
 - (void)setUp {

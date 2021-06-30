@@ -1,5 +1,5 @@
 //
-//  RUNABannerAdapterTest.m
+//  RUNABannerAdapterTests.m
 //  BannerTests
 //
 //  Created by Sato, Akihiko | Akkie on 2021/06/15.
@@ -18,10 +18,10 @@
 - (NSArray *)getImp;
 @end
 
-@interface RUNABannerAdapterTest : XCTestCase
+@interface RUNABannerAdapterTests : XCTestCase
 @end
 
-@implementation RUNABannerAdapterTest
+@implementation RUNABannerAdapterTests
 
 #pragma mark - RUNABanner
 
@@ -169,7 +169,8 @@
     RUNAGeo *geo = [RUNAGeo new];
     geo.latitude = 100.0;
     geo.longitude = 120.0;
-    XCTAssertEqualObjects(geo.description, @"{ lat: 100.000000, lon: 120.000000 }");
+    NSString *desription = [NSString stringWithFormat:@"%@", geo];
+    XCTAssertEqualObjects(desription, @"{ lat: 100.000000, lon: 120.000000 }");
 }
 
 #pragma mark - Helper Methods

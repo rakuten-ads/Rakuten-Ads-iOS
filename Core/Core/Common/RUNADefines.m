@@ -70,7 +70,7 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
             @"IDFA: %@\n"
             @"UA: %@\n"
             @"Device: %@"
-            @"AppInfo: %@\n"
+            @"AppInfo: %@"
             ,
             self->_sdkBundleShortVersionString,
             self->_idfaInfo.idfa,

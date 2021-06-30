@@ -1,5 +1,5 @@
 //
-//  RUNANativeAdTest.m
+//  RUNANativeAdTests.m
 //  BannerTests
 //
 //  Created by Sato, Akihiko | Akkie on 2021/06/24.
@@ -14,13 +14,12 @@
 @interface RUNANativeAd (Spy)
 - (void)setImage:(RUNANativeAdAssetImage *)img;
 - (void)setData:(RUNANativeAdAssetData *)data;
-- (NSString *)description;
 @end
 
-@interface RUNANativeAdTest : XCTestCase
+@interface RUNANativeAdTests : XCTestCase
 @end
 
-@implementation RUNANativeAdTest
+@implementation RUNANativeAdTests
 
 #pragma mark - RUNANativeAd
 
@@ -207,7 +206,8 @@
     ad.assetDatas = @[data];
     
     // NOTE: assetVideo is not supported for native ads.
-    XCTAssertEqualObjects([ad description], @"{ \n"
+    NSString *description = [NSString stringWithFormat:@"%@", ad];
+    XCTAssertEqualObjects(description, @"{ \n"
                           @"asset title: Asset Title: title\n"
                           @"asset imgs: [Asset Image] Icon: image_url\n"
                           @"asset link: [Asset Link] URL: link_url\n"
