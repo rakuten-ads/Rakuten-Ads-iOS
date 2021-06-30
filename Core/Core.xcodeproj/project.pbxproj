@@ -71,6 +71,7 @@
 		54A8C7E1268B03230094F6BE /* RUNAAdWebViewMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7E0268B03230094F6BE /* RUNAAdWebViewMessageTests.m */; };
 		54A8C7E6268C23A10094F6BE /* RUNAIdfaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7E5268C23A10094F6BE /* RUNAIdfaTests.m */; };
 		54A8C7E8268C32290094F6BE /* RUNAAdWebViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7E7268C32290094F6BE /* RUNAAdWebViewTests.m */; };
+		54A8C7EB268C367E0094F6BE /* RUNAURLStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7EA268C367E0094F6BE /* RUNAURLStringTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,7 @@
 		54A8C7E0268B03230094F6BE /* RUNAAdWebViewMessageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewMessageTests.m; sourceTree = "<group>"; };
 		54A8C7E5268C23A10094F6BE /* RUNAIdfaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAIdfaTests.m; sourceTree = "<group>"; };
 		54A8C7E7268C32290094F6BE /* RUNAAdWebViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewTests.m; sourceTree = "<group>"; };
+		54A8C7EA268C367E0094F6BE /* RUNAURLStringTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAURLStringTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +338,7 @@
 		54A8C7DE268B03040094F6BE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				54A8C7E9268C366D0094F6BE /* Extension */,
 				54A8C7DF268B03130094F6BE /* UI */,
 			);
 			path = Common;
@@ -356,6 +359,14 @@
 				54A8C7E5268C23A10094F6BE /* RUNAIdfaTests.m */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		54A8C7E9268C366D0094F6BE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				54A8C7EA268C367E0094F6BE /* RUNAURLStringTests.m */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -543,6 +554,7 @@
 			files = (
 				54A8C7E8268C32290094F6BE /* RUNAAdWebViewTests.m in Sources */,
 				54A8C7E1268B03230094F6BE /* RUNAAdWebViewMessageTests.m in Sources */,
+				54A8C7EB268C367E0094F6BE /* RUNAURLStringTests.m in Sources */,
 				54A8C7E6268C23A10094F6BE /* RUNAIdfaTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
