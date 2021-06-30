@@ -15,6 +15,7 @@
 @implementation RUNADefinesTests
 
 - (void)testRUNADefines {
+    // TODO: Expected value may differ depending on the VM environment
     NSString *description = [NSString stringWithFormat:@"%@", RUNADefines.sharedInstance];
     XCTAssertEqualObjects(description, @"SDK RUNA/Core version: 1.3.0\n"
                           @"IDFA: 00000000-0000-0000-0000-000000000000\n"
