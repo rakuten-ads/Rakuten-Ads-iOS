@@ -558,6 +558,10 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
             RUNADebug("WKNavigationActionPolicyCancel");
             if (self.eventHandler) {
                 @try {
+                    if (self.mediaType == RUNA_MEDIA_TYPE_VIDEO) {
+                        self.videoState = RUNA_VIDEO_STATE_STOP;
+                        [self evaluateVideoJavaScript:NO];
+                    }
                     struct RUNABannerViewEvent event = { RUNABannerViewEventTypeClicked, self.error };
                     self.eventHandler(self, event);
                 } @catch (NSException *exception) {
@@ -613,40 +617,35 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
     }
     if (isMeasuredInview) {
         [self playVideo];
-        return;
+    } else {
+        [self pauseVideo];
     }
-    [self pauseVideo];
 }
 
 # pragma mark - Video Control Methods
 
 - (void)playVideo {
-    if (self.videoState != RUNA_VIDEO_STATE_PLAYING) {
-        [self evaluateVideoJavaScript:YES scriptCompletionHandler:^{
-            self.videoState = RUNA_VIDEO_STATE_PLAYING;
-        }];
+    if (self.videoState == RUNA_VIDEO_STATE_LOADED || self.videoState == RUNA_VIDEO_STATE_PAUSED) {
+        self.videoState = RUNA_VIDEO_STATE_PLAYING;
+        [self evaluateVideoJavaScript:YES];
     }
 }
 
 - (void)pauseVideo {
-    if (self.videoState == RUNA_VIDEO_STATE_PLAYING) {
-        [self evaluateVideoJavaScript:NO scriptCompletionHandler:^{
-            self.videoState = RUNA_VIDEO_STATE_PAUSED;
-        }];
+    if (self.videoState == RUNA_VIDEO_STATE_PLAYING || self.videoState == RUNA_VIDEO_STATE_STOP) {
+        self.videoState = RUNA_VIDEO_STATE_PAUSED;
+        [self evaluateVideoJavaScript:NO];
     }
 }
 
-- (void)evaluateVideoJavaScript:(BOOL)isVideoPlaying
-        scriptCompletionHandler:(void (^)(void))completionHandler {
+- (void)evaluateVideoJavaScript:(BOOL)isVideoPlaying {
     NSString *sender = isVideoPlaying ? @"true" : @"false";
     NSString *functionName = [NSString stringWithFormat:@"window.cd.sendViewable(%@)", sender];
     [self.webView evaluateJavaScript:functionName
            completionHandler:^(id _Nullable result, NSError * _Nullable error) {
         if (error) {
             RUNALog("video javascript evaluating error: %@", error);
-            return;
         }
-        completionHandler();
     }];
 }
 
