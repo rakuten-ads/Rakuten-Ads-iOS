@@ -696,6 +696,9 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
 -(void)dealloc {
     RUNADebug("dealloc RUNABannerView %p: %@", self, self);
     [self.webView.configuration.userContentController removeScriptMessageHandlerForName:kSdkMessageHandlerName];
+    [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
+        [measurer finishMeasurement];
+    }];
 }
 
 @end
