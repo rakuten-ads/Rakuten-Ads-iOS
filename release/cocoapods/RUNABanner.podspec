@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "RUNABanner"
-  s.version      = "1.4.0"
+  s.version      = "1.4.1"
   s.summary      = "Podspec file of #{s.name} iOS SDK."
   s.description  = <<-DESC
 This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
@@ -27,7 +27,7 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   s.vendored_frameworks = "Carthage/Build/iOS/#{s.name}.framework"
 
   s.frameworks = "Foundation", "AdSupport", "SystemConfiguration", "WebKit", "UIKit"
-  s.dependency 'RUNACore', '~> 1.3'
+  s.dependency 'RUNACore', '~> 1.4'
   s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 armv7' }
 
 end

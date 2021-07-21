@@ -35,8 +35,8 @@ NSString *jScriptViewport =
 @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width,initial-scale=1.0');"
 @"document.getElementsByTagName('head')[0].appendChild(meta);"
 @"document.getElementsByTagName('body')[0].style.margin = 0;"
-@"document.getElementsByTagName('body')[0].style.marginLeft = 0.25;"
-@"document.getElementsByTagName('body')[0].style.marginRight = 0.25;"
+@"document.getElementsByTagName('body')[0].style.marginLeft = 0.3;"
+@"document.getElementsByTagName('body')[0].style.marginRight = 0.3;"
 @"document.getElementsByTagName('body')[0].style.webkitTouchCallout='none';"
 @"document.getElementsByTagName('body')[0].style.webkitUserSelect='none';";
 
