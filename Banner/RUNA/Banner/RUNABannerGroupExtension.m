@@ -15,7 +15,7 @@
 -(void)setRz:(NSString *)rz {
     if ([RUNAValid isNotEmptyString:rz]) {
         self.userExt = @{
-            @"rz" : rz
+            @"rz" : [rz copy]
         };
     }
 }

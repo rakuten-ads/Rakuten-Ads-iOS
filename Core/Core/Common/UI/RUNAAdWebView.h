@@ -8,15 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
-#import "RUNAAdWebViewMessage.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RUNAAdWebView : WKWebView <WKScriptMessageHandler>
-
-@property(nonatomic,readonly) NSDictionary<NSString*, RUNAAdWebViewMessageHandler*>* messageHandlers;
-
--(void) addMessageHandler:(RUNAAdWebViewMessageHandler*) handler;
+@interface RUNAAdWebView : WKWebView
 
 @end
 

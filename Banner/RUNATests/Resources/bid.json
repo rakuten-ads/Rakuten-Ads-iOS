@@ -1,0 +1,16 @@
+{
+    "id": "bd6c6fba-0eea-40e2-b7eb-22f613c02299",
+    "impid": "1/1",
+    "price": 0,
+    "adm": "<div></div>",
+    "cid": "1234",
+    "crid": "123",
+    "w": 1280,
+    "h": 720,
+    "ext": {
+        "measured_url": "https://stg-s-evt.rmp.rakuten.co.jp/measured?dat=test",
+        "inview_url": "https://stg-s-evt.rmp.rakuten.co.jp/inview?dat=test",
+        "advid": 123,
+        "viewability_provider_url": "https://stg-s-evt.rmp.rakuten.co.jp/viewability?dat=test"
+    }
+}

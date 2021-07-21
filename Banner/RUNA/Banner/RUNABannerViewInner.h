@@ -20,6 +20,7 @@
 #import <RUNACore/RUNADefines.h>
 #import <RUNACore/RUNAInfoPlist.h>
 #import <RUNACore/RUNAAdWebViewMessage.h>
+#import <RUNACore/RUNAAdWebViewMessageManager.h>
 #import <RUNACore/RUNARemoteLogger.h>
 #import <RUNACore/RUNARemoteLogEntity.h>
 #import "RUNAMeasurement.h"
@@ -35,6 +36,20 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
     RUNA_ADVIEW_STATE_MESSAGE_LISTENING,
     RUNA_ADVIEW_STATE_SHOWED,
     RUNA_ADVIEW_STATE_CLICKED,
+};
+
+typedef NS_ENUM(NSUInteger, RUNAVideoState) {
+    RUNA_VIDEO_STATE_UNKNOWN,
+    RUNA_VIDEO_STATE_LOADED,
+    RUNA_VIDEO_STATE_PLAYING,
+    RUNA_VIDEO_STATE_PAUSED,
+    RUNA_VIDEO_STATE_STOP,
+};
+
+typedef NS_ENUM(NSUInteger, RUNAMediaType) {
+    RUNA_MEDIA_TYPE_UNKOWN,
+    RUNA_MEDIA_TYPE_BANNER,
+    RUNA_MEDIA_TYPE_VIDEO,
 };
 
 typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABannerViewEvent event);

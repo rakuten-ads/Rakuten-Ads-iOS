@@ -18,12 +18,16 @@
 
 NSString* BASE_URL_BLANK = @"about:blank";
 
-@interface RUNABannerView() <WKNavigationDelegate>
+NSString *kSdkMessageHandlerName = @"runaSdkInterface";
+
+@interface RUNABannerView() <WKNavigationDelegate, RUNAViewableObserverDelegate>
 
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* webViewConstraints;
 @property (atomic, readonly) RUNABannerViewState state;
+@property (nonatomic) RUNAVideoState videoState;
+@property (nonatomic) RUNAMediaType mediaType;
 
 @end
 
@@ -49,6 +53,8 @@ NSString* BASE_URL_BLANK = @"about:blank";
     self.hidden = YES;
     self.state = RUNA_ADVIEW_STATE_INIT;
     self.error = RUNABannerViewErrorNone;
+    self.videoState = RUNA_VIDEO_STATE_UNKNOWN;
+    self.mediaType = RUNA_MEDIA_TYPE_UNKOWN;
     [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
         [measurer finishMeasurement];
     }];
@@ -69,20 +75,28 @@ NSString* BASE_URL_BLANK = @"about:blank";
 }
 
 #pragma mark - APIs
+-(BOOL)isLoading {
+    RUNABannerViewState state = self.state;
+    return state == RUNA_ADVIEW_STATE_LOADING
+        || state == RUNA_ADVIEW_STATE_LOADED
+        || state == RUNA_ADVIEW_STATE_RENDERING
+        || state == RUNA_ADVIEW_STATE_MESSAGE_LISTENING;
+}
+
 -(void)load {
     [self loadWithEventHandler:nil];
 }
 
 -(void) loadWithEventHandler:(RUNABannerViewEventHandler)handler {
     RUNADebug("BannerView %p load: %@", self, self);
-    if (self.state == RUNA_ADVIEW_STATE_LOADING
-        || self.state == RUNA_ADVIEW_STATE_LOADED
-        || self.state == RUNA_ADVIEW_STATE_RENDERING
-        || self.state == RUNA_ADVIEW_STATE_MESSAGE_LISTENING) {
+    
+    if ([self isLoading]) {
         RUNALog("BannerView %p has started loading.", self);
         return;
     }
 
+    RUNALog("BannerView %p has started loading.", self);
+    
     [self setInitState];
     self.state = RUNA_ADVIEW_STATE_LOADING;
     self.eventHandler = handler;
@@ -181,9 +195,13 @@ NSString* BASE_URL_BLANK = @"about:blank";
 #pragma mark - UI frame control
 -(void)didMoveToSuperview {
     RUNADebug("didMoveToSuperview");
-    [self applyContainerSize];
-    [self applyContainerPosition];
-    [self layoutIfNeeded];
+    if (self.superview) {
+        [self applyContainerSize];
+        [self applyContainerPosition];
+        [self layoutIfNeeded];
+    } else {
+        RUNADebug("removeFromSuperview leads here when superview is nil");
+    }
 }
 
 -(void)removeFromSuperview {
@@ -332,32 +350,43 @@ NSString* BASE_URL_BLANK = @"about:blank";
     // Web View
     self->_webView = [RUNAAdWebView new];
     __weak typeof(self) weakSelf = self;
-    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+
+    RUNAAdWebViewMessageManager* messageManager = [[RUNAAdWebViewMessageManager alloc] initWithName:kSdkMessageHandlerName];
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
+        if (weakSelf.mediaType != RUNA_MEDIA_TYPE_VIDEO) {
+            weakSelf.mediaType = RUNA_MEDIA_TYPE_BANNER;
+        }
         [weakSelf triggerSuccess];
     }]];
-    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeCollapse handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeCollapse handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
         [weakSelf triggerFailure];
     }]];
-    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeRegister handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeRegister handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
         weakSelf.state = RUNA_ADVIEW_STATE_MESSAGE_LISTENING;
     }]];
-    [self->_webView addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeUnfilled handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeUnfilled handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
         weakSelf.error = RUNABannerViewErrorUnfilled;
         [weakSelf triggerFailure];
     }]];
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideo handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+        RUNADebug("handle %@", message.type);
+        weakSelf.mediaType = RUNA_MEDIA_TYPE_VIDEO;
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
+            [measurer setViewableObserverDelegate:strongSelf];
+            [measurer setIsVideoMeasuring:YES];
+        }];
+    }]];
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoLoaded handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+        RUNADebug("handle %@", message.type);
+        weakSelf.videoState = RUNA_VIDEO_STATE_LOADED;
+    }]];
 
-    // active a2a if a2a framework imported
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-    if ([self respondsToSelector:@selector(a2a_active)]) {
-        [self performSelector:@selector(a2a_active)];
-    }
-#pragma clang diagnostic pop
-
+    [self.webView.configuration.userContentController addScriptMessageHandler:messageManager name:kSdkMessageHandlerName];
     self.webView.navigationDelegate = self;
     [self addSubview:self.webView];
     
@@ -445,8 +474,12 @@ NSString* BASE_URL_BLANK = @"about:blank";
     return banner;
 }
 
+-(BOOL)isFinished {
+    return self.state == RUNA_ADVIEW_STATE_SHOWED || self.state == RUNA_ADVIEW_STATE_FAILED;
+}
+
 -(void) triggerSuccess {
-    if (self.state == RUNA_ADVIEW_STATE_SHOWED || self.state == RUNA_ADVIEW_STATE_FAILED) {
+    if ([self isFinished]) {
         return;
     }
 
@@ -470,7 +503,7 @@ NSString* BASE_URL_BLANK = @"about:blank";
 }
 
 -(void) triggerFailure {
-    if (self.state == RUNA_ADVIEW_STATE_FAILED || self.state == RUNA_ADVIEW_STATE_SHOWED) {
+    if ([self isFinished]) {
         return;
     }
 
@@ -525,6 +558,10 @@ NSString* BASE_URL_BLANK = @"about:blank";
             RUNADebug("WKNavigationActionPolicyCancel");
             if (self.eventHandler) {
                 @try {
+                    if (self.mediaType == RUNA_MEDIA_TYPE_VIDEO) {
+                        self.videoState = RUNA_VIDEO_STATE_STOP;
+                        [self evaluateVideoJavaScript:NO];
+                    }
                     struct RUNABannerViewEvent event = { RUNABannerViewEventTypeClicked, self.error };
                     self.eventHandler(self, event);
                 } @catch (NSException *exception) {
@@ -570,6 +607,48 @@ NSString* BASE_URL_BLANK = @"about:blank";
     RUNALog("AD view didFailNavigation %@", error);
 }
 
+
+# pragma mark - RUNAViewableObserverDelegate method
+
+- (void)didMeasurementInView:(BOOL)isMeasuredInview {
+    // Do nothing when mediaType is Banner ads
+    if (self.mediaType != RUNA_MEDIA_TYPE_VIDEO) {
+        return;
+    }
+    if (isMeasuredInview) {
+        [self playVideo];
+    } else {
+        [self pauseVideo];
+    }
+}
+
+# pragma mark - Video Control Methods
+
+- (void)playVideo {
+    if (self.videoState == RUNA_VIDEO_STATE_LOADED || self.videoState == RUNA_VIDEO_STATE_PAUSED) {
+        self.videoState = RUNA_VIDEO_STATE_PLAYING;
+        [self evaluateVideoJavaScript:YES];
+    }
+}
+
+- (void)pauseVideo {
+    if (self.videoState == RUNA_VIDEO_STATE_PLAYING || self.videoState == RUNA_VIDEO_STATE_STOP) {
+        self.videoState = RUNA_VIDEO_STATE_PAUSED;
+        [self evaluateVideoJavaScript:NO];
+    }
+}
+
+- (void)evaluateVideoJavaScript:(BOOL)isVideoPlaying {
+    NSString *sender = isVideoPlaying ? @"true" : @"false";
+    NSString *functionName = [NSString stringWithFormat:@"window.cd.sendViewable(%@)", sender];
+    [self.webView evaluateJavaScript:functionName
+           completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        if (error) {
+            RUNALog("video javascript evaluating error: %@", error);
+        }
+    }];
+}
+
 # pragma mark - helping method
 - (BOOL)isOpenMeasurementAvailable {
     return [self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
@@ -612,9 +691,13 @@ NSString* BASE_URL_BLANK = @"about:blank";
     _state == RUNA_ADVIEW_STATE_CLICKED ? @"CLICKED" : @"unknown";
 }
 
-#if DEBUG
+
 -(void)dealloc {
     RUNADebug("dealloc RUNABannerView %p: %@", self, self);
+    [self.webView.configuration.userContentController removeScriptMessageHandlerForName:kSdkMessageHandlerName];
+    [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
+        [measurer finishMeasurement];
+    }];
 }
-#endif
+
 @end
