@@ -37,6 +37,7 @@ if [ "$1" != "archive" ]; then
 fi
 
 SDK_NAME=${SDK_PRODUCT_NAME}_iOS_${SDK_VERSION_STRING}.framework.zip
+SDK_DSYM_NAME=${SDK_PRODUCT_NAME}_iOS_${SDK_VERSION_STRING}.dsym.zip
 SDK_OUTPUT=${SDK_OUTPUT_DIR}/$SDK_NAME
 rm -f $SDK_OUTPUT
 echo "carthage archive to $SDK_OUTPUT for ${SDK_PRODUCT_NAME}"
@@ -51,6 +52,9 @@ if test -f $SDK_OUTPUT; then
 	rm -fr $SDK_DSYM_PATH
 	mkdir $SDK_DSYM_PATH
 	find ./Carthage -name *.dSYM -o -name *.bcsymbolmap | xargs -I{} mv {} $SDK_DSYM_PATH/
+	rm -f $SDK_DSYM_NAME
+	zip -r $SDK_DSYM_NAME $SDK_DSYM_PATH -x .DS_Store
+
 	rm $SDK_NAME
 
 	# find . -name *.dSYM -o -name *.bcsymbolmap | xargs rm -r

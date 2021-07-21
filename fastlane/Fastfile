@@ -173,6 +173,7 @@ platform :ios do
       set_env param
       package
       deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
+      deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}.dsym.zip"
       update_carthage
       update_podspec
     end
