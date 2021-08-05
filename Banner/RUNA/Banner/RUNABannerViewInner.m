@@ -370,12 +370,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideo handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
         weakSelf.mediaType = RUNA_MEDIA_TYPE_VIDEO;
-        __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([measurer isKindOfClass:RUNADefaultMeasurer.class]) {
-                [(RUNADefaultMeasurer*)measurer setMeasurerDelegate:strongSelf];
-            }
-        }];
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoLoaded handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
@@ -590,6 +584,9 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
                 [self.measurers addObject:[(id<RUNADefaultMeasurement>)self getDefaultMeasurer]];
             }
             [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([measurer isKindOfClass:RUNADefaultMeasurer.class]) {
+                    [(RUNADefaultMeasurer*)measurer setMeasurerDelegate:self];
+                }
                 [measurer startMeasurement];
             }];
         } @catch (NSException *exception) {
@@ -629,7 +626,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
         }
         return NO;
     } else {
-        return YES;
+        return isInview;
     }
 }
 
