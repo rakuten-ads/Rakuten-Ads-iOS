@@ -556,7 +556,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
                 @try {
                     if (self.mediaType == RUNA_MEDIA_TYPE_VIDEO) {
                         self.videoState = RUNA_VIDEO_STATE_STOP;
-                        [self pauseVideo];
+                        [self notifyVideoViewableChanged:NO];
                     }
                     struct RUNABannerViewEvent event = { RUNABannerViewEventTypeClicked, self.error };
                     self.eventHandler(self, event);
