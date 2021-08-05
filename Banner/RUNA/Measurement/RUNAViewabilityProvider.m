@@ -53,14 +53,13 @@
     return [self isVisible:visibility];
 }
 
-- (BOOL)sendMeasureViewImp {
+- (void) sendMeasureViewImp {
     if (self.viewImpURL) {
         RUNADebug("measurement[default] send inview %p", self);
         RUNAURLStringRequest* request = [RUNAURLStringRequest new];
         request.httpTaskDelegate = self.viewImpURL;
         [request resume];
     }
-    return YES;
 }
 
 -(float)getVisibility:(UIWindow *)window
@@ -89,11 +88,14 @@
     if (isInview) {
         [self sendMeasureViewImp];
         if (self.completionHandler) {
-            self.completionHandler(self.view);
+            @try {
+                self.completionHandler(self.view);
+            } @catch (NSException *exception) {
+                RUNALog("exception when measure completion callback: %@", exception);
+            }
         }
-        return YES;
     }
-    return NO;
+    return isInview;
 }
 
 @end
