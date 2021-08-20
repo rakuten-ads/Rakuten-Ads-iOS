@@ -55,7 +55,7 @@
 
 - (void) sendMeasureViewImp {
     if (self.viewImpURL) {
-        RUNADebug("measurement[default] send inview %p", self);
+        RUNADebug("measurement[Viewable] send inview %p", self);
         RUNAURLStringRequest* request = [RUNAURLStringRequest new];
         request.httpTaskDelegate = self.viewImpURL;
         [request resume];
