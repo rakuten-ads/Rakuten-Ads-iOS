@@ -11,9 +11,8 @@ RUNAViewabilityProvider helps to detect the viewability of an arbitrary target U
 ## 1. Start measurement
 
 ### 1.1 register target view
-A UIView registered will be retained by SDK which start detecting the target's viewable state.
-When the target view show within the screen at a size larger than 50% of its complete size, 
-it will be judged as is viewable.
+SDK will retain the regsitered target view, and start detecting the target's viewability state.
+The target will be considered as viewable state When it is show within the screen at a size larger than 50% of its complete size.
 
 ### 1.2 view imp URL
 An optional URL can be called when viewability detected.

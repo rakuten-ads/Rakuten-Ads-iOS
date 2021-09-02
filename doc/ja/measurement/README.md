@@ -1,24 +1,24 @@
-[TOP](/README.md#top)　>　 Viewability Measurement Provider
+[TOP](/README.md#top)　>　 ビューアビリティ計測
 
 ---
 
 # ビューアビリティ計測
 
-RUNAViewabilityProvider　は目標とする任意のViewにビューアビリティ計測をサポートします。
+本機能は対象となる任意のViewの視認性の計測を実行し、視認性の確立後にコールバックすることが可能です。
 
 ---
 
 ## 1. 計測開始
 
 ### 1.1 register target view
-ターゲットViewが登録されたと、SDKはターゲットViewの参照を保持してビューアビリティ状態を監視し始ります。
-ターゲットViewの半分以上が画面に入るとViewable状態に判定されます。
+ターゲットViewが登録されたと、SDKはターゲットViewのメモリ参照を保持し、視認性監視を始ります。
+ターゲットViewの半分以上が画面に入ると視認状態に判定されます。
 
 ### 1.2 view imp URL
-Viewable状態に判定される際にURLがリクエストされます。
+視認状態に判定される際にURLがリクエストされます。
 
 ### 1.3 completion handler
-Viewable状態に判定される際にカスタムの処理が実行されます。
+視認状態に判定される際にカスタムの処理が実行されます。
 
 
 ## 2. 計測終了
