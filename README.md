@@ -10,7 +10,6 @@
 ### Ad Formats
 
 * **[Banner Ad](./doc/bannerads/README.md)**
-* **[App to App](./doc/a2a/README.md)**
 
 ---
 # Get Started
@@ -54,7 +53,7 @@ end
 ---
 
 [Banner Ad](./doc/bannerads/README.md)<br>
-[App to App](./doc/a2a/README.md)
+[Viewability Measurement](./doc/measurement/README.md)
 
 ---
 LANGUAGE :

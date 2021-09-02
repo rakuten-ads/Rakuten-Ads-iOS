@@ -10,7 +10,7 @@
 ### 広告フォーマット
 
 - **[バナー広告](./bannerads/README.md)**
-- **[App to App](./a2a/README.md)**
+
 ---
 
 # はじめに
@@ -55,7 +55,7 @@ end
 ---
 
 [バナー広告](./bannerads/README.md)<br>
-[App to App](./a2a/README.md)
+[ビューアビリティ計測](./measurement/README.md)
 
 ---
 
