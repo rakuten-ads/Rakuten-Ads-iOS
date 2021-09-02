@@ -19,3 +19,4 @@ FOUNDATION_EXPORT const unsigned char RUNAVersionString[];
 #import "RUNABannerView.h"
 #import "RUNAAdSession.h"
 #import "RUNABannerGroup.h"
+#import "RUNAViewabilityProvider.h"

@@ -9,7 +9,7 @@
 #import "RUNAMeasurement.h"
 #import "RUNABannerViewInner.h"
 
-NSTimeInterval kMeasureIntervalInView = 1;
+NSTimeInterval kMeasureIntervalInview = 1;
 int kMeasureMaxCount = 600;
 
 @interface RUNADefaultMeasureOption : NSOperation
@@ -21,22 +21,18 @@ int kMeasureMaxCount = 600;
 @interface RUNADefaultMeasurer()
 
 @property(nonatomic, weak, nullable) id<RUNADefaultMeasurement> measurableTarget;
-@property(nonatomic, weak, nullable) id<RUNAViewableObserverDelegate> viewableObserverDelegate;
+@property(nonatomic, weak, nullable) id<RUNAMeasurerDelegate> measurerDelegate;
 @property(nonatomic) int countDown;
-// continue observing inview in video ads.
-@property(nonatomic) BOOL isVideoMeasuring;
 
 @property(atomic) BOOL shouldStopMeasureImp;
 @property(atomic) BOOL shouldStopMeasureInview;
-@property(atomic) BOOL isSentMeasureImp;
+
 
 @end
 
 # pragma mark - RUNADefaultMeasurer
 
 @implementation RUNADefaultMeasurer
-
-@synthesize viewableObserverDelegate;
 
 - (instancetype)init
 {
@@ -58,7 +54,8 @@ int kMeasureMaxCount = 600;
 
 - (void)startMeasurement {
     RUNADebug("measurement[default] start on target %p", self.measurableTarget);
-    self.shouldStopMeasureImp = self.shouldStopMeasureImp || [self.measurableTarget measureImp];
+    self.shouldStopMeasureImp = self.shouldStopMeasureImp || [self executeMeasureImp];
+
     RUNADebug("measurement[default] target %p imp : %@", self.measurableTarget, self.shouldStopMeasureImp ? @"stopped" : @"continue...");
 
     if (!self.shouldStopMeasureInview) {
@@ -73,28 +70,39 @@ int kMeasureMaxCount = 600;
     RUNADebug("measurement[default] finish on target %p", self.measurableTarget);
     self.shouldStopMeasureInview = YES;
     self.shouldStopMeasureImp = YES;
-    self.isVideoMeasuring = NO;
-    self.isSentMeasureImp = NO;
 }
 
 - (void)setMeasureTarget:(id<RUNADefaultMeasurement>)measurableTarget {
-    self.measurableTarget = measurableTarget;
+    self->_measurableTarget = measurableTarget;
 }
+
+- (void)setMeasurerDelegate:(id<RUNAMeasurerDelegate>)measurerDelegate {
+    self->_measurerDelegate = measurerDelegate;
+}
+
+
+-(BOOL) executeMeasureImp {
+    BOOL isImp = [self.measurableTarget measureImp];
+    if (self.measurerDelegate && [self.measurerDelegate respondsToSelector:@selector(didMeasureImp:)]) {
+        RUNADebug("measurement[default] invode measure imp delegate");
+        return [self.measurerDelegate didMeasureImp:isImp];
+    }
+    RUNADebug("measurement[default] measure imp result: %@", isImp ? @"YES" : @"NO");
+    return isImp;
+}
+
 @end
 
 # pragma mark - RUNADefaultMeasureOption
 @implementation RUNADefaultMeasureOption
 
 - (void)main {
-    RUNADebug("measurement[default] inview %p dequeue", self);
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kMeasureIntervalInView * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    RUNADebug("measurement[default] measure inview %p dequeue", self);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kMeasureIntervalInview * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         @try {
             RUNADefaultMeasurer* measurer = self.measurer;
             if (measurer.measurableTarget) {
-                BOOL isMeasuredInview = [measurer.measurableTarget measureInview];
-                [self executeInviewObserver:measurer isInview:isMeasuredInview];
-                [self sendMeasureImpIfNeeded:measurer isInview:isMeasuredInview];
-                measurer.shouldStopMeasureInview = [self shouldStopMeasuring:measurer isInview:isMeasuredInview];
+                measurer.shouldStopMeasureInview = measurer.shouldStopMeasureInview || [self executeMeasureInview];
                 if (!measurer.shouldStopMeasureInview && measurer.countDown > 0) {
                     RUNADebug("measurement[default] inview : %@", @"continue...");
                     RUNADefaultMeasureOption* operation = [RUNADefaultMeasureOption new];
@@ -115,27 +123,16 @@ int kMeasureMaxCount = 600;
     });
 }
 
-- (void)sendMeasureImpIfNeeded:(RUNADefaultMeasurer*)measurer
-                      isInview:(BOOL)isInview {
-    if (!isInview || measurer.isSentMeasureImp) {
-        return;
-    }
-    measurer.isSentMeasureImp = [measurer.measurableTarget sendMeasureImp];
-}
-
-- (BOOL)shouldStopMeasuring:(RUNADefaultMeasurer*)measurer
-                   isInview:(BOOL)isInview {
-    if (measurer.isVideoMeasuring) {
-        return NO;
-    }
-    return measurer.shouldStopMeasureInview || isInview;
-}
-
-- (void)executeInviewObserver:(RUNADefaultMeasurer*)measurer
-                     isInview:(BOOL)isInview {
-    id<RUNAViewableObserverDelegate> delegate = measurer.viewableObserverDelegate;
-    if (delegate && [delegate respondsToSelector:@selector(didMeasurementInView:)]) {
-        [delegate didMeasurementInView:isInview];
+- (BOOL) executeMeasureInview {
+    RUNADebug("measurement[default] measure in view");
+    BOOL isInview = [self.measurer.measurableTarget measureInview];
+    id<RUNAMeasurerDelegate> delegate = self.measurer.measurerDelegate;
+    if (delegate && [delegate respondsToSelector:@selector(didMeasureInview:)]) {
+        RUNADebug("measurement[default] invoke measure in view delegate");
+        return [delegate didMeasureInview:isInview];
+    } else {
+        RUNADebug("measurement[default] measure in view result: %@", isInview ? @"YES" : @"NO");
+        return isInview;
     }
 }
 

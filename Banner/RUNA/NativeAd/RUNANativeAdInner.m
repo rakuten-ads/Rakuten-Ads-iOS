@@ -120,13 +120,27 @@ int RUNANativeAdAssetRequiredYes = 1;
 {
     NSString* type = nil;
     switch (self.type) {
-        case RUNANativeAdAssetDataTypeDesc: type = @"desc"; break;
-        case RUNANativeAdAssetDataTypePrice: type = @"price"; break;
-        case RUNANativeAdAssetDataTypeSaleprice: type = @"saleprice"; break;
-        case RUNANativeAdAssetDataTypeSponsored: type = @"sponsored"; break;
-        case RUNANativeAdAssetDataTypeCtatext: type = @"ctatext"; break;
-        case RUNANativeAdAssetDataTypeRating: type = @"rating"; break;
-        default: type = @"specific"; break;
+        case RUNANativeAdAssetDataTypeDesc:
+            type = @"desc";
+            break;
+        case RUNANativeAdAssetDataTypePrice:
+            type = @"price";
+            break;
+        case RUNANativeAdAssetDataTypeSaleprice:
+            type = @"saleprice";
+            break;
+        case RUNANativeAdAssetDataTypeSponsored:
+            type = @"sponsored";
+            break;
+        case RUNANativeAdAssetDataTypeCtatext:
+            type = @"ctatext";
+            break;
+        case RUNANativeAdAssetDataTypeRating:
+            type = @"rating";
+            break;
+        default:
+            type = @"specific";
+            break;
     }
     return [NSString stringWithFormat:@"[Asset Data] %@: %@", type, self.value];
 }
@@ -226,6 +240,7 @@ int RUNANativeAdAssetRequiredYes = 1;
         } else if ([asset isKindOfClass:RUNANativeAdAssetData.class]) {
             [nativeAds setData:(RUNANativeAdAssetData*)asset];
         } else if ([asset isKindOfClass:RUNANativeAdAssetLink.class]) {
+            // FIXME: factoryAsset method does not return this type
             nativeAds->_assetLink = (RUNANativeAdAssetLink*)asset;
         }
     }
@@ -296,10 +311,12 @@ int RUNANativeAdAssetRequiredYes = 1;
         case RUNANativeAdAssetDataTypeCtatext:
             self->_ctatext = data.value;
             break;
-        case RUNANativeAdAssetDataTypeRating:;
-            double r = [data.value doubleValue];
-            if (r > 0) {
-                self->_rating = [NSNumber numberWithDouble:r];
+        case RUNANativeAdAssetDataTypeRating:
+            {
+                double r = [data.value doubleValue];
+                if (r > 0) {
+                    self->_rating = [NSNumber numberWithDouble:r];
+                }
             }
             break;
         default:
@@ -314,13 +331,15 @@ int RUNANativeAdAssetRequiredYes = 1;
             @"asset imgs: %@\n"
             @"asset link: %@\n"
             @"asset datas: %@\n"
-            @"asset video: %@\n"
+            // Not support for native ads.
+            //@"asset video: %@\n"
             @" }",
             self.assetTitle,
             [self.assetImgs componentsJoinedByString:@","],
             self.assetLink,
             [self.assetDatas componentsJoinedByString:@","],
-            self.assetVideo,
+            // Not support for native ads.
+            //self.assetVideo,
             nil];
 }
 
@@ -334,7 +353,7 @@ int RUNANativeAdAssetRequiredYes = 1;
     return [[self.assetDatas filteredArrayUsingPredicate:
              [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
         if ([evaluatedObject isKindOfClass:[RUNANativeAdAssetData class]]) {
-            return ((RUNANativeAdAssetData*)evaluatedObject).type >= 500;
+            return ((RUNANativeAdAssetData*)evaluatedObject).type >= RUNANativeAdAssetDataTypeOther;
         }
         return NO;
     }]] copy];

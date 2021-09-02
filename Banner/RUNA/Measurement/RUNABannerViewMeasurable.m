@@ -23,6 +23,15 @@
     return measurer;
 }
 
+# pragma mark - measure imp
+-(BOOL)measureImp {
+    if (!self.banner.measuredURL) {
+        RUNADebug("measurement[default] measure stopped by empty measure imp URL");
+    }
+    return YES;
+}
+
+# pragma mark - measure inview
 -(BOOL)measureInview {
     if (!self.banner.inviewURL) {
         RUNADebug("measurement[default] measure stopped by empty measure inview URL");
@@ -32,32 +41,6 @@
     float visibility = [self getVisibility:self.window rootViewController:rootVc];
     RUNADebug("measurement[default] measure inview rate: %f", visibility);
     return [self isVisible:visibility];
-}
-
--(BOOL)sendMeasureImp {
-    if (!self.banner.inviewURL) {
-        RUNADebug("measurement[default] skip sending measure inview URL as empty");
-        return YES;
-    }
-    RUNADebug("measurement[default] send inview %p", self);
-    [self sendRequest:self.banner.inviewURL];
-    return YES;
-}
-
--(BOOL)measureImp {
-    if (!self.banner.measuredURL) {
-        RUNADebug("measurement[default] measure stopped by empty measure imp URL");
-        return YES;
-    }
-    RUNADebug("measurement[default] measure imp (%p)", self);
-    [self sendRequest:self.banner.measuredURL];
-    return YES;
-}
-
-- (void)sendRequest:(NSString *)url {
-    RUNAURLStringRequest* request = [RUNAURLStringRequest new];
-    request.httpTaskDelegate = url;
-    [request resume];
 }
 
 -(float)getVisibility:(UIWindow *)window

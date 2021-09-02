@@ -50,16 +50,30 @@
     }
 }
 
--(void) setLocationWithLatitude:(double) lat longitude:(double) lon {
+-(BOOL)isValidLat:(double)lat {
     if (lat < -90.0 || lat > 90.0) {
         NSLog(@"[RUNA] illegal latitude value, must be from -90.0 to +90.0, where nagative is south!");
-        return;
+        return NO;
     }
+    return YES;
+}
+
+-(BOOL)isValidLon:(double)lon {
     if (lon < -180.0 || lon > 180.0) {
         NSLog(@"[RUNA] illegal longitude value, must be from -180.0 to +180.0, where nagative is west!");
+        return NO;
+    }
+    return YES;
+}
+
+-(BOOL)isValidLocation:(double)lat longitude:(double)lon {
+    return [self isValidLat:lat] && [self isValidLon:lon];
+}
+
+-(void)setLocationWithLatitude:(double)lat longitude:(double)lon {
+    if (![self isValidLocation:lat longitude:lon]) {
         return;
     }
-
     RUNAGeo* geo = [RUNAGeo new];
     geo.latitude = lat;
     geo.longitude = lon;

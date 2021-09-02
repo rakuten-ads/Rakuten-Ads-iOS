@@ -8,7 +8,9 @@
 
 #import <XCTest/XCTest.h>
 #import "RUNABannerViewInner.h"
-#import "MainViewController.h"
+
+const CGFloat kBannerHeight = 50.f;
+const CGFloat kBannerWidth = 200.f;
 
 @interface RUNABannerView (Spy)
 - (BOOL)measureInview;
@@ -19,22 +21,29 @@
 - (BOOL)isVisible:(float)visibility;
 @end
 
-@interface RUNABannerViewMeasurableTest : XCTestCase
-@property (nonatomic) MainViewController *viewController;
+@interface RUNABannerViewMeasurableTests : XCTestCase
+@property (nonatomic) UIViewController *viewController;
 @property (nonatomic) UIWindow *dummyWindow;
 @property (nonatomic) RUNABannerView *bannerView;
 @end
 
-@implementation RUNABannerViewMeasurableTest
+@implementation RUNABannerViewMeasurableTests
 
 @synthesize viewController = _viewController;
 @synthesize dummyWindow = _dummyWindow;
 
 - (void)setUp {
-    self.dummyWindow = [[UIWindow alloc] initWithFrame:self.viewController.view.frame];
-    self.viewController = [MainViewController new];
+    // UIViewController
+    CGRect iPhone12ScreenFrame = CGRectMake(0, 0, 390, 844);
+    self.viewController = [[UIViewController alloc]init];
+    self.viewController.view.frame = iPhone12ScreenFrame;
+    // Banner
+    self.bannerView = [[RUNABannerView alloc]initWithFrame:CGRectMake(0, 0, kBannerWidth, kBannerHeight)];
+    [self.viewController.view addSubview:self.bannerView];
+    // Window
+    self.dummyWindow = [[UIWindow alloc] initWithFrame:iPhone12ScreenFrame];
+    
     [self.viewController loadViewIfNeeded];
-    [super setUp];
 }
 
 - (void)testMeasureInview {
@@ -56,7 +65,6 @@
 }
 
 - (void)testIsVisible {
-    self.bannerView = self.viewController.bannerView;
     // Hidden banner
     XCTAssertFalse([self isVisible]);
     // Not hidden banner

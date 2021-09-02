@@ -1,18 +1,18 @@
 //
-//  RUNABannerView+Stub.m
+//  RUNABannerView+Mock.m
 //  Banner
 //
 //  Created by Sato, Akihiko | Akkie on 2021/05/25.
 //  Copyright © 2021 Rakuten MPD. All rights reserved.
 //
 
-#import "RUNABannerView+Stub.h"
+#import "RUNABannerView+Mock.h"
 
-@interface RUNABanner (Spy)
+@interface RUNABanner (Mock)
 - (void)parse:(NSDictionary *)bidData;
 @end
 
-@implementation RUNABannerView (Stub)
+@implementation RUNABannerView (Mock)
 
 - (instancetype)initWithEventType:(NSString *)type {
     self = [self initWithFrame:CGRectZero];

@@ -34,7 +34,8 @@ typedef void (^RUNANativeAdEventHandler)(RUNANativeAdProvider* loader, NSArray<R
 
     dispatch_async(RUNADefines.sharedInstance.sharedQueue, ^{
         @try {
-            RUNALog("%@", RUNADefines.sharedInstance);
+            // NOTE: Comment out following Log because a timeout may occur when outputting the log.
+            //RUNALog("%@", RUNADefines.sharedInstance);
             if ([RUNAValid isEmptyString:self.adSpotId]) {
                 NSLog(@"[RUNA] require adSpotId!");
                 @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
