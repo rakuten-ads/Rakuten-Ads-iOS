@@ -9,7 +9,7 @@
 #import "RUNABannerSliderView.h"
 #import "RUNABannerGroupInner.h"
 
-@interface RUNABannerSliderView() <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface RUNABannerSliderView() <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, nonnull) UICollectionView* collectionView;
 @property (nonatomic, nonnull) NSMutableArray* loadedBanners;
@@ -35,7 +35,10 @@
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerSliderView* view, struct RUNABannerViewEvent event)) handler {
     if (!self.adspotIds || self.adspotIds.count == 0) {
         NSLog(@"adspotIds must not be empty");
+        return;
     }
+
+    [self configCollectionView];
 
     NSMutableArray<RUNABannerView*>* banners = [NSMutableArray array];
     [self.adspotIds enumerateObjectsUsingBlock:^(NSString * _Nonnull adspotId, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -65,14 +68,46 @@
     }];
 }
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.loadedBanners.count;
+#pragma  mark - UI configuration
+-(void) configCollectionView {
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+
+    UICollectionViewFlowLayout* layout = [UICollectionViewFlowLayout new];
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    layout.minimumInteritemSpacing = 0.0;
+    layout.minimumLineSpacing = 0.0;
+    self.collectionView.collectionViewLayout = layout;
+
+    [self addSubview:self.collectionView];
+    self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint activateConstraints:@[
+        [self.collectionView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.collectionView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.collectionView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.collectionView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
+    ]];
 }
 
+
+#pragma mark UICollectionViewDelegateFlowLayout
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return collectionView.bounds.size;
+}
+
+#pragma mark UICollectionViewDelegate
 -(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     [cell.contentView addSubview:self.loadedBanners[indexPath.row]];
     return cell;
 }
 
+#pragma mark UICollectionViewDataSource
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.loadedBanners.count;
+}
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
 @end
