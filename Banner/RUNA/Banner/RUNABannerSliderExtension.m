@@ -6,7 +6,7 @@
 //  Copyright © 2021 Rakuten MPD. All rights reserved.
 //
 
-#import "RUNABannerSliderView.h"
+#import "RUNABannerSliderExtension.h"
 #import "RUNABannerGroupInner.h"
 
 @interface RUNABannerSliderView() <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
