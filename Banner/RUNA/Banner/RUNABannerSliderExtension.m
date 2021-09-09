@@ -22,8 +22,10 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.enableIndicator = NO;
+        self.horizontalRatio = 1;
         self.group = [RUNABannerGroup new];
-        self.collectionView = [UICollectionView new];
+        self.loadedBanners = [NSMutableArray array];
     }
     return self;
 }
@@ -53,7 +55,6 @@
 
         switch (event.eventType) {
             case RUNABannerViewEventTypeGroupFinished:
-                // TODO banners order
                 [self.collectionView reloadData];
                 break;
             case RUNABannerViewEventTypeSucceeded:
@@ -70,14 +71,15 @@
 
 #pragma  mark - UI configuration
 -(void) configCollectionView {
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource = self;
-
     UICollectionViewFlowLayout* layout = [UICollectionViewFlowLayout new];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.minimumInteritemSpacing = 0.0;
     layout.minimumLineSpacing = 0.0;
-    self.collectionView.collectionViewLayout = layout;
+
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    [self.collectionView registerClass:UICollectionViewCell.class forCellWithReuseIdentifier:@"cell"];
 
     [self addSubview:self.collectionView];
     self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -92,7 +94,7 @@
 
 #pragma mark UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return collectionView.bounds.size;
+    return CGSizeMake(collectionView.bounds.size.width * self.horizontalRatio, collectionView.bounds.size.height);
 }
 
 #pragma mark UICollectionViewDelegate

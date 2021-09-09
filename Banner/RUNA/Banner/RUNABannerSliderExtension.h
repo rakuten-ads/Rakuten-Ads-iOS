@@ -8,12 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "RUNABannerView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNABannerSliderView : UIView
 
 @property(nonatomic, copy, nonnull) NSArray<NSString*>* adspotIds;
+
+@property(nonatomic) BOOL enableIndicator;
+@property(nonatomic) CGFloat horizontalRatio;
 
 -(void) load;
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerSliderView* view, struct RUNABannerViewEvent event)) handler;
