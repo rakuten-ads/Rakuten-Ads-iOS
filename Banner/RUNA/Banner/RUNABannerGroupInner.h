@@ -13,7 +13,11 @@
 #import "RUNABannerGroup.h"
 #endif
 
+#import "RUNABannerViewInner.h"
+
 @interface RUNABannerGroup()
+
+@property (atomic, readonly) RUNABannerViewState state;
 
 /**
  include rzCookie

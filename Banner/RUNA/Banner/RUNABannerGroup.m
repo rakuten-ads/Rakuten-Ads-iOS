@@ -7,7 +7,6 @@
 //
 
 #import "RUNABannerGroupInner.h"
-#import "RUNABannerViewInner.h"
 
 typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerView* __nullable view, struct RUNABannerViewEvent event);
 
@@ -16,7 +15,6 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 @property (nonatomic) NSDictionary<NSString*, RUNABannerView*>* bannerDict;
 @property (nonatomic, nullable, copy) RUNABannerGroupEventHandler eventHandler;
 @property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
-@property (atomic, readonly) RUNABannerViewState state;
 @property (nonatomic) RUNABannerViewError error;
 @property (nonatomic) int loadedBannerCounter;
 
