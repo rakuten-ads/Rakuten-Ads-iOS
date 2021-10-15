@@ -99,6 +99,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
                         if (strongSelf.loadedBannerCounter == strongSelf.banners.count) {
                             RUNADebug("banner group finished");
                             struct RUNABannerViewEvent groupFinishedEvent = { RUNABannerViewEventTypeGroupFinished, RUNABannerViewErrorNone };
+                            strongSelf.state = RUNA_ADVIEW_STATE_SHOWED;
                             strongSelf.eventHandler(strongSelf, nil, groupFinishedEvent);
                         }
                     };

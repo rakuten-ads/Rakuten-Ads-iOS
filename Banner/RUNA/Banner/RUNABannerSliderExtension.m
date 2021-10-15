@@ -16,6 +16,7 @@
 @property (nonatomic, nullable) UIPageControl* pageCtrl;
 @property (nonatomic) CGFloat maxAspectRatio;
 @property (nonatomic, nullable) NSArray<NSLayoutConstraint*>* sizeConstraints;
+@property (nonatomic, nullable) NSArray<NSLayoutConstraint*>* positionConstraints;
 
 @property (nonatomic, nonnull) NSMutableArray* loadedBanners;
 @property (nonatomic, nonnull) RUNABannerGroup* group;
@@ -28,12 +29,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.indicatorEnabled = NO;
-//        self.horizontalRatio = 1.0;
-        self.horizantalMargin = 0.0;
+        self.paddingHorizontal = 0.0;
         self.spacing = 0.0;
         self.maxAspectRatio = 0.0;
-        self.contentScale = RUNABannerSliderViewScaleNone;
-
         self.group = [RUNABannerGroup new];
         self.loadedBanners = [NSMutableArray array];
     }
@@ -54,7 +52,6 @@
     [self.adspotIds enumerateObjectsUsingBlock:^(NSString * _Nonnull adspotId, NSUInteger idx, BOOL * _Nonnull stop) {
         RUNABannerView* banner = [RUNABannerView new];
         banner.adSpotId = adspotId;
-        banner.position = RUNABannerViewPositionTopLeft;
         banner.size = RUNABannerViewSizeAspectFit;
         [banners addObject:banner];
     }];
@@ -87,12 +84,15 @@
     RUNADebug("[banner slider] configCollectionView");
     UICollectionViewFlowLayout* layout = [UICollectionViewFlowLayout new];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    layout.minimumInteritemSpacing = self.spacing;
     layout.minimumLineSpacing = 0.0;
 
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+    self.collectionView.backgroundColor = UIColor.clearColor; // TODO
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    self.collectionView.pagingEnabled = YES;
+    self.collectionView.showsHorizontalScrollIndicator = NO;
+    self.collectionView.showsVerticalScrollIndicator = NO;
     [self.collectionView registerClass:UICollectionViewCell.class forCellWithReuseIdentifier:@"cell"];
 
     [self addSubview:self.collectionView];
@@ -111,51 +111,23 @@
 }
 
 -(void) applyContainerSize {
-    if (self.superview && self.collectionView && self.group.state == RUNABannerViewEventTypeGroupFinished) {
+    if (self.superview && self.collectionView && self.group.state == RUNA_ADVIEW_STATE_SHOWED) {
         RUNADebug("[banner slider] apply size");
         [self.superview removeConstraints:self.sizeConstraints];
         [self removeConstraints:self.sizeConstraints];
 
-        switch (self.contentScale) {
-            case RUNABannerSliderViewScaleAspectStretch:
-                if (@available(ios 11.0, *)) {
-                    UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
-                    self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:self.maxAspectRatio],
-                    ];
-                } else {
-                    self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:self.maxAspectRatio],
-                    ];
-                }
-                self.translatesAutoresizingMaskIntoConstraints = NO;
-                [self.superview addConstraints:self.sizeConstraints];
-                break;
-            case RUNABannerSliderViewScaleAspectFit:
-                if (@available(ios 11.0, *)) {
-                    UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
-                    NSLayoutConstraint* aspectConstraint = [self.heightAnchor constraintEqualToAnchor:self.widthAnchor multiplier:self.maxAspectRatio];
-                    aspectConstraint.priority = UILayoutPriorityDefaultHigh;
-                    self->_sizeConstraints = @[[self.widthAnchor constraintLessThanOrEqualToAnchor:safeGuide.widthAnchor],
-                                               [self.heightAnchor constraintLessThanOrEqualToAnchor:safeGuide.heightAnchor],
-                                               aspectConstraint,
-                    ];
-                } else {
-                    NSLayoutConstraint* aspectConstraint = [self.heightAnchor constraintEqualToAnchor:self.widthAnchor multiplier:self.maxAspectRatio];
-                    aspectConstraint.priority = UILayoutPriorityDefaultHigh;
-                    self->_sizeConstraints = @[[self.widthAnchor constraintLessThanOrEqualToAnchor:self.superview.widthAnchor],
-                                               [self.heightAnchor constraintLessThanOrEqualToAnchor:self.superview.heightAnchor],
-                                               aspectConstraint,
-                    ];
-                }
-                self.translatesAutoresizingMaskIntoConstraints = NO;
-                [self.superview addConstraints:self.sizeConstraints];
-                break;
-
-            default:
-                self.sizeConstraints = nil;
-                break;
+        if (@available(ios 11.0, *)) {
+            UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
+            self.sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],
+                                       [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:self.maxAspectRatio],
+            ];
+        } else {
+            self.sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
+                                       [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:self.maxAspectRatio],
+            ];
         }
+        self.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.superview addConstraints:self.sizeConstraints];
     }
 }
 
@@ -167,10 +139,11 @@
         pageCtrl.numberOfPages = self.loadedBanners.count;
         pageCtrl.currentPage = 0;
         pageCtrl.translatesAutoresizingMaskIntoConstraints = NO;
+        pageCtrl.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
         [self addSubview:pageCtrl];
         [self addConstraints:@[
             [pageCtrl.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
-            [pageCtrl.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:4.0],
+            [pageCtrl.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-5.0],
         ]];
         self.pageCtrl = pageCtrl;
     }
@@ -193,22 +166,37 @@
 
 #pragma mark UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize cellSize = CGSizeMake(collectionView.bounds.size.width - self.horizantalMargin * 2.0, collectionView.bounds.size.height);
+    CGSize cellSize = CGSizeMake(collectionView.bounds.size.width - self.paddingHorizontal * 2.0, collectionView.bounds.size.height);
     RUNADebug("[banner slider] cell size %@ for index %ld", NSStringFromCGSize(cellSize), (long)indexPath.row);
     return cellSize;
+}
+
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(0, self.paddingHorizontal, 0, self.paddingHorizontal);
+}
+
+-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return self.spacing;
 }
 
 #pragma mark UICollectionViewDelegate
 -(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    cell.backgroundColor = UIColor.clearColor; // TODO
     [cell.contentView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj removeFromSuperview];
     }];
-    [cell.contentView addSubview:self.loadedBanners[indexPath.row]];
+    RUNABannerView* banner = self.loadedBanners[indexPath.item];
+    [cell.contentView addSubview:banner];
+    [NSLayoutConstraint activateConstraints:@[
+        [banner.centerXAnchor constraintEqualToAnchor:cell.contentView.centerXAnchor],
+        [banner.centerYAnchor constraintEqualToAnchor:cell.contentView.centerYAnchor],
+    ]];
     return cell;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    RUNADebug("[banner slider] didEndDisplayingCell index %ld", (long)indexPath.row);
     self.pageCtrl.currentPage = indexPath.item;
 }
 
