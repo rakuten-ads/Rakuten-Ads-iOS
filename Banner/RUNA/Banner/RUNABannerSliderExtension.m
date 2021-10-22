@@ -12,6 +12,7 @@
 
 @interface RUNABannerSliderView() <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
+@property (nonatomic) BOOL indicatorEnabled;
 @property (nonatomic, nonnull) UICollectionView* collectionView;
 @property (nonatomic, nullable) UIPageControl* pageCtrl;
 @property (nonatomic) CGFloat maxAspectRatio;
@@ -90,7 +91,7 @@
     self.collectionView.backgroundColor = UIColor.clearColor; // TODO
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    self.collectionView.pagingEnabled = YES;
+    self.collectionView.pagingEnabled = self.indicatorEnabled;
     self.collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.showsVerticalScrollIndicator = NO;
     [self.collectionView registerClass:UICollectionViewCell.class forCellWithReuseIdentifier:@"cell"];

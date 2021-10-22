@@ -12,13 +12,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
+    RUNABannerSliderViewContentScaleAspectFit,
+    RUNABannerSliderViewContentScaleCustomSize,
+};
+
 @interface RUNABannerSliderView : UIView
 
 @property(nonatomic, copy, nonnull) NSArray<NSString*>* adspotIds;
 
-@property(nonatomic) BOOL indicatorEnabled;
 @property(nonatomic) CGFloat spacing;
 @property(nonatomic) CGFloat paddingHorizontal;
+@property(nonatomic) CGFloat minCellPeekWidth;
+@property(nonatomic) RUNABannerSliderViewContentScale contentScale;
 
 -(void) load;
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerSliderView* view, struct RUNABannerViewEvent event)) handler;
