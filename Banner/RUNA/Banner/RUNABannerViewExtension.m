@@ -16,8 +16,8 @@
     self = [super init];
     if (self) {
         self->_masterId = masterId;
-        self->_code = code;
-        self->_match = match;
+        self->_code = [code copy];
+        self->_match = [match copy];
     }
     return self;
 }
@@ -38,14 +38,14 @@
 
 -(void)setCustomTargeting:(NSDictionary *)target {
     if (target) {
-        self.imp.json[@"targeting"] = target;
+        self.imp.json[@"targeting"] = [target copy];
     }
 }
 
 -(void)setRz:(NSString *)rz {
     if ([RUNAValid isNotEmptyString:rz]) {
         self.userExt = @{
-            @"rz" : rz
+            @"rz" : [rz copy]
         };
     }
 }

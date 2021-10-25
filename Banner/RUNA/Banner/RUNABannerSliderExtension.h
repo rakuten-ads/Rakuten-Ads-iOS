@@ -9,22 +9,27 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "RUNABannerView.h"
+#import "RUNABannerViewExtension.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
-    RUNABannerSliderViewContentScaleAspectFit,
-    RUNABannerSliderViewContentScaleCustomSize,
-};
+@interface RUNABannerSliderViewItem : NSObject <NSCopying>
+
+@property(nonatomic, copy) NSString* adspotId;
+@property(nonatomic, copy, nullable) RUNABannerViewGenreProperty* matchingGenre;
+@property(nonatomic, copy, nullable) NSDictionary* target;
+
+@end
+
 
 @interface RUNABannerSliderView : UIView
 
-@property(nonatomic, copy, nonnull) NSArray<NSString*>* adspotIds;
+@property(nonatomic, copy, nullable) NSArray<NSString*>* adspotIds;
+@property(nonatomic, copy, nullable) NSArray<RUNABannerSliderViewItem*>* items;
 
 @property(nonatomic) CGFloat spacing;
 @property(nonatomic) CGFloat paddingHorizontal;
-@property(nonatomic) CGFloat minCellPeekWidth;
-@property(nonatomic) RUNABannerSliderViewContentScale contentScale;
+@property(nonatomic) CGFloat minItemPeekWidth;
 
 -(void) load;
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerSliderView* view, struct RUNABannerViewEvent event)) handler;

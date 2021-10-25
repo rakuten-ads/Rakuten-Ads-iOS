@@ -10,17 +10,39 @@
 #import "RUNABannerGroupInner.h"
 #import "RUNABannerViewInner.h"
 
+typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
+    RUNABannerSliderViewContentScaleAspectFit,
+    RUNABannerSliderViewContentScaleCustomSize,
+};
+
+@implementation RUNABannerSliderViewItem
+
+- (nonnull id)copyWithZone:(nullable NSZone *)zone {
+    RUNABannerSliderViewItem* newItem = [RUNABannerSliderViewItem new];
+    newItem.adspotId = self.adspotId;
+    newItem.matchingGenre = self.matchingGenre;
+    newItem.target = self.target;
+
+    return newItem;
+}
+
+@end
+
 @interface RUNABannerSliderView() <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic) BOOL indicatorEnabled;
-@property (nonatomic, nonnull) UICollectionView* collectionView;
-@property (nonatomic, nullable) UIPageControl* pageCtrl;
-@property (nonatomic) CGFloat maxAspectRatio;
-@property (nonatomic, nullable) NSArray<NSLayoutConstraint*>* sizeConstraints;
-@property (nonatomic, nullable) NSArray<NSLayoutConstraint*>* positionConstraints;
+@property(nonatomic) RUNABannerSliderViewContentScale contentScale;
+@property(nonatomic) CGFloat itemWidth;
 
-@property (nonatomic, nonnull) NSMutableArray* loadedBanners;
-@property (nonatomic, nonnull) RUNABannerGroup* group;
+
+@property(nonatomic) BOOL indicatorEnabled;
+@property(nonatomic, nonnull) UICollectionView* collectionView;
+@property(nonatomic, nullable) UIPageControl* pageCtrl;
+@property(nonatomic) CGFloat maxAspectRatio;
+@property(nonatomic, nullable) NSArray<NSLayoutConstraint*>* sizeConstraints;
+@property(nonatomic, nullable) NSArray<NSLayoutConstraint*>* positionConstraints;
+
+@property(nonatomic, nonnull) NSMutableArray* loadedBanners;
+@property(nonatomic, nonnull) RUNABannerGroup* group;
 
 @end
 
@@ -117,16 +139,23 @@
         [self.superview removeConstraints:self.sizeConstraints];
         [self removeConstraints:self.sizeConstraints];
 
-        if (@available(ios 11.0, *)) {
-            UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
-            self.sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],
-                                       [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:self.maxAspectRatio],
-            ];
-        } else {
-            self.sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
-                                       [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:self.maxAspectRatio],
-            ];
+        switch (self.contentScale) {
+            case RUNABannerSliderViewContentScaleAspectFit:
+                if (@available(ios 11.0, *)) {
+                    UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
+                    self.sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],
+                                               [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:self.maxAspectRatio],
+                    ];
+                } else {
+                    self.sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
+                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:self.maxAspectRatio],
+                    ];
+                }
+                break;
+            default:
+                break;
         }
+
         self.translatesAutoresizingMaskIntoConstraints = NO;
         [self.superview addConstraints:self.sizeConstraints];
     }
@@ -167,7 +196,7 @@
 
 #pragma mark UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize cellSize = CGSizeMake(collectionView.bounds.size.width - self.paddingHorizontal * 2.0, collectionView.bounds.size.height);
+    CGSize cellSize = CGSizeMake(collectionView.bounds.size.width - self.paddingHorizontal * 2.0 - self.minItemPeekWidth, collectionView.bounds.size.height);
     RUNADebug("[banner slider] cell size %@ for index %ld", NSStringFromCGSize(cellSize), (long)indexPath.row);
     return cellSize;
 }
