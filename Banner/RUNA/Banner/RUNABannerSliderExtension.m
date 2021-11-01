@@ -66,22 +66,37 @@ typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
 }
 
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerSliderView* view, struct RUNABannerViewEvent event)) handler {
-    if (!self.adspotIds || self.adspotIds.count == 0) {
-        NSLog(@"[banner slider] adspotIds must not be empty");
+    if ((!self.adspotIds || self.adspotIds.count == 0)
+        && (!self.items || self.items.count == 0)) {
+        NSLog(@"[banner slider] adspotIds or items must not be empty");
         return;
     }
 
     NSMutableArray<RUNABannerView*>* banners = [NSMutableArray array];
-    [self.adspotIds enumerateObjectsUsingBlock:^(NSString * _Nonnull adspotId, NSUInteger idx, BOOL * _Nonnull stop) {
-        RUNABannerView* banner = [RUNABannerView new];
-        banner.adSpotId = adspotId;
-        banner.size = RUNABannerViewSizeAspectFit;
-        [banners addObject:banner];
-    }];
+    if (self.items) {
+        NSMutableArray<NSString*>* adspotIdList = [NSMutableArray array];
+        [self.items enumerateObjectsUsingBlock:^(RUNABannerSliderViewItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
+            RUNABannerView* banner = [RUNABannerView new];
+            banner.adSpotId = item.adspotId;
+            [banner setPropertyGenre:item.matchingGenre];
+            [banner setCustomTargeting:item.target];
+            banner.size = RUNABannerViewSizeAspectFit;
+            [banners addObject:banner];
+
+            [adspotIdList addObject:item.adspotId];
+        }];
+        self.adspotIds = adspotIdList;
+    } else {
+        [self.adspotIds enumerateObjectsUsingBlock:^(NSString * _Nonnull adspotId, NSUInteger idx, BOOL * _Nonnull stop) {
+            RUNABannerView* banner = [RUNABannerView new];
+            banner.adSpotId = adspotId;
+            banner.size = RUNABannerViewSizeAspectFit;
+            [banners addObject:banner];
+        }];
+    }
     self.group.banners = banners;
 
     [self.group loadWithEventHandler:^(RUNABannerGroup * _Nonnull group, RUNABannerView * _Nullable banner, struct RUNABannerViewEvent event) {
-
         switch (event.eventType) {
             case RUNABannerViewEventTypeGroupFinished:
                 [self configCollectionView];
@@ -152,6 +167,10 @@ typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
                     ];
                 }
                 break;
+            case RUNABannerSliderViewContentScaleCustomSize:
+                self.sizeConstraints = @[[self.widthAnchor constraintEqualToConstant:self.itemWidth],
+                                           [self.heightAnchor constraintEqualToConstant:(self.itemWidth * self.maxAspectRatio)],
+                ];
             default:
                 break;
         }
@@ -196,7 +215,9 @@ typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
 
 #pragma mark UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize cellSize = CGSizeMake(collectionView.bounds.size.width - self.paddingHorizontal * 2.0 - self.minItemPeekWidth, collectionView.bounds.size.height);
+    CGSize cellSize = CGSizeMake(
+                                 collectionView.bounds.size.width - self.paddingHorizontal - MAX(self.paddingHorizontal, self.minItemPeekWidth),
+                                 collectionView.bounds.size.height);
     RUNADebug("[banner slider] cell size %@ for index %ld", NSStringFromCGSize(cellSize), (long)indexPath.row);
     return cellSize;
 }
@@ -219,7 +240,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
     RUNABannerView* banner = self.loadedBanners[indexPath.item];
     [cell.contentView addSubview:banner];
     [NSLayoutConstraint activateConstraints:@[
-        [banner.centerXAnchor constraintEqualToAnchor:cell.contentView.centerXAnchor],
+        [banner.leadingAnchor constraintEqualToAnchor:cell.contentView.leadingAnchor],
         [banner.centerYAnchor constraintEqualToAnchor:cell.contentView.centerYAnchor],
     ]];
     return cell;

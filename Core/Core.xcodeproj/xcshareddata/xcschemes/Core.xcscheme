@@ -37,15 +37,6 @@
             ReferencedContainer = "container:Core.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <CodeCoverageTargets>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "32F258C421E5866D001FD9C0"
-            BuildableName = "CoreTests.xctest"
-            BlueprintName = "CoreTests"
-            ReferencedContainer = "container:Core.xcodeproj">
-         </BuildableReference>
-      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
