@@ -1,23 +1,23 @@
 //
-//  RUNABannerSliderView.m
+//  RUNABannerCarouselView.m
 //  Banner
 //
 //  Created by Wu, Wei | David on 2021/09/03.
 //  Copyright © 2021 Rakuten MPD. All rights reserved.
 //
 
-#import "RUNABannerSliderExtension.h"
+#import "RUNABannerCarouselView.h"
 #import "RUNABannerGroupInner.h"
 #import "RUNABannerViewInner.h"
 
-typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
-    RUNABannerSliderViewContentScaleAspectFit,
-    RUNABannerSliderViewContentScaleCustomSize,
+typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
+    RUNABannerCarouselViewContentScaleAspectFit,
+    RUNABannerCarouselViewContentScaleCustomSize,
 };
 
-@interface RUNABannerSliderView() <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface RUNABannerCarouselView() <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property(nonatomic) RUNABannerSliderViewContentScale contentScale;
+@property(nonatomic) RUNABannerCarouselViewContentScale contentScale;
 @property(nonatomic) CGFloat itemWidth;
 
 
@@ -33,7 +33,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
 
 @end
 
-@implementation RUNABannerSliderView
+@implementation RUNABannerCarouselView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -52,7 +52,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
     [self loadWithEventHandler:nil];
 }
 
--(void) loadWithEventHandler:(nullable void (^)(RUNABannerSliderView* view, struct RUNABannerViewEvent event)) handler {
+-(void) loadWithEventHandler:(nullable void (^)(RUNABannerCarouselView* view, struct RUNABannerViewEvent event)) handler {
     if ((!self.adSpotIds || self.adSpotIds.count == 0)
         && (!self.itemViews || self.itemViews.count == 0)) {
         NSLog(@"[banner slider] adspotIds or items must not be empty");
@@ -137,7 +137,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
         [self removeConstraints:self.sizeConstraints];
 
         switch (self.contentScale) {
-            case RUNABannerSliderViewContentScaleAspectFit:
+            case RUNABannerCarouselViewContentScaleAspectFit:
                 if (@available(ios 11.0, *)) {
                     UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
                     self.sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],
@@ -149,7 +149,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
                     ];
                 }
                 break;
-            case RUNABannerSliderViewContentScaleCustomSize:
+            case RUNABannerCarouselViewContentScaleCustomSize:
                 self.sizeConstraints = @[[self.widthAnchor constraintEqualToConstant:self.itemWidth],
                                            [self.heightAnchor constraintEqualToConstant:(self.itemWidth * self.maxAspectRatio)],
                 ];

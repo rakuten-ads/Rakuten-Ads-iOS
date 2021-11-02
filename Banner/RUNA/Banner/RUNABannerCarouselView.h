@@ -1,5 +1,5 @@
 //
-//  RUNABannerSliderView.h
+//  RUNABannerCarouselView.h
 //  Banner
 //
 //  Created by Wu, Wei | David on 2021/09/03.
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RUNABannerSliderView : UIView
+@interface RUNABannerCarouselView : UIView
 
 @property(nonatomic, copy, nullable) NSArray<NSString*>* adSpotIds;
 @property(nonatomic, nullable) NSArray<RUNABannerView*>* itemViews;
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) CGFloat minItemOverhangWidth;
 
 -(void) load;
--(void) loadWithEventHandler:(nullable void (^)(RUNABannerSliderView* view, struct RUNABannerViewEvent event)) handler;
+-(void) loadWithEventHandler:(nullable void (^)(RUNABannerCarouselView* view, struct RUNABannerViewEvent event)) handler;
 
 @end
 
