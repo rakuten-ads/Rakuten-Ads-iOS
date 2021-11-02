@@ -9,27 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "RUNABannerView.h"
-#import "RUNABannerViewExtension.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RUNABannerSliderViewItem : NSObject <NSCopying>
-
-@property(nonatomic, copy) NSString* adspotId;
-@property(nonatomic, copy, nullable) RUNABannerViewGenreProperty* matchingGenre;
-@property(nonatomic, copy, nullable) NSDictionary* target;
-
-@end
-
-
 @interface RUNABannerSliderView : UIView
 
-@property(nonatomic, copy, nullable) NSArray<NSString*>* adspotIds;
-@property(nonatomic, copy, nullable) NSArray<RUNABannerSliderViewItem*>* items;
+@property(nonatomic, copy, nullable) NSArray<NSString*>* adSpotIds;
+@property(nonatomic, nullable) NSArray<RUNABannerView*>* itemViews;
 
-@property(nonatomic) CGFloat spacing;
+@property(nonatomic) CGFloat itemSpacing;
 @property(nonatomic) CGFloat paddingHorizontal;
-@property(nonatomic) CGFloat minItemPeekWidth;
+@property(nonatomic) CGFloat minItemOverhangWidth;
 
 -(void) load;
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerSliderView* view, struct RUNABannerViewEvent event)) handler;

@@ -15,19 +15,6 @@ typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
     RUNABannerSliderViewContentScaleCustomSize,
 };
 
-@implementation RUNABannerSliderViewItem
-
-- (nonnull id)copyWithZone:(nullable NSZone *)zone {
-    RUNABannerSliderViewItem* newItem = [RUNABannerSliderViewItem new];
-    newItem.adspotId = self.adspotId;
-    newItem.matchingGenre = self.matchingGenre;
-    newItem.target = self.target;
-
-    return newItem;
-}
-
-@end
-
 @interface RUNABannerSliderView() <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property(nonatomic) RUNABannerSliderViewContentScale contentScale;
@@ -53,7 +40,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
     if (self) {
         self.indicatorEnabled = NO;
         self.paddingHorizontal = 0.0;
-        self.spacing = 0.0;
+        self.itemSpacing = 0.0;
         self.maxAspectRatio = 0.0;
         self.group = [RUNABannerGroup new];
         self.loadedBanners = [NSMutableArray array];
@@ -66,35 +53,30 @@ typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
 }
 
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerSliderView* view, struct RUNABannerViewEvent event)) handler {
-    if ((!self.adspotIds || self.adspotIds.count == 0)
-        && (!self.items || self.items.count == 0)) {
+    if ((!self.adSpotIds || self.adSpotIds.count == 0)
+        && (!self.itemViews || self.itemViews.count == 0)) {
         NSLog(@"[banner slider] adspotIds or items must not be empty");
         return;
     }
 
-    NSMutableArray<RUNABannerView*>* banners = [NSMutableArray array];
-    if (self.items) {
+    if (self.itemViews && self.itemViews.count > 0) {
         NSMutableArray<NSString*>* adspotIdList = [NSMutableArray array];
-        [self.items enumerateObjectsUsingBlock:^(RUNABannerSliderViewItem * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
-            RUNABannerView* banner = [RUNABannerView new];
-            banner.adSpotId = item.adspotId;
-            [banner setPropertyGenre:item.matchingGenre];
-            [banner setCustomTargeting:item.target];
-            banner.size = RUNABannerViewSizeAspectFit;
-            [banners addObject:banner];
-
-            [adspotIdList addObject:item.adspotId];
+        [self.itemViews enumerateObjectsUsingBlock:^(RUNABannerView * _Nonnull item, NSUInteger idx, BOOL * _Nonnull stop) {
+            item.size = RUNABannerViewSizeAspectFit;
+            [adspotIdList addObject:item.adSpotId];
         }];
-        self.adspotIds = adspotIdList;
+        self.adSpotIds = adspotIdList;
+        self.group.banners = self.itemViews;
     } else {
-        [self.adspotIds enumerateObjectsUsingBlock:^(NSString * _Nonnull adspotId, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSMutableArray<RUNABannerView*>* banners = [NSMutableArray array];
+        [self.adSpotIds enumerateObjectsUsingBlock:^(NSString * _Nonnull adspotId, NSUInteger idx, BOOL * _Nonnull stop) {
             RUNABannerView* banner = [RUNABannerView new];
             banner.adSpotId = adspotId;
             banner.size = RUNABannerViewSizeAspectFit;
             [banners addObject:banner];
         }];
+        self.group.banners = banners;
     }
-    self.group.banners = banners;
 
     [self.group loadWithEventHandler:^(RUNABannerGroup * _Nonnull group, RUNABannerView * _Nullable banner, struct RUNABannerViewEvent event) {
         switch (event.eventType) {
@@ -216,7 +198,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
 #pragma mark UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGSize cellSize = CGSizeMake(
-                                 collectionView.bounds.size.width - self.paddingHorizontal - MAX(self.paddingHorizontal, self.minItemPeekWidth),
+                                 collectionView.bounds.size.width - self.paddingHorizontal - MAX(self.paddingHorizontal, self.minItemOverhangWidth),
                                  collectionView.bounds.size.height);
     RUNADebug("[banner slider] cell size %@ for index %ld", NSStringFromCGSize(cellSize), (long)indexPath.row);
     return cellSize;
@@ -227,7 +209,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerSliderViewContentScale) {
 }
 
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return self.spacing;
+    return self.itemSpacing;
 }
 
 #pragma mark UICollectionViewDelegate
