@@ -21,6 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) CGFloat paddingHorizontal;
 @property(nonatomic) CGFloat minItemOverhangWidth;
 
+/**
+ set RzCookie
+ */
+@property(nonatomic, copy, nullable) NSString* rz;
+
 -(void) load;
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerCarouselView* view, struct RUNABannerViewEvent event)) handler;
 

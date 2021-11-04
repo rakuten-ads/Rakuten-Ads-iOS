@@ -8,6 +8,7 @@
 
 #import "RUNABannerCarouselView.h"
 #import "RUNABannerGroupInner.h"
+#import "RUNABannerGroupExtension.h"
 #import "RUNABannerViewInner.h"
 
 typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
@@ -78,6 +79,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
         self.group.banners = banners;
     }
 
+    [self.group setRz:self.rz];
     [self.group loadWithEventHandler:^(RUNABannerGroup * _Nonnull group, RUNABannerView * _Nullable banner, struct RUNABannerViewEvent event) {
         switch (event.eventType) {
             case RUNABannerViewEventTypeGroupFinished:
