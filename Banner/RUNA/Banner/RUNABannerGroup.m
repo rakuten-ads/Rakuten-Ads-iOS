@@ -85,7 +85,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
                 }
 
                 [impList addObject:bannerView.imp];
-                if (handler) {
+                if (bannerView.eventHandler) {
                     __weak typeof(self) weakSelf = self;
                     bannerView.eventHandler = ^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
                         __strong typeof(weakSelf) strongSelf = weakSelf;

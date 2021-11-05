@@ -80,23 +80,25 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
     }
 
     [self.group setRz:self.rz];
+    __weak typeof(self) weakSelf = self;
     [self.group loadWithEventHandler:^(RUNABannerGroup * _Nonnull group, RUNABannerView * _Nullable banner, struct RUNABannerViewEvent event) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
         switch (event.eventType) {
             case RUNABannerViewEventTypeGroupFinished:
-                [self configCollectionView];
-                [self configIndicator];
-                [self applyContainerSize];
-                [self.collectionView reloadData];
+                [strongSelf configCollectionView];
+                [strongSelf configIndicator];
+                [strongSelf applyContainerSize];
+                [strongSelf.collectionView reloadData];
                 break;
             case RUNABannerViewEventTypeSucceeded:
-                [self updateMaxSize:banner];
-                [self.loadedBanners addObject:banner];
+                [strongSelf updateMaxSize:banner];
+                [strongSelf.loadedBanners addObject:banner];
             default:
                 break;
         }
 
         if (handler) {
-            handler(self, event);
+            handler(strongSelf, event);
         }
     }];
 }
@@ -109,7 +111,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
     layout.minimumLineSpacing = 0.0;
 
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-    self.collectionView.backgroundColor = UIColor.clearColor; // TODO
+    self.collectionView.backgroundColor = UIColor.clearColor;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.pagingEnabled = self.indicatorEnabled;
@@ -217,7 +219,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
 #pragma mark UICollectionViewDelegate
 -(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    cell.backgroundColor = UIColor.clearColor; // TODO
+    cell.backgroundColor = UIColor.clearColor;
     [cell.contentView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj removeFromSuperview];
     }];
