@@ -13,7 +13,7 @@
 
 typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
     RUNABannerCarouselViewContentScaleAspectFit,
-    RUNABannerCarouselViewContentScaleCustomSize,
+    RUNABannerCarouselViewContentScaleCustomWidth,
 };
 
 @interface RUNABannerCarouselView() <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
@@ -153,9 +153,9 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
                     ];
                 }
                 break;
-            case RUNABannerCarouselViewContentScaleCustomSize:
-                self.sizeConstraints = @[[self.widthAnchor constraintEqualToConstant:self.itemWidth],
-                                           [self.heightAnchor constraintEqualToConstant:(self.itemWidth * self.maxAspectRatio)],
+            case RUNABannerCarouselViewContentScaleCustomWidth:
+                self.sizeConstraints = @[
+                    [self.heightAnchor constraintEqualToAnchor:self.widthAnchor multiplier:self.maxAspectRatio constant:0.5]
                 ];
             default:
                 break;
@@ -202,6 +202,9 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
 #pragma mark UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat width = collectionView.bounds.size.width - self.paddingHorizontal - MAX(self.paddingHorizontal, self.minItemOverhangWidth);
+    if (self.itemWidth > 0) {
+        width = self.itemWidth;
+    }
     CGFloat height = width * self.maxAspectRatio;
     CGSize cellSize = CGSizeMake(width, height);
     RUNADebug("[banner slider] cell size %@ for index %ld", NSStringFromCGSize(cellSize), (long)indexPath.row);
