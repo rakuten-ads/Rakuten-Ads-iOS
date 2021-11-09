@@ -6,7 +6,7 @@
 //  Copyright © 2021 Rakuten MPD. All rights reserved.
 //
 
-#import "RUNABannerCarouselView.h"
+#import "RUNABannerCarouselViewInner.h"
 #import "RUNABannerGroupInner.h"
 #import "RUNABannerGroupExtension.h"
 #import "RUNABannerViewInner.h"
@@ -21,7 +21,6 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
 @property(nonatomic) RUNABannerCarouselViewContentScale contentScale;
 @property(nonatomic) CGFloat itemWidth;
 
-
 @property(nonatomic) BOOL indicatorEnabled;
 @property(nonatomic, nonnull) UICollectionView* collectionView;
 @property(nonatomic, nullable) UIPageControl* pageCtrl;
@@ -30,7 +29,6 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
 @property(nonatomic, nullable) NSArray<NSLayoutConstraint*>* positionConstraints;
 
 @property(nonatomic, nonnull) NSMutableArray* loadedBanners;
-@property(nonatomic, nonnull) RUNABannerGroup* group;
 
 @end
 
@@ -79,7 +77,6 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
         self.group.banners = banners;
     }
 
-    [self.group setRz:self.rz];
     __weak typeof(self) weakSelf = self;
     [self.group loadWithEventHandler:^(RUNABannerGroup * _Nonnull group, RUNABannerView * _Nullable banner, struct RUNABannerViewEvent event) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
