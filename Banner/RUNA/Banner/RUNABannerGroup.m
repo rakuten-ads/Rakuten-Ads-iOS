@@ -85,25 +85,28 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
                 }
 
                 [impList addObject:bannerView.imp];
-                if (self.eventHandler) {
-                    __weak typeof(self) weakSelf = self;
-                    bannerView.eventHandler = ^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
-                        __strong typeof(weakSelf) strongSelf = weakSelf;
-                        if (!strongSelf) {
-                            RUNADebug("banner group: banner view disposed!");
-                            return;
-                        }
+
+                __weak typeof(self) weakSelf = self;
+                bannerView.eventHandler = ^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    if (!strongSelf) {
+                        RUNADebug("banner group: banner view disposed!");
+                        return;
+                    }
+                    if (strongSelf.eventHandler) {
                         strongSelf.eventHandler(strongSelf, view, event);
-                        strongSelf.loadedBannerCounter++;
-                        RUNADebug("banner (%d/%lu) loaded", strongSelf.loadedBannerCounter, (unsigned long)strongSelf.banners.count);
-                        if (strongSelf.loadedBannerCounter == strongSelf.banners.count) {
-                            RUNADebug("banner group finished");
-                            struct RUNABannerViewEvent groupFinishedEvent = { RUNABannerViewEventTypeGroupFinished, RUNABannerViewErrorNone };
-                            strongSelf.state = RUNA_ADVIEW_STATE_SHOWED;
+                    }
+                    strongSelf.loadedBannerCounter++;
+                    RUNADebug("banner (%d/%lu) loaded", strongSelf.loadedBannerCounter, (unsigned long)strongSelf.banners.count);
+                    if (strongSelf.loadedBannerCounter == strongSelf.banners.count) {
+                        RUNADebug("banner group finished");
+                        struct RUNABannerViewEvent groupFinishedEvent = { RUNABannerViewEventTypeGroupFinished, RUNABannerViewErrorNone };
+                        strongSelf.state = RUNA_ADVIEW_STATE_SHOWED;
+                        if (strongSelf.eventHandler) {
                             strongSelf.eventHandler(strongSelf, nil, groupFinishedEvent);
                         }
-                    };
-                }
+                    }
+                };
             }
 
             static dispatch_once_t onceToken;
