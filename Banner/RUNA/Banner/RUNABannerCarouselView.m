@@ -38,7 +38,8 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
     self = [super initWithFrame:frame];
     if (self) {
         self.indicatorEnabled = NO;
-        self.paddingHorizontal = 0.0;
+        self.contentEdgeInsets = UIEdgeInsetsZero;
+        self.itemEdgeInsets = UIEdgeInsetsZero;
         self.itemSpacing = 0.0;
         self.maxAspectRatio = 0.0;
         self.group = [RUNABannerGroup new];
@@ -114,6 +115,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
     self.collectionView.pagingEnabled = self.indicatorEnabled;
     self.collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.showsVerticalScrollIndicator = NO;
+    self.collectionView.contentInset = self.contentEdgeInsets;
     [self.collectionView registerClass:UICollectionViewCell.class forCellWithReuseIdentifier:@"cell"];
 
     [self addSubview:self.collectionView];
@@ -138,18 +140,19 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
         [self removeConstraints:self.sizeConstraints];
 
         switch (self.contentScale) {
-            case RUNABannerCarouselViewContentScaleAspectFit:
+            case RUNABannerCarouselViewContentScaleAspectFit: {
                 if (@available(ios 11.0, *)) {
                     UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
                     self.sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:self.maxAspectRatio constant:(- self.paddingHorizontal - MAX(self.paddingHorizontal, self.minItemOverhangWidth)) * self.maxAspectRatio],
+                                               [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:self.maxAspectRatio constant:(- self.contentEdgeInsets.left - self.itemSpacing - MAX(self.contentEdgeInsets.right, self.minItemOverhangWidth)) * self.maxAspectRatio],
                     ];
                 } else {
                     self.sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:self.maxAspectRatio constant:(- self.paddingHorizontal - MAX(self.paddingHorizontal, self.minItemOverhangWidth)) * self.maxAspectRatio],
+                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:self.maxAspectRatio constant:(- self.contentEdgeInsets.left - self.itemSpacing -  MAX(self.contentEdgeInsets.right, self.minItemOverhangWidth)) * self.maxAspectRatio],
                     ];
                 }
                 break;
+            }
             case RUNABannerCarouselViewContentScaleCustomWidth:
                 self.sizeConstraints = @[
                     [self.heightAnchor constraintEqualToAnchor:self.widthAnchor multiplier:self.maxAspectRatio constant:0.5]
@@ -198,18 +201,14 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
 
 #pragma mark UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat width = collectionView.bounds.size.width - self.paddingHorizontal - MAX(self.paddingHorizontal, self.minItemOverhangWidth);
+    CGFloat width = collectionView.bounds.size.width - self.contentEdgeInsets.left - self.itemSpacing - MAX(self.contentEdgeInsets.right, self.minItemOverhangWidth);
     if (self.itemWidth > 0) {
         width = self.itemWidth;
     }
-    CGFloat height = width * self.maxAspectRatio;
+    CGFloat height = (width - self.itemEdgeInsets.left - self.itemEdgeInsets.right) * self.maxAspectRatio + self.itemEdgeInsets.top + self.itemEdgeInsets.right;
     CGSize cellSize = CGSizeMake(width, height);
     RUNADebug("[banner slider] cell size %@ for index %ld", NSStringFromCGSize(cellSize), (long)indexPath.row);
     return cellSize;
-}
-
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, self.paddingHorizontal, 0, self.paddingHorizontal);
 }
 
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -225,9 +224,10 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
     }];
     RUNABannerView* banner = self.loadedBanners[indexPath.item];
     [cell.contentView addSubview:banner];
+    cell.contentView.layoutMargins = self.itemEdgeInsets;
     [NSLayoutConstraint activateConstraints:@[
-        [banner.leadingAnchor constraintEqualToAnchor:cell.contentView.leadingAnchor],
-        [banner.centerYAnchor constraintEqualToAnchor:cell.contentView.centerYAnchor],
+        [banner.leadingAnchor constraintEqualToAnchor:cell.contentView.layoutMarginsGuide.leadingAnchor],
+        [banner.centerYAnchor constraintEqualToAnchor:cell.contentView.layoutMarginsGuide.centerYAnchor],
     ]];
     return cell;
 }

@@ -217,20 +217,21 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
         [self removeConstraints:self.sizeConstraints];
 
         switch (self.size) {
-            case RUNABannerViewSizeAspectFit:
-                if (@available(ios 11.0, *)) {
-                    UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
+            case RUNABannerViewSizeAspectFit: {
+//                if (@available(ios 11.0, *)) {
+                    UILayoutGuide* safeGuide = self.superview.layoutMarginsGuide;
                     self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],
                                                [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:(self.banner.height / self.banner.width) constant:0.5],
                                                ];
-                } else {
-                    self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:(self.banner.height / self.banner.width) constant:0.5],
-                                               ];
-                }
+//                } else {
+//                    self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
+//                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:(self.banner.height / self.banner.width) constant:0.5],
+//                                               ];
+//                }
                 self.translatesAutoresizingMaskIntoConstraints = NO;
                 [self.superview addConstraints:self.sizeConstraints];
                 break;
+            }
             case RUNABannerViewSizeDefault:
                 self->_sizeConstraints = @[[self.widthAnchor constraintEqualToConstant:self.banner.width],
                                            [self.heightAnchor constraintEqualToConstant:self.banner.height],
@@ -301,35 +302,36 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 }
 
 -(void)applyPositionWithParentView {
+    UILayoutGuide* layoutGuide = self.superview.layoutMarginsGuide;
     switch (self.position) {
         case RUNABannerViewPositionTopLeft:
-            self->_positionConstraints = @[[self.topAnchor constraintEqualToAnchor:self.superview.topAnchor],
-                                           [self.leadingAnchor constraintEqualToAnchor:self.superview.leadingAnchor],
+            self->_positionConstraints = @[[self.topAnchor constraintEqualToAnchor:layoutGuide.topAnchor],
+                                           [self.leadingAnchor constraintEqualToAnchor:layoutGuide.leadingAnchor],
                                            ];
             break;
         case RUNABannerViewPositionTop:
-            self->_positionConstraints = @[[self.topAnchor constraintEqualToAnchor:self.superview.topAnchor],
-                                           [self.centerXAnchor constraintEqualToAnchor:self.superview.centerXAnchor],
+            self->_positionConstraints = @[[self.topAnchor constraintEqualToAnchor:layoutGuide.topAnchor],
+                                           [self.centerXAnchor constraintEqualToAnchor:layoutGuide.centerXAnchor],
                                            ];
             break;
         case RUNABannerViewPositionTopRight:
-            self->_positionConstraints = @[[self.topAnchor constraintEqualToAnchor:self.superview.topAnchor],
-                                           [self.trailingAnchor constraintEqualToAnchor:self.superview.trailingAnchor],
+            self->_positionConstraints = @[[self.topAnchor constraintEqualToAnchor:layoutGuide.topAnchor],
+                                           [self.trailingAnchor constraintEqualToAnchor:layoutGuide.trailingAnchor],
                                            ];
             break;
         case RUNABannerViewPositionBottomLeft:
-            self->_positionConstraints = @[[self.bottomAnchor constraintEqualToAnchor:self.superview.bottomAnchor],
-                                           [self.leadingAnchor constraintEqualToAnchor:self.superview.leadingAnchor],
+            self->_positionConstraints = @[[self.bottomAnchor constraintEqualToAnchor:layoutGuide.bottomAnchor],
+                                           [self.leadingAnchor constraintEqualToAnchor:layoutGuide.leadingAnchor],
                                            ];
             break;
         case RUNABannerViewPositionBottomRight:
-            self->_positionConstraints = @[[self.bottomAnchor constraintEqualToAnchor:self.superview.bottomAnchor],
-                                           [self.trailingAnchor constraintEqualToAnchor:self.superview.trailingAnchor],
+            self->_positionConstraints = @[[self.bottomAnchor constraintEqualToAnchor:layoutGuide.bottomAnchor],
+                                           [self.trailingAnchor constraintEqualToAnchor:layoutGuide.trailingAnchor],
                                            ];
             break;
         case RUNABannerViewPositionBottom:
-            self->_positionConstraints = @[[self.bottomAnchor constraintEqualToAnchor:self.superview.bottomAnchor],
-                                           [self.centerXAnchor constraintEqualToAnchor:self.superview.centerXAnchor],
+            self->_positionConstraints = @[[self.bottomAnchor constraintEqualToAnchor:layoutGuide.bottomAnchor],
+                                           [self.centerXAnchor constraintEqualToAnchor:layoutGuide.centerXAnchor],
                                            ];
             break;
         case RUNABannerViewPositionCustom: default:

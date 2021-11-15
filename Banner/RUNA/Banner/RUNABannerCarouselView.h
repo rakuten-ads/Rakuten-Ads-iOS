@@ -18,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, nullable) NSArray<RUNABannerView*>* itemViews;
 
 @property(nonatomic) CGFloat itemSpacing;
-@property(nonatomic) CGFloat paddingHorizontal;
+@property(nonatomic) UIEdgeInsets contentEdgeInsets;
+@property(nonatomic) UIEdgeInsets itemEdgeInsets;
 @property(nonatomic) CGFloat minItemOverhangWidth;
 
 -(void) load;
