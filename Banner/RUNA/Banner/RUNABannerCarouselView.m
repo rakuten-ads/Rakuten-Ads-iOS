@@ -106,7 +106,8 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
     RUNADebug("[banner slider] configCollectionView");
     UICollectionViewFlowLayout* layout = [UICollectionViewFlowLayout new];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    layout.minimumLineSpacing = 0.0;
+    layout.minimumLineSpacing = self.itemSpacing;
+    layout.sectionInset = UIEdgeInsetsMake(0, self.contentEdgeInsets.left, 0, self.contentEdgeInsets.right);
 
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.backgroundColor = UIColor.clearColor;
@@ -115,16 +116,15 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
     self.collectionView.pagingEnabled = self.indicatorEnabled;
     self.collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.contentInset = self.contentEdgeInsets;
     [self.collectionView registerClass:UICollectionViewCell.class forCellWithReuseIdentifier:@"cell"];
 
     [self addSubview:self.collectionView];
     self.collectionView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addConstraints:@[
         [self.collectionView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
-        [self.collectionView.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [self.collectionView.topAnchor constraintEqualToAnchor:self.topAnchor constant:self.contentEdgeInsets.top],
         [self.collectionView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
-        [self.collectionView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
+        [self.collectionView.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-self.contentEdgeInsets.bottom],
     ]];
 }
 
@@ -144,11 +144,11 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
                 if (@available(ios 11.0, *)) {
                     UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
                     self.sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:self.maxAspectRatio constant:(- self.contentEdgeInsets.left - self.itemSpacing - MAX(self.contentEdgeInsets.right, self.minItemOverhangWidth)) * self.maxAspectRatio],
+                                             [self.heightAnchor constraintEqualToAnchor:self.widthAnchor multiplier:self.maxAspectRatio constant:(- self.contentEdgeInsets.left - self.itemSpacing - MAX(self.contentEdgeInsets.right, self.minItemOverhangWidth)) * self.maxAspectRatio + self.contentEdgeInsets.top + self.contentEdgeInsets.bottom],
                     ];
                 } else {
                     self.sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:self.maxAspectRatio constant:(- self.contentEdgeInsets.left - self.itemSpacing -  MAX(self.contentEdgeInsets.right, self.minItemOverhangWidth)) * self.maxAspectRatio],
+                                             [self.heightAnchor constraintEqualToAnchor:self.widthAnchor multiplier:self.maxAspectRatio constant:(- self.contentEdgeInsets.left - self.itemSpacing -  MAX(self.contentEdgeInsets.right, self.minItemOverhangWidth)) * self.maxAspectRatio + self.contentEdgeInsets.top + self.contentEdgeInsets.bottom],
                     ];
                 }
                 break;
@@ -211,10 +211,6 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
     return cellSize;
 }
 
--(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return self.itemSpacing;
-}
-
 #pragma mark UICollectionViewDelegate
 -(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
@@ -223,11 +219,18 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
         [obj removeFromSuperview];
     }];
     RUNABannerView* banner = self.loadedBanners[indexPath.item];
-    [cell.contentView addSubview:banner];
+    UIView* containerView = [UIView new];
+    containerView.translatesAutoresizingMaskIntoConstraints = false;
+    [containerView addSubview:banner];
+    [cell.contentView addSubview:containerView];
     cell.contentView.layoutMargins = self.itemEdgeInsets;
     [NSLayoutConstraint activateConstraints:@[
-        [banner.leadingAnchor constraintEqualToAnchor:cell.contentView.layoutMarginsGuide.leadingAnchor],
-        [banner.centerYAnchor constraintEqualToAnchor:cell.contentView.layoutMarginsGuide.centerYAnchor],
+        [containerView.leadingAnchor constraintEqualToAnchor:cell.contentView.layoutMarginsGuide.leadingAnchor],
+        [containerView.topAnchor constraintEqualToAnchor:cell.contentView.layoutMarginsGuide.topAnchor],
+        [containerView.trailingAnchor constraintEqualToAnchor:cell.contentView.layoutMarginsGuide.trailingAnchor],
+        [containerView.bottomAnchor constraintEqualToAnchor:cell.contentView.layoutMarginsGuide.bottomAnchor],
+        [banner.leadingAnchor constraintEqualToAnchor:containerView.leadingAnchor],
+        [banner.centerYAnchor constraintEqualToAnchor:containerView.centerYAnchor],
     ]];
     return cell;
 }
