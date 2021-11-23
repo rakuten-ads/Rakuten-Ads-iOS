@@ -11,17 +11,17 @@
 #import "RUNABannerView.h"
 
 NS_ASSUME_NONNULL_BEGIN
-typedef UIView* (^RUNABannerViewDecorator)(RUNABannerView* view);
+typedef UIView* (^RUNABannerCarouselViewItemDecorator)(RUNABannerView* view);
 
 @interface RUNABannerCarouselView : UIView
 
 @property(nonatomic, copy, nullable) NSArray<NSString*>* adSpotIds;
 @property(nonatomic, nullable) NSArray<RUNABannerView*>* itemViews;
-@property(nonatomic, copy, nullable) RUNABannerViewDecorator decorator;
+@property(nonatomic, copy, nullable) RUNABannerCarouselViewItemDecorator decorator;
 
 @property(nonatomic) CGFloat itemSpacing;
 @property(nonatomic) UIEdgeInsets contentEdgeInsets;
-//@property(nonatomic) UIEdgeInsets itemEdgeInsets;
+@property(nonatomic) UIEdgeInsets itemEdgeInsets;
 @property(nonatomic) CGFloat minItemOverhangWidth;
 
 -(void) load;

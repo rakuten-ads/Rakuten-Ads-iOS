@@ -40,7 +40,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
     if (self) {
         self.indicatorEnabled = NO;
         self.contentEdgeInsets = UIEdgeInsetsZero;
-//        self.itemEdgeInsets = UIEdgeInsetsZero;
+        self.itemEdgeInsets = UIEdgeInsetsZero;
         self.itemSpacing = 0.0;
         self.maxAspectRatio = 0.0;
         self.group = [RUNABannerGroup new];
@@ -212,6 +212,20 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
     UIView* bannerContainerView;
     if (self.decorator) {
         bannerContainerView = self.decorator(banner);
+    } else if (!UIEdgeInsetsEqualToEdgeInsets(self.itemEdgeInsets, UIEdgeInsetsZero)) {
+        UIView* marginView = [UIView new];
+        marginView.translatesAutoresizingMaskIntoConstraints = false;
+        marginView.layoutMargins = self.itemEdgeInsets;
+        [marginView addSubview:banner];
+
+        bannerContainerView = [UIView new];
+        [bannerContainerView addSubview:marginView];
+        [NSLayoutConstraint activateConstraints:@[
+            [banner.leadingAnchor constraintEqualToAnchor:marginView.layoutMarginsGuide.leadingAnchor],
+            [banner.topAnchor constraintEqualToAnchor:marginView.layoutMarginsGuide.topAnchor],
+            [banner.trailingAnchor constraintEqualToAnchor:marginView.layoutMarginsGuide.trailingAnchor],
+            [banner.bottomAnchor constraintEqualToAnchor:marginView.layoutMarginsGuide.bottomAnchor],
+        ]];
     } else {
         bannerContainerView = banner;
     }
