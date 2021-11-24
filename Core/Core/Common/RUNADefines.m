@@ -7,7 +7,6 @@
 //
 
 #import "RUNADefines.h"
-#import "RUNACore.h"
 #import "RUNAValid.h"
 
 NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
@@ -57,7 +56,7 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
         }
 
         {
-            self->_sdkBundleShortVersionString = [[[NSBundle bundleForClass:self.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+            self->_sdkBundleShortVersionString = @OS_STRINGIFY(RUNA_SDK_VERSION);
         }
     }
     return self;

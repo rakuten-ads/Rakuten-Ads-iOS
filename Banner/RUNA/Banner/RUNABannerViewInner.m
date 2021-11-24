@@ -677,7 +677,7 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
 }
 
 -(NSString*) versionString {
-    return [[[NSBundle bundleForClass:self.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    return @OS_STRINGIFY(RUNA_SDK_VERSION);
 }
 
 -(NSString*) descriptionState {
