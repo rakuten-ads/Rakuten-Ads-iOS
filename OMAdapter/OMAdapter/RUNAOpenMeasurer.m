@@ -149,7 +149,7 @@ NSString* kPartnerName = @"Rakuten";
     }
 }
 
--(NSString*) versionString {
++(NSString*) versionString {
     return @OS_STRINGIFY(RUNA_SDK_VERSION);
 }
 

@@ -145,7 +145,9 @@
         @"lmt": idfaInfo.isTrackingEnabled ? @0 : @1,
         @"ext" : @{
                 @"sdk_version": defines.sdkBundleShortVersionString ?: NSNull.null,
-                @"ios": [self getSdkVersions],
+                @"sdk_versions": @{
+                    @"ios": [self getSdkVersions]
+                },
         },
         @"connectiontype" : @(deviceInfo.connectionMethod)
         // @"carrier"
@@ -185,19 +187,23 @@ NSString* kModuleClassOmadapter = @"RUNAOpenMeasurer";
     NSMutableDictionary<NSString*, NSString*>* dict = [NSMutableDictionary dictionary];
     [dict setObject:RUNADefines.sharedInstance.sdkBundleShortVersionString forKey:kModuleNameCore];
 
-    Class bannerClass = NSClassFromString(kModuleClassBannerView);
-    if (bannerClass && [bannerClass respondsToSelector:@selector(versionString)]) {
-        NSString* bannerSDKVersion = [bannerClass performSelector:@selector(versionString)];
-        if (bannerSDKVersion) {
-            [dict setObject:bannerSDKVersion forKey:kModuleNameBanner];
+    {
+        Class bannerClass = NSClassFromString(kModuleClassBannerView);
+        if (bannerClass && [bannerClass respondsToSelector:@selector(versionString)]) {
+            NSString* bannerSDKVersion = [bannerClass performSelector:@selector(versionString)];
+            if (bannerSDKVersion) {
+                [dict setObject:bannerSDKVersion forKey:kModuleNameBanner];
+            }
         }
     }
 
-    Class omClass = NSClassFromString(kModuleClassOmadapter);
-    if (omClass && [omClass respondsToSelector:@selector(versionString)]) {
-        NSString* omadapterSDKVersion = [bannerClass performSelector:@selector(versionString)];
-        if (omadapterSDKVersion) {
-            [dict setObject:omadapterSDKVersion forKey:kModuleNameOmadapter];
+    {
+        Class omClass = NSClassFromString(kModuleClassOmadapter);
+        if (omClass && [omClass respondsToSelector:@selector(versionString)]) {
+            NSString* omadapterSDKVersion = [omClass performSelector:@selector(versionString)];
+            if (omadapterSDKVersion) {
+                [dict setObject:omadapterSDKVersion forKey:kModuleNameOmadapter];
+            }
         }
     }
 

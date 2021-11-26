@@ -104,7 +104,7 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
         @try {
             static dispatch_once_t onceToken;
             dispatch_once(&onceToken, ^{
-                RUNALog("SDK RUNA/Banner Version: %@", self.versionString);
+                RUNALog("SDK RUNA/Banner Version: %@", self.class.versionString);
                 RUNALog("%@", RUNADefines.sharedInstance);
             });
             
@@ -186,7 +186,7 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
     // ad info
     self.logAdInfo.adspotId = self.adSpotId;
     self.logAdInfo.sessionId = self.sessionId;
-    self.logAdInfo.sdkVersion = self.versionString;
+    self.logAdInfo.sdkVersion = self.class.versionString;
     
     RUNARemoteLogEntity* log = [RUNARemoteLogEntity logWithError:error andUserInfo:self.logUserInfo adInfo:self.logAdInfo];
     [RUNARemoteLogger.sharedInstance sendLog:log];
@@ -676,7 +676,7 @@ NSString *kSdkMessageHandlerName = @"runaSdkInterface";
     return [NSString stringWithFormat: @"%@", self.descriptionDetail];
 }
 
--(NSString*) versionString {
++(NSString*) versionString {
     return @OS_STRINGIFY(RUNA_SDK_VERSION);
 }
 
