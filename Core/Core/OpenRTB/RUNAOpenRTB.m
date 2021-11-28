@@ -178,9 +178,9 @@
 }
 
 
-NSString* kModuleNameCore = @"core";
-NSString* kModuleNameBanner = @"banner";
-NSString* kModuleNameOmadapter = @"omadapter";
+NSString* kModuleNameCore = @"runa_core";
+NSString* kModuleNameBanner = @"runa_banner";
+NSString* kModuleNameOmadapter = @"runa_om_adapter";
 NSString* kModuleClassBannerView = @"RUNABannerView";
 NSString* kModuleClassOmadapter = @"RUNAOpenMeasurer";
 -(NSArray*) getSdkVersions {
