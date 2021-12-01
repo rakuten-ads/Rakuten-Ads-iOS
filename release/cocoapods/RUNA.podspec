@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "RUNA"
-  s.version      = "1.5.1"
+  s.version      = "1.5.2"
   s.summary      = "Podspec file of #{s.name} iOS SDK."
   s.description  = <<-DESC
 This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
@@ -28,17 +28,17 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   s.default_subspec = 'Banner'
 
   s.subspec 'CoreOnly' do |ss|
-    ss.ios.dependency 'RUNACore', '~> 1.4.0'
+    ss.ios.dependency 'RUNACore', '~> 1.4.1'
   end
 
   s.subspec 'Banner' do |ss|
     ss.dependency 'RUNA/CoreOnly'
-    ss.ios.dependency 'RUNABanner', '~> 1.4.1'
+    ss.ios.dependency 'RUNABanner', '~> 1.4.2'
   end
 
   s.subspec 'OMAdapter' do |ss|
     ss.dependency 'RUNA/Banner'
-    ss.ios.dependency 'RUNAOMAdapter', '~> 1.0.4'
+    ss.ios.dependency 'RUNAOMAdapter', '~> 1.0.6'
   end
 
 end
