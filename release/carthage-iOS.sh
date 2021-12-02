@@ -20,8 +20,6 @@ if [ ! $SDK_OUTPUT_DIR ]; then
 	SDK_OUTPUT_DIR=${PROJECT_DIR}/build/${CONFIGURATION}
 fi
 
-SDK_VERSION_STRING=`agvtool what-marketing-version -terse1`
-
 if [ "$1" != "archive" ]; then
 	echo "clean"
 	SDK_BUILD_DIR=${PROJECT_DIR}/Carthage/Build

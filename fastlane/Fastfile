@@ -78,7 +78,10 @@ platform :ios do
       project: @sdk_map[:sdk_xcodeproj_path],
       target: "Aggregate",
       configuration: @sdk_map[:sdk_configuration],
-      build_settings: { :SDK_OUTPUT_DIR => @sdk_map[:sdk_output_dir] },
+      build_settings: { 
+        :SDK_OUTPUT_DIR => @sdk_map[:sdk_output_dir],
+        :SDK_VERSION_STRING => @sdk_map[:sdk_release_version],
+      },
     )
   end
 
@@ -88,7 +91,7 @@ platform :ios do
     project = "rd2n-dev"
     bucket = "rssp-dev-cdn"
     source_file = "../#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{param[:file_name]}"
-    target_file = "gs://#{bucket}/sdk/ios/#{@sdk_map[:sdk_env]}/#{@sdk_map[:sdk_release_version]}/#{param[:file_name]}"
+    target_file = "gs://#{bucket}/sdk/ios/#{@sdk_map[:sdk_env]}/RUNA#{@sdk_map[:sdk_module_current]}/#{param[:file_name]}"
     
     puts("cp #{source_file} #{target_file}")
     if @sdk_map[:sdk_dryrun]
