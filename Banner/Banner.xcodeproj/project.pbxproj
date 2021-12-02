@@ -47,8 +47,6 @@
 		32F2596121E597E5001FD9C0 /* RUNABannerViewInner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F2595221E597E5001FD9C0 /* RUNABannerViewInner.m */; };
 		5404969226832DF60003CBC8 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RUNACore.framework */; };
 		54049695268421390003CBC8 /* RUNANativeAdAdapteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54049694268421390003CBC8 /* RUNANativeAdAdapteTests.m */; };
-		540496982684230B0003CBC8 /* mock.js in Resources */ = {isa = PBXBuildFile; fileRef = 54B83C052660693400A64540 /* mock.js */; };
-		540496992684230E0003CBC8 /* bid.json in Resources */ = {isa = PBXBuildFile; fileRef = 541D7459267095390036038F /* bid.json */; };
 		540496A62684298E0003CBC8 /* RUNANativeAdAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A693412237BBA800812DF9 /* RUNANativeAdAdapter.m */; };
 		540496A926842B110003CBC8 /* RUNANativeAdInnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 540496A826842B110003CBC8 /* RUNANativeAdInnerTests.m */; };
 		540496AB268455C30003CBC8 /* RUNANativeAdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 540496AA268455C30003CBC8 /* RUNANativeAdTests.m */; };
@@ -466,8 +464,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				540496982684230B0003CBC8 /* mock.js in Resources */,
-				540496992684230E0003CBC8 /* bid.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
