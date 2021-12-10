@@ -11,7 +11,7 @@
 #import "RUNABannerView.h"
 
 NS_ASSUME_NONNULL_BEGIN
-typedef UIView* (^RUNABannerCarouselViewItemDecorator)(RUNABannerView* view);
+typedef UIView* _Nonnull (^RUNABannerCarouselViewItemDecorator)(RUNABannerView* view);
 
 @interface RUNABannerCarouselView : UIView
 
