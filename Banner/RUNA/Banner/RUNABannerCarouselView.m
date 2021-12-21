@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
     RUNABannerCarouselViewContentScaleCustomWidth,
 };
 
-@interface RUNABannerCarouselView() <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface RUNABannerCarouselView() <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property(nonatomic) RUNABannerCarouselViewContentScale contentScale;
 @property(nonatomic) CGFloat itemWidth;
@@ -49,6 +49,10 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
         self.loadedBanners = [NSMutableArray array];
     }
     return self;
+}
+
+-(NSInteger)loadedItemCount {
+    return self.loadedBanners.count;
 }
 
 -(void) load {
@@ -111,6 +115,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewContentScale) {
     UICollectionViewFlowLayout* layout = [UICollectionViewFlowLayout new];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.minimumLineSpacing = self.itemSpacing;
+    layout.minimumInteritemSpacing = 0.0;
     layout.sectionInset = UIEdgeInsetsMake(0, self.contentEdgeInsets.left, 0, self.contentEdgeInsets.right);
     layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
 
@@ -161,7 +166,7 @@ CGFloat kInitialContentHeight = 300;
                 break;
             }
             default:
-                break;
+                return;
         }
 
         self.translatesAutoresizingMaskIntoConstraints = NO;
@@ -222,7 +227,7 @@ CGFloat kInitialContentHeight = 300;
 
     UIView* bannerContainerView;
     if (self.decorator) {
-        bannerContainerView = self.decorator(banner);
+        bannerContainerView = self.decorator(banner, indexPath.row);
         RUNADebug("[banner slider] decorated cell");
     } else if (!UIEdgeInsetsEqualToEdgeInsets(self.itemEdgeInsets, UIEdgeInsetsZero)) {
         UIView* marginView = [UIView new];
@@ -253,9 +258,9 @@ CGFloat kInitialContentHeight = 300;
     }
 
     [cell.contentView addSubview:bannerContainerView];
-    CGFloat width = self.collectionView.bounds.size.width - self.contentEdgeInsets.left - self.itemSpacing - MAX(self.contentEdgeInsets.right, self.minItemOverhangWidth);
+    CGFloat cellWidth = self.collectionView.bounds.size.width - self.contentEdgeInsets.left - self.itemSpacing - MAX(self.contentEdgeInsets.right, self.minItemOverhangWidth);
     [NSLayoutConstraint activateConstraints:@[
-        [cell.contentView.widthAnchor constraintEqualToConstant:width],
+        [cell.contentView.widthAnchor constraintEqualToConstant:cellWidth],
         [bannerContainerView.leadingAnchor constraintEqualToAnchor:cell.contentView.leadingAnchor],
         [bannerContainerView.topAnchor constraintEqualToAnchor:cell.contentView.topAnchor],
         [bannerContainerView.trailingAnchor constraintEqualToAnchor:cell.contentView.trailingAnchor],
@@ -270,7 +275,7 @@ CGFloat kInitialContentHeight = 300;
 -(void) updateMaxHeightConstant:(CGSize) intrinsicBannerSize {
     if (intrinsicBannerSize.height > self.maxContentHeight) {
         RUNADebug("[banner slider] collection view height updated to %f", intrinsicBannerSize.height);
-        self.maxContentHeight = intrinsicBannerSize.height;
+        self.maxContentHeight = intrinsicBannerSize.height + self.contentEdgeInsets.top + self.contentEdgeInsets.bottom;
         [self.heightConstraint setConstant:self.maxContentHeight];
     }
 }
