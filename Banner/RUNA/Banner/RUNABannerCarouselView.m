@@ -150,23 +150,16 @@ CGFloat kInitialContentHeight = 300;
         [self.superview removeConstraint:self.widthConstraint];
         [self removeConstraint:self.heightConstraint];
 
-        switch (self.contentScale) {
-            case RUNABannerCarouselViewContentScaleAspectFit: {
-                if (@available(ios 11.0, *)) {
-                    UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
-                    self.widthConstraint = [self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor];
-                } else {
-                    self.widthConstraint = [self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor];
-                }
-                if (self.maxContentHeight > 0) {
-                    self.heightConstraint = [self.heightAnchor constraintEqualToConstant:self.maxContentHeight];
-                } else {
-                    self.heightConstraint = [self.heightAnchor constraintEqualToConstant:kInitialContentHeight];
-                }
-                break;
-            }
-            default:
-                return;
+        if (@available(ios 11.0, *)) {
+            UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
+            self.widthConstraint = [self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor];
+        } else {
+            self.widthConstraint = [self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor];
+        }
+        if (self.maxContentHeight > 0) {
+            self.heightConstraint = [self.heightAnchor constraintEqualToConstant:self.maxContentHeight];
+        } else {
+            self.heightConstraint = [self.heightAnchor constraintEqualToConstant:kInitialContentHeight];
         }
 
         self.translatesAutoresizingMaskIntoConstraints = NO;
@@ -208,19 +201,11 @@ CGFloat kInitialContentHeight = 300;
     [super removeFromSuperview];
 }
 
-#pragma mark - UICollectionLayoutDelegate
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    CGFloat width = self.collectionView.bounds.size.width - self.contentEdgeInsets.left - self.itemSpacing - MAX(self.contentEdgeInsets.right, self.minItemOverhangWidth);
-//    RUNADebug("[banner slider] sizeForItemAtIndexPath row=%ld | height=%f", (long)indexPath.row, self.maxContentHeight);
-//    return CGSizeMake(width, self.maxContentHeight);
-//}
-
 #pragma mark UICollectionViewDataSource
 -(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     RUNADebug("[banner slider] cellForItemAtIndexPath row=%ld", (long)indexPath.row);
     RUNABannerCarouselItemViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    CGFloat adjustWidth = - self.contentEdgeInsets.left - self.itemSpacing - MAX(self.contentEdgeInsets.right, self.minItemOverhangWidth);
-    [cell config:collectionView withAdjustWidth:adjustWidth];
+    [cell config:self];
 
     RUNABannerView* banner = self.loadedBanners[indexPath.item];
 
@@ -301,43 +286,54 @@ CGFloat kInitialContentHeight = 300;
         [obj removeFromSuperview];
     }];
     [self.contentView removeConstraint:self.widthConstraint];
+    self->_widthConstraint = nil;
+
     [super prepareForReuse];
 }
 
--(void) config:(UICollectionView*) collectionView withAdjustWidth:(CGFloat) adjustWidth {
-    self.collectionView = collectionView;
-    self.adjustWidth = adjustWidth;
-
+-(void) config:(RUNABannerCarouselView*) carouselView {
+    self.carouselView = carouselView;
     self.backgroundColor = UIColor.clearColor;
-    CGFloat cellWidth = self.collectionView.bounds.size.width + self.adjustWidth;
-    self->_widthConstraint = [self.contentView.widthAnchor constraintEqualToConstant:cellWidth];
-    [self.contentView addConstraint:self.widthConstraint];
+
+    [self updateWidthConstraint];
 }
 
 -(void)layoutSubviews {
     RUNADebug("[banner slider] RUNABannerCarouselItemViewCell layoutSubviews");
-    if (self.collectionView) {
-        CGFloat cellWidth = self.collectionView.bounds.size.width + self.adjustWidth;
-        if (cellWidth != self.widthConstraint.constant) {
-            RUNADebug("[banner slider] RUNABannerCarouselItemViewCell update size");
-            [self.widthConstraint setConstant:cellWidth];
-        }
-    }
+    [self updateWidthConstraint];
     
     [super layoutSubviews];
 }
 
 -(void)layoutMarginsDidChange {
     RUNADebug("[banner slider] RUNABannerCarouselItemViewCell layoutMarginsDidChange");
-    if (self.collectionView) {
-        CGFloat cellWidth = self.collectionView.bounds.size.width + self.adjustWidth;
-        if (cellWidth != self.widthConstraint.constant) {
-            RUNADebug("[banner slider] RUNABannerCarouselItemViewCell update size");
-            [self.widthConstraint setConstant:cellWidth];
-        }
-    }
-
+    [self updateWidthConstraint];
     [super layoutMarginsDidChange];
+}
+
+-(void) updateWidthConstraint {
+    switch (self.carouselView.contentScale) {
+        case RUNABannerCarouselViewContentScaleAspectFit:
+            if (self.carouselView.collectionView) {
+                CGFloat adjustWidth = - self.carouselView.contentEdgeInsets.left - self.carouselView.itemSpacing - MAX(self.carouselView.contentEdgeInsets.right, self.carouselView.minItemOverhangWidth);
+                CGFloat cellWidth = self.carouselView.collectionView.bounds.size.width + adjustWidth;
+
+                if (self.widthConstraint) {
+                    if (cellWidth != self.widthConstraint.constant) {
+                        RUNADebug("[banner slider] RUNABannerCarouselItemViewCell update width %f for mode AspectFit", cellWidth);
+                        [self.widthConstraint setConstant:cellWidth];
+                    }
+                } else {
+                    RUNADebug("[banner slider] RUNABannerCarouselItemViewCell init width %f for mode AspectFit", cellWidth);
+                    self->_widthConstraint = [self.contentView.widthAnchor constraintEqualToConstant:cellWidth];
+                    [self.contentView addConstraint:self.widthConstraint];
+                }
+            }
+            break;
+
+        default:
+            break;
+    }
 }
 
 @end

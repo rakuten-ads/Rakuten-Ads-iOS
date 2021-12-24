@@ -23,11 +23,10 @@
 
 @interface RUNABannerCarouselItemViewCell : UICollectionViewCell
 
-@property(nonatomic, weak, nullable) UICollectionView* collectionView;
-@property(nonatomic) CGFloat adjustWidth;
+@property(nonatomic, weak, nullable) RUNABannerCarouselView* carouselView;
 @property(nonatomic, readonly, nonnull) NSLayoutConstraint* widthConstraint;
 
--(void) config:(UICollectionView*) collectionView withAdjustWidth:(CGFloat) adjustWidth;
+-(void) config:(RUNABannerCarouselView* _Nonnull) carouselView;
 
 @end
 
