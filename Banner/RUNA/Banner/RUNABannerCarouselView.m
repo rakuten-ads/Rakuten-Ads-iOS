@@ -325,7 +325,7 @@ CGFloat kInitialContentHeight = 300;
             }
             break;
         case RUNABannerCarouselViewItemScaleFixedWidth:
-            cellWidth = self.carouselView.indicatedItemWidth;
+            cellWidth = self.carouselView.itemWidth;
             break;
         default:
             return;
