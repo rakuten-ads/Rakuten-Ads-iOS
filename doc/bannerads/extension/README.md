@@ -54,7 +54,7 @@ var runaCustomTargeting: [String: [String]] {
 }
 ```
 
-#### Rz Cooke
+#### Rz Cookie
 
 - rz: `String`, non-null
 
