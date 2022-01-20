@@ -182,7 +182,7 @@ self.view.addSubview(banner)
 
 ```swift
 // 生存期間に管理されたオブジェクトを作成します
-private let adSession = RUNAAdSession
+private let adSession = RUNAAdSession()
 
 ...
 

@@ -181,7 +181,7 @@ self.view.addSubview(banner)
 
 ```swift
 // create an instance in the managed life cycle
-private let adSession = RUNAAdSession
+private let adSession = RUNAAdSession()
 
 ...
 
