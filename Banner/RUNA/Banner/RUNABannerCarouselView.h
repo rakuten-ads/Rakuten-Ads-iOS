@@ -68,7 +68,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewItemScale) {
 /**
  Load ad content with callback function to monitor events.
  */
--(void) loadWithEventHandler:(nullable void (^)(RUNABannerCarouselView* view, struct RUNABannerViewEvent event)) handler;
+-(void) loadWithEventHandler:(nullable void (^)(RUNABannerCarouselView* _Nonnull view, RUNABannerView* _Nullable banner, struct RUNABannerViewEvent event)) handler;
 
 @end
 

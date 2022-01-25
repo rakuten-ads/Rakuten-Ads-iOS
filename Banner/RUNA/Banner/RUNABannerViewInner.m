@@ -24,7 +24,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* webViewConstraints;
-@property (atomic, readonly) RUNABannerViewState state;
 @property (nonatomic) RUNAVideoState videoState;
 @property (nonatomic) RUNAMediaType mediaType;
 @property (atomic) BOOL hasSentMeasureInview;

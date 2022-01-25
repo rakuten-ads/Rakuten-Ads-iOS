@@ -77,7 +77,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
     dispatch_async(RUNADefines.sharedInstance.sharedQueue, ^{
         @try {
             NSMutableArray<RUNABannerImp*>* impList = [NSMutableArray array];
-            for (RUNABannerView* bannerView in self.bannerDict.allValues) {
+            for (RUNABannerView* bannerView in self.banners) {
                 if ([RUNAValid isEmptyString:bannerView.adSpotId]) {
                     NSLog(@"[RUNA] each banner requires adSpotId!");
                     self.error = RUNABannerViewErrorFatal;
@@ -156,6 +156,14 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
             [bannerView onBidResponseSuccess:@[bannerInfo] withSessionId:sessionId];
         } else {
             RUNADebug("unmatch impid %@", bannerInfo.impId);
+        }
+    }
+
+    for (RUNABannerView* bannerView in self.banners) {
+        if (bannerView.state == RUNA_ADVIEW_STATE_INIT) {
+            RUNADebug("bannerView %@ response not found", bannerView.imp.id);
+            NSHTTPURLResponse* emptyResponse = [[NSHTTPURLResponse alloc] initWithURL:[NSURL new] statusCode:kRUNABidResponseUnfilled HTTPVersion:nil headerFields:nil];
+            [bannerView onBidResponseFailed:emptyResponse error:nil];
         }
     }
 }

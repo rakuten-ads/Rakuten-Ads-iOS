@@ -50,7 +50,7 @@
     [self loadWithEventHandler:nil];
 }
 
--(void) loadWithEventHandler:(nullable void (^)(RUNABannerCarouselView* view, struct RUNABannerViewEvent event)) handler {
+-(void) loadWithEventHandler:(nullable void (^)(RUNABannerCarouselView* _Nonnull view, RUNABannerView * _Nullable banner, struct RUNABannerViewEvent event)) handler {
     if ((!self.adSpotIds || self.adSpotIds.count == 0)
         && (!self.itemViews || self.itemViews.count == 0)) {
         NSLog(@"[banner slider] adspotIds or items must not be empty");
@@ -86,16 +86,25 @@
                 [strongSelf applyContainerSize];
                 [strongSelf.collectionView reloadData];
                 [strongSelf layoutIfNeeded];
+                if (handler) {
+                    handler(strongSelf, nil, event);
+                }
+                break;
+            case RUNABannerViewEventTypeGroupFailed:
+                RUNALog("RUNABannerViewEventTypeGroupFailed");
+                if (handler) {
+                    handler(strongSelf, nil, event);
+                }
                 break;
             case RUNABannerViewEventTypeSucceeded:
                 [strongSelf updateMaxAspectRatio:banner];
                 [strongSelf.loadedBanners addObject:banner];
+                // fallthrough
             default:
+                if (handler) {
+                    handler(strongSelf, banner, event);
+                }
                 break;
-        }
-
-        if (handler) {
-            handler(strongSelf, event);
         }
     }];
 }
@@ -193,7 +202,7 @@ CGFloat kInitialContentHeight = 300;
     [super removeFromSuperview];
 }
 
-#pragma mark UICollectionViewDataSource
+#pragma mark - UICollectionViewDataSource
 -(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     RUNADebug("[banner slider] cellForItemAtIndexPath row=%ld", (long)indexPath.row);
     RUNABannerCarouselItemViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
@@ -264,11 +273,31 @@ CGFloat kInitialContentHeight = 300;
     return 1;
 }
 
-#pragma mark UICollectionViewDelegate
+#pragma mark - UICollectionViewDelegate
 -(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     RUNADebug("[banner slider] didEndDisplayingCell index %ld", (long)indexPath.row);
     self.pageCtrl.currentPage = indexPath.item;
 }
+
+#pragma mark - assistance
+
+-(NSDictionary *) descriptionDetail {
+    return @{
+        @"adspotIds" : self.adSpotIds ?: NSNull.null,
+        @"itemScaleMode" : self.itemScaleMode == RUNABannerCarouselViewItemScaleAspectFit ? @"aspectFit" : @"fixedWidth",
+        @"contentEdge" : @(self.contentEdgeInsets),
+        @"itemSpacing" : @(self.itemSpacing),
+        @"minItemOverhangWidth" : @(self.minItemOverhangWidth),
+        @"itemEdge" : @(self.itemEdgeInsets),
+        @"itemWidth" : @(self.itemWidth),
+        @"itemCount" : @(self.itemCount)
+    };
+}
+
+-(NSString *)debugDescription {
+    return [NSString stringWithFormat:@"%@", self.descriptionDetail];
+}
+
 @end
 
 
