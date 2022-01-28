@@ -96,14 +96,17 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
                     if (strongSelf.eventHandler) {
                         strongSelf.eventHandler(strongSelf, view, event);
                     }
-                    strongSelf.loadedBannerCounter++;
-                    RUNADebug("banner (%d/%lu) loaded", strongSelf.loadedBannerCounter, (unsigned long)strongSelf.banners.count);
-                    if (strongSelf.loadedBannerCounter == strongSelf.banners.count) {
-                        RUNADebug("banner group finished");
-                        struct RUNABannerViewEvent groupFinishedEvent = { RUNABannerViewEventTypeGroupFinished, RUNABannerViewErrorNone };
-                        strongSelf.state = RUNA_ADVIEW_STATE_SHOWED;
-                        if (strongSelf.eventHandler) {
-                            strongSelf.eventHandler(strongSelf, nil, groupFinishedEvent);
+                    if (event.eventType == RUNABannerViewEventTypeSucceeded
+                        || event.eventType == RUNABannerViewEventTypeFailed) {
+                        strongSelf.loadedBannerCounter++;
+                        RUNADebug("banner (%d/%lu) loaded", strongSelf.loadedBannerCounter, (unsigned long)strongSelf.banners.count);
+                        if (strongSelf.loadedBannerCounter == strongSelf.banners.count) {
+                            RUNADebug("banner group finished");
+                            struct RUNABannerViewEvent groupFinishedEvent = { RUNABannerViewEventTypeGroupFinished, RUNABannerViewErrorNone };
+                            strongSelf.state = RUNA_ADVIEW_STATE_SHOWED;
+                            if (strongSelf.eventHandler) {
+                                strongSelf.eventHandler(strongSelf, nil, groupFinishedEvent);
+                            }
                         }
                     }
                 };
