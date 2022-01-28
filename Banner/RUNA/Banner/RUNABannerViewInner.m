@@ -117,6 +117,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
             bannerAdapter.impList = @[self.imp];
             bannerAdapter.appContent = self.appContent;
             bannerAdapter.userExt = self.userExt;
+            bannerAdapter.userId = self.userId;
             bannerAdapter.geo = self.geo;
             bannerAdapter.responseConsumer = self;
             bannerAdapter.blockAdList = self.session.blockAdList;

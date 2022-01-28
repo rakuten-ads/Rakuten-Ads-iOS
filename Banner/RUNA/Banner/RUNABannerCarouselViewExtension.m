@@ -16,4 +16,8 @@
     [self.group setRz:rz];
 }
 
+-(void)setRp:(NSString *)rp {
+    [self.group setRp:rp];
+}
+
 @end

@@ -121,6 +121,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
             RUNABannerAdapter* bannerAdapter = [RUNABannerAdapter new];
             bannerAdapter.impList = impList;
             bannerAdapter.userExt = self.userExt;
+            bannerAdapter.userId = self.userId;
             bannerAdapter.responseConsumer = self;
 
             RUNAOpenRTBRequest* request = [RUNAOpenRTBRequest new];

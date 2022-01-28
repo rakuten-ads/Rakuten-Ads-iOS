@@ -57,12 +57,14 @@
 }
 
 -(NSDictionary *)getUser {
-    if (self.userExt) {
-        return @{
-            @"ext" : self.userExt
-        };
+    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+    if (self.userId) {
+        dict[@"id"] = self.userId;
     }
-    return @{};
+    if (self.userExt) {
+        dict[@"ext"] = self.userExt;
+    }
+    return dict;
 }
 
 - (NSDictionary *)getGeo {

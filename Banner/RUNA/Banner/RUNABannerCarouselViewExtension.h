@@ -18,6 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(void) setRz:(NSString*) rz;
 
+/**
+ set Rp value
+ */
+-(void) setRp:(NSString*) rp;
+
 @end
 
 NS_ASSUME_NONNULL_END

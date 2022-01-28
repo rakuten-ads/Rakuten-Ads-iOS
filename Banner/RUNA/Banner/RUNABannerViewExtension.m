@@ -50,6 +50,12 @@
     }
 }
 
+-(void)setRp:(NSString *)rp {
+    if ([RUNAValid isNotEmptyString:rp]) {
+        self.userId = [rp copy];
+    }
+}
+
 -(BOOL)isValidLat:(double)lat {
     if (lat < -90.0 || lat > 90.0) {
         NSLog(@"[RUNA] illegal latitude value, must be from -90.0 to +90.0, where nagative is south!");
