@@ -230,8 +230,6 @@
 -(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     RUNADebug("[banner slider] cellForItemAtIndexPath row=%ld", indexPath.item);
     RUNABannerCarouselItemViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    [cell config:self];
-
     RUNABannerView* banner = self.loadedBanners[indexPath.item];
 
     UIView* bannerContainerView;
@@ -244,9 +242,8 @@
         [marginView addSubview:banner];
         [NSLayoutConstraint activateConstraints:@[
             [banner.leadingAnchor constraintEqualToAnchor:marginView.leadingAnchor],
-            [banner.topAnchor constraintEqualToAnchor:marginView.topAnchor],
             [marginView.trailingAnchor constraintEqualToAnchor:banner.trailingAnchor],
-            [marginView.bottomAnchor constraintEqualToAnchor:banner.bottomAnchor],
+            [banner.centerYAnchor constraintEqualToAnchor:marginView.centerYAnchor],
         ]];
 
         bannerContainerView = [UIView new];
@@ -275,6 +272,7 @@
         [cell.contentView.bottomAnchor constraintEqualToAnchor:bannerContainerView.bottomAnchor],
     ]];
 
+    [cell config:self];
     return cell;
 }
 
@@ -301,9 +299,8 @@
     self.pageCtrl.currentPage = indexPath.item;
 }
 
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)calculateCellWidth:(UICollectionView * _Nonnull)collectionView {
     CGSize collectionViewIntrinsicSize = collectionView.frame.size;
-    RUNADebug("[banner slider] sizeForItemAtIndexPath collectionView width=%f", collectionViewIntrinsicSize.width);
     CGFloat cellWidth = 0.0;
     switch (self.itemScaleMode) {
         case RUNABannerCarouselViewItemScaleAspectFit: {
@@ -320,7 +317,10 @@
         default:
             break;
     }
+    return cellWidth;
+}
 
+- (CGFloat)calculateCellHeight:(CGFloat)cellWidth {
     CGFloat cellHeight = (cellWidth - self.itemEdgeInsets.left - self.itemEdgeInsets.right) * self.maxAspectRatio  + self.itemEdgeInsets.top + self.itemEdgeInsets.bottom + 0.5;
     if (cellHeight > self.maxContentHeight) {
         self.maxContentHeight = cellHeight;
@@ -328,6 +328,15 @@
     } else {
         cellHeight = self.maxContentHeight;
     }
+    return cellHeight;
+}
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGSize collectionViewIntrinsicSize = collectionView.frame.size;
+    RUNADebug("[banner slider] sizeForItemAtIndexPath %ld collectionView width=%f", indexPath.item, collectionViewIntrinsicSize.width);
+
+    CGFloat cellWidth = [self calculateCellWidth:collectionView];
+    CGFloat cellHeight = [self calculateCellHeight:cellWidth];
 
     RUNADebug("[banner slider] sizeForItem index %ld size(%f, %f)", indexPath.item, cellWidth, cellHeight);
     return CGSizeMake(cellWidth, cellHeight);
@@ -373,22 +382,7 @@
     self.backgroundColor = UIColor.clearColor;
 
     if (self.carouselView.decorator) {
-        CGFloat cellWidth = 0.0;
-        switch (self.carouselView.itemScaleMode) {
-            case RUNABannerCarouselViewItemScaleAspectFit: {
-                CGFloat adjustWidth =
-                - self.carouselView.contentEdgeInsets.left
-                - self.carouselView.itemSpacing
-                - MAX(self.carouselView.contentEdgeInsets.right, self.carouselView.itemCount > 1 ? self.carouselView.minItemOverhangWidth : 0);
-                cellWidth = carouselView.collectionView.frame.size.width + adjustWidth;
-            }
-                break;
-            case RUNABannerCarouselViewItemScaleFixedWidth:
-                cellWidth = self.carouselView.itemWidth;
-                break;
-            default:
-                break;
-        }
+        CGFloat cellWidth = [self.carouselView calculateCellWidth:carouselView.collectionView];
         RUNADebug("[banner slider] RUNABannerCarouselItemViewCell re-init width %f for decorator", cellWidth);
         self->_widthConstraint = [self.contentView.widthAnchor constraintEqualToConstant:cellWidth];
         self.widthConstraint.priority = UILayoutPriorityDefaultHigh;
