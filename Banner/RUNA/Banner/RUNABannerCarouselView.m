@@ -193,7 +193,7 @@
     RUNADebug("[banner slider] carousel view layoutSubviews");
     if (self.maxContentHeight > 0 && self.heightConstraint.constant != self.maxContentHeight) {
         RUNADebug("[banner slider] carousel view height updated to %f", self.maxContentHeight);
-        self.maxContentHeight = ceil(self.maxContentHeight);
+        self.maxContentHeight = ceil(self.maxContentHeight); // ceiling for system tolerence
         [self.heightConstraint setConstant:self.maxContentHeight];
         [self setNeedsLayout];
     }
@@ -204,7 +204,7 @@
     RUNADebug("[banner slider] carousel view layoutMarginsDidChange");
     if (self.maxContentHeight > 0 && self.heightConstraint.constant != self.maxContentHeight) {
         RUNADebug("[banner slider] carousel view height updated to %f", self.maxContentHeight);
-        self.maxContentHeight = ceil(self.maxContentHeight);
+        self.maxContentHeight = ceil(self.maxContentHeight); // ceiling for system tolerence
         [self.heightConstraint setConstant:self.maxContentHeight];
         [self setNeedsLayout];
     }
@@ -276,7 +276,7 @@
     return cell;
 }
 
--(void) updateMaxHeightConstant:(CGSize) size {
+-(void) adjustInstrinsicMaxHeight:(CGSize) size {
     CGFloat contentHeight = size.height + self.contentEdgeInsets.top + self.contentEdgeInsets.bottom;
     if (contentHeight > self.maxContentHeight) {
         RUNADebug("[banner slider] collection view height updated to %f", contentHeight);
@@ -392,7 +392,7 @@
 
 -(void)layoutSubviews {
     CGSize cellContentIntrinsicSize = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    [self.carouselView updateMaxHeightConstant:cellContentIntrinsicSize];
+    [self.carouselView adjustInstrinsicMaxHeight:cellContentIntrinsicSize];
 
     RUNADebug("[banner slider] RUNABannerCarouselItemViewCell layoutSubviews size->%@", NSStringFromCGSize(cellContentIntrinsicSize));
 
@@ -401,7 +401,7 @@
 
 -(void)layoutMarginsDidChange {
     CGSize cellContentIntrinsicSize = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    [self.carouselView updateMaxHeightConstant:cellContentIntrinsicSize];
+    [self.carouselView adjustInstrinsicMaxHeight:cellContentIntrinsicSize];
 
     RUNADebug("[banner slider] RUNABannerCarouselItemViewCell layoutMarginsDidChange size->%@", NSStringFromCGSize(cellContentIntrinsicSize));
 
