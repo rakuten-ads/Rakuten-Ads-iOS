@@ -19,7 +19,8 @@ typedef void (^RUNAViewabilityCompletionHandler)(UIView* view);
 
 -(void) registerTargetView:(UIView*) view withViewImpURL:(nullable NSString*) url completionHandler:(nullable RUNAViewabilityCompletionHandler) handler;
 
--(void) unregsiterTargetView:(UIView*) view;
+-(void) unregsiterTargetView:(UIView*) view DEPRECATED_MSG_ATTRIBUTE("Use -unregisterTargetView:");
+-(void) unregisterTargetView:(UIView*) view;
 
 @end
 
