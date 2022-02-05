@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) setRz:(NSString*) rz;
 
 /**
- set Rp value
+ set RpCookie
  */
 -(void) setRp:(NSString*) rp;
 
