@@ -131,6 +131,10 @@
 }
 
 -(void)unregsiterTargetView:(UIView *)view {
+    [self unregisterTargetView:view];
+}
+
+-(void)unregisterTargetView:(UIView *)view {
     NSString* identifier = [NSString stringWithFormat:@"%lu", (unsigned long)view.hash];
     [self.targetDict[identifier].measurer finishMeasurement];
     [self.targetDict removeObjectForKey: identifier];

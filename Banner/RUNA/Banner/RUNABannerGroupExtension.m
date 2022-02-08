@@ -20,4 +20,10 @@
     }
 }
 
+-(void)setRp:(NSString *)rp {
+    if ([RUNAValid isNotEmptyString:rp]) {
+        self.userId = [rp copy];
+    }
+}
+
 @end

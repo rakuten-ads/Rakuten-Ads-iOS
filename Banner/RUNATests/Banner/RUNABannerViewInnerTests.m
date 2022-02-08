@@ -19,8 +19,8 @@ NSString *const kDummyAdspotId = @"99999";
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) RUNABannerViewError error;
-@property (nonatomic, readonly) RUNAVisiablity videoState;
-@property (nonatomic, readonly) RUNAMediaType mediaType;
+@property (nonatomic, readonly) RUNAVideoState videoState;
+@property (nonatomic) RUNAMediaType mediaType;
 - (void)setInitState;
 - (BOOL)isLoading;
 - (void)applyAdView;
@@ -50,7 +50,7 @@ NSString *const kDummyAdspotId = @"99999";
     XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_INIT);
     XCTAssertEqual(bannerView.error, RUNABannerViewErrorNone);
     XCTAssertEqual(bannerView.videoState, RUNA_VIDEO_STATE_UNKNOWN);
-    XCTAssertEqual(bannerView.mediaType, RUNA_MEDIA_TYPE_UNKOWN);
+    XCTAssertEqual(bannerView.mediaType, RUNA_MEDIA_TYPE_BANNER);
     XCTAssertNotNil(bannerView.measurers);
     XCTAssertNotNil(bannerView.logAdInfo);
     XCTAssertNotNil(bannerView.logUserInfo);
@@ -402,7 +402,7 @@ NSString *const kDummyAdspotId = @"99999";
     expectation.expectedFulfillmentCount = 3;
 
     // Case: InitialStatus
-    XCTAssertEqual(actual.mediaType, RUNA_MEDIA_TYPE_UNKOWN);
+    XCTAssertEqual(actual.mediaType, RUNA_MEDIA_TYPE_BANNER);
     XCTAssertEqual(actual.videoState, RUNA_VIDEO_STATE_UNKNOWN);
 
     // Case: PlayVideo
