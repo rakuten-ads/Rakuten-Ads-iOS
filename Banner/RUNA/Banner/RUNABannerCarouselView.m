@@ -228,14 +228,14 @@
 
 #pragma mark - UICollectionViewDataSource
 -(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    RUNADebug("[banner slider] cellForItemAtIndexPath row=%ld", indexPath.item);
+    RUNADebug("[banner slider] cellForItemAtIndexPath row=%ld", (long)indexPath.item);
     RUNABannerCarouselItemViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     RUNABannerView* banner = self.loadedBanners[indexPath.item];
 
     UIView* bannerContainerView;
     if (self.decorator) {
         bannerContainerView = self.decorator(banner, indexPath.item);
-        RUNADebug("[banner slider] decorated cell(%ld)", indexPath.item);
+        RUNADebug("[banner slider] decorated cell(%ld)", (long)indexPath.item);
     } else if (!UIEdgeInsetsEqualToEdgeInsets(self.itemEdgeInsets, UIEdgeInsetsZero)) {
         UIView* marginView = [UIView new];
         marginView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -257,10 +257,10 @@
             [bannerContainerView.layoutMarginsGuide.trailingAnchor constraintEqualToAnchor:marginView.trailingAnchor],
             [bannerContainerView.layoutMarginsGuide.bottomAnchor constraintEqualToAnchor:marginView.bottomAnchor],
         ]];
-        RUNADebug("[banner slider] item cell(%ld) with edges", indexPath.item);
+        RUNADebug("[banner slider] item cell(%ld) with edges", (long)indexPath.item);
     } else {
         bannerContainerView = banner;
-        RUNADebug("[banner slider] default item cell(%ld)", indexPath.item);
+        RUNADebug("[banner slider] default item cell(%ld)", (long)indexPath.item);
     }
 
     [cell.contentView addSubview:bannerContainerView];
@@ -295,7 +295,7 @@
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 -(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    RUNADebug("[banner slider] didEndDisplayingCell index %ld", indexPath.item);
+    RUNADebug("[banner slider] didEndDisplayingCell index %ld", (long)indexPath.item);
     self.pageCtrl.currentPage = indexPath.item;
 }
 
@@ -333,12 +333,12 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGSize collectionViewIntrinsicSize = collectionView.frame.size;
-    RUNADebug("[banner slider] sizeForItemAtIndexPath %ld collectionView width=%f", indexPath.item, collectionViewIntrinsicSize.width);
+    RUNADebug("[banner slider] sizeForItemAtIndexPath %ld collectionView width=%f", (long)indexPath.item, collectionViewIntrinsicSize.width);
 
     CGFloat cellWidth = [self calculateCellWidth:collectionView];
     CGFloat cellHeight = [self calculateCellHeight:cellWidth];
 
-    RUNADebug("[banner slider] sizeForItem index %ld size(%f, %f)", indexPath.item, cellWidth, cellHeight);
+    RUNADebug("[banner slider] sizeForItem index %ld size(%f, %f)", (long)indexPath.item, cellWidth, cellHeight);
     return CGSizeMake(cellWidth, cellHeight);
 }
 
