@@ -145,6 +145,9 @@
         @"lmt": idfaInfo.isTrackingEnabled ? @0 : @1,
         @"ext" : @{
                 @"sdk_version": defines.sdkBundleShortVersionString ?: NSNull.null,
+                @"sdk_versions": @{
+                    @"ios": [self getSdkVersions]
+                },
         },
         @"connectiontype" : @(deviceInfo.connectionMethod)
         // @"carrier"
@@ -172,6 +175,47 @@
         default:
             return [NSNumber numberWithInt:7]; // Set Top BOx
     }
+}
+
+
+NSString* kModuleNameCore = @"runa_core";
+NSString* kModuleNameBanner = @"runa_banner";
+NSString* kModuleNameOmadapter = @"runa_om_adapter";
+NSString* kModuleClassBannerView = @"RUNABannerView";
+NSString* kModuleClassOmadapter = @"RUNAOpenMeasurer";
+-(NSArray*) getSdkVersions {
+    NSMutableDictionary<NSString*, NSString*>* dict = [NSMutableDictionary dictionary];
+    [dict setObject:RUNADefines.sharedInstance.sdkBundleShortVersionString forKey:kModuleNameCore];
+
+    {
+        Class bannerClass = NSClassFromString(kModuleClassBannerView);
+        if (bannerClass && [bannerClass respondsToSelector:@selector(versionString)]) {
+            NSString* bannerSDKVersion = [bannerClass performSelector:@selector(versionString)];
+            if (bannerSDKVersion) {
+                [dict setObject:bannerSDKVersion forKey:kModuleNameBanner];
+            }
+        }
+    }
+
+    {
+        Class omClass = NSClassFromString(kModuleClassOmadapter);
+        if (omClass && [omClass respondsToSelector:@selector(versionString)]) {
+            NSString* omadapterSDKVersion = [omClass performSelector:@selector(versionString)];
+            if (omadapterSDKVersion) {
+                [dict setObject:omadapterSDKVersion forKey:kModuleNameOmadapter];
+            }
+        }
+    }
+
+    NSMutableArray* versionList = [NSMutableArray array];
+    [dict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
+        [versionList addObject:@{
+            @"module_name" : key,
+            @"version" : obj,
+        }];
+    }];
+
+    return versionList;
 }
 
 @end
