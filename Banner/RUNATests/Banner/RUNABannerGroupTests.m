@@ -204,7 +204,21 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
         }];
         [self waitForExpectationsWithTimeout:5.0 handler:nil];
     }
+    {
+        // Case: Empty Banner
+        [group setBanners:@[[RUNABannerView new]]];
+        XCTestExpectation *expectation = [self expectationWithDescription:@"onBidResponseSuccess"];
+        [self execute:expectation delayTime:3.0 targetMethod:^{
+            [group onBidResponseSuccess:@[] withSessionId:@"dummyId"];
+        } assertionBlock:^{
+            XCTAssertEqual(group.banners.firstObject.state, RUNA_ADVIEW_STATE_FAILED);
+            XCTAssertEqual(group.state, RUNA_ADVIEW_STATE_LOADED);
+        }];
+        [self waitForExpectationsWithTimeout:5.0 handler:nil];
+    }
 }
+
+
 
 - (void)testTriggerFailure {
     {
@@ -305,6 +319,13 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
     [group setRz:@"rzValue"];
     XCTAssertNotNil(group.userExt);
     XCTAssertEqualObjects(group.userExt[@"rz"], @"rzValue");
+}
+
+- (void)testSetRp {
+    RUNABannerGroup *group = [RUNABannerGroup new];
+    [group setRp:@"rpValue"];
+    XCTAssertNotNil(group.userId);
+    XCTAssertEqualObjects(group.userId, @"rpValue");
 }
 
 @end

@@ -54,6 +54,9 @@
     if ((!self.adSpotIds || self.adSpotIds.count == 0)
         && (!self.itemViews || self.itemViews.count == 0)) {
         NSLog(@"[banner slider] adspotIds or items must not be empty");
+#if DEBUG
+        @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotIds is empty" userInfo:nil];
+#endif
         return;
     }
 
@@ -83,7 +86,7 @@
             case RUNABannerViewEventTypeGroupFinished:
                 RUNALog("[banner slider] RUNABannerViewEventTypeGroupFinished");
                 [strongSelf configCollectionView];
-                [strongSelf configIndicator];
+//                [strongSelf configIndicator];
                 [strongSelf applyContainerSize];
                 if (handler) {
                     handler(strongSelf, nil, event);
@@ -171,23 +174,23 @@
     }
 }
 
--(void) configIndicator {
-    if (self.indicatorEnabled && self.loadedBanners.count > 0) {
-        RUNADebug("[banner slider] configIndicator");
-
-        UIPageControl* pageCtrl = [UIPageControl new];
-        pageCtrl.numberOfPages = self.loadedBanners.count;
-        pageCtrl.currentPage = 0;
-        pageCtrl.translatesAutoresizingMaskIntoConstraints = NO;
-        pageCtrl.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-        [self addSubview:pageCtrl];
-        [self addConstraints:@[
-            [pageCtrl.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
-            [pageCtrl.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-5.0],
-        ]];
-        self.pageCtrl = pageCtrl;
-    }
-}
+//-(void) configIndicator {
+//    if (self.indicatorEnabled && self.loadedBanners.count > 0) {
+//        RUNADebug("[banner slider] configIndicator");
+//
+//        UIPageControl* pageCtrl = [UIPageControl new];
+//        pageCtrl.numberOfPages = self.loadedBanners.count;
+//        pageCtrl.currentPage = 0;
+//        pageCtrl.translatesAutoresizingMaskIntoConstraints = NO;
+//        pageCtrl.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+//        [self addSubview:pageCtrl];
+//        [self addConstraints:@[
+//            [pageCtrl.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
+//            [pageCtrl.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-5.0],
+//        ]];
+//        self.pageCtrl = pageCtrl;
+//    }
+//}
 
 -(void)layoutSubviews {
     RUNADebug("[banner slider] carousel view layoutSubviews");

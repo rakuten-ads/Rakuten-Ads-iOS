@@ -14,7 +14,6 @@ const CGFloat kBannerWidth = 200.f;
 
 @interface RUNABannerView (Spy)
 - (BOOL)measureInview;
-- (BOOL)sendMeasureImp;
 - (BOOL)measureImp;
 - (float)getVisibility:(UIWindow *)window
     rootViewController:(UIViewController *)rootViewController;
@@ -50,12 +49,6 @@ const CGFloat kBannerWidth = 200.f;
     // Case: banner.inviewURL is nil
     RUNABannerView *bannerView = [RUNABannerView new];
     XCTAssertTrue([bannerView measureInview]);
-}
-
-- (void)testSendMeasureImp {
-    // Case: banner.inviewURL is nil
-    RUNABannerView *bannerView = [RUNABannerView new];
-    XCTAssertTrue([bannerView sendMeasureImp]);
 }
 
 - (void)testMeasureImp {
