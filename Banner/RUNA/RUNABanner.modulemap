@@ -7,7 +7,6 @@ framework module RUNABanner {
     module Extension {
         header "RUNABannerViewExtension.h"
         header "RUNABannerGroupExtension.h"
-        header "RUNABannerCarouselViewExtension.h"
         export *
     }
 }
