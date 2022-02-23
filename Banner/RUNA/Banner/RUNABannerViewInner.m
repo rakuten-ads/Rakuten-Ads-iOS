@@ -40,10 +40,16 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
         [self setInitState];
         self->_imp = [RUNABannerImp new];
         self.imp.json = [NSMutableDictionary dictionary];
-        if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
-            && !self.openMeasurementDisabled) {
-            self.imp.banner = @{ @"api": @[@(7)] };
-        }
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self setInitState];
+        self->_imp = [RUNABannerImp new];
+        self.imp.json = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -111,6 +117,11 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
                 NSLog(@"[RUNA] require adSpotId!");
                 self.error = RUNABannerViewErrorFatal;
                 @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
+            }
+
+            if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
+                && !self.openMeasurementDisabled) {
+                self.imp.banner = @{ @"api": @[@(7)] };
             }
 
             RUNABannerAdapter* bannerAdapter = [RUNABannerAdapter new];
