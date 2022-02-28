@@ -25,6 +25,15 @@ RUNA SDKは一回複数異なる広告をリクエストするため`RUNABannerG
 bannerGroup.setRz("RzCookie")
 ```
 
+#### Rp Cooke
+
+- rp: `String`, non-null
+
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+```Swift
+bannerView.setRp("RpCookie")
+```
+
 ## サンプル
 ```Swift
 // ロード完成したバナーの参照

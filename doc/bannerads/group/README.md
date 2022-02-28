@@ -25,6 +25,15 @@ RUNA SDK provides `RUNABannerGroup` to retrive a bunch of distinct banners once 
 bannerGroup.setRz("RzCookie")
 ```
 
+#### Rp Cooke
+
+- rp: `String`, non-null
+
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+```Swift
+bannerView.setRp("RpCookie")
+```
+
 ## Sample
 ```Swift
 // reference to keep succeed banners

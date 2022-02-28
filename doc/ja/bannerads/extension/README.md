@@ -63,6 +63,15 @@ var runaCustomTargeting: [String: [String]] {
 bannerView.setRz("RzCookie")
 ```
 
+#### Rp Cooke
+
+- rp: `String`, non-null
+
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+```Swift
+bannerView.setRp("RpCookie")
+```
+
 #### 地理情報
 
 - latitude: `double`, 値は -90.0 から +90.0 まで, マイナス値は南を表す
