@@ -36,6 +36,11 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) setRz:(NSString*) rz;
 
 /**
+ set RpCookie
+ */
+-(void) setRp:(NSString*) rp;
+
+/**
  set location with latitude and longitude values.
  @param lat double, from -90.0 to +90.0, where negative is south
  @param lon double, from -180.0 to +180.0, where negative is west

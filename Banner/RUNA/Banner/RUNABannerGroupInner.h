@@ -13,12 +13,14 @@
 #import "RUNABannerGroup.h"
 #endif
 
+#import "RUNABannerViewInner.h"
+
 @interface RUNABannerGroup()
 
-/**
- include rzCookie
- */
-@property (nonatomic, nullable) NSDictionary* userExt;
+@property (atomic, readonly) RUNABannerViewState state;
+
+@property (nonatomic, nullable) NSDictionary* userExt; /* include rzCookie */
+@property (nonatomic, nullable) NSString* userId; /* RpCookie */
 
 
 @end

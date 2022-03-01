@@ -18,7 +18,7 @@
     self = [self initWithFrame:CGRectZero];
     if (self) {
         NSMutableDictionary *bidData = [[NSMutableDictionary alloc]initWithDictionary:[RUNABannerView dummyBidData]];
-        bidData[@"adm"] = [self adm:type];
+        bidData[@"adm"] = [RUNABannerView adm:type];
         RUNABanner *banner = [RUNABanner new];
         [banner parse:(NSDictionary*)bidData];
         [self setValue:banner forKey:@"banner"];
@@ -38,8 +38,8 @@
     return self;
 }
 
-- (NSString *)adm:(NSString *)type {
-    NSString *path = [[NSBundle bundleForClass:[self class]]pathForResource:@"mock" ofType:@"js"];
++ (NSString *)adm:(NSString *)type {
+    NSString *path = [[NSBundle bundleWithIdentifier:@"com.rakuten.runa.sdk.RUNATests"] pathForResource:@"mock" ofType:@"js"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSString *script = [[NSString alloc]initWithBytes:[data bytes]
                                                length:[data length]
@@ -49,7 +49,7 @@
 }
 
 + (NSDictionary *)dummyBidData {
-    NSString *path = [[NSBundle bundleForClass:[self class]]pathForResource:@"bid" ofType:@"json"];
+    NSString *path = [[NSBundle bundleWithIdentifier:@"com.rakuten.runa.sdk.RUNATests"] pathForResource:@"bid" ofType:@"json"];
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];;
     return dic;

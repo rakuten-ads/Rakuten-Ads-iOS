@@ -19,8 +19,8 @@ NSString *const kDummyAdspotId = @"99999";
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) RUNABannerViewError error;
-@property (nonatomic, readonly) RUNAVisiablity videoState;
-@property (nonatomic, readonly) RUNAMediaType mediaType;
+@property (nonatomic, readonly) RUNAVideoState videoState;
+@property (nonatomic) RUNAMediaType mediaType;
 - (void)setInitState;
 - (BOOL)isLoading;
 - (void)applyAdView;
@@ -30,7 +30,6 @@ NSString *const kDummyAdspotId = @"99999";
 - (BOOL)isFinished;
 - (void)triggerSuccess;
 - (void)triggerFailure;
-- (void)didMeasurementInView:(BOOL)isMeasuredInview;
 - (void)playVideo;
 - (void)pauseVideo;
 @end
@@ -50,7 +49,7 @@ NSString *const kDummyAdspotId = @"99999";
     XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_INIT);
     XCTAssertEqual(bannerView.error, RUNABannerViewErrorNone);
     XCTAssertEqual(bannerView.videoState, RUNA_VIDEO_STATE_UNKNOWN);
-    XCTAssertEqual(bannerView.mediaType, RUNA_MEDIA_TYPE_UNKOWN);
+    XCTAssertEqual(bannerView.mediaType, RUNA_MEDIA_TYPE_BANNER);
     XCTAssertNotNil(bannerView.measurers);
     XCTAssertNotNil(bannerView.logAdInfo);
     XCTAssertNotNil(bannerView.logUserInfo);
@@ -87,9 +86,23 @@ NSString *const kDummyAdspotId = @"99999";
     {
         XCTAssertNoThrow([bannerView loadWithEventHandler:^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
             XCTAssertEqual(event.eventType, RUNABannerViewEventTypeFailed);
+            XCTAssertEqual(event.error, RUNABannerViewErrorUnfilled);
             XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_FAILED);
         }]);
     }
+}
+
+-(void)testLoadWithEmptyAdspotId {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"async load test"];
+    RUNABannerView *bannerView = [RUNABannerView new];
+    [bannerView loadWithEventHandler:^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
+        XCTAssertEqual(event.eventType, RUNABannerViewEventTypeFailed);
+        XCTAssertEqual(event.error, RUNABannerViewErrorFatal);
+        XCTAssertEqual(view.state, RUNA_ADVIEW_STATE_FAILED);
+        [expectation fulfill];
+    }];
+
+    [self waitForExpectationsWithTimeout:5 handler:nil];
 }
 
 - (void)testSetSize {
@@ -158,6 +171,14 @@ NSString *const kDummyAdspotId = @"99999";
     }];
     
     [self waitForExpectationsWithTimeout:10.0 handler:nil];
+}
+
+- (void)testSetProperties {
+    RUNABannerView* bannerView = [RUNABannerView new];
+    bannerView.properties = @{
+        @"env" : @"test"
+    };
+    XCTAssertEqual(bannerView.imp.json[@"env"], @"test");
 }
 
 - (void)testApplyPositionWithParentView {
@@ -327,20 +348,6 @@ NSString *const kDummyAdspotId = @"99999";
 
 # pragma mark - Video Tests
 
-// Test to confirm the passage of method for coverage
-- (void)testDidMeasurementInView {
-    {
-        RUNABannerView *bannerView = [RUNABannerView new];
-        bannerView.mediaType = RUNA_MEDIA_TYPE_BANNER;
-        XCTAssertNoThrow([bannerView didMeasurementInView:YES]);
-    }
-    {
-        RUNABannerView *bannerView = [RUNABannerView new];
-        bannerView.mediaType = RUNA_MEDIA_TYPE_VIDEO;
-        XCTAssertNoThrow([bannerView didMeasurementInView:YES]);
-        XCTAssertNoThrow([bannerView didMeasurementInView:NO]);
-    }
-}
 
 // Set a longer waiting time due to concerns about the specifications of the virtual environment
 - (void)testScriptMessageEvent {
@@ -402,7 +409,7 @@ NSString *const kDummyAdspotId = @"99999";
     expectation.expectedFulfillmentCount = 3;
 
     // Case: InitialStatus
-    XCTAssertEqual(actual.mediaType, RUNA_MEDIA_TYPE_UNKOWN);
+    XCTAssertEqual(actual.mediaType, RUNA_MEDIA_TYPE_BANNER);
     XCTAssertEqual(actual.videoState, RUNA_VIDEO_STATE_UNKNOWN);
 
     // Case: PlayVideo

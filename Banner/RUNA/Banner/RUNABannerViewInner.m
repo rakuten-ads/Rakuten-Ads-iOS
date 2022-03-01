@@ -24,7 +24,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* sizeConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* webViewConstraints;
-@property (atomic, readonly) RUNABannerViewState state;
 @property (nonatomic) RUNAVideoState videoState;
 @property (nonatomic) RUNAMediaType mediaType;
 @property (atomic) BOOL hasSentMeasureInview;
@@ -37,6 +36,20 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+    if (self) {
+        [self setInitState];
+        self->_imp = [RUNABannerImp new];
+        self.imp.json = [NSMutableDictionary dictionary];
+        if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
+            && !self.openMeasurementDisabled) {
+            self.imp.banner = @{ @"api": @[@(7)] };
+        }
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
     if (self) {
         [self setInitState];
         self->_imp = [RUNABannerImp new];
@@ -118,6 +131,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
             bannerAdapter.impList = @[self.imp];
             bannerAdapter.appContent = self.appContent;
             bannerAdapter.userExt = self.userExt;
+            bannerAdapter.userId = self.userId;
             bannerAdapter.geo = self.geo;
             bannerAdapter.responseConsumer = self;
             bannerAdapter.blockAdList = self.session.blockAdList;
@@ -221,11 +235,11 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
                 if (@available(ios 11.0, *)) {
                     UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
                     self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:safeGuide.widthAnchor multiplier:(self.banner.height / self.banner.width) constant:0.5],
+                                               [self.heightAnchor constraintEqualToAnchor:self.widthAnchor multiplier:(self.banner.height / self.banner.width) constant:0.5],
                                                ];
                 } else {
                     self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:self.superview.widthAnchor multiplier:(self.banner.height / self.banner.width) constant:0.5],
+                                               [self.heightAnchor constraintEqualToAnchor:self.widthAnchor multiplier:(self.banner.height / self.banner.width) constant:0.5],
                                                ];
                 }
                 self.translatesAutoresizingMaskIntoConstraints = NO;

@@ -1,17 +1,17 @@
 //
-//  RUNABannerGroupExtension.h
+//  RUNABannerCarouselViewExtension.h
 //  Banner
 //
-//  Created by Wu, Wei | David on 2021/03/03.
+//  Created by Wu, Wei | David on 2021/11/09.
 //  Copyright © 2021 Rakuten MPD. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "RUNABannerGroup.h"
+#import "RUNABannerCarouselView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RUNABannerGroup(RUNA_Extension)
+@interface RUNABannerCarouselView (RUNA_Extension)
 
 /**
  set RzCookie
@@ -22,7 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
  set RpCookie
  */
 -(void) setRp:(NSString*) rp;
-
 
 @end
 

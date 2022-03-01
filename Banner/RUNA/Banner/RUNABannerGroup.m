@@ -7,7 +7,6 @@
 //
 
 #import "RUNABannerGroupInner.h"
-#import "RUNABannerViewInner.h"
 
 typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerView* __nullable view, struct RUNABannerViewEvent event);
 
@@ -16,7 +15,6 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 @property (nonatomic) NSDictionary<NSString*, RUNABannerView*>* bannerDict;
 @property (nonatomic, nullable, copy) RUNABannerGroupEventHandler eventHandler;
 @property (nonatomic, nullable) NSMutableDictionary* jsonProperties;
-@property (atomic, readonly) RUNABannerViewState state;
 @property (nonatomic) RUNABannerViewError error;
 @property (nonatomic) int loadedBannerCounter;
 
@@ -79,7 +77,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
     dispatch_async(RUNADefines.sharedInstance.sharedQueue, ^{
         @try {
             NSMutableArray<RUNABannerImp*>* impList = [NSMutableArray array];
-            for (RUNABannerView* bannerView in self.bannerDict.allValues) {
+            for (RUNABannerView* bannerView in self.banners) {
                 if ([RUNAValid isEmptyString:bannerView.adSpotId]) {
                     NSLog(@"[RUNA] each banner requires adSpotId!");
                     self.error = RUNABannerViewErrorFatal;
@@ -87,24 +85,31 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
                 }
 
                 [impList addObject:bannerView.imp];
-                if (handler) {
-                    __weak typeof(self) weakSelf = self;
-                    bannerView.eventHandler = ^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
-                        __strong typeof(weakSelf) strongSelf = weakSelf;
-                        if (!strongSelf) {
-                            RUNADebug("banner group: banner view disposed!");
-                            return;
-                        }
+
+                __weak typeof(self) weakSelf = self;
+                bannerView.eventHandler = ^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
+                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                    if (!strongSelf) {
+                        RUNADebug("banner group: banner view disposed!");
+                        return;
+                    }
+                    if (strongSelf.eventHandler) {
                         strongSelf.eventHandler(strongSelf, view, event);
+                    }
+                    if (event.eventType == RUNABannerViewEventTypeSucceeded
+                        || event.eventType == RUNABannerViewEventTypeFailed) {
                         strongSelf.loadedBannerCounter++;
                         RUNADebug("banner (%d/%lu) loaded", strongSelf.loadedBannerCounter, (unsigned long)strongSelf.banners.count);
                         if (strongSelf.loadedBannerCounter == strongSelf.banners.count) {
                             RUNADebug("banner group finished");
                             struct RUNABannerViewEvent groupFinishedEvent = { RUNABannerViewEventTypeGroupFinished, RUNABannerViewErrorNone };
-                            strongSelf.eventHandler(strongSelf, nil, groupFinishedEvent);
+                            strongSelf.state = RUNA_ADVIEW_STATE_SHOWED;
+                            if (strongSelf.eventHandler) {
+                                strongSelf.eventHandler(strongSelf, nil, groupFinishedEvent);
+                            }
                         }
-                    };
-                }
+                    }
+                };
             }
 
             static dispatch_once_t onceToken;
@@ -116,6 +121,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
             RUNABannerAdapter* bannerAdapter = [RUNABannerAdapter new];
             bannerAdapter.impList = impList;
             bannerAdapter.userExt = self.userExt;
+            bannerAdapter.userId = self.userId;
             bannerAdapter.responseConsumer = self;
 
             RUNAOpenRTBRequest* request = [RUNAOpenRTBRequest new];
@@ -154,6 +160,14 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
             [bannerView onBidResponseSuccess:@[bannerInfo] withSessionId:sessionId];
         } else {
             RUNADebug("unmatch impid %@", bannerInfo.impId);
+        }
+    }
+
+    for (RUNABannerView* bannerView in self.banners) {
+        if (bannerView.state == RUNA_ADVIEW_STATE_INIT) {
+            RUNADebug("bannerView %@ response not found", bannerView.imp.id);
+            NSHTTPURLResponse* emptyResponse = [[NSHTTPURLResponse alloc] initWithURL:[NSURL new] statusCode:kRUNABidResponseUnfilled HTTPVersion:nil headerFields:nil];
+            [bannerView onBidResponseFailed:emptyResponse error:nil];
         }
     }
 }
