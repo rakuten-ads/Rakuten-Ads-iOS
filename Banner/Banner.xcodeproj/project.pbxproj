@@ -21,8 +21,11 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		320206CB273A4754004D4A8E /* RUNABannerCarouselViewExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 320206C9273A4754004D4A8E /* RUNABannerCarouselViewExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		320206CC273A4754004D4A8E /* RUNABannerCarouselViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 320206CA273A4754004D4A8E /* RUNABannerCarouselViewExtension.m */; };
 		320206D0273A49DD004D4A8E /* RUNABannerViewInner.h in Headers */ = {isa = PBXBuildFile; fileRef = 3211A417231CA7F800DB0225 /* RUNABannerViewInner.h */; };
 		320206D1273A49EB004D4A8E /* RUNABannerGroupInner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32269BA025EF1457002A623B /* RUNABannerGroupInner.h */; };
+		320206D2273A49F5004D4A8E /* RUNABannerCarouselViewInner.h in Headers */ = {isa = PBXBuildFile; fileRef = 320206CF273A47FB004D4A8E /* RUNABannerCarouselViewInner.h */; };
 		3211A414231CA60900DB0225 /* RUNABannerViewMeasurable.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211A413231CA60900DB0225 /* RUNABannerViewMeasurable.m */; };
 		32269B9825EF13AC002A623B /* RUNABannerGroupExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 32269B9625EF13AC002A623B /* RUNABannerGroupExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32269B9925EF13AC002A623B /* RUNABannerGroupExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 32269B9725EF13AC002A623B /* RUNABannerGroupExtension.m */; };
@@ -31,6 +34,8 @@
 		32564D9C2227865100DB4DBF /* RUNABannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D9A2227865100DB4DBF /* RUNABannerAdapter.h */; };
 		32564D9D2227865100DB4DBF /* RUNABannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D9B2227865100DB4DBF /* RUNABannerAdapter.m */; };
 		325FF74121E605F100A899CF /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RUNACore.framework */; };
+		3263F94026E1AFD400F8E595 /* RUNABannerCarouselView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3263F93E26E1AFD400F8E595 /* RUNABannerCarouselView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3263F94126E1AFD400F8E595 /* RUNABannerCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3263F93F26E1AFD400F8E595 /* RUNABannerCarouselView.m */; };
 		329753AB230A7D4C002A53CC /* RUNAMeasurement.h in Headers */ = {isa = PBXBuildFile; fileRef = 329753A9230A7D4C002A53CC /* RUNAMeasurement.h */; };
 		329753AC230A7D4C002A53CC /* RUNAMeasurement.m in Sources */ = {isa = PBXBuildFile; fileRef = 329753AA230A7D4C002A53CC /* RUNAMeasurement.m */; };
 		32BEBF4326669A5A0087BEF7 /* RUNAViewabilityProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEBF3F26669A590087BEF7 /* RUNAViewabilityProvider.m */; };
@@ -348,11 +353,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				320206D2273A49F5004D4A8E /* RUNABannerCarouselViewInner.h in Headers */,
 				32269B9825EF13AC002A623B /* RUNABannerGroupExtension.h in Headers */,
 				32564D9C2227865100DB4DBF /* RUNABannerAdapter.h in Headers */,
 				32F2596021E597E5001FD9C0 /* RUNABannerView.h in Headers */,
 				320206D1273A49EB004D4A8E /* RUNABannerGroupInner.h in Headers */,
+				320206CB273A4754004D4A8E /* RUNABannerCarouselViewExtension.h in Headers */,
 				32ED78B9236693AB007833DF /* RUNABannerViewExtension.h in Headers */,
+				3263F94026E1AFD400F8E595 /* RUNABannerCarouselView.h in Headers */,
 				32F258F121E58689001FD9C0 /* RUNABanner.h in Headers */,
 				329753AB230A7D4C002A53CC /* RUNAMeasurement.h in Headers */,
 				32BEBF4426669A5A0087BEF7 /* RUNAViewabilityProvider.h in Headers */,
@@ -513,12 +521,14 @@
 			files = (
 				329753AC230A7D4C002A53CC /* RUNAMeasurement.m in Sources */,
 				32F2596121E597E5001FD9C0 /* RUNABannerViewInner.m in Sources */,
+				3263F94126E1AFD400F8E595 /* RUNABannerCarouselView.m in Sources */,
 				32EFC6BE25AE8281006F85C8 /* RUNAAdSession.m in Sources */,
 				32269B9925EF13AC002A623B /* RUNABannerGroupExtension.m in Sources */,
 				32ED78BA236693AB007833DF /* RUNABannerViewExtension.m in Sources */,
 				3211A414231CA60900DB0225 /* RUNABannerViewMeasurable.m in Sources */,
 				323DA56B25DF8209002ED988 /* RUNABannerGroup.m in Sources */,
 				32BEBF4326669A5A0087BEF7 /* RUNAViewabilityProvider.m in Sources */,
+				320206CC273A4754004D4A8E /* RUNABannerCarouselViewExtension.m in Sources */,
 				32564D9D2227865100DB4DBF /* RUNABannerAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
