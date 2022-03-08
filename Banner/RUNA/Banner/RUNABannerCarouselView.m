@@ -129,7 +129,7 @@
     UICollectionViewFlowLayout* layout = [UICollectionViewFlowLayout new];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.minimumLineSpacing = self.itemSpacing;
-    layout.minimumInteritemSpacing = 0.0;
+    layout.minimumInteritemSpacing = self.itemSpacing;
     layout.sectionInset = UIEdgeInsetsMake(0, self.contentEdgeInsets.left, 0, self.contentEdgeInsets.right);
     layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
 
