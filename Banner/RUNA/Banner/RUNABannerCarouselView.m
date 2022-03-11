@@ -52,10 +52,11 @@
 
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerCarouselView* _Nonnull view, RUNABannerView * _Nullable banner, struct RUNABannerViewEvent event)) handler {
     if ((!self.adSpotIds || self.adSpotIds.count == 0)
+        && (!self.adSpotCodes || self.adSpotCodes.count == 0)
         && (!self.itemViews || self.itemViews.count == 0)) {
-        NSLog(@"[banner slider] adspotIds or items must not be empty");
+        NSLog(@"[banner slider] adSpotIds, adSpotCodes or items must not be empty");
 #if DEBUG
-        @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotIds is empty" userInfo:nil];
+        @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotIds, adSpotCodes and itemViews are all empty" userInfo:nil];
 #endif
         return;
     }
@@ -68,11 +69,20 @@
         }];
         self.adSpotIds = adspotIdList;
         self.group.banners = self.itemViews;
-    } else {
+    } else if (self.adSpotIds && self.adSpotIds.count > 0) {
         NSMutableArray<RUNABannerView*>* banners = [NSMutableArray array];
         [self.adSpotIds enumerateObjectsUsingBlock:^(NSString * _Nonnull adspotId, NSUInteger idx, BOOL * _Nonnull stop) {
             RUNABannerView* banner = [RUNABannerView new];
             banner.adSpotId = adspotId;
+            banner.size = RUNABannerViewSizeAspectFit;
+            [banners addObject:banner];
+        }];
+        self.group.banners = banners;
+    } else {
+        NSMutableArray<RUNABannerView*>* banners = [NSMutableArray array];
+        [self.adSpotCodes enumerateObjectsUsingBlock:^(NSString * _Nonnull adSpotCode, NSUInteger idx, BOOL * _Nonnull stop) {
+            RUNABannerView* banner = [RUNABannerView new];
+            banner.adSpotCode = adSpotCode;
             banner.size = RUNABannerViewSizeAspectFit;
             [banners addObject:banner];
         }];
