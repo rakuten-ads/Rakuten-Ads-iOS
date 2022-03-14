@@ -46,8 +46,8 @@ struct RUNABannerViewEvent {
 
 @interface RUNABannerView : UIView
 
-@property(nonatomic, copy, nonnull) NSString* adSpotId;
-@property(nonatomic, copy, nonnull) NSString* adSpotCode;
+@property(nonatomic, copy, nullable) NSString* adSpotId;
+@property(nonatomic, copy, nullable) NSString* adSpotCode;
 
 @property(nonatomic) RUNABannerViewSize size;
 @property(nonatomic) RUNABannerViewPosition position;
