@@ -699,6 +699,8 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 -(NSDictionary *) descriptionDetail {
     return @{
         @"adspotId" : self.adSpotId ?: NSNull.null,
+        @"adspotCode" : self.adSpotCode ?: NSNull.null,
+        @"userId(rp)" : self.userId ?: NSNull.null,
         @"state" : self.descriptionState,
         @"postion" : @(self.position),
         @"size" : @(self.size),
