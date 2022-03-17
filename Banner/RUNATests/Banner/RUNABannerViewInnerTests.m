@@ -12,6 +12,7 @@
 #import "RUNABannerViewInner.h"
 
 NSString *const kDummyAdspotId = @"99999";
+NSString *const kDummyAdspotCode = @"code99999";
 
 @interface RUNABannerView (Spy)
 @property (nonatomic) RUNABanner *banner;
@@ -42,6 +43,9 @@ NSString *const kDummyAdspotId = @"99999";
 - (void)testIntialize {
     RUNABannerView *bannerView = [[RUNABannerView alloc]initWithFrame:CGRectZero];
     XCTAssertNotNil(bannerView.imp);
+    XCTAssertNil(bannerView.imp.banner);
+    XCTAssertNil(bannerView.userId);
+    XCTAssertNil(bannerView.userExt);
     XCTAssertNotNil(bannerView.imp.json);
     XCTAssertEqual(bannerView.imp.json.allKeys.count, (NSUInteger)0);
     // Initial State
@@ -77,7 +81,7 @@ NSString *const kDummyAdspotId = @"99999";
 }
 
 // Test to confirm the passage of method for coverage
-- (void)testLoad {
+- (void)testLoadAdSpotId {
     RUNABannerView *bannerView = [RUNABannerView new];
     bannerView.adSpotId = kDummyAdspotId;
     {
@@ -92,7 +96,22 @@ NSString *const kDummyAdspotId = @"99999";
     }
 }
 
--(void)testLoadWithEmptyAdspotId {
+- (void)testLoadAdSpotCode {
+    RUNABannerView *bannerView = [RUNABannerView new];
+    bannerView.adSpotCode = kDummyAdspotCode;
+    {
+        XCTAssertNoThrow([bannerView load]);
+    }
+    {
+        XCTAssertNoThrow([bannerView loadWithEventHandler:^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
+            XCTAssertEqual(event.eventType, RUNABannerViewEventTypeFailed);
+            XCTAssertEqual(event.error, RUNABannerViewErrorUnfilled);
+            XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_FAILED);
+        }]);
+    }
+}
+
+-(void)testLoadWithEmptyAdSpotIdAndAdSpotCode {
     XCTestExpectation *expectation = [self expectationWithDescription:@"async load test"];
     RUNABannerView *bannerView = [RUNABannerView new];
     [bannerView loadWithEventHandler:^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
