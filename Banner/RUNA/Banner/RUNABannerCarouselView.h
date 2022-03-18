@@ -33,6 +33,10 @@ typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewItemScale) {
  */
 /* Simply indicate an array of `adSpotIds`, get from administrator site */
 @property(nonatomic, copy, nullable) NSArray<NSString*>* adSpotIds;
+
+/* Simply indicate an array of `adSpotIds`, get from administrator site */
+@property(nonatomic, copy, nullable) NSArray<NSString*>* adSpotCode;
+
 /* Scale modes to determine the item's presenting contains ad content, default as `RUNABannerCarouselViewItemScaleAspectFit`. */
 @property(nonatomic) RUNABannerCarouselViewItemScale itemScaleMode;
 

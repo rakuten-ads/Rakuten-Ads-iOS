@@ -121,10 +121,10 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
                 RUNALog("%@", RUNADefines.sharedInstance);
             });
             
-            if ([RUNAValid isEmptyString:self.adSpotId]) {
-                NSLog(@"[RUNA] require adSpotId!");
+            if ([RUNAValid isEmptyString:self.adSpotId] && [RUNAValid isEmptyString:self.adSpotCode]) {
+                NSLog(@"[RUNA] require adSpotId or adSpotCode!");
                 self.error = RUNABannerViewErrorFatal;
-                @throw [NSException exceptionWithName:@"init failed" reason:@"adSpotId is empty" userInfo:nil];
+                @throw [NSException exceptionWithName:@"init failed" reason:@"Both adSpotId & adSpotCode is empty" userInfo:nil];
             }
 
             RUNABannerAdapter* bannerAdapter = [RUNABannerAdapter new];
@@ -159,6 +159,14 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 
 - (NSString *)adSpotId {
     return self.imp.adspotId;
+}
+
+-(void)setAdSpotCode:(NSString *)adSpotCode {
+    self.imp.adspotCode = adSpotCode;
+}
+
+-(NSString *)adSpotCode {
+    return self.imp.adspotCode;
 }
 
 -(void)setSize:(RUNABannerViewSize)size {
@@ -691,6 +699,8 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 -(NSDictionary *) descriptionDetail {
     return @{
         @"adspotId" : self.adSpotId ?: NSNull.null,
+        @"adspotCode" : self.adSpotCode ?: NSNull.null,
+        @"userId(rp)" : self.userId ?: NSNull.null,
         @"state" : self.descriptionState,
         @"postion" : @(self.position),
         @"size" : @(self.size),

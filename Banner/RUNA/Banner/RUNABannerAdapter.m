@@ -39,6 +39,7 @@
             @"banner" : imp.banner ?: NSNull.null,
             @"ext" : @{
                     @"adspot_id" : imp.adspotId ?: NSNull.null,
+                    @"code" : imp.adspotCode ?: NSNull.null,
                     @"json" : imp.json ?: NSNull.null,
             }
         }];
