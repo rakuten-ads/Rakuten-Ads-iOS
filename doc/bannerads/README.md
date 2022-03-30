@@ -10,11 +10,15 @@ RUNABanner SDK banner view is a web view bases on `WebKit/WKWebView` which will 
 
 ## 1. Configurations
 
-### 1.1 AdSpotID
+### AdSpotId
 
-`Ad Spot` is considerred as a placement where the advertisement is showing.`adSpotId` is the identifier of the `Ad Spot` and is required before requesting a banner ads. It can be found or registerred as a new one on the publisher management webside.
+`Ad Spot` is considerred as a placement where the advertisement is showing.`adSpotId` is the identifier of the `Ad Spot` and is required before requesting a banner ads. It can be found or registerred as a new one on the publisher management webside. `AdSpotId` is nullable when `adSpotCode` is set instead.
 
-### 1.2 Size
+### AdSpotCode
+
+`Ad Spot Code` is a readable name of `adSpotId`, is indicated by the user of admin site for any registered `adSpotId`. `AdSpotCode` is nullable when `adSpotId` is set instead.
+
+### Size
 
 Then banner view has 3 options for designated **size** to support variaty of using cases.
 - `default` :<br>
@@ -25,7 +29,7 @@ The banner view keeps aspect radio and stretches its width to fit the super view
 The banner view can be indicated to arbitrary size and ignores the orginal size.
 
 
-### 1.3 Position
+### Position
 
 The banner view's **position** can be set in anywhere of the screen in demand. The SDK also has six preset position settings with the auto layout features to give some convienence during the integration.
 
@@ -50,7 +54,7 @@ Locate at the bottom left of the super view.
 - `bottomRight` :<br>
 Locate at the right left of the super view.
 
-### 1.4 Event Tracker
+### Event Tracker
 
 The RUNABanner SDK tracks 3 event types of `RUNABannerViewEvent` if developers need to be triggerred and handle something by themselves.
 
@@ -71,28 +75,28 @@ The RUNABanner SDK tracks 3 event types of `RUNABannerViewEvent` if developers n
   After the banner is clicked.
 
 
-### 1.5 Open Measurement
+### Open Measurement
 
 Add `pod 'OMAdapter'` into the `Podfile` will enable open measurement feature automatically. And it could also disable this feature on a certain banner by calling api `banner.disableOpenMeasurement`.
 
-### 1.6 Ad Sesssion
+### Ad Sesssion
 
 `RUNAAdSession` is for avoiding duplicate advertisement contents. When a `RUNAAdSession` instance is set to banners and not nil, individual ad will be loaded at those banners with the same session instance. 
 
 > __Notice:__ It is still possible that a banner show as same ad as a previous one when two banners' loading times are too close.
 
-### 1.7 Extensions
+### Extensions
 
 See [Extension Module](./extension/README.md)
 
-### 1.8 Distinct banners in group
+### Distinct banners in group
 
 Request distinct ad in a single request.
 See [Banner Group](./group/README.md)
 
 ## 2. Samples
 
-### 2.1 Normal case
+### Normal case
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)
 
 ```objc
@@ -175,7 +179,7 @@ banner.load { (banner, event) in
 self.view.addSubview(banner)
 ```
 
-### 2.2 Use RUNAAdSession to avoid duplicate ad
+### Use RUNAAdSession to avoid duplicate ad
 
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 
@@ -194,6 +198,42 @@ banner1.load()
 // be aware of loading second banner in a few time interval
 banner2.session = adSession
 banner2.load()
+```
+
+### Use AdSpotCode
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+
+```swift
+import RUNABanner
+
+let banner = RUNABannerView()
+
+banner.adSpotCode = "mycode"
+banner.size = .aspectFit
+banner.position = .bottom
+
+banner.load { (banner, event) in
+    switch event.eventType {
+    case .succeeded:
+        print("received event succceeded")
+    case .failed:
+        print("received event failed")
+        switch event.error {
+        case .unfilled:
+            print("ad unavailable")
+        case .network:
+            print("network unavailable")
+        default:
+            break
+        }
+    case .clicked:
+        print("received event clicked")
+    default:
+        break
+    }
+}
+
+self.view.addSubview(banner)
 ```
 
 ---
