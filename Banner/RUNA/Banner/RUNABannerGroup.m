@@ -78,10 +78,10 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
         @try {
             NSMutableArray<RUNABannerImp*>* impList = [NSMutableArray array];
             for (RUNABannerView* bannerView in self.banners) {
-                if ([RUNAValid isEmptyString:bannerView.adSpotId]) {
-                    NSLog(@"[RUNA] each banner requires adSpotId!");
+                if ([RUNAValid isEmptyString:bannerView.adSpotId] && [RUNAValid isEmptyString:bannerView.adSpotCode]) {
+                    NSLog(@"[RUNA] each banner requires adSpotId or adSpotCode!");
                     self.error = RUNABannerViewErrorFatal;
-                    @throw [NSException exceptionWithName:@"group init failed" reason:@"adSpotId is empty" userInfo:nil];
+                    @throw [NSException exceptionWithName:@"group init failed" reason:@"both adSpotId & adSpotCode are empty" userInfo:nil];
                 }
 
                 [impList addObject:bannerView.imp];
