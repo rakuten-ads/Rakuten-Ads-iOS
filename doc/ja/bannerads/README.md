@@ -10,11 +10,15 @@ RUNA SDK banner view は `WebKit/WKWebView`を元にした web view です。Web
 
 ## 1. 設定項目
 
-### 1.1 AdSpotId
+### AdSpotId
 
 `Ad Spot`は広告表示枠を意味するもので、`adSpotId`はその枠のユニークな ID を定義するものです。その ID は広告内容を要求する時に必要なパラメーターです。パブリッシャー管理サイドに登録及び検索できます。
 
-### 1.2 サイズ
+### AdSpotCode
+
+`Ad Spot code`は`adSpotId`の可読性のある名前です。ユーザーがパブリッシャー管理サイドに`adSpotId`に対して自分で指定できます。
+
+### サイズ
 
 **size** プロパーティーに三つのサイズ調整設定が出来ます。
 
@@ -27,7 +31,7 @@ RUNA SDK banner view は `WebKit/WKWebView`を元にした web view です。Web
 - `custom` :<br>
 任意のサイズを指定します。
 
-### 1.3 Position
+### osition
 
 画面の任意の場所に指定できます。また、SDKが **position** プロパーティーにいくつの便利な設定項目を用意しています。
 
@@ -52,7 +56,7 @@ RUNA SDK banner view は `WebKit/WKWebView`を元にした web view です。Web
 - `bottomRight` :<br>
 親Viewの右下寄せする。
 
-### 1.4 Event Tracker
+### Event Tracker
 
 RUNA SDK は三つのイベントをトラッキングすることが可能です。
 
@@ -71,29 +75,29 @@ RUNA SDK は三つのイベントをトラッキングすることが可能で�
 - **クリック (RUNABannerViewEventTypeClicked) :**
   banner 広告がクリックされた時。
 
-### 1.5 Open Measurement
+### Open Measurement
 
 Open Measurementを自動に有効するために`Podfile`に `pod 'OMAdapter'`を追加する必要があります。
 尚、`banner.disableOpenMeasurement` APIを使って個別なbannerを無効することも可能性す。
 
-### 1.6 Ad Sesssion
+### Ad Sesssion
 
 `RUNAAdSession` は広告内容の重複排除するために使用されます。`RUNAAdSession`が設定され且つnilではない場合、同じセッションに異なる広告内容がロードされることは保証されます。
 
 > __注意：__ 二つのバナーのロードタイミングが近い場合、重複な広告が表示されてしまう可能性があります。
 
-### 1.7 拡張設定
+### 拡張設定
 
 参照先: [拡張モジュール](./extension/README.md)
 
-### 1.8 バナーグループ設定
+### バナーグループ設定
 
 一回複数異なる広告内容をリクエストします。
 参照先: [バナーグループ](./group/README.md)
 
 ## 2. 実装サンプル
 
-### 2.1 一般の実装
+### 一般の実装
 ![Language](http://img.shields.io/badge/language-ObjctiveC-red.svg?style=flat)
 
 ```objc
@@ -176,7 +180,7 @@ banner.load { (banner, event) in
 self.view.addSubview(banner)
 ```
 
-### 2.2 広告内容の重複排除
+### 広告内容の重複排除
 
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 
@@ -195,6 +199,43 @@ banner1.load()
 // 時間少し間隔を空けるように意識しながら次のバナーをロードさせます
 banner2.session = adSession
 banner2.load()
+```
+
+### AdSpotCodeを使用する
+
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+
+```swift
+import RUNABanner
+
+let banner = RUNABannerView()
+
+banner.adSpotCode = "mycode"
+banner.size = .aspectFit
+banner.position = .bottom
+
+banner.load { (banner, event) in
+    switch event.eventType {
+    case .succeeded:
+        print("received event succceeded")
+    case .failed:
+        print("received event failed")
+        switch event.error {
+        case .unfilled:
+            print("ad unavailable")
+        case .network:
+            print("network unavailable")
+        default:
+            break
+        }
+    case .clicked:
+        print("received event clicked")
+    default:
+        break
+    }
+}
+
+self.view.addSubview(banner)
 ```
 
 ---
