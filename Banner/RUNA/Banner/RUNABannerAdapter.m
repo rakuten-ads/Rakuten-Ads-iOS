@@ -57,7 +57,7 @@
 }
 
 -(NSDictionary *)getUser {
-    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dict = [NSMutableDictionary new];
     if (self.userId) {
         dict[@"id"] = self.userId;
     }

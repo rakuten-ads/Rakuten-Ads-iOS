@@ -39,7 +39,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     if (self) {
         [self setInitState];
         self->_imp = [RUNABannerImp new];
-        self.imp.json = [NSMutableDictionary dictionary];
+        self.imp.json = [NSMutableDictionary new];
         if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
             && !self.openMeasurementDisabled) {
             self.imp.banner = @{ @"api": @[@(7)] };
@@ -53,7 +53,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     if (self) {
         [self setInitState];
         self->_imp = [RUNABannerImp new];
-        self.imp.json = [NSMutableDictionary dictionary];
+        self.imp.json = [NSMutableDictionary new];
         if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
             && !self.openMeasurementDisabled) {
             self.imp.banner = @{ @"api": @[@(7)] };

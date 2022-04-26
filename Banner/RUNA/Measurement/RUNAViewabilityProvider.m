@@ -112,7 +112,7 @@
 {
     self = [super init];
     if (self) {
-        self.targetDict = [NSMutableDictionary dictionary];
+        self.targetDict = [NSMutableDictionary new];
     }
     return self;
 }

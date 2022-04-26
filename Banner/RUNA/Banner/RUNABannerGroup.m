@@ -47,7 +47,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
 }
 
 -(void)setBanners:(NSArray<RUNABannerView *> *)banners {
-    NSMutableDictionary* bannerDict = [NSMutableDictionary dictionary];
+    NSMutableDictionary* bannerDict = [NSMutableDictionary new];
     for (RUNABannerView* bannerView in banners) {
         bannerView.imp.id = NSUUID.UUID.UUIDString;
         [bannerDict setObject:bannerView forKey:bannerView.imp.id];

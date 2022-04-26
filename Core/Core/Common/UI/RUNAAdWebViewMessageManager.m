@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         self->_name = name;
-        self->_messageHandlers = [NSMutableDictionary dictionary];
+        self->_messageHandlers = [NSMutableDictionary new];
     }
     return self;
 }
