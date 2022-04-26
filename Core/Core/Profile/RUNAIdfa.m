@@ -19,7 +19,7 @@
 -(void) getValues {
     ASIdentifierManager* idfaManager = [ASIdentifierManager sharedManager];
     
-    self->_idfa = [[idfaManager advertisingIdentifier] UUIDString];
+    self->_idfa = [[[idfaManager advertisingIdentifier] UUIDString] copy];
 
     if (@available(iOS 14, *)) {
         BOOL shouldGetIdfa = [ATTrackingManager trackingAuthorizationStatus] == ATTrackingManagerAuthorizationStatusAuthorized;

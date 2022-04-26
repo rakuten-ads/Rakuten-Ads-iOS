@@ -42,7 +42,7 @@
     NSMutableArray<NSDictionary*>* bidDataList = nil;
     NSString* sessionId = nil;
     if (response.statusCode == 200 && json) {
-        bidDataList = [NSMutableArray array];
+        bidDataList = [NSMutableArray new];
         RUNAJSONObject* jsonObj = [RUNAJSONObject jsonWithRawDictionary:json];
         sessionId = [jsonObj getString:@"id"];
         for (id seatbid in [jsonObj getArray:@"seatbid"]) {
@@ -128,30 +128,30 @@
     RUNAIdfa* idfaInfo = defines.idfaInfo;
     UIScreen* screen = UIScreen.mainScreen;
 
-    jsonDevice = [NSMutableDictionary dictionaryWithDictionary:@{
-        @"ua" : defines.userAgentInfo.userAgent ?: @"",
-        @"devicetype" : [self getDeviceType],
-        @"make": @"Apple",
-        @"model": deviceInfo.model ?: NSNull.null,
-        @"os": @"iOS",
-        @"osv": deviceInfo.osVersion ?: NSNull.null,
-        @"hwv": deviceInfo.buildName ?: NSNull.null,
-        @"h": @((int)screen.bounds.size.height),
-        @"w": @((int)screen.bounds.size.width),
-        @"ppi": @((int)(160 * screen.scale)),
-        @"pxratio": @((int)screen.scale),
-        @"language": deviceInfo.language ?: NSNull.null,
-        @"ifa": idfaInfo.idfa  ?: @"00000000-0000-0000-0000-000000000000",
-        @"lmt": idfaInfo.isTrackingEnabled ? @0 : @1,
-        @"ext" : @{
-                @"sdk_version": defines.sdkBundleShortVersionString ?: NSNull.null,
-                @"sdk_versions": @{
-                    @"ios": [self getSdkVersions]
-                },
+    jsonDevice = [NSMutableDictionary new];
+
+    jsonDevice[@"ua"] = defines.userAgentInfo.userAgent ?: @"";
+    jsonDevice[@"devicetype"] = [self getDeviceType];
+    jsonDevice[@"make"] = @"Apple";
+    jsonDevice[@"model"] = deviceInfo.model ?: NSNull.null;
+    jsonDevice[@"os"] = @"iOS";
+    jsonDevice[@"osv"] = deviceInfo.osVersion ?: NSNull.null;
+    jsonDevice[@"hwv"] = deviceInfo.buildName ?: NSNull.null;
+    jsonDevice[@"h"] = @((int)screen.bounds.size.height);
+    jsonDevice[@"w"] = @((int)screen.bounds.size.width);
+    jsonDevice[@"ppi"] = @((int)(160 * screen.scale));
+    jsonDevice[@"pxratio"] = @((int)screen.scale);
+    jsonDevice[@"language"] = deviceInfo.language ?: NSNull.null;
+    jsonDevice[@"ifa"] = idfaInfo.idfa  ?: @"00000000-0000-0000-0000-000000000000";
+    jsonDevice[@"lmt"] = idfaInfo.isTrackingEnabled ? @0 : @1;
+    jsonDevice[@"ext"] = @{
+        @"sdk_version" : defines.sdkBundleShortVersionString ?: NSNull.null,
+        @"sdk_versions" : @{
+            @"ios" : [self getSdkVersions]
         },
-        @"connectiontype" : @(deviceInfo.connectionMethod)
-        // @"carrier"
-    }];
+    };
+    jsonDevice[@"connectiontype"] = @(deviceInfo.connectionMethod);
+    // @"carrier"
 
     NSDictionary* geo = self.openRTBAdapterDelegate.getGeo;
     if (geo && geo.count > 0) {
@@ -207,7 +207,7 @@ NSString* kModuleClassOmadapter = @"RUNAOpenMeasurer";
         }
     }
 
-    NSMutableArray* versionList = [NSMutableArray array];
+    NSMutableArray* versionList = [NSMutableArray new];
     [dict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
         [versionList addObject:@{
             @"module_name" : key,

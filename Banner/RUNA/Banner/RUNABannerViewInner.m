@@ -135,8 +135,8 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
             bannerAdapter.userId = self.userId;
             bannerAdapter.geo = self.geo;
             bannerAdapter.responseConsumer = self;
-            bannerAdapter.blockAdList = self.session.blockAdList;
-            RUNALog("block ad list for current session: %@", self.session.blockAdList);
+            bannerAdapter.blockAdList = [self.session.blockAdList copy];
+            RUNALog("block ad list for current session: %@", bannerAdapter.blockAdList);
             
             self.request = [RUNAOpenRTBRequest new];
             self.request.openRTBAdapterDelegate = bannerAdapter;

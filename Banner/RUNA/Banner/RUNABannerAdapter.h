@@ -45,10 +45,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic) NSArray<RUNABannerImp*>* impList;
 @property(nonatomic) NSDictionary* appContent;
-@property(nonatomic) NSString* userId;
+@property(nonatomic, copy) NSString* userId;
 @property(nonatomic) NSDictionary* userExt;
 @property(nonatomic) RUNAGeo* geo;
-@property(nonatomic) NSArray* blockAdList;
+@property(nonatomic, copy) NSArray* blockAdList;
 
 @end
 

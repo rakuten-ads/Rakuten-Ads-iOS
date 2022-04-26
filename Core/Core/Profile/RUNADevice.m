@@ -15,17 +15,11 @@
     nw_path_monitor_t monitor;
 }
 
-@synthesize osVersion = _osVersion;
 @synthesize model = _model;
 @synthesize buildName = _buildName;
-@synthesize language = _language;
-@synthesize connectionMethod = _connectionMethod;
 
 -(NSString*)osVersion {
-    if (!self->_osVersion) {
-        self->_osVersion = UIDevice.currentDevice.systemVersion;
-    }
-    return self->_osVersion;
+    return UIDevice.currentDevice.systemVersion;
 }
 
 -(NSString *)model {
@@ -43,10 +37,7 @@
 }
 
 -(NSString *)language {
-    if (!self->_language) {
-        self->_language = [NSLocale.currentLocale objectForKey:NSLocaleLanguageCode];
-    }
-    return self->_language;
+    return [NSLocale.currentLocale objectForKey:NSLocaleLanguageCode];
 }
 
 -(NSString*) getModel {
@@ -61,7 +52,7 @@
     if (status != 0) {
         return nil;
     }
-    return [[NSString alloc] initWithCString:buffer.mutableBytes encoding:NSUTF8StringEncoding];
+    return [[NSString alloc] initWithCString:buffer.bytes encoding:NSUTF8StringEncoding];
 }
 
 -(NSString*) getBuildName {
@@ -76,7 +67,7 @@
     if (status != 0) {
         return nil;
     }
-    return [[NSString alloc] initWithCString:buffer.mutableBytes encoding:NSUTF8StringEncoding];
+    return [[NSString alloc] initWithCString:buffer.bytes encoding:NSUTF8StringEncoding];
 }
 
 -(void) startNetworkMonitorOnQueue:(dispatch_queue_t) queue {
