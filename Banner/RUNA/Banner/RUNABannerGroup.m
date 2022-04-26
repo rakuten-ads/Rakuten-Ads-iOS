@@ -76,7 +76,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
     self.state = RUNA_ADVIEW_STATE_LOADING;
     dispatch_async(RUNADefines.sharedInstance.sharedQueue, ^{
         @try {
-            NSMutableArray<RUNABannerImp*>* impList = [NSMutableArray array];
+            NSMutableArray<RUNABannerImp*>* impList = [NSMutableArray new];
             for (RUNABannerView* bannerView in self.banners) {
                 if ([RUNAValid isEmptyString:bannerView.adSpotId]) {
                     NSLog(@"[RUNA] each banner requires adSpotId!");
@@ -204,7 +204,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
     error.stacktrace = exception.callStackSymbols;
     error.tag = @"RUNABannerGroup";
 
-    NSMutableArray<NSDictionary*>* bannerDetails = [NSMutableArray array];
+    NSMutableArray<NSDictionary*>* bannerDetails = [NSMutableArray new];
     [self.banners enumerateObjectsUsingBlock:^(RUNABannerView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [bannerDetails addObject:obj.descriptionDetail];
     }];

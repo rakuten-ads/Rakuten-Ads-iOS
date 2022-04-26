@@ -32,7 +32,7 @@
 @implementation RUNABannerAdapter
 
 -(NSArray *)getImp {
-    NSMutableArray* impList = [NSMutableArray array];
+    NSMutableArray* impList = [NSMutableArray new];
     for (RUNABannerImp* imp in self.impList) {
         [impList addObject:@{
             @"id" : imp.id ?: NSNull.null,

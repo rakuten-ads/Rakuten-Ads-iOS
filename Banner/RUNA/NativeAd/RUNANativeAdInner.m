@@ -253,7 +253,7 @@ int RUNANativeAdAssetRequiredYes = 1;
     }
 
     // eventTrackers
-    NSMutableArray<RUNANativeAdEventTracker*>* eventTrackerList = [NSMutableArray array];
+    NSMutableArray<RUNANativeAdEventTracker*>* eventTrackerList = [NSMutableArray new];
     for (NSDictionary* eventTrackerData in [admJson getArray:@"eventtrackers"]) {
         RUNAJSONObject* eventTrackerJson = [RUNAJSONObject jsonWithRawDictionary:eventTrackerData];
         RUNANativeAdEventTracker* tracker = [RUNANativeAdEventTracker new];
@@ -273,7 +273,7 @@ int RUNANativeAdAssetRequiredYes = 1;
 
 -(void) setImage:(RUNANativeAdAssetImage*) img {
     if (!self->_assetImgs) {
-        self->_assetImgs = [NSMutableArray array];
+        self->_assetImgs = [NSMutableArray new];
     }
     [(NSMutableArray<RUNANativeAdAssetImage*>*)self->_assetImgs addObject:img];
 
@@ -291,7 +291,7 @@ int RUNANativeAdAssetRequiredYes = 1;
 
 -(void) setData:(RUNANativeAdAssetData*) data {
     if (!self->_assetDatas) {
-        self->_assetDatas = [NSMutableArray array];
+        self->_assetDatas = [NSMutableArray new];
     }
     [(NSMutableArray<RUNANativeAdAssetData*>*)self->_assetDatas addObject:data];
 

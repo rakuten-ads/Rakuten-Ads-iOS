@@ -72,7 +72,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
         [measurer finishMeasurement];
     }];
-    self.measurers = [NSMutableArray array];
+    self.measurers = [NSMutableArray new];
     self.logAdInfo = [RUNARemoteLogEntityAd new];
     self.logUserInfo = [RUNARemoteLogEntityUser new];
 }

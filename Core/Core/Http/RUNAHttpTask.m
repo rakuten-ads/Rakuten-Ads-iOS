@@ -79,7 +79,7 @@
 -(NSURL*) composeURL {
     NSURLComponents* comps = [[NSURLComponents alloc] initWithString:[_httpTaskDelegate getUrl]];
     if ([_httpTaskDelegate respondsToSelector:@selector(getQueryParameters)]) {
-        NSMutableArray<NSURLQueryItem*>* queryItems = [NSMutableArray array];
+        NSMutableArray<NSURLQueryItem*>* queryItems = [NSMutableArray new];
         [[_httpTaskDelegate getQueryParameters] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             [queryItems addObject:[NSURLQueryItem queryItemWithName:key value:(NSString*)obj]];
         }];
