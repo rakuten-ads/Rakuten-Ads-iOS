@@ -82,7 +82,7 @@
 
 #pragma mark - OpenRTB Protocol
 - (nonnull NSDictionary *)postBidBody {
-    NSMutableDictionary* body = [NSMutableDictionary dictionary];
+    NSMutableDictionary* body = [NSMutableDictionary new];
 
     NSArray* imp = [self.openRTBAdapterDelegate getImp];
     if (imp) {
@@ -184,7 +184,7 @@ NSString* kModuleNameOmadapter = @"runa_om_adapter";
 NSString* kModuleClassBannerView = @"RUNABannerView";
 NSString* kModuleClassOmadapter = @"RUNAOpenMeasurer";
 -(NSArray*) getSdkVersions {
-    NSMutableDictionary<NSString*, NSString*>* dict = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString*, NSString*>* dict = [NSMutableDictionary new];
     [dict setObject:RUNADefines.sharedInstance.sdkBundleShortVersionString forKey:kModuleNameCore];
 
     {

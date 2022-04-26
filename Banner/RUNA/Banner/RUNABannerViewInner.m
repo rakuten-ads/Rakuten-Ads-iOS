@@ -27,6 +27,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 @property (nonatomic) RUNAVideoState videoState;
 @property (nonatomic) RUNAMediaType mediaType;
 @property (atomic) BOOL hasSentMeasureInview;
+@property (nonatomic) RUNAOpenRTBRequest* request;
 
 @end
 
@@ -137,10 +138,10 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
             bannerAdapter.blockAdList = self.session.blockAdList;
             RUNALog("block ad list for current session: %@", self.session.blockAdList);
             
-            RUNAOpenRTBRequest* request = [RUNAOpenRTBRequest new];
-            request.openRTBAdapterDelegate = bannerAdapter;
+            self.request = [RUNAOpenRTBRequest new];
+            self.request.openRTBAdapterDelegate = bannerAdapter;
 
-            [request resume];
+            [self.request resume];
         } @catch(NSException* exception) {
             RUNALog("load exception: %@", exception);
             if (self.error == RUNABannerViewErrorNone) {
