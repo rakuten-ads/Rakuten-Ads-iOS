@@ -110,7 +110,7 @@
         if (jsonBody) {
             request.HTTPMethod = @"POST";
             NSError* jsonSerialErr;
-            NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonBody options:0 error:nil];
+            NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonBody options:0 error:&jsonSerialErr];
             if (jsonData) {
                 RUNADebug("jsonBody string: %@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
                 request.HTTPBody = jsonData;
