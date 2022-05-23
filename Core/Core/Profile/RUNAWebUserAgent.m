@@ -55,7 +55,7 @@
     [webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id __nullable userAgent, NSError * __nullable error) {
         RUNADebug("get UserAgent in %@ thread [%@]", NSThread.currentThread.isMainThread?@"Main":@"BG", userAgent);
         __strong RUNAWebUserAgent* blockSelf = weakSelf;
-        blockSelf->_userAgent = userAgent;
+        blockSelf->_userAgent = [userAgent copy];
         blockSelf->webView = nil;
         if (blockSelf->_semaphore) {
             dispatch_semaphore_signal(blockSelf->_semaphore);

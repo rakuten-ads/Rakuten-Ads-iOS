@@ -30,7 +30,7 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
             NSURLSessionConfiguration* config = [NSURLSessionConfiguration defaultSessionConfiguration];
             [config setTimeoutIntervalForRequest:RUNA_API_TIMEOUT_INTERVAL];
 
-            self->_sharedQueue = dispatch_queue_create("RUNA.sdk.queue", DISPATCH_QUEUE_CONCURRENT);
+            self->_sharedQueue = dispatch_queue_create("RUNA.sdk.queue", DISPATCH_QUEUE_SERIAL);
 
             NSOperationQueue* sessionQueue = [NSOperationQueue new];
             sessionQueue.underlyingQueue = self->_sharedQueue;

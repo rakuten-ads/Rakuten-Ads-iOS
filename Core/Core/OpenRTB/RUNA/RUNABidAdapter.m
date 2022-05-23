@@ -47,7 +47,7 @@ NSInteger kRUNABidResponseUnfilled = 204;
 
 - (void)onBidResponse:(nonnull NSHTTPURLResponse *)response withBidList:(nonnull NSArray *)bidList sessionId:(nullable NSString*) sessionId {
     if (self.responseConsumer) {
-        NSMutableArray* adInfoList = [NSMutableArray array];
+        NSMutableArray* adInfoList = [NSMutableArray new];
         for (NSDictionary* bid in bidList) {
             id<RUNAAdInfo> adInfo = [self.responseConsumer parse:bid];
             if (adInfo) {

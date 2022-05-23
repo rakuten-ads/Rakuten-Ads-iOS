@@ -17,7 +17,7 @@
 
 -(NSString *)bundleIdentifier {
     if (!self->_bundleIdentifier) {
-        return NSBundle.mainBundle.bundleIdentifier;
+        self->_bundleIdentifier = [NSBundle.mainBundle.bundleIdentifier copy];
     }
     return self->_bundleIdentifier;
 }
@@ -25,21 +25,21 @@
 
 -(NSString *)bundleVersion {
     if (!self->_bundleVersion) {
-        return NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"];
+        self->_bundleVersion = [NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"] copy];
     }
     return self->_bundleVersion;
 }
 
 -(NSString *)bundleShortVersion {
     if (!self->_bundleShortVersion) {
-        return NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"];
+        self->_bundleShortVersion = [NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"] copy];
     }
     return self->_bundleShortVersion;
 }
 
 -(NSString *)bundleName {
     if (!self->_bundleName) {
-        return NSBundle.mainBundle.infoDictionary[@"CFBundleName"];
+        self->_bundleName = [NSBundle.mainBundle.infoDictionary[@"CFBundleName"] copy];
     }
     return self->_bundleName;
 }
