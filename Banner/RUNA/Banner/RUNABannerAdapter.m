@@ -32,7 +32,7 @@
 @implementation RUNABannerAdapter
 
 -(NSArray *)getImp {
-    NSMutableArray* impList = [NSMutableArray array];
+    NSMutableArray* impList = [NSMutableArray new];
     for (RUNABannerImp* imp in self.impList) {
         [impList addObject:@{
             @"id" : imp.id ?: NSNull.null,
@@ -58,7 +58,7 @@
 }
 
 -(NSDictionary *)getUser {
-    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+    NSMutableDictionary* dict = [NSMutableDictionary new];
     if (self.userId) {
         dict[@"id"] = self.userId;
     }

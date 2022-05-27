@@ -79,7 +79,7 @@
 -(NSURL*) composeURL {
     NSURLComponents* comps = [[NSURLComponents alloc] initWithString:[_httpTaskDelegate getUrl]];
     if ([_httpTaskDelegate respondsToSelector:@selector(getQueryParameters)]) {
-        NSMutableArray<NSURLQueryItem*>* queryItems = [NSMutableArray array];
+        NSMutableArray<NSURLQueryItem*>* queryItems = [NSMutableArray new];
         [[_httpTaskDelegate getQueryParameters] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             [queryItems addObject:[NSURLQueryItem queryItemWithName:key value:(NSString*)obj]];
         }];
@@ -110,7 +110,7 @@
         if (jsonBody) {
             request.HTTPMethod = @"POST";
             NSError* jsonSerialErr;
-            NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonBody options:0 error:nil];
+            NSData* jsonData = [NSJSONSerialization dataWithJSONObject:jsonBody options:0 error:&jsonSerialErr];
             if (jsonData) {
                 RUNADebug("jsonBody string: %@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
                 request.HTTPBody = jsonData;

@@ -12,7 +12,7 @@
 @implementation RUNANativeAdAdapter
 
 -(NSArray *)getImp {
-    NSMutableArray* impList = [NSMutableArray array];
+    NSMutableArray* impList = [NSMutableArray new];
     for (NSString* adspotId in self.adspotIdList) {
         if (adspotId) {
             [impList addObject:@{

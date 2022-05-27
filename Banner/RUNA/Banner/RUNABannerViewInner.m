@@ -27,6 +27,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 @property (nonatomic) RUNAVideoState videoState;
 @property (nonatomic) RUNAMediaType mediaType;
 @property (atomic) BOOL hasSentMeasureInview;
+@property (nonatomic) RUNAOpenRTBRequest* request;
 
 @end
 
@@ -39,7 +40,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     if (self) {
         [self setInitState];
         self->_imp = [RUNABannerImp new];
-        self.imp.json = [NSMutableDictionary dictionary];
+        self.imp.json = [NSMutableDictionary new];
         if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
             && !self.openMeasurementDisabled) {
             self.imp.banner = @{ @"api": @[@(7)] };
@@ -53,7 +54,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     if (self) {
         [self setInitState];
         self->_imp = [RUNABannerImp new];
-        self.imp.json = [NSMutableDictionary dictionary];
+        self.imp.json = [NSMutableDictionary new];
         if ([self conformsToProtocol:@protocol(RUNAOpenMeasurement)]
             && !self.openMeasurementDisabled) {
             self.imp.banner = @{ @"api": @[@(7)] };
@@ -71,7 +72,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
         [measurer finishMeasurement];
     }];
-    self.measurers = [NSMutableArray array];
+    self.measurers = [NSMutableArray new];
     self.logAdInfo = [RUNARemoteLogEntityAd new];
     self.logUserInfo = [RUNARemoteLogEntityUser new];
 }
@@ -134,13 +135,13 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
             bannerAdapter.userId = self.userId;
             bannerAdapter.geo = self.geo;
             bannerAdapter.responseConsumer = self;
-            bannerAdapter.blockAdList = self.session.blockAdList;
-            RUNALog("block ad list for current session: %@", self.session.blockAdList);
+            bannerAdapter.blockAdList = [self.session.blockAdList copy];
+            RUNALog("block ad list for current session: %@", bannerAdapter.blockAdList);
             
-            RUNAOpenRTBRequest* request = [RUNAOpenRTBRequest new];
-            request.openRTBAdapterDelegate = bannerAdapter;
+            self.request = [RUNAOpenRTBRequest new];
+            self.request.openRTBAdapterDelegate = bannerAdapter;
 
-            [request resume];
+            [self.request resume];
         } @catch(NSException* exception) {
             RUNALog("load exception: %@", exception);
             if (self.error == RUNABannerViewErrorNone) {

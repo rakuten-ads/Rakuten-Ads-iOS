@@ -21,7 +21,7 @@
 
 -(void)addBlockAd:(NSInteger)advId {
     if (!self.blockAdList) {
-        self->_blockAdList = [NSMutableArray array];
+        self->_blockAdList = [NSMutableArray new];
     }
     [self.blockAdList addObject:[NSNumber numberWithInteger:advId]];
 }
