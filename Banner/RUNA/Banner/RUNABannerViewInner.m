@@ -563,18 +563,14 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
                 && ![url.absoluteString isEqualToString:[baseURLJs stringByAppendingString:@"/"]]
                 && ![url.absoluteString isEqualToString:BASE_URL_BLANK])
             ) {
-            RUNADebug("clicked ad");
-            [UIApplication.sharedApplication openURL:url options:@{} completionHandler:^(BOOL success){
-                RUNADebug("opened AD URL");
-            }];
-            
-            RUNADebug("WKNavigationActionPolicyCancel");
+            if (self.mediaType == RUNA_MEDIA_TYPE_VIDEO) {
+                self.videoState = RUNA_VIDEO_STATE_STOP;
+                [self notifyVideoViewableChanged:NO];
+            }
+
             if (self.eventHandler) {
                 @try {
-                    if (self.mediaType == RUNA_MEDIA_TYPE_VIDEO) {
-                        self.videoState = RUNA_VIDEO_STATE_STOP;
-                        [self notifyVideoViewableChanged:NO];
-                    }
+                    self->_clickURL = url.absoluteString;
                     struct RUNABannerViewEvent event = { RUNABannerViewEventTypeClicked, self.error };
                     self.eventHandler(self, event);
                 } @catch (NSException *exception) {
@@ -582,7 +578,15 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
                     [self sendRemoteLogWithMessage:@"exception when bannerOnClick callback" andException:exception];
                 }
             }
+
+            if (!self.shouldPreventDefaultClickAction) {
+                RUNADebug("clicked ad default action");
+                [UIApplication.sharedApplication openURL:url options:@{} completionHandler:^(BOOL success){
+                    RUNADebug("opened AD URL");
+                }];
+            }
             self.state = RUNA_ADVIEW_STATE_CLICKED;
+            RUNADebug("WKNavigationActionPolicyCancel");
             decisionHandler(WKNavigationActionPolicyCancel);
             return;
         }
@@ -729,7 +733,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
  * Any update in other modules brings update here.
  */
 +(NSString*) RUNASDKVersionString {
-    return @"1.9.0"; // TODO: check when release
+    return @"1.10.0"; // TODO: check when release
 }
 
 -(NSString*) descriptionState {

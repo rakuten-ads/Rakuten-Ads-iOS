@@ -54,6 +54,9 @@ struct RUNABannerViewEvent {
 @property(nonatomic, nullable) NSDictionary* properties;
 @property(nonatomic, weak, nullable) RUNAAdSession* session;
 
+@property(nonatomic, readonly, nullable) NSString* clickURL;
+@property(nonatomic) BOOL shouldPreventDefaultClickAction;
+
 -(void) load;
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerView* view, struct RUNABannerViewEvent event)) handler;
 
