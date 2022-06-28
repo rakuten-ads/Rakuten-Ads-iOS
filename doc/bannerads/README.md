@@ -72,7 +72,11 @@ The RUNABanner SDK tracks 3 event types of `RUNABannerViewEvent` if developers n
   - `unfilled` : Request received while there is no advertisement sources to show.
 
 - **Clicked (RUNABannerViewEventTypeClicked) :**<br>
-  After the banner is clicked.
+  Event after the banner is clicked, while the following properties can be referred.
+  - `clickURL` : <br>
+  The URL directs to the advertisement.
+  - `shouldPreventDefaultClickAction` : <br>
+  Default `false`. `true` to prevent SDK open the click URL by the system browser.
 
 
 ### Open Measurement

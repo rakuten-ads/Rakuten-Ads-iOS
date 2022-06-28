@@ -66,14 +66,18 @@ RUNA SDK は三つのイベントをトラッキングすることが可能で�
 - **失敗 (RUNABannerViewEventTypeFailed) :**
   広告内容のリクエストのそう受信、及び広告表示のいずれかで失敗した場合。<br>
 　失敗の原因は `RUNABannerViewError` プロパーティーとシステムログで確認することができます。
-  - `none` : エラーなし.
-  - `internal` : 予想外のSDK内部エラーUnexpected internal error of SDK.
-  - `network` : 通信エラー.
-  - `fatal` : パラメーターの設定ミス.
-  - `unfilled` : 表示できる広告がない.
+  - `none` : エラーなし。
+  - `internal` : 予想外のSDK内部エラーUnexpected internal error of SDK。
+  - `network` : 通信エラー。
+  - `fatal` : パラメーターの設定ミス。
+  - `unfilled` : 表示できる広告がない。
 
 - **クリック (RUNABannerViewEventTypeClicked) :**
-  banner 広告がクリックされた時。
+  banner 広告がクリックされた。この時参照できるプロパティーは以下です。
+  - `clickURL` : <br>
+  広告を開くリンク。
+  - `shouldPreventDefaultClickAction` : <br>
+  デフォルトは `false`. `true`の場合、SDKがシステムブラウザ使って広告を開く動きを止めます。
 
 ### Open Measurement
 
