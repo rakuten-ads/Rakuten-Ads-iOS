@@ -11,6 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*!
+ Extension for certain properties.
+ */
 @interface RUNABannerGroup(RUNA_Extension)
 
 /*!

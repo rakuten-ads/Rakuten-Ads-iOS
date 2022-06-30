@@ -11,15 +11,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*!
+ Extension for certain properties.
+ */
 @interface RUNABannerCarouselView (RUNA_Extension)
 
-/**
+/*!
  set RzCookie
+ @param rz value of the RzCookie
  */
 -(void) setRz:(NSString*) rz;
 
-/**
+/*!
  set RpCookie
+ @param rp value of the RpCookie
  */
 -(void) setRp:(NSString*) rp;
 

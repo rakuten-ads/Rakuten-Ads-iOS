@@ -28,7 +28,7 @@ load a bunch of banners in a request without event handler.
 -(void) load;
 
 /*!
-load a bunch of banners in a request with event handler.
+ load a bunch of banners in a request with event handler.
  @param handler callback for events.
  */
 
