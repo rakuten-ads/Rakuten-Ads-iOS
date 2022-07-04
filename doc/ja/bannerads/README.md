@@ -95,6 +95,10 @@ Open Measurementを自動に有効するために`Podfile`に `pod 'OMAdapter'`�
 一回複数異なる広告内容をリクエストします。
 参照先: [バナーグループ](./group/README.md)
 
+Group Requestを利用するUI 部品。
+参照先: [Carousel View](./carousel/README.md)
+
+
 ## 2. 実装サンプル
 
 ### 一般の実装

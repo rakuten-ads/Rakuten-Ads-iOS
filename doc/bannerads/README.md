@@ -94,6 +94,10 @@ See [Extension Module](./extension/README.md)
 Request distinct ad in a single request.
 See [Banner Group](./group/README.md)
 
+UI Component with group request.
+See [Carousel View](./carousel/README.md)
+
+
 ## 2. Samples
 
 ### Normal case
