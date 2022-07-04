@@ -62,3 +62,7 @@ bannerGroup.load { (group, banner, event) in
 
 ### 広告を特定する
 `RUNABannerView`の`UIView`から継承した`tag`初期化時に指定し、その後コールバックで特定します。
+
+## 参照
+Group Requestを利用するUI 部品。
+ここへ詳細を確認する。 [Carousel View](../carousel/README.md)

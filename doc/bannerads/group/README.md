@@ -62,3 +62,7 @@ bannerGroup.load { (group, banner, event) in
 
 ### Identify a BannerView in a group
 Simply set the property `tag` of `RUNABannerView` inherited from super class `UIView` when initilization, and then use it to identify banner in the callback closure.
+
+## References
+UI Component with group request.
+See [Carousel View](../carousel/README.md)
