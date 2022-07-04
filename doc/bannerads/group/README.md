@@ -65,4 +65,4 @@ Simply set the property `tag` of `RUNABannerView` inherited from super class `UI
 
 ## References
 UI Component with group request.
-See [Carousel View](./carousel/README.md)
+See [Carousel View](../carousel/README.md)
