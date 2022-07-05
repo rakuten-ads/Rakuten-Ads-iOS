@@ -23,7 +23,6 @@
 
 @interface RUNABannerCarouselItemViewCell : UICollectionViewCell
 
-@property(nonatomic, weak, nullable) RUNABannerCarouselView* carouselView;
 @property(nonatomic, readonly, nonnull) NSLayoutConstraint* widthConstraint;
 
 -(void) config:(RUNABannerCarouselView* _Nonnull) carouselView;

@@ -89,6 +89,10 @@
         self.group.banners = banners;
     }
 
+    if (self.decorator) {
+        self.itemEdgeInsets = UIEdgeInsetsZero;
+    }
+
     __weak typeof(self) weakSelf = self;
     [self.group loadWithEventHandler:^(RUNABannerGroup * _Nonnull group, RUNABannerView * _Nullable banner, struct RUNABannerViewEvent event) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -129,9 +133,9 @@
     UICollectionViewFlowLayout* layout = [UICollectionViewFlowLayout new];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.minimumLineSpacing = self.itemSpacing;
-    layout.minimumInteritemSpacing = 0.0;
+    layout.minimumInteritemSpacing = self.itemSpacing;
     layout.sectionInset = UIEdgeInsetsMake(0, self.contentEdgeInsets.left, 0, self.contentEdgeInsets.right);
-    layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
+//    layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize;
 
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.backgroundColor = UIColor.clearColor;
@@ -163,12 +167,7 @@
         [self.superview removeConstraint:self.widthConstraint];
         [self removeConstraint:self.heightConstraint];
 
-        if (@available(ios 11.0, *)) {
-            UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
-            self.widthConstraint = [self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor];
-        } else {
-            self.widthConstraint = [self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor];
-        }
+        self.widthConstraint = [self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor];
         if (self.maxContentHeight > 0) {
             self.heightConstraint = [self.heightAnchor constraintEqualToConstant:self.maxContentHeight];
         } else {
@@ -202,33 +201,20 @@
 //    }
 //}
 
--(void)layoutSubviews {
-    RUNADebug("[banner slider] carousel view layoutSubviews");
+- (void)updateConstraints {
+    RUNADebug("[banner slider] carousel view updateConstraints");
     if (self.maxContentHeight > 0 && self.heightConstraint.constant != self.maxContentHeight) {
         RUNADebug("[banner slider] carousel view height updated to %f", self.maxContentHeight);
-        self.maxContentHeight = ceil(self.maxContentHeight); // ceiling for system tolerence
         [self.heightConstraint setConstant:self.maxContentHeight];
-        [self setNeedsLayout];
+        [self.collectionView.collectionViewLayout invalidateLayout];
     }
-    [super layoutSubviews];
-}
-
--(void)layoutMarginsDidChange {
-    RUNADebug("[banner slider] carousel view layoutMarginsDidChange");
-    if (self.maxContentHeight > 0 && self.heightConstraint.constant != self.maxContentHeight) {
-        RUNADebug("[banner slider] carousel view height updated to %f", self.maxContentHeight);
-        self.maxContentHeight = ceil(self.maxContentHeight); // ceiling for system tolerence
-        [self.heightConstraint setConstant:self.maxContentHeight];
-        [self setNeedsLayout];
-    }
-    [super layoutMarginsDidChange];
+    [super updateConstraints];
 }
 
 -(void)didMoveToSuperview {
     RUNADebug("[banner slider] didMoveToSuperview");
     if (self.superview) {
         [self applyContainerSize];
-        [self layoutIfNeeded];
     } else {
         RUNADebug("[banner slider] removeFromSuperview leads here when superview is nil");
     }
@@ -289,12 +275,13 @@
     return cell;
 }
 
--(void) adjustInstrinsicMaxHeight:(CGSize) size {
+-(void) adjustMaxHeightByContentSize:(CGSize) size {
     CGFloat contentHeight = size.height + self.contentEdgeInsets.top + self.contentEdgeInsets.bottom;
+    contentHeight = ceil(contentHeight);
     if (contentHeight > self.maxContentHeight) {
-        RUNADebug("[banner slider] collection view height updated to %f", contentHeight);
+        RUNADebug("[banner slider] adjustMaxHeightByContentSize updated to %f", contentHeight);
         self.maxContentHeight = contentHeight;
-        [self setNeedsLayout];
+        [self setNeedsUpdateConstraints];
     }
 }
 
@@ -334,14 +321,8 @@
 }
 
 - (CGFloat)calculateCellHeight:(CGFloat)cellWidth {
-    CGFloat cellHeight = (cellWidth - self.itemEdgeInsets.left - self.itemEdgeInsets.right) * self.maxAspectRatio  + self.itemEdgeInsets.top + self.itemEdgeInsets.bottom + 0.5;
-    if (cellHeight > self.maxContentHeight) {
-        self.maxContentHeight = cellHeight;
-        [self setNeedsLayout];
-    } else {
-        cellHeight = self.maxContentHeight;
-    }
-    return cellHeight;
+    CGFloat cellHeight = (cellWidth - self.itemEdgeInsets.left - self.itemEdgeInsets.right) * self.maxAspectRatio  + self.itemEdgeInsets.top + self.itemEdgeInsets.bottom;
+    return ceil(cellHeight);
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -350,6 +331,14 @@
 
     CGFloat cellWidth = [self calculateCellWidth:collectionView];
     CGFloat cellHeight = [self calculateCellHeight:cellWidth];
+
+    CGFloat contentHeight = cellHeight + (self.contentEdgeInsets.top + self.contentEdgeInsets.bottom);
+    if (contentHeight > self.maxContentHeight) {
+        self.maxContentHeight = contentHeight;
+        [self setNeedsUpdateConstraints];
+    } else {
+        cellHeight = self.maxContentHeight - (self.contentEdgeInsets.top + self.contentEdgeInsets.bottom);
+    }
 
     RUNADebug("[banner slider] sizeForItem index %ld size(%f, %f)", (long)indexPath.item, cellWidth, cellHeight);
     return CGSizeMake(cellWidth, cellHeight);
@@ -391,35 +380,19 @@
 }
 
 -(void) config:(RUNABannerCarouselView*) carouselView {
-    self.carouselView = carouselView;
     self.backgroundColor = UIColor.clearColor;
 
-    if (self.carouselView.decorator) {
-        CGFloat cellWidth = [self.carouselView calculateCellWidth:carouselView.collectionView];
+    if (carouselView.decorator) {
+        CGFloat cellWidth = [carouselView calculateCellWidth:carouselView.collectionView];
         RUNADebug("[banner slider] RUNABannerCarouselItemViewCell re-init width %f for decorator", cellWidth);
         self->_widthConstraint = [self.contentView.widthAnchor constraintEqualToConstant:cellWidth];
-        self.widthConstraint.priority = UILayoutPriorityDefaultHigh;
+        self.widthConstraint.priority = UILayoutPriorityRequired;
         [self.contentView addConstraint:self.widthConstraint];
+
+        CGSize cellContentIntrinsicSize = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+        RUNADebug("[banner slider] systemLayoutSizeFittingSize cellContentIntrinsicSize = %@", NSStringFromCGSize(cellContentIntrinsicSize));
+        [carouselView adjustMaxHeightByContentSize:cellContentIntrinsicSize];
     }
 }
-
--(void)layoutSubviews {
-    CGSize cellContentIntrinsicSize = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    [self.carouselView adjustInstrinsicMaxHeight:cellContentIntrinsicSize];
-
-    RUNADebug("[banner slider] RUNABannerCarouselItemViewCell layoutSubviews size->%@", NSStringFromCGSize(cellContentIntrinsicSize));
-
-    [super layoutSubviews];
-}
-
--(void)layoutMarginsDidChange {
-    CGSize cellContentIntrinsicSize = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    [self.carouselView adjustInstrinsicMaxHeight:cellContentIntrinsicSize];
-
-    RUNADebug("[banner slider] RUNABannerCarouselItemViewCell layoutMarginsDidChange size->%@", NSStringFromCGSize(cellContentIntrinsicSize));
-
-    [super layoutMarginsDidChange];
-}
-
 
 @end

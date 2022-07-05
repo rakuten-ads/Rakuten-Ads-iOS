@@ -144,10 +144,21 @@
     jsonDevice[@"language"] = deviceInfo.language ?: NSNull.null;
     jsonDevice[@"ifa"] = idfaInfo.idfa  ?: @"00000000-0000-0000-0000-000000000000";
     jsonDevice[@"lmt"] = idfaInfo.isTrackingEnabled ? @0 : @1;
+
+    
+    NSString* runaSDKVersion;
+    Class bannerClass = NSClassFromString(kModuleClassBannerView);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    if (bannerClass && [bannerClass respondsToSelector:@selector(RUNASDKVersionString)]) {
+        runaSDKVersion = [bannerClass performSelector:@selector(RUNASDKVersionString)];
+    }
+#pragma clang diagnostic pop
+
     jsonDevice[@"ext"] = @{
-        @"sdk_version" : defines.sdkBundleShortVersionString ?: NSNull.null,
+        @"sdk_version" : runaSDKVersion ?: NSNull.null,
         @"sdk_versions" : @{
-            @"ios" : [self getSdkVersions]
+            @"ios" : [self getSdkVersionsWithRUNASDKVersion:runaSDKVersion]
         },
     };
     jsonDevice[@"connectiontype"] = @(deviceInfo.connectionMethod);
@@ -178,34 +189,39 @@
 }
 
 
+NSString* kModuleNameRuna = @"runa";
 NSString* kModuleNameCore = @"runa_core";
 NSString* kModuleNameBanner = @"runa_banner";
 NSString* kModuleNameOmadapter = @"runa_om_adapter";
 NSString* kModuleClassBannerView = @"RUNABannerView";
 NSString* kModuleClassOmadapter = @"RUNAOpenMeasurer";
--(NSArray*) getSdkVersions {
+-(NSArray*) getSdkVersionsWithRUNASDKVersion:(NSString*) runaSdkVersion {
     NSMutableDictionary<NSString*, NSString*>* dict = [NSMutableDictionary new];
+
+    if (runaSdkVersion) {
+        [dict setObject:runaSdkVersion forKey:kModuleNameRuna];
+    }
+
     [dict setObject:RUNADefines.sharedInstance.sdkBundleShortVersionString forKey:kModuleNameCore];
 
-    {
-        Class bannerClass = NSClassFromString(kModuleClassBannerView);
-        if (bannerClass && [bannerClass respondsToSelector:@selector(versionString)]) {
-            NSString* bannerSDKVersion = [bannerClass performSelector:@selector(versionString)];
-            if (bannerSDKVersion) {
-                [dict setObject:bannerSDKVersion forKey:kModuleNameBanner];
-            }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    Class bannerClass = NSClassFromString(kModuleClassBannerView);
+    if (bannerClass && [bannerClass respondsToSelector:@selector(versionString)]) {
+        NSString* bannerSDKVersion = [bannerClass performSelector:@selector(versionString)];
+        if (bannerSDKVersion) {
+            [dict setObject:bannerSDKVersion forKey:kModuleNameBanner];
         }
     }
 
-    {
-        Class omClass = NSClassFromString(kModuleClassOmadapter);
-        if (omClass && [omClass respondsToSelector:@selector(versionString)]) {
-            NSString* omadapterSDKVersion = [omClass performSelector:@selector(versionString)];
-            if (omadapterSDKVersion) {
-                [dict setObject:omadapterSDKVersion forKey:kModuleNameOmadapter];
-            }
+    Class omClass = NSClassFromString(kModuleClassOmadapter);
+    if (omClass && [omClass respondsToSelector:@selector(versionString)]) {
+        NSString* omadapterSDKVersion = [omClass performSelector:@selector(versionString)];
+        if (omadapterSDKVersion) {
+            [dict setObject:omadapterSDKVersion forKey:kModuleNameOmadapter];
         }
     }
+#pragma clang diagnostic pop
 
     NSMutableArray* versionList = [NSMutableArray new];
     [dict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {

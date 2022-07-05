@@ -723,6 +723,15 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     return @OS_STRINGIFY(RUNA_SDK_VERSION);
 }
 
+/**
+ * The version string identify the whole RUNA SDK.
+ * It has the same value with the release version in the Podspec file
+ * Any update in other modules brings update here.
+ */
++(NSString*) RUNASDKVersionString {
+    return @"1.9.0"; // TODO: check when release
+}
+
 -(NSString*) descriptionState {
     return _state == RUNA_ADVIEW_STATE_INIT ? @"INIT" :
     _state == RUNA_ADVIEW_STATE_LOADING ? @"LOADING" :
