@@ -66,14 +66,18 @@ RUNA SDK は三つのイベントをトラッキングすることが可能で�
 - **失敗 (RUNABannerViewEventTypeFailed) :**
   広告内容のリクエストのそう受信、及び広告表示のいずれかで失敗した場合。<br>
 　失敗の原因は `RUNABannerViewError` プロパーティーとシステムログで確認することができます。
-  - `none` : エラーなし.
-  - `internal` : 予想外のSDK内部エラーUnexpected internal error of SDK.
-  - `network` : 通信エラー.
-  - `fatal` : パラメーターの設定ミス.
-  - `unfilled` : 表示できる広告がない.
+  - `none` : エラーなし。
+  - `internal` : 予想外のSDK内部エラーUnexpected internal error of SDK。
+  - `network` : 通信エラー。
+  - `fatal` : パラメーターの設定ミス。
+  - `unfilled` : 表示できる広告がない。
 
 - **クリック (RUNABannerViewEventTypeClicked) :**
-  banner 広告がクリックされた時。
+  banner 広告がクリックされた。この時参照できるプロパティーは以下です。
+  - `clickURL` : <br>
+  広告を開くリンク。
+  - `shouldPreventDefaultClickAction` : <br>
+  デフォルトは `false`. `true`の場合、SDKがシステムブラウザ使って広告を開く動きを止めます。
 
 ### Open Measurement
 
@@ -137,6 +141,10 @@ banner.position = RUNABannerViewPositionBottom;
             break;
         case RUNABannerViewEventTypeClicked:
             NSLog(@"received event clicked");
+            if (view.clickURL != nil) {
+                view.shouldPreventDefaultClickAction = YES;
+                print("do something with the click url by self")
+            }
             break;
         default:
             NSLog(@"unknown event");
@@ -160,10 +168,10 @@ banner.position = .bottom
 // specify disable open measurement by need
 // banner.disableOpenMeasurement()
 
-banner.load { (banner, event) in
+banner.load { (view, event) in
     switch event.eventType {
     case .succeeded:
-        print("received event succceeded")
+        print("received event succeeded")
     case .failed:
         print("received event failed")
         switch event.error {
@@ -176,6 +184,10 @@ banner.load { (banner, event) in
         }
     case .clicked:
         print("received event clicked")
+        if let url = view.clickURL {
+            view.shouldPreventDefaultClickAction = true
+            print("do something with the click url by self")
+        }
     default:
         break
     }
@@ -218,10 +230,10 @@ banner.adSpotCode = "mycode"
 banner.size = .aspectFit
 banner.position = .bottom
 
-banner.load { (banner, event) in
+banner.load { (view, event) in
     switch event.eventType {
     case .succeeded:
-        print("received event succceeded")
+        print("received event succeeded")
     case .failed:
         print("received event failed")
         switch event.error {
