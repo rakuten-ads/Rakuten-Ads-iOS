@@ -141,6 +141,10 @@ banner.position = RUNABannerViewPositionBottom;
             break;
         case RUNABannerViewEventTypeClicked:
             NSLog(@"received event clicked");
+            if (view.clickURL != nil) {
+                view.shouldPreventDefaultClickAction = YES;
+                print("do something with the click url by self")
+            }
             break;
         default:
             NSLog(@"unknown event");
@@ -164,10 +168,10 @@ banner.position = .bottom
 // specify disable open measurement by need
 // banner.disableOpenMeasurement()
 
-banner.load { (banner, event) in
+banner.load { (view, event) in
     switch event.eventType {
     case .succeeded:
-        print("received event succceeded")
+        print("received event succeeded")
     case .failed:
         print("received event failed")
         switch event.error {
@@ -180,6 +184,10 @@ banner.load { (banner, event) in
         }
     case .clicked:
         print("received event clicked")
+        if let url = view.clickURL {
+            view.shouldPreventDefaultClickAction = true
+            print("do something with the click url by self")
+        }
     default:
         break
     }
@@ -222,10 +230,10 @@ banner.adSpotCode = "mycode"
 banner.size = .aspectFit
 banner.position = .bottom
 
-banner.load { (banner, event) in
+banner.load { (view, event) in
     switch event.eventType {
     case .succeeded:
-        print("received event succceeded")
+        print("received event succeeded")
     case .failed:
         print("received event failed")
         switch event.error {
