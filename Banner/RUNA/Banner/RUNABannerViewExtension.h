@@ -11,6 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*!
+ Genre detail declaration.
+ */
 @interface RUNABannerViewGenreProperty : NSObject
 
 @property(nonatomic, readonly) NSInteger masterId;
@@ -24,23 +27,36 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
+/*!
+ Extension for certain properties.
+ */
 @interface RUNABannerView(RUNA_Extension)
 
+/*!
+ indicate targeting genre
+ @param matchingGenre genre details
+ */
 -(void) setPropertyGenre:(RUNABannerViewGenreProperty*) matchingGenre;
+
+/*!
+ indicate custom targeting
+ @param target target details
+ */
 -(void) setCustomTargeting:(NSDictionary*) target;
 
-/**
+/*!
  set RzCookie
+ @param rz value of the RzCookie
  */
 -(void) setRz:(NSString*) rz;
 
-/**
+/*!
  set RpCookie
+ @param rp value of the RpCookie
  */
 -(void) setRp:(NSString*) rp;
 
-/**
+/*!
  set location with latitude and longitude values.
  @param lat double, from -90.0 to +90.0, where negative is south
  @param lon double, from -180.0 to +180.0, where negative is west

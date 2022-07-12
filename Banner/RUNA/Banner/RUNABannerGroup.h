@@ -14,11 +14,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*!
+ A group request load a bunch of ad requests with distinct contents.
+ */
 @interface RUNABannerGroup : NSObject
 
+/// a list of banners define ad requests.
 @property(nonatomic) NSArray<RUNABannerView*>* banners;
 
+/*!
+load a bunch of banners in a request without event handler.
+ */
 -(void) load;
+
+/*!
+ load a bunch of banners in a request with event handler.
+ @param handler callback for events.
+ */
+
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerGroup* group, RUNABannerView* __nullable view, struct RUNABannerViewEvent event)) handler;
 
 @end
