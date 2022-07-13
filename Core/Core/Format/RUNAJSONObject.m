@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
     if (value && [value isKindOfClass:[NSNumber class]]) {
         return [(NSNumber*)value boolValue] == YES;
     }
-    return false;
+    return NO;
 }
 
 @end

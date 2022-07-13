@@ -1,6 +1,5 @@
 framework module RUNACore_Private {
     header "PrivateHeaders/RUNAJSONObject.h"
-    header "PrivateHeaders/RUNAURLCoder.h"
     header "PrivateHeaders/RUNAValid.h"
     header "PrivateHeaders/RUNAHttpTask.h"
     header "PrivateHeaders/RUNALogger.h"

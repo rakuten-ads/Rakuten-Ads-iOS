@@ -1,5 +1,4 @@
 #import "RUNAHttpTask.h"
-#import "RUNAURLCoder.h"
 #import "RUNAValid.h"
 
 @interface RUNAHttpTask ()

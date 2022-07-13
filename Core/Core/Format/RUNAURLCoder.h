@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 
+/*! not compile object */
 @interface RUNAURLCoder : NSObject
 
 +(nullable NSString*) encodeURL:(nonnull NSString*) value;
