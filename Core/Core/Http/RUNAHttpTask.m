@@ -80,7 +80,11 @@
     if ([_httpTaskDelegate respondsToSelector:@selector(getQueryParameters)]) {
         NSMutableArray<NSURLQueryItem*>* queryItems = [NSMutableArray new];
         [[_httpTaskDelegate getQueryParameters] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            [queryItems addObject:[NSURLQueryItem queryItemWithName:key value:(NSString*)obj]];
+            NSString* value = @"";
+            if (obj && obj != NSNull.null) {
+                value = [obj description];
+            }
+            [queryItems addObject:[NSURLQueryItem queryItemWithName:key value:value]];
         }];
         comps.queryItems = queryItems;
     }
