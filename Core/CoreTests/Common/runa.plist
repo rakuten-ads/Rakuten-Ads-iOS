@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>RUNA_HOST_URL</key>
+	<string>https://dev-s-ad.rmp.rakuten.co.jp/ad</string>
+	<key>RUNA_BASE_URL_JS</key>
+	<string>https://dev-s-dlv.rmp.rakuten.co.jp</string>
+	<key>RUNA_INFO_KEY_REMOTE_LOG_DISABLED</key>
+	<true/>
+	<key>RUNA_INFO_KEY_REMOTE_LOG_HOST_URL</key>
+	<string>https://dev-log.rakuten.co.jp/dummy</string>
+</dict>
+</plist>

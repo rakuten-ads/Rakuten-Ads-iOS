@@ -20,18 +20,22 @@ NSString* RUNA_INFO_KEY_REMOTE_LOG_DISABLED = @"RUNA_INFO_KEY_REMOTE_LOG_DISABLE
     static RUNAInfoPlist* instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString* runaInfoFilePath = [[NSBundle mainBundle] pathForResource:@"runa" ofType:@"plist"];
-        NSDictionary* runaInfo = [NSDictionary dictionaryWithContentsOfFile:runaInfoFilePath];
-        if (runaInfo) {
-            RUNADebug("load runa.plist %@", runaInfo);
-            instance = [RUNAInfoPlist new];
-            instance->_hostURL = [runaInfo valueForKey:RUNA_INFO_KEY_HOST_URL];
-            instance->_baseURLJs = [runaInfo valueForKey:RUNA_INFO_KEY_BASE_URL_JS];
-            instance->_remoteLogDisabled = [[runaInfo valueForKey:RUNA_INFO_KEY_REMOTE_LOG_DISABLED] boolValue];
-            instance->_remoteLogHostURL = [runaInfo valueForKey:RUNA_INFO_KEY_REMOTE_LOG_HOST_URL];
-        }
+        instance = [RUNAInfoPlist new];
+        [instance loadFromBundle:NSBundle.mainBundle];
     });
     return instance;
+}
+
+- (void) loadFromBundle: (NSBundle*) bundle {
+    NSString* runaInfoFilePath = [bundle pathForResource:@"runa" ofType:@"plist"];
+    NSDictionary* runaInfo = [NSDictionary dictionaryWithContentsOfFile:runaInfoFilePath];
+    if (runaInfo) {
+        RUNADebug("load runa.plist %@", runaInfo);
+        self->_hostURL = [runaInfo valueForKey:RUNA_INFO_KEY_HOST_URL];
+        self->_baseURLJs = [runaInfo valueForKey:RUNA_INFO_KEY_BASE_URL_JS];
+        self->_remoteLogDisabled = [[runaInfo valueForKey:RUNA_INFO_KEY_REMOTE_LOG_DISABLED] boolValue];
+        self->_remoteLogHostURL = [runaInfo valueForKey:RUNA_INFO_KEY_REMOTE_LOG_HOST_URL];
+    }
 }
 
 @end

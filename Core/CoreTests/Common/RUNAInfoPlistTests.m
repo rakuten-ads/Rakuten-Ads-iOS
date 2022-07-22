@@ -9,6 +9,12 @@
 #import <XCTest/XCTest.h>
 #import "RUNAInfoPlist.h"
 
+@interface RUNAInfoPlist (test)
+
+- (void) loadFromBundle: (NSBundle*) bundle;
+
+@end
+
 @interface RUNAInfoPlistTests : XCTestCase
 @end
 
@@ -21,6 +27,17 @@
     XCTAssertNil(instance.baseURLJs);
     XCTAssertNil(instance.remoteLogHostURL);
     XCTAssertFalse(instance.remoteLogDisabled);
+}
+
+
+- (void)test_loadInfoPlist {
+
+    RUNAInfoPlist* infoPlist = [RUNAInfoPlist new];
+    [infoPlist loadFromBundle:[NSBundle bundleForClass:self.class]];
+    XCTAssertEqualObjects(infoPlist.hostURL, @"https://dev-s-ad.rmp.rakuten.co.jp/ad");
+    XCTAssertEqualObjects(infoPlist.baseURLJs, @"https://dev-s-dlv.rmp.rakuten.co.jp");
+    XCTAssertEqualObjects(infoPlist.remoteLogHostURL, @"https://dev-log.rakuten.co.jp/dummy");
+    XCTAssertEqual(infoPlist.remoteLogDisabled, YES);
 }
 
 @end
