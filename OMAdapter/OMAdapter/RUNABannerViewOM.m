@@ -19,7 +19,7 @@
 }
 
 -(id<RUNAMeasurer>) getOpenMeasurer {
-    RUNADebug("SDK RUNA/OMAdapter version: %@", self.om_versionString);
+    RUNADebug("SDK RUNA/OMAdapter version: %@", [RUNAOpenMeasurer versionString]);
     RUNAOpenMeasurer* measurer = [RUNAOpenMeasurer new];
     [measurer setMeasureTarget:self];
     return measurer;
@@ -60,14 +60,10 @@
     // ad info
     self.logAdInfo.adspotId = self.adSpotId;
     self.logAdInfo.sessionId = self.sessionId;
-    self.logAdInfo.sdkVersion = self.om_versionString;
+    self.logAdInfo.sdkVersion = [RUNAOpenMeasurer versionString];
     
     RUNARemoteLogEntity* log = [RUNARemoteLogEntity logWithError:error andUserInfo:self.logUserInfo adInfo:self.logAdInfo];
     [RUNARemoteLogger.sharedInstance sendLog:log];
-}
-
--(NSString*) om_versionString {
-    return [[[NSBundle bundleForClass:RUNAOpenMeasurer.class] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 
 @end

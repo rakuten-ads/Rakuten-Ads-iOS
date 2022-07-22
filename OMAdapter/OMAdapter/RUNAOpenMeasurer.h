@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNAOpenMeasurer : NSObject<RUNAMeasurer>
 
++(NSString*) versionString;
+
 @end
 
 NS_ASSUME_NONNULL_END

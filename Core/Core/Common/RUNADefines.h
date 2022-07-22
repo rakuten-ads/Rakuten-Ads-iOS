@@ -7,6 +7,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXPORT NSTimeInterval RUNA_API_TIMEOUT_INTERVAL;
+FOUNDATION_EXPORT NSString* kModuleClassBannerView;
 
 @interface RUNADefines : NSObject
 
@@ -23,6 +24,8 @@ FOUNDATION_EXPORT NSTimeInterval RUNA_API_TIMEOUT_INTERVAL;
 
 -(instancetype)init __unavailable;
 +(instancetype)new __unavailable;
+
+-(nullable NSString*) getRUNASDKVersionString;
 
 @end
 

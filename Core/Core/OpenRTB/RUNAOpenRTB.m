@@ -145,20 +145,10 @@
     jsonDevice[@"ifa"] = idfaInfo.idfa  ?: @"00000000-0000-0000-0000-000000000000";
     jsonDevice[@"lmt"] = idfaInfo.isTrackingEnabled ? @0 : @1;
 
-    
-    NSString* runaSDKVersion;
-    Class bannerClass = NSClassFromString(kModuleClassBannerView);
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-    if (bannerClass && [bannerClass respondsToSelector:@selector(RUNASDKVersionString)]) {
-        runaSDKVersion = [bannerClass performSelector:@selector(RUNASDKVersionString)];
-    }
-#pragma clang diagnostic pop
-
     jsonDevice[@"ext"] = @{
-        @"sdk_version" : runaSDKVersion ?: NSNull.null,
+        @"sdk_version" : [defines getRUNASDKVersionString] ?: NSNull.null,
         @"sdk_versions" : @{
-            @"ios" : [self getSdkVersionsWithRUNASDKVersion:runaSDKVersion]
+            @"ios" : [self getSdkVersions]
         },
     };
     jsonDevice[@"connectiontype"] = @(deviceInfo.connectionMethod);
@@ -193,11 +183,11 @@ NSString* kModuleNameRuna = @"runa";
 NSString* kModuleNameCore = @"runa_core";
 NSString* kModuleNameBanner = @"runa_banner";
 NSString* kModuleNameOmadapter = @"runa_om_adapter";
-NSString* kModuleClassBannerView = @"RUNABannerView";
 NSString* kModuleClassOmadapter = @"RUNAOpenMeasurer";
--(NSArray*) getSdkVersionsWithRUNASDKVersion:(NSString*) runaSdkVersion {
+-(NSArray*) getSdkVersions {
     NSMutableDictionary<NSString*, NSString*>* dict = [NSMutableDictionary new];
 
+    NSString* runaSdkVersion = [RUNADefines.sharedInstance getRUNASDKVersionString];
     if (runaSdkVersion) {
         [dict setObject:runaSdkVersion forKey:kModuleNameRuna];
     }

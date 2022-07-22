@@ -62,6 +62,20 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
     return self;
 }
 
+NSString* kModuleClassBannerView = @"RUNABannerView";
+
+-(NSString *)getRUNASDKVersionString {
+    NSString* runaSDKVersion;
+    Class bannerClass = NSClassFromString(kModuleClassBannerView);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    if (bannerClass && [bannerClass respondsToSelector:@selector(RUNASDKVersionString)]) {
+        runaSDKVersion = [bannerClass performSelector:@selector(RUNASDKVersionString)];
+    }
+#pragma clang diagnostic pop
+    return runaSDKVersion;
+}
+
 -(NSString *)description {
     [self.userAgentInfo syncResult];
     return [NSString stringWithFormat:

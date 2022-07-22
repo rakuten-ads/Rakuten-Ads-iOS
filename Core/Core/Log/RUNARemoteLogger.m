@@ -155,6 +155,10 @@ NSString* RUNA_LOG_USER_AGENT = @"RUNA SDK RemoteLog";
 
 - (void)sendLog:(RUNARemoteLogEntity *)logInfo {
     @try {
+        if (!logInfo || !logInfo.errorDetail) {
+            RUNADebug("[Remote-Log] remote log detail info is not found!");
+            return;
+        }
         RUNARemoteLogRequest* request = [RUNARemoteLogRequest new];
         request.logInfo = logInfo;
         RUNADebug("[Remote-Log] send log entity: %@", logInfo.errorDetail.errorMessage);

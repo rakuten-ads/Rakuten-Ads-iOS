@@ -123,6 +123,7 @@
     [RUNARemoteLogger.sharedInstance sendLog:log];
 }
 
+// TODO: This method doesn't not work in a real app.
 -(NSString*) a2a_versionString {
     return [[[NSBundle bundleForClass:[RUNAPopupViewController class]] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }

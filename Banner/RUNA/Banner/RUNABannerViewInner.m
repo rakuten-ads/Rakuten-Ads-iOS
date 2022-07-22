@@ -209,7 +209,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     // ad info
     self.logAdInfo.adspotId = self.adSpotId;
     self.logAdInfo.sessionId = self.sessionId;
-    self.logAdInfo.sdkVersion = self.class.versionString;
+    self.logAdInfo.sdkVersion = self.class.RUNASDKVersionString;
     
     RUNARemoteLogEntity* log = [RUNARemoteLogEntity logWithError:error andUserInfo:self.logUserInfo adInfo:self.logAdInfo];
     [RUNARemoteLogger.sharedInstance sendLog:log];
