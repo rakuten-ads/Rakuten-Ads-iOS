@@ -76,6 +76,7 @@
 		32F8B5DB2880ED1A00F833B7 /* RUNALoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F8B5DA2880ED1A00F833B7 /* RUNALoggerTests.m */; };
 		32F8B5DD2880EDA000F833B7 /* RUNARemoteLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F8B5DC2880EDA000F833B7 /* RUNARemoteLoggerTests.m */; };
 		32F8B5F0288A9EBE00F833B7 /* runa.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32F8B5DE288A33E100F833B7 /* runa.plist */; };
+		32F8B5F3288F791900F833B7 /* RUNAOpenRTBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F8B5F2288F791900F833B7 /* RUNAOpenRTBTests.m */; };
 		54A8C7E1268B03230094F6BE /* RUNAAdWebViewMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7E0268B03230094F6BE /* RUNAAdWebViewMessageTests.m */; };
 		54A8C7E6268C23A10094F6BE /* RUNAIdfaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7E5268C23A10094F6BE /* RUNAIdfaTests.m */; };
 		54A8C7E8268C32290094F6BE /* RUNAAdWebViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7E7268C32290094F6BE /* RUNAAdWebViewTests.m */; };
@@ -157,6 +158,7 @@
 		32F8B5DA2880ED1A00F833B7 /* RUNALoggerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNALoggerTests.m; sourceTree = "<group>"; };
 		32F8B5DC2880EDA000F833B7 /* RUNARemoteLoggerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNARemoteLoggerTests.m; sourceTree = "<group>"; };
 		32F8B5DE288A33E100F833B7 /* runa.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = runa.plist; sourceTree = "<group>"; };
+		32F8B5F2288F791900F833B7 /* RUNAOpenRTBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOpenRTBTests.m; sourceTree = "<group>"; };
 		54A8C7E0268B03230094F6BE /* RUNAAdWebViewMessageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewMessageTests.m; sourceTree = "<group>"; };
 		54A8C7E5268C23A10094F6BE /* RUNAIdfaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAIdfaTests.m; sourceTree = "<group>"; };
 		54A8C7E7268C32290094F6BE /* RUNAAdWebViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewTests.m; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 		32F258C921E5866D001FD9C0 /* CoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				32F8B5F1288F78F400F833B7 /* OpenRTB */,
 				32F8B5D92880ED0D00F833B7 /* Log */,
 				32F8B5D5287FA61600F833B7 /* Http */,
 				32F8B5CC287D9E7E00F833B7 /* Persistence */,
@@ -393,6 +396,14 @@
 				32F8B5DC2880EDA000F833B7 /* RUNARemoteLoggerTests.m */,
 			);
 			path = Log;
+			sourceTree = "<group>";
+		};
+		32F8B5F1288F78F400F833B7 /* OpenRTB */ = {
+			isa = PBXGroup;
+			children = (
+				32F8B5F2288F791900F833B7 /* RUNAOpenRTBTests.m */,
+			);
+			path = OpenRTB;
 			sourceTree = "<group>";
 		};
 		54A8C7DE268B03040094F6BE /* Common */ = {
@@ -617,6 +628,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32F8B5F3288F791900F833B7 /* RUNAOpenRTBTests.m in Sources */,
 				32F8B5D4287DBAB800F833B7 /* RUNACacheFileTests.m in Sources */,
 				54A8C7E8268C32290094F6BE /* RUNAAdWebViewTests.m in Sources */,
 				54A8C7E1268B03230094F6BE /* RUNAAdWebViewMessageTests.m in Sources */,
