@@ -16,9 +16,9 @@
 
 3. gem
 
-`gem install bundler -i .`
+`gem install bundler -i .gem`
 
-`bundle install --path .`
+`bundle install`
 
 4. gcloud credential file of bucket
 
