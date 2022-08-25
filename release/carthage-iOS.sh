@@ -20,6 +20,8 @@ fi
 
 if [ ! $SDK_OUTPUT_DIR ]; then
 	SDK_OUTPUT_DIR=${PROJECT_DIR}/build/${CONFIGURATION}
+else
+	SDK_OUTPUT_DIR=${PROJECT_DIR}/${SDK_OUTPUT_DIR}
 fi
 
 if [ "$1" != "archive" ]; then
