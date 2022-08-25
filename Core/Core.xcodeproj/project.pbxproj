@@ -727,7 +727,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1040401;
+				CURRENT_PROJECT_VERSION = 1040501;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
@@ -745,7 +745,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.4.4;
+				MARKETING_VERSION = 1.4.5;
 				MODULEMAP_FILE = Core/RUNACore.modulemap;
 				MODULEMAP_PRIVATE_FILE = Core/RUNACore.private.modulemap;
 				OTHER_LDFLAGS = "-ObjC";
@@ -925,7 +925,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1040401;
+				CURRENT_PROJECT_VERSION = 1040501;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
@@ -943,7 +943,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.4.4;
+				MARKETING_VERSION = 1.4.5;
 				MODULEMAP_FILE = Core/RUNACore.modulemap;
 				MODULEMAP_PRIVATE_FILE = Core/RUNACore.private.modulemap;
 				OTHER_LDFLAGS = "-ObjC";
@@ -961,7 +961,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1040401;
+				CURRENT_PROJECT_VERSION = 1040501;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
@@ -979,7 +979,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.4.4;
+				MARKETING_VERSION = 1.4.5;
 				MODULEMAP_FILE = Core/RUNACore.modulemap;
 				MODULEMAP_PRIVATE_FILE = "";
 				OTHER_LDFLAGS = "-ObjC";
