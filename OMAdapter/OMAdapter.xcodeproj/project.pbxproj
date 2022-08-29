@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -22,16 +22,16 @@
 
 /* Begin PBXBuildFile section */
 		3210D0152476EDC200E93FF2 /* RUNABanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3210D0142476EDC200E93FF2 /* RUNABanner.framework */; };
+		32430D4B28BD0E5A0096D4CC /* OMSDK_Rakuten.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32430D4928BD0E530096D4CC /* OMSDK_Rakuten.xcframework */; };
+		32430D4C28BD0E5A0096D4CC /* OMSDK_Rakuten.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32430D4928BD0E530096D4CC /* OMSDK_Rakuten.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3259214B24EFA37E00345612 /* RUNABannerViewOM.h in Headers */ = {isa = PBXBuildFile; fileRef = 320313AA24C173D0002D9727 /* RUNABannerViewOM.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32671F7124108BB400C50F9F /* RUNAOMAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32671F6724108BB400C50F9F /* RUNAOMAdapter.framework */; };
 		32671F7624108BB400C50F9F /* RUNABannerViewOMTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671F7524108BB400C50F9F /* RUNABannerViewOMTests.m */; };
 		32671F7824108BB400C50F9F /* RUNAOMAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32671F6A24108BB400C50F9F /* RUNAOMAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32671F8424108BD300C50F9F /* RUNAOpenMeasurer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671F8224108BD300C50F9F /* RUNAOpenMeasurer.m */; };
-		32671F8F2412318300C50F9F /* OMSDK_Rakuten.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32671F8E2412318300C50F9F /* OMSDK_Rakuten.framework */; };
 		32671FA52412501400C50F9F /* RUNABannerViewOM.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671FA32412501400C50F9F /* RUNABannerViewOM.m */; };
 		327AE03524C41039000071E8 /* RUNAOpenMeasurerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 327AE03324C41039000071E8 /* RUNAOpenMeasurerProvider.m */; };
 		32B4FFE627E08A8200CE696C /* RUNABanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3210D02C247771A900E93FF2 /* RUNABanner.framework */; };
-		32B4FFE827E08A8B00CE696C /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B4FFE727E08A8B00CE696C /* RUNACore.framework */; };
 		32EE303A2415D80900E6D076 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EE30392415D80900E6D076 /* RUNACore.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,10 +59,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		32430D4828BD05E20096D4CC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				32430D4C28BD0E5A0096D4CC /* OMSDK_Rakuten.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		320313AA24C173D0002D9727 /* RUNABannerViewOM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewOM.h; sourceTree = "<group>"; };
 		320313AE24C175F8002D9727 /* RUNABannerViewOMInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewOMInner.h; sourceTree = "<group>"; };
 		3210D0142476EDC200E93FF2 /* RUNABanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNABanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32430D4928BD0E530096D4CC /* OMSDK_Rakuten.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OMSDK_Rakuten.xcframework; sourceTree = "<group>"; };
 		3259214C24EFA48900345612 /* RUNAOMAdapter.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = RUNAOMAdapter.modulemap; sourceTree = "<group>"; };
 		32671F6724108BB400C50F9F /* RUNAOMAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNAOMAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32671F6A24108BB400C50F9F /* RUNAOMAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOMAdapter.h; sourceTree = "<group>"; };
@@ -72,12 +87,10 @@
 		32671F7724108BB400C50F9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32671F8124108BD300C50F9F /* RUNAOpenMeasurer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOpenMeasurer.h; sourceTree = "<group>"; };
 		32671F8224108BD300C50F9F /* RUNAOpenMeasurer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOpenMeasurer.m; sourceTree = "<group>"; };
-		32671F8E2412318300C50F9F /* OMSDK_Rakuten.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OMSDK_Rakuten.framework; path = OMSDK/OMSDK_Rakuten.framework; sourceTree = "<group>"; };
 		32671F9124123C9B00C50F9F /* Banner.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Banner.xcodeproj; path = ../Banner/Banner.xcodeproj; sourceTree = "<group>"; };
 		32671FA32412501400C50F9F /* RUNABannerViewOM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewOM.m; sourceTree = "<group>"; };
 		327AE03224C41039000071E8 /* RUNAOpenMeasurerProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOpenMeasurerProvider.h; sourceTree = "<group>"; };
 		327AE03324C41039000071E8 /* RUNAOpenMeasurerProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOpenMeasurerProvider.m; sourceTree = "<group>"; };
-		32B4FFE727E08A8B00CE696C /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32EE30392415D80900E6D076 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -86,9 +99,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32671F8F2412318300C50F9F /* OMSDK_Rakuten.framework in Frameworks */,
 				3210D0152476EDC200E93FF2 /* RUNABanner.framework in Frameworks */,
 				32EE303A2415D80900E6D076 /* RUNACore.framework in Frameworks */,
+				32430D4B28BD0E5A0096D4CC /* OMSDK_Rakuten.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +111,6 @@
 			files = (
 				32B4FFE627E08A8200CE696C /* RUNABanner.framework in Frameworks */,
 				32671F7124108BB400C50F9F /* RUNAOMAdapter.framework in Frameworks */,
-				32B4FFE827E08A8B00CE696C /* RUNACore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,9 +126,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		32430D4128BD05D30096D4CC /* OMSDK */ = {
+			isa = PBXGroup;
+			children = (
+				32430D4928BD0E530096D4CC /* OMSDK_Rakuten.xcframework */,
+			);
+			path = OMSDK;
+			sourceTree = "<group>";
+		};
 		32671F5D24108BB300C50F9F = {
 			isa = PBXGroup;
 			children = (
+				32430D4128BD05D30096D4CC /* OMSDK */,
 				32671F9124123C9B00C50F9F /* Banner.xcodeproj */,
 				32671F6924108BB400C50F9F /* OMAdapter */,
 				32671F7424108BB400C50F9F /* OMAdapterTests */,
@@ -163,10 +184,8 @@
 		32671F8524108D0600C50F9F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				32B4FFE727E08A8B00CE696C /* RUNACore.framework */,
 				3210D0142476EDC200E93FF2 /* RUNABanner.framework */,
 				32EE30392415D80900E6D076 /* RUNACore.framework */,
-				32671F8E2412318300C50F9F /* OMSDK_Rakuten.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -194,6 +213,7 @@
 				32671F6324108BB400C50F9F /* Sources */,
 				32671F6424108BB400C50F9F /* Frameworks */,
 				32671F6524108BB400C50F9F /* Resources */,
+				32430D4828BD05E20096D4CC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -582,6 +602,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -590,6 +611,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -714,6 +736,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Staging;
