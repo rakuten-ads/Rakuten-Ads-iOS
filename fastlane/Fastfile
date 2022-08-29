@@ -175,14 +175,31 @@ platform :ios do
 
       set_env param
       package
-      deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}.framework.zip"
-      deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}.dsym.zip"
-      update_carthage
-      update_podspec
+      deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}.xcframework.zip"
+      deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}+dsym.zip"
+      # update_carthage
+      # update_podspec
     end
 
     github_release_tag
 
+  end
+
+  lane :stripInfoPlist do |param|
+    _module = param[:module]
+    _module.slice!(0..3)
+    _file = "#{_module}/Carthage/Build/RUNA#{_module}.xcframework/Info.plist"
+    puts("strip InfoPlist: #{_file}")
+
+    update_plist( # delete dsym & symbol info
+      plist_path: _file,
+      block: proc do |plist|
+        plist["AvailableLibraries"].each do |lib_dict|
+          lib_dict.delete("DebugSymbolsPath")
+          lib_dict.delete("BitcodeSymbolMapsPath")
+        end
+      end
+    )
   end
 end
 

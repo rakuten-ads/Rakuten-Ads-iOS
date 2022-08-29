@@ -43,7 +43,7 @@ SDK_OUTPUT_FILE=${SDK_OUTPUT_DIR}/${SDK_PRODUCT_NAME}_iOS_${SDK_VERSION_STRING}.
 SDK_OUTPUT_FILE_DSYM=${SDK_OUTPUT_DIR}/${SDK_PRODUCT_NAME}_iOS_${SDK_VERSION_STRING}+dsym.zip
 
 if [ ! -d $SDK_OUTPUT_DIR ]; then
-	mkdir $SDK_OUTPUT_DIR
+	mkdir -p $SDK_OUTPUT_DIR
 fi
 
 cd $SDK_BUILD_DIR
@@ -51,11 +51,17 @@ if [ -d $SDK_BUILD_FILE ]; then
 	# zip sdk+dsym
 	zip -r $SDK_OUTPUT_FILE_DSYM $SDK_BUILD_FILE -x ".DS_Store"
 
-	# zip sdk
+	# strip debug info
+	cd -; cd ..
+	bundle exec fastlane stripInfoPlist module:$SDK_PRODUCT_NAME
+
+	cd $SDK_BUILD_DIR
 	find . -name "*.dSYM" -exec rm -r -- {} +
 	find . -name "*.bcsymbolmap" -exec rm -- {} +
 	find . -name ".DS_Store" -exec rm -r -- {} +
 	find . -empty -type d -delete
+
+	# zip sdk
 	zip -r $SDK_OUTPUT_FILE $SDK_BUILD_FILE -x ".DS_Store"
 fi
 open $SDK_OUTPUT_DIR
