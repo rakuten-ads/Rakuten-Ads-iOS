@@ -19,7 +19,7 @@
 }
 
 -(id<RUNAMeasurer>) getOpenMeasurer {
-    RUNADebug("SDK RUNA/OMAdapter version: %@", [RUNAOpenMeasurer versionString]);
+    RUNALog("SDK RUNA/OMAdapter version: %@", [RUNAOpenMeasurer versionString]);
     RUNAOpenMeasurer* measurer = [RUNAOpenMeasurer new];
     [measurer setMeasureTarget:self];
     return measurer;

@@ -14,7 +14,7 @@
 # update_fastlane
 
 # usage sample:
-# - bundle exec fastlane release sdk_dryrun:true module:Core=0.2.1,Banner=0.2.2 sdk_skip_build:true
+# - bundle exec fastlane release sdk_dryrun:true module:Core=0.2.1,Banner=0.2.2,OMAdapter=1.0.7 sdk_skip_build:true
 # - bundle exec fastlane release
 
 default_platform(:ios)
