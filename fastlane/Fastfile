@@ -115,12 +115,15 @@ platform :ios do
       next
     end
 
+    # system("pod repo push Rakuten-Ads-iOS #{path} --skip-tests --verbose --sources=Rakuten-Ads-iOS")
+
     pod_push(
       path: path,
       repo: 'Rakuten-Ads-iOS',
       skip_tests: true,
       verbose: true,
-      skip_import_validation: true, # workaround for xcode 12 EXCLUDE_ARCHS issue
+      skip_import_validation: false,
+      sources: 'Rakuten-Ads-iOS',
     )
   end
 
@@ -177,8 +180,8 @@ platform :ios do
       package
       deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}.xcframework.zip"
       deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}+dsym.zip"
-      # update_carthage
-      # update_podspec
+      update_carthage
+      update_podspec
     end
 
     github_release_tag
