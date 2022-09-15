@@ -27,6 +27,7 @@
 ## Integrate SDK
 
 ### CocoaPods
+
 Put under lines into `Podfile`.
 
 ```ruby
@@ -36,9 +37,18 @@ pod 'RUNA/Banner'
 pod 'RUNA/OMAdapter'
 ```
 
-- __xcode 12 `EXCLUDED_ARCHS` issue__
+### Swift Package Manager
 
-Need set `EXCLUDED_ARCHS[sdk=iphonesimulator*] = "arm64 armv7"` in Build Settings, or add a `post_install` hook for in `Podfile` like below.
+Swift Package Manager distribution support from 1.10.1.
+
+Add Package's URL `https://github.com/rakuten-ads/Rakuten-Ads-iOS` in Xcode.
+
+
+### M1 support
+
+RUNA SDK starts to support xcframework from 1.10.1.
+
+The implemenation for any past version in M1 Macbook, it is need to set `EXCLUDED_ARCHS[sdk=iphonesimulator*] = "arm64 armv7"` in Build Settings, or add a `post_install` hook for in `Podfile` like below.
 
 ```ruby
 target 'App' do
