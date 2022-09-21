@@ -643,7 +643,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1090101;
+				CURRENT_PROJECT_VERSION = 1090201;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = A43S2QQT2B;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -663,7 +663,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.9.1;
+				MARKETING_VERSION = 1.9.2;
 				MODULEMAP_FILE = RUNA/RUNABanner.modulemap;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;
@@ -845,7 +845,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1090101;
+				CURRENT_PROJECT_VERSION = 1090201;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = A43S2QQT2B;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -865,7 +865,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.9.1;
+				MARKETING_VERSION = 1.9.2;
 				MODULEMAP_FILE = RUNA/RUNABanner.modulemap;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;
@@ -882,7 +882,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1090101;
+				CURRENT_PROJECT_VERSION = 1090201;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = A43S2QQT2B;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -902,7 +902,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.9.1;
+				MARKETING_VERSION = 1.9.2;
 				MODULEMAP_FILE = RUNA/RUNABanner.modulemap;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;
