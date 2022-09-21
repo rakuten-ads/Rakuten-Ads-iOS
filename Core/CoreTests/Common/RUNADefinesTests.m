@@ -15,20 +15,18 @@
 @implementation RUNADefinesTests
 
 - (void)testRUNADefines {
-    // TODO: Expected value may differ depending on the VM environment
-    NSString *description = [NSString stringWithFormat:@"%@", RUNADefines.sharedInstance];
-    XCTAssertEqualObjects(description, @"SDK RUNA/Core version: 1.4.4\n"
-                          @"IDFA: 00000000-0000-0000-0000-000000000000\n"
-                          @"UA: (null)\n"
-                          @"Device: OS version: 14.5\n"
-                          @"model: x86_64\n"
-                          @"build name: 20F71\n"
-                          @"language: en\n"
-                          @"AppInfo: bundle ID: com.apple.dt.xctest.tool\n"
-                          @"bundle version: 18143\n"
-                          @"bundle short version: (null)\n"
-                          @"bundle name: xctest\n"
-                          );
+    NSLog(@"%@", RUNADefines.sharedInstance);
+    XCTAssertNotNil(RUNADefines.sharedInstance.httpSession);
+    XCTAssertNotNil(RUNADefines.sharedInstance.sharedQueue);
+    XCTAssertNotNil(RUNADefines.sharedInstance.userAgentInfo);
+    XCTAssertNotNil(RUNADefines.sharedInstance.idfaInfo);
+    XCTAssertNotNil(RUNADefines.sharedInstance.deviceInfo);
+    XCTAssertNotNil(RUNADefines.sharedInstance.appInfo);
+    XCTAssertNotNil(RUNADefines.sharedInstance.sdkBundleShortVersionString);
+    
+    XCTAssertNoThrow([RUNADefines.sharedInstance getRUNASDKVersionString]);
+    
 }
+
 
 @end
