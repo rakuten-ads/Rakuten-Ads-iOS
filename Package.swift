@@ -34,12 +34,12 @@ let package = Package(
         .binaryTarget(
             name: "Banner",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.9.2.xcframework.zip",
-            checksum : "386b76dec8fd0d49a8ae7704809d88aa049f3859caaf02acd9581f19dec73d1d",
+            checksum : "386b76dec8fd0d49a8ae7704809d88aa049f3859caaf02acd9581f19dec73d1d"
         ),
         .binaryTarget(
             name: "OMAdapter",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMAdapter/RUNAOMAdapter_iOS_1.0.8.xcframework.zip",
-            checksum : "458affe2462cc833f072f69616f1f2faf8b8139f959d959196429fd83fd9790d",
+            checksum : "458affe2462cc833f072f69616f1f2faf8b8139f959d959196429fd83fd9790d"
         ),
         .binaryTarget(
             name: "OMSDK",
