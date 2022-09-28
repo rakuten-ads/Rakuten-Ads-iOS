@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint RUNA.podspec' to ensure this is a
+#  Be sure to run `pod spec lint RUNACore.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
 
-  s.name         = "RUNA"
-  s.version      = "1.10.2"
+  s.name         = "RUNAOMSDK"
+  s.version      = "1.3.31"
   s.summary      = "Podspec file of #{s.name} iOS SDK."
   s.description  = <<-DESC
 This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
@@ -22,28 +22,10 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   s.author       = "Rakuten"
   s.platform     = :ios, "10.0"
   s.source       = {
-    :git => "https://github.com/rakuten-ads/Rakuten-Ads-iOS.git"
+    :http => "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/#{s.name}/#{s.name}_iOS_#{s.version}.xcframework.zip"
   }
+  s.vendored_frameworks = "OMSDK_Rakuten.xcframework"
 
-  s.default_subspec = 'Banner'
-
-  s.subspec 'CoreOnly' do |ss|
-    ss.ios.dependency 'RUNACore', '1.4.6'
-  end
-
-  s.subspec 'Banner' do |ss|
-    ss.dependency 'RUNA/CoreOnly'
-    ss.ios.dependency 'RUNABanner', '1.9.2'
-  end
-
-  s.subspec 'OMSDK' do |ss|
-    ss.ios.dependency 'RUNAOMSDK', '1.3.31'
-  end
-
-  s.subspec 'OMAdapter' do |ss|
-    ss.dependency 'RUNA/Banner'
-    ss.dependency 'RUNA/OMSDK'
-    ss.ios.dependency 'RUNAOMAdapter', '1.0.8'
-  end
+  s.frameworks = "Foundation", "UIKit"
 
 end
