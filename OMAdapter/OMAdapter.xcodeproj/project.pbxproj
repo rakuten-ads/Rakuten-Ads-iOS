@@ -23,7 +23,6 @@
 /* Begin PBXBuildFile section */
 		3210D0152476EDC200E93FF2 /* RUNABanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3210D0142476EDC200E93FF2 /* RUNABanner.framework */; };
 		32430D4B28BD0E5A0096D4CC /* OMSDK_Rakuten.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32430D4928BD0E530096D4CC /* OMSDK_Rakuten.xcframework */; };
-		32430D4C28BD0E5A0096D4CC /* OMSDK_Rakuten.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32430D4928BD0E530096D4CC /* OMSDK_Rakuten.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3259214B24EFA37E00345612 /* RUNABannerViewOM.h in Headers */ = {isa = PBXBuildFile; fileRef = 320313AA24C173D0002D9727 /* RUNABannerViewOM.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32671F7124108BB400C50F9F /* RUNAOMAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32671F6724108BB400C50F9F /* RUNAOMAdapter.framework */; };
 		32671F7624108BB400C50F9F /* RUNABannerViewOMTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671F7524108BB400C50F9F /* RUNABannerViewOMTests.m */; };
@@ -58,20 +57,6 @@
 			remoteInfo = OMAdapter;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		32430D4828BD05E20096D4CC /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				32430D4C28BD0E5A0096D4CC /* OMSDK_Rakuten.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		320313AA24C173D0002D9727 /* RUNABannerViewOM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewOM.h; sourceTree = "<group>"; };
@@ -213,7 +198,6 @@
 				32671F6324108BB400C50F9F /* Sources */,
 				32671F6424108BB400C50F9F /* Frameworks */,
 				32671F6524108BB400C50F9F /* Resources */,
-				32430D4828BD05E20096D4CC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
