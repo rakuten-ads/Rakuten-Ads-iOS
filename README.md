@@ -39,9 +39,13 @@ pod 'RUNA/OMAdapter'
 
 ### Swift Package Manager
 
-Swift Package Manager distribution support from 1.10.1.
+Swift Package Manager distribution support from 1.10.2 (1.10.1 deprecated).
 
-Add Package's URL `https://github.com/rakuten-ads/Rakuten-Ads-iOS` in Xcode.
+Please use package's URL `https://github.com/rakuten-ads/Rakuten-Ads-iOS` in Xcode,
+
+and select libraries from `RUNABanner`, `RUNAOMAdapter`.
+
+`RUNAOMAdapter` is essential for the Open Measurement request. 
 
 
 ### M1 support
