@@ -49,7 +49,7 @@ fi
 cd $SDK_BUILD_DIR
 if [ -d $SDK_BUILD_FILE ]; then
 	# zip sdk+dsym
-	zip -r $SDK_OUTPUT_FILE_DSYM $SDK_BUILD_FILE -x ".DS_Store"
+	zip -r $SDK_OUTPUT_FILE_DSYM $SDK_BUILD_FILE -x "*/.DS_Store"
 
 	# strip debug info
 	cd -; cd ..
@@ -62,7 +62,7 @@ if [ -d $SDK_BUILD_FILE ]; then
 	find . -empty -type d -delete
 
 	# zip sdk
-	zip -r $SDK_OUTPUT_FILE $SDK_BUILD_FILE -x ".DS_Store"
+	zip -r $SDK_OUTPUT_FILE $SDK_BUILD_FILE -x "*/.DS_Store"
 fi
 open $SDK_OUTPUT_DIR
 
