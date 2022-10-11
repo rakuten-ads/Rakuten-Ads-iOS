@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
 
-  s.name         = "RUNACore"
-  s.version      = "1.4.6"
+  s.name         = "RUNAOMSDK"
+  s.version      = "1.3.31"
   s.summary      = "Podspec file of #{s.name} iOS SDK."
   s.description  = <<-DESC
 This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
@@ -24,8 +24,8 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   s.source       = {
     :http => "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/#{s.name}/#{s.name}_iOS_#{s.version}.xcframework.zip"
   }
-  s.vendored_frameworks = "#{s.name}.xcframework"
+  s.vendored_frameworks = "OMSDK_Rakuten.xcframework"
 
-  s.frameworks = "Foundation", "AdSupport", "SystemConfiguration", "WebKit", "UIKit", "Network"
+  s.frameworks = "Foundation", "UIKit"
 
 end
