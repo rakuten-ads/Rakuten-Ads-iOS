@@ -133,6 +133,51 @@
     }
 }
 
+- (void)testSetEasyId {
+    {
+        NSString* expectResult = @"571002c02f2144a41617487738060992";
+        NSString* easyId = @"GoiGoiSuuuuuuuuuuuu";
+        
+        // Case: Default
+        RUNABannerView *bannerView = [RUNABannerView new];
+        [bannerView setEasyId:easyId];
+        NSDictionary *userExt = bannerView.userExt;
+        XCTAssertNotNil(userExt);
+        XCTAssertEqual(userExt.allKeys.count, (NSUInteger)1);
+        XCTAssertEqualObjects(userExt[@"hashedeasyid"], expectResult);
+    }
+    {
+        // Case: Empty
+        RUNABannerView *bannerView = [RUNABannerView new];
+        [bannerView setEasyId:@""];
+        NSDictionary *userExt = bannerView.userExt;
+        XCTAssertNil(userExt);
+    }
+    {
+        // Case: Null
+        RUNABannerView *bannerView = [RUNABannerView new];
+        [bannerView setEasyId:nil];
+        NSDictionary *userExt = bannerView.userExt;
+        XCTAssertNil(userExt);
+    }
+}
+
+- (void)testMultipleUserExt {
+    NSString* expectResult = @"571002c02f2144a41617487738060992";
+    NSString* easyId = @"GoiGoiSuuuuuuuuuuuu";
+    NSString* rzCookie = @"cokie";
+    
+    // Case: Default
+    RUNABannerView *bannerView = [RUNABannerView new];
+    [bannerView setEasyId:easyId];
+    [bannerView setRz:rzCookie];
+    NSDictionary *userExt = bannerView.userExt;
+    XCTAssertNotNil(userExt);
+    XCTAssertEqual(userExt.allKeys.count, (NSUInteger)2);
+    XCTAssertEqualObjects(userExt[@"hashedeasyid"], expectResult);
+    XCTAssertEqualObjects(userExt[@"rz"], rzCookie);
+}
+
 - (void)testIsValidLat {
     NSArray *params = @[
         @{ @"value": @(-91), @"expected": @NO },
