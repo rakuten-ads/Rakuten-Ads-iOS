@@ -49,6 +49,7 @@
 		32BEBF81266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEBF7F266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m */; };
 		32CAC0DD22164E6400BB4CC4 /* RUNAAppInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32CAC0DE22164E6400BB4CC4 /* RUNAAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAC0DC22164E6400BB4CC4 /* RUNAAppInfo.m */; };
+		32E8DD3428FE690300DB0319 /* RUNACipherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E8DD3328FE690300DB0319 /* RUNACipherTest.m */; };
 		32EE7C032578A9B100CF7B4A /* RUNARemoteLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 32EE7C012578A9B100CF7B4A /* RUNARemoteLogger.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32EE7C042578A9B100CF7B4A /* RUNARemoteLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE7C022578A9B100CF7B4A /* RUNARemoteLogger.m */; };
 		32F258C621E5866D001FD9C0 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258BC21E5866C001FD9C0 /* RUNACore.framework */; };
@@ -128,6 +129,7 @@
 		32BEBF7F266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewMessageManager.m; sourceTree = "<group>"; };
 		32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAppInfo.h; sourceTree = "<group>"; };
 		32CAC0DC22164E6400BB4CC4 /* RUNAAppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAppInfo.m; sourceTree = "<group>"; };
+		32E8DD3328FE690300DB0319 /* RUNACipherTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNACipherTest.m; sourceTree = "<group>"; };
 		32EE7C012578A9B100CF7B4A /* RUNARemoteLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNARemoteLogger.h; sourceTree = "<group>"; };
 		32EE7C022578A9B100CF7B4A /* RUNARemoteLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNARemoteLogger.m; sourceTree = "<group>"; };
 		32F258BC21E5866C001FD9C0 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -378,6 +380,7 @@
 			children = (
 				32F8B5C6287D03D200F833B7 /* RUNAJSONObjectTests.m */,
 				32F8B5CA287D9D9900F833B7 /* RUNAValidTests.m */,
+				32E8DD3328FE690300DB0319 /* RUNACipherTest.m */,
 			);
 			path = Format;
 			sourceTree = "<group>";
@@ -645,6 +648,7 @@
 				54A8C7E8268C32290094F6BE /* RUNAAdWebViewTests.m in Sources */,
 				54A8C7E1268B03230094F6BE /* RUNAAdWebViewMessageTests.m in Sources */,
 				32F8B5C7287D03D200F833B7 /* RUNAJSONObjectTests.m in Sources */,
+				32E8DD3428FE690300DB0319 /* RUNACipherTest.m in Sources */,
 				32F8B5D0287DA8DF00F833B7 /* RUNAWebUserAgentTests.m in Sources */,
 				32F8B5D7287FA63000F833B7 /* RUNAHttpTaskTests.m in Sources */,
 				54A8C7F1268C4BA40094F6BE /* RUNAInfoPlistTests.m in Sources */,

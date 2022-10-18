@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNACipher : NSObject
 
-+(nullable NSString*) md5:(NSString*) text;
++(nullable NSString*) md5Hex:(NSString*) text;
 
 @end
 
