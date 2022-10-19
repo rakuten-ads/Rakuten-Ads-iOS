@@ -31,12 +31,12 @@
 -(void)setEasyId:(NSString *)easyId {
     if ([RUNAValid isNotEmptyString:easyId]) {
         NSString* hashedEasyId = [RUNACipher md5Hex:easyId];
-        
+
         if ([RUNAValid isNotEmptyString:hashedEasyId]) {
             if (!self.userExt) {
                 self.userExt = [NSMutableDictionary new];
             }
-            
+
             self.userExt[@"hashedeasyid"] = hashedEasyId;
         }
     }

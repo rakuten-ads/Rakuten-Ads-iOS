@@ -20,4 +20,8 @@
     [self.group setRp:rp];
 }
 
+-(void)setEasyId:(NSString *)easyId {
+    [self.group setEasyId:easyId];
+}
+
 @end
