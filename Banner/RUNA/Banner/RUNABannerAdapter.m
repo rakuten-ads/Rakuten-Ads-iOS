@@ -62,7 +62,7 @@
     if (self.userId) {
         dict[@"id"] = self.userId;
     }
-    if (self.userExt) {
+    if (self.userExt && self.userExt.count > 0) {
         dict[@"ext"] = self.userExt;
     }
     return dict;

@@ -28,6 +28,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(void) setRp:(NSString*) rp;
 
+/*!
+ set easyId
+ @param easyId value of the easyId
+ */
+-(void) setEasyId:(NSString*) easyId;
+
 @end
 
 NS_ASSUME_NONNULL_END

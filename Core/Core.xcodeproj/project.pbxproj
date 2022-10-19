@@ -42,10 +42,14 @@
 		321FE41425805CF300D9A8CD /* RUNARemoteLogEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 321FE41225805CF300D9A8CD /* RUNARemoteLogEntity.m */; };
 		32696FFA2567907500602E5C /* RUNAInfoPlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 32696FF82567907500602E5C /* RUNAInfoPlist.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32696FFB2567907500602E5C /* RUNAInfoPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 32696FF92567907500602E5C /* RUNAInfoPlist.m */; };
+		3272354F28F8F5FD00F57D32 /* RUNACipher.h in Headers */ = {isa = PBXBuildFile; fileRef = 3272354D28F8F5FD00F57D32 /* RUNACipher.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3272355028F8F5FD00F57D32 /* RUNACipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272354E28F8F5FD00F57D32 /* RUNACipher.m */; };
+		3272355228FCE5D900F57D32 /* RUNACryptoWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272355128FCE5D900F57D32 /* RUNACryptoWrapper.swift */; };
 		32BEBF80266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 32BEBF7E266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32BEBF81266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEBF7F266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m */; };
 		32CAC0DD22164E6400BB4CC4 /* RUNAAppInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32CAC0DE22164E6400BB4CC4 /* RUNAAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CAC0DC22164E6400BB4CC4 /* RUNAAppInfo.m */; };
+		32E8DD3428FE690300DB0319 /* RUNACipherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E8DD3328FE690300DB0319 /* RUNACipherTest.m */; };
 		32EE7C032578A9B100CF7B4A /* RUNARemoteLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 32EE7C012578A9B100CF7B4A /* RUNARemoteLogger.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32EE7C042578A9B100CF7B4A /* RUNARemoteLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 32EE7C022578A9B100CF7B4A /* RUNARemoteLogger.m */; };
 		32F258C621E5866D001FD9C0 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F258BC21E5866C001FD9C0 /* RUNACore.framework */; };
@@ -118,10 +122,14 @@
 		325FF73F21E5EDDF00A899CF /* runacore.private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = runacore.private.modulemap; sourceTree = "<group>"; };
 		32696FF82567907500602E5C /* RUNAInfoPlist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAInfoPlist.h; sourceTree = "<group>"; };
 		32696FF92567907500602E5C /* RUNAInfoPlist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAInfoPlist.m; sourceTree = "<group>"; };
+		3272354D28F8F5FD00F57D32 /* RUNACipher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNACipher.h; sourceTree = "<group>"; };
+		3272354E28F8F5FD00F57D32 /* RUNACipher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNACipher.m; sourceTree = "<group>"; };
+		3272355128FCE5D900F57D32 /* RUNACryptoWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUNACryptoWrapper.swift; sourceTree = "<group>"; };
 		32BEBF7E266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAdWebViewMessageManager.h; sourceTree = "<group>"; };
 		32BEBF7F266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewMessageManager.m; sourceTree = "<group>"; };
 		32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAppInfo.h; sourceTree = "<group>"; };
 		32CAC0DC22164E6400BB4CC4 /* RUNAAppInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAppInfo.m; sourceTree = "<group>"; };
+		32E8DD3328FE690300DB0319 /* RUNACipherTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNACipherTest.m; sourceTree = "<group>"; };
 		32EE7C012578A9B100CF7B4A /* RUNARemoteLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNARemoteLogger.h; sourceTree = "<group>"; };
 		32EE7C022578A9B100CF7B4A /* RUNARemoteLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNARemoteLogger.m; sourceTree = "<group>"; };
 		32F258BC21E5866C001FD9C0 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -347,6 +355,9 @@
 				32F259CA21E599F4001FD9C0 /* RUNAURLCoder.m */,
 				32F259C821E599F4001FD9C0 /* RUNAValid.h */,
 				32F259C521E599F4001FD9C0 /* RUNAValid.m */,
+				3272354D28F8F5FD00F57D32 /* RUNACipher.h */,
+				3272354E28F8F5FD00F57D32 /* RUNACipher.m */,
+				3272355128FCE5D900F57D32 /* RUNACryptoWrapper.swift */,
 			);
 			path = Format;
 			sourceTree = "<group>";
@@ -369,6 +380,7 @@
 			children = (
 				32F8B5C6287D03D200F833B7 /* RUNAJSONObjectTests.m */,
 				32F8B5CA287D9D9900F833B7 /* RUNAValidTests.m */,
+				32E8DD3328FE690300DB0319 /* RUNACipherTest.m */,
 			);
 			path = Format;
 			sourceTree = "<group>";
@@ -472,6 +484,7 @@
 				32F259E721E599F5001FD9C0 /* PrefixHeader.pch in Headers */,
 				3210CFF924765F1700E93FF2 /* RUNAURLString.h in Headers */,
 				3210CFFA24765F1700E93FF2 /* RUNAAdWebViewMessage.h in Headers */,
+				3272354F28F8F5FD00F57D32 /* RUNACipher.h in Headers */,
 				3210D0102476E61800E93FF2 /* RUNADefines.h in Headers */,
 				3210CFFB24765F1700E93FF2 /* RUNAAdWebView.h in Headers */,
 				3210CFFC24765F1700E93FF2 /* RUNAUIViewController+.h in Headers */,
@@ -606,6 +619,7 @@
 				32F259D621E599F5001FD9C0 /* RUNAIdfa.m in Sources */,
 				32F259DC21E599F5001FD9C0 /* RUNAValid.m in Sources */,
 				32BEBF81266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m in Sources */,
+				3272355028F8F5FD00F57D32 /* RUNACipher.m in Sources */,
 				3210D0052476684100E93FF2 /* RUNAAdWebViewMessage.m in Sources */,
 				32696FFB2567907500602E5C /* RUNAInfoPlist.m in Sources */,
 				32EE7C042578A9B100CF7B4A /* RUNARemoteLogger.m in Sources */,
@@ -616,6 +630,7 @@
 				3210D0042476683D00E93FF2 /* RUNAURLString.m in Sources */,
 				3210D0022476683000E93FF2 /* RUNABidAdapter.m in Sources */,
 				32CAC0DE22164E6400BB4CC4 /* RUNAAppInfo.m in Sources */,
+				3272355228FCE5D900F57D32 /* RUNACryptoWrapper.swift in Sources */,
 				32F259D421E599F5001FD9C0 /* RUNAWebUserAgent.m in Sources */,
 				32F259E321E599F5001FD9C0 /* RUNALogger.m in Sources */,
 				32F259DA21E599F5001FD9C0 /* RUNAHttpTask.m in Sources */,
@@ -633,6 +648,7 @@
 				54A8C7E8268C32290094F6BE /* RUNAAdWebViewTests.m in Sources */,
 				54A8C7E1268B03230094F6BE /* RUNAAdWebViewMessageTests.m in Sources */,
 				32F8B5C7287D03D200F833B7 /* RUNAJSONObjectTests.m in Sources */,
+				32E8DD3428FE690300DB0319 /* RUNACipherTest.m in Sources */,
 				32F8B5D0287DA8DF00F833B7 /* RUNAWebUserAgentTests.m in Sources */,
 				32F8B5D7287FA63000F833B7 /* RUNAHttpTaskTests.m in Sources */,
 				54A8C7F1268C4BA40094F6BE /* RUNAInfoPlistTests.m in Sources */,
@@ -755,6 +771,7 @@
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Staging;
@@ -954,6 +971,7 @@
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -991,6 +1009,7 @@
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
