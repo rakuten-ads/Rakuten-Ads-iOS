@@ -72,6 +72,15 @@ bannerView.setRz("RzCookie")
 bannerView.setRp("RpCookie")
 ```
 
+#### EasyId
+
+- easyId: `String`, non-null
+
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+```Swift
+bannerView.setEasyId("123456789")
+```
+
 #### Geo
 
 - latitude: `double`, from -90.0 to +90.0, where negative is south
