@@ -20,6 +20,7 @@
 -(id<RUNAMeasurer>)getDefaultMeasurer {
     RUNADefaultMeasurer* measurer = [RUNADefaultMeasurer new];
     [measurer setMeasureTarget:self];
+    measurer.isVideoTrack = (self.mediaType == RUNA_MEDIA_TYPE_VIDEO);
     return measurer;
 }
 

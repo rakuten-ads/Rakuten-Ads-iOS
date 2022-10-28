@@ -25,8 +25,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* webViewConstraints;
 @property (nonatomic) RUNAVideoState videoState;
-@property (nonatomic) RUNAMediaType mediaType;
-@property (atomic) BOOL hasSentMeasureInview;
 @property (nonatomic) RUNAOpenRTBRequest* request;
 
 @end
@@ -640,29 +638,29 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 }
 
 - (BOOL)didMeasureInview:(BOOL)isInview {
-    if (isInview && !self.hasSentMeasureInview && self.banner.inviewURL) {
+    if (isInview) {
         [self sendMeasureInview];
-        self.hasSentMeasureInview = YES;
     }
 
-    if (self.mediaType == RUNA_MEDIA_TYPE_VIDEO) {
-        if (isInview) {
-            [self playVideo];
-        } else {
-            [self pauseVideo];
-        }
-        return NO;
-    } else {
-        return isInview;
-    }
+    return isInview;
 }
 
--(BOOL)sendMeasureInview {
-    RUNADebug("measurement[default] send inview %p", self);
-    RUNAURLStringRequest* request = [RUNAURLStringRequest new];
-    request.httpTaskDelegate = self.banner.inviewURL;
-    [request resume];
-    return YES;
+- (BOOL)didMeasureVideoTrack:(BOOL)isInview {
+    if (isInview) {
+        [self playVideo];
+    } else {
+        [self pauseVideo];
+    }
+    return NO;
+}
+
+-(void)sendMeasureInview {
+    if (self.banner.inviewURL) {
+        RUNADebug("measurement[default] send inview %p", self);
+        RUNAURLStringRequest* request = [RUNAURLStringRequest new];
+        request.httpTaskDelegate = self.banner.inviewURL;
+        [request resume];
+    }
 }
 
 
