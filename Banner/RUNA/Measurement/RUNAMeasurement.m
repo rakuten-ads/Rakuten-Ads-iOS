@@ -70,12 +70,12 @@ int kMeasureMaxCount = 600;
         [[RUNADefaultMeasurer sharedQueue] addOperation:operation];
     }
 
-    if (self.isVideoTrack) {
-        RUNAVideoTrackOperation* operation = [RUNAVideoTrackOperation new];
-        operation.measurer = self;
-        RUNADebug("measurement[video track] target %p inview %p enqueue", self.measurableTarget, operation);
-        [[RUNADefaultMeasurer sharedQueue] addOperation:operation];
-    }
+//    if (self.isVideoTrack) {
+//        RUNAVideoTrackOperation* operation = [RUNAVideoTrackOperation new];
+//        operation.measurer = self;
+//        RUNADebug("measurement[video track] target %p inview %p enqueue", self.measurableTarget, operation);
+//        [[RUNADefaultMeasurer sharedQueue] addOperation:operation];
+//    }
 }
 
 - (void)finishMeasurement {
@@ -96,7 +96,7 @@ int kMeasureMaxCount = 600;
 -(BOOL) executeMeasureImp {
     BOOL isImp = [self.measurableTarget measureImp];
     if (self.measurerDelegate && [self.measurerDelegate respondsToSelector:@selector(didMeasureImp:)]) {
-        RUNADebug("measurement[default] invode measure imp delegate");
+        RUNADebug("measurement[default] invoke measure imp delegate");
         return [self.measurerDelegate didMeasureImp:isImp];
     }
     RUNADebug("measurement[default] measure imp result: %@", isImp ? @"YES" : @"NO");
