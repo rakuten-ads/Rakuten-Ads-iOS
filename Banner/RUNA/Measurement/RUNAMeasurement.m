@@ -70,12 +70,12 @@ int kMeasureMaxCount = 600;
         [[RUNADefaultMeasurer sharedQueue] addOperation:operation];
     }
 
-//    if (self.isVideoTrack) {
-//        RUNAVideoTrackOperation* operation = [RUNAVideoTrackOperation new];
-//        operation.measurer = self;
-//        RUNADebug("measurement[video track] target %p inview %p enqueue", self.measurableTarget, operation);
-//        [[RUNADefaultMeasurer sharedQueue] addOperation:operation];
-//    }
+    if (self.isVideoTrack) {
+        RUNAVideoTrackOperation* operation = [RUNAVideoTrackOperation new];
+        operation.measurer = self;
+        RUNADebug("measurement[video track] target %p inview %p enqueue", self.measurableTarget, operation);
+        [[RUNADefaultMeasurer sharedQueue] addOperation:operation];
+    }
 }
 
 - (void)finishMeasurement {
