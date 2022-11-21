@@ -25,8 +25,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* positionConstraints;
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* webViewConstraints;
 @property (nonatomic) RUNAVideoState videoState;
-@property (nonatomic) RUNAMediaType mediaType;
-@property (atomic) BOOL hasSentMeasureInview;
 @property (nonatomic) RUNAOpenRTBRequest* request;
 
 @end
@@ -496,6 +494,13 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
         return;
     }
 
+    if ([self conformsToProtocol:@protocol(RUNADefaultMeasurement)]) {
+        id<RUNAMeasurer> measurer = [(id<RUNADefaultMeasurement>)self getDefaultMeasurer];
+        [measurer setMeasurerDelegate:self];
+        [measurer startMeasurement];
+        [self.measurers addObject:measurer];
+    }
+
     self.state = RUNA_ADVIEW_STATE_SHOWED;
     if (self.banner.advertiseId > 0) {
         [self.session addBlockAd:self.banner.advertiseId];
@@ -605,17 +610,11 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     if (self.state != RUNA_ADVIEW_STATE_FAILED) {
         @try {
             if ([self isOpenMeasurementAvailable]) {
-                [self.measurers addObject:[(id<RUNAOpenMeasurement>)self getOpenMeasurer]];
-            }
-            if ([self conformsToProtocol:@protocol(RUNADefaultMeasurement)]) {
-                [self.measurers addObject:[(id<RUNADefaultMeasurement>)self getDefaultMeasurer]];
-            }
-            [self.measurers enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ([measurer isKindOfClass:RUNADefaultMeasurer.class]) {
-                    [(RUNADefaultMeasurer*)measurer setMeasurerDelegate:self];
-                }
+                id<RUNAMeasurer> measurer = [(id<RUNAOpenMeasurement>)self getOpenMeasurer];
+                [measurer setMeasurerDelegate:self];
                 [measurer startMeasurement];
-            }];
+                [self.measurers addObject:measurer];
+            }
         } @catch (NSException *exception) {
             RUNADebug("exception when start measurement: %@", exception);
             [self sendRemoteLogWithMessage:@"exception when start measurement" andException:exception];
@@ -640,29 +639,29 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 }
 
 - (BOOL)didMeasureInview:(BOOL)isInview {
-    if (isInview && !self.hasSentMeasureInview && self.banner.inviewURL) {
+    if (isInview) {
         [self sendMeasureInview];
-        self.hasSentMeasureInview = YES;
     }
 
-    if (self.mediaType == RUNA_MEDIA_TYPE_VIDEO) {
-        if (isInview) {
-            [self playVideo];
-        } else {
-            [self pauseVideo];
-        }
-        return NO;
-    } else {
-        return isInview;
-    }
+    return isInview;
 }
 
--(BOOL)sendMeasureInview {
-    RUNADebug("measurement[default] send inview %p", self);
-    RUNAURLStringRequest* request = [RUNAURLStringRequest new];
-    request.httpTaskDelegate = self.banner.inviewURL;
-    [request resume];
-    return YES;
+- (BOOL)didMeasureVideoTrack:(BOOL)isInview {
+    if (isInview) {
+        [self playVideo];
+    } else {
+        [self pauseVideo];
+    }
+    return NO;
+}
+
+-(void)sendMeasureInview {
+    if (self.banner.inviewURL) {
+        RUNADebug("measurement[default] send inview %p", self);
+        RUNAURLStringRequest* request = [RUNAURLStringRequest new];
+        request.httpTaskDelegate = self.banner.inviewURL;
+        [request resume];
+    }
 }
 
 
@@ -671,6 +670,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 - (void)playVideo {
     if (self.videoState == RUNA_VIDEO_STATE_LOADED || self.videoState == RUNA_VIDEO_STATE_PAUSED) {
         self.videoState = RUNA_VIDEO_STATE_PLAYING;
+        RUNADebug("playVideo");
         [self notifyVideoViewableChanged:YES];
     }
 }
@@ -678,6 +678,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 - (void)pauseVideo {
     if (self.videoState == RUNA_VIDEO_STATE_PLAYING || self.videoState == RUNA_VIDEO_STATE_STOP) {
         self.videoState = RUNA_VIDEO_STATE_PAUSED;
+        RUNADebug("pauseVideo");
         [self notifyVideoViewableChanged:NO];
     }
 }
