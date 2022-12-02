@@ -9,11 +9,11 @@
 #import <XCTest/XCTest.h>
 #import "RUNABannerUtil.h"
 
-@interface RUNABannerUtilityTests : XCTestCase
+@interface RUNABannerUtilTests : XCTestCase
 
 @end
 
-@implementation RUNABannerUtilityTests
+@implementation RUNABannerUtilTests
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -43,6 +43,10 @@
         NSString* result = [RUNABannerUtil normalize:input];
         XCTAssertEqualObjects(expectResults[idx], result);
     }];
+}
+
+-(void) testNormalizeIllegalInput {
+    XCTAssertNil([RUNABannerUtil normalize:nil]);
 }
 
 @end

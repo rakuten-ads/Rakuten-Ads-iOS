@@ -27,12 +27,14 @@
     // trim spaces
     normalizedText = [normalizedText stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
 
+    // replace spaces with single space
     NSError* error = nil;
-    NSRegularExpression* regx = [NSRegularExpression regularExpressionWithPattern:@"\\s{2,}" options:NSRegularExpressionCaseInsensitive error:&error];
-    if (error) {
-        RUNADebug("regularExpressionWithPattern '\\s{2,}' error: %@", error);
-    } else {
+    NSString* pattern = @"\\s{2,}";
+    NSRegularExpression* regx = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+    if (!error) {
         normalizedText = [regx stringByReplacingMatchesInString:normalizedText options:0 range:NSMakeRange(0, normalizedText.length) withTemplate:@" "] ;
+    } else {
+        RUNADebug("regularExpressionWithPattern '%@' error: %@", pattern, error);
     }
 
     return normalizedText;
