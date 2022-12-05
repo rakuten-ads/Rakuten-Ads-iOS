@@ -33,10 +33,8 @@
     NSRegularExpression* regx = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     if (!error) {
         normalizedText = [regx stringByReplacingMatchesInString:normalizedText options:0 range:NSMakeRange(0, normalizedText.length) withTemplate:@" "] ;
-    } else {
-        RUNADebug("regularExpressionWithPattern '%@' error: %@", pattern, error);
     }
-
+    NSAssert(error == nil, @"regularExpressionWithPattern '%@' result: %@", pattern, error ?: @"none error");
     return normalizedText;
 }
 
