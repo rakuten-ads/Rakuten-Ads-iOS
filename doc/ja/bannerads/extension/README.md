@@ -52,6 +52,31 @@ var runaCustomTargeting: [String: [String]] {
         Constant.os: [os]
     ]
 }
+bannerView.setCustomTargeting(runaCustomTargeting)
+```
+
+##### Normalization
+便利のため、RUNABannerUtilは文字列をnormalize化するAPIを用意しています。下記のルールに基づきます：
+
+- 半角を全角へ変換 (カナ, 濁点, 半濁点, 長音符)
+- 全角を半角へ変換 (数字, アルファベット, スペース, ダブルコーテーション)
+- 大文字を小文字へ変換 (アルファベット)
+- ２個以上連続のスペースを一つへ変換
+- 最初と最後のスペースを削除
+
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+```Swift
+var runaCustomTargeting: [String: [String]] {
+    return [
+        Constant.appDeviceType: [deviceTyString],
+        Constant.appVersion: [appVersion],
+        Constant.sdkVersion: [sdkVersion],
+        Constant.osVersion: [osVersion],
+        Constant.os: [os]
+    ]
+}
+let targetingWithNormalizedValues = runaCustomTargeting.mapValues{$0.map(RUNABannerUtil.normalize(_:))}
+bannerView.setCustomTargeting(targetingWithNormalizedValues)
 ```
 
 #### Rz Cooke
