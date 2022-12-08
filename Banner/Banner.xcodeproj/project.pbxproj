@@ -32,7 +32,7 @@
 		323DA56A25DF8209002ED988 /* RUNABannerGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 323DA56825DF8209002ED988 /* RUNABannerGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		323DA56B25DF8209002ED988 /* RUNABannerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 323DA56925DF8209002ED988 /* RUNABannerGroup.m */; };
 		324EA00A29397B4E00D84D50 /* RUNABannerUtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324EA00929397B4E00D84D50 /* RUNABannerUtilTests.m */; };
-		325489212937255F002170F8 /* RUNABannerUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254891F2937255F002170F8 /* RUNABannerUtil.h */; };
+		325489212937255F002170F8 /* RUNABannerUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254891F2937255F002170F8 /* RUNABannerUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		325489222937255F002170F8 /* RUNABannerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 325489202937255F002170F8 /* RUNABannerUtil.m */; };
 		32564D9C2227865100DB4DBF /* RUNABannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D9A2227865100DB4DBF /* RUNABannerAdapter.h */; };
 		32564D9D2227865100DB4DBF /* RUNABannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D9B2227865100DB4DBF /* RUNABannerAdapter.m */; };

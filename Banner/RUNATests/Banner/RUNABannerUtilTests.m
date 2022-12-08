@@ -1,5 +1,5 @@
 //
-//  RUNABannerUtility.m
+//  RUNABannerUtil.m
 //  BannerTests
 //
 //  Created by Wu, Wei | David | GATD on 2022/12/02.

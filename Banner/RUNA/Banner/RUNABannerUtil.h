@@ -1,5 +1,5 @@
 //
-//  RUNABannerUtility.h
+//  RUNABannerUtil.h
 //  Banner
 //
 //  Created by Wu, Wei | David | GATD on 2022/11/30.
