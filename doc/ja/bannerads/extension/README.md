@@ -68,11 +68,8 @@ bannerView.setCustomTargeting(runaCustomTargeting)
 ```Swift
 var runaCustomTargeting: [String: [String]] {
     return [
-        Constant.appDeviceType: [deviceTyString],
-        Constant.appVersion: [appVersion],
-        Constant.sdkVersion: [sdkVersion],
-        Constant.osVersion: [osVersion],
-        Constant.os: [os]
+        Constant.key1: ["value1", "value2"],
+        Constant.key2: ["value3"],
     ]
 }
 let targetingWithNormalizedValues = runaCustomTargeting.mapValues{$0.map(RUNABannerUtil.normalize(_:))}
