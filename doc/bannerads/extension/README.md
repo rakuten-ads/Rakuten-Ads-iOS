@@ -52,6 +52,28 @@ var runaCustomTargeting: [String: [String]] {
         Constant.os: [os]
     ]
 }
+bannerView.setCustomTargeting(runaCustomTargeting)
+```
+
+##### Normalization
+RUNABannerUtil provides api to normalize any string values for convenience, contains following rules:
+
+- convert half-width to full-width (カナ, 濁点, 半濁点, 長音符)
+- convert full-width to half-width (digit, alphabet, space, double quotation)
+- convert upper-case to lower-case (alphabet)
+- convert multi (>=2) spaces to single space trim spaces
+- remove spaces at start and end of phrase
+
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+```Swift
+var runaCustomTargeting: [String: [String]] {
+    return [
+        Constant.key1: ["value1", "value2"],
+        Constant.key2: ["value3"],
+    ]
+}
+let targetingWithNormalizedValues = runaCustomTargeting.mapValues{$0.map(RUNABannerUtil.normalize(_:))}
+bannerView.setCustomTargeting(targetingWithNormalizedValues)
 ```
 
 #### Rz Cooke
@@ -70,6 +92,15 @@ bannerView.setRz("RzCookie")
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 ```Swift
 bannerView.setRp("RpCookie")
+```
+
+#### EasyId
+
+- easyId: `String`, non-null
+
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+```Swift
+bannerView.setEasyId("123456789")
 ```
 
 #### Geo
