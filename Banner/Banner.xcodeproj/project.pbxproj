@@ -31,6 +31,9 @@
 		32269B9925EF13AC002A623B /* RUNABannerGroupExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 32269B9725EF13AC002A623B /* RUNABannerGroupExtension.m */; };
 		323DA56A25DF8209002ED988 /* RUNABannerGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 323DA56825DF8209002ED988 /* RUNABannerGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		323DA56B25DF8209002ED988 /* RUNABannerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 323DA56925DF8209002ED988 /* RUNABannerGroup.m */; };
+		324EA00A29397B4E00D84D50 /* RUNABannerUtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324EA00929397B4E00D84D50 /* RUNABannerUtilTests.m */; };
+		325489212937255F002170F8 /* RUNABannerUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254891F2937255F002170F8 /* RUNABannerUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		325489222937255F002170F8 /* RUNABannerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 325489202937255F002170F8 /* RUNABannerUtil.m */; };
 		32564D9C2227865100DB4DBF /* RUNABannerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32564D9A2227865100DB4DBF /* RUNABannerAdapter.h */; };
 		32564D9D2227865100DB4DBF /* RUNABannerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32564D9B2227865100DB4DBF /* RUNABannerAdapter.m */; };
 		325FF74121E605F100A899CF /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F25A1D21E5A96C001FD9C0 /* RUNACore.framework */; };
@@ -114,6 +117,9 @@
 		32269BA025EF1457002A623B /* RUNABannerGroupInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerGroupInner.h; sourceTree = "<group>"; };
 		323DA56825DF8209002ED988 /* RUNABannerGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerGroup.h; sourceTree = "<group>"; };
 		323DA56925DF8209002ED988 /* RUNABannerGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerGroup.m; sourceTree = "<group>"; };
+		324EA00929397B4E00D84D50 /* RUNABannerUtilTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerUtilTests.m; sourceTree = "<group>"; };
+		3254891F2937255F002170F8 /* RUNABannerUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerUtil.h; sourceTree = "<group>"; };
+		325489202937255F002170F8 /* RUNABannerUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerUtil.m; sourceTree = "<group>"; };
 		32564D9A2227865100DB4DBF /* RUNABannerAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerAdapter.h; sourceTree = "<group>"; };
 		32564D9B2227865100DB4DBF /* RUNABannerAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerAdapter.m; sourceTree = "<group>"; };
 		325FF74521F0577900A899CF /* RUNABanner.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = RUNABanner.modulemap; sourceTree = "<group>"; };
@@ -208,6 +214,8 @@
 				32564D9A2227865100DB4DBF /* RUNABannerAdapter.h */,
 				32564D9B2227865100DB4DBF /* RUNABannerAdapter.m */,
 				32ED78B7236693AB007833DF /* RUNABannerViewExtension.h */,
+				3254891F2937255F002170F8 /* RUNABannerUtil.h */,
+				325489202937255F002170F8 /* RUNABannerUtil.m */,
 				32ED78B8236693AB007833DF /* RUNABannerViewExtension.m */,
 				32EFC6BB25AE8281006F85C8 /* RUNAAdSession.h */,
 				32EFC6C425AE82AA006F85C8 /* RUNAAdSessionInner.h */,
@@ -343,6 +351,7 @@
 				542236342682F4B200DC4229 /* RUNABannerViewExtensionTests.m */,
 				54A8C7C8268970760094F6BE /* RUNAAdSessionTests.m */,
 				32E2030F27BA33B00037A61B /* RUNABannerCarouselViewTests.m */,
+				324EA00929397B4E00D84D50 /* RUNABannerUtilTests.m */,
 			);
 			path = Banner;
 			sourceTree = "<group>";
@@ -363,6 +372,7 @@
 				32ED78B9236693AB007833DF /* RUNABannerViewExtension.h in Headers */,
 				3263F94026E1AFD400F8E595 /* RUNABannerCarouselView.h in Headers */,
 				32F258F121E58689001FD9C0 /* RUNABanner.h in Headers */,
+				325489212937255F002170F8 /* RUNABannerUtil.h in Headers */,
 				329753AB230A7D4C002A53CC /* RUNAMeasurement.h in Headers */,
 				32BEBF4426669A5A0087BEF7 /* RUNAViewabilityProvider.h in Headers */,
 				32EFC6C825AE8356006F85C8 /* RUNAAdSessionInner.h in Headers */,
@@ -530,6 +540,7 @@
 				323DA56B25DF8209002ED988 /* RUNABannerGroup.m in Sources */,
 				32BEBF4326669A5A0087BEF7 /* RUNAViewabilityProvider.m in Sources */,
 				320206CC273A4754004D4A8E /* RUNABannerCarouselViewExtension.m in Sources */,
+				325489222937255F002170F8 /* RUNABannerUtil.m in Sources */,
 				32564D9D2227865100DB4DBF /* RUNABannerAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -546,6 +557,7 @@
 				542236352682F4B200DC4229 /* RUNABannerViewExtensionTests.m in Sources */,
 				32E2031027BA33B00037A61B /* RUNABannerCarouselViewTests.m in Sources */,
 				544DBC8226565D76009BD04E /* RUNABannerViewMeasurableTests.m in Sources */,
+				324EA00A29397B4E00D84D50 /* RUNABannerUtilTests.m in Sources */,
 				54BF02FA265CD2CC00B2CCE4 /* RUNABannerViewInnerTests.m in Sources */,
 				54FF0E982678688F0009D5F6 /* RUNABannerAdapterTests.m in Sources */,
 			);
@@ -643,7 +655,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1090201;
+				CURRENT_PROJECT_VERSION = 1100001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
@@ -662,7 +674,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.9.2;
+				MARKETING_VERSION = 1.10.0;
 				MODULEMAP_FILE = RUNA/RUNABanner.modulemap;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;
@@ -844,7 +856,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1090201;
+				CURRENT_PROJECT_VERSION = 1100001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
@@ -863,7 +875,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.9.2;
+				MARKETING_VERSION = 1.10.0;
 				MODULEMAP_FILE = RUNA/RUNABanner.modulemap;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;
@@ -880,7 +892,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1090201;
+				CURRENT_PROJECT_VERSION = 1100001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
@@ -899,7 +911,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.9.2;
+				MARKETING_VERSION = 1.10.0;
 				MODULEMAP_FILE = RUNA/RUNABanner.modulemap;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;

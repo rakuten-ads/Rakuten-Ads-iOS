@@ -19,7 +19,7 @@
 
 @property (atomic, readonly) RUNABannerViewState state;
 
-@property (nonatomic, nullable) NSDictionary* userExt; /* include rzCookie */
+@property (nonatomic, nullable) NSMutableDictionary* userExt; /* include rzCookie */
 @property (nonatomic, nullable) NSString* userId; /* RpCookie */
 
 

@@ -4,61 +4,27 @@
 
 @implementation RUNAIdfa
 
-@synthesize idfa = _idfa;
-@synthesize trackingEnabled = _idte;
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        [self getValues];
-    }
-    return self;
-}
-
--(void) getValues {
-    ASIdentifierManager* idfaManager = [ASIdentifierManager sharedManager];
-    
-    self->_idfa = [[[idfaManager advertisingIdentifier] UUIDString] copy];
-
-    if (@available(iOS 14, *)) {
-        BOOL shouldGetIdfa = [ATTrackingManager trackingAuthorizationStatus] == ATTrackingManagerAuthorizationStatusAuthorized;
-        self->_idte = shouldGetIdfa || [idfaManager isAdvertisingTrackingEnabled];
-    } else {
-        self->_idte = [idfaManager isAdvertisingTrackingEnabled];
-    }
-}
-
 -(NSString*) idfa {
-    
-    if (self->_idfa) {
-        RUNADebug("idfa return directly: %@", self->_idfa);
-        return self->_idfa;
-    }
+    ASIdentifierManager* idfaManager = [ASIdentifierManager sharedManager];
 
-    RUNADebug("try to get idfa again");
+    NSString* idfa = [[[idfaManager advertisingIdentifier] UUIDString] copy];
 
-    [NSThread sleepForTimeInterval:0.5];
-    [self getValues];
-
-    RUNADebug("finally get idfa: %@", self->_idfa);
-    return self->_idfa;
+    RUNADebug("get idfa: %@", idfa);
+    return idfa;
 }
 
 -(BOOL) isTrackingEnabled {
-    
-    if (self->_idfa) {
-        RUNADebug("idfa enabled return directly: %@", self->_idte ? @"YES" : @"NO");
-        return self->_idte;
+    ASIdentifierManager* idfaManager = [ASIdentifierManager sharedManager];
+    BOOL idte = NO;
+    if (@available(iOS 14, *)) {
+        BOOL shouldGetIdfa = [ATTrackingManager trackingAuthorizationStatus] == ATTrackingManagerAuthorizationStatusAuthorized;
+        idte = shouldGetIdfa || [idfaManager isAdvertisingTrackingEnabled];
+    } else {
+        idte = [idfaManager isAdvertisingTrackingEnabled];
     }
 
-    RUNADebug("try to get idte again");
-
-    [NSThread sleepForTimeInterval:0.5];
-    [self getValues];
-
-    RUNADebug("finally get idte: %@", self->_idfa ? @"YES" : @"NO");
-    return self->_idte;
+    RUNADebug("get idte: %@", idte ? @"YES" : @"NO");
+    return idte;
 }
 
 @end

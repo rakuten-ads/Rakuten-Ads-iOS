@@ -9,6 +9,7 @@
 #import "RUNABannerViewExtension.h"
 #import "RUNABannerViewInner.h"
 #import <RUNACore/RUNAValid.h>
+#import <RUNACore/RUNACipher.h>
 
 @implementation RUNABannerViewGenreProperty
 
@@ -44,15 +45,30 @@
 
 -(void)setRz:(NSString *)rz {
     if ([RUNAValid isNotEmptyString:rz]) {
-        self.userExt = @{
-            @"rz" : [rz copy]
-        };
+        if (!self.userExt) {
+            self.userExt = [NSMutableDictionary new];
+        }
+        self.userExt[@"rz"] = [rz copy];
     }
 }
 
 -(void)setRp:(NSString *)rp {
     if ([RUNAValid isNotEmptyString:rp]) {
         self.userId = [rp copy];
+    }
+}
+
+-(void)setEasyId:(NSString *)easyId {
+    if ([RUNAValid isNotEmptyString:easyId]) {
+        NSString* hashedEasyId = [RUNACipher md5Hex:easyId];
+
+        if ([RUNAValid isNotEmptyString:hashedEasyId]) {
+            if (!self.userExt) {
+                self.userExt = [NSMutableDictionary new];
+            }
+
+            self.userExt[@"hashedeasyid"] = hashedEasyId;
+        }
     }
 }
 
