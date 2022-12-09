@@ -67,6 +67,7 @@ typedef void (^RUNABannerViewEventHandler)(RUNABannerView* view, struct RUNABann
 @property (nonatomic, readonly) RUNABannerImp* imp;
 @property (nonatomic) NSString* uuid;
 @property (atomic, readonly) RUNABannerViewState state;
+@property (nonatomic) RUNAMediaType mediaType;
 
 /*
  external options

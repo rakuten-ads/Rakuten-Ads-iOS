@@ -32,6 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)didMeasureInview:(BOOL)isInview;
 
+/**
+ @param isInview result of in view measured
+ @return YES for completing measurement, otherwise false
+ */
+- (BOOL)didMeasureVideoTrack:(BOOL)isInview;
+
 @end
 
 @protocol RUNAMeasurer <NSObject>
@@ -54,6 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface RUNADefaultMeasurer: NSObject<RUNAMeasurer>
+
+@property BOOL isVideoTrack;
 
 @end
 

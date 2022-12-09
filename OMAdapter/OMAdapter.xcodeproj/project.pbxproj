@@ -56,6 +56,13 @@
 			remoteGlobalIDString = 32671F6624108BB400C50F9F;
 			remoteInfo = OMAdapter;
 		};
+		32E8DD3829076E4F00DB0319 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32671F9124123C9B00C50F9F /* Banner.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 32F258DF21E58689001FD9C0;
+			remoteInfo = Banner;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -202,6 +209,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				32E8DD3929076E4F00DB0319 /* PBXTargetDependency */,
 			);
 			name = OMAdapter;
 			productName = OMAdapter;
@@ -352,6 +360,11 @@
 			isa = PBXTargetDependency;
 			target = 32671F6624108BB400C50F9F /* OMAdapter */;
 			targetProxy = 32671F7224108BB400C50F9F /* PBXContainerItemProxy */;
+		};
+		32E8DD3929076E4F00DB0319 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Banner;
+			targetProxy = 32E8DD3829076E4F00DB0319 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
