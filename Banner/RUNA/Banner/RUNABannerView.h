@@ -41,6 +41,8 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewEventType) {
     RUNABannerViewEventTypeGroupFailed,
     /// RUNABannerGroup load finished, no matter parts are failed or succeeded
     RUNABannerViewEventTypeGroupFinished,
+    /// RUNAInterstitial closed
+    RUNABannerViewEventTypeInterstitialClosed,
 };
 
 /*!

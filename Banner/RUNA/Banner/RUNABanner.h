@@ -21,3 +21,4 @@ FOUNDATION_EXPORT const unsigned char RUNABannerVersionString[];
 #import "RUNABannerGroup.h"
 #import "RUNAViewabilityProvider.h"
 #import "RUNABannerCarouselView.h"
+#import "RUNAInterstitialAd.h"

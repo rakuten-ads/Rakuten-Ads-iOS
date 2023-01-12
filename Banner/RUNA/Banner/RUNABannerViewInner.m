@@ -404,6 +404,13 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
         RUNADebug("handle %@", message.type);
         weakSelf.videoState = RUNA_VIDEO_STATE_LOADED;
     }]];
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeClose handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+        RUNADebug("handle %@", message.type);
+        if (weakSelf.eventHandler) {
+            struct RUNABannerViewEvent event = { RUNABannerViewEventTypeInterstitialClosed, self.error };
+            weakSelf.eventHandler(weakSelf, event);
+        }
+    }]];
 
     [self.webView.configuration.userContentController addScriptMessageHandler:messageManager name:kSdkMessageHandlerName];
     self.webView.navigationDelegate = self;
