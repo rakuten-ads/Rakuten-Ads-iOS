@@ -68,10 +68,9 @@
         [closeImageView.widthAnchor constraintEqualToConstant:buttonSize.width],
         [closeImageView.heightAnchor constraintEqualToConstant:buttonSize.height],
     ]];
-    UIImage* buttonImage = RUNAInterstitialAd.preferredCloseButtonImage;
+    UIImage* buttonImage = self.interstitialAd.preferredCloseButtonImage;
     if (!buttonImage) {
-        UIImage* image = [UIImage imageNamed:@"close" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
-        buttonImage = image; // FIXME: use systemImage "xmark.circle" after support version lifts to iOS 13
+        buttonImage = [UIImage imageNamed:@"close" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
     }
     closeImageView.image = buttonImage;
     closeImageView.tintColor = [UIColor.whiteColor colorWithAlphaComponent:0.9];

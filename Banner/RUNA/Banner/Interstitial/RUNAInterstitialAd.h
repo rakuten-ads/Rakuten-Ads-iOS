@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// unique code from admin site, required when `adSpotId` is nil.
 @property(nonatomic, copy, nullable) NSString* adSpotCode;
 
+@property(nonatomic, nullable)UIImage* preferredCloseButtonImage;
+
 /// direct url when ad is clicked
 @property(nonatomic, readonly, nullable) NSString* clickURL;
 /// prevent opening URL in system browser as default action when clicking
@@ -36,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param handler
  callback to handle variety events.
  */
--(void) loadWithEventHandler:(nullable void (^)(RUNAInterstitialAd* adView, struct RUNABannerViewEvent event)) handler;
+-(void) preloadWithEventHandler:(nullable void (^)(RUNAInterstitialAd* adView, struct RUNABannerViewEvent event)) handler;
 
 /*!
  Show interstitial ad only when ad content is ready.
@@ -45,8 +47,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return YES for showing successfully, NO for the opposition.
  */
 -(BOOL)showIn:(UIViewController*) parentViewController;
-
-+(void)setPreferredCloseButtonImage:(UIImage*) image;
 
 @end
 

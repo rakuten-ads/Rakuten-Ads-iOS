@@ -10,7 +10,7 @@
 
 @implementation RUNAInterstitialAd
 
--(void)loadWithEventHandler:(void (^)(RUNAInterstitialAd * _Nonnull, struct RUNABannerViewEvent))handler {
+-(void)preloadWithEventHandler:(void (^)(RUNAInterstitialAd * _Nonnull, struct RUNABannerViewEvent))handler {
     if (self.loadSucceeded) {
         NSLog(@"[RUNA] interstitial ad has loaded already. Try a new RUNAInterstitialAd instance.");
         return;
@@ -21,6 +21,7 @@
     bannerView.translatesAutoresizingMaskIntoConstraints = NO;
     bannerView.size = RUNABannerViewSizeCustom;
 
+    bannerView.imp.isInterstitial = YES;
     bannerView.adSpotId = self.adSpotId;
     bannerView.adSpotCode = self.adSpotCode;
     bannerView.properties = self.properties;
@@ -49,7 +50,7 @@
     }];
 }
 
--(void)showIn:(UIViewController*) parentViewController {
+-(BOOL)showIn:(UIViewController*) parentViewController {
     if (self.loadSucceeded) {
         // show viewcontroller
         self->_viewController = [RUNAInterstitalViewController new];
@@ -60,29 +61,17 @@
             [self.viewController setModalInPresentation:NO];
         }
         [parentViewController presentViewController:self.viewController animated:NO completion:nil];
+        return YES;
     } else {
         NSLog(@"[RUNA] interstitial ad content is not ready, try again later.");
     }
+    return NO;
 }
 
 -(void)close {
     if (self.viewController) {
         [self.viewController dismissViewControllerAnimated:NO completion:nil];
     }
-}
-
-# pragma mark - preferredCloseButtonImage
-static UIImage* _preferredCloseButtonImage;
-
-+(void)setPreferredCloseButtonImage:(UIImage *)image {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _preferredCloseButtonImage = image;
-    });
-}
-
-+(UIImage *)preferredCloseButtonImage {
-    return _preferredCloseButtonImage;
 }
 
 @end
