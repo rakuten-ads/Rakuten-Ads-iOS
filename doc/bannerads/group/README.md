@@ -16,6 +16,9 @@ RUNA SDK provides `RUNABannerGroup` to retrive a bunch of distinct banners once 
 
 ## Extension Setting
 
+__Notice__, when using `RUNABannerGroup`, the APIs of grouped `RUNABannerView` instances with the same names like `setRz`, `setRp`, `setEasyId` will not work simultaneously.
+Please use these APIs as following.
+
 #### Rz Cooke
 
 - rz: `String`, non-null
@@ -31,7 +34,16 @@ bannerGroup.setRz("RzCookie")
 
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 ```Swift
-bannerView.setRp("RpCookie")
+bannerGroup.setRp("RpCookie")
+```
+
+#### EasyId
+
+- easyId: `String`, non-null
+
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+```Swift
+bannerGroup.setEasyId("123456789")
 ```
 
 ## Sample
