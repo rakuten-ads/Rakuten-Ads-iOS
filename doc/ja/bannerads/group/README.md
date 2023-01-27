@@ -15,6 +15,7 @@ RUNA SDKは一回複数異なる広告をリクエストするため`RUNABannerG
 - `RUNABannerGroup`が代理となり、それぞれ`RUNABannerView`の代わりに`load` メソッドを実行させます。
 
 ## 拡張設定
+__注意__、`RUNABannerView`にも下記同じAPIが存在しますが、`RUNABannerGroup`と一緒に使う場合機能しなくなります。`RUNABannerGroup`を使う場合、必ず`RUNABannerGroup`から設定してください。
 
 #### Rz Cooke
 
@@ -31,7 +32,16 @@ bannerGroup.setRz("RzCookie")
 
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 ```Swift
-bannerView.setRp("RpCookie")
+bannerGroup.setRp("RpCookie")
+```
+
+#### EasyId
+
+- easyId: `String`, non-null
+
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+```Swift
+bannerGroup.setEasyId("123456789")
 ```
 
 ## サンプル
