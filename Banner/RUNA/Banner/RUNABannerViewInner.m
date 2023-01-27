@@ -611,7 +611,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
         @try {
             if ([self isOpenMeasurementAvailable]) {
                 id<RUNAMeasurer> measurer = [(id<RUNAOpenMeasurement>)self getOpenMeasurer];
-                [measurer setMeasurerDelegate:self];
                 [measurer startMeasurement];
                 [self.measurers addObject:measurer];
             }
