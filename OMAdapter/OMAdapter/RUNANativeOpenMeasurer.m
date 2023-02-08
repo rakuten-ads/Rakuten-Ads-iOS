@@ -74,7 +74,7 @@
     }
 }
 
-NSString* omVerificationJsURL = @"";
+NSString* omVerificationJsURL = @"https://storage.googleapis.com/rssp-dev-cdn/sdk/js/omid-verification-client-v1.js";
 NSString* vendorKey = @"iabtechlab.com-omid";
 NSString* params = @"iabtechlab-Rakuten";
 

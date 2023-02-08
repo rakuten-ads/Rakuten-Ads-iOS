@@ -142,6 +142,10 @@ NSString* kPartnerName = @"Rakuten";
     }
 }
 
+- (void)setMeasurerDelegate:(nonnull id<RUNAMeasurerDelegate>)measurerDelegate {
+    // NOP
+}
+
 -(void) sendRemoteLogWithMessage:(NSString*) message andError:(NSError*) error {
     if ([self.measurableTarget isKindOfClass:[RUNABannerView class]]) {
         NSException* exception = [NSException exceptionWithName:error.description reason:@"RUNA OMSDK" userInfo:nil];
