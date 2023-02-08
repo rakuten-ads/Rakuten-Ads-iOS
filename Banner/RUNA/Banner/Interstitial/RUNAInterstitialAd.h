@@ -12,6 +12,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*!
+ @enum Enumerations of the size scale option
+ */
+typedef NS_ENUM(NSUInteger, RUNAInterstitialAdSize) {
+    /// scale the ad content to fit screen size while keeping aspect ratio.
+    RUNAInterstitialAdSizeAspectFit,
+    /// show original size of ad content without scale.
+    RUNAInterstitialAdSizeOriginal,
+    /// no indicated size, work with RUNAInterstitialAdCustomDecorator  for customize purpose.
+    RUNAInterstitialAdSizeCustom,
+};
+
+typedef void* _Nonnull (^RUNAInterstitialAdCustomDecorator)(UIView* containerView, UIView* bannerView);
+
 @interface RUNAInterstitialAd : NSObject
 
 #pragma mark - properties
@@ -20,7 +34,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// unique code from admin site, required when `adSpotId` is nil.
 @property(nonatomic, copy, nullable) NSString* adSpotCode;
 
-@property(nonatomic, nullable)UIImage* preferredCloseButtonImage;
+/// the size scale option
+@property(nonatomic) RUNAInterstitialAdSize size;
+/// A callback block to customize the interstitial ad view.
+@property(nonatomic, copy, nullable) RUNAInterstitialAdCustomDecorator decorator;
+/// to replace the default image of the close button.
+@property(nonatomic, nullable) UIImage* preferredCloseButtonImage;
 
 /// direct url when ad is clicked
 @property(nonatomic, readonly, nullable) NSString* clickURL;
@@ -30,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// aditional info
 @property(nonatomic, nullable) NSDictionary* properties;
 
+/// result of loading, true for succeeded
 @property(nonatomic, readonly) BOOL loadSucceeded;
 
 #pragma mark - APIs
