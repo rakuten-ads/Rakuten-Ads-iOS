@@ -17,27 +17,23 @@
     }
     self.eventHandler = handler;
 
-    RUNABannerView* bannerView = [RUNABannerView new];
-    bannerView.translatesAutoresizingMaskIntoConstraints = NO;
-    bannerView.size = RUNABannerViewSizeCustom;
+    if (!self.adContentView) {
+        self.adContentView = [RUNABannerView new];
+        self.adContentView.adSpotId = self.adSpotId;
+        self.adContentView.adSpotCode = self.adSpotCode;
+    }
 
-    bannerView.imp.isInterstitial = YES;
-    bannerView.adSpotId = self.adSpotId;
-    bannerView.adSpotCode = self.adSpotCode;
-    bannerView.properties = self.properties;
-    bannerView.shouldPreventDefaultClickAction = self.shouldPreventDefaultClickAction;
+    self.adContentView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.adContentView.size = RUNABannerViewSizeCustom;
+    self.adContentView.position = RUNABannerViewPositionCustom;
+    self.adContentView.imp.isInterstitial = YES;
 
-    self->_bannerView = bannerView;
     __weak typeof(self) weakSelf = self;
-    [bannerView loadWithEventHandler:^(RUNABannerView * _Nonnull banner, struct RUNABannerViewEvent event) {
+    [self.adContentView loadWithEventHandler:^(RUNABannerView * _Nonnull banner, struct RUNABannerViewEvent event) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
-
         switch (event.eventType) {
             case RUNABannerViewEventTypeSucceeded:
                 strongSelf->_loadSucceeded = YES;
-                break;
-            case RUNABannerViewEventTypeClicked:
-                strongSelf->_clickURL = banner.clickURL;
                 break;
             case RUNABannerViewEventTypeInterstitialClosed:
                 [strongSelf close];
@@ -54,7 +50,7 @@
     if (self.loadSucceeded) {
         // show viewcontroller
         self->_viewController = [RUNAInterstitalViewController new];
-        self.viewController.bannerView = self.bannerView;
+        self.viewController.bannerView = self.adContentView;
         self.viewController.interstitialAd = self;
         self.viewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
         if (@available(iOS 13.0, *)) {

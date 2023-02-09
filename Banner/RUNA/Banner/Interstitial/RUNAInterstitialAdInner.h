@@ -19,7 +19,6 @@ typedef void (^RUNAInterstitialEventHandler)(RUNAInterstitialAd* view, struct RU
 
 @interface RUNAInterstitialAd ()
 
-@property(nonatomic, readonly, nullable) RUNABannerView* bannerView;
 @property(nonatomic, nullable, copy) RUNAInterstitialEventHandler eventHandler;
 
 @property(nonatomic, readonly, nullable) RUNAInterstitalViewController* viewController;

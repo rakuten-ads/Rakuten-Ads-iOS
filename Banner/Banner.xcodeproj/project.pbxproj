@@ -241,11 +241,11 @@
 		325FF9F7296A4BD8007F05C2 /* Interstitial */ = {
 			isa = PBXGroup;
 			children = (
-				325FF9FA296A4C54007F05C2 /* RUNAInterstitalViewController.h */,
-				325FF9FB296A4C54007F05C2 /* RUNAInterstitalViewController.m */,
 				325FF9FE296A4CEA007F05C2 /* RUNAInterstitialAd.h */,
 				325FFA04296ABDD3007F05C2 /* RUNAInterstitialAdInner.h */,
 				325FF9FF296A4CEA007F05C2 /* RUNAInterstitialAd.m */,
+				325FF9FA296A4C54007F05C2 /* RUNAInterstitalViewController.h */,
+				325FF9FB296A4C54007F05C2 /* RUNAInterstitalViewController.m */,
 			);
 			path = Interstitial;
 			sourceTree = "<group>";

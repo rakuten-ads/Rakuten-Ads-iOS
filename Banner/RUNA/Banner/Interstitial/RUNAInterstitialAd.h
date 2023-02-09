@@ -24,11 +24,20 @@ typedef NS_ENUM(NSUInteger, RUNAInterstitialAdSize) {
     RUNAInterstitialAdSizeCustom,
 };
 
-typedef void* _Nonnull (^RUNAInterstitialAdCustomDecorator)(UIView* containerView, UIView* bannerView);
+/*!
+ @typedef Callback function for customizing size & position between the root container view & the ad content view when RUNAInterstitialAdSizeCustom enabled.
+ @param containerView the root container view
+ @param adView the ad content view
+ */
+typedef void (^RUNAInterstitialAdCustomDecorator)(UIView* containerView, UIView* adView);
 
-@interface RUNAInterstitialAd : NSObject
+/*!
+ A helper class shows an interstitial ad base on RUNABannerView in a full screen UIViewController after ad content preloaded successfully.
+ */
+@interface RUNAInterstitialAd: NSObject
 
-#pragma mark - properties
+// Basic properties
+
 /// unique id from admin site, required when `adSpotCode` is nil.
 @property(nonatomic, copy, nullable) NSString* adSpotId;
 /// unique code from admin site, required when `adSpotId` is nil.
@@ -41,16 +50,16 @@ typedef void* _Nonnull (^RUNAInterstitialAdCustomDecorator)(UIView* containerVie
 /// to replace the default image of the close button.
 @property(nonatomic, nullable) UIImage* preferredCloseButtonImage;
 
-/// direct url when ad is clicked
-@property(nonatomic, readonly, nullable) NSString* clickURL;
-/// prevent opening URL in system browser as default action when clicking
-@property(nonatomic) BOOL shouldPreventDefaultClickAction;
-
-/// aditional info
-@property(nonatomic, nullable) NSDictionary* properties;
-
 /// result of loading, true for succeeded
 @property(nonatomic, readonly) BOOL loadSucceeded;
+
+// Advanced properties
+
+/// set the ad content view when needing more complex parameters
+/// Notice:
+/// - Must not call `load` method from this property, RUNAInterstitialAd will call it instead.
+/// - RUNAInterstitialAd will arrange RUNABannerView's layout, thus the properties like `size`, `position` of RUNABannerView will be ignored.
+@property(nonatomic, nullable) RUNABannerView* adContentView;
 
 #pragma mark - APIs
 /*!
