@@ -37,7 +37,9 @@
                 [self applySizeOriginal];
                 break;
             case RUNAInterstitialAdSizeCustom:
+                RUNADebug("[RUNAInterstitial] applySize Custom");
                 if (self.interstitialAd.decorator) {
+                    RUNADebug("[RUNAInterstitial] apply decorator");
                     self.interstitialAd.decorator(self.view, self.bannerView);
                     if (!self.bannerView.superview) {
                         [self.view addSubview:self.bannerView];
@@ -52,19 +54,14 @@
     [self addCloseButton];
 }
 
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    RUNADebug("[RUNAInterstitial] viewWillTransitionToSize %@", NSStringFromCGSize(size));
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
-//    [self resizeBannerView:self.view.frame.size];
+    if (self.interstitialAd.size == RUNAInterstitialAdSizeAspectFit) {
+        [self applySizeAspectFit];
+    }
 }
-
-
-//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-//    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-//
-//    RUNADebug("[Interstitial] viewWillTransitionToSize(%@)", NSStringFromCGSize(size));
-//    [self resizeBannerView:size];
-//}
 
 #pragma mark - resize
 - (void)applySizeAspectFit {
