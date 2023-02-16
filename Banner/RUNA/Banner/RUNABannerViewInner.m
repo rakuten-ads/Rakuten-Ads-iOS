@@ -407,7 +407,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeClose handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
         if (weakSelf.eventHandler) {
-            struct RUNABannerViewEvent event = { RUNABannerViewEventTypeInterstitialClosed, self.error };
+            struct RUNABannerViewEvent event = { RUNABannerViewEventTypeInterstitialClosed, weakSelf.error };
             weakSelf.eventHandler(weakSelf, event);
         }
     }]];
