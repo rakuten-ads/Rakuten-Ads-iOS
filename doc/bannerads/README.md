@@ -254,8 +254,7 @@ self.view.addSubview(banner)
 
 ### sample of SwiftUI extension
 
-<script src="https://gist.github.com/wei-b-wu-rakuten/9d43b39059bac924554a7749b409d999.js"></script>
-
+[Sample Code](/resources/ContentView.swift)
 ---
 
 [TOP](/README.md#top)
