@@ -254,6 +254,10 @@ banner.load { (view, event) in
 self.view.addSubview(banner)
 ```
 
+### SwiftUI の拡張例
+
+![SwiftUI](https://gist.github.com/wei-b-wu-rakuten/9d43b39059bac924554a7749b409d999)
+
 ---
 
 [TOP](../#top)
