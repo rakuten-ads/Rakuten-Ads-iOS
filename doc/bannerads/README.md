@@ -252,7 +252,7 @@ banner.load { (view, event) in
 self.view.addSubview(banner)
 ```
 
-### sample of SwiftUI extension
+### SwiftUI extension
 
 See [Sample Code](../resources/ContentView.swift)
 
