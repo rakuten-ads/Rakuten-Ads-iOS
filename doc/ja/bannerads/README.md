@@ -256,7 +256,7 @@ self.view.addSubview(banner)
 
 ### SwiftUI の拡張例
 
-[Sample Code](/resources/ContentView.swift)
+参照 [Sample Code](../../resources/ContentView.swift)
 
 ---
 

@@ -254,7 +254,8 @@ self.view.addSubview(banner)
 
 ### sample of SwiftUI extension
 
-[Sample Code](/resources/ContentView.swift)
+See [Sample Code](../resources/ContentView.swift)
+
 ---
 
 [TOP](/README.md#top)
