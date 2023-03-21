@@ -72,6 +72,13 @@
     }
 }
 
+-(void)setRpoint:(NSInteger)rpoint {
+    if (!self.userExt) {
+        self.userExt = [NSMutableDictionary new];
+    }
+    self.userExt[@"rpoint"] = @(rpoint);
+}
+
 -(BOOL)isValidLat:(double)lat {
     if (lat < -90.0 || lat > 90.0) {
         NSLog(@"[RUNA] illegal latitude value, must be from -90.0 to +90.0, where nagative is south!");
