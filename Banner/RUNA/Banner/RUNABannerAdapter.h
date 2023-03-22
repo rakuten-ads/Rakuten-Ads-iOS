@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <RUNACore/RUNABidAdapter.h>
 #import <RUNACore/RUNAURLString.h>
+#import "RUNABannerView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @interface RUNABanner : NSObject<RUNAAdInfo>
@@ -38,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy) NSString* id;
 @property(nonatomic, nullable, copy) NSString* adspotId;
 @property(nonatomic, nullable, copy) NSString* adspotCode;
+@property(nonatomic) RUNABannerAdSpotBranchId adSpotBranchId;
 @property(nonatomic) NSMutableDictionary* json;
 @property(nonatomic) NSDictionary* banner;
 @end

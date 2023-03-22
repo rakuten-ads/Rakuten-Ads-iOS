@@ -41,6 +41,7 @@
                     @"adspot_id" : imp.adspotId ?: NSNull.null,
                     @"code" : imp.adspotCode ?: NSNull.null,
                     @"json" : imp.json ?: NSNull.null,
+                    @"adspot_branch_id" : imp.adSpotBranchId == RUNABannerAdSpotBranchIdNone ? NSNull.null : @(imp.adSpotBranchId),
             }
         }];
 

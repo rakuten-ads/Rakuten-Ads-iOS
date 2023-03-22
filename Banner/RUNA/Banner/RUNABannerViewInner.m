@@ -168,6 +168,14 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     return self.imp.adspotCode;
 }
 
+-(void)setAdSpotBranchId:(RUNABannerAdSpotBranchId)adSpotBranchId {
+    self.imp.adSpotBranchId = adSpotBranchId;
+}
+
+-(RUNABannerAdSpotBranchId)adSpotBranchId {
+    return self.imp.adSpotBranchId;
+}
+
 -(void)setSize:(RUNABannerViewSize)size {
     self->_size = size;
 
@@ -705,6 +713,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     return @{
         @"adspotId" : self.adSpotId ?: NSNull.null,
         @"adspotCode" : self.adSpotCode ?: NSNull.null,
+        @"adspotBranchId" : @(self.adSpotBranchId),
         @"userId(rp)" : self.userId ?: NSNull.null,
         @"state" : self.descriptionState,
         @"postion" : @(self.position),
