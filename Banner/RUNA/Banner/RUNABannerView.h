@@ -82,7 +82,7 @@ struct RUNABannerViewEvent {
 /*!
  options of AdSpotBranchId
  */
-typedef NS_ENUM(NSUInteger, RUNABannerAdSpotBranchId) {
+typedef NS_ENUM(NSUInteger, RUNABannerAdSpotBranch) {
     RUNABannerAdSpotBranchIdNone,
     RUNABannerAdSpotBranchId1,
     RUNABannerAdSpotBranchId2,
@@ -115,10 +115,10 @@ typedef NS_ENUM(NSUInteger, RUNABannerAdSpotBranchId) {
 /// unique code from admin site, required when `adSpotId` is nil.
 @property(nonatomic, copy, nullable) NSString* adSpotCode;
 /// indicate AdSpot's branch Id.
-@property(nonatomic) RUNABannerAdSpotBranchId adSpotBranchId;
+@property(nonatomic) RUNABannerAdSpotBranch adSpotBranchId;
 
 
-/// @enum size indicate content size
+/// @enum size options indicate content size
 @property(nonatomic) RUNABannerViewSize size;
 /// @enum position setting in superview
 @property(nonatomic) RUNABannerViewPosition position;

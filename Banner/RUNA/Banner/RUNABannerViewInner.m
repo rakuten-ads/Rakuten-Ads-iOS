@@ -168,11 +168,11 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     return self.imp.adspotCode;
 }
 
--(void)setAdSpotBranchId:(RUNABannerAdSpotBranchId)adSpotBranchId {
+-(void)setAdSpotBranchId:(RUNABannerAdSpotBranch)adSpotBranchId {
     self.imp.adSpotBranchId = adSpotBranchId;
 }
 
--(RUNABannerAdSpotBranchId)adSpotBranchId {
+-(RUNABannerAdSpotBranch)adSpotBranchId {
     return self.imp.adSpotBranchId;
 }
 
