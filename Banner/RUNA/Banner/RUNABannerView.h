@@ -132,6 +132,9 @@ typedef NS_ENUM(NSUInteger, RUNABannerAdSpotBranch) {
 /// prevent opening URL in system browser as default action when clicking
 @property(nonatomic) BOOL shouldPreventDefaultClickAction;
 
+/// the designated size of loaded ad content from the admin site
+@property(nonatomic, readonly) CGSize designatedContentSize;
+
 /*!
  Request & load ad content without event handler.
  */

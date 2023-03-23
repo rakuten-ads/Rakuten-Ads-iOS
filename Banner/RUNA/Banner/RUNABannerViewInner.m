@@ -462,6 +462,8 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
             @throw [NSException exceptionWithName:@"load failed" reason:@"banner html is empty" userInfo:@{@"RUNABanner": self.banner}];
         }
 
+        self->_designatedContentSize = CGSizeMake(self.banner.width, self.banner.height);
+
         dispatch_async(dispatch_get_main_queue(), ^{
             @try {
                 [self applyAdView];
