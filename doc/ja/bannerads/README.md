@@ -18,6 +18,11 @@ RUNA SDK banner view は `WebKit/WKWebView`を元にした web view です。Web
 
 `Ad Spot code`は`adSpotId`の可読性のある名前です。ユーザーがパブリッシャー管理サイドに`adSpotId`に対して自分で指定できます。
 
+### AdSpotBranchId
+
+`Ad Spot Branch Id` を使って、同じ`adspotId` 或は `adspotCode`で区別することができます。
+デフォルト値は`RUNABannerAdSpotBranchNone`。enum型の`RUNABannerAdSpotBranchId1` から `RUNABannerAdSpotBranchId20`までの値をセットすることができます。
+
 ### サイズ
 
 **size** プロパーティーに三つのサイズ調整設定が出来ます。
@@ -31,7 +36,12 @@ RUNA SDK banner view は `WebKit/WKWebView`を元にした web view です。Web
 - `custom` :<br>
 任意のサイズを指定します。
 
-### osition
+### DesignatedContentSize
+
+`designatedContentSize`　は広告ロードに成功した時、サーバーに指定していたサイズを読み取り可能なプロパティです。
+事前に指定した広告の内容のサイズを元に実装時に横縦幅の比率計算に便利となります。
+
+### position
 
 画面の任意の場所に指定できます。また、SDKが **position** プロパーティーにいくつの便利な設定項目を用意しています。
 
