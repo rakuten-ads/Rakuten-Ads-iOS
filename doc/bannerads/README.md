@@ -18,6 +18,11 @@ RUNABanner SDK banner view is a web view bases on `WebKit/WKWebView` which will 
 
 `Ad Spot Code` is a readable name of `adSpotId`, is indicated by the user of admin site for any registered `adSpotId`. `AdSpotCode` is nullable when `adSpotId` is set instead.
 
+### AdSpotBranchId
+
+`Ad Spot Branch Id` is used to identify `Ad Spot` by individual branch ids with the same `adspotId` or `adspotCode`.
+It has valid values from `RUNABannerAdSpotBranchId1` to `RUNABannerAdSpotBranchId20` of enum type `RUNABannerAdSpotBranch` and default value `RUNABannerAdSpotBranchNone`.
+
 ### Size
 
 Then banner view has 3 options for designated **size** to support variaty of using cases.
@@ -28,6 +33,10 @@ The banner view keeps aspect radio and stretches its width to fit the super view
 - `custom` :<br>
 The banner view can be indicated to arbitrary size and ignores the orginal size.
 
+### DesignatedContentSize
+
+Readonly property `designatedContentSize` will be set by the size designated in admin site after loading ad content successfully.
+It is useful for calculating the aspect ratio of the original ad content creative.
 
 ### Position
 
