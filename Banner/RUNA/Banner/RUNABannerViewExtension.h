@@ -63,6 +63,12 @@ NS_ASSUME_NONNULL_BEGIN
 -(void) setEasyId:(NSString*) easyId;
 
 /*!
+ set rpoint
+ @param rpoint value of the rpoint
+ */
+-(void) setRpoint:(NSInteger) rpoint;
+
+/*!
  set location with latitude and longitude values.
  @param lat double, from -90.0 to +90.0, where negative is south
  @param lon double, from -180.0 to +180.0, where negative is west

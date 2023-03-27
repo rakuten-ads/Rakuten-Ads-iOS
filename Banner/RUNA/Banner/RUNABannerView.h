@@ -80,6 +80,32 @@ struct RUNABannerViewEvent {
 };
 
 /*!
+ options of AdSpotBranchId
+ */
+typedef NS_ENUM(NSUInteger, RUNABannerAdSpotBranch) {
+    RUNABannerAdSpotBranchIdNone,
+    RUNABannerAdSpotBranchId1,
+    RUNABannerAdSpotBranchId2,
+    RUNABannerAdSpotBranchId3,
+    RUNABannerAdSpotBranchId4,
+    RUNABannerAdSpotBranchId5,
+    RUNABannerAdSpotBranchId6,
+    RUNABannerAdSpotBranchId7,
+    RUNABannerAdSpotBranchId8,
+    RUNABannerAdSpotBranchId9,
+    RUNABannerAdSpotBranchId10,
+    RUNABannerAdSpotBranchId11,
+    RUNABannerAdSpotBranchId12,
+    RUNABannerAdSpotBranchId13,
+    RUNABannerAdSpotBranchId14,
+    RUNABannerAdSpotBranchId15,
+    RUNABannerAdSpotBranchId16,
+    RUNABannerAdSpotBranchId17,
+    RUNABannerAdSpotBranchId18,
+    RUNABannerAdSpotBranchId19,
+    RUNABannerAdSpotBranchId20,
+};
+/*!
  RUNA ads container view extends from UIView.
  */
 @interface RUNABannerView : UIView
@@ -88,8 +114,11 @@ struct RUNABannerViewEvent {
 @property(nonatomic, copy, nullable) NSString* adSpotId;
 /// unique code from admin site, required when `adSpotId` is nil.
 @property(nonatomic, copy, nullable) NSString* adSpotCode;
+/// indicate AdSpot's branch Id.
+@property(nonatomic) RUNABannerAdSpotBranch adSpotBranchId;
 
-/// @enum size indicate content size
+
+/// @enum size options indicate content size
 @property(nonatomic) RUNABannerViewSize size;
 /// @enum position setting in superview
 @property(nonatomic) RUNABannerViewPosition position;
@@ -102,6 +131,9 @@ struct RUNABannerViewEvent {
 @property(nonatomic, readonly, nullable) NSString* clickURL;
 /// prevent opening URL in system browser as default action when clicking
 @property(nonatomic) BOOL shouldPreventDefaultClickAction;
+
+/// the designated size of loaded ad content from the admin site
+@property(nonatomic, readonly) CGSize designatedContentSize;
 
 /*!
  Request & load ad content without event handler.

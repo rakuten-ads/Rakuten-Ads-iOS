@@ -24,4 +24,8 @@
     [self.group setEasyId:easyId];
 }
 
+-(void)setRpoint:(NSInteger)rpoint {
+    [self.group setRpoint:rpoint];
+}
+
 @end

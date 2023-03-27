@@ -168,6 +168,14 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     return self.imp.adspotCode;
 }
 
+-(void)setAdSpotBranchId:(RUNABannerAdSpotBranch)adSpotBranchId {
+    self.imp.adSpotBranchId = adSpotBranchId;
+}
+
+-(RUNABannerAdSpotBranch)adSpotBranchId {
+    return self.imp.adSpotBranchId;
+}
+
 -(void)setSize:(RUNABannerViewSize)size {
     self->_size = size;
 
@@ -454,6 +462,8 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
             @throw [NSException exceptionWithName:@"load failed" reason:@"banner html is empty" userInfo:@{@"RUNABanner": self.banner}];
         }
 
+        self->_designatedContentSize = CGSizeMake(self.banner.width, self.banner.height);
+
         dispatch_async(dispatch_get_main_queue(), ^{
             @try {
                 [self applyAdView];
@@ -705,6 +715,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     return @{
         @"adspotId" : self.adSpotId ?: NSNull.null,
         @"adspotCode" : self.adSpotCode ?: NSNull.null,
+        @"adspotBranchId" : @(self.adSpotBranchId),
         @"userId(rp)" : self.userId ?: NSNull.null,
         @"state" : self.descriptionState,
         @"postion" : @(self.position),
