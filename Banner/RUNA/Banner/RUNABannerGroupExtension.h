@@ -34,6 +34,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 -(void) setEasyId:(NSString*) easyId;
 
+/*!
+ set rpoint
+ @param rpoint value of the rpoint
+ */
+-(void) setRpoint:(NSInteger) rpoint;
+
 @end
 
 NS_ASSUME_NONNULL_END
