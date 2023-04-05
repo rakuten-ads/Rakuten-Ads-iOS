@@ -6,24 +6,24 @@
 //  Copyright © 2023 Rakuten MPD. All rights reserved.
 //
 
-#import "RUNAInterstitalViewController.h"
+#import "RUNAInterstitialViewController.h"
 #import "RUNABannerViewInner.h"
 #import "RUNAInterstitialAdInner.h"
 
-@interface RUNAInterstitalViewController ()
+@interface RUNAInterstitialViewController ()
 
 @property (nonatomic) NSMutableArray<NSLayoutConstraint*>* containerViewConstraints;
 @property (nonatomic) NSMutableArray<NSLayoutConstraint*>* bannerViewConstraints;
 
 @end
 
-@implementation RUNAInterstitalViewController
+@implementation RUNAInterstitialViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     if (self.bannerView) {
-        self.view.backgroundColor = UIColor.blackColor;
+        self.view.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.3];
         [self.bannerView addConstraint:[self.bannerView.heightAnchor
                                         constraintEqualToAnchor:self.bannerView.widthAnchor
                                         multiplier:(self.bannerView.banner.height / self.bannerView.banner.width)
@@ -31,7 +31,7 @@
 
         switch (self.interstitialAd.size) {
             case RUNAInterstitialAdSizeAspectFit:
-                [self applySizeAspectFit];
+                [self applySizeAspectFit:self.view.frame.size];
                 break;
             case RUNAInterstitialAdSizeOriginal:
                 [self applySizeOriginal];
@@ -47,7 +47,7 @@
                 }
                 break;
             default:
-                RUNADebug("[RUNAInterstitial] unsupported size mode %ld", self.interstitialAd.size);
+                RUNADebug("[RUNAInterstitial] unsupported size mode %lu", (unsigned long)self.interstitialAd.size);
                 break;
         }
     }
@@ -59,16 +59,19 @@
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
     if (self.interstitialAd.size == RUNAInterstitialAdSizeAspectFit) {
-        [self applySizeAspectFit];
+        [self applySizeAspectFit:size];
+        [self.view layoutIfNeeded];
     }
 }
 
 #pragma mark - resize
-- (void)applySizeAspectFit {
+- (void)applySizeAspectFit:(CGSize) containerSize {
     RUNADebug("[RUNAInterstitial] applySizeAspectFit");
-    if (!self.bannerView.superview) {
-        [self.view addSubview:self.bannerView];
+    if (self.bannerView.superview) {
+        RUNADebug("[RUNAInterstitial] has superview");
+        [self.bannerView removeFromSuperview];
     }
+    [self.view addSubview:self.bannerView];
 
     if (self.containerViewConstraints) {
         [self.view removeConstraints:self.containerViewConstraints];
@@ -80,7 +83,6 @@
         [self.bannerView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor],
     ]];
 
-    CGSize containerSize = self.view.frame.size;
     float ratioBanner = self.bannerView.banner.width / self.bannerView.banner.height;
     float ratioContainer = containerSize.width / containerSize.height;
 
@@ -101,9 +103,11 @@
 
 -(void) applySizeOriginal {
     RUNADebug("[RUNAInterstitial] applySizeOriginal");
-    if (!self.bannerView.superview) {
-        [self.view addSubview:self.bannerView];
+    if (self.bannerView.superview) {
+        RUNADebug("[RUNAInterstitial] has superview");
+        [self.bannerView removeFromSuperview];
     }
+    [self.view addSubview:self.bannerView];
 
     // config container view
     if (self.containerViewConstraints) {

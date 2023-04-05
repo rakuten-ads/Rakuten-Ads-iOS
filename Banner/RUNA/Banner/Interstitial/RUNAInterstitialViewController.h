@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RUNAInterstitalViewController : UIViewController
+@interface RUNAInterstitialViewController : UIViewController
 
 @property(nonatomic) RUNABannerView* bannerView;
 @property(nonatomic, weak) RUNAInterstitialAd* interstitialAd;

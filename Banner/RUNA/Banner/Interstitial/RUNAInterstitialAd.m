@@ -49,7 +49,7 @@
 -(BOOL)showIn:(UIViewController*) parentViewController {
     if (self.loadSucceeded) {
         // show viewcontroller
-        self->_viewController = [RUNAInterstitalViewController new];
+        self->_viewController = [RUNAInterstitialViewController new];
         self.viewController.bannerView = self.adContentView;
         self.viewController.interstitialAd = self;
         self.viewController.modalPresentationStyle = UIModalPresentationOverFullScreen;

@@ -10,7 +10,7 @@
 #define RUNAInterstitialAdInner_h
 
 #import "RUNAInterstitialAd.h"
-#import "RUNAInterstitalViewController.h"
+#import "RUNAInterstitialViewController.h"
 #import "RUNABannerViewInner.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -21,7 +21,7 @@ typedef void (^RUNAInterstitialEventHandler)(RUNAInterstitialAd* view, struct RU
 
 @property(nonatomic, nullable, copy) RUNAInterstitialEventHandler eventHandler;
 
-@property(nonatomic, readonly, nullable) RUNAInterstitalViewController* viewController;
+@property(nonatomic, readonly, nullable) RUNAInterstitialViewController* viewController;
 
 @end
 NS_ASSUME_NONNULL_END
