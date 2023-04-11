@@ -9,10 +9,13 @@
 #import <XCTest/XCTest.h>
 #import "RUNAOpenRTB.h"
 #import "RUNABidAdapter.h"
+#import "RUNABidResponseConsumerMock.h"
 
 @interface RUNAOpenRTBTests : XCTestCase
 
 @property RUNAOpenRTBRequest* request;
+@property RUNABidAdapter* adapter;
+@property RUNABidResponseConsumerDelegateMock* consumer;
 
 @end
 
@@ -21,7 +24,11 @@
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
     self.request = [RUNAOpenRTBRequest new];
-    self.request.openRTBAdapterDelegate = [RUNABidAdapter new];
+    self.adapter = [RUNABidAdapter new];
+    self.consumer = [RUNABidResponseConsumerDelegateMock new];
+
+    self.adapter.responseConsumer = self.consumer;
+    self.request.openRTBAdapterDelegate = self.adapter;
 }
 
 - (void)tearDown {
@@ -38,4 +45,21 @@
     XCTAssertTrue([json objectForKey:@"device"]);
 }
 
+- (void)test_onJsonResponse200 {
+    NSHTTPURLResponse* emptyResponse = [[NSHTTPURLResponse alloc] initWithURL:[NSURL new] statusCode:200 HTTPVersion:nil headerFields:nil];
+
+    [self.request onJsonResponse:emptyResponse withData:nil error:nil];
+
+    NSString* filePath = [[NSBundle bundleForClass:self.class] pathForResource:@"bid" ofType:@"json"];
+    NSData* data = [NSData dataWithContentsOfFile:filePath];
+    NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    [self.request onJsonResponse:emptyResponse withData:json error:nil];
+}
+
+- (void)test_onJsonResponse204 {
+    NSHTTPURLResponse* emptyResponse = [[NSHTTPURLResponse alloc] initWithURL:[NSURL new] statusCode:kRUNABidResponseUnfilled HTTPVersion:nil headerFields:nil];
+
+    NSError* err = [[NSError alloc] initWithDomain:@"test domain" code:123 userInfo:@{@"err.message" : @"test error"}];
+    [self.request onJsonResponse:emptyResponse withData:@{} error:err];
+}
 @end

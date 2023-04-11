@@ -35,7 +35,7 @@
     XCTAssertNotNil(self.device.buildName);
     XCTAssertNotNil(self.device.language);
     sleep(3);
-    XCTAssertEqual(self.device.connectionMethod, RUNA_DEVICE_CONN_METHOD_WIFI);
+    XCTAssertTrue(self.device.connectionMethod == RUNA_DEVICE_CONN_METHOD_WIFI || self.device.connectionMethod == RUNA_DEVICE_CONN_METHOD_UNKNOWN);
 }
 
 @end

@@ -40,6 +40,11 @@
 		321FE40D257F60B300D9A8CD /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321FE40C257F60B300D9A8CD /* Network.framework */; };
 		321FE41325805CF300D9A8CD /* RUNARemoteLogEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 321FE41125805CF300D9A8CD /* RUNARemoteLogEntity.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		321FE41425805CF300D9A8CD /* RUNARemoteLogEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 321FE41225805CF300D9A8CD /* RUNARemoteLogEntity.m */; };
+		324031D629E2C5C400F65E76 /* RUNAUIViewController+Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324031D529E2C5C400F65E76 /* RUNAUIViewController+Tests.m */; };
+		324031D829E31E1900F65E76 /* RUNABidAdapterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324031D729E31E1900F65E76 /* RUNABidAdapterTests.m */; };
+		324031DA29E39B7100F65E76 /* RUNAAdWebViewMessageManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324031D929E39B7100F65E76 /* RUNAAdWebViewMessageManagerTests.m */; };
+		324031DD29E3EB1A00F65E76 /* RUNABidResponseConsumerMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 324031DC29E3EB1A00F65E76 /* RUNABidResponseConsumerMock.m */; };
+		324031DF29E5365700F65E76 /* bid.json in Resources */ = {isa = PBXBuildFile; fileRef = 324031DE29E5365700F65E76 /* bid.json */; };
 		32696FFA2567907500602E5C /* RUNAInfoPlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 32696FF82567907500602E5C /* RUNAInfoPlist.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32696FFB2567907500602E5C /* RUNAInfoPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 32696FF92567907500602E5C /* RUNAInfoPlist.m */; };
 		3272354F28F8F5FD00F57D32 /* RUNACipher.h in Headers */ = {isa = PBXBuildFile; fileRef = 3272354D28F8F5FD00F57D32 /* RUNACipher.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -119,6 +124,12 @@
 		321FE40C257F60B300D9A8CD /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
 		321FE41125805CF300D9A8CD /* RUNARemoteLogEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNARemoteLogEntity.h; sourceTree = "<group>"; };
 		321FE41225805CF300D9A8CD /* RUNARemoteLogEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNARemoteLogEntity.m; sourceTree = "<group>"; };
+		324031D529E2C5C400F65E76 /* RUNAUIViewController+Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RUNAUIViewController+Tests.m"; sourceTree = "<group>"; };
+		324031D729E31E1900F65E76 /* RUNABidAdapterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABidAdapterTests.m; sourceTree = "<group>"; };
+		324031D929E39B7100F65E76 /* RUNAAdWebViewMessageManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewMessageManagerTests.m; sourceTree = "<group>"; };
+		324031DB29E3EB1A00F65E76 /* RUNABidResponseConsumerMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABidResponseConsumerMock.h; sourceTree = "<group>"; };
+		324031DC29E3EB1A00F65E76 /* RUNABidResponseConsumerMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABidResponseConsumerMock.m; sourceTree = "<group>"; };
+		324031DE29E5365700F65E76 /* bid.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bid.json; sourceTree = "<group>"; };
 		325FF73F21E5EDDF00A899CF /* runacore.private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = runacore.private.modulemap; sourceTree = "<group>"; };
 		32696FF82567907500602E5C /* RUNAInfoPlist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAInfoPlist.h; sourceTree = "<group>"; };
 		32696FF92567907500602E5C /* RUNAInfoPlist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAInfoPlist.m; sourceTree = "<group>"; };
@@ -414,6 +425,10 @@
 			isa = PBXGroup;
 			children = (
 				32F8B5F2288F791900F833B7 /* RUNAOpenRTBTests.m */,
+				324031D729E31E1900F65E76 /* RUNABidAdapterTests.m */,
+				324031DB29E3EB1A00F65E76 /* RUNABidResponseConsumerMock.h */,
+				324031DC29E3EB1A00F65E76 /* RUNABidResponseConsumerMock.m */,
+				324031DE29E5365700F65E76 /* bid.json */,
 			);
 			path = OpenRTB;
 			sourceTree = "<group>";
@@ -434,7 +449,9 @@
 			isa = PBXGroup;
 			children = (
 				54A8C7E0268B03230094F6BE /* RUNAAdWebViewMessageTests.m */,
+				324031D929E39B7100F65E76 /* RUNAAdWebViewMessageManagerTests.m */,
 				54A8C7E7268C32290094F6BE /* RUNAAdWebViewTests.m */,
+				324031D529E2C5C400F65E76 /* RUNAUIViewController+Tests.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -584,6 +601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32F8B5F0288A9EBE00F833B7 /* runa.plist in Resources */,
+				324031DF29E5365700F65E76 /* bid.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,8 +665,12 @@
 				32F8B5D4287DBAB800F833B7 /* RUNACacheFileTests.m in Sources */,
 				54A8C7E8268C32290094F6BE /* RUNAAdWebViewTests.m in Sources */,
 				54A8C7E1268B03230094F6BE /* RUNAAdWebViewMessageTests.m in Sources */,
+				324031D629E2C5C400F65E76 /* RUNAUIViewController+Tests.m in Sources */,
+				324031D829E31E1900F65E76 /* RUNABidAdapterTests.m in Sources */,
+				324031DD29E3EB1A00F65E76 /* RUNABidResponseConsumerMock.m in Sources */,
 				32F8B5C7287D03D200F833B7 /* RUNAJSONObjectTests.m in Sources */,
 				32E8DD3428FE690300DB0319 /* RUNACipherTest.m in Sources */,
+				324031DA29E39B7100F65E76 /* RUNAAdWebViewMessageManagerTests.m in Sources */,
 				32F8B5D0287DA8DF00F833B7 /* RUNAWebUserAgentTests.m in Sources */,
 				32F8B5D7287FA63000F833B7 /* RUNAHttpTaskTests.m in Sources */,
 				54A8C7F1268C4BA40094F6BE /* RUNAInfoPlistTests.m in Sources */,
