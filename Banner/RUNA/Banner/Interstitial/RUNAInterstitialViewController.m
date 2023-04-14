@@ -139,17 +139,10 @@
 - (void)addCloseButton {
     UIView* closeButton = [self closeButton];
     [self.view addSubview:closeButton];
-    if (@available(iOS 11.0, *)) {
-        [self.view addConstraints:@[
-            [closeButton.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:8],
-            [closeButton.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-8],
-        ]];
-    } else {
-        [self.view addConstraints:@[
-            [closeButton.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:8],
-            [closeButton.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-8],
-        ]];
-    }
+    [self.view addConstraints:@[
+        [closeButton.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:8],
+        [closeButton.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-8],
+    ]];
 }
 
 - (UIView*)closeButton {
@@ -164,10 +157,11 @@
     ]];
     UIImage* buttonImage = self.interstitialAd.preferredCloseButtonImage;
     if (!buttonImage) {
-        buttonImage = [UIImage imageNamed:@"close" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
+        // use default image
+        buttonImage = [UIImage systemImageNamed:@"xmark.circle"];
+        closeImageView.tintColor = [UIColor.whiteColor colorWithAlphaComponent:0.9];
     }
     closeImageView.image = buttonImage;
-    closeImageView.tintColor = [UIColor.whiteColor colorWithAlphaComponent:0.9];
 
     UIGestureRecognizer* gesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onCloseButtonClicked:)];
     [closeImageView addGestureRecognizer:gesture];

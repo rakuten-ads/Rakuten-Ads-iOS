@@ -23,10 +23,8 @@
 
         self.scrollView.scrollEnabled = NO;
         self.scrollView.bounces = NO;
-        if (@available(iOS 11.0, *)) {
-            // Avoid HTML content fix position when scrolling
-            self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }
+        // Avoid HTML content fix position when scrolling
+        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
     return self;
 }

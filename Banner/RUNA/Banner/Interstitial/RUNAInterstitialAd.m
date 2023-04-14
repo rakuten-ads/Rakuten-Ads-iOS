@@ -53,9 +53,7 @@
         self.viewController.bannerView = self.adContentView;
         self.viewController.interstitialAd = self;
         self.viewController.modalPresentationStyle = UIModalPresentationOverFullScreen;
-        if (@available(iOS 13.0, *)) {
-            [self.viewController setModalInPresentation:NO];
-        }
+        [self.viewController setModalInPresentation:NO];
         [parentViewController presentViewController:self.viewController animated:NO completion:nil];
         return YES;
     } else {
