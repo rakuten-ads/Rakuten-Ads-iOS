@@ -3,7 +3,7 @@
 #ifndef RUNABannerView_h
 #define RUNABannerView_h
 
-#import "RUNAAdSession.h"
+#import <RUNABanner/RUNAAdSession.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

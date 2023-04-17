@@ -1,4 +1,4 @@
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, RUNA_DEVICE_CONN_METHOD) {
     RUNA_DEVICE_CONN_METHOD_UNKNOWN,

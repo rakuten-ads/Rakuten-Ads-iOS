@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -224,9 +224,9 @@
 				32F2595221E597E5001FD9C0 /* RUNABannerViewInner.m */,
 				32564D9A2227865100DB4DBF /* RUNABannerAdapter.h */,
 				32564D9B2227865100DB4DBF /* RUNABannerAdapter.m */,
-				32ED78B7236693AB007833DF /* RUNABannerViewExtension.h */,
 				3254891F2937255F002170F8 /* RUNABannerUtil.h */,
 				325489202937255F002170F8 /* RUNABannerUtil.m */,
+				32ED78B7236693AB007833DF /* RUNABannerViewExtension.h */,
 				32ED78B8236693AB007833DF /* RUNABannerViewExtension.m */,
 				32EFC6BB25AE8281006F85C8 /* RUNAAdSession.h */,
 				32EFC6C425AE82AA006F85C8 /* RUNAAdSessionInner.h */,
@@ -472,7 +472,8 @@
 		32F258D721E58689001FD9C0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1200;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Rakuten MPD";
 				TargetAttributes = {
 					325FF74E21F0709800A899CF = {
@@ -707,6 +708,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GCC_PREFIX_HEADER = RUNA/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -724,6 +726,8 @@
 				MACH_O_TYPE = mh_dylib;
 				MARKETING_VERSION = 1.11.1;
 				MODULEMAP_FILE = RUNA/RUNABanner.modulemap;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
@@ -911,6 +915,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GCC_PREFIX_HEADER = RUNA/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -928,6 +933,8 @@
 				MACH_O_TYPE = mh_dylib;
 				MARKETING_VERSION = 1.11.1;
 				MODULEMAP_FILE = RUNA/RUNABanner.modulemap;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
@@ -949,6 +956,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GCC_PREFIX_HEADER = RUNA/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -966,6 +974,8 @@
 				MACH_O_TYPE = mh_dylib;
 				MARKETING_VERSION = 1.11.1;
 				MODULEMAP_FILE = RUNA/RUNABanner.modulemap;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";

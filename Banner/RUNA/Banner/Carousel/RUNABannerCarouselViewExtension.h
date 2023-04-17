@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RUNABannerCarouselView.h"
+#import <RUNABanner/RUNABannerCarouselView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

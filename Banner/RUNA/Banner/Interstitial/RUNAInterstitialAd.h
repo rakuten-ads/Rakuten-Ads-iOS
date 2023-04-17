@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "RUNABanner.h"
+#import <RUNABanner/RUNABanner.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

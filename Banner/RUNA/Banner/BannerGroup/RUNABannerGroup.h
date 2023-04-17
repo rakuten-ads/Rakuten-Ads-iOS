@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RUNABannerView.h"
+#import <RUNABanner/RUNABanner.h>
 
 #ifndef RUNABannerGroup_h
 #define RUNABannerGroup_h
