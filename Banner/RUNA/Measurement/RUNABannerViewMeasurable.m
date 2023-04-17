@@ -38,10 +38,14 @@
         RUNADebug("measurement[default] measure stopped by empty measure inview URL");
         return YES;
     }
-    UIViewController *rootVc = [[[UIApplication sharedApplication]keyWindow]rootViewController];
-    float visibility = [self getVisibility:self.window rootViewController:rootVc];
-    RUNADebug("measurement[default] measure inview rate: %f", visibility);
-    return [self isVisible:visibility];
+    UIViewController *rootVc = [[[UIApplication sharedApplication].windows firstObject]rootViewController];
+    if (rootVc) {
+        float visibility = [self getVisibility:self.window rootViewController:rootVc];
+        RUNADebug("measurement[default] measure inview rate: %f", visibility);
+        return [self isVisible:visibility];
+    } else {
+        return NO;
+    }
 }
 
 -(float)getVisibility:(UIWindow *)window
