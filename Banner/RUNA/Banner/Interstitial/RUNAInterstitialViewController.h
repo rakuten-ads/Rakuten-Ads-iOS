@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic) RUNABannerView* bannerView;
 @property(nonatomic, weak) RUNAInterstitialAd* interstitialAd;
+@property(nonatomic, readonly) UIImageView* closeButton;
 
 @end
 

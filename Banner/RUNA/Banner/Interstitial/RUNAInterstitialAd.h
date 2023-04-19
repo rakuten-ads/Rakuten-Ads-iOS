@@ -28,8 +28,9 @@ typedef NS_ENUM(NSUInteger, RUNAInterstitialAdSize) {
  @typedef Callback function for customizing size & position between the root container view & the ad content view when RUNAInterstitialAdSizeCustom enabled.
  @param containerView the root container view
  @param adView the ad content view
+ @param closeButton the close button view
  */
-typedef void (^RUNAInterstitialAdCustomDecorator)(UIView* containerView, UIView* adView);
+typedef void (^RUNAInterstitialAdCustomDecorator)(UIView* const containerView, UIView* const adView, UIImageView* const closeButton);
 
 /*!
  A helper class shows an interstitial ad base on RUNABannerView in a full screen UIViewController after ad content preloaded successfully.

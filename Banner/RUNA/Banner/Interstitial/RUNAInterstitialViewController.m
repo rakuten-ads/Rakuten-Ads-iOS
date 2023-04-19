@@ -12,8 +12,10 @@
 
 @interface RUNAInterstitialViewController ()
 
-@property (nonatomic) NSMutableArray<NSLayoutConstraint*>* containerViewConstraints;
-@property (nonatomic) NSMutableArray<NSLayoutConstraint*>* bannerViewConstraints;
+@property(nonatomic) NSMutableArray<NSLayoutConstraint*>* containerViewConstraints;
+@property(nonatomic) NSMutableArray<NSLayoutConstraint*>* bannerViewConstraints;
+
+@property(nonatomic) UIImageView* closeButton;
 
 @end
 
@@ -22,49 +24,51 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self addCloseButton];
     if (self.bannerView) {
         self.view.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.3];
         [self.bannerView addConstraint:[self.bannerView.heightAnchor
                                         constraintEqualToAnchor:self.bannerView.widthAnchor
                                         multiplier:(self.bannerView.banner.height / self.bannerView.banner.width)
                                         constant:0.5]];
-
-        switch (self.interstitialAd.size) {
-            case RUNAInterstitialAdSizeAspectFit:
-                [self applySizeAspectFit:self.view.frame.size];
-                break;
-            case RUNAInterstitialAdSizeOriginal:
-                [self applySizeOriginal];
-                break;
-            case RUNAInterstitialAdSizeCustom:
-                RUNADebug("[RUNAInterstitial] applySize Custom");
-                if (self.interstitialAd.decorator) {
-                    RUNADebug("[RUNAInterstitial] apply decorator");
-                    self.interstitialAd.decorator(self.view, self.bannerView);
-                    if (!self.bannerView.superview) {
-                        [self.view addSubview:self.bannerView];
-                    }
-                }
-                break;
-            default:
-                RUNADebug("[RUNAInterstitial] unsupported size mode %lu", (unsigned long)self.interstitialAd.size);
-                break;
-        }
+        [self applySizeOption];
     }
-    [self addCloseButton];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     RUNADebug("[RUNAInterstitial] viewWillTransitionToSize %@", NSStringFromCGSize(size));
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
-    if (self.interstitialAd.size == RUNAInterstitialAdSizeAspectFit) {
-        [self applySizeAspectFit:size];
-        [self.view layoutIfNeeded];
+    if (self.bannerView) {
+        [self applySizeOption];
     }
 }
 
-#pragma mark - resize
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
+}
+
+#pragma mark - apply size
+- (void)applySizeOption {
+    switch (self.interstitialAd.size) {
+        case RUNAInterstitialAdSizeAspectFit:
+            [self applySizeAspectFit:self.view.frame.size];
+            break;
+        case RUNAInterstitialAdSizeOriginal:
+            [self applySizeOriginal];
+            break;
+        case RUNAInterstitialAdSizeCustom:
+            RUNADebug("[RUNAInterstitial] applySize Custom");
+            if (self.interstitialAd.decorator) {
+                [self applyDecoration];
+            }
+            break;
+        default:
+            RUNADebug("[RUNAInterstitial] unsupported size mode %lu", (unsigned long)self.interstitialAd.size);
+            break;
+    }
+}
+
 - (void)applySizeAspectFit:(CGSize) containerSize {
     RUNADebug("[RUNAInterstitial] applySizeAspectFit");
     if (self.bannerView.superview) {
@@ -135,17 +139,25 @@
     [self.bannerView addConstraints:self.bannerViewConstraints];
 }
 
+- (void)applyDecoration {
+    RUNADebug("[RUNAInterstitial] apply decorator");
+    self.interstitialAd.decorator(self.view, self.bannerView, self.closeButton);
+    if (!self.bannerView.superview) {
+        [self.view addSubview:self.bannerView];
+    }
+}
+
 #pragma mark - close button
 - (void)addCloseButton {
-    UIView* closeButton = [self closeButton];
-    [self.view addSubview:closeButton];
+    self.closeButton = [self closeButtonView];
+    [self.view addSubview:self.closeButton];
     [self.view addConstraints:@[
-        [closeButton.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:8],
-        [closeButton.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-8],
+        [self.closeButton.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:8],
+        [self.closeButton.trailingAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.trailingAnchor constant:-8],
     ]];
 }
 
-- (UIView*)closeButton {
+- (UIImageView*)closeButtonView {
     CGSize buttonSize = CGSizeMake(32, 32);
 
     UIImageView* closeImageView = [[UIImageView alloc] init];
