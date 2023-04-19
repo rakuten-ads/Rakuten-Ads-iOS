@@ -29,6 +29,7 @@
 		3211A414231CA60900DB0225 /* RUNABannerViewMeasurable.m in Sources */ = {isa = PBXBuildFile; fileRef = 3211A413231CA60900DB0225 /* RUNABannerViewMeasurable.m */; };
 		32269B9825EF13AC002A623B /* RUNABannerGroupExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 32269B9625EF13AC002A623B /* RUNABannerGroupExtension.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32269B9925EF13AC002A623B /* RUNABannerGroupExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 32269B9725EF13AC002A623B /* RUNABannerGroupExtension.m */; };
+		32271DA029F004EF00602981 /* RUNAInterstitialAdInner.h in Headers */ = {isa = PBXBuildFile; fileRef = 325FFA04296ABDD3007F05C2 /* RUNAInterstitialAdInner.h */; };
 		323DA56A25DF8209002ED988 /* RUNABannerGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 323DA56825DF8209002ED988 /* RUNABannerGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		323DA56B25DF8209002ED988 /* RUNABannerGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 323DA56925DF8209002ED988 /* RUNABannerGroup.m */; };
 		324B90CB296ED5170082458C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 324B90C8296ED47F0082458C /* Assets.xcassets */; };
@@ -421,6 +422,7 @@
 				323DA56A25DF8209002ED988 /* RUNABannerGroup.h in Headers */,
 				320206D0273A49DD004D4A8E /* RUNABannerViewInner.h in Headers */,
 				32EFC6BD25AE8281006F85C8 /* RUNAAdSession.h in Headers */,
+				32271DA029F004EF00602981 /* RUNAInterstitialAdInner.h in Headers */,
 				325FFA00296A4CEA007F05C2 /* RUNAInterstitialAd.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -703,7 +705,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1110101;
+				CURRENT_PROJECT_VERSION = 1120001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
@@ -724,7 +726,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.11.1;
+				MARKETING_VERSION = 1.12.0;
 				MODULEMAP_FILE = RUNA/RUNABanner.modulemap;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
@@ -910,7 +912,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1110101;
+				CURRENT_PROJECT_VERSION = 1120001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
@@ -931,7 +933,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.11.1;
+				MARKETING_VERSION = 1.12.0;
 				MODULEMAP_FILE = RUNA/RUNABanner.modulemap;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
@@ -951,7 +953,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1110101;
+				CURRENT_PROJECT_VERSION = 1120001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
@@ -972,7 +974,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.11.1;
+				MARKETING_VERSION = 1.12.0;
 				MODULEMAP_FILE = RUNA/RUNABanner.modulemap;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
