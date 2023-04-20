@@ -43,10 +43,12 @@
 }
 
 -(void)setRpoint:(NSInteger)rpoint {
-    if (!self.userExt) {
-        self.userExt = [NSMutableDictionary new];
+    if (rpoint > 0) {
+        if (!self.userExt) {
+            self.userExt = [NSMutableDictionary new];
+        }
+        self.userExt[@"rpoint"] = @(rpoint);
     }
-    self.userExt[@"rpoint"] = @(rpoint);
 }
 
 @end
