@@ -31,7 +31,7 @@
                                         constraintEqualToAnchor:self.bannerView.widthAnchor
                                         multiplier:(self.bannerView.banner.height / self.bannerView.banner.width)
                                         constant:0.5]];
-        [self applySizeOption];
+        [self applySizeOption:self.view.frame.size];
     }
 }
 
@@ -40,7 +40,7 @@
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
 
     if (self.bannerView) {
-        [self applySizeOption];
+        [self applySizeOption:size];
     }
 }
 
@@ -49,10 +49,10 @@
 }
 
 #pragma mark - apply size
-- (void)applySizeOption {
+- (void)applySizeOption:(CGSize) containerSize {
     switch (self.interstitialAd.size) {
         case RUNAInterstitialAdSizeAspectFit:
-            [self applySizeAspectFit:self.view.frame.size];
+            [self applySizeAspectFit:containerSize];
             break;
         case RUNAInterstitialAdSizeOriginal:
             [self applySizeOriginal];
@@ -70,7 +70,7 @@
 }
 
 - (void)applySizeAspectFit:(CGSize) containerSize {
-    RUNADebug("[RUNAInterstitial] applySizeAspectFit");
+    RUNADebug("[RUNAInterstitial] applySizeAspectFit %@", NSStringFromCGSize(containerSize));
     if (self.bannerView.superview) {
         RUNADebug("[RUNAInterstitial] has superview");
         [self.bannerView removeFromSuperview];
