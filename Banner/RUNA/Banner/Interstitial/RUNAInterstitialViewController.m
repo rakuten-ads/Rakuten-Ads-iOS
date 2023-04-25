@@ -29,10 +29,12 @@
         self.view.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.3];
         [self.bannerView addConstraint:[self.bannerView.heightAnchor
                                         constraintEqualToAnchor:self.bannerView.widthAnchor
-                                        multiplier:(self.bannerView.banner.height / self.bannerView.banner.width)
+                                        multiplier:(self.bannerView.designatedContentSize.height / self.bannerView.designatedContentSize.width)
                                         constant:0.5]];
         [self applySizeOption:self.view.frame.size];
     }
+
+    [self.view bringSubviewToFront:self.closeButton];
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -41,6 +43,8 @@
 
     if (self.bannerView) {
         [self applySizeOption:size];
+
+        [self.view bringSubviewToFront:self.closeButton];
     }
 }
 
