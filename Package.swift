@@ -1,11 +1,11 @@
-// swift-tools-version: 5.5
+// swift-tools-version: 5.7
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "RUNA",
-    platforms: [.iOS(.v10)],
+    platforms: [.iOS(.v13)],
     products: [
         .library(
             name: "RUNABanner",
@@ -28,18 +28,18 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "RUNACore",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.5.0.xcframework.zip",
-            checksum : "0b087ba8ac8cb4386e43fb1676421af49659100ee5ecaad1d81ca58bbe6bc7bb"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.6.0.xcframework.zip",
+            checksum : "f70d0cbb0c6371153b08202515ed437f345ed5d241dc717779ff939ce1836dbd"
         ),
         .binaryTarget(
             name: "RUNABanner",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.11.1.xcframework.zip",
-            checksum : "f69945400739a3d486b17d35845bcab81d51badf91cfa8279c7d9d131730a403"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.12.0.xcframework.zip",
+            checksum : "8ad4612e1cbb85e02ae921c43eca0e00168bf09c7d9e5929bbb3d14501c7b047"
         ),
         .binaryTarget(
             name: "RUNAOMAdapter",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMAdapter/RUNAOMAdapter_iOS_1.0.8.xcframework.zip",
-            checksum : "458affe2462cc833f072f69616f1f2faf8b8139f959d959196429fd83fd9790d"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMAdapter/RUNAOMAdapter_iOS_1.1.0.xcframework.zip",
+            checksum : "86ac3e2d721db35c9f45e1cf63b81f26bf1dde3f756b55026fde0d60a56919c8"
         ),
         .binaryTarget(
             name: "OMSDK_Rakuten",
