@@ -76,3 +76,9 @@ bannerGroup.load { (group, banner, event) in
 ## 参照
 Group Requestを利用するUI 部品。
 ここへ詳細を確認する。 [Carousel View](../carousel/README.md)
+
+---
+
+LANGUAGE :
+
+> [![en](/doc/lang/en.png)](/doc/bannerads/group/README.md)

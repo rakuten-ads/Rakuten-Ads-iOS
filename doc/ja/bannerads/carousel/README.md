@@ -122,3 +122,9 @@ carouselView.load { [weak self] carouselView, banner, event in
     }
 }
 ```
+
+---
+
+LANGUAGE :
+
+> [![en](/doc/lang/en.png)](/doc/bannerads/carousel/README.md)
