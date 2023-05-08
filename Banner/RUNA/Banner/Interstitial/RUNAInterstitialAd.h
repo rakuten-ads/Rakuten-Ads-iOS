@@ -44,7 +44,9 @@ typedef void (^RUNAInterstitialAdCustomDecorator)(UIView* const containerView, U
 /// unique code from admin site, required when `adSpotId` is nil.
 @property(nonatomic, copy, nullable) NSString* adSpotCode;
 
-/// the size scale option
+// Advanced properties
+
+/// the size scale option, default is RUNAInterstitialAdSizeAspectFit.
 @property(nonatomic) RUNAInterstitialAdSize size;
 /// A callback block to customize the interstitial ad view.
 @property(nonatomic, copy, nullable) RUNAInterstitialAdCustomDecorator decorator;
@@ -53,8 +55,6 @@ typedef void (^RUNAInterstitialAdCustomDecorator)(UIView* const containerView, U
 
 /// result of loading, true for succeeded
 @property(nonatomic, readonly) BOOL loadSucceeded;
-
-// Advanced properties
 
 /// set the ad content view when needing more complex parameters
 /// Notice:

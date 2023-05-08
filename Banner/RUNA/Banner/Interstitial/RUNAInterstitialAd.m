@@ -41,8 +41,9 @@
             default:
                 break;
         }
-
-        strongSelf.eventHandler(strongSelf, event);
+        if (strongSelf.eventHandler) {
+            strongSelf.eventHandler(strongSelf, event);
+        }
     }];
 }
 

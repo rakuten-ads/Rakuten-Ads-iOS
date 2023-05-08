@@ -191,8 +191,10 @@
     [self dismissViewControllerAnimated:NO completion:^{
         RUNADebug("[RUNAInterstitial] ViewController dismissed");
         RUNAInterstitialAd* interstitialAd = weakSelf.interstitialAd;
-        struct RUNABannerViewEvent event = { RUNABannerViewEventTypeInterstitialClosed, RUNABannerViewErrorNone };
-        interstitialAd.eventHandler(interstitialAd, event);
+        if (interstitialAd.eventHandler) {
+            struct RUNABannerViewEvent event = { RUNABannerViewEventTypeInterstitialClosed, RUNABannerViewErrorNone };
+            interstitialAd.eventHandler(interstitialAd, event);
+        }
     }];
 }
 
