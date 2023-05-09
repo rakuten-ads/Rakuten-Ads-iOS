@@ -9,7 +9,8 @@
 
 ### Ad Formats
 
-* **[Banner Ad](./doc/bannerads/README.md)**
+- **[Banner Ad](./doc/bannerads/README.md)**
+- **[Interstitial Ad](./doc/interstitial/README.md)**
 
 ---
 # Get Started
