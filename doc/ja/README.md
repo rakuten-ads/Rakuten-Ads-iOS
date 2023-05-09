@@ -10,6 +10,7 @@
 ### 広告フォーマット
 
 - **[バナー広告](./bannerads/README.md)**
+- **[Interstitial広告](./interstitial/README.md)**
 
 ---
 

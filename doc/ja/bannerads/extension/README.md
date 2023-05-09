@@ -123,3 +123,9 @@ let lat = location.coordinate.latitude
 let lon = location.coordinate.longitude
 bannerView.setLocation(latitude: lat, longitude: lon)
 ```
+
+---
+
+LANGUAGE :
+
+> [![en](/doc/lang/en.png)](/doc/bannerads/extension/README.md)

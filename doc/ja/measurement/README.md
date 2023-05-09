@@ -57,4 +57,4 @@ override func viewDidDisappear(_ animated: Bool) {
 
 LANGUAGE :
 
-> [![ja](/doc/lang/ja.png)](/doc/ja/measurement/README.md)
+> [![en](/doc/lang/en.png)](/doc/measurement/README.md)
