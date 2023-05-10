@@ -187,7 +187,7 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
         bidData[@"impid"] = group.bannerDict.allKeys[0];
         [banner parse:bidData];
         
-        [self execute:expectation delayTime:3.0 targetMethod:^{   
+        [self execute:expectation delayTime:3.0 targetMethod:^{
             [group onBidResponseSuccess:@[banner] withSessionId:@"sessionId"];
         } assertionBlock:^{
             XCTAssertEqual(group.state, RUNA_ADVIEW_STATE_LOADED);
@@ -328,4 +328,22 @@ typedef void(^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVie
     XCTAssertEqualObjects(group.userId, @"rpValue");
 }
 
+- (void)testSetRpoint {
+    RUNABannerGroup *group = [RUNABannerGroup new];
+    [group setRpoint:-1];
+    XCTAssertNil(group.userExt);
+    XCTAssertEqualObjects(group.userExt[@"rpoint"], nil);
+
+    [group setRpoint:30];
+    XCTAssertNotNil(group.userExt);
+    XCTAssertEqualObjects(group.userExt[@"rpoint"], @(30));
+}
+
+- (void)testSetEasyId {
+    RUNABannerGroup *group = [RUNABannerGroup new];
+    [group setEasyId:@"GoiGoiSuuuuuuuuuuuu"];
+    XCTAssertNotNil(group.userExt);
+    XCTAssertEqualObjects(group.userExt[@"hashedeasyid"], @"571002c02f2144a41617487738060992");
+
+}
 @end

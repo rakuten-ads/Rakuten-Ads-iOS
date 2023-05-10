@@ -18,6 +18,10 @@
 @property(nonatomic, copy, nullable) RUNAViewabilityCompletionHandler completionHandler;
 @property(nonatomic, readonly) id<RUNAMeasurer> measurer;
 
+-(float)getVisibility:(UIWindow *)window
+   rootViewController:(UIViewController *)rootViewController;
+-(BOOL)isVisible:(float)visibility;
+
 @end
 
 @interface RUNAViewabilityProvider(Tests)
@@ -72,4 +76,31 @@
     XCTAssertNil([provider.targetDict valueForKey:key]);
 }
 
+-(void)testTargetViewVisible {
+
+    RUNAViewabilityProvider* provider = [RUNAViewabilityProvider sharedInstance];
+
+    UIView* targetView = [UIView new];
+    [provider registerTargetView:targetView withViewImpURL:@"https://www.rakuten.com" completionHandler:^(UIView * _Nonnull view) {
+        NSLog(@"view visible");
+    }];
+
+    XCTAssertEqual(provider.targetDict.count, 1);
+    NSString* key = [NSString stringWithFormat:@"%lu", (unsigned long)targetView.hash];
+    RUNAViewabilityTarget* target = provider.targetDict[key];
+    XCTAssertNotNil(target);
+
+    XCTAssertNotNil(target.measurer);
+    XCTAssertFalse([target measureInview]);
+    XCTAssertTrue([target didMeasureInview:YES]);
+    XCTAssertFalse([target didMeasureInview:NO]);
+
+    XCTAssertTrue([target getVisibility:[UIWindow new] rootViewController:[UIViewController new]] == 0);
+    XCTAssertTrue([target isVisible:0.6]);
+    XCTAssertFalse([target isVisible:0.5]);
+
+    XCTAssertNoThrow([provider unregsiterTargetView:targetView]);
+    XCTAssertNil([provider.targetDict valueForKey:key]);
+
+}
 @end

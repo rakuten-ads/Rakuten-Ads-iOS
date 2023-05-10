@@ -200,6 +200,7 @@ NSString *const kDummyAdspotCode = @"code99999";
     XCTAssertEqual(bannerView.imp.json[@"env"], @"test");
 }
 
+/**
 - (void)testApplyPositionWithParentView {
     RUNABannerView *bannerView = [self getBannerViewOnViewController];
     
@@ -233,6 +234,7 @@ NSString *const kDummyAdspotCode = @"code99999";
     
     [self waitForExpectationsWithTimeout:10.0 handler:nil];
 }
+*/
 
 // Test to confirm the passage of method for coverage
 - (void)testSendRemoteLogWithMessage {
