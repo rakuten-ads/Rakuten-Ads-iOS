@@ -47,6 +47,7 @@
 		3263F94126E1AFD400F8E595 /* RUNABannerCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3263F93F26E1AFD400F8E595 /* RUNABannerCarouselView.m */; };
 		329753AB230A7D4C002A53CC /* RUNAMeasurement.h in Headers */ = {isa = PBXBuildFile; fileRef = 329753A9230A7D4C002A53CC /* RUNAMeasurement.h */; };
 		329753AC230A7D4C002A53CC /* RUNAMeasurement.m in Sources */ = {isa = PBXBuildFile; fileRef = 329753AA230A7D4C002A53CC /* RUNAMeasurement.m */; };
+		32B37B342A0A9C54000E4892 /* RUNAInterstitialAdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B37B332A0A9C54000E4892 /* RUNAInterstitialAdTests.m */; };
 		32BEBF4326669A5A0087BEF7 /* RUNAViewabilityProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEBF3F26669A590087BEF7 /* RUNAViewabilityProvider.m */; };
 		32BEBF4426669A5A0087BEF7 /* RUNAViewabilityProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 32BEBF4226669A590087BEF7 /* RUNAViewabilityProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32E2031027BA33B00037A61B /* RUNABannerCarouselViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2030F27BA33B00037A61B /* RUNABannerCarouselViewTests.m */; };
@@ -145,6 +146,7 @@
 		32A693452240E31700812DF9 /* RUNANativeAdProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNANativeAdProvider.m; sourceTree = "<group>"; };
 		32A6934922422FCD00812DF9 /* RUNANativeAdInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNANativeAdInner.h; sourceTree = "<group>"; };
 		32A6934A22422FCD00812DF9 /* RUNANativeAdInner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNANativeAdInner.m; sourceTree = "<group>"; };
+		32B37B332A0A9C54000E4892 /* RUNAInterstitialAdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAInterstitialAdTests.m; sourceTree = "<group>"; };
 		32BEBF3F26669A590087BEF7 /* RUNAViewabilityProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNAViewabilityProvider.m; sourceTree = "<group>"; };
 		32BEBF4226669A590087BEF7 /* RUNAViewabilityProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUNAViewabilityProvider.h; sourceTree = "<group>"; };
 		32E2030F27BA33B00037A61B /* RUNABannerCarouselViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerCarouselViewTests.m; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 				54A8C7C8268970760094F6BE /* RUNAAdSessionTests.m */,
 				32E2030F27BA33B00037A61B /* RUNABannerCarouselViewTests.m */,
 				324EA00929397B4E00D84D50 /* RUNABannerUtilTests.m */,
+				32B37B332A0A9C54000E4892 /* RUNAInterstitialAdTests.m */,
 			);
 			path = Banner;
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 				544DBC8226565D76009BD04E /* RUNABannerViewMeasurableTests.m in Sources */,
 				324EA00A29397B4E00D84D50 /* RUNABannerUtilTests.m in Sources */,
 				54BF02FA265CD2CC00B2CCE4 /* RUNABannerViewInnerTests.m in Sources */,
+				32B37B342A0A9C54000E4892 /* RUNAInterstitialAdTests.m in Sources */,
 				54FF0E982678688F0009D5F6 /* RUNABannerAdapterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

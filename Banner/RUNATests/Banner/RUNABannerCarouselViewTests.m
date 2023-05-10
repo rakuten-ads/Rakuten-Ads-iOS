@@ -14,8 +14,9 @@
 
 @interface RUNABannerCarouselView(Tests)
 
--(NSInteger)itemCount;
--(void) adjustInstrinsicMaxHeight:(CGSize) size;
+@property(nonatomic) CGFloat maxAspectRatio;
+
+-(void) adjustMaxHeightByContentSize:(CGSize) size;
 - (CGFloat)calculateCellWidth:(UICollectionView * _Nonnull)collectionView;
 - (CGFloat)calculateCellHeight:(CGFloat)cellWidth;
 
@@ -63,11 +64,14 @@
         XCTAssertNotNil(view);
         if (event.eventType == RUNABannerViewEventTypeGroupFinished
             || event.eventType == RUNABannerViewEventTypeGroupFailed) {
+            XCTAssertEqual(view.itemCount, 3);
             [expectation fulfill];
         } else {
             XCTAssertNotNil(banner);
         }
     }]);
+
+    NSLog(@"%@", view);
 
     [self waitForExpectationsWithTimeout:5.0 handler:nil];
 }
@@ -94,6 +98,9 @@
     view.itemScaleMode = RUNABannerCarouselViewItemScaleFixedWidth;
     [view setRp:@"rpCookie"];
     [view setRz:@"rzCookie"];
+    [view setRpoint:30];
+    [view setRpoint:-30];
+    [view setEasyId:@"easyid"];
 
     XCTestExpectation *expectation = [self expectationWithDescription:@"CarouselViewLoad"];
 
@@ -117,6 +124,40 @@
         XCTAssertEqual(view.group.banners.count, banners.count);
     }];
     [self waitForExpectationsWithTimeout:5.0 handler:nil];
+}
+
+- (void)testAdjustMaxHeightByContentSize {
+    RUNABannerCarouselView* view = [RUNABannerCarouselView new];
+
+    [view adjustMaxHeightByContentSize:CGSizeMake(300, 100)];
+}
+
+- (void)testCalculateCellWidth {
+    RUNABannerCarouselView* carouselView = [RUNABannerCarouselView new];
+    UICollectionViewFlowLayout* layout = [UICollectionViewFlowLayout new];
+    UICollectionView* collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+    collectionView.frame = CGRectMake(0, 0, 400, 200);
+
+    carouselView.contentEdgeInsets = UIEdgeInsetsMake(10, 20, 20, 30);
+    carouselView.itemSpacing = 5;
+
+    CGFloat w1 = [carouselView calculateCellWidth:collectionView];
+
+    XCTAssertEqual(w1, 400 - 20 - 5 - 30);
+
+    carouselView.itemScaleMode = RUNABannerCarouselViewItemScaleFixedWidth;
+    carouselView.itemWidth = 125;
+    CGFloat w2 = [carouselView calculateCellWidth:collectionView];
+    XCTAssertEqual(w2, 125);
+
+}
+
+-(void) testCalculateCellHeight {
+    RUNABannerCarouselView* carouselView = [RUNABannerCarouselView new];
+    carouselView.itemEdgeInsets = UIEdgeInsetsMake(10, 20, 20, 30);
+
+    carouselView.maxAspectRatio = 0.5;
+    XCTAssertEqual([carouselView calculateCellHeight:200], (200 - 20 - 30) * 0.5 + 10 + 20);
 }
 
 @end

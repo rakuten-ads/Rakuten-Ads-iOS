@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RUNABannerView.h"
-#import "RUNAInterstitialAd.h"
+#import <RUNABanner/RUNABannerView.h>
+#import <RUNABanner/RUNAInterstitialAd.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
