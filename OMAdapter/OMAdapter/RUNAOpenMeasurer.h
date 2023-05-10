@@ -11,6 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+FOUNDATION_EXPORT NSString* kPartnerName;
+
 @interface RUNAOpenMeasurer : NSObject<RUNAMeasurer>
 
 +(NSString*) versionString;

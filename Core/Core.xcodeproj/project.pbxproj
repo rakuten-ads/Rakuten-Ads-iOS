@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -40,6 +40,11 @@
 		321FE40D257F60B300D9A8CD /* Network.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 321FE40C257F60B300D9A8CD /* Network.framework */; };
 		321FE41325805CF300D9A8CD /* RUNARemoteLogEntity.h in Headers */ = {isa = PBXBuildFile; fileRef = 321FE41125805CF300D9A8CD /* RUNARemoteLogEntity.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		321FE41425805CF300D9A8CD /* RUNARemoteLogEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 321FE41225805CF300D9A8CD /* RUNARemoteLogEntity.m */; };
+		324031D629E2C5C400F65E76 /* RUNAUIViewController+Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324031D529E2C5C400F65E76 /* RUNAUIViewController+Tests.m */; };
+		324031D829E31E1900F65E76 /* RUNABidAdapterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324031D729E31E1900F65E76 /* RUNABidAdapterTests.m */; };
+		324031DA29E39B7100F65E76 /* RUNAAdWebViewMessageManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324031D929E39B7100F65E76 /* RUNAAdWebViewMessageManagerTests.m */; };
+		324031DD29E3EB1A00F65E76 /* RUNABidResponseConsumerMock.m in Sources */ = {isa = PBXBuildFile; fileRef = 324031DC29E3EB1A00F65E76 /* RUNABidResponseConsumerMock.m */; };
+		324031DF29E5365700F65E76 /* bid.json in Resources */ = {isa = PBXBuildFile; fileRef = 324031DE29E5365700F65E76 /* bid.json */; };
 		32696FFA2567907500602E5C /* RUNAInfoPlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 32696FF82567907500602E5C /* RUNAInfoPlist.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32696FFB2567907500602E5C /* RUNAInfoPlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 32696FF92567907500602E5C /* RUNAInfoPlist.m */; };
 		3272354F28F8F5FD00F57D32 /* RUNACipher.h in Headers */ = {isa = PBXBuildFile; fileRef = 3272354D28F8F5FD00F57D32 /* RUNACipher.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -119,6 +124,12 @@
 		321FE40C257F60B300D9A8CD /* Network.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Network.framework; path = System/Library/Frameworks/Network.framework; sourceTree = SDKROOT; };
 		321FE41125805CF300D9A8CD /* RUNARemoteLogEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNARemoteLogEntity.h; sourceTree = "<group>"; };
 		321FE41225805CF300D9A8CD /* RUNARemoteLogEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNARemoteLogEntity.m; sourceTree = "<group>"; };
+		324031D529E2C5C400F65E76 /* RUNAUIViewController+Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RUNAUIViewController+Tests.m"; sourceTree = "<group>"; };
+		324031D729E31E1900F65E76 /* RUNABidAdapterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABidAdapterTests.m; sourceTree = "<group>"; };
+		324031D929E39B7100F65E76 /* RUNAAdWebViewMessageManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewMessageManagerTests.m; sourceTree = "<group>"; };
+		324031DB29E3EB1A00F65E76 /* RUNABidResponseConsumerMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABidResponseConsumerMock.h; sourceTree = "<group>"; };
+		324031DC29E3EB1A00F65E76 /* RUNABidResponseConsumerMock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABidResponseConsumerMock.m; sourceTree = "<group>"; };
+		324031DE29E5365700F65E76 /* bid.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bid.json; sourceTree = "<group>"; };
 		325FF73F21E5EDDF00A899CF /* runacore.private.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = runacore.private.modulemap; sourceTree = "<group>"; };
 		32696FF82567907500602E5C /* RUNAInfoPlist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAInfoPlist.h; sourceTree = "<group>"; };
 		32696FF92567907500602E5C /* RUNAInfoPlist.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAInfoPlist.m; sourceTree = "<group>"; };
@@ -414,6 +425,10 @@
 			isa = PBXGroup;
 			children = (
 				32F8B5F2288F791900F833B7 /* RUNAOpenRTBTests.m */,
+				324031D729E31E1900F65E76 /* RUNABidAdapterTests.m */,
+				324031DB29E3EB1A00F65E76 /* RUNABidResponseConsumerMock.h */,
+				324031DC29E3EB1A00F65E76 /* RUNABidResponseConsumerMock.m */,
+				324031DE29E5365700F65E76 /* bid.json */,
 			);
 			path = OpenRTB;
 			sourceTree = "<group>";
@@ -434,7 +449,9 @@
 			isa = PBXGroup;
 			children = (
 				54A8C7E0268B03230094F6BE /* RUNAAdWebViewMessageTests.m */,
+				324031D929E39B7100F65E76 /* RUNAAdWebViewMessageManagerTests.m */,
 				54A8C7E7268C32290094F6BE /* RUNAAdWebViewTests.m */,
+				324031D529E2C5C400F65E76 /* RUNAUIViewController+Tests.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -537,7 +554,8 @@
 		32F258B321E5866C001FD9C0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1200;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "Rakuten MPD";
 				TargetAttributes = {
 					325FF74721F065B400A899CF = {
@@ -584,6 +602,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32F8B5F0288A9EBE00F833B7 /* runa.plist in Resources */,
+				324031DF29E5365700F65E76 /* bid.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,8 +666,12 @@
 				32F8B5D4287DBAB800F833B7 /* RUNACacheFileTests.m in Sources */,
 				54A8C7E8268C32290094F6BE /* RUNAAdWebViewTests.m in Sources */,
 				54A8C7E1268B03230094F6BE /* RUNAAdWebViewMessageTests.m in Sources */,
+				324031D629E2C5C400F65E76 /* RUNAUIViewController+Tests.m in Sources */,
+				324031D829E31E1900F65E76 /* RUNABidAdapterTests.m in Sources */,
+				324031DD29E3EB1A00F65E76 /* RUNABidResponseConsumerMock.m in Sources */,
 				32F8B5C7287D03D200F833B7 /* RUNAJSONObjectTests.m in Sources */,
 				32E8DD3428FE690300DB0319 /* RUNACipherTest.m in Sources */,
+				324031DA29E39B7100F65E76 /* RUNAAdWebViewMessageManagerTests.m in Sources */,
 				32F8B5D0287DA8DF00F833B7 /* RUNAWebUserAgentTests.m in Sources */,
 				32F8B5D7287FA63000F833B7 /* RUNAHttpTaskTests.m in Sources */,
 				54A8C7F1268C4BA40094F6BE /* RUNAInfoPlistTests.m in Sources */,
@@ -728,7 +751,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -744,11 +767,12 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1050001;
+				CURRENT_PROJECT_VERSION = 1060001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GCC_PREFIX_HEADER = Core/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -756,15 +780,18 @@
 				);
 				INFOPLIST_FILE = Core/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.6.0;
 				MODULEMAP_FILE = Core/RUNACore.modulemap;
 				MODULEMAP_PRIVATE_FILE = Core/RUNACore.private.modulemap;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.core;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -782,6 +809,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96SA7S73QM;
 				INFOPLIST_FILE = CoreTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -870,7 +898,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -928,10 +956,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -944,11 +973,12 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1050001;
+				CURRENT_PROJECT_VERSION = 1060001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GCC_PREFIX_HEADER = Core/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -956,15 +986,18 @@
 				);
 				INFOPLIST_FILE = Core/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.6.0;
 				MODULEMAP_FILE = Core/RUNACore.modulemap;
 				MODULEMAP_PRIVATE_FILE = Core/RUNACore.private.modulemap;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.core;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -982,11 +1015,12 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1050001;
+				CURRENT_PROJECT_VERSION = 1060001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				GCC_PREFIX_HEADER = Core/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -994,15 +1028,18 @@
 				);
 				INFOPLIST_FILE = Core/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.5.0;
+				MARKETING_VERSION = 1.6.0;
 				MODULEMAP_FILE = Core/RUNACore.modulemap;
 				MODULEMAP_PRIVATE_FILE = "";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.core;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -1020,6 +1057,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96SA7S73QM;
 				INFOPLIST_FILE = CoreTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1037,6 +1075,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 96SA7S73QM;
 				INFOPLIST_FILE = CoreTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

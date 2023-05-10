@@ -11,6 +11,8 @@
 #import "RUNABannerGroupExtension.h"
 #import "RUNABannerViewInner.h"
 
+typedef void (^RUNABannerCarouselViewEventHandler)(RUNABannerCarouselView* carouselView, RUNABannerView* __nullable view, struct RUNABannerViewEvent event);
+
 @interface RUNABannerCarouselView() <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property(nonatomic) BOOL indicatorEnabled;
@@ -22,6 +24,7 @@
 @property(nonatomic) CGFloat maxContentHeight;
 
 @property(nonatomic, nonnull) NSMutableArray* loadedBanners;
+@property(nonatomic, copy, nonnull) RUNABannerCarouselViewEventHandler eventHandler;
 
 @end
 
@@ -93,6 +96,10 @@
         self.itemEdgeInsets = UIEdgeInsetsZero;
     }
 
+    if (handler) {
+        self.eventHandler = handler;
+    }
+
     __weak typeof(self) weakSelf = self;
     [self.group loadWithEventHandler:^(RUNABannerGroup * _Nonnull group, RUNABannerView * _Nullable banner, struct RUNABannerViewEvent event) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
@@ -102,25 +109,28 @@
                 [strongSelf configCollectionView];
 //                [strongSelf configIndicator];
                 [strongSelf applyContainerSize];
-                if (handler) {
-                    handler(strongSelf, nil, event);
+                if (strongSelf.eventHandler) {
+                    strongSelf.eventHandler(strongSelf, nil, event);
                 }
                 [strongSelf.collectionView reloadData];
                 [strongSelf setNeedsLayout];
                 break;
             case RUNABannerViewEventTypeGroupFailed:
                 RUNALog("[banner slider] RUNABannerViewEventTypeGroupFailed");
-                if (handler) {
-                    handler(strongSelf, nil, event);
+                if (strongSelf.eventHandler) {
+                    strongSelf.eventHandler(strongSelf, nil, event);
                 }
                 break;
             case RUNABannerViewEventTypeSucceeded:
                 [strongSelf updateMaxAspectRatio:banner];
                 [strongSelf.loadedBanners addObject:banner];
-                // fallthrough to default
+                if (strongSelf.eventHandler) {
+                    strongSelf.eventHandler(strongSelf, banner, event);
+                }
+                break;
             default:
-                if (handler) {
-                    handler(strongSelf, banner, event);
+                if (strongSelf.eventHandler) {
+                    strongSelf.eventHandler(strongSelf, banner, event);
                 }
                 break;
         }

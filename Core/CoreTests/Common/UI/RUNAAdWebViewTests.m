@@ -23,9 +23,8 @@
     XCTAssertFalse(webView.allowsLinkPreview);
     XCTAssertFalse(webView.scrollView.scrollEnabled);
     XCTAssertFalse(webView.scrollView.bounces);
-    if (@available(iOS 11.0, *)) {
-        XCTAssertEqual(webView.scrollView.contentInsetAdjustmentBehavior, UIScrollViewContentInsetAdjustmentNever);
-    }
+    XCTAssertEqual(webView.scrollView.contentInsetAdjustmentBehavior, UIScrollViewContentInsetAdjustmentNever);
+
 }
 
 @end

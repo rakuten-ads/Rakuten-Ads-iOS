@@ -10,16 +10,16 @@
 #import "RUNAHttpTask.h"
 
 #pragma - test helper class
-NSString* kRUNABidRequestHost = @"https://dev-s-ad.rmp.rakuten.co.jp/ad";
+FOUNDATION_EXPORT NSString* kRUNABidRequestHost;
 
-@interface RUNAHttpTaskTestRequest : RUNAHttpTask
+@interface RUNAHttpTaskRequestMock : RUNAHttpTask
 
 -(void) configHttpRequest:(NSMutableURLRequest*) request;
 -(void) setPostBody:(NSMutableURLRequest*) request;
 
 @end
 
-@implementation RUNAHttpTaskTestRequest
+@implementation RUNAHttpTaskRequestMock
 
 - (instancetype)init {
     self = [super init];
@@ -31,11 +31,11 @@ NSString* kRUNABidRequestHost = @"https://dev-s-ad.rmp.rakuten.co.jp/ad";
 
 @end
 
-@interface RUNAHttpTaskTestRequestDelegate : NSObject<RUNAHttpTaskDelegate>
+@interface RUNAHttpTaskRequestDelegateMock : NSObject<RUNAHttpTaskDelegate>
 
 @end
 
-@implementation RUNAHttpTaskTestRequestDelegate
+@implementation RUNAHttpTaskRequestDelegateMock
 
 
 - (nonnull NSString *)getUrl {
@@ -94,8 +94,8 @@ NSString* kRUNABidRequestHost = @"https://dev-s-ad.rmp.rakuten.co.jp/ad";
 #pragma - tests
 @interface RUNAHttpTaskTests : XCTestCase
 
-@property RUNAHttpTaskTestRequest* httpTask;
-@property RUNAHttpTaskTestRequestDelegate* delegate;
+@property RUNAHttpTaskRequestMock* httpTask;
+@property RUNAHttpTaskRequestDelegateMock* delegate;
 @property RUNAHttpTaskTestRequestJsonDelegate* jsonDelegate;
 
 @end
@@ -104,8 +104,8 @@ NSString* kRUNABidRequestHost = @"https://dev-s-ad.rmp.rakuten.co.jp/ad";
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    _httpTask = [RUNAHttpTaskTestRequest new];
-    _delegate = [RUNAHttpTaskTestRequestDelegate new];
+    _httpTask = [RUNAHttpTaskRequestMock new];
+    _delegate = [RUNAHttpTaskRequestDelegateMock new];
     _jsonDelegate = [RUNAHttpTaskTestRequestJsonDelegate new];
 }
 

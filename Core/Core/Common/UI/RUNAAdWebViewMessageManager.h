@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RUNAAdWebViewMessage.h"
+#import <RUNACore/RUNAAdWebViewMessage.h>
 #import <WebKit/WebKit.h>
 
 NS_ASSUME_NONNULL_BEGIN

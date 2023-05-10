@@ -10,14 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXPORT NSString *kSdkMessageTypeOther;
-FOUNDATION_EXPORT NSString *kSdkMessageTypeExpand;
-FOUNDATION_EXPORT NSString *kSdkMessageTypeCollapse;
-FOUNDATION_EXPORT NSString *kSdkMessageTypeRegister;
-FOUNDATION_EXPORT NSString *kSdkMessageTypeUnfilled;
-FOUNDATION_EXPORT NSString *kSdkMessageTypeOpenPopup;
-FOUNDATION_EXPORT NSString *kSdkMessageTypeVideo;
-FOUNDATION_EXPORT NSString *kSdkMessageTypeVideoLoaded;
+FOUNDATION_EXPORT NSString* kSdkMessageTypeOther;
+FOUNDATION_EXPORT NSString* kSdkMessageTypeExpand;
+FOUNDATION_EXPORT NSString* kSdkMessageTypeCollapse;
+FOUNDATION_EXPORT NSString* kSdkMessageTypeRegister;
+FOUNDATION_EXPORT NSString* kSdkMessageTypeUnfilled;
+FOUNDATION_EXPORT NSString* kSdkMessageTypeOpenPopup;
+FOUNDATION_EXPORT NSString* kSdkMessageTypeVideo;
+FOUNDATION_EXPORT NSString* kSdkMessageTypeVideoLoaded;
+FOUNDATION_EXPORT NSString* kSdkMessageTypeClose;
 
 @interface RUNAAdWebViewMessage : NSObject
 

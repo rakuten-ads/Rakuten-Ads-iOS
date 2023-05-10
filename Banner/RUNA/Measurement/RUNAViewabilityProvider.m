@@ -47,10 +47,14 @@
 }
 
 -(BOOL)measureInview {
-    UIViewController *rootVc = [[[UIApplication sharedApplication]keyWindow]rootViewController];
-    float visibility = [self getVisibility:self.view.window rootViewController:rootVc];
-    RUNADebug("measurement[Viewable] measure inview rate: %f", visibility);
-    return [self isVisible:visibility];
+    UIViewController *rootVc = [[[UIApplication sharedApplication].windows firstObject]rootViewController];
+    if(rootVc) {
+        float visibility = [self getVisibility:self.view.window rootViewController:rootVc];
+        RUNADebug("measurement[Viewable] measure inview rate: %f", visibility);
+        return [self isVisible:visibility];
+    } else {
+        return NO;
+    }
 }
 
 - (void) sendMeasureViewImp {

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "RUNABannerView.h"
+#import <RUNABanner/RUNABannerView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 /*!

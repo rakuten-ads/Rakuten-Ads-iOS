@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "RUNAOMAdapter"
-  s.version      = "1.0.8"
+  s.version      = "1.1.0"
   s.summary      = "Podspec file of #{s.name} iOS SDK."
   s.description  = <<-DESC
 This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
@@ -20,14 +20,14 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
     :text => "Copyright © Rakuten, inc. All Rights Reserved."
   }
   s.author       = "Rakuten"
-  s.platform     = :ios, "10.0"
+  s.platform     = :ios, "13.0"
   s.source       = {
     :http => "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/#{s.name}/#{s.name}_iOS_#{s.version}.xcframework.zip"
   }
   s.vendored_frameworks = "#{s.name}.xcframework"
 
   s.frameworks = "Foundation", "AdSupport", "SystemConfiguration", "WebKit", "UIKit"
-  s.dependency 'RUNABanner', '~> 1.9'
-  s.dependency 'RUNAOMSDK', '~> 1.3'
+  s.dependency 'RUNABanner', '~> 1.12'
+  s.dependency 'RUNAOMSDK', '~> 1.4'
 
 end

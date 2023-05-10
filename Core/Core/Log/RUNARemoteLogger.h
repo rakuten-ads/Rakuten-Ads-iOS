@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RUNARemoteLogEntity.h"
+#import <RUNACore/RUNARemoteLogEntity.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
