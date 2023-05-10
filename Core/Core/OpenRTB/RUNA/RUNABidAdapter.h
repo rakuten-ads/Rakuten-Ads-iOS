@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RUNAOpenRTB.h"
+#import <RUNACore/RUNAOpenRTB.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

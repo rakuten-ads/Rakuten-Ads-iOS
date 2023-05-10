@@ -247,16 +247,9 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 
         switch (self.size) {
             case RUNABannerViewSizeAspectFit:
-                if (@available(ios 11.0, *)) {
-                    UILayoutGuide* safeGuide = self.superview.safeAreaLayoutGuide;
-                    self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:safeGuide.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:self.widthAnchor multiplier:(self.banner.height / self.banner.width) constant:0.5],
-                                               ];
-                } else {
-                    self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
-                                               [self.heightAnchor constraintEqualToAnchor:self.widthAnchor multiplier:(self.banner.height / self.banner.width) constant:0.5],
-                                               ];
-                }
+                self->_sizeConstraints = @[[self.widthAnchor constraintEqualToAnchor:self.superview.widthAnchor],
+                                           [self.heightAnchor constraintEqualToAnchor:self.widthAnchor multiplier:(self.banner.height / self.banner.width) constant:0.5],
+                ];
                 self.translatesAutoresizingMaskIntoConstraints = NO;
                 [self.superview addConstraints:self.sizeConstraints];
                 break;
@@ -278,11 +271,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
         RUNADebug("applyContainerPosition %lu", (unsigned long)self.position);
         [self.superview removeConstraints:self.positionConstraints];
 
-        if (@available(ios 11.0, *)) {
-            [self applyPositionWithSafeArea];
-        } else {
-            [self applyPositionWithParentView];
-        }
+        [self applyPositionWithSafeArea];
 
         if (self.position != RUNABannerViewPositionCustom) {
             self.translatesAutoresizingMaskIntoConstraints = NO;
@@ -329,43 +318,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     }
 }
 
--(void)applyPositionWithParentView {
-    switch (self.position) {
-        case RUNABannerViewPositionTopLeft:
-            self->_positionConstraints = @[[self.topAnchor constraintEqualToAnchor:self.superview.topAnchor],
-                                           [self.leadingAnchor constraintEqualToAnchor:self.superview.leadingAnchor],
-                                           ];
-            break;
-        case RUNABannerViewPositionTop:
-            self->_positionConstraints = @[[self.topAnchor constraintEqualToAnchor:self.superview.topAnchor],
-                                           [self.centerXAnchor constraintEqualToAnchor:self.superview.centerXAnchor],
-                                           ];
-            break;
-        case RUNABannerViewPositionTopRight:
-            self->_positionConstraints = @[[self.topAnchor constraintEqualToAnchor:self.superview.topAnchor],
-                                           [self.trailingAnchor constraintEqualToAnchor:self.superview.trailingAnchor],
-                                           ];
-            break;
-        case RUNABannerViewPositionBottomLeft:
-            self->_positionConstraints = @[[self.bottomAnchor constraintEqualToAnchor:self.superview.bottomAnchor],
-                                           [self.leadingAnchor constraintEqualToAnchor:self.superview.leadingAnchor],
-                                           ];
-            break;
-        case RUNABannerViewPositionBottomRight:
-            self->_positionConstraints = @[[self.bottomAnchor constraintEqualToAnchor:self.superview.bottomAnchor],
-                                           [self.trailingAnchor constraintEqualToAnchor:self.superview.trailingAnchor],
-                                           ];
-            break;
-        case RUNABannerViewPositionBottom:
-            self->_positionConstraints = @[[self.bottomAnchor constraintEqualToAnchor:self.superview.bottomAnchor],
-                                           [self.centerXAnchor constraintEqualToAnchor:self.superview.centerXAnchor],
-                                           ];
-            break;
-        case RUNABannerViewPositionCustom: default:
-            self->_positionConstraints = nil;
-    }
-}
-
 -(void) applyAdView {
     RUNADebug("apply applyView: %@", NSStringFromCGRect(self.frame));
     // remove old web view
@@ -403,6 +355,13 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoLoaded handle:^(RUNAAdWebViewMessage * _Nonnull message) {
         RUNADebug("handle %@", message.type);
         weakSelf.videoState = RUNA_VIDEO_STATE_LOADED;
+    }]];
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeClose handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+        RUNADebug("handle %@", message.type);
+        if (weakSelf.eventHandler) {
+            struct RUNABannerViewEvent event = { RUNABannerViewEventTypeInterstitialClosed, weakSelf.error };
+            weakSelf.eventHandler(weakSelf, event);
+        }
     }]];
 
     [self.webView.configuration.userContentController addScriptMessageHandler:messageManager name:kSdkMessageHandlerName];
@@ -744,7 +703,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
  * Any update in other modules brings update here.
  */
 +(NSString*) RUNASDKVersionString {
-    return @"1.12.1"; // TODO: check when release, latest check is 2023/04/05.
+    return @"1.13.0"; // TODO: check when release, latest check is 2023/04/19.
 }
 
 -(NSString*) descriptionState {

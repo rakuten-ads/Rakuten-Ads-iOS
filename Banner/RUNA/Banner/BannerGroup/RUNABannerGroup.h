@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RUNABannerView.h"
+#import <RUNABanner/RUNABanner.h>
 
 #ifndef RUNABannerGroup_h
 #define RUNABannerGroup_h
@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RUNABannerGroup : NSObject
 
 /// a list of banners define ad requests.
+/// Must not call `load` method from these banners, RUNABannerGroup will call it instead.
 @property(nonatomic) NSArray<RUNABannerView*>* banners;
 
 /*!
@@ -31,7 +32,6 @@ load a bunch of banners in a request without event handler.
  load a bunch of banners in a request with event handler.
  @param handler callback for events.
  */
-
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerGroup* group, RUNABannerView* __nullable view, struct RUNABannerViewEvent event)) handler;
 
 @end

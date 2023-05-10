@@ -16,8 +16,9 @@ FOUNDATION_EXPORT const unsigned char RUNABannerVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <RUNA/PublicHeader.h>
 
-#import "RUNABannerView.h"
-#import "RUNAAdSession.h"
-#import "RUNABannerGroup.h"
-#import "RUNAViewabilityProvider.h"
-#import "RUNABannerCarouselView.h"
+#import <RUNABanner/RUNABannerView.h>
+#import <RUNABanner/RUNAAdSession.h>
+#import <RUNABanner/RUNABannerGroup.h>
+#import <RUNABanner/RUNAViewabilityProvider.h>
+#import <RUNABanner/RUNABannerCarouselView.h>
+#import <RUNABanner/RUNAInterstitialAd.h>

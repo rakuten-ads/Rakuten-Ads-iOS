@@ -10,7 +10,7 @@
 #define RUNABannerViewInner_h
 
 #ifndef RUNABannerView_h
-#import "RUNABannerView.h"
+#import <RUNABanner/RUNABannerView.h>
 #endif
 
 #import "RUNAAdSessionInner.h"

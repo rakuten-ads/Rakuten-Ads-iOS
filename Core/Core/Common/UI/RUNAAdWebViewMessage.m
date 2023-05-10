@@ -9,14 +9,15 @@
 #import "RUNAAdWebViewMessage.h"
 #import <RUNACore/RUNAJSONObject.h>
 
-NSString *kSdkMessageTypeOther = @"other";
-NSString *kSdkMessageTypeExpand = @"expand";
-NSString *kSdkMessageTypeCollapse = @"collapse";
-NSString *kSdkMessageTypeRegister = @"register";
-NSString *kSdkMessageTypeUnfilled = @"unfilled";
-NSString *kSdkMessageTypeOpenPopup = @"open_popup";
-NSString *kSdkMessageTypeVideo = @"video";
-NSString *kSdkMessageTypeVideoLoaded = @"video_loaded";
+NSString* kSdkMessageTypeOther = @"other";
+NSString* kSdkMessageTypeExpand = @"expand";
+NSString* kSdkMessageTypeCollapse = @"collapse";
+NSString* kSdkMessageTypeRegister = @"register";
+NSString* kSdkMessageTypeUnfilled = @"unfilled";
+NSString* kSdkMessageTypeOpenPopup = @"open_popup";
+NSString* kSdkMessageTypeVideo = @"video";
+NSString* kSdkMessageTypeVideoLoaded = @"video_loaded";
+NSString* kSdkMessageTypeClose = @"close";
 
 @implementation RUNAAdWebViewMessage
 

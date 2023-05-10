@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RUNABannerView.h"
+#import <RUNABanner/RUNABanner.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -37,6 +37,7 @@
         [impList addObject:@{
             @"id" : imp.id ?: NSNull.null,
             @"banner" : imp.banner ?: NSNull.null,
+            @"instl" : imp.isInterstitial ? @(1) : @(0),
             @"ext" : @{
                     @"adspot_id" : imp.adspotId ?: NSNull.null,
                     @"code" : imp.adspotCode ?: NSNull.null,

@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic) RUNABannerAdSpotBranch adSpotBranchId;
 @property(nonatomic) NSMutableDictionary* json;
 @property(nonatomic) NSDictionary* banner;
+@property(nonatomic) BOOL isInterstitial;
 @end
 
 @interface RUNABannerAdapter : RUNABidAdapter
