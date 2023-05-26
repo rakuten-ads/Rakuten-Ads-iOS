@@ -7,21 +7,27 @@
 //
 
 #import "RUNAViewabilityNativeProvider.h"
+#import "RUNAOMNativeMeasurer.h"
+
 @interface RUNAViewabilityNativeProvider()
 
 @property(nonatomic, weak, nullable) UIView* targetView;
+@property(nonatomic) RUNAOMNativeMeasurer* measurer;
 
 @end
 
 @implementation RUNAViewabilityNativeProvider
 
--(void)registerTargetView:(UIView *)view {
+-(void) registerTargetView:(UIView*) view withViewImpURL:(nullable NSString*) url completionHandler:(nullable RUNAViewabilityCompletionHandler) handler {
     self.targetView = view;
-
+    self.measurer = [RUNAOMNativeMeasurer new];
+    [self.measurer setMeasureTarget: view];
+    [self.measurer startMeasurement];
 }
 
 - (void)unregisterTargetView:(UIView *)view {
     self.targetView = nil;
+    [self.measurer finishMeasurement];
 }
 
 @end

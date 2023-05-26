@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RUNANativeOpenMeasurer : NSObject<RUNAMeasurer>
+@interface RUNAOMNativeMeasurer : NSObject<RUNAMeasurer>
 
 @end
 
