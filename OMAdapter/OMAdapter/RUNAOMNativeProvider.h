@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RUNAViewabilityNativeProvider : NSObject
+@interface RUNAOMNativeProvider : NSObject
 
 -(void) registerTargetView:(UIView*) view withViewImpURL:(nullable NSString*) url completionHandler:(nullable RUNAViewabilityCompletionHandler) handler;
 

@@ -6,17 +6,17 @@
 //  Copyright © 2023 Rakuten MPD. All rights reserved.
 //
 
-#import "RUNAViewabilityNativeProvider.h"
+#import "RUNAOMNativeProvider.h"
 #import "RUNAOMNativeMeasurer.h"
 
-@interface RUNAViewabilityNativeProvider()
+@interface RUNAOMNativeProvider()
 
 @property(nonatomic, weak, nullable) UIView* targetView;
 @property(nonatomic) RUNAOMNativeMeasurer* measurer;
 
 @end
 
-@implementation RUNAViewabilityNativeProvider
+@implementation RUNAOMNativeProvider
 
 -(void) registerTargetView:(UIView*) view withViewImpURL:(nullable NSString*) url completionHandler:(nullable RUNAViewabilityCompletionHandler) handler {
     self.targetView = view;
