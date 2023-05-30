@@ -19,12 +19,14 @@ FOUNDATION_EXPORT NSString* kSdkMessageTypeOpenPopup;
 FOUNDATION_EXPORT NSString* kSdkMessageTypeVideo;
 FOUNDATION_EXPORT NSString* kSdkMessageTypeVideoLoaded;
 FOUNDATION_EXPORT NSString* kSdkMessageTypeClose;
+FOUNDATION_EXPORT NSString* kSdkMessageTypeJsError;
 
 @interface RUNAAdWebViewMessage : NSObject
 
 @property(nonatomic, readonly) NSString* vendor;
 @property(nonatomic, readonly) NSString* type;
 @property(nonatomic, readonly, nullable) NSString* url;
+@property(nonatomic, readonly, nullable) NSString* message;
 
 +(instancetype) parse:(NSDictionary*) data;
 
