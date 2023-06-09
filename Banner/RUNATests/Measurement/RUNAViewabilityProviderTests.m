@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "RUNAViewabilityProvider.h"
 #import "RUNAMeasurement.h"
+#import <RUNACore/RUNAUIView+.h>
 
 @interface RUNAViewabilityTarget : NSObject<RUNADefaultMeasurement, RUNAMeasurerDelegate>
 
@@ -59,7 +60,7 @@
     [provider registerTargetView:targetView withViewImpURL:nil completionHandler:nil];
 
     XCTAssertEqual(provider.targetDict.count, 1);
-    NSString* key = [NSString stringWithFormat:@"%lu", (unsigned long)targetView.hash];
+    NSString* key = targetView.runaViewIdentifier;
     RUNAViewabilityTarget* target = provider.targetDict[key];
     XCTAssertNotNil(target);
     XCTAssertTrue([key isEqualToString:target.identifier]);
@@ -86,7 +87,7 @@
     }];
 
     XCTAssertEqual(provider.targetDict.count, 1);
-    NSString* key = [NSString stringWithFormat:@"%lu", (unsigned long)targetView.hash];
+    NSString* key = targetView.runaViewIdentifier;
     RUNAViewabilityTarget* target = provider.targetDict[key];
     XCTAssertNotNil(target);
 

@@ -128,7 +128,7 @@ NSString* kPartnerName = @"Rakuten";
     return config;
 }
 
-#pragma mark - RUNAOpenMeasurement
+#pragma mark - RUNAMeasurer
 
 - (void)setMeasureTarget:(id<RUNAOpenMeasurement>)target {
     self.measurableTarget = target;

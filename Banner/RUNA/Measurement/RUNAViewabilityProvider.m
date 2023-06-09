@@ -9,6 +9,7 @@
 #import "RUNAViewabilityProvider.h"
 #import "RUNAMeasurement.h"
 #import <RUNACore/RUNAURLString.h>
+#import <RUNACore/RUNAUIView+.h>
 
 @interface RUNAViewabilityTarget : NSObject<RUNADefaultMeasurement, RUNAMeasurerDelegate>
 
@@ -27,7 +28,7 @@
     self = [super init];
     if (self) {
         self.view = view;
-        self->_identifier = [NSString stringWithFormat:@"%lu", (unsigned long)view.hash];
+        self->_identifier = view.runaViewIdentifier;
     }
     return self;
 }
@@ -123,7 +124,7 @@
 
 -(void)registerTargetView:(UIView *)view withViewImpURL:(nullable NSString *)url completionHandler:(nullable RUNAViewabilityCompletionHandler)handler {
     if (!view) {
-        NSLog(@"Target view must not be nil");
+        NSLog(@"[RUNA] Target view must not be nil");
         return;
     }
 
@@ -139,7 +140,7 @@
 }
 
 -(void)unregisterTargetView:(UIView *)view {
-    NSString* identifier = [NSString stringWithFormat:@"%lu", (unsigned long)view.hash];
+    NSString* identifier = view.runaViewIdentifier;
     [self.targetDict[identifier].measurer finishMeasurement];
     [self.targetDict removeObjectForKey: identifier];
 }

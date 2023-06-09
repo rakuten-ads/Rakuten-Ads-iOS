@@ -12,9 +12,27 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface RUNAOMNativeProviderConfiguration : NSObject
+
+@property(nonatomic) NSString* verificationJsURL;
+@property(nonatomic) NSString* providerURL;
+@property(nonatomic) NSString* vendorKey;
+@property(nonatomic) NSString* vendorParameters;
+
++(instancetype) defaultConfiguration;
+
+@end
+
 @interface RUNAOMNativeProvider : NSObject
 
--(void) registerTargetView:(UIView*) view withViewImpURL:(nullable NSString*) url completionHandler:(nullable RUNAViewabilityCompletionHandler) handler;
+-(instancetype) init NS_UNAVAILABLE;
++(instancetype) new NS_UNAVAILABLE;
+
+@property(nonatomic, readonly) RUNAOMNativeProviderConfiguration* configuration;
+
+-(instancetype) initWithConfiguration:(RUNAOMNativeProviderConfiguration*) configuration;
+
+-(void) registerTargetView:(UIView*) view;
 
 -(void) unregisterTargetView:(UIView*) view;
 

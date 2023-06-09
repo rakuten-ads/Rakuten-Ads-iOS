@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "RUNAMeasurement.h"
+#import "RUNAOMNativeProvider.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNAOMNativeMeasurer : NSObject<RUNAMeasurer>
+
+@property(nonatomic) RUNAOMNativeProviderConfiguration* configuration;
 
 @end
 

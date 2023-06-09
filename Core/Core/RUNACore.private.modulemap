@@ -8,4 +8,5 @@ framework module RUNACore_Private {
     header "PrivateHeaders/RUNAWebUserAgent.h"
     header "PrivateHeaders/RUNAAppInfo.h"
     header "PrivateHeaders/RUNACipher.h"
+    header "PrivateHeaders/RUNAUIView+.h"
 }

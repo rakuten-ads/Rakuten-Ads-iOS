@@ -21,8 +21,6 @@
 
 @interface RUNAOMNativeMeasurer()
 
-@property(nonatomic, weak, nullable) id<RUNAMeasurer> target;
-
 @property(nonatomic, weak, nullable) UIView* adView;
 @property(nonatomic, nonnull) OMIDRakutenAdSession* adSession;
 
@@ -76,8 +74,8 @@
     [self.adSession finish];
 }
 
-- (void)setMeasureTarget:(nonnull id<RUNAMeasurable>)target {
-    self.adView = target;
+- (void)setMeasureTarget:(nonnull id<RUNAOpenMeasurement>)target {
+    self.adView = target.getOMAdView;
 }
 
 - (void)setMeasurerDelegate:(nonnull id<RUNAMeasurerDelegate>)measurerDelegate {
@@ -115,15 +113,12 @@
     }
 }
 
-NSString* omVerificationJsURL = @"https://storage.googleapis.com/rssp-dev-cdn/sdk/js/omid-validation-verification-script-v1.js";
-NSString* omJsURL = @"https://storage.googleapis.com/rssp-dev-cdn/sdk/js/omsdk-v1.js";
-NSString* vendorKey = @"iabtechlab.com-omid";
-NSString* params = @"iabtechlab-Rakuten";
+
 
 -(OMIDRakutenAdSessionContext *)createAdSessionContextWithPartner:(OMIDRakutenPartner*) partner {
     OMIDRakutenAdSessionContext* context = nil;
 
-    OMIDRakutenVerificationScriptResource* resourceVerifyJs = [[OMIDRakutenVerificationScriptResource alloc] initWithURL:[NSURL URLWithString:omVerificationJsURL] vendorKey: vendorKey parameters:params];
+    OMIDRakutenVerificationScriptResource* resourceVerifyJs = [[OMIDRakutenVerificationScriptResource alloc] initWithURL:[NSURL URLWithString:self.configuration.verificationJsURL] vendorKey: self.configuration.vendorKey parameters:self.configuration.vendorParameters];
     if (resourceVerifyJs) {
         NSMutableArray *resources = [NSMutableArray new];
         [resources addObject:resourceVerifyJs];
@@ -161,7 +156,7 @@ NSString* params = @"iabtechlab-Rakuten";
 }
 
 -(nullable NSString*) omidJSScript {
-    RUNAOpenMeasurerProvider* provider = [[RUNAOpenMeasurerProvider alloc] initWithURL:omJsURL];
+    RUNAOpenMeasurerProvider* provider = [[RUNAOpenMeasurerProvider alloc] initWithURL:self.configuration.providerURL];
     NSError* err;
     NSString* omidJSScript = [provider.cacheFile readStringWithError:&err];
     if (err) {
