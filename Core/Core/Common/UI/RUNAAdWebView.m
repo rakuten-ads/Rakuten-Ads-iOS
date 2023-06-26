@@ -20,6 +20,11 @@
         [self setOpaque:NO];
         [self setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
         [self setAllowsLinkPreview:NO];
+#if DEBUG
+        if (@available(iOS 16.4, *)) {
+            self.inspectable = YES;
+        }
+#endif
 
         self.scrollView.scrollEnabled = NO;
         self.scrollView.bounces = NO;

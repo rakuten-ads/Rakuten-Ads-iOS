@@ -363,6 +363,10 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
             weakSelf.eventHandler(weakSelf, event);
         }
     }]];
+    [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeJsError handle:^(RUNAAdWebViewMessage * _Nonnull message) {
+        RUNADebug("handle %@", message.type);
+        RUNALog("received js error: %@", message.message);
+    }]];
 
     [self.webView.configuration.userContentController addScriptMessageHandler:messageManager name:kSdkMessageHandlerName];
     self.webView.navigationDelegate = self;
