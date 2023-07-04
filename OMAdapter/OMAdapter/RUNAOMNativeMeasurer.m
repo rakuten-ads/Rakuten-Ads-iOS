@@ -18,6 +18,7 @@
 #import <OMSDK_Rakuten/OMIDVerificationScriptResource.h>
 
 #import <RUNACore/RUNADefines.h>
+#import <RUNACore/RUNARemoteLogger.h>
 
 @interface RUNAOMNativeMeasurer()
 
@@ -118,22 +119,27 @@
 -(OMIDRakutenAdSessionContext *)createAdSessionContextWithPartner:(OMIDRakutenPartner*) partner {
     OMIDRakutenAdSessionContext* context = nil;
 
-    OMIDRakutenVerificationScriptResource* resourceVerifyJs = [[OMIDRakutenVerificationScriptResource alloc] initWithURL:[NSURL URLWithString:self.configuration.verificationJsURL] vendorKey: self.configuration.vendorKey parameters:self.configuration.vendorParameters];
-    if (resourceVerifyJs) {
-        NSMutableArray *resources = [NSMutableArray new];
-        [resources addObject:resourceVerifyJs];
+    RUNADebug("measurement[OM][native] create OMIDRakutenAdSessionContext");
 
-        NSString* omSdkJs = [self omidJSScript];
-        if (omSdkJs) {
-            NSError* err;
-            context = [[OMIDRakutenAdSessionContext alloc] initWithPartner:partner script:omSdkJs resources:resources contentUrl:nil customReferenceIdentifier:nil error:&err];
-            RUNADebug("measurement[OM][native] create OMIDRakutenAdSessionContext");
-            if (err) {
-                RUNADebug("measurement[OM][native] create OMIDRakutenAdSessionContext failed: %@", err);
-                [self sendRemoteLogWithMessage:@"measurement[OM][native] create OMIDRakutenAdSessionContext failed:" andError:err];
-            }
+    OMIDRakutenVerificationScriptResource* resourceVerifyJs = [[OMIDRakutenVerificationScriptResource alloc] initWithURL:[NSURL URLWithString:self.configuration.verificationJsURL] vendorKey: self.configuration.vendorKey parameters:self.configuration.vendorParameters];
+    if (!resourceVerifyJs) {
+        RUNADebug("measurement[OM][native] create OMIDRakutenVerificationScriptResource failed, the configuration parameters must not contain nil");
+        return nil;
+    }
+
+    NSMutableArray *resources = [NSMutableArray new];
+    [resources addObject:resourceVerifyJs];
+
+    NSString* omSdkJs = [self omidJSScript];
+    if (omSdkJs) {
+        NSError* err;
+        context = [[OMIDRakutenAdSessionContext alloc] initWithPartner:partner script:omSdkJs resources:resources contentUrl:nil customReferenceIdentifier:nil error:&err];
+        if (err) {
+            RUNADebug("measurement[OM][native] create OMIDRakutenAdSessionContext failed: %@", err);
+            [self sendRemoteLogWithMessage:@"measurement[OM][native] create OMIDRakutenAdSessionContext failed:" andError:err];
         }
     }
+
     return context;
 }
 
@@ -165,10 +171,19 @@
     return omidJSScript;
 }
 
--(void) sendRemoteLogWithMessage:(NSString*) message andError:(NSError*) error {
-//    if ([self.measurableTarget isKindOfClass:[RUNABannerView class]]) {
-//        NSException* exception = [NSException exceptionWithName:error.description reason:@"RUNA OMSDK" userInfo:nil];
-//        [(RUNABannerView*)self.measurableTarget om_sendRemoteLogWithMessage:message andException:exception];
-//    }
+-(void) sendRemoteLogWithMessage:(NSString*) message andError:(nullable NSError*) error {
+    NSException* exception = [NSException exceptionWithName:error.description reason:@"RUNA OMSDK" userInfo:nil];
+
+    RUNARemoteLogEntityErrorDetail* errorDetail = [RUNARemoteLogEntityErrorDetail new];
+    errorDetail.errorMessage = [message stringByAppendingFormat:@": [%@] %@ { userInfo: %@ }", exception.name, exception.reason, exception.userInfo];
+    errorDetail.stacktrace = exception.callStackSymbols;
+    errorDetail.tag = @"RUNAOMAdapter";
+
+    // ad info
+    RUNARemoteLogEntityAd* adInfo = [RUNARemoteLogEntityAd new];
+    adInfo.sdkVersion = [RUNAOpenMeasurer versionString];
+
+    RUNARemoteLogEntity* log = [RUNARemoteLogEntity logWithError:errorDetail andUserInfo:nil adInfo:adInfo];
+    [RUNARemoteLogger.sharedInstance sendLog:log];
 }
 @end

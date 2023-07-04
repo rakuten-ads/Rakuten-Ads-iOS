@@ -14,10 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNAOMNativeProviderConfiguration : NSObject
 
-@property(nonatomic) NSString* verificationJsURL;
-@property(nonatomic) NSString* providerURL;
-@property(nonatomic) NSString* vendorKey;
-@property(nonatomic) NSString* vendorParameters;
+@property(nonatomic, nullable) NSString* verificationJsURL;
+@property(nonatomic, nullable) NSString* providerURL;
+@property(nonatomic, nullable) NSString* vendorKey;
+@property(nonatomic, nullable) NSString* vendorParameters;
 
 +(instancetype) defaultConfiguration;
 

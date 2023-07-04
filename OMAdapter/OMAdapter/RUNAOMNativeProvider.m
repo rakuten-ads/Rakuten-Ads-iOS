@@ -13,8 +13,8 @@
 
 @implementation RUNAOMNativeProviderConfiguration
 
-NSString* omVerificationJsURL = @"https://storage.googleapis.com/rssp-dev-cdn/sdk/js/omid-validation-verification-script-v1.js";
-NSString* omJsURL = @"https://storage.googleapis.com/rssp-dev-cdn/sdk/js/omsdk-v1.js";
+NSString* omVerificationJsURL = @"https://storage.googleapis.com/rssp-dev-cdn/sdk/js/omid-validation-verification-script-v1-1.4.3.js";
+NSString* omJsURL = @"https://storage.googleapis.com/rssp-dev-cdn/sdk/js/omsdk-v1-1.4.3.js";
 NSString* vendorKey = @"iabtechlab.com-omid";
 NSString* params = @"iabtechlab-Rakuten";
 
@@ -48,13 +48,29 @@ NSString* params = @"iabtechlab-Rakuten";
 
 - (void)registerTargetView:(nonnull UIView *)view {
     if (!view) {
-        NSLog(@"[RUNA] Target view must not be nil");
+        NSLog(@"[RUNA] OMSDK Target view must not be nil");
+        return;
+    }
+    if (!self.configuration) {
+        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration must not be nil");
+        return;
+    }
+    if (!self.configuration.verificationJsURL) {
+        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration verificationJsURL must not be nil");
+        return;
+    }
+    if (!self.configuration.vendorKey) {
+        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration vendorKey must not be nil");
+        return;
+    }
+    if (!self.configuration.vendorParameters) {
+        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration vendorParameters must not be nil");
         return;
     }
 
-    if (!self.configuration) {
-        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration must be set");
-        return;
+    if (!self.configuration.providerURL) {
+        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration providerURL not found, use default provider");
+        self.configuration.providerURL = omJsURL;
     }
 
     RUNAOMNativeMeasurer* measurer = [RUNAOMNativeMeasurer new];
