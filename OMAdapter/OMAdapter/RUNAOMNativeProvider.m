@@ -10,6 +10,7 @@
 #import "RUNAOMNativeMeasurer.h"
 #import "RUNAOMMeasurableTarget.h"
 #import <RUNACore/RUNAUIView+.h>
+#import <RUNACore/RUNAValid.h>
 
 @implementation RUNAOMNativeProviderConfiguration
 
@@ -55,20 +56,20 @@ NSString* params = @"iabtechlab-Rakuten";
         NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration must not be nil");
         return;
     }
-    if (!self.configuration.verificationJsURL) {
-        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration verificationJsURL must not be nil");
+    if ([RUNAValid isEmptyString:self.configuration.verificationJsURL]) {
+        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration verificationJsURL mustn't be empty");
         return;
     }
-    if (!self.configuration.vendorKey) {
-        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration vendorKey must not be nil");
+    if ([RUNAValid isEmptyString:self.configuration.vendorKey]) {
+        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration vendorKey mustn't be empty");
         return;
     }
-    if (!self.configuration.vendorParameters) {
-        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration vendorParameters must not be nil");
+    if ([RUNAValid isEmptyString:self.configuration.vendorParameters]) {
+        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration vendorParameters mustn't be empty");
         return;
     }
 
-    if (!self.configuration.providerURL) {
+    if ([RUNAValid isEmptyString:self.configuration.providerURL]) {
         NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration providerURL not found, use default provider");
         self.configuration.providerURL = omJsURL;
     }
