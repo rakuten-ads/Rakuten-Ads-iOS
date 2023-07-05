@@ -737,7 +737,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -944,7 +944,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -985,7 +985,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa;
 				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
