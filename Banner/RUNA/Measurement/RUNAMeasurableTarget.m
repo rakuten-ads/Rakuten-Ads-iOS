@@ -40,6 +40,8 @@ NSString* kRUNAMeasurerDefault = @"RUNADefaultMeasurer";
     self.defaultMeasurementConfig = config;
 
     RUNADefaultMeasurer* measurer = [RUNADefaultMeasurer new];
+    [measurer setMeasurerDelegate:self];
+    [measurer setMeasureTarget:self];
     self.measurers[kRUNAMeasurerDefault] = measurer;
 }
 
