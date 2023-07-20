@@ -8,21 +8,24 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "RUNAMeasurement.h"
+#import <RUNABanner/RUNABanner.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void (^RUNAImpCompletionHandler)(UIView* view);
+@interface RUNAOMNativeProviderConfiguration : NSObject
 
-@interface RUNAOMMeasurableTarget : NSObject<RUNAOpenMeasurement>
+@property(nonatomic, nullable) NSString* verificationJsURL;
+@property(nonatomic, nullable) NSString* providerURL;
+@property(nonatomic, nullable) NSString* vendorKey;
+@property(nonatomic, nullable) NSString* vendorParameters;
 
-@property(nonatomic, readonly) NSString* identifier;
-@property(nonatomic, weak, readonly) UIView* view;
++(instancetype) defaultConfiguration;
 
-@property(nonatomic) id<RUNAMeasurer> measurer;
-@property(nonatomic, copy, nullable) RUNAImpCompletionHandler completionHandler;
+@end
 
-- (instancetype)initWithView:(UIView*) view;
+@interface RUNAMeasurableTarget(OMSDK) <RUNAOpenMeasurement>
+
+-(void)setRUNAOMConfiguration:(RUNAOMNativeProviderConfiguration *)config;
 
 @end
 

@@ -19,6 +19,11 @@ FOUNDATION_EXPORT const unsigned char RUNABannerVersionString[];
 #import <RUNABanner/RUNABannerView.h>
 #import <RUNABanner/RUNAAdSession.h>
 #import <RUNABanner/RUNABannerGroup.h>
-#import <RUNABanner/RUNAViewabilityProvider.h>
 #import <RUNABanner/RUNABannerCarouselView.h>
 #import <RUNABanner/RUNAInterstitialAd.h>
+
+// Measurement
+#import <RUNABanner/RUNAMeasurement.h>
+#import <RUNABanner/RUNAMeasurableTarget.h>
+#import <RUNABanner/RUNAViewabilityProvider.h>
+

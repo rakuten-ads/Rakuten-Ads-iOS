@@ -9,40 +9,75 @@
 #import "RUNAOMMeasurableTarget.h"
 #import "RUNAOMNativeMeasurer.h"
 #import <RUNACore/RUNAUIView+.h>
+#import <RUNACore/RUNAValid.h>
 
-@interface RUNAOMMeasurableTarget()
+@implementation RUNAOMNativeProviderConfiguration
+
+NSString* omVerificationJsURL = @"https://storage.googleapis.com/rssp-dev-cdn/sdk/js/omid-validation-verification-script-v1-1.4.3.js";
+NSString* omJsURL = @"https://storage.googleapis.com/rssp-dev-cdn/sdk/js/omsdk-v1-1.4.3.js";
+NSString* vendorKey = @"iabtechlab.com-omid";
+NSString* params = @"iabtechlab-Rakuten";
+
++(instancetype)defaultConfiguration {
+    RUNAOMNativeProviderConfiguration* config = [RUNAOMNativeProviderConfiguration new];
+    config.verificationJsURL = omVerificationJsURL;
+    config.providerURL = omJsURL;
+    config.vendorKey = vendorKey;
+    config.vendorParameters = params;
+    return config;
+}
 
 @end
 
-@implementation RUNAOMMeasurableTarget
+@implementation RUNAMeasurableTarget(OMSDK)
 
--(instancetype)initWithView:(UIView *)view {
-    self = [super init];
-    if (self) {
-        self->_view = view;
-        self->_identifier = view.runaViewIdentifier;
+NSString* kRUNAMeasurerOM = @"RUNAOMNativeMeasurer";
+-(void)setRUNAOMConfiguration:(RUNAOMNativeProviderConfiguration *)config {
+    if (!self.view) {
+        NSLog(@"[RUNA] OMSDK Target view must not be nil");
+        return;
     }
-    return self;
-}
+    if (!config) {
+        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration must not be nil");
+        return;
+    }
+    if ([RUNAValid isEmptyString:config.verificationJsURL]) {
+        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration verificationJsURL mustn't be empty");
+        return;
+    }
+    if ([RUNAValid isEmptyString:config.vendorKey]) {
+        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration vendorKey mustn't be empty");
+        return;
+    }
+    if ([RUNAValid isEmptyString:config.vendorParameters]) {
+        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration vendorParameters mustn't be empty");
+        return;
+    }
 
--(void)setMeasurer:(id<RUNAMeasurer>)measurer {
-    self->_measurer = measurer;
+    if ([RUNAValid isEmptyString:config.providerURL]) {
+        NSLog(@"[RUNA] RUNAOMNativeProviderConfiguration providerURL not found, use default provider");
+        config.providerURL = omJsURL;
+    }
+
+    RUNAOMNativeMeasurer* measurer = [RUNAOMNativeMeasurer new];
+    measurer.configuration = config;
     [measurer setMeasureTarget:self];
-}
-
--(id<RUNAMeasurer>)getOpenMeasurer {
-    return self.measurer;
+    self.measurers[kRUNAMeasurerOM] = measurer;
 }
 
 -(UIView *)getOMAdView {
     return self.view;
 }
 
--(WKWebView *)getOMWebView {
+- (nullable WKWebView *)getOMWebView {
     return nil;
 }
 
--(NSString *)injectOMProvider:(NSString *)omProviderURL IntoHTML:(NSString *)html {
+- (nonnull id<RUNAMeasurer>)getOpenMeasurer {
+    return self.measurers[kRUNAMeasurerOM];
+}
+
+- (nonnull NSString *)injectOMProvider:(nonnull NSString *)omProviderURL IntoHTML:(nonnull NSString *)html {
     return html;
 }
 

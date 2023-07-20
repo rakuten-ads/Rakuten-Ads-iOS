@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RUNAMeasurement.h"
-#import "RUNAOMNativeProvider.h"
+#import <RUNABanner/RUNAMeasurement.h>
+#import <RUNAOMAdapter/RUNAOMMeasurableTarget.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

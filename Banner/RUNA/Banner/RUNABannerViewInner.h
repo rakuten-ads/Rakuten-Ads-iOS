@@ -23,7 +23,7 @@
 #import <RUNACore/RUNAAdWebViewMessageManager.h>
 #import <RUNACore/RUNARemoteLogger.h>
 #import <RUNACore/RUNARemoteLogEntity.h>
-#import "RUNAMeasurement.h"
+#import <RUNABanner/RUNAMeasurement.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

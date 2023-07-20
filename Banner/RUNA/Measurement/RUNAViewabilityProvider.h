@@ -8,16 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <RUNABanner/RUNAMeasurableTarget.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef void (^RUNAViewabilityCompletionHandler)(UIView* view);
 
 @interface RUNAViewabilityProvider : NSObject
 
 +(instancetype) sharedInstance;
 
--(void) registerTargetView:(UIView*) view withViewImpURL:(nullable NSString*) url completionHandler:(nullable RUNAViewabilityCompletionHandler) handler;
+-(void) registerTarget:(RUNAMeasurableTarget*) target;
+-(void) unregisterTarget:(RUNAMeasurableTarget*) target;
+
+-(void) registerTargetView:(UIView*) view withViewImpURL:(nullable NSString*) url completionHandler:(nullable RUNAViewabilityCompletionHandler) handler DEPRECATED_MSG_ATTRIBUTE("Use -registerTarget:");
 
 -(void) unregsiterTargetView:(UIView*) view DEPRECATED_MSG_ATTRIBUTE("Use -unregisterTargetView:");
 -(void) unregisterTargetView:(UIView*) view;

@@ -7,107 +7,12 @@
 //
 
 #import "RUNAViewabilityProvider.h"
-#import "RUNAMeasurement.h"
 #import <RUNACore/RUNAURLString.h>
 #import <RUNACore/RUNAUIView+.h>
 
-@interface RUNAViewabilityTarget : NSObject<RUNADefaultMeasurement, RUNAMeasurerDelegate>
-
-@property(nonatomic, readonly) NSString* identifier;
-@property(nonatomic, weak) UIView* view;
-@property(nonatomic, copy, nullable) NSString* viewImpURL;
-@property(nonatomic, copy, nullable) RUNAViewabilityCompletionHandler completionHandler;
-@property(nonatomic, readonly) id<RUNAMeasurer> measurer;
-
-@end
-
-@implementation RUNAViewabilityTarget
-
-- (instancetype)initWithView:(UIView*) view
-{
-    self = [super init];
-    if (self) {
-        self.view = view;
-        self->_identifier = view.runaViewIdentifier;
-    }
-    return self;
-}
-
--(id<RUNAMeasurer>) getDefaultMeasurer {
-    if (!self->_measurer) {
-        self->_measurer = [RUNADefaultMeasurer new];
-        [self->_measurer setMeasureTarget:self];
-        [self->_measurer setMeasurerDelegate:self];
-    }
-    return self->_measurer;
-}
-
--(BOOL)measureImp {
-    RUNADebug("measurement[Viewable] skip measure imp");
-    return YES;
-}
-
--(BOOL)measureInview {
-    UIViewController *rootVc = [[[UIApplication sharedApplication].windows firstObject]rootViewController];
-    if(rootVc) {
-        float visibility = [self getVisibility:self.view.window rootViewController:rootVc];
-        RUNADebug("measurement[Viewable] measure inview rate: %f", visibility);
-        return [self isVisible:visibility];
-    } else {
-        return NO;
-    }
-}
-
-- (void) sendMeasureViewImp {
-    if (self.viewImpURL) {
-        RUNADebug("measurement[Viewable] send inview %p", self);
-        RUNAURLStringRequest* request = [RUNAURLStringRequest new];
-        request.httpTaskDelegate = self.viewImpURL;
-        [request resume];
-    }
-}
-
--(float)getVisibility:(UIWindow *)window
-   rootViewController:(UIViewController *)rootViewController {
-    float areaOfAdView = self.view.frame.size.width * self.view.frame.size.height;
-    UIView* rootView = rootViewController.view;
-    CGRect abstractFrame = [self.view convertRect:self.view.bounds toView:rootView];
-    CGRect intersectionFrame = CGRectIntersection(rootView.frame, abstractFrame);
-
-    RUNADebug("measurement[Viewable] get abstractFrame %@ of self %@ in root %@", NSStringFromCGRect(abstractFrame), NSStringFromCGRect(self.view.frame), NSStringFromCGRect(rootView.frame));
-    if (!self.view.isHidden
-        && window
-        && areaOfAdView > 0
-        && !CGRectIsNull(intersectionFrame)) {
-        float areaOfIntersection = intersectionFrame.size.width * intersectionFrame.size.height;
-        return areaOfIntersection / areaOfAdView;
-    }
-    return 0;
-}
-
--(BOOL)isVisible:(float)visibility {
-    return visibility > 0.5;
-}
-
--(BOOL)didMeasureInview:(BOOL)isInview {
-    if (isInview) {
-        [self sendMeasureViewImp];
-        if (self.completionHandler) {
-            @try {
-                self.completionHandler(self.view);
-            } @catch (NSException *exception) {
-                RUNALog("exception when measure completion callback: %@", exception);
-            }
-        }
-    }
-    return isInview;
-}
-
-@end
-
 @interface RUNAViewabilityProvider()
 
-@property(nonatomic) NSMutableDictionary<NSString*, RUNAViewabilityTarget*>* targetDict;
+@property(nonatomic) NSMutableDictionary<NSString*, RUNAMeasurableTarget*>* targetDict;
 
 @end
 
@@ -122,17 +27,46 @@
     return self;
 }
 
+-(void)registerTarget:(RUNAMeasurableTarget *)target {
+    if (!target) {
+        NSLog(@"[RUNA] Target must not be nil");
+        return;
+    }
+
+    [target.measurers.allValues enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
+        [measurer startMeasurement];
+    }];
+
+    [self.targetDict setObject:target forKey:target.identifier];
+}
+
+-(void)unregisterTarget:(RUNAMeasurableTarget *)target {
+    if (!target) {
+        NSLog(@"[RUNA] Target must not be nil");
+        return;
+    }
+
+    [target.measurers.allValues enumerateObjectsUsingBlock:^(id<RUNAMeasurer>  _Nonnull measurer, NSUInteger idx, BOOL * _Nonnull stop) {
+        [measurer finishMeasurement];
+    }];
+
+    [self.targetDict removeObjectForKey:target.identifier];
+}
+
 -(void)registerTargetView:(UIView *)view withViewImpURL:(nullable NSString *)url completionHandler:(nullable RUNAViewabilityCompletionHandler)handler {
     if (!view) {
         NSLog(@"[RUNA] Target view must not be nil");
         return;
     }
 
-    RUNAViewabilityTarget* target = [[RUNAViewabilityTarget alloc] initWithView:view];
-    target.viewImpURL = url;
-    target.completionHandler = handler;
+    RUNAMeasurableTarget* target = [[RUNAMeasurableTarget alloc] initWithView:view];
+    RUNAMeasurementConfiguration* config = [RUNAMeasurementConfiguration new];
+    config.viewImpURL = url;
+    config.completionHandler = handler;
+    [target setRUNAMeasurementConfiguration:config];
+    [target.measurers.allValues.firstObject startMeasurement];
+
     [self.targetDict setObject:target forKey:target.identifier];
-    [[target getDefaultMeasurer] startMeasurement];
 }
 
 -(void)unregsiterTargetView:(UIView *)view {
@@ -140,9 +74,11 @@
 }
 
 -(void)unregisterTargetView:(UIView *)view {
-    NSString* identifier = view.runaViewIdentifier;
-    [self.targetDict[identifier].measurer finishMeasurement];
-    [self.targetDict removeObjectForKey: identifier];
+    if (!view) {
+        NSLog(@"[RUNA] Target view must not be nil");
+        return;
+    }
+    [self unregisterTarget:self.targetDict[view.runaViewIdentifier]];
 }
 
 +(instancetype)sharedInstance {
