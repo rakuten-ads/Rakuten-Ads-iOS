@@ -23,8 +23,11 @@ typedef void (^RUNAViewabilityCompletionHandler)(UIView* view);
 @interface RUNAMeasurableTarget : NSObject<RUNADefaultMeasurement, RUNAMeasurerDelegate>
 
 @property(nonatomic, readonly) NSString* identifier;
-@property(nonatomic, weak) UIView* view;
+@property(nonatomic, readonly, weak) UIView* view;
 @property(nonatomic, readonly) NSMutableDictionary<NSString*, id<RUNAMeasurer>>* measurers;
+
+-(instancetype)init NS_UNAVAILABLE;
++(instancetype)new NS_UNAVAILABLE;
 
 - (instancetype)initWithView:(UIView*) view;
 -(void) setRUNAMeasurementConfiguration:(RUNAMeasurementConfiguration*) config;

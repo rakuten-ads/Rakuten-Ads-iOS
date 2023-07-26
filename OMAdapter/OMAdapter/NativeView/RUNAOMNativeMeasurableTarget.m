@@ -6,7 +6,7 @@
 //  Copyright © 2023 RUNA. All rights reserved.
 //
 
-#import "RUNAOMMeasurableTarget.h"
+#import "RUNAOMNativeMeasurableTarget.h"
 #import "RUNAOMNativeMeasurer.h"
 #import <RUNACore/RUNAUIView+.h>
 #import <RUNACore/RUNAValid.h>
@@ -32,7 +32,7 @@ NSString* params = @"iabtechlab-Rakuten";
 @implementation RUNAMeasurableTarget(OMSDK)
 
 NSString* kRUNAMeasurerOM = @"RUNAOMNativeMeasurer";
--(void)setRUNAOMConfiguration:(RUNAOMNativeProviderConfiguration *)config {
+-(void)setRUNAOMNativeConfiguration:(RUNAOMNativeProviderConfiguration *)config {
     if (!self.view) {
         NSLog(@"[RUNA] OMSDK Target view must not be nil");
         return;
@@ -64,6 +64,8 @@ NSString* kRUNAMeasurerOM = @"RUNAOMNativeMeasurer";
     [measurer setMeasureTarget:self];
     self.measurers[kRUNAMeasurerOM] = measurer;
 }
+
+#pragma mark - Protocol RUNAOpenMeasurement
 
 -(UIView *)getOMAdView {
     return self.view;

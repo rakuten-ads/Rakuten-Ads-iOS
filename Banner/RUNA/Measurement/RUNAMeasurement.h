@@ -42,6 +42,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol RUNAMeasurer <NSObject>
 
+/*!
+ set a target which implemented protocol RUNAMeasurable
+ @param target measurable target
+ */
 -(void) setMeasureTarget:(id<RUNAMeasurable>)target;
 -(void) setMeasurerDelegate:(id<RUNAMeasurerDelegate>)measurerDelegate;
 -(void) startMeasurement;

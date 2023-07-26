@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RUNAMeasurableTarget(OMSDK) <RUNAOpenMeasurement>
 
--(void)setRUNAOMConfiguration:(RUNAOMNativeProviderConfiguration *)config;
+-(void)setRUNAOMNativeConfiguration:(RUNAOMNativeProviderConfiguration *)config;
 
 @end
 

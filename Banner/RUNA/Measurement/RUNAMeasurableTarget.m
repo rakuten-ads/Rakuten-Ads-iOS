@@ -29,7 +29,8 @@ NSString* kRUNAMeasurerDefault = @"RUNADefaultMeasurer";
 {
     self = [super init];
     if (self) {
-        self.view = view;
+        __weak UIView* weakViewRef = view;
+        self->_view = weakViewRef;
         self->_identifier = view.runaViewIdentifier;
         self->_measurers = [NSMutableDictionary new];
     }
@@ -105,7 +106,7 @@ NSString* kRUNAMeasurerDefault = @"RUNADefaultMeasurer";
             @try {
                 self.defaultMeasurementConfig.completionHandler(self.view);
             } @catch (NSException *exception) {
-                RUNALog("exception when measure completion callback: %@", exception);
+                RUNALog("measurement[Viewable] exception when measure completion callback: %@", exception);
             }
         }
     }

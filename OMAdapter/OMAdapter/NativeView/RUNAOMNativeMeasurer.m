@@ -33,7 +33,7 @@
     RUNADebug("measurement[OM][native] start");
     if (![self isSDKActive]
         || !self.adView) {
-        RUNALog("Not prepared for open measurement[OM][native].");
+        RUNALog("[RUNA] Not prepared for open measurement[OM][native].");
         return;
     }
 
@@ -88,7 +88,7 @@
         [OMIDRakutenSDK.sharedInstance activate];
     }
 
-    RUNADebug("OMIDRakutenSDK %@ is Actived: %@", OMIDRakutenSDK.versionString, OMIDRakutenSDK.sharedInstance.isActive ? @"YES" : @"NO");
+    RUNADebug("measurement[OM][native] OMIDRakutenSDK %@ is Actived: %@", OMIDRakutenSDK.versionString, OMIDRakutenSDK.sharedInstance.isActive ? @"YES" : @"NO");
     return OMIDRakutenSDK.sharedInstance.isActive;
 }
 
