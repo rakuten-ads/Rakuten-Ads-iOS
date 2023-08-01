@@ -10,8 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/*!
+ Utility tools for Banner
+ */
 @interface RUNABannerUtil : NSObject
 
+/*!
+ Normalize input NSString text for ad content search keywords by following rules:
+ - halfwidth -> fullwidth
+ - normalize NFKC
+ - lower case
+ - trim spaces
+ - replace spaces with single space
+ */
 +(NSString*) normalize:(NSString*) text;
 
 @end
