@@ -74,7 +74,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewError) {
 };
 
 /*!
-event detail declaration
+Struct of event object when loading ad.
  */
 struct RUNABannerViewEvent {
     RUNABannerViewEventType eventType;

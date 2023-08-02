@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Viewable Observer Delegate
 
+/*!
+ Delegate for the events of measurement
+ */
 @protocol RUNAMeasurerDelegate <NSObject>
 
 @optional

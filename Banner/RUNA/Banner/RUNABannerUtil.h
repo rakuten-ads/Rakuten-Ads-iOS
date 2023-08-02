@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /*!
- Utility tools for Banner
+ Utility tools for RUNA SDK
  */
 @interface RUNABannerUtil : NSObject
 

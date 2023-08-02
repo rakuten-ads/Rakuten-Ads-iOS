@@ -14,7 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /*!
- A session contains several banners with distinct ad contents.
+ Use RUNAAdSession to manage a group of banners with distinct ad contents.
  */
 @interface RUNAAdSession : NSObject
 
