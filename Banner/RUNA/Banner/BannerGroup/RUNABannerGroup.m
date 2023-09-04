@@ -225,7 +225,7 @@ typedef void (^RUNABannerGroupEventHandler)(RUNABannerGroup* group, RUNABannerVi
     _state == RUNA_ADVIEW_STATE_RENDERING ? @"RENDERING":
     _state == RUNA_ADVIEW_STATE_MESSAGE_LISTENING ? @"MESSAGE_LISTENING":
     _state == RUNA_ADVIEW_STATE_SHOWED ? @"SHOWED" :
-    _state == RUNA_ADVIEW_STATE_CLICKED ? @"CLICKED" : @"unknown";
+    @"unknown";
 }
 
 -(NSString*) versionString {

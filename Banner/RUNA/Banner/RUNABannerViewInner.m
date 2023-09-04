@@ -542,8 +542,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
                 && ![url.absoluteString isEqualToString:BASE_URL_BLANK])
             ) {
             if (self.mediaType == RUNA_MEDIA_TYPE_VIDEO) {
-                self.videoState = RUNA_VIDEO_STATE_STOP;
-                [self notifyVideoViewableChanged:NO];
+                [self stopVideo];
             }
 
             if (self.eventHandler) {
@@ -563,7 +562,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
                     RUNADebug("opened AD URL");
                 }];
             }
-            self.state = RUNA_ADVIEW_STATE_CLICKED;
             RUNADebug("WKNavigationActionPolicyCancel");
             decisionHandler(WKNavigationActionPolicyCancel);
             return;
@@ -624,7 +622,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     } else {
         [self pauseVideo];
     }
-    return NO;
+    return NO; // continue measurement
 }
 
 -(void)sendMeasureInview {
@@ -655,6 +653,16 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     }
 }
 
+- (void)stopVideo {
+    self.videoState = RUNA_VIDEO_STATE_STOP;
+    [self notifyVideoViewableChanged:NO];
+}
+
+- (void)resumeVideo {
+    self.videoState = RUNA_VIDEO_STATE_PLAYING;
+    [self notifyVideoViewableChanged:YES];
+}
+
 - (void)notifyVideoViewableChanged:(BOOL)isInView {
     NSString *viewable = isInView ? @"true" : @"false";
     NSString *functionName = [NSString stringWithFormat:@"window.cd.sendViewable(%@)", viewable];
@@ -665,6 +673,18 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
             RUNALog("video javascript evaluating error: %@", error);
         }
     }];
+}
+
+-(void)toggleVideoAdPlay:(BOOL)shouldPlay {
+    if ((self.state == RUNA_ADVIEW_STATE_SHOWED)
+        && self.mediaType == RUNA_MEDIA_TYPE_VIDEO) {
+        RUNADebug("toggleVideoAdPlay: %@", shouldPlay ? @"YES" : @"NO");
+        if (shouldPlay) {
+            [self resumeVideo];
+        } else {
+            [self stopVideo];
+        }
+    }
 }
 
 # pragma mark - helping method
@@ -718,7 +738,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     _state == RUNA_ADVIEW_STATE_RENDERING ? @"RENDERING":
     _state == RUNA_ADVIEW_STATE_MESSAGE_LISTENING ? @"MESSAGE_LISTENING":
     _state == RUNA_ADVIEW_STATE_SHOWED ? @"SHOWED" :
-    _state == RUNA_ADVIEW_STATE_CLICKED ? @"CLICKED" : @"unknown";
+    @"unknown";
 }
 
 

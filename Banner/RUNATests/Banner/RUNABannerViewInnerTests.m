@@ -76,8 +76,6 @@ NSString *const kDummyAdspotCode = @"code99999";
     XCTAssertTrue([bannerView isLoading]);
     bannerView.state = RUNA_ADVIEW_STATE_SHOWED;
     XCTAssertFalse([bannerView isLoading]);
-    bannerView.state = RUNA_ADVIEW_STATE_CLICKED;
-    XCTAssertFalse([bannerView isLoading]);
 }
 
 // Test to confirm the passage of method for coverage
@@ -327,8 +325,6 @@ NSString *const kDummyAdspotCode = @"code99999";
     XCTAssertFalse([bannerView isFinished]);
     bannerView.state = RUNA_ADVIEW_STATE_SHOWED;
     XCTAssertTrue([bannerView isFinished]);
-    bannerView.state = RUNA_ADVIEW_STATE_CLICKED;
-    XCTAssertFalse([bannerView isFinished]);
 }
 
 - (void)testTriggerSuccess {

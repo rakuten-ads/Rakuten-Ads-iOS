@@ -149,6 +149,8 @@ typedef NS_ENUM(NSUInteger, RUNABannerAdSpotBranch) {
  */
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerView* view, struct RUNABannerViewEvent event)) handler;
 
+-(void) toggleVideoAdPlay:(BOOL) shouldPlay;
+
 @end
 
 NS_ASSUME_NONNULL_END
