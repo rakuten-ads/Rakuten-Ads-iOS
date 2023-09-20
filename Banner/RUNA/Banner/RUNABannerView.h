@@ -137,6 +137,9 @@ typedef NS_ENUM(NSUInteger, RUNABannerAdSpotBranch) {
 /// the designated size of loaded ad content from the admin site
 @property(nonatomic, readonly) CGSize designatedContentSize;
 
+/// By default RUNABannerView make a adjustment for ad content with borders, true to disable this feature.
+@property(nonatomic) BOOL disableBorderAdjustment;
+
 /*!
  Request & load ad content without event handler.
  */
