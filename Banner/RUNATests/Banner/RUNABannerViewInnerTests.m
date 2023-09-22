@@ -48,6 +48,7 @@ NSString *const kDummyAdspotCode = @"code99999";
     XCTAssertNil(bannerView.userExt);
     XCTAssertNotNil(bannerView.imp.json);
     XCTAssertEqual(bannerView.imp.json.allKeys.count, (NSUInteger)0);
+    XCTAssertFalse(bannerView.disableBorderAdjustment);
     // Initial State
     XCTAssertTrue(bannerView.hidden);
     XCTAssertEqual(bannerView.state, RUNA_ADVIEW_STATE_INIT);
@@ -129,6 +130,7 @@ NSString *const kDummyAdspotCode = @"code99999";
     
     RUNABannerView *bannerView = [self getBannerViewOnViewController];
     bannerView.state = RUNA_ADVIEW_STATE_SHOWED; // mock state
+    bannerView.disableBorderAdjustment = YES;
     
     XCTestExpectation *expectation = [self expectationWithDescription:@"setSize"];
     expectation.expectedFulfillmentCount = params.count;
