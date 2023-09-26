@@ -36,6 +36,11 @@ RUNA SDK banner view は `WebKit/WKWebView`を元にした web view です。Web
 - `custom` :<br>
 任意のサイズを指定します。
 
+### disableBorderAdjustment
+デフォルトで一部Borderのある広告コンテンツを表示に最適化するため、RUNA SDKが自動的にサイズを少し調整しています。
+調整後に1pxの隙間がコンテンツとコンテナの間に発生します。
+`disableBorderAdjustment`を`false`に設定するによってこの機能を無効にします。
+
 ### DesignatedContentSize
 
 `designatedContentSize`　は広告ロードに成功した時、サーバーに指定していたサイズを読み取り可能なプロパティです。

@@ -33,6 +33,11 @@ The banner view keeps aspect radio and stretches its width to fit the super view
 - `custom` :<br>
 The banner view can be indicated to arbitrary size and ignores the orginal size.
 
+### disableBorderAdjustment
+By default, RUNA SDK does a size adjustment to adapt some ad content with borders. 
+This is will create a 1px margin edge area between ad content view and its container view.
+Set property `disableBorderAdjustment` to false to disable this default behaviour.
+
 ### DesignatedContentSize
 
 Readonly property `designatedContentSize` will be set by the size designated in admin site after loading ad content successfully.
