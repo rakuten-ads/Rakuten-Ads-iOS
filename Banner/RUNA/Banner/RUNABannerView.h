@@ -152,6 +152,11 @@ typedef NS_ENUM(NSUInteger, RUNABannerAdSpotBranch) {
  */
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerView* view, struct RUNABannerViewEvent event)) handler;
 
+/**
+ Toogle video state between play and pause.
+ @param shouldPlay
+    Value YES to play and No to pause.
+ */
 -(void) toggleVideoAdPlay:(BOOL) shouldPlay;
 
 @end
