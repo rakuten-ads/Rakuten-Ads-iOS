@@ -36,7 +36,7 @@ The banner view can be indicated to arbitrary size and ignores the orginal size.
 ### disableBorderAdjustment
 By default, RUNA SDK does adapt the size of some ad content with borders. 
 This is will create a 1px margin edge area between ad content view and its container view.
-Set property `disableBorderAdjustment` to false to disable this default behaviour.
+Set property `disableBorderAdjustment` to `true` to disable this default behaviour.
 
 ### DesignatedContentSize
 
@@ -108,7 +108,7 @@ RUNA SDK provides video control method for video ads.
 It can be used at a scean like that we need to pause a video ad is shown in background view.
 
 - **(void) toggleVideoAdPlay:(BOOL) shouldPlay;**<br>
-  - `shouldPlay`: Bool, Value YES to play and No to pause.
+  - `shouldPlay`: Bool, Value `true` to play and `false` to pause.
 
 
 ### Extensions

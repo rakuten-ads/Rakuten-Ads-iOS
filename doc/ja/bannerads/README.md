@@ -39,7 +39,7 @@ RUNA SDK banner view は `WebKit/WKWebView`を元にした web view です。Web
 ### disableBorderAdjustment
 デフォルトで一部Borderのある広告コンテンツを表示に最適化するため、RUNA SDKが自動的にサイズを少し調整しています。
 調整後に1pxの隙間がコンテンツとコンテナの間に発生します。
-`disableBorderAdjustment`を`false`に設定するによってこの機能を無効にします。
+`disableBorderAdjustment`を`true`に設定するによってこの機能を無効にします。
 
 ### DesignatedContentSize
 
@@ -110,7 +110,7 @@ RUNA SDKがビデオ広告の再生コントロール方法を提供していま
 広告がバックグラウンドへ移動する際にビデオを中断したいみたいな場合に使われます。
 
 - **(void) toggleVideoAdPlay:(BOOL) shouldPlay;**<br>
-  - `shouldPlay`: Bool, 値YESは再生する、NOは中断する。
+  - `shouldPlay`: Bool, 値`true`は再生する、`false`は中断する。
 
 ### 拡張設定
 
