@@ -36,6 +36,11 @@ RUNA SDK banner view は `WebKit/WKWebView`を元にした web view です。Web
 - `custom` :<br>
 任意のサイズを指定します。
 
+### disableBorderAdjustment
+デフォルトで一部Borderのある広告コンテンツを表示に最適化するため、RUNA SDKが自動的にサイズを少し調整しています。
+調整後に1pxの隙間がコンテンツとコンテナの間に発生します。
+`disableBorderAdjustment`を`false`に設定するによってこの機能を無効にします。
+
 ### DesignatedContentSize
 
 `designatedContentSize`　は広告ロードに成功した時、サーバーに指定していたサイズを読み取り可能なプロパティです。
@@ -99,6 +104,13 @@ Open Measurementを自動に有効するために`Podfile`に `pod 'OMAdapter'`�
 `RUNAAdSession` は広告内容の重複排除するために使用されます。`RUNAAdSession`が設定され且つnilではない場合、同じセッションに異なる広告内容がロードされることは保証されます。
 
 > __注意：__ 二つのバナーのロードタイミングが近い場合、重複な広告が表示されてしまう可能性があります。
+
+### Video ad
+RUNA SDKがビデオ広告の再生コントロール方法を提供しています。
+広告がバックグラウンドへ移動する際にビデオを中断したいみたいな場合に使われます。
+
+- ****-(void) toggleVideoAdPlay:(BOOL) shouldPlay;**<br>
+  - `shouldPlay`: Bool, 値YESは再生する、NOは中断する。
 
 ### 拡張設定
 
