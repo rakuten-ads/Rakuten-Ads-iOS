@@ -28,18 +28,18 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "RUNACore",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.6.0.xcframework.zip",
-            checksum : "f70d0cbb0c6371153b08202515ed437f345ed5d241dc717779ff939ce1836dbd"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.7.0.xcframework.zip",
+            checksum : "9785efa3aefd25019330c33029dd62da84804cc05c035640ac39a36319affea0"
         ),
         .binaryTarget(
             name: "RUNABanner",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.12.0.xcframework.zip",
-            checksum : "e131a57f1938dab68bdb3bb80bb81ebb98e38b3c29ab5a44d19fd6862fbfde74"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.13.0.xcframework.zip",
+            checksum : "dfc031fc6f1929e4b95ceecabed09b90e9c6fb816b00310d98acefe2faf71ca1"
         ),
         .binaryTarget(
             name: "RUNAOMAdapter",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMAdapter/RUNAOMAdapter_iOS_1.1.0.xcframework.zip",
-            checksum : "86ac3e2d721db35c9f45e1cf63b81f26bf1dde3f756b55026fde0d60a56919c8"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMAdapter/RUNAOMAdapter_iOS_1.2.0.xcframework.zip",
+            checksum : "d80ab79fc780e0a07df7326d3767abf17779caf9d0cb9789b19f6f9e8ddba053"
         ),
         .binaryTarget(
             name: "OMSDK_Rakuten",
