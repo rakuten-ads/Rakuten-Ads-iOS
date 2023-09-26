@@ -105,6 +105,13 @@ Open Measurementを自動に有効するために`Podfile`に `pod 'OMAdapter'`�
 
 > __注意：__ 二つのバナーのロードタイミングが近い場合、重複な広告が表示されてしまう可能性があります。
 
+### Video ad
+RUNA SDKがビデオ広告の再生コントロール方法を提供しています。
+広告がバックグラウンドへ移動する際にビデオを中断したいみたいな場合に使われます。
+
+- ****-(void) toggleVideoAdPlay:(BOOL) shouldPlay;**<br>
+  - `shouldPlay`: Bool, 値YESは再生する、NOは中断する。
+
 ### 拡張設定
 
 参照先: [拡張モジュール](./extension/README.md)

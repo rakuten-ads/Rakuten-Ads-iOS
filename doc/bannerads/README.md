@@ -34,7 +34,7 @@ The banner view keeps aspect radio and stretches its width to fit the super view
 The banner view can be indicated to arbitrary size and ignores the orginal size.
 
 ### disableBorderAdjustment
-By default, RUNA SDK does a size adjustment to adapt some ad content with borders. 
+By default, RUNA SDK does adapt the size of some ad content with borders. 
 This is will create a 1px margin edge area between ad content view and its container view.
 Set property `disableBorderAdjustment` to false to disable this default behaviour.
 
@@ -102,6 +102,14 @@ Add `pod 'OMAdapter'` into the `Podfile` will enable open measurement feature au
 `RUNAAdSession` is for avoiding duplicate advertisement contents. When a `RUNAAdSession` instance is set to banners and not nil, individual ad will be loaded at those banners with the same session instance. 
 
 > __Notice:__ It is still possible that a banner show as same ad as a previous one when two banners' loading times are too close.
+
+### Video ad
+RUNA SDK provides video control method for video ads. 
+It can be used at a scean like that we need to pause a video ad is shown in background view.
+
+- ****-(void) toggleVideoAdPlay:(BOOL) shouldPlay;**<br>
+  - `shouldPlay`: Bool, Value YES to play and No to pause.
+
 
 ### Extensions
 
