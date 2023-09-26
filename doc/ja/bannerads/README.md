@@ -109,7 +109,7 @@ Open Measurementを自動に有効するために`Podfile`に `pod 'OMAdapter'`�
 RUNA SDKがビデオ広告の再生コントロール方法を提供しています。
 広告がバックグラウンドへ移動する際にビデオを中断したいみたいな場合に使われます。
 
-- ****-(void) toggleVideoAdPlay:(BOOL) shouldPlay;**<br>
+- **(void) toggleVideoAdPlay:(BOOL) shouldPlay;**<br>
   - `shouldPlay`: Bool, 値YESは再生する、NOは中断する。
 
 ### 拡張設定

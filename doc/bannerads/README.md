@@ -107,7 +107,7 @@ Add `pod 'OMAdapter'` into the `Podfile` will enable open measurement feature au
 RUNA SDK provides video control method for video ads. 
 It can be used at a scean like that we need to pause a video ad is shown in background view.
 
-- ****-(void) toggleVideoAdPlay:(BOOL) shouldPlay;**<br>
+- **(void) toggleVideoAdPlay:(BOOL) shouldPlay;**<br>
   - `shouldPlay`: Bool, Value YES to play and No to pause.
 
 
