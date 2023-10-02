@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef UIView* _Nonnull (^RUNABannerCarouselViewItemDecorator)(RUNABannerView* view, NSInteger position);
 
 /*!
- @enum Enumerations of the itemScaleMode option
+ Enumerations of the itemScaleMode option
  */
 typedef NS_ENUM(NSUInteger, RUNABannerCarouselViewItemScale) {
     /// Fit the parent width and calculate height with aspect ratio

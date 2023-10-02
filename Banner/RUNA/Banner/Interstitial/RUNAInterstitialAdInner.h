@@ -9,7 +9,7 @@
 #ifndef RUNAInterstitialAdInner_h
 #define RUNAInterstitialAdInner_h
 
-#import "RUNAInterstitialAd.h"
+#import <RUNABanner/RUNAInterstitialAd.h>
 #import "RUNAInterstitialViewController.h"
 #import "RUNABannerViewInner.h"
 

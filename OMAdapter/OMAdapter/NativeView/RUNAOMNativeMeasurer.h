@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RUNAMeasurement.h"
+#import <RUNABanner/RUNAMeasurement.h>
+#import <RUNAOMAdapter/RUNAOMNativeMeasurableTarget.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RUNANativeOpenMeasurer : NSObject<RUNAMeasurer>
+@interface RUNAOMNativeMeasurer : NSObject<RUNAMeasurer>
+
+@property(nonatomic) RUNAOMNativeProviderConfiguration* configuration;
 
 @end
 

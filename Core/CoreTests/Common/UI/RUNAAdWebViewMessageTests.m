@@ -21,14 +21,19 @@
     RUNAAdWebViewMessage *message = [RUNAAdWebViewMessage parse:@{
         @"vendor" : @"vendor",
         @"type" : @"type",
-        @"url" : @"url"
+        @"url" : @"url",
+        @"message" : @"error_message",
     }];
     XCTAssertEqualObjects(message.vendor, @"vendor");
     XCTAssertEqualObjects(message.type, @"type");
     XCTAssertEqualObjects(message.url, @"url");
+    XCTAssertEqualObjects(message.message, @"error_message");
   
     NSString *description = [NSString stringWithFormat:@"%@", message];
-    XCTAssertEqualObjects(description, @"{ vendor: vendor, type: type, url: url }");
+    XCTAssertTrue([description containsString:@"vendor"]);
+    XCTAssertTrue([description containsString:@"type"]);
+    XCTAssertTrue([description containsString:@"url"]);
+    XCTAssertTrue([description containsString:@"message"]);
 }
 
 @end

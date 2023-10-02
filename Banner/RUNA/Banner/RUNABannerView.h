@@ -74,7 +74,7 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewError) {
 };
 
 /*!
-event detail declaration
+Struct of event object when loading ad.
  */
 struct RUNABannerViewEvent {
     RUNABannerViewEventType eventType;
@@ -137,6 +137,9 @@ typedef NS_ENUM(NSUInteger, RUNABannerAdSpotBranch) {
 /// the designated size of loaded ad content from the admin site
 @property(nonatomic, readonly) CGSize designatedContentSize;
 
+/// By default RUNABannerView make a adjustment for ad content with borders, true to disable this feature.
+@property(nonatomic) BOOL disableBorderAdjustment;
+
 /*!
  Request & load ad content without event handler.
  */
@@ -148,6 +151,13 @@ typedef NS_ENUM(NSUInteger, RUNABannerAdSpotBranch) {
     callback to handle variety events.
  */
 -(void) loadWithEventHandler:(nullable void (^)(RUNABannerView* view, struct RUNABannerViewEvent event)) handler;
+
+/**
+ Toogle video state between play and pause.
+ @param shouldPlay
+    Value YES to play and No to pause.
+ */
+-(void) toggleVideoAdPlay:(BOOL) shouldPlay;
 
 @end
 

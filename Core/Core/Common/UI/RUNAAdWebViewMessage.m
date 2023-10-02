@@ -18,6 +18,7 @@ NSString* kSdkMessageTypeOpenPopup = @"open_popup";
 NSString* kSdkMessageTypeVideo = @"video";
 NSString* kSdkMessageTypeVideoLoaded = @"video_loaded";
 NSString* kSdkMessageTypeClose = @"close";
+NSString* kSdkMessageTypeJsError = @"js_error";
 
 @implementation RUNAAdWebViewMessage
 
@@ -27,6 +28,7 @@ NSString* kSdkMessageTypeClose = @"close";
     message->_vendor = [json getString:@"vendor"];
     message->_type = [json getString:@"type"];
     message->_url = [json getString:@"url"];
+    message->_message = [json getString:@"message"];
     return message;
 }
 
@@ -35,10 +37,12 @@ NSString* kSdkMessageTypeClose = @"close";
             @"vendor: %@"
             @", type: %@"
             @", url: %@"
+            @", message: %@"
             @" }",
             self.vendor,
             self.type,
             self.url,
+            self.message,
             nil];
 }
 

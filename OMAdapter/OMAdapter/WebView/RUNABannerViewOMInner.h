@@ -10,9 +10,9 @@
 #define RUNABannerViewOMInner_h
 
 #import "RUNABannerViewInner.h"
-#import "RUNAMeasurement.h"
+#import <RUNABanner/RUNAMeasurement.h>
 
-@interface RUNABannerView(OMSDK)<RUNAOpenMeasurement>
+@interface RUNABannerView(OMSDK) <RUNAOpenMeasurement>
 
 -(void) om_sendRemoteLogWithMessage:(NSString*) message andException:(NSException*) exception;
 

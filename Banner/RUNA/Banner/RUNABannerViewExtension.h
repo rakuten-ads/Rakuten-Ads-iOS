@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /*!
- Genre detail declaration.
+ Define a genre with details.
  */
 @interface RUNABannerViewGenreProperty : NSObject
 

@@ -23,6 +23,7 @@
 /* Begin PBXBuildFile section */
 		3210D0152476EDC200E93FF2 /* RUNABanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3210D0142476EDC200E93FF2 /* RUNABanner.framework */; };
 		32430D4B28BD0E5A0096D4CC /* OMSDK_Rakuten.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32430D4928BD0E530096D4CC /* OMSDK_Rakuten.xcframework */; };
+		324AB4982A0DC9EB00AF0851 /* RUNAOMNativeMeasurer.m in Sources */ = {isa = PBXBuildFile; fileRef = 325FE79A2980B6320038C2C3 /* RUNAOMNativeMeasurer.m */; };
 		3259214B24EFA37E00345612 /* RUNABannerViewOM.h in Headers */ = {isa = PBXBuildFile; fileRef = 320313AA24C173D0002D9727 /* RUNABannerViewOM.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32671F7124108BB400C50F9F /* RUNAOMAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32671F6724108BB400C50F9F /* RUNAOMAdapter.framework */; };
 		32671F7624108BB400C50F9F /* RUNABannerViewOMTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671F7524108BB400C50F9F /* RUNABannerViewOMTests.m */; };
@@ -30,7 +31,11 @@
 		32671F8424108BD300C50F9F /* RUNAOpenMeasurer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671F8224108BD300C50F9F /* RUNAOpenMeasurer.m */; };
 		32671FA52412501400C50F9F /* RUNABannerViewOM.m in Sources */ = {isa = PBXBuildFile; fileRef = 32671FA32412501400C50F9F /* RUNABannerViewOM.m */; };
 		327AE03524C41039000071E8 /* RUNAOpenMeasurerProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 327AE03324C41039000071E8 /* RUNAOpenMeasurerProvider.m */; };
+		32AD01A22A2A21E6005B1347 /* RUNAOMNativeMeasurableTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AD01A02A2A21E6005B1347 /* RUNAOMNativeMeasurableTarget.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32AD01A32A2A21E6005B1347 /* RUNAOMNativeMeasurableTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AD01A12A2A21E6005B1347 /* RUNAOMNativeMeasurableTarget.m */; };
+		32AD01AA2A301414005B1347 /* RUNAOMNativeMeasurer.h in Headers */ = {isa = PBXBuildFile; fileRef = 325FE7992980B6320038C2C3 /* RUNAOMNativeMeasurer.h */; };
 		32B4FFE627E08A8200CE696C /* RUNABanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3210D02C247771A900E93FF2 /* RUNABanner.framework */; };
+		32DD75232A6FCED0005DB895 /* RUNAOMMeasurableTargetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DD75222A6FCED0005DB895 /* RUNAOMMeasurableTargetTests.m */; };
 		32EE303A2415D80900E6D076 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EE30392415D80900E6D076 /* RUNACore.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,10 +76,8 @@
 		3210D0142476EDC200E93FF2 /* RUNABanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNABanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32430D4928BD0E530096D4CC /* OMSDK_Rakuten.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OMSDK_Rakuten.xcframework; sourceTree = "<group>"; };
 		3259214C24EFA48900345612 /* RUNAOMAdapter.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = RUNAOMAdapter.modulemap; sourceTree = "<group>"; };
-		325FE7962980B4330038C2C3 /* RUNAViewabilityNativeProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAViewabilityNativeProvider.m; sourceTree = "<group>"; };
-		325FE7972980B4330038C2C3 /* RUNAViewabilityNativeProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAViewabilityNativeProvider.h; sourceTree = "<group>"; };
-		325FE7992980B6320038C2C3 /* RUNANativeOpenMeasurer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNANativeOpenMeasurer.h; sourceTree = "<group>"; };
-		325FE79A2980B6320038C2C3 /* RUNANativeOpenMeasurer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNANativeOpenMeasurer.m; sourceTree = "<group>"; };
+		325FE7992980B6320038C2C3 /* RUNAOMNativeMeasurer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOMNativeMeasurer.h; sourceTree = "<group>"; };
+		325FE79A2980B6320038C2C3 /* RUNAOMNativeMeasurer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOMNativeMeasurer.m; sourceTree = "<group>"; };
 		32671F6724108BB400C50F9F /* RUNAOMAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNAOMAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		32671F6A24108BB400C50F9F /* RUNAOMAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOMAdapter.h; sourceTree = "<group>"; };
 		32671F6B24108BB400C50F9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,6 +90,9 @@
 		32671FA32412501400C50F9F /* RUNABannerViewOM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerViewOM.m; sourceTree = "<group>"; };
 		327AE03224C41039000071E8 /* RUNAOpenMeasurerProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOpenMeasurerProvider.h; sourceTree = "<group>"; };
 		327AE03324C41039000071E8 /* RUNAOpenMeasurerProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOpenMeasurerProvider.m; sourceTree = "<group>"; };
+		32AD01A02A2A21E6005B1347 /* RUNAOMNativeMeasurableTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOMNativeMeasurableTarget.h; sourceTree = "<group>"; };
+		32AD01A12A2A21E6005B1347 /* RUNAOMNativeMeasurableTarget.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOMNativeMeasurableTarget.m; sourceTree = "<group>"; };
+		32DD75222A6FCED0005DB895 /* RUNAOMMeasurableTargetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOMMeasurableTargetTests.m; sourceTree = "<group>"; };
 		32EE30392415D80900E6D076 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -130,6 +136,29 @@
 			path = OMSDK;
 			sourceTree = "<group>";
 		};
+		3257560F2A6773C900068494 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				32671F8124108BD300C50F9F /* RUNAOpenMeasurer.h */,
+				32671F8224108BD300C50F9F /* RUNAOpenMeasurer.m */,
+				320313AA24C173D0002D9727 /* RUNABannerViewOM.h */,
+				320313AE24C175F8002D9727 /* RUNABannerViewOMInner.h */,
+				32671FA32412501400C50F9F /* RUNABannerViewOM.m */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		325756102A6773DF00068494 /* NativeView */ = {
+			isa = PBXGroup;
+			children = (
+				325FE7992980B6320038C2C3 /* RUNAOMNativeMeasurer.h */,
+				325FE79A2980B6320038C2C3 /* RUNAOMNativeMeasurer.m */,
+				32AD01A02A2A21E6005B1347 /* RUNAOMNativeMeasurableTarget.h */,
+				32AD01A12A2A21E6005B1347 /* RUNAOMNativeMeasurableTarget.m */,
+			);
+			path = NativeView;
+			sourceTree = "<group>";
+		};
 		32671F5D24108BB300C50F9F = {
 			isa = PBXGroup;
 			children = (
@@ -156,17 +185,10 @@
 			children = (
 				32671F6A24108BB400C50F9F /* RUNAOMAdapter.h */,
 				32671F6B24108BB400C50F9F /* Info.plist */,
-				32671F8124108BD300C50F9F /* RUNAOpenMeasurer.h */,
-				32671F8224108BD300C50F9F /* RUNAOpenMeasurer.m */,
-				320313AA24C173D0002D9727 /* RUNABannerViewOM.h */,
-				320313AE24C175F8002D9727 /* RUNABannerViewOMInner.h */,
-				32671FA32412501400C50F9F /* RUNABannerViewOM.m */,
+				3257560F2A6773C900068494 /* WebView */,
+				325756102A6773DF00068494 /* NativeView */,
 				327AE03224C41039000071E8 /* RUNAOpenMeasurerProvider.h */,
 				327AE03324C41039000071E8 /* RUNAOpenMeasurerProvider.m */,
-				325FE7992980B6320038C2C3 /* RUNANativeOpenMeasurer.h */,
-				325FE79A2980B6320038C2C3 /* RUNANativeOpenMeasurer.m */,
-				325FE7972980B4330038C2C3 /* RUNAViewabilityNativeProvider.h */,
-				325FE7962980B4330038C2C3 /* RUNAViewabilityNativeProvider.m */,
 				3259214C24EFA48900345612 /* RUNAOMAdapter.modulemap */,
 			);
 			path = OMAdapter;
@@ -175,6 +197,7 @@
 		32671F7424108BB400C50F9F /* OMAdapterTests */ = {
 			isa = PBXGroup;
 			children = (
+				32DD751F2A6FCEB9005DB895 /* NativeView */,
 				32671F7524108BB400C50F9F /* RUNABannerViewOMTests.m */,
 				32671F7724108BB400C50F9F /* Info.plist */,
 			);
@@ -190,6 +213,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		32DD751F2A6FCEB9005DB895 /* NativeView */ = {
+			isa = PBXGroup;
+			children = (
+				32DD75222A6FCED0005DB895 /* RUNAOMMeasurableTargetTests.m */,
+			);
+			path = NativeView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -199,6 +230,8 @@
 			files = (
 				32671F7824108BB400C50F9F /* RUNAOMAdapter.h in Headers */,
 				3259214B24EFA37E00345612 /* RUNABannerViewOM.h in Headers */,
+				32AD01AA2A301414005B1347 /* RUNAOMNativeMeasurer.h in Headers */,
+				32AD01A22A2A21E6005B1347 /* RUNAOMNativeMeasurableTarget.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +382,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				32671FA52412501400C50F9F /* RUNABannerViewOM.m in Sources */,
+				32AD01A32A2A21E6005B1347 /* RUNAOMNativeMeasurableTarget.m in Sources */,
 				327AE03524C41039000071E8 /* RUNAOpenMeasurerProvider.m in Sources */,
+				324AB4982A0DC9EB00AF0851 /* RUNAOMNativeMeasurer.m in Sources */,
 				32671F8424108BD300C50F9F /* RUNAOpenMeasurer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32671F7624108BB400C50F9F /* RUNABannerViewOMTests.m in Sources */,
+				32DD75232A6FCED0005DB895 /* RUNAOMMeasurableTargetTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,7 +538,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1010001;
+				CURRENT_PROJECT_VERSION = 1020001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -526,7 +562,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				MODULEMAP_FILE = OMAdapter/RUNAOMAdapter.modulemap;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
@@ -545,7 +581,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1010001;
+				CURRENT_PROJECT_VERSION = 1020001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -569,7 +605,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				MODULEMAP_FILE = OMAdapter/RUNAOMAdapter.modulemap;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";
@@ -702,7 +738,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1010001;
+				CURRENT_PROJECT_VERSION = 1020001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -726,7 +762,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.2.0;
 				MODULEMAP_FILE = OMAdapter/RUNAOMAdapter.modulemap;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++14";

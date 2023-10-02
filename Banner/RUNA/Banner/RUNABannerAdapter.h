@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <RUNACore/RUNABidAdapter.h>
 #import <RUNACore/RUNAURLString.h>
-#import "RUNABannerView.h"
+#import <RUNABanner/RUNABannerView.h>
 
 NS_ASSUME_NONNULL_BEGIN
 @interface RUNABanner : NSObject<RUNAAdInfo>

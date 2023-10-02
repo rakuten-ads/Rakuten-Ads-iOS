@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /*!
- @enum Enumerations of the size scale option
+ Enumerations of the size scale option
  */
 typedef NS_ENUM(NSUInteger, RUNAInterstitialAdSize) {
     /// scale the ad content to fit screen size while keeping aspect ratio.

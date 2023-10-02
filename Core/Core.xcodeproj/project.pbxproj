@@ -50,6 +50,8 @@
 		3272354F28F8F5FD00F57D32 /* RUNACipher.h in Headers */ = {isa = PBXBuildFile; fileRef = 3272354D28F8F5FD00F57D32 /* RUNACipher.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3272355028F8F5FD00F57D32 /* RUNACipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3272354E28F8F5FD00F57D32 /* RUNACipher.m */; };
 		3272355228FCE5D900F57D32 /* RUNACryptoWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3272355128FCE5D900F57D32 /* RUNACryptoWrapper.swift */; };
+		32AD01A82A2DE9CF005B1347 /* RUNAUIView+.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AD01A62A2DE9CF005B1347 /* RUNAUIView+.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		32AD01A92A2DE9CF005B1347 /* RUNAUIView+.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AD01A72A2DE9CF005B1347 /* RUNAUIView+.m */; };
 		32BEBF80266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 32BEBF7E266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32BEBF81266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEBF7F266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m */; };
 		32CAC0DD22164E6400BB4CC4 /* RUNAAppInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -136,6 +138,8 @@
 		3272354D28F8F5FD00F57D32 /* RUNACipher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNACipher.h; sourceTree = "<group>"; };
 		3272354E28F8F5FD00F57D32 /* RUNACipher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNACipher.m; sourceTree = "<group>"; };
 		3272355128FCE5D900F57D32 /* RUNACryptoWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RUNACryptoWrapper.swift; sourceTree = "<group>"; };
+		32AD01A62A2DE9CF005B1347 /* RUNAUIView+.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RUNAUIView+.h"; sourceTree = "<group>"; };
+		32AD01A72A2DE9CF005B1347 /* RUNAUIView+.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RUNAUIView+.m"; sourceTree = "<group>"; };
 		32BEBF7E266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAdWebViewMessageManager.h; sourceTree = "<group>"; };
 		32BEBF7F266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewMessageManager.m; sourceTree = "<group>"; };
 		32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAppInfo.h; sourceTree = "<group>"; };
@@ -252,6 +256,8 @@
 				3210CFF1247614DC00E93FF2 /* RUNAAdWebView.m */,
 				3210CFF2247614DC00E93FF2 /* RUNAUIViewController+.h */,
 				3210CFF3247614DC00E93FF2 /* RUNAUIViewController+.m */,
+				32AD01A62A2DE9CF005B1347 /* RUNAUIView+.h */,
+				32AD01A72A2DE9CF005B1347 /* RUNAUIView+.m */,
 				32BEBF7E266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.h */,
 				32BEBF7F266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m */,
 			);
@@ -505,6 +511,7 @@
 				3210D0102476E61800E93FF2 /* RUNADefines.h in Headers */,
 				3210CFFB24765F1700E93FF2 /* RUNAAdWebView.h in Headers */,
 				3210CFFC24765F1700E93FF2 /* RUNAUIViewController+.h in Headers */,
+				32AD01A82A2DE9CF005B1347 /* RUNAUIView+.h in Headers */,
 				321FE41325805CF300D9A8CD /* RUNARemoteLogEntity.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -640,6 +647,7 @@
 				32BEBF81266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m in Sources */,
 				3272355028F8F5FD00F57D32 /* RUNACipher.m in Sources */,
 				3210D0052476684100E93FF2 /* RUNAAdWebViewMessage.m in Sources */,
+				32AD01A92A2DE9CF005B1347 /* RUNAUIView+.m in Sources */,
 				32696FFB2567907500602E5C /* RUNAInfoPlist.m in Sources */,
 				32EE7C042578A9B100CF7B4A /* RUNARemoteLogger.m in Sources */,
 				3210D0032476683500E93FF2 /* RUNAOpenRTB.m in Sources */,
@@ -767,7 +775,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1060001;
+				CURRENT_PROJECT_VERSION = 1070001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
@@ -787,7 +795,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.7.0;
 				MODULEMAP_FILE = Core/RUNACore.modulemap;
 				MODULEMAP_PRIVATE_FILE = Core/RUNACore.private.modulemap;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
@@ -973,7 +981,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1060001;
+				CURRENT_PROJECT_VERSION = 1070001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
@@ -993,7 +1001,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.7.0;
 				MODULEMAP_FILE = Core/RUNACore.modulemap;
 				MODULEMAP_PRIVATE_FILE = Core/RUNACore.private.modulemap;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
@@ -1015,7 +1023,7 @@
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1060001;
+				CURRENT_PROJECT_VERSION = 1070001;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = "";
@@ -1035,7 +1043,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.7.0;
 				MODULEMAP_FILE = Core/RUNACore.modulemap;
 				MODULEMAP_PRIVATE_FILE = "";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";

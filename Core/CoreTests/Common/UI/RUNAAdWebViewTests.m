@@ -15,7 +15,9 @@
 @implementation RUNAAdWebViewTests
 
 - (void)testInit {
-    RUNAAdWebView *webView = [[RUNAAdWebView alloc]initWithFrame:CGRectZero];
+    RUNAAdWebView *webView = [RUNAAdWebView new];
+    [webView adjustAppearance];
+    
     XCTAssertTrue(webView.configuration.allowsInlineMediaPlayback);
     XCTAssertEqual(webView.backgroundColor, UIColor.clearColor);
     XCTAssertFalse(webView.opaque);

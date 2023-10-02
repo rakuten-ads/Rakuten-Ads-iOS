@@ -1,50 +1,76 @@
 //
-//  RUNANativeOpenMeasurer.m
+//  RUNAOpenMeasurementAdapter.m
 //  OMAdapter
 //
-//  Created by Wu, Wei | David | GATD on 2023/01/25.
-//  Copyright © 2023 RUNA. All rights reserved.
+//  Created by Wu, Wei b on R 2/03/05.
+//  Copyright © Reiwa 2 RUNA. All rights reserved.
 //
 
-#import "RUNANativeOpenMeasurer.h"
 #import "RUNAOpenMeasurer.h"
-#import "RUNAOpenMeasurerProvider.h"
-
 #import <OMSDK_Rakuten/OMIDSDK.h>
 #import <OMSDK_Rakuten/OMIDAdSession.h>
 #import <OMSDK_Rakuten/OMIDAdSessionContext.h>
 #import <OMSDK_Rakuten/OMIDAdSessionConfiguration.h>
 #import <OMSDK_Rakuten/OMIDAdEvents.h>
-#import <OMSDK_Rakuten/OMIDVerificationScriptResource.h>
 
+#import "RUNABannerViewOMInner.h"
 #import <RUNACore/RUNADefines.h>
 
-@interface RUNANativeOpenMeasurer()
+@interface RUNAOpenMeasurer()
 
-@property(nonatomic, weak, nullable) id<RUNAMeasurer> target;
-
+@property(nonatomic, weak, nullable) id<RUNAOpenMeasurement> measurableTarget;
 @property(nonatomic, weak, nullable) UIView* adView;
+@property(nonatomic, weak, nullable) WKWebView* webView;
 @property(nonatomic, nonnull) OMIDRakutenAdSession* adSession;
 
 @end
 
-@implementation RUNANativeOpenMeasurer
+NSString* kPartnerName = @"Rakuten";
 
-- (void)startMeasurement {
+@implementation RUNAOpenMeasurer
 
+-(void)startMeasurement {
+    if (![self isSDKActive]
+        || !self.adView
+        || !self.webView) {
+        RUNALog("Not prepared for open measurement[OM].");
+        return;
+    }
+    
+    [self createAdSession];
+    if (self.adSession) {
+        NSError* err;
+        OMIDRakutenAdEvents* event = [[OMIDRakutenAdEvents alloc] initWithAdSession:self.adSession error:&err];
+        if (err) {
+            RUNADebug("create OMIDRakutenAdEvents failed: %@", err);
+            [self sendRemoteLogWithMessage:@"create OMIDRakutenAdEvents failed:" andError:err];
+            return;
+        }
+        
+        RUNADebug("measurement[OM] start");
+        [self.adSession start];
+        
+        err = nil;
+        [event loadedWithError:&err];
+        if (err) {
+            RUNADebug("unable to trigger loaded OM event: %@)", err);
+            [self sendRemoteLogWithMessage:@"unable to trigger loaded OM event:" andError:err];
+            return;
+        }
+        
+        err = nil;
+        [event impressionOccurredWithError:&err];
+        if (err) {
+            RUNADebug("OMID impression failed: %@", err);
+            [self sendRemoteLogWithMessage:@"OMID impression failed:" andError:err];
+            return;
+        }
+    }
 }
 
 - (void)finishMeasurement {
     RUNADebug("measurement[OM] finish");
     [self.adSession finish];
-}
-
-- (void)setMeasureTarget:(nonnull id<RUNAMeasurable>)target {
-
-}
-
-- (void)setMeasurerDelegate:(nonnull id<RUNAMeasurerDelegate>)measurerDelegate {
-
 }
 
 -(BOOL) isSDKActive {
@@ -74,18 +100,10 @@
     }
 }
 
-NSString* omVerificationJsURL = @"https://storage.googleapis.com/rssp-dev-cdn/sdk/js/omid-verification-client-v1.js";
-NSString* vendorKey = @"iabtechlab.com-omid";
-NSString* params = @"iabtechlab-Rakuten";
-
 -(OMIDRakutenAdSessionContext *)createAdSessionContextWithPartner:(OMIDRakutenPartner*) partner {
     OMIDRakutenAdSessionContext* context = nil;
-    NSMutableArray *scripts = [NSMutableArray new];
-    [scripts addObject:[[OMIDRakutenVerificationScriptResource alloc] initWithURL:[NSURL URLWithString:omVerificationJsURL] vendorKey: vendorKey
-                                                                parameters:params]];
-
     NSError* err;
-    context = [[OMIDRakutenAdSessionContext alloc] initWithPartner:partner script:@"js" resources:scripts contentUrl:nil customReferenceIdentifier:nil error:&err];
+    context = [[OMIDRakutenAdSessionContext alloc] initWithPartner:partner webView:self.webView contentUrl:nil customReferenceIdentifier:nil error:&err];
     if (err) {
         RUNADebug("create OMIDRakutenAdSessionContext failed: %@", err);
         [self sendRemoteLogWithMessage:@"create OMIDRakutenAdSessionContext failed:" andError:err];
@@ -110,21 +128,33 @@ NSString* params = @"iabtechlab-Rakuten";
     return config;
 }
 
-NSString* omProviderURL = @"";
--(nullable NSString*) omidJSScript {
-    RUNAOpenMeasurerProvider* provider = [[RUNAOpenMeasurerProvider alloc] initWithURL:omProviderURL];
-    NSError* err;
-    NSString* omidJSScript = [provider.cacheFile readStringWithError:&err];
-    if (err) {
-        RUNADebug("Destination of omProviderURL not found");
+#pragma mark - RUNAMeasurer
+
+- (void)setMeasureTarget:(id<RUNAOpenMeasurement>)target {
+    self.measurableTarget = target;
+    self.adView = [target getOMAdView];
+    if (!self.adView) {
+        RUNADebug("OM target AdView must not be nil");
     }
-    return omidJSScript;
+    self.webView = [target getOMWebView];
+    if (!self.adView) {
+        RUNADebug("OM target WebView is nil");
+    }
+}
+
+- (void)setMeasurerDelegate:(nonnull id<RUNAMeasurerDelegate>)measurerDelegate {
+    // NOP
 }
 
 -(void) sendRemoteLogWithMessage:(NSString*) message andError:(NSError*) error {
-//    if ([self.measurableTarget isKindOfClass:[RUNABannerView class]]) {
-//        NSException* exception = [NSException exceptionWithName:error.description reason:@"RUNA OMSDK" userInfo:nil];
-//        [(RUNABannerView*)self.measurableTarget om_sendRemoteLogWithMessage:message andException:exception];
-//    }
+    if ([self.measurableTarget isKindOfClass:[RUNABannerView class]]) {
+        NSException* exception = [NSException exceptionWithName:error.description reason:@"RUNA OMSDK" userInfo:nil];
+        [(RUNABannerView*)self.measurableTarget om_sendRemoteLogWithMessage:message andException:exception];
+    }
 }
+
++(NSString*) versionString {
+    return @OS_STRINGIFY(RUNA_SDK_VERSION);
+}
+
 @end

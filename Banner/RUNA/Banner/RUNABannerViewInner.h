@@ -23,7 +23,7 @@
 #import <RUNACore/RUNAAdWebViewMessageManager.h>
 #import <RUNACore/RUNARemoteLogger.h>
 #import <RUNACore/RUNARemoteLogEntity.h>
-#import "RUNAMeasurement.h"
+#import <RUNABanner/RUNAMeasurement.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,7 +35,6 @@ typedef NS_ENUM(NSUInteger, RUNABannerViewState) {
     RUNA_ADVIEW_STATE_RENDERING,
     RUNA_ADVIEW_STATE_MESSAGE_LISTENING,
     RUNA_ADVIEW_STATE_SHOWED,
-    RUNA_ADVIEW_STATE_CLICKED,
 };
 
 typedef NS_ENUM(NSUInteger, RUNAVideoState) {
