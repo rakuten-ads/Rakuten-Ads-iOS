@@ -39,12 +39,13 @@
     XCTAssertEqualObjects(rs, expectResult);
 }
 
-- (void)testCC_MD5 {
-    NSString* expectResult = @"571002c02f2144a41617487738060992";
-    NSString* text = @"GoiGoiSuuuuuuuuuuuu";
-    
-    NSString* rs = [RUNACipher cc_md5:text];
-    XCTAssertEqualObjects(rs, expectResult);
-}
+// delete after lifting support version to iOS 13
+//- (void)testCC_MD5 {
+//    NSString* expectResult = @"571002c02f2144a41617487738060992";
+//    NSString* text = @"GoiGoiSuuuuuuuuuuuu";
+//
+//    NSString* rs = [RUNACipher cc_md5:text];
+//    XCTAssertEqualObjects(rs, expectResult);
+//}
 
 @end

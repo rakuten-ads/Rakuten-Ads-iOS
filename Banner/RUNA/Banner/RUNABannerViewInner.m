@@ -328,6 +328,8 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     
     // Web View
     self->_webView = [RUNAAdWebView new];
+    self.webView.isSafeForBorder = !self.disableBorderAdjustment;
+    [self.webView adjustAppearance];
     __weak typeof(self) weakSelf = self;
 
     RUNAAdWebViewMessageManager* messageManager = [[RUNAAdWebViewMessageManager alloc] initWithName:kSdkMessageHandlerName];
