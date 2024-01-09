@@ -334,40 +334,40 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 
     RUNAAdWebViewMessageManager* messageManager = [[RUNAAdWebViewMessageManager alloc] initWithName:kSdkMessageHandlerName];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
         [weakSelf triggerSuccess];
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeCollapse handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
         [weakSelf triggerFailure];
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeRegister handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
         weakSelf.state = RUNA_ADVIEW_STATE_MESSAGE_LISTENING;
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeUnfilled handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
         weakSelf.error = RUNABannerViewErrorUnfilled;
         [weakSelf triggerFailure];
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideo handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
         weakSelf.mediaType = RUNA_MEDIA_TYPE_VIDEO;
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoLoaded handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
         weakSelf.videoState = RUNA_VIDEO_STATE_LOADED;
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeClose handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
         if (weakSelf.eventHandler) {
             struct RUNABannerViewEvent event = { RUNABannerViewEventTypeInterstitialClosed, weakSelf.error };
             weakSelf.eventHandler(weakSelf, event);
         }
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeJsError handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
-        RUNALog("received js error: %@", message.message);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
+        RUNALog("adspotId [%@] received js error: %@", weakSelf.adSpotId, message.message);
     }]];
 
     [self.webView.configuration.userContentController addScriptMessageHandler:messageManager name:kSdkMessageHandlerName];
