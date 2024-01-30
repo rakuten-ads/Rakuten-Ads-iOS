@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -23,6 +23,7 @@
 /* Begin PBXBuildFile section */
 		320313B224C182AD002D9727 /* RUNACacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 320313B024C182AD002D9727 /* RUNACacheFile.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		320313B324C182AD002D9727 /* RUNACacheFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 320313B124C182AD002D9727 /* RUNACacheFile.m */; };
+		3207924C2B4CD83700EC43C4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3207924B2B4CD57F00EC43C4 /* PrivacyInfo.xcprivacy */; };
 		3210CFF824765E4400E93FF2 /* RUNAOpenRTB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210CFE6247614DC00E93FF2 /* RUNAOpenRTB.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3210CFF924765F1700E93FF2 /* RUNAURLString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210CFEB247614DC00E93FF2 /* RUNAURLString.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3210CFFA24765F1700E93FF2 /* RUNAAdWebViewMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210CFEE247614DC00E93FF2 /* RUNAAdWebViewMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -109,6 +110,7 @@
 /* Begin PBXFileReference section */
 		320313B024C182AD002D9727 /* RUNACacheFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNACacheFile.h; sourceTree = "<group>"; };
 		320313B124C182AD002D9727 /* RUNACacheFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNACacheFile.m; sourceTree = "<group>"; };
+		3207924B2B4CD57F00EC43C4 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		3210CFE3247614DC00E93FF2 /* RUNABidAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABidAdapter.h; sourceTree = "<group>"; };
 		3210CFE4247614DC00E93FF2 /* RUNABidAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABidAdapter.m; sourceTree = "<group>"; };
 		3210CFE6247614DC00E93FF2 /* RUNAOpenRTB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOpenRTB.h; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 		32F258B221E5866C001FD9C0 = {
 			isa = PBXGroup;
 			children = (
+				3207924B2B4CD57F00EC43C4 /* PrivacyInfo.xcprivacy */,
 				32F259B821E599F4001FD9C0 /* Core */,
 				32F258C921E5866D001FD9C0 /* CoreTests */,
 				32F258BD21E5866C001FD9C0 /* Products */,
@@ -601,6 +604,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3207924C2B4CD83700EC43C4 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
