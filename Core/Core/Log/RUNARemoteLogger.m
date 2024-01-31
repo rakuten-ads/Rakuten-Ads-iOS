@@ -89,8 +89,6 @@ NSString* RUNA_LOG_USER_AGENT = @"RUNA SDK RemoteLog";
         @"model" : self.defines.deviceInfo.model ?: NSNull.null,
         @"build_name" : self.defines.deviceInfo.buildName ?: NSNull.null,
         @"type" : [self getDeviceType],
-        @"ifa" : self.defines.idfaInfo.idfa ?: @"00000000-0000-0000-0000-000000000000",
-        @"lmt" : self.defines.idfaInfo.trackingEnabled ? @0 : @1,
         @"os_version" : self.defines.deviceInfo.osVersion ?: NSNull.null,
         @"connection_method" : @(self.defines.deviceInfo.connectionMethod),
         @"h": @((int)screen.bounds.size.height),

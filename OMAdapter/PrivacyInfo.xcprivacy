@@ -5,7 +5,9 @@
 	<key>NSPrivacyTracking</key>
 	<false/>
 	<key>NSPrivacyCollectedDataTypes</key>
-	<array/>
+	<array>
+		<dict/>
+	</array>
 	<key>NSPrivacyTrackingDomains</key>
 	<array/>
 	<key>NSPrivacyAccessedAPITypes</key>

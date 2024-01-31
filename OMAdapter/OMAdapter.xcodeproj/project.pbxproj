@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -92,6 +92,7 @@
 		327AE03324C41039000071E8 /* RUNAOpenMeasurerProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOpenMeasurerProvider.m; sourceTree = "<group>"; };
 		32AD01A02A2A21E6005B1347 /* RUNAOMNativeMeasurableTarget.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOMNativeMeasurableTarget.h; sourceTree = "<group>"; };
 		32AD01A12A2A21E6005B1347 /* RUNAOMNativeMeasurableTarget.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOMNativeMeasurableTarget.m; sourceTree = "<group>"; };
+		32BC5EA72B69D0C10044C7A7 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		32DD75222A6FCED0005DB895 /* RUNAOMMeasurableTargetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOMMeasurableTargetTests.m; sourceTree = "<group>"; };
 		32EE30392415D80900E6D076 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -162,6 +163,7 @@
 		32671F5D24108BB300C50F9F = {
 			isa = PBXGroup;
 			children = (
+				32BC5EA72B69D0C10044C7A7 /* PrivacyInfo.xcprivacy */,
 				32430D4128BD05D30096D4CC /* OMSDK */,
 				32671F9124123C9B00C50F9F /* Banner.xcodeproj */,
 				32671F6924108BB400C50F9F /* OMAdapter */,

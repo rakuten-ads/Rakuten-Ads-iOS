@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -50,6 +50,7 @@
 		329753AB230A7D4C002A53CC /* RUNAMeasurement.h in Headers */ = {isa = PBXBuildFile; fileRef = 329753A9230A7D4C002A53CC /* RUNAMeasurement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329753AC230A7D4C002A53CC /* RUNAMeasurement.m in Sources */ = {isa = PBXBuildFile; fileRef = 329753AA230A7D4C002A53CC /* RUNAMeasurement.m */; };
 		32B37B342A0A9C54000E4892 /* RUNAInterstitialAdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B37B332A0A9C54000E4892 /* RUNAInterstitialAdTests.m */; };
+		32BC5EA42B69D07E0044C7A7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 32BC5EA32B69D07E0044C7A7 /* PrivacyInfo.xcprivacy */; };
 		32BEBF4326669A5A0087BEF7 /* RUNAViewabilityProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEBF3F26669A590087BEF7 /* RUNAViewabilityProvider.m */; };
 		32BEBF4426669A5A0087BEF7 /* RUNAViewabilityProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 32BEBF4226669A590087BEF7 /* RUNAViewabilityProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32E2031027BA33B00037A61B /* RUNABannerCarouselViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2030F27BA33B00037A61B /* RUNABannerCarouselViewTests.m */; };
@@ -151,6 +152,7 @@
 		32A6934922422FCD00812DF9 /* RUNANativeAdInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNANativeAdInner.h; sourceTree = "<group>"; };
 		32A6934A22422FCD00812DF9 /* RUNANativeAdInner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNANativeAdInner.m; sourceTree = "<group>"; };
 		32B37B332A0A9C54000E4892 /* RUNAInterstitialAdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAInterstitialAdTests.m; sourceTree = "<group>"; };
+		32BC5EA32B69D07E0044C7A7 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		32BEBF3F26669A590087BEF7 /* RUNAViewabilityProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNAViewabilityProvider.m; sourceTree = "<group>"; };
 		32BEBF4226669A590087BEF7 /* RUNAViewabilityProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUNAViewabilityProvider.h; sourceTree = "<group>"; };
 		32E2030F27BA33B00037A61B /* RUNABannerCarouselViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABannerCarouselViewTests.m; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 		32F258D621E58689001FD9C0 = {
 			isa = PBXGroup;
 			children = (
+				32BC5EA32B69D07E0044C7A7 /* PrivacyInfo.xcprivacy */,
 				32F25A1721E5A96C001FD9C0 /* Core.xcodeproj */,
 				32F258E221E58689001FD9C0 /* RUNA */,
 				32F258ED21E58689001FD9C0 /* RUNATests */,
@@ -547,6 +550,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32BC5EA42B69D07E0044C7A7 /* PrivacyInfo.xcprivacy in Resources */,
 				324B90CB296ED5170082458C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

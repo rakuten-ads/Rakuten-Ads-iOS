@@ -125,7 +125,6 @@
     [defines.userAgentInfo syncResult];
 
     RUNADevice* deviceInfo = defines.deviceInfo;
-    RUNAIdfa* idfaInfo = defines.idfaInfo;
     UIScreen* screen = UIScreen.mainScreen;
 
     jsonDevice = [NSMutableDictionary new];
@@ -142,8 +141,6 @@
     jsonDevice[@"ppi"] = @((int)(160 * screen.scale));
     jsonDevice[@"pxratio"] = @((int)screen.scale);
     jsonDevice[@"language"] = deviceInfo.language ?: NSNull.null;
-    jsonDevice[@"ifa"] = idfaInfo.idfa  ?: @"00000000-0000-0000-0000-000000000000";
-    jsonDevice[@"lmt"] = idfaInfo.isTrackingEnabled ? @0 : @1;
 
     jsonDevice[@"ext"] = @{
         @"sdk_version" : [defines getRUNASDKVersionString] ?: NSNull.null,
