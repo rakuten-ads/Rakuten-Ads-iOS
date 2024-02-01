@@ -70,30 +70,10 @@
     return dict;
 }
 
-- (NSDictionary *)getGeo {
-    if (self.geo) {
-        return @{
-            @"lat": @(self.geo.latitude),
-            @"lon": @(self.geo.longitude)
-        };
-    }
-    return nil;
-}
-
 -(NSDictionary *)getExt {
     return @{
         @"badvid" : self.blockAdList ?: @[]
     };
-}
-
-@end
-
-@implementation RUNAGeo
-
--(NSString *)description {
-    return [NSString stringWithFormat:@"{ lat: %f, lon: %f }",
-            self.latitude,
-            self.longitude];
 }
 
 @end

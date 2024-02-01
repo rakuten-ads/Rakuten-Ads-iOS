@@ -131,7 +131,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
             bannerAdapter.appContent = self.appContent;
             bannerAdapter.userExt = self.userExt;
             bannerAdapter.userId = self.userId;
-            bannerAdapter.geo = self.geo;
             bannerAdapter.responseConsumer = self;
             bannerAdapter.blockAdList = [self.session.blockAdList copy];
             RUNALog("block ad list for current session: %@", bannerAdapter.blockAdList);
@@ -707,7 +706,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
         @"size" : @(self.size),
         @"properties" : self.properties ?: NSNull.null,
         @"appContent" : self.appContent ?: NSNull.null,
-        @"geo" : self.geo ?: NSNull.null,
         @"user_extension" : self.userExt ?: NSNull.null,
         @"om_disabled" : self.openMeasurementDisabled ? @"YES" : @"NO",
         @"om_available" : self.isOpenMeasurementAvailable ? @"YES" : @"NO",

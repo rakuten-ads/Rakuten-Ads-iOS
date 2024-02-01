@@ -33,10 +33,6 @@ NSInteger kRUNABidResponseUnfilled = 204;
     return @{};
 }
 
--(NSDictionary *)getGeo {
-    return @{};
-}
-
 -(NSDictionary *)getExt {
     return @{};
 }

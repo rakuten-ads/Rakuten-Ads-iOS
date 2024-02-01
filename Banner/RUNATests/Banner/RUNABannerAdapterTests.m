@@ -127,26 +127,6 @@
     }
 }
 
-- (void)testGetGeo {
-    {
-        // Case: default
-        RUNAGeo *content = [RUNAGeo new];
-        content.latitude = 100.0;
-        content.longitude = 120.0;
-        RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
-        bannerAdapter.geo = content;
-        NSDictionary *geo = bannerAdapter.getGeo;
-        XCTAssertNotNil(geo);
-        XCTAssertEqual(geo.allKeys.count, (NSUInteger)2);
-    }
-    {
-        // Case: nil
-        RUNABannerAdapter *bannerAdapter = [RUNABannerAdapter new];
-        NSDictionary *geo = bannerAdapter.getGeo;
-        XCTAssertNil(geo);
-    }
-}
-
 - (void)testGetExt {
     {
         // Case: default
@@ -163,14 +143,6 @@
         NSDictionary *ext = bannerAdapter.getExt;
         XCTAssertEqualObjects(ext[@"badvid"], @[]);
     }
-}
-
-- (void)testDescription {
-    RUNAGeo *geo = [RUNAGeo new];
-    geo.latitude = 100.0;
-    geo.longitude = 120.0;
-    NSString *desription = [NSString stringWithFormat:@"%@", geo];
-    XCTAssertEqualObjects(desription, @"{ lat: 100.000000, lon: 120.000000 }");
 }
 
 #pragma mark - Helper Methods

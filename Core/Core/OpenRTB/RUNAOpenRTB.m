@@ -151,10 +151,6 @@
     jsonDevice[@"connectiontype"] = @(deviceInfo.connectionMethod);
     // @"carrier"
 
-    NSDictionary* geo = self.openRTBAdapterDelegate.getGeo;
-    if (geo && geo.count > 0) {
-        jsonDevice[@"geo"] = geo;
-    }
     return jsonDevice;
 }
 
