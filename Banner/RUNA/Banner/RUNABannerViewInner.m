@@ -727,7 +727,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
  * Any update in other modules brings update here.
  */
 +(NSString*) RUNASDKVersionString {
-    return @"1.14.0"; // TODO: check when release, latest check is 2023/07/04.
+    return @"1.15.0"; // TODO: check when release, latest check is 2024/02/09.
 }
 
 -(NSString*) descriptionState {
