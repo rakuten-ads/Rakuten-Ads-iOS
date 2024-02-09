@@ -36,25 +36,18 @@ NSTimeInterval RUNA_API_TIMEOUT_INTERVAL = 30;
             sessionQueue.underlyingQueue = self->_sharedQueue;
             self->_httpSession = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:sessionQueue];
         }
-        
         {
             self->_userAgentInfo = [RUNAWebUserAgent new];
             self->_userAgentInfo.timeout = RUNA_API_TIMEOUT_INTERVAL;
             [self.userAgentInfo asyncRequest];
         }
         {
-            self->_idfaInfo = [RUNAIdfa new];
-        }
-        
-        {
             self->_deviceInfo = [RUNADevice new];
             [self.deviceInfo startNetworkMonitorOnQueue:self.sharedQueue];
         }
-        
         {
             self->_appInfo = [RUNAAppInfo new];
         }
-
         {
             self->_sdkBundleShortVersionString = @OS_STRINGIFY(RUNA_SDK_VERSION);
         }
@@ -80,13 +73,11 @@ NSString* kModuleClassBannerView = @"RUNABannerView";
     [self.userAgentInfo syncResult];
     return [NSString stringWithFormat:
             @"SDK RUNA/Core version: %@\n"
-            @"IDFA: %@\n"
             @"UA: %@\n"
             @"Device: %@"
             @"AppInfo: %@"
             ,
             self->_sdkBundleShortVersionString,
-            self->_idfaInfo.idfa,
             self->_userAgentInfo.userAgent,
             self->_deviceInfo,
             self->_appInfo,

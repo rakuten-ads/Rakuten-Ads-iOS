@@ -24,10 +24,6 @@
 - (void)setPropertyGenre:(nullable RUNABannerViewGenreProperty *)matchingGenre;
 - (void)setCustomTargeting:(nullable NSDictionary *)target;
 - (void)setRz:(nullable NSString *)rz;
-- (BOOL)isValidLat:(double)lat;
-- (BOOL)isValidLon:(double)lon;
-- (BOOL)isValidLocation:(double)lat longitude:(double)lon;
-- (void)setLocationWithLatitude:(double)lat longitude:(double)lon;
 @end
 
 @interface RUNABannerViewExtensionTests : XCTestCase
@@ -176,69 +172,6 @@
     XCTAssertEqual(userExt.allKeys.count, (NSUInteger)2);
     XCTAssertEqualObjects(userExt[@"hashedeasyid"], expectResult);
     XCTAssertEqualObjects(userExt[@"rz"], rzCookie);
-}
-
-- (void)testIsValidLat {
-    NSArray *params = @[
-        @{ @"value": @(-91), @"expected": @NO },
-        @{ @"value": @(-90), @"expected": @YES },
-        @{ @"value": @(0), @"expected": @YES },
-        @{ @"value": @(90), @"expected": @YES },
-        @{ @"value": @(91), @"expected": @NO }
-    ];
-    
-    RUNABannerView *bannerView = [RUNABannerView new];
-    
-    [params enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull param, NSUInteger idx, BOOL * _Nonnull stop) {
-        double lat = ((NSNumber*)param[@"value"]).doubleValue;
-        BOOL expected =  ((NSNumber*)param[@"expected"]).boolValue;
-        XCTAssertEqual([bannerView isValidLat:lat], expected);
-    }];
-}
-
-- (void)testIsValidLon {
-    NSArray *params = @[
-        @{ @"value": @(-181), @"expected": @NO },
-        @{ @"value": @(-180), @"expected": @YES },
-        @{ @"value": @(0), @"expected": @YES },
-        @{ @"value": @(180), @"expected": @YES },
-        @{ @"value": @(181), @"expected": @NO }
-    ];
-    
-    RUNABannerView *bannerView = [RUNABannerView new];
-    
-    [params enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull param, NSUInteger idx, BOOL * _Nonnull stop) {
-        double lon = ((NSNumber*)param[@"value"]).doubleValue;
-        BOOL expected =  ((NSNumber*)param[@"expected"]).boolValue;
-        XCTAssertEqual([bannerView isValidLon:lon], expected);
-    }];
-}
-
-- (void)testSetLocationWithLatitude {
-    NSArray *params = @[
-        @{ @"lat": @(90), @"lon": @(180), @"expected": @YES },
-        @{ @"lat": @(90), @"lon": @(181), @"expected": @NO },
-        @{ @"lat": @(91), @"lon": @(180), @"expected": @NO },
-        @{ @"lat": @(91), @"lon": @(181), @"expected": @NO }
-    ];
-    
-    [params enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull param, NSUInteger idx, BOOL * _Nonnull stop) {
-        double lat = ((NSNumber*)param[@"lat"]).doubleValue;
-        double lon = ((NSNumber*)param[@"lon"]).doubleValue;
-        BOOL expected =  ((NSNumber*)param[@"expected"]).boolValue;
-        
-        RUNABannerView *bannerView = [RUNABannerView new];
-        [bannerView setLocationWithLatitude:lat longitude:lon];
-        RUNAGeo *geo = bannerView.geo;
-        
-        if (expected) {
-            XCTAssertNotNil(geo);
-            XCTAssertEqual(geo.latitude, lat);
-            XCTAssertEqual(geo.longitude, lon);
-        } else {
-            XCTAssertNil(geo);
-        }
-    }];
 }
 
 @end

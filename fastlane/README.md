@@ -71,6 +71,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
+### ios update_spm
+
+```sh
+[bundle exec] fastlane ios update_spm
+```
+
+
+
 ### ios stripInfoPlist
 
 ```sh

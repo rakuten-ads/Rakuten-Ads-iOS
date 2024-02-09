@@ -40,7 +40,6 @@ FOUNDATION_EXPORT NSString* kRUNABidRequestHost;
     XCTAssertEqual([self.adapter getImp].count, 0);
     XCTAssertEqual([self.adapter getApp].count, 0);
     XCTAssertEqual([self.adapter getExt].count, 0);
-    XCTAssertEqual([self.adapter getGeo].count, 0);
     XCTAssertEqualObjects([self.adapter getURL], kRUNABidRequestHost);
     XCTAssertEqual([self.adapter getUser].count, 0);
 }

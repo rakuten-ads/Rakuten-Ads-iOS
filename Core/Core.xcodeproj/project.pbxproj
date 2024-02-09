@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -23,6 +23,7 @@
 /* Begin PBXBuildFile section */
 		320313B224C182AD002D9727 /* RUNACacheFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 320313B024C182AD002D9727 /* RUNACacheFile.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		320313B324C182AD002D9727 /* RUNACacheFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 320313B124C182AD002D9727 /* RUNACacheFile.m */; };
+		3207924C2B4CD83700EC43C4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 3207924B2B4CD57F00EC43C4 /* PrivacyInfo.xcprivacy */; };
 		3210CFF824765E4400E93FF2 /* RUNAOpenRTB.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210CFE6247614DC00E93FF2 /* RUNAOpenRTB.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3210CFF924765F1700E93FF2 /* RUNAURLString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210CFEB247614DC00E93FF2 /* RUNAURLString.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3210CFFA24765F1700E93FF2 /* RUNAAdWebViewMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210CFEE247614DC00E93FF2 /* RUNAAdWebViewMessage.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -63,10 +64,8 @@
 		32F259D321E599F5001FD9C0 /* RUNACore.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259B921E599F4001FD9C0 /* RUNACore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F259D421E599F5001FD9C0 /* RUNAWebUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259BB21E599F4001FD9C0 /* RUNAWebUserAgent.m */; };
 		32F259D521E599F5001FD9C0 /* RUNADevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259BC21E599F4001FD9C0 /* RUNADevice.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		32F259D621E599F5001FD9C0 /* RUNAIdfa.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259BD21E599F4001FD9C0 /* RUNAIdfa.m */; };
 		32F259D721E599F5001FD9C0 /* RUNAWebUserAgent.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259BE21E599F4001FD9C0 /* RUNAWebUserAgent.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259D821E599F5001FD9C0 /* RUNADevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259BF21E599F4001FD9C0 /* RUNADevice.m */; };
-		32F259D921E599F5001FD9C0 /* RUNAIdfa.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259C021E599F4001FD9C0 /* RUNAIdfa.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259DA21E599F5001FD9C0 /* RUNAHttpTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259C221E599F4001FD9C0 /* RUNAHttpTask.m */; };
 		32F259DB21E599F5001FD9C0 /* RUNAHttpTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F259C321E599F4001FD9C0 /* RUNAHttpTask.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F259DC21E599F5001FD9C0 /* RUNAValid.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F259C521E599F4001FD9C0 /* RUNAValid.m */; };
@@ -89,7 +88,6 @@
 		32F8B5F0288A9EBE00F833B7 /* runa.plist in Resources */ = {isa = PBXBuildFile; fileRef = 32F8B5DE288A33E100F833B7 /* runa.plist */; };
 		32F8B5F3288F791900F833B7 /* RUNAOpenRTBTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F8B5F2288F791900F833B7 /* RUNAOpenRTBTests.m */; };
 		54A8C7E1268B03230094F6BE /* RUNAAdWebViewMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7E0268B03230094F6BE /* RUNAAdWebViewMessageTests.m */; };
-		54A8C7E6268C23A10094F6BE /* RUNAIdfaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7E5268C23A10094F6BE /* RUNAIdfaTests.m */; };
 		54A8C7E8268C32290094F6BE /* RUNAAdWebViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7E7268C32290094F6BE /* RUNAAdWebViewTests.m */; };
 		54A8C7EB268C367E0094F6BE /* RUNAURLStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7EA268C367E0094F6BE /* RUNAURLStringTests.m */; };
 		54A8C7ED268C3F0C0094F6BE /* RUNADefinesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A8C7EC268C3F0C0094F6BE /* RUNADefinesTests.m */; };
@@ -109,6 +107,7 @@
 /* Begin PBXFileReference section */
 		320313B024C182AD002D9727 /* RUNACacheFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNACacheFile.h; sourceTree = "<group>"; };
 		320313B124C182AD002D9727 /* RUNACacheFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNACacheFile.m; sourceTree = "<group>"; };
+		3207924B2B4CD57F00EC43C4 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		3210CFE3247614DC00E93FF2 /* RUNABidAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABidAdapter.h; sourceTree = "<group>"; };
 		3210CFE4247614DC00E93FF2 /* RUNABidAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNABidAdapter.m; sourceTree = "<group>"; };
 		3210CFE6247614DC00E93FF2 /* RUNAOpenRTB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOpenRTB.h; sourceTree = "<group>"; };
@@ -153,10 +152,8 @@
 		32F259B921E599F4001FD9C0 /* RUNACore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUNACore.h; sourceTree = "<group>"; };
 		32F259BB21E599F4001FD9C0 /* RUNAWebUserAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNAWebUserAgent.m; sourceTree = "<group>"; };
 		32F259BC21E599F4001FD9C0 /* RUNADevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUNADevice.h; sourceTree = "<group>"; };
-		32F259BD21E599F4001FD9C0 /* RUNAIdfa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNAIdfa.m; sourceTree = "<group>"; };
 		32F259BE21E599F4001FD9C0 /* RUNAWebUserAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUNAWebUserAgent.h; sourceTree = "<group>"; };
 		32F259BF21E599F4001FD9C0 /* RUNADevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNADevice.m; sourceTree = "<group>"; };
-		32F259C021E599F4001FD9C0 /* RUNAIdfa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUNAIdfa.h; sourceTree = "<group>"; };
 		32F259C221E599F4001FD9C0 /* RUNAHttpTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNAHttpTask.m; sourceTree = "<group>"; };
 		32F259C321E599F4001FD9C0 /* RUNAHttpTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUNAHttpTask.h; sourceTree = "<group>"; };
 		32F259C521E599F4001FD9C0 /* RUNAValid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUNAValid.m; sourceTree = "<group>"; };
@@ -183,7 +180,6 @@
 		32F8B5DE288A33E100F833B7 /* runa.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = runa.plist; sourceTree = "<group>"; };
 		32F8B5F2288F791900F833B7 /* RUNAOpenRTBTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOpenRTBTests.m; sourceTree = "<group>"; };
 		54A8C7E0268B03230094F6BE /* RUNAAdWebViewMessageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewMessageTests.m; sourceTree = "<group>"; };
-		54A8C7E5268C23A10094F6BE /* RUNAIdfaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAIdfaTests.m; sourceTree = "<group>"; };
 		54A8C7E7268C32290094F6BE /* RUNAAdWebViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdWebViewTests.m; sourceTree = "<group>"; };
 		54A8C7EA268C367E0094F6BE /* RUNAURLStringTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAURLStringTests.m; sourceTree = "<group>"; };
 		54A8C7EC268C3F0C0094F6BE /* RUNADefinesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNADefinesTests.m; sourceTree = "<group>"; };
@@ -288,6 +284,7 @@
 		32F258B221E5866C001FD9C0 = {
 			isa = PBXGroup;
 			children = (
+				3207924B2B4CD57F00EC43C4 /* PrivacyInfo.xcprivacy */,
 				32F259B821E599F4001FD9C0 /* Core */,
 				32F258C921E5866D001FD9C0 /* CoreTests */,
 				32F258BD21E5866C001FD9C0 /* Products */,
@@ -344,8 +341,6 @@
 			children = (
 				32F259BC21E599F4001FD9C0 /* RUNADevice.h */,
 				32F259BF21E599F4001FD9C0 /* RUNADevice.m */,
-				32F259C021E599F4001FD9C0 /* RUNAIdfa.h */,
-				32F259BD21E599F4001FD9C0 /* RUNAIdfa.m */,
 				32F259BE21E599F4001FD9C0 /* RUNAWebUserAgent.h */,
 				32F259BB21E599F4001FD9C0 /* RUNAWebUserAgent.m */,
 				32CAC0DB22164E6400BB4CC4 /* RUNAAppInfo.h */,
@@ -465,7 +460,6 @@
 		54A8C7E4268C236F0094F6BE /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				54A8C7E5268C23A10094F6BE /* RUNAIdfaTests.m */,
 				32F8B5CD287D9EA100F833B7 /* RUNADeviceTests.m */,
 				32F8B5CF287DA8DF00F833B7 /* RUNAWebUserAgentTests.m */,
 				32F8B5D1287DB98700F833B7 /* RUNAAppInfoTests.m */,
@@ -501,7 +495,6 @@
 				32F259E521E599F5001FD9C0 /* RUNALogger.h in Headers */,
 				32F259DB21E599F5001FD9C0 /* RUNAHttpTask.h in Headers */,
 				3210CFFE24765F9900E93FF2 /* RUNABidAdapter.h in Headers */,
-				32F259D921E599F5001FD9C0 /* RUNAIdfa.h in Headers */,
 				32F259E621E599F5001FD9C0 /* RUNAMacros.h in Headers */,
 				3210CFF824765E4400E93FF2 /* RUNAOpenRTB.h in Headers */,
 				32F259E721E599F5001FD9C0 /* PrefixHeader.pch in Headers */,
@@ -601,6 +594,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3207924C2B4CD83700EC43C4 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,7 +636,6 @@
 			files = (
 				320313B324C182AD002D9727 /* RUNACacheFile.m in Sources */,
 				3210D0072476684A00E93FF2 /* RUNAUIViewController+.m in Sources */,
-				32F259D621E599F5001FD9C0 /* RUNAIdfa.m in Sources */,
 				32F259DC21E599F5001FD9C0 /* RUNAValid.m in Sources */,
 				32BEBF81266F6EB70087BEF7 /* RUNAAdWebViewMessageManager.m in Sources */,
 				3272355028F8F5FD00F57D32 /* RUNACipher.m in Sources */,
@@ -689,7 +682,6 @@
 				32F8B5DD2880EDA000F833B7 /* RUNARemoteLoggerTests.m in Sources */,
 				54A8C7ED268C3F0C0094F6BE /* RUNADefinesTests.m in Sources */,
 				32F8B5CE287D9EA100F833B7 /* RUNADeviceTests.m in Sources */,
-				54A8C7E6268C23A10094F6BE /* RUNAIdfaTests.m in Sources */,
 				32F8B5DB2880ED1A00F833B7 /* RUNALoggerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

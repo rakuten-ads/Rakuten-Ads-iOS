@@ -19,7 +19,6 @@
     XCTAssertNotNil(RUNADefines.sharedInstance.httpSession);
     XCTAssertNotNil(RUNADefines.sharedInstance.sharedQueue);
     XCTAssertNotNil(RUNADefines.sharedInstance.userAgentInfo);
-    XCTAssertNotNil(RUNADefines.sharedInstance.idfaInfo);
     XCTAssertNotNil(RUNADefines.sharedInstance.deviceInfo);
     XCTAssertNotNil(RUNADefines.sharedInstance.appInfo);
     XCTAssertNotNil(RUNADefines.sharedInstance.sdkBundleShortVersionString);
