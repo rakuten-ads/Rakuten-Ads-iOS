@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "RUNAOMAdapter"
-  s.version      = "1.2.0"
+  s.version      = "1.3.0"
   s.summary      = "Podspec file of #{s.name} iOS SDK."
   s.description  = <<-DESC
 This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
@@ -27,7 +27,7 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   s.vendored_frameworks = "#{s.name}.xcframework"
 
   s.frameworks = "Foundation", "AdSupport", "SystemConfiguration", "WebKit", "UIKit"
-  s.dependency 'RUNABanner', '~> 1.13'
-  s.dependency 'RUNAOMSDK', '~> 1.4'
+  s.dependency 'RUNABanner', '~> 1.14'
+  s.dependency 'RUNAOMSDK', '~> 1.4.11'
 
 end
