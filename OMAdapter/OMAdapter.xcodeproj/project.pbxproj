@@ -35,6 +35,7 @@
 		32AD01A32A2A21E6005B1347 /* RUNAOMNativeMeasurableTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AD01A12A2A21E6005B1347 /* RUNAOMNativeMeasurableTarget.m */; };
 		32AD01AA2A301414005B1347 /* RUNAOMNativeMeasurer.h in Headers */ = {isa = PBXBuildFile; fileRef = 325FE7992980B6320038C2C3 /* RUNAOMNativeMeasurer.h */; };
 		32B4FFE627E08A8200CE696C /* RUNABanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3210D02C247771A900E93FF2 /* RUNABanner.framework */; };
+		32CF507B2B7C4433002D8545 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 32BC5EA72B69D0C10044C7A7 /* PrivacyInfo.xcprivacy */; };
 		32DD75232A6FCED0005DB895 /* RUNAOMMeasurableTargetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DD75222A6FCED0005DB895 /* RUNAOMMeasurableTargetTests.m */; };
 		32EE303A2415D80900E6D076 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EE30392415D80900E6D076 /* RUNACore.framework */; };
 /* End PBXBuildFile section */
@@ -346,6 +347,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32CF507B2B7C4433002D8545 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
