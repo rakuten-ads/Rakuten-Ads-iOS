@@ -22,7 +22,6 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSArray*) getImp;
 -(NSDictionary*) getApp;
 -(NSDictionary*) getUser;
--(NSDictionary*) getGeo;
 -(NSDictionary*) getExt;
 
 -(NSString*) getURL;

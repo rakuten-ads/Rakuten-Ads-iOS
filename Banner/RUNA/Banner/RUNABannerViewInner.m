@@ -131,7 +131,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
             bannerAdapter.appContent = self.appContent;
             bannerAdapter.userExt = self.userExt;
             bannerAdapter.userId = self.userId;
-            bannerAdapter.geo = self.geo;
             bannerAdapter.responseConsumer = self;
             bannerAdapter.blockAdList = [self.session.blockAdList copy];
             RUNALog("block ad list for current session: %@", bannerAdapter.blockAdList);
@@ -334,40 +333,40 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 
     RUNAAdWebViewMessageManager* messageManager = [[RUNAAdWebViewMessageManager alloc] initWithName:kSdkMessageHandlerName];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeExpand handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
         [weakSelf triggerSuccess];
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeCollapse handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
         [weakSelf triggerFailure];
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeRegister handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
         weakSelf.state = RUNA_ADVIEW_STATE_MESSAGE_LISTENING;
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeUnfilled handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
         weakSelf.error = RUNABannerViewErrorUnfilled;
         [weakSelf triggerFailure];
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideo handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
         weakSelf.mediaType = RUNA_MEDIA_TYPE_VIDEO;
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeVideoLoaded handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
         weakSelf.videoState = RUNA_VIDEO_STATE_LOADED;
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeClose handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
         if (weakSelf.eventHandler) {
             struct RUNABannerViewEvent event = { RUNABannerViewEventTypeInterstitialClosed, weakSelf.error };
             weakSelf.eventHandler(weakSelf, event);
         }
     }]];
     [messageManager addMessageHandler:[RUNAAdWebViewMessageHandler messageHandlerWithType:kSdkMessageTypeJsError handle:^(RUNAAdWebViewMessage * _Nonnull message) {
-        RUNADebug("handle %@", message.type);
-        RUNALog("received js error: %@", message.message);
+        RUNADebug("handle [%@] %@", weakSelf.adSpotId, message.type);
+        RUNALog("adspotId [%@] received js error: %@", weakSelf.adSpotId, message.message);
     }]];
 
     [self.webView.configuration.userContentController addScriptMessageHandler:messageManager name:kSdkMessageHandlerName];
@@ -707,7 +706,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
         @"size" : @(self.size),
         @"properties" : self.properties ?: NSNull.null,
         @"appContent" : self.appContent ?: NSNull.null,
-        @"geo" : self.geo ?: NSNull.null,
         @"user_extension" : self.userExt ?: NSNull.null,
         @"om_disabled" : self.openMeasurementDisabled ? @"YES" : @"NO",
         @"om_available" : self.isOpenMeasurementAvailable ? @"YES" : @"NO",
@@ -729,7 +727,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
  * Any update in other modules brings update here.
  */
 +(NSString*) RUNASDKVersionString {
-    return @"1.14.0"; // TODO: check when release, latest check is 2023/07/04.
+    return @"1.15.0"; // TODO: check when release, latest check is 2024/02/09.
 }
 
 -(NSString*) descriptionState {

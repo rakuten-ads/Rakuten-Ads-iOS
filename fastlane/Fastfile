@@ -184,9 +184,58 @@ platform :ios do
       deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}+dsym.zip"
       update_carthage
       update_podspec
+      update_spm
     end
 
     github_release_tag
+
+  end
+
+  lane :update_spm do |param|
+    set_env param
+
+    _fileName = "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}.xcframework.zip"
+    _source_file = "../#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{_fileName}"
+    _spm_dir = "../release"
+    _spm_file = "#{_spm_dir}/Package.swift"
+    _spm_file_bk = "#{_spm_file}.bk" 
+    p "update_spm #{_spm_file} for [#{_source_file}]"
+
+    _checksum = `cd #{_spm_dir}; swift package compute-checksum #{_source_file}`
+    _checksum = _checksum.strip
+    if !_checksum 
+      exit!
+    end
+
+    if File.exist?(_spm_file_bk) 
+      File.delete(_spm_file_bk)
+    end
+    
+    File.rename(_spm_file, _spm_file_bk)
+    File.open(_spm_file, "w") do |f|
+      p "create new file #{_spm_file}"
+      File.open(_spm_file_bk, "r") do |bkf|
+        p "open backup file #{_spm_file_bk}"
+        _skip = 0
+        bkf.each do |line|
+          if _skip > 0
+            _skip -= 1
+            if _skip == 0 && line.include?("checksum")
+              # target line to update checksum
+              p "replace checksum"
+              f.puts "\t\t\tchecksum : \"#{_checksum}\""
+              next
+            end
+          end
+          
+          if line.include?("name: \"RUNA#{@sdk_map[:sdk_module_current]}\",") # name: "RUNACore",
+            p "find target - [name: \"RUNA#{@sdk_map[:sdk_module_current]}\",]"
+            _skip = 2
+          end
+          f.print line
+        end
+      end
+    end
 
   end
 
