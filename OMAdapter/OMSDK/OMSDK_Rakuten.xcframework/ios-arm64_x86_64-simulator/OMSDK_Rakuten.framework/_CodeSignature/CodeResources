@@ -26,7 +26,11 @@
 		</data>
 		<key>Headers/OMIDImports.h</key>
 		<data>
-		kklBQQiiHyi6ArUe1OOfy92xxX4=
+		/ghw/vX0KUlF9SSq4LZhhZDpZb4=
+		</data>
+		<key>Headers/OMIDJavaScriptSessionService.h</key>
+		<data>
+		HjLura1er3MYfJ3bEfs6rhd/Ank=
 		</data>
 		<key>Headers/OMIDMediaEvents.h</key>
 		<data>
@@ -58,21 +62,21 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		drc12bSGljRoVHZPk/PADltV2vY=
+		HKOeQR8/+CHHjHXOz+biKAPHIYk=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		n3/gE4O9pbxG1pq8PToTm3LrIa8=
+		</data>
+		<key>PrivacyInfo.xcprivacy</key>
+		<data>
+		7BgfS40JHW2Znl7afTrGvxB58Ws=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
 		<key>Headers/OMIDAdEvents.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Z/UDG72ZypjvkLrldmO8cagopoM=
-			</data>
 			<key>hash2</key>
 			<data>
 			ghzDDgBDv2qhO4M2RADZUPJdM8UvTZRMH4jGeCZako4=
@@ -80,10 +84,6 @@
 		</dict>
 		<key>Headers/OMIDAdSession.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ON5RgfQmILEcq39806xP4nvG+jE=
-			</data>
 			<key>hash2</key>
 			<data>
 			l6Fi6gDmNpkecAvdF2uMQXBpEX8Py/zVlC4dSW/f3sc=
@@ -91,10 +91,6 @@
 		</dict>
 		<key>Headers/OMIDAdSessionConfiguration.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			LOLfe6tSlp0o6JlI+48GhisCv24=
-			</data>
 			<key>hash2</key>
 			<data>
 			xoaj8att5lLB6fu7khcwMGW/FyRcHRG4kq9pIFx1qZw=
@@ -102,10 +98,6 @@
 		</dict>
 		<key>Headers/OMIDAdSessionContext.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ISznJhvP53LMIotMMtFEQ6l3vMs=
-			</data>
 			<key>hash2</key>
 			<data>
 			WSMAS9UkXKo6hvle719lgg0YA41cREM7VvRtv/S5Q10=
@@ -113,10 +105,6 @@
 		</dict>
 		<key>Headers/OMIDFriendlyObstructionType.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			ymPA8TI4PL8pK0zhc5ilyQj/SsA=
-			</data>
 			<key>hash2</key>
 			<data>
 			/ZmBFlTK7mS0fZy4WqxCTpfhwDAEA4qlDHoed4FawBg=
@@ -124,21 +112,20 @@
 		</dict>
 		<key>Headers/OMIDImports.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			kklBQQiiHyi6ArUe1OOfy92xxX4=
-			</data>
 			<key>hash2</key>
 			<data>
-			WWfw+Z3RNrtOfWYdio9jyxKjmeVbPXzWNH7Pa7ErD0U=
+			XQBgb62m3DEN2XBtnlS+hqca4MEIuBJjq6po9fIbZco=
+			</data>
+		</dict>
+		<key>Headers/OMIDJavaScriptSessionService.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2HtnAJAlL83H5CfR/L7IKTTUlX71afQmwId1QucXt2E=
 			</data>
 		</dict>
 		<key>Headers/OMIDMediaEvents.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			YompFsHhVHcvWguOZJr8i1NdLtI=
-			</data>
 			<key>hash2</key>
 			<data>
 			ayHcL/ykqw+5ymA+XdbClW1CV6gxJagRwoUQv0ldWZ4=
@@ -146,10 +133,6 @@
 		</dict>
 		<key>Headers/OMIDPartner.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			liay7AlkKpWY1yOieyQDKSMnviI=
-			</data>
 			<key>hash2</key>
 			<data>
 			Ac66+2NXAc06fdbLXP75WFS3at1qshmcco3/FFLMUF4=
@@ -157,10 +140,6 @@
 		</dict>
 		<key>Headers/OMIDSDK.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			z7NqSFw67mBfG8znkfKVvvUVdDc=
-			</data>
 			<key>hash2</key>
 			<data>
 			ipBwsZXkRNcRZztDBixmSkilgtKD9/QKHvINwjMtewo=
@@ -168,10 +147,6 @@
 		</dict>
 		<key>Headers/OMIDScriptInjector.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			aPaFazobwgjVTDQETZKTGsesZa0=
-			</data>
 			<key>hash2</key>
 			<data>
 			hh2PITCrXgy+0MLrta2GJXwhOe+P5sQ86Xk//6fnb+o=
@@ -179,10 +154,6 @@
 		</dict>
 		<key>Headers/OMIDVASTProperties.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Z343gpk+s0tSGcR4c9MsYQ24IUs=
-			</data>
 			<key>hash2</key>
 			<data>
 			RG7u7buqwzd0NRVglCAAnjnvQasUx9+ufvmV7wuDPdI=
@@ -190,10 +161,6 @@
 		</dict>
 		<key>Headers/OMIDVerificationScriptResource.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			GzQEVH9JHXtoAkMP5u+YKnZkq/U=
-			</data>
 			<key>hash2</key>
 			<data>
 			cN8xUG096uistJRdX3GXrlRyDuSHbK/WD8bJYiICh9k=
@@ -201,10 +168,6 @@
 		</dict>
 		<key>Headers/OMSDK.h</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			SwK6aatAfFlLHnP2+J8eYoZyaqs=
-			</data>
 			<key>hash2</key>
 			<data>
 			RMvQNEJLOImLem6a8DtHWs08tFMncdsWXtF/QfYUIvQ=
@@ -212,13 +175,16 @@
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			n3/gE4O9pbxG1pq8PToTm3LrIa8=
-			</data>
 			<key>hash2</key>
 			<data>
 			oiaSCs+vg90zvbM/KpcKRu+Hlpkn5WfAf4AMsmqTXxE=
+			</data>
+		</dict>
+		<key>PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			5rdpDTW6MDoz1u2y0rCJB5ensp/KZWPv7EAq4o8GtfM=
 			</data>
 		</dict>
 	</dict>
