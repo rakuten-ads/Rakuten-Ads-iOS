@@ -8,7 +8,7 @@
 
 echo
 echo "===[$0] START==="
-set -eo pipefail
+# set -eo pipefail
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -60,6 +60,18 @@ if [ -d $SDK_BUILD_FILE ]; then
 	find . -name "*.bcsymbolmap" -exec rm -- {} +
 	find . -name ".DS_Store" -exec rm -r -- {} +
 	find . -empty -type d -delete
+
+	# check certification for code sign
+	echo "check certification ..."
+	CERTIFICATION_ID=ECF3E24FABE317C38498B1263DEF2E7F4F351E0D
+	security find-identity -v | grep $CERTIFICATION_ID
+	if [ $? -ne 0 ]; then
+		echo "certification ID $CERTIFICATION_ID is invalid, please update certification"
+		exit 1
+	fi
+
+	# code sign
+	codesign -f -s $CERTIFICATION_ID $SDK_BUILD_FILE
 
 	# zip sdk
 	zip -r $SDK_OUTPUT_FILE $SDK_BUILD_FILE -x "*/.DS_Store"

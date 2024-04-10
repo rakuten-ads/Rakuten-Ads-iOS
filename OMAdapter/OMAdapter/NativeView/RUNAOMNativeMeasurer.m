@@ -47,7 +47,7 @@
             return;
         }
 
-        RUNADebug("measurement[OM][native] start");
+        RUNADebug("measurement[OM][native] session start");
         [self.adSession start];
 
         err = nil;
