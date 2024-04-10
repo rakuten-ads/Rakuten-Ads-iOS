@@ -198,7 +198,7 @@ platform :ios do
     _source_file = "../#{@sdk_map[:sdk_module_current]}/#{@sdk_map[:sdk_output_dir]}/#{_fileName}"
     _spm_dir = "../release"
     _spm_file = "#{_spm_dir}/Package.swift"
-    _spm_file_bk = "#{_spm_file}.bk" 
+    _spm_file_tmp = "#{_spm_file}.tmp" 
     p "update_spm #{_spm_file} for [#{_source_file}]"
 
     _checksum = `cd #{_spm_dir}; swift package compute-checksum #{_source_file}`
@@ -207,20 +207,20 @@ platform :ios do
       exit!
     end
 
-    if File.exist?(_spm_file_bk) 
-      File.delete(_spm_file_bk)
+    if File.exist?(_spm_file_tmp) 
+      File.delete(_spm_file_tmp)
     end
     
-    File.rename(_spm_file, _spm_file_bk)
+    File.rename(_spm_file, _spm_file_tmp)
     File.open(_spm_file, "w") do |f|
       p "create new file #{_spm_file}"
-      File.open(_spm_file_bk, "r") do |bkf|
-        p "open backup file #{_spm_file_bk}"
-        _skip = 0
+      File.open(_spm_file_tmp, "r") do |bkf|
+        p "open backup file #{_spm_file_tmp}"
+        _skipLine = 0
         bkf.each do |line|
-          if _skip > 0
-            _skip -= 1
-            if _skip == 0 && line.include?("checksum")
+          if _skipLine > 0
+            _skipLine -= 1
+            if _skipLine == 0 && line.include?("checksum")
               # target line to update checksum
               p "replace checksum"
               f.puts "\t\t\tchecksum : \"#{_checksum}\""
@@ -230,7 +230,7 @@ platform :ios do
           
           if line.include?("name: \"RUNA#{@sdk_map[:sdk_module_current]}\",") # name: "RUNACore",
             p "find target - [name: \"RUNA#{@sdk_map[:sdk_module_current]}\",]"
-            _skip = 2
+            _skipLine = 2
           end
           f.print line
         end

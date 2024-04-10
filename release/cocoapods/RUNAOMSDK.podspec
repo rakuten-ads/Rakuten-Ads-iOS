@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "RUNAOMSDK"
-  s.version      = "1.4.11"
+  s.version      = "1.4.12"
   s.summary      = "Podspec file of #{s.name} iOS SDK."
   s.description  = <<-DESC
 This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
