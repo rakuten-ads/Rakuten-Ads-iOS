@@ -17,21 +17,28 @@ update the version number dependencies.
 
 `release/1.15.0`
 
-## Steps
+## Steps before scripts
+
+0. Update version numbers for all modules in Xcode BuildSettings
+
+0. Update version number for the integrated RUNASDK in the source file `RUNABannerViewInner.m` of module Banner
+
+0. Update version numbers in cocoapods podspec files, carthage json files, SPM `Package.swift` file
+
 
 ### release RUNAOMSDK_Rakuten if need
 
 - zip downloaded iab OMSDK xcframework
 
-`zip -r RUNAOMSDK_iOS_1.4.11.xcframework.zip OMSDK_Rakuten.xcframework -x "*/.DS_Store"`
+`zip -r RUNAOMSDK_iOS_1.4.12.xcframework.zip OMSDK_Rakuten.xcframework -x "*/.DS_Store"`
 
 - get computed md5 and update for SPM
 
-`swift package compute-checksum /Users/wei.b.wu/git/runa/rakuten-ad-ios-test-sample/SDK/OMAdapter/OMSDK/RUNAOMSDK_iOS_1.4.11.xcframework.zip`
+`swift package compute-checksum /Users/wei.b.wu/git/runa/rakuten-ad-ios-test-sample/SDK/OMAdapter/OMSDK/RUNAOMSDK_iOS_1.4.12.xcframework.zip`
 
 - upload to gcloud bucket
 
-`gsutil cp RUNAOMSDK_iOS_1.4.11.xcframework.zip gs://rssp-dev-cdn/sdk/ios/prod/RUNAOMSDK/RUNAOMSDK_iOS_1.4.11.xcframework.zip`
+`gsutil cp RUNAOMSDK_iOS_1.4.12.xcframework.zip gs://rssp-dev-cdn/sdk/ios/prod/RUNAOMSDK/RUNAOMSDK_iOS_1.4.12.xcframework.zip`
 
 - update cocoapods
 
@@ -39,13 +46,8 @@ update the version number dependencies.
 
 ### release Banner, Core, OMAdapter modules
 
-`bundle exec fastlane release module:Core=1.8.0,Banner=1.14.0,OMAdapter=1.3.0 sdk_skip_build:false sdk_dryrun:false`
+`bundle exec fastlane release module:Core=1.8.1,Banner=1.14.1,OMAdapter=1.3.1 sdk_skip_build:false sdk_dryrun:false`
 
-
-### update SPM
-
-- update versions in Package.swift
-- copy and git push Package.swift
 
 ### Create PullRequest
 
