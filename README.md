@@ -6,13 +6,18 @@
 ![Xcode](http://img.shields.io/badge/IDE-Xcode_10+-blue.svg?style=flat)
 
 # Rakuten Publisher Service iOS SDK
-
-- Table of Content
-{:toc}
+* [Ad Formats](#ad-formats)
+* [Get Started](#get-started)
+* [Prerequisites](#prerequisites)
+* [Integrate SDK](#integrate-sdk)
+* [CocoaPods](#cocoapods)
+* [Swift Package Manager](#swift-package-manager)
+* [M1 support](#m1-support)
 
 ### [Ad Formats](#ad-formats)
 
 - **[Banner Ad](./doc/bannerads/README.md)**
+- **[CarouselAds](./doc/bannerads/carousel/README.md)**
 - **[Interstitial Ad](./doc/interstitial/README.md)**
 
 ---
@@ -72,6 +77,7 @@ end
 ---
 
 [Banner Ad](./doc/bannerads/README.md)<br>
+[CarouselAds](./doc/bannerads/carousel/README.md)<br>
 [Interstitial Ad](./doc/interstitial/README.md)<br>
 [Viewability Measurement](./doc/measurement/README.md)
 
