@@ -15,7 +15,7 @@ update the version number dependencies.
 
 ### create and switch to release branch for [distribution Github](https://github.com/rakuten-ads/Rakuten-Ads-iOS)
 
-`release/1.15.0`
+`release/1.15.2`
 
 ## Steps before scripts
 
@@ -30,15 +30,16 @@ update the version number dependencies.
 
 - zip downloaded iab OMSDK xcframework
 
-`zip -r RUNAOMSDK_iOS_1.4.12.xcframework.zip OMSDK_Rakuten.xcframework -x "*/.DS_Store"`
+`REL_VER=1.15.2`
+`zip -r RUNAOMSDK_iOS_${REL_VER}.xcframework.zip OMSDK_Rakuten.xcframework -x "*/.DS_Store"`
 
 - get computed md5 and update for SPM
 
-`swift package compute-checksum /Users/wei.b.wu/git/runa/rakuten-ad-ios-test-sample/SDK/OMAdapter/OMSDK/RUNAOMSDK_iOS_1.4.12.xcframework.zip`
+`swift package compute-checksum /Users/wei.b.wu/git/runa/rakuten-ad-ios-test-sample/SDK/OMAdapter/OMSDK/RUNAOMSDK_iOS_${REL_VER}.xcframework.zip`
 
 - upload to gcloud bucket
 
-`gsutil cp RUNAOMSDK_iOS_1.4.12.xcframework.zip gs://rssp-dev-cdn/sdk/ios/prod/RUNAOMSDK/RUNAOMSDK_iOS_1.4.12.xcframework.zip`
+`gsutil cp RUNAOMSDK_iOS_${REL_VER}.xcframework.zip gs://rssp-dev-cdn/sdk/ios/prod/RUNAOMSDK/RUNAOMSDK_iOS_${REL_VER}.xcframework.zip`
 
 - update cocoapods
 
