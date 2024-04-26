@@ -28,9 +28,12 @@ update the version number dependencies.
 
 ### release RUNAOMSDK_Rakuten if need
 
-- zip downloaded iab OMSDK xcframework
+`REL_VER=1.14.3`
 
-`REL_VER=1.15.2`
+- code signing for OMSDK xcframework (current certificate expire until 2024/05/23)
+`codesign -f -s 7899E12F3631575BECF6FFDD56466B2196411C3B OMSDK_Rakuten.xcframework`
+
+- zip downloaded iab OMSDK xcframework 
 `zip -r RUNAOMSDK_iOS_${REL_VER}.xcframework.zip OMSDK_Rakuten.xcframework -x "*/.DS_Store"`
 
 - get computed md5 and update for SPM
