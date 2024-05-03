@@ -6,28 +6,37 @@
 ![Xcode](http://img.shields.io/badge/IDE-Xcode_10+-blue.svg?style=flat)
 
 # Rakuten Publisher Service iOS SDK
+* [広告フォーマット](#ad-formats)
+* [はじめに](#get-started)
+* [前提](#prerequisites)
+* [SDK の導入](#integrate-sdk)
+* [CocoaPods](#cocoapods)
+* [Swift パッケージマネージャー](#swift-package-manager)
+* [M1 サポート](#m1-support)
 
-### 広告フォーマット
+### [広告フォーマット](#ad-formats)
 
 - **[バナー広告](./bannerads/README.md)**
-- **[Interstitial広告](./interstitial/README.md)**
+- **[カルーセル広告](./bannerads/carousel/README.md)**
+- **[インタースティシャル広告](./interstitial/README.md)**
 
 ---
 
-# はじめに
+# [はじめに](#get-started)
 
 <div id="prerequisites"></div>
 
-## 前提
+## [前提](#prerequisites)
 
 - Xcode 10 以上
 - iOS 10 以上
+- iOS 17でビルド
 
 <div id="import_sdk"></div>
 
-## SDK の導入
+## [SDK の導入](#integrate-sdk)
 
-### CocoaPods
+### [CocoaPods](#cocoapods)
 
 `Podfile`に下記の設定を追加.
 
@@ -52,10 +61,35 @@ target 'App' do
 end
 ```
 
+### [Swift パッケージマネージャー](#swift-package-manager)
+
+Swift パッケージマネージャー を1.10.2 のバージョンよりサポートしております。
+
+こちらのURL `https://github.com/rakuten-ads/Rakuten-Ads-iOS` を XCodeに記載していただき、 `RUNABanner`, `RUNAOMAdapter`　を選択します。
+
+`RUNAOMAdapter` は、 Open Measurement SDK (OMSDK)を使用される場合に必要となるモジュールです。
+
+### [M1 サポート](#m1-support)
+
+RUNA SDK ではバージョン1.10.1からサポートしています。
+
+これより前のバージョンでM1 Macbookでサポートするためには, `EXCLUDED_ARCHS[sdk=iphonesimulator*] = "arm64 armv7"` を　Build Settings　に設定するか, `post_install` を `Podfile` に下記のように変更します。
+
+```ruby
+target 'App' do
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |configuration|
+      configuration.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64 armv7"
+    end
+  end
+end
+```
 
 ---
 
 [バナー広告](./bannerads/README.md)<br>
+[カルーセル広告](./bannerads/carousel/README.md)<br>
+[インタースティシャル広告](./interstitial/README.md)<br>
 [ビューアビリティ計測](./measurement/README.md)
 
 ---
