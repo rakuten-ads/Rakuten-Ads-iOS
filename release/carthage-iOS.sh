@@ -63,7 +63,7 @@ if [ -d $SDK_BUILD_FILE ]; then
 
 	# check certification for code sign
 	echo "check certification ..."
-	CERTIFICATION_ID=ECF3E24FABE317C38498B1263DEF2E7F4F351E0D
+	CERTIFICATION_ID=7899E12F3631575BECF6FFDD56466B2196411C3B
 	security find-identity -v | grep $CERTIFICATION_ID
 	if [ $? -ne 0 ]; then
 		echo "certification ID $CERTIFICATION_ID is invalid, please update certification"

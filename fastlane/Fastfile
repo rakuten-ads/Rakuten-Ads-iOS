@@ -237,6 +237,8 @@ platform :ios do
       end
     end
 
+    FileUtils.cp _spm_file, "#{ENV['HOME']}/.cocoapods/repos/Rakuten-Ads-iOS"
+
   end
 
   lane :stripInfoPlist do |param|
