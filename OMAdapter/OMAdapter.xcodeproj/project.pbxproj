@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -75,7 +75,7 @@
 		320313AA24C173D0002D9727 /* RUNABannerViewOM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewOM.h; sourceTree = "<group>"; };
 		320313AE24C175F8002D9727 /* RUNABannerViewOMInner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNABannerViewOMInner.h; sourceTree = "<group>"; };
 		3210D0142476EDC200E93FF2 /* RUNABanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNABanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		32430D4928BD0E530096D4CC /* OMSDK_Rakuten.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OMSDK_Rakuten.xcframework; sourceTree = "<group>"; };
+		32430D4928BD0E530096D4CC /* OMSDK_Rakuten.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:87CT3T3CK2:Rakuten Group, Inc."; lastKnownFileType = wrapper.xcframework; path = OMSDK_Rakuten.xcframework; sourceTree = "<group>"; };
 		3259214C24EFA48900345612 /* RUNAOMAdapter.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = RUNAOMAdapter.modulemap; sourceTree = "<group>"; };
 		325FE7992980B6320038C2C3 /* RUNAOMNativeMeasurer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAOMNativeMeasurer.h; sourceTree = "<group>"; };
 		325FE79A2980B6320038C2C3 /* RUNAOMNativeMeasurer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAOMNativeMeasurer.m; sourceTree = "<group>"; };
