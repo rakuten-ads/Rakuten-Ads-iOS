@@ -17,10 +17,6 @@
 		32385F9D2BFC2828006EE9E0 /* AdMobMediationAdapterBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32385F9C2BFC2828006EE9E0 /* AdMobMediationAdapterBanner.swift */; };
 		32385F9F2BFC2F0C006EE9E0 /* AdMobMediationAdapterUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32385F9E2BFC2F0C006EE9E0 /* AdMobMediationAdapterUtil.swift */; };
 		32385FA52C041858006EE9E0 /* AdMobMediationAdapterExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32385FA42C041858006EE9E0 /* AdMobMediationAdapterExtras.swift */; };
-		32E9C8852C072ED2004A1448 /* RUNABanner.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E9C8842C072ED2004A1448 /* RUNABanner.xcframework */; };
-		32E9C8862C072ED2004A1448 /* RUNABanner.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32E9C8842C072ED2004A1448 /* RUNABanner.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		32E9C8892C072ED7004A1448 /* RUNACore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E9C8882C072ED7004A1448 /* RUNACore.xcframework */; };
-		32E9C88A2C072ED7004A1448 /* RUNACore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32E9C8882C072ED7004A1448 /* RUNACore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,21 +28,6 @@
 			remoteInfo = MediationAdapter;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		32E9C8872C072ED2004A1448 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				32E9C88A2C072ED7004A1448 /* RUNACore.xcframework in Embed Frameworks */,
-				32E9C8862C072ED2004A1448 /* RUNABanner.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3232CB892BF6EA6D00D45A36 /* RUNAMediationAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNAMediationAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,8 +52,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3232CBAD2BFADE1300D45A36 /* RUNABanner.framework in Frameworks */,
-				32E9C8852C072ED2004A1448 /* RUNABanner.xcframework in Frameworks */,
-				32E9C8892C072ED7004A1448 /* RUNACore.xcframework in Frameworks */,
 				3232CBA92BFADE0F00D45A36 /* RUNACore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,7 +148,6 @@
 				3232CB852BF6EA6D00D45A36 /* Sources */,
 				3232CB862BF6EA6D00D45A36 /* Frameworks */,
 				3232CB872BF6EA6D00D45A36 /* Resources */,
-				32E9C8872C072ED2004A1448 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
