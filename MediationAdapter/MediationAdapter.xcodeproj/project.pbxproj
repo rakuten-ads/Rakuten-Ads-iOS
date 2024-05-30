@@ -1,0 +1,681 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3232CB8E2BF6EA6D00D45A36 /* MediationAdapter.docc in Sources */ = {isa = PBXBuildFile; fileRef = 3232CB8D2BF6EA6D00D45A36 /* MediationAdapter.docc */; };
+		3232CB942BF6EA6D00D45A36 /* RUNAMediationAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3232CB892BF6EA6D00D45A36 /* RUNAMediationAdapter.framework */; };
+		3232CB992BF6EA6D00D45A36 /* MediationAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3232CB982BF6EA6D00D45A36 /* MediationAdapterTests.swift */; };
+		3232CBA52BFADB0500D45A36 /* AdMobMediationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3232CBA42BFADB0500D45A36 /* AdMobMediationAdapter.swift */; };
+		3232CBA92BFADE0F00D45A36 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3232CBA82BFADE0F00D45A36 /* RUNACore.framework */; };
+		3232CBAD2BFADE1300D45A36 /* RUNABanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3232CBAC2BFADE1300D45A36 /* RUNABanner.framework */; };
+		3232CBB02BFADEE900D45A36 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3232CBAF2BFADEE900D45A36 /* Logger.swift */; };
+		32385F9D2BFC2828006EE9E0 /* AdMobMediationAdapterBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32385F9C2BFC2828006EE9E0 /* AdMobMediationAdapterBanner.swift */; };
+		32385F9F2BFC2F0C006EE9E0 /* AdMobMediationAdapterUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32385F9E2BFC2F0C006EE9E0 /* AdMobMediationAdapterUtil.swift */; };
+		32385FA52C041858006EE9E0 /* AdMobMediationAdapterExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32385FA42C041858006EE9E0 /* AdMobMediationAdapterExtras.swift */; };
+		32E9C8852C072ED2004A1448 /* RUNABanner.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E9C8842C072ED2004A1448 /* RUNABanner.xcframework */; };
+		32E9C8862C072ED2004A1448 /* RUNABanner.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32E9C8842C072ED2004A1448 /* RUNABanner.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		32E9C8892C072ED7004A1448 /* RUNACore.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E9C8882C072ED7004A1448 /* RUNACore.xcframework */; };
+		32E9C88A2C072ED7004A1448 /* RUNACore.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 32E9C8882C072ED7004A1448 /* RUNACore.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3232CB952BF6EA6D00D45A36 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3232CB802BF6EA6C00D45A36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3232CB882BF6EA6D00D45A36;
+			remoteInfo = MediationAdapter;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		32E9C8872C072ED2004A1448 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				32E9C88A2C072ED7004A1448 /* RUNACore.xcframework in Embed Frameworks */,
+				32E9C8862C072ED2004A1448 /* RUNABanner.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3232CB892BF6EA6D00D45A36 /* RUNAMediationAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RUNAMediationAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3232CB8C2BF6EA6D00D45A36 /* MediationAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediationAdapter.h; sourceTree = "<group>"; };
+		3232CB8D2BF6EA6D00D45A36 /* MediationAdapter.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = MediationAdapter.docc; sourceTree = "<group>"; };
+		3232CB932BF6EA6D00D45A36 /* MediationAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MediationAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3232CB982BF6EA6D00D45A36 /* MediationAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediationAdapterTests.swift; sourceTree = "<group>"; };
+		3232CBA42BFADB0500D45A36 /* AdMobMediationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobMediationAdapter.swift; sourceTree = "<group>"; };
+		3232CBA82BFADE0F00D45A36 /* RUNACore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNACore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3232CBAC2BFADE1300D45A36 /* RUNABanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RUNABanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3232CBAF2BFADEE900D45A36 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		32385F9C2BFC2828006EE9E0 /* AdMobMediationAdapterBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobMediationAdapterBanner.swift; sourceTree = "<group>"; };
+		32385F9E2BFC2F0C006EE9E0 /* AdMobMediationAdapterUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobMediationAdapterUtil.swift; sourceTree = "<group>"; };
+		32385FA42C041858006EE9E0 /* AdMobMediationAdapterExtras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobMediationAdapterExtras.swift; sourceTree = "<group>"; };
+		32E9C8842C072ED2004A1448 /* RUNABanner.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RUNABanner.xcframework; path = "../../../../public/googleads-mobile-ios-mediation/example/Pods/RUNABanner/RUNABanner.xcframework"; sourceTree = "<group>"; };
+		32E9C8882C072ED7004A1448 /* RUNACore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RUNACore.xcframework; path = "../../../../public/googleads-mobile-ios-mediation/example/Pods/RUNACore/RUNACore.xcframework"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3232CB862BF6EA6D00D45A36 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3232CBAD2BFADE1300D45A36 /* RUNABanner.framework in Frameworks */,
+				32E9C8852C072ED2004A1448 /* RUNABanner.xcframework in Frameworks */,
+				32E9C8892C072ED7004A1448 /* RUNACore.xcframework in Frameworks */,
+				3232CBA92BFADE0F00D45A36 /* RUNACore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3232CB902BF6EA6D00D45A36 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3232CB942BF6EA6D00D45A36 /* RUNAMediationAdapter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3232CB7F2BF6EA6C00D45A36 = {
+			isa = PBXGroup;
+			children = (
+				3232CB8B2BF6EA6D00D45A36 /* MediationAdapter */,
+				3232CB972BF6EA6D00D45A36 /* MediationAdapterTests */,
+				3232CB8A2BF6EA6D00D45A36 /* Products */,
+				3232CBA72BFADE0F00D45A36 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3232CB8A2BF6EA6D00D45A36 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3232CB892BF6EA6D00D45A36 /* RUNAMediationAdapter.framework */,
+				3232CB932BF6EA6D00D45A36 /* MediationAdapterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3232CB8B2BF6EA6D00D45A36 /* MediationAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				3232CBAF2BFADEE900D45A36 /* Logger.swift */,
+				3232CBA32BFADA3A00D45A36 /* Admob */,
+				3232CB8C2BF6EA6D00D45A36 /* MediationAdapter.h */,
+				3232CB8D2BF6EA6D00D45A36 /* MediationAdapter.docc */,
+			);
+			path = MediationAdapter;
+			sourceTree = "<group>";
+		};
+		3232CB972BF6EA6D00D45A36 /* MediationAdapterTests */ = {
+			isa = PBXGroup;
+			children = (
+				3232CB982BF6EA6D00D45A36 /* MediationAdapterTests.swift */,
+			);
+			path = MediationAdapterTests;
+			sourceTree = "<group>";
+		};
+		3232CBA32BFADA3A00D45A36 /* Admob */ = {
+			isa = PBXGroup;
+			children = (
+				3232CBA42BFADB0500D45A36 /* AdMobMediationAdapter.swift */,
+				32385FA42C041858006EE9E0 /* AdMobMediationAdapterExtras.swift */,
+				32385F9E2BFC2F0C006EE9E0 /* AdMobMediationAdapterUtil.swift */,
+				32385F9C2BFC2828006EE9E0 /* AdMobMediationAdapterBanner.swift */,
+			);
+			path = Admob;
+			sourceTree = "<group>";
+		};
+		3232CBA72BFADE0F00D45A36 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32E9C8882C072ED7004A1448 /* RUNACore.xcframework */,
+				32E9C8842C072ED2004A1448 /* RUNABanner.xcframework */,
+				3232CBAC2BFADE1300D45A36 /* RUNABanner.framework */,
+				3232CBA82BFADE0F00D45A36 /* RUNACore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3232CB842BF6EA6D00D45A36 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3232CB882BF6EA6D00D45A36 /* MediationAdapter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3232CB9D2BF6EA6D00D45A36 /* Build configuration list for PBXNativeTarget "MediationAdapter" */;
+			buildPhases = (
+				3232CB842BF6EA6D00D45A36 /* Headers */,
+				3232CB852BF6EA6D00D45A36 /* Sources */,
+				3232CB862BF6EA6D00D45A36 /* Frameworks */,
+				3232CB872BF6EA6D00D45A36 /* Resources */,
+				32E9C8872C072ED2004A1448 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MediationAdapter;
+			packageProductDependencies = (
+			);
+			productName = MediationAdapter;
+			productReference = 3232CB892BF6EA6D00D45A36 /* RUNAMediationAdapter.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3232CB922BF6EA6D00D45A36 /* MediationAdapterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3232CBA02BF6EA6D00D45A36 /* Build configuration list for PBXNativeTarget "MediationAdapterTests" */;
+			buildPhases = (
+				3232CB8F2BF6EA6D00D45A36 /* Sources */,
+				3232CB902BF6EA6D00D45A36 /* Frameworks */,
+				3232CB912BF6EA6D00D45A36 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3232CB962BF6EA6D00D45A36 /* PBXTargetDependency */,
+			);
+			name = MediationAdapterTests;
+			productName = MediationAdapterTests;
+			productReference = 3232CB932BF6EA6D00D45A36 /* MediationAdapterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3232CB802BF6EA6C00D45A36 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					3232CB882BF6EA6D00D45A36 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					3232CB922BF6EA6D00D45A36 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+				};
+			};
+			buildConfigurationList = 3232CB832BF6EA6C00D45A36 /* Build configuration list for PBXProject "MediationAdapter" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3232CB7F2BF6EA6C00D45A36;
+			packageReferences = (
+			);
+			productRefGroup = 3232CB8A2BF6EA6D00D45A36 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3232CB882BF6EA6D00D45A36 /* MediationAdapter */,
+				3232CB922BF6EA6D00D45A36 /* MediationAdapterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3232CB872BF6EA6D00D45A36 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3232CB912BF6EA6D00D45A36 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3232CB852BF6EA6D00D45A36 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32385F9D2BFC2828006EE9E0 /* AdMobMediationAdapterBanner.swift in Sources */,
+				32385FA52C041858006EE9E0 /* AdMobMediationAdapterExtras.swift in Sources */,
+				3232CBA52BFADB0500D45A36 /* AdMobMediationAdapter.swift in Sources */,
+				3232CBB02BFADEE900D45A36 /* Logger.swift in Sources */,
+				3232CB8E2BF6EA6D00D45A36 /* MediationAdapter.docc in Sources */,
+				32385F9F2BFC2F0C006EE9E0 /* AdMobMediationAdapterUtil.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3232CB8F2BF6EA6D00D45A36 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3232CB992BF6EA6D00D45A36 /* MediationAdapterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3232CB962BF6EA6D00D45A36 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3232CB882BF6EA6D00D45A36 /* MediationAdapter */;
+			targetProxy = 3232CB952BF6EA6D00D45A36 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3232CB9B2BF6EA6D00D45A36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3232CB9C2BF6EA6D00D45A36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3232CB9E2BF6EA6D00D45A36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6XWD4MKNM3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = "../../Pods/Google-Mobile-Ads-SDK/**";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.MediationAdapter;
+				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3232CB9F2BF6EA6D00D45A36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6XWD4MKNM3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = "../../Pods/Google-Mobile-Ads-SDK/**";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.MediationAdapter;
+				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3232CBA12BF6EA6D00D45A36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6XWD4MKNM3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.runa.sdk2.MediationAdapterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3232CBA22BF6EA6D00D45A36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6XWD4MKNM3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.runa.sdk2.MediationAdapterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3232CBB12BFAE18200D45A36 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Staging;
+		};
+		3232CBB22BFAE18200D45A36 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6XWD4MKNM3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				FRAMEWORK_SEARCH_PATHS = "../../Pods/Google-Mobile-Ads-SDK/**";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.ads.ios.runa.MediationAdapter;
+				PRODUCT_NAME = "RUNA$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Staging;
+		};
+		3232CBB32BFAE18200D45A36 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6XWD4MKNM3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.runa.sdk2.MediationAdapterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Staging;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3232CB832BF6EA6C00D45A36 /* Build configuration list for PBXProject "MediationAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3232CB9B2BF6EA6D00D45A36 /* Debug */,
+				3232CBB12BFAE18200D45A36 /* Staging */,
+				3232CB9C2BF6EA6D00D45A36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3232CB9D2BF6EA6D00D45A36 /* Build configuration list for PBXNativeTarget "MediationAdapter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3232CB9E2BF6EA6D00D45A36 /* Debug */,
+				3232CBB22BFAE18200D45A36 /* Staging */,
+				3232CB9F2BF6EA6D00D45A36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3232CBA02BF6EA6D00D45A36 /* Build configuration list for PBXNativeTarget "MediationAdapterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3232CBA12BF6EA6D00D45A36 /* Debug */,
+				3232CBB32BFAE18200D45A36 /* Staging */,
+				3232CBA22BF6EA6D00D45A36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3232CB802BF6EA6C00D45A36 /* Project object */;
+}
