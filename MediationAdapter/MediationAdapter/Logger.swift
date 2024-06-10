@@ -8,7 +8,6 @@
 import Foundation
 import os
 
-
 let logger = Logger(subsystem: "com.rakuten.ad.runa", category: "MediationAdapter")
 
 func debug(_ msg: String) {

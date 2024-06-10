@@ -11,45 +11,39 @@ import RUNABanner
 
 public class AdMobMediationAdapterExtras: NSObject, GADAdNetworkExtras {
 
-    public var adspotId: String!
+    public let parameters: RunaAdParameter
 
-    public var rz: String?
+    public init(parameters: RunaAdParameter) {
+        self.parameters = parameters
+    }
 
-    public var rp: String?
+    func applyTo(bannerView: RUNABannerView) {
+        debug("apply RunaAdParameters to banner: \(parameters)")
+        bannerView.adSpotId = parameters.adSpotId
+        bannerView.adSpotCode = parameters.adSpotCode
+        bannerView.adSpotBranchId = RUNABannerAdSpotBranch(rawValue: UInt(parameters.adSpotBranchId)) ?? .idNone
 
-    public var easyId: String?
-
-    public var rpoint: Int?
-
-    public var customTargeting: [String: [Any]]?
-
-    public var genre: RUNABannerViewGenreProperty?
-
-    public func applyTo(bannerView: RUNABannerView) {
-        bannerView.adSpotId = adspotId
-
-        if let rz {
+        if let rz = parameters.rz {
             bannerView.setRz(rz)
         }
 
-        if let rp {
+        if let rp = parameters.rp {
             bannerView.setRp(rp)
         }
 
-        if let easyId {
+        if let easyId = parameters.easyId {
             bannerView.setEasyId(easyId)
         }
 
-        if let rpoint {
-            bannerView.setRpoint(rpoint)
-        }
-
-        if let customTargeting {
+        bannerView.setRpoint(parameters.rpoint)
+        
+        if let customTargeting = parameters.customTargeting {
             bannerView.setCustomTargeting(customTargeting)
         }
 
-        if let genre {
-            bannerView.setPropertyGenre(genre)
+        if let genre = parameters.genre {
+            let genreProperty = RUNABannerViewGenreProperty(masterId: genre.masterId, code: genre.code, match: genre.match)
+            bannerView.setPropertyGenre(genreProperty)
         }
     }
 }

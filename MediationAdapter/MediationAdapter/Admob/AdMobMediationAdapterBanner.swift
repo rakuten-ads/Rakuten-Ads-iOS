@@ -9,10 +9,6 @@ import Foundation
 import RUNABanner
 import GoogleMobileAds
 
-struct RUNAParameter: Decodable {
-    let adSpotId: String
-}
-
 class AdmobMedationAdapterBanner: NSObject, GADMediationBannerAd {
     var view: UIView {
         if let banner = self.banner {
@@ -26,42 +22,48 @@ class AdmobMedationAdapterBanner: NSObject, GADMediationBannerAd {
     private var banner: RUNABannerView?
     var adEventDelegate: GADMediationAdEventDelegate?
 
-    func loadBanner(for adConfiguration: GADMediationBannerAdConfiguration, completionHandler: @escaping GADMediationBannerLoadCompletionHandler) {
-        debug("load adConfiguration settings: \(adConfiguration.credentials.settings)")
-//        if let parameterString = adConfiguration.credentials.settings["parameter"] as? String,
-//           let jsonData = parameterString.data(using: .utf8) {
-//            if let parameters = try? JSONDecoder().decode(RUNAParameter.self, from: jsonData) {
-                let banner = RUNABannerView()
-                self.banner = banner
+    func loadBanner(for adConfiguration: GADMediationBannerAdConfiguration, 
+                    completionHandler: @escaping GADMediationBannerLoadCompletionHandler) {
         
-                banner.size = .aspectFit
-                banner.position = .top
+        debug("load adConfiguration settings: \(adConfiguration.credentials.settings)")
+        if let extras = adConfiguration.extras as? AdMobMediationAdapterExtras {
+            let banner = RUNABannerView()
+            self.banner = banner
 
-                if let extras = adConfiguration.extras as? AdMobMediationAdapterExtras {
-                    extras.applyTo(bannerView: banner)
-                }
+            banner.size = .aspectFit
+            banner.position = .top
 
-//                info("RUNABannerView load with parameters: \(parameters)")
-                banner.load { [weak self] bannerView, event in
-                    debug("received banner event \(event.eventType.rawValue)")
-                    switch event.eventType {
-                    case .succeeded:
+            extras.applyTo(bannerView: banner)
+
+            banner.load { [weak self] bannerView, event in
+                debug("received banner event \(event.eventType.rawValue)")
+                switch event.eventType {
+                case .succeeded:
+                    let verifiedSize = GADClosestValidSizeForAdSizes(
+                        adConfiguration.adSize,
+                        [NSValueFromGADAdSize(GADAdSizeFromCGSize(bannerView.designatedContentSize))]
+                    )
+
+                    if IsGADAdSizeValid(verifiedSize) {
                         self?.adEventDelegate = completionHandler(self, nil)
-                    case .failed:
+                    } else {
                         let err = AdMobMediationAdapterUtil.convertError(
-                            from: event.error, description: "ad load failed with error: \(event.error.rawValue)")
+                            from: RUNABannerViewError.fatal, description: "RUNA Banner size is not match for indicated GADSize")
                         self?.adEventDelegate = completionHandler(nil, err)
-                    case .clicked:
-                        self?.adEventDelegate?.reportClick()
-                    default:
-                        debug("unsupport event \(event.eventType)")
                     }
+
+                case .failed:
+                    let err = AdMobMediationAdapterUtil.convertError(
+                        from: event.error, description: "ad load failed with error: \(event.error.rawValue)")
+                    self?.adEventDelegate = completionHandler(nil, err)
+                case .clicked:
+                    self?.adEventDelegate?.reportClick()
+                default:
+                    debug("unsupport event \(event.eventType)")
                 }
-//            } else {
-//                debug("malformed parameter string: [\(parameterString)]")
-//            }
-//        } else {
-//            debug("mediation configuration parameter not found")
-//        }
+
+            }
+        }
     }
+
 }

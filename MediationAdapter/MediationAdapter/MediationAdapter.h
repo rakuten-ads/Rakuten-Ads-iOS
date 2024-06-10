@@ -16,3 +16,4 @@ FOUNDATION_EXPORT const unsigned char MediationAdapterVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <MediationAdapter/PublicHeader.h>
 
 
+FOUNDATION_EXPORT const unsigned char * MediationAdapterSDKMarketVersion = @OS_STRINGIFY(RUNA_SDK_VERSION);

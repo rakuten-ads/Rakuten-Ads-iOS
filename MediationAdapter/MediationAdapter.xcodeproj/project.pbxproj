@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,19 @@
 		32385F9D2BFC2828006EE9E0 /* AdMobMediationAdapterBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32385F9C2BFC2828006EE9E0 /* AdMobMediationAdapterBanner.swift */; };
 		32385F9F2BFC2F0C006EE9E0 /* AdMobMediationAdapterUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32385F9E2BFC2F0C006EE9E0 /* AdMobMediationAdapterUtil.swift */; };
 		32385FA52C041858006EE9E0 /* AdMobMediationAdapterExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32385FA42C041858006EE9E0 /* AdMobMediationAdapterExtras.swift */; };
+		32E9C8952C085F61004A1448 /* RunaAdParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E9C8942C085F61004A1448 /* RunaAdParameter.swift */; };
+		32E9C8A62C0FE51F004A1448 /* RUNAMediationAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8A52C0FE51F004A1448 /* RUNAMediationAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32E9C8AD2C0FE555004A1448 /* RUNAMediationAdapterAdmob.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8AB2C0FE555004A1448 /* RUNAMediationAdapterAdmob.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32E9C8AE2C0FE555004A1448 /* RUNAMediationAdapterAdmob.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E9C8AC2C0FE555004A1448 /* RUNAMediationAdapterAdmob.m */; };
+		32E9C8B32C101694004A1448 /* RUNAMediationAdapterAdmobBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E9C8B22C101694004A1448 /* RUNAMediationAdapterAdmobBanner.m */; };
+		32E9C8B42C101694004A1448 /* RUNAMediationAdapterAdmobBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8B12C101694004A1448 /* RUNAMediationAdapterAdmobBanner.h */; };
+		32E9C8BA2C101926004A1448 /* RUNAMediationAdapterAdmobUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8B82C101926004A1448 /* RUNAMediationAdapterAdmobUtil.h */; };
+		32E9C8BB2C101926004A1448 /* RUNAMediationAdapterAdmobUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E9C8B92C101926004A1448 /* RUNAMediationAdapterAdmobUtil.m */; };
+		32E9C8BE2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8BC2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32E9C8BF2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E9C8BD2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.m */; };
+		32E9C8C22C101A04004A1448 /* RUNAAdParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8C02C101A04004A1448 /* RUNAAdParameter.h */; };
+		32E9C8C32C101A04004A1448 /* RUNAAdParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E9C8C12C101A04004A1448 /* RUNAAdParameter.m */; };
+		32E9C8D42C114D71004A1448 /* GoogleMobileAds.xcframework in Resources */ = {isa = PBXBuildFile; fileRef = 32E9C8962C0F2173004A1448 /* GoogleMobileAds.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +55,22 @@
 		32385F9C2BFC2828006EE9E0 /* AdMobMediationAdapterBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobMediationAdapterBanner.swift; sourceTree = "<group>"; };
 		32385F9E2BFC2F0C006EE9E0 /* AdMobMediationAdapterUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobMediationAdapterUtil.swift; sourceTree = "<group>"; };
 		32385FA42C041858006EE9E0 /* AdMobMediationAdapterExtras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobMediationAdapterExtras.swift; sourceTree = "<group>"; };
-		32E9C8842C072ED2004A1448 /* RUNABanner.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RUNABanner.xcframework; path = "../../../../public/googleads-mobile-ios-mediation/example/Pods/RUNABanner/RUNABanner.xcframework"; sourceTree = "<group>"; };
-		32E9C8882C072ED7004A1448 /* RUNACore.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RUNACore.xcframework; path = "../../../../public/googleads-mobile-ios-mediation/example/Pods/RUNACore/RUNACore.xcframework"; sourceTree = "<group>"; };
+		32E9C8942C085F61004A1448 /* RunaAdParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunaAdParameter.swift; sourceTree = "<group>"; };
+		32E9C8962C0F2173004A1448 /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:EQHXZ8M8AV:Google LLC"; lastKnownFileType = wrapper.xcframework; name = GoogleMobileAds.xcframework; path = "../../Pods/Google-Mobile-Ads-SDK/Frameworks/GoogleMobileAdsFramework/GoogleMobileAds.xcframework"; sourceTree = "<group>"; };
+		32E9C89A2C0F2768004A1448 /* UserMessagingPlatform.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:EQHXZ8M8AV:Google LLC"; lastKnownFileType = wrapper.xcframework; name = UserMessagingPlatform.xcframework; path = ../../Pods/GoogleUserMessagingPlatform/Frameworks/Release/UserMessagingPlatform.xcframework; sourceTree = "<group>"; };
+		32E9C8A32C0FE51F004A1448 /* MediationAdapterObj.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MediationAdapterObj.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32E9C8A52C0FE51F004A1448 /* RUNAMediationAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAMediationAdapter.h; sourceTree = "<group>"; };
+		32E9C8AB2C0FE555004A1448 /* RUNAMediationAdapterAdmob.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAMediationAdapterAdmob.h; sourceTree = "<group>"; };
+		32E9C8AC2C0FE555004A1448 /* RUNAMediationAdapterAdmob.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAMediationAdapterAdmob.m; sourceTree = "<group>"; };
+		32E9C8B12C101694004A1448 /* RUNAMediationAdapterAdmobBanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAMediationAdapterAdmobBanner.h; sourceTree = "<group>"; };
+		32E9C8B22C101694004A1448 /* RUNAMediationAdapterAdmobBanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAMediationAdapterAdmobBanner.m; sourceTree = "<group>"; };
+		32E9C8B72C101888004A1448 /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
+		32E9C8B82C101926004A1448 /* RUNAMediationAdapterAdmobUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAMediationAdapterAdmobUtil.h; sourceTree = "<group>"; };
+		32E9C8B92C101926004A1448 /* RUNAMediationAdapterAdmobUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAMediationAdapterAdmobUtil.m; sourceTree = "<group>"; };
+		32E9C8BC2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAMediationAdapterAdmobExtras.h; sourceTree = "<group>"; };
+		32E9C8BD2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAMediationAdapterAdmobExtras.m; sourceTree = "<group>"; };
+		32E9C8C02C101A04004A1448 /* RUNAAdParameter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAdParameter.h; sourceTree = "<group>"; };
+		32E9C8C12C101A04004A1448 /* RUNAAdParameter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdParameter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +91,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		32E9C8A02C0FE51F004A1448 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -72,6 +106,7 @@
 			children = (
 				3232CB8B2BF6EA6D00D45A36 /* MediationAdapter */,
 				3232CB972BF6EA6D00D45A36 /* MediationAdapterTests */,
+				32E9C8A42C0FE51F004A1448 /* MediationAdapterObj */,
 				3232CB8A2BF6EA6D00D45A36 /* Products */,
 				3232CBA72BFADE0F00D45A36 /* Frameworks */,
 			);
@@ -82,6 +117,7 @@
 			children = (
 				3232CB892BF6EA6D00D45A36 /* RUNAMediationAdapter.framework */,
 				3232CB932BF6EA6D00D45A36 /* MediationAdapterTests.xctest */,
+				32E9C8A32C0FE51F004A1448 /* MediationAdapterObj.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,6 +125,7 @@
 		3232CB8B2BF6EA6D00D45A36 /* MediationAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				32E9C8942C085F61004A1448 /* RunaAdParameter.swift */,
 				3232CBAF2BFADEE900D45A36 /* Logger.swift */,
 				3232CBA32BFADA3A00D45A36 /* Admob */,
 				3232CB8C2BF6EA6D00D45A36 /* MediationAdapter.h */,
@@ -119,12 +156,31 @@
 		3232CBA72BFADE0F00D45A36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				32E9C8882C072ED7004A1448 /* RUNACore.xcframework */,
-				32E9C8842C072ED2004A1448 /* RUNABanner.xcframework */,
+				32E9C89A2C0F2768004A1448 /* UserMessagingPlatform.xcframework */,
+				32E9C8962C0F2173004A1448 /* GoogleMobileAds.xcframework */,
 				3232CBAC2BFADE1300D45A36 /* RUNABanner.framework */,
 				3232CBA82BFADE0F00D45A36 /* RUNACore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		32E9C8A42C0FE51F004A1448 /* MediationAdapterObj */ = {
+			isa = PBXGroup;
+			children = (
+				32E9C8A52C0FE51F004A1448 /* RUNAMediationAdapter.h */,
+				32E9C8AB2C0FE555004A1448 /* RUNAMediationAdapterAdmob.h */,
+				32E9C8AC2C0FE555004A1448 /* RUNAMediationAdapterAdmob.m */,
+				32E9C8B12C101694004A1448 /* RUNAMediationAdapterAdmobBanner.h */,
+				32E9C8B22C101694004A1448 /* RUNAMediationAdapterAdmobBanner.m */,
+				32E9C8B82C101926004A1448 /* RUNAMediationAdapterAdmobUtil.h */,
+				32E9C8B92C101926004A1448 /* RUNAMediationAdapterAdmobUtil.m */,
+				32E9C8BC2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.h */,
+				32E9C8BD2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.m */,
+				32E9C8C02C101A04004A1448 /* RUNAAdParameter.h */,
+				32E9C8C12C101A04004A1448 /* RUNAAdParameter.m */,
+				32E9C8B72C101888004A1448 /* PrefixHeader.h */,
+			);
+			path = MediationAdapterObj;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,6 +190,19 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32E9C89E2C0FE51F004A1448 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32E9C8A62C0FE51F004A1448 /* RUNAMediationAdapter.h in Headers */,
+				32E9C8B42C101694004A1448 /* RUNAMediationAdapterAdmobBanner.h in Headers */,
+				32E9C8AD2C0FE555004A1448 /* RUNAMediationAdapterAdmob.h in Headers */,
+				32E9C8BA2C101926004A1448 /* RUNAMediationAdapterAdmobUtil.h in Headers */,
+				32E9C8C22C101A04004A1448 /* RUNAAdParameter.h in Headers */,
+				32E9C8BE2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +247,24 @@
 			productReference = 3232CB932BF6EA6D00D45A36 /* MediationAdapterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		32E9C8A22C0FE51F004A1448 /* MediationAdapterObj */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32E9C8A72C0FE51F004A1448 /* Build configuration list for PBXNativeTarget "MediationAdapterObj" */;
+			buildPhases = (
+				32E9C89E2C0FE51F004A1448 /* Headers */,
+				32E9C89F2C0FE51F004A1448 /* Sources */,
+				32E9C8A02C0FE51F004A1448 /* Frameworks */,
+				32E9C8A12C0FE51F004A1448 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MediationAdapterObj;
+			productName = MediationAdapterObj;
+			productReference = 32E9C8A32C0FE51F004A1448 /* MediationAdapterObj.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -192,6 +279,9 @@
 						CreatedOnToolsVersion = 15.3;
 					};
 					3232CB922BF6EA6D00D45A36 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					32E9C8A22C0FE51F004A1448 = {
 						CreatedOnToolsVersion = 15.3;
 					};
 				};
@@ -212,6 +302,7 @@
 			projectRoot = "";
 			targets = (
 				3232CB882BF6EA6D00D45A36 /* MediationAdapter */,
+				32E9C8A22C0FE51F004A1448 /* MediationAdapterObj */,
 				3232CB922BF6EA6D00D45A36 /* MediationAdapterTests */,
 			);
 		};
@@ -222,10 +313,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32E9C8D42C114D71004A1448 /* GoogleMobileAds.xcframework in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3232CB912BF6EA6D00D45A36 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32E9C8A12C0FE51F004A1448 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -240,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32385F9D2BFC2828006EE9E0 /* AdMobMediationAdapterBanner.swift in Sources */,
+				32E9C8952C085F61004A1448 /* RunaAdParameter.swift in Sources */,
 				32385FA52C041858006EE9E0 /* AdMobMediationAdapterExtras.swift in Sources */,
 				3232CBA52BFADB0500D45A36 /* AdMobMediationAdapter.swift in Sources */,
 				3232CBB02BFADEE900D45A36 /* Logger.swift in Sources */,
@@ -253,6 +353,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				3232CB992BF6EA6D00D45A36 /* MediationAdapterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32E9C89F2C0FE51F004A1448 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32E9C8C32C101A04004A1448 /* RUNAAdParameter.m in Sources */,
+				32E9C8B32C101694004A1448 /* RUNAMediationAdapterAdmobBanner.m in Sources */,
+				32E9C8BF2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.m in Sources */,
+				32E9C8AE2C0FE555004A1448 /* RUNAMediationAdapterAdmob.m in Sources */,
+				32E9C8BB2C101926004A1448 /* RUNAMediationAdapterAdmobUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,7 +509,7 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1000001;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6XWD4MKNM3;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -405,8 +517,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				FRAMEWORK_SEARCH_PATHS = "../../Pods/Google-Mobile-Ads-SDK/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../../Pods/Google-Mobile-Ads-SDK",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -414,8 +531,8 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 1.0.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				OTHER_LDFLAGS = "";
@@ -434,7 +551,7 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1000001;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6XWD4MKNM3;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -442,8 +559,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				FRAMEWORK_SEARCH_PATHS = "../../Pods/Google-Mobile-Ads-SDK/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../../Pods/Google-Mobile-Ads-SDK",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -451,8 +573,8 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 1.0.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				OTHER_LDFLAGS = "";
@@ -571,7 +693,7 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1000001;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6XWD4MKNM3;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -579,8 +701,13 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				FRAMEWORK_SEARCH_PATHS = "../../Pods/Google-Mobile-Ads-SDK/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/../../Pods/Google-Mobile-Ads-SDK",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -588,8 +715,8 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "";
-				MARKETING_VERSION = 1.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 1.0.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				OTHER_LDFLAGS = "";
@@ -620,6 +747,125 @@
 			};
 			name = Staging;
 		};
+		32E9C8A82C0FE51F004A1448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1000001;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6XWD4MKNM3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Google-Mobile-Ads-SDK";
+				GCC_PREFIX_HEADER = MediationAdapterObj/PrefixHeader.h;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"RUNA_SDK_VERSION=$(MARKETING_VERSION)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Google-Mobile-Ads-SDK";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Google-Mobile-Ads-SDK/**";
+				MARKETING_VERSION = 1.0.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.runa.sdk.MediationAdapterObj;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		32E9C8A92C0FE51F004A1448 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1000001;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6XWD4MKNM3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Google-Mobile-Ads-SDK";
+				GCC_PREFIX_HEADER = MediationAdapterObj/PrefixHeader.h;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"RUNA_SDK_VERSION=$(MARKETING_VERSION)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Google-Mobile-Ads-SDK";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Google-Mobile-Ads-SDK/**";
+				MARKETING_VERSION = 1.0.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.runa.sdk.MediationAdapterObj;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Staging;
+		};
+		32E9C8AA2C0FE51F004A1448 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1000001;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 6XWD4MKNM3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Google-Mobile-Ads-SDK";
+				GCC_PREFIX_HEADER = MediationAdapterObj/PrefixHeader.h;
+				GCC_PREPROCESSOR_DEFINITIONS = "RUNA_SDK_VERSION=$(MARKETING_VERSION)";
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Google-Mobile-Ads-SDK";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../Pods/Google-Mobile-Ads-SDK/**";
+				MARKETING_VERSION = 1.0.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.rakuten.runa.sdk.MediationAdapterObj;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -649,6 +895,16 @@
 				3232CBA12BF6EA6D00D45A36 /* Debug */,
 				3232CBB32BFAE18200D45A36 /* Staging */,
 				3232CBA22BF6EA6D00D45A36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32E9C8A72C0FE51F004A1448 /* Build configuration list for PBXNativeTarget "MediationAdapterObj" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32E9C8A82C0FE51F004A1448 /* Debug */,
+				32E9C8A92C0FE51F004A1448 /* Staging */,
+				32E9C8AA2C0FE51F004A1448 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
