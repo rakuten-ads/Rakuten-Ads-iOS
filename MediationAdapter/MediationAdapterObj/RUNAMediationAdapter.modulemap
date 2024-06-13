@@ -1,0 +1,13 @@
+//
+//  RUNAMediationAdapter.map.modulemap
+//  MediationAdapterObj
+//
+//  Created by Wu, Wei | David | GATD on 2024/06/13.
+//
+
+framework module RUNAMediationAdapter {
+    umbrella header "RUNAMediationAdapter.h"
+
+    export *
+    module * { export * }
+}

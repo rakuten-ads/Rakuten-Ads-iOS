@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RUNAAdParameter.h"
+#import <RUNAMediationAdapter/RUNAAdParameter.h>
 #import <RUNABanner/RUNABanner.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
 

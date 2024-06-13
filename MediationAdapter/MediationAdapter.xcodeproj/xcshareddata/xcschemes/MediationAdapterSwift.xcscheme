@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3232CB882BF6EA6D00D45A36"
-               BuildableName = "RUNAMediationAdapter.framework"
-               BlueprintName = "MediationAdapter"
+               BuildableName = "RUNAMediationAdapterSwift.framework"
+               BlueprintName = "MediationAdapterSwift"
                ReferencedContainer = "container:MediationAdapter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -64,8 +64,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3232CB882BF6EA6D00D45A36"
-            BuildableName = "RUNAMediationAdapter.framework"
-            BlueprintName = "MediationAdapter"
+            BuildableName = "RUNAMediationAdapterSwift.framework"
+            BlueprintName = "MediationAdapterSwift"
             ReferencedContainer = "container:MediationAdapter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

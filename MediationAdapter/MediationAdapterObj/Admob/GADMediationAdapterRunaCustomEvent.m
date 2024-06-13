@@ -5,18 +5,18 @@
 //  Created by Wu, Wei | David | GATD on 2024/06/05.
 //
 
-#import "RUNAMediationAdapterAdmob.h"
+#import "GADMediationAdapterRunaCustomEvent.h"
 #import <RUNABanner/RUNABanner.h>
 #import "RUNAMediationAdapterAdmobBanner.h"
 #import "RUNAMediationAdapterAdmobExtras.h"
 
-@interface RUNAMediationAdapterAdmob()
+@interface GADMediationAdapterRunaCustomEvent()
 
 @property RUNAMediationAdapterAdmobBanner* bannerLoader;
 
 @end
 
-@implementation RUNAMediationAdapterAdmob
+@implementation GADMediationAdapterRunaCustomEvent
 
 + (nullable Class<GADAdNetworkExtras>)networkExtrasClass {
     return RUNAMediationAdapterAdmobExtras.class;
@@ -42,7 +42,7 @@
 #pragma clang diagnostic ignored "-Wundeclared-selector"
     if ([RUNABannerView respondsToSelector:@selector(RUNASDKVersionString)]) {
         NSString* runaSDKVersion = [RUNABannerView performSelector:@selector(RUNASDKVersionString)];
-        return [RUNAMediationAdapterAdmob parseVersionWithString:runaSDKVersion];
+        return [GADMediationAdapterRunaCustomEvent parseVersionWithString:runaSDKVersion];
     } else {
         struct GADVersionNumber empty = {};
         return empty;
@@ -50,8 +50,8 @@
 #pragma clang diagnostic pop
 }
 
-+ (GADVersionNumber)adapterVersion { 
-    return [RUNAMediationAdapterAdmob parseVersionWithString:[RUNAMediationAdapterAdmob versionString]];
++ (GADVersionNumber)adapterVersion {
+    return [GADMediationAdapterRunaCustomEvent parseVersionWithString:[GADMediationAdapterRunaCustomEvent versionString]];
 }
 
 

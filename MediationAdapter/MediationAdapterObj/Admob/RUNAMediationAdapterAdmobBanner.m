@@ -33,6 +33,9 @@
         self.completionHandler = completionHandler;
 
         RUNABannerView* runaBanner = [RUNABannerView new];
+        runaBanner.size = RUNABannerViewSizeAspectFit;
+        runaBanner.position = RUNABannerViewPositionTop;
+
         [extras applyToBannerView:runaBanner];
         self->_bannerView = runaBanner;
 
@@ -44,8 +47,6 @@
             }
             __strong typeof(weakSelf) strongSelf = weakSelf;
             if (event.eventType == RUNABannerViewEventTypeSucceeded) {
-                RUNALog("[RUNA] GAD adapter completionHandler succeeeded");
-
                 GADAdSize verifiedSize = GADClosestValidSizeForAdSizes(
                                                                  adConfiguration.adSize,
                                                                  @[NSValueFromGADAdSize(GADAdSizeFromCGSize(strongSelf.bannerView.designatedContentSize))]
