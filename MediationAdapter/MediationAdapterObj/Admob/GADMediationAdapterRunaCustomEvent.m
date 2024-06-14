@@ -7,19 +7,19 @@
 
 #import "GADMediationAdapterRunaCustomEvent.h"
 #import <RUNABanner/RUNABanner.h>
-#import "RUNAMediationAdapterAdmobBanner.h"
-#import "RUNAMediationAdapterAdmobExtras.h"
+#import "GADMediationAdapterRunaBanner.h"
+#import "GADMediationAdapterRunaExtras.h"
 
 @interface GADMediationAdapterRunaCustomEvent()
 
-@property RUNAMediationAdapterAdmobBanner* bannerLoader;
+@property GADMediationAdapterRunaBanner* bannerLoader;
 
 @end
 
 @implementation GADMediationAdapterRunaCustomEvent
 
 + (nullable Class<GADAdNetworkExtras>)networkExtrasClass {
-    return RUNAMediationAdapterAdmobExtras.class;
+    return GADMediationAdapterRunaExtras.class;
 }
 
 + (void)setUpWithConfiguration:(GADMediationServerConfiguration *)configuration 
@@ -31,7 +31,7 @@
 #pragma mark - banner
 
 - (void)loadBannerForAdConfiguration:(GADMediationBannerAdConfiguration *)adConfiguration completionHandler:(GADMediationBannerLoadCompletionHandler)completionHandler {
-    self.bannerLoader = [RUNAMediationAdapterAdmobBanner new];
+    self.bannerLoader = [GADMediationAdapterRunaBanner new];
     [self.bannerLoader loadBannerForAdConfiguration:adConfiguration completionHandler:completionHandler];
 }
 

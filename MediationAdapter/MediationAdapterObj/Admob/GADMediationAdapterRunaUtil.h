@@ -1,5 +1,5 @@
 //
-//  RUNAMediationAdapterAdmobUtil.h
+//  GADMediationAdapterRunaUtil.h
 //  MediationAdapterObj
 //
 //  Created by Wu, Wei | David | GATD on 2024/06/05.
@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXPORT NSString* kRUNAMediationAdapterAdmobDomain;
 
-@interface RUNAMediationAdapterAdmobUtil : NSObject
+@interface GADMediationAdapterRunaUtil : NSObject
 
 +(NSError*) domainError:(RUNABannerViewError) errorCode withDescription:(NSString*) description;
 

@@ -1,5 +1,5 @@
 //
-//  RUNAMediationAdapterAdmobBanner.h
+//  GADMediationAdapterRunaBanner.h
 //  MediationAdapterObj
 //
 //  Created by Wu, Wei | David | GATD on 2024/06/05.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RUNAMediationAdapterAdmobBanner : NSObject<GADMediationBannerAd>
+@interface GADMediationAdapterRunaBanner : NSObject<GADMediationBannerAd>
 
 - (void)loadBannerForAdConfiguration:(GADMediationBannerAdConfiguration *)adConfiguration completionHandler:(GADMediationBannerLoadCompletionHandler)completionHandler;
 

@@ -1,16 +1,16 @@
 //
-//  RUNAMediationAdapterAdmobBanner.m
+//  GADMediationAdapterRunaBanner.m
 //  MediationAdapterObj
 //
 //  Created by Wu, Wei | David | GATD on 2024/06/05.
 //
 
-#import "RUNAMediationAdapterAdmobBanner.h"
-#import "RUNAMediationAdapterAdmobExtras.h"
-#import "RUNAMediationAdapterAdmobUtil.h"
+#import "GADMediationAdapterRunaBanner.h"
+#import "GADMediationAdapterRunaExtras.h"
+#import "GADMediationAdapterRunaUtil.h"
 #import <RUNACore/RUNACore.h>
 
-@interface RUNAMediationAdapterAdmobBanner()
+@interface GADMediationAdapterRunaBanner()
 
 @property(readonly) RUNABannerView* bannerView;
 @property(copy) GADMediationBannerLoadCompletionHandler completionHandler;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation RUNAMediationAdapterAdmobBanner
+@implementation GADMediationAdapterRunaBanner
 
 -(UIView *)view {
     return self.bannerView;
@@ -28,8 +28,8 @@
 
     RUNADebug("loadBannerForAdConfiguration: %@", adConfiguration);
 
-    if (adConfiguration.extras && [adConfiguration.extras isKindOfClass:RUNAMediationAdapterAdmobExtras.class]) {
-        RUNAMediationAdapterAdmobExtras* extras = (RUNAMediationAdapterAdmobExtras*) adConfiguration.extras;
+    if (adConfiguration.extras && [adConfiguration.extras isKindOfClass:GADMediationAdapterRunaExtras.class]) {
+        GADMediationAdapterRunaExtras* extras = (GADMediationAdapterRunaExtras*) adConfiguration.extras;
         self.completionHandler = completionHandler;
 
         RUNABannerView* runaBanner = [RUNABannerView new];
@@ -41,11 +41,11 @@
 
         __weak typeof(self) weakSelf = self;
         [self.bannerView loadWithEventHandler:^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
-            if (!weakSelf) {
-                RUNALog("[RUNA] runa instance has deallocated before completionHandler");
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            if (!strongSelf) {
+                RUNALog("[RUNA] runa instance has been deallocated before completionHandler");
                 return;
             }
-            __strong typeof(weakSelf) strongSelf = weakSelf;
             if (event.eventType == RUNABannerViewEventTypeSucceeded) {
                 GADAdSize verifiedSize = GADClosestValidSizeForAdSizes(
                                                                  adConfiguration.adSize,
@@ -53,11 +53,11 @@
                                                                        );
 
                 if (IsGADAdSizeValid(verifiedSize)) {
-                    RUNALog("[RUNA] GAD adapter completionHandler succeed on verified GADSize %@",
+                    RUNADebug("[RUNA] GAD adapter completionHandler succeed on verified GADSize %@",
                             NSStringFromCGSize(CGSizeFromGADAdSize(verifiedSize)));
                     strongSelf.adEventDelegate = strongSelf.completionHandler(strongSelf, nil);
                 } else {
-                    NSError* err = [RUNAMediationAdapterAdmobUtil
+                    NSError* err = [GADMediationAdapterRunaUtil
                                     domainError:RUNABannerViewErrorFatal
                                     withDescription: [NSString
                                                       stringWithFormat:@"RUNA Banner size is not match for verified GADSize %@",
@@ -66,7 +66,7 @@
                     strongSelf.adEventDelegate = strongSelf.completionHandler(nil, err); // TODO: is possible to pass weakself?
                 }
             } else if(event.eventType == RUNABannerViewEventTypeFailed) {
-                NSError* err = [RUNAMediationAdapterAdmobUtil
+                NSError* err = [GADMediationAdapterRunaUtil
                                 domainError:event.error
                                 withDescription: [NSString
                                                   stringWithFormat:@"[RUNA] RUNA SDK ad load failed with error: %lu",

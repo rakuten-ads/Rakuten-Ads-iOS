@@ -21,12 +21,12 @@
 		32E9C8A62C0FE51F004A1448 /* RUNAMediationAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8A52C0FE51F004A1448 /* RUNAMediationAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32E9C8AD2C0FE555004A1448 /* GADMediationAdapterRunaCustomEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8AB2C0FE555004A1448 /* GADMediationAdapterRunaCustomEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32E9C8AE2C0FE555004A1448 /* GADMediationAdapterRunaCustomEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E9C8AC2C0FE555004A1448 /* GADMediationAdapterRunaCustomEvent.m */; };
-		32E9C8B32C101694004A1448 /* RUNAMediationAdapterAdmobBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E9C8B22C101694004A1448 /* RUNAMediationAdapterAdmobBanner.m */; };
-		32E9C8B42C101694004A1448 /* RUNAMediationAdapterAdmobBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8B12C101694004A1448 /* RUNAMediationAdapterAdmobBanner.h */; };
-		32E9C8BA2C101926004A1448 /* RUNAMediationAdapterAdmobUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8B82C101926004A1448 /* RUNAMediationAdapterAdmobUtil.h */; };
-		32E9C8BB2C101926004A1448 /* RUNAMediationAdapterAdmobUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E9C8B92C101926004A1448 /* RUNAMediationAdapterAdmobUtil.m */; };
-		32E9C8BE2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8BC2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32E9C8BF2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E9C8BD2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.m */; };
+		32E9C8B32C101694004A1448 /* GADMediationAdapterRunaBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E9C8B22C101694004A1448 /* GADMediationAdapterRunaBanner.m */; };
+		32E9C8B42C101694004A1448 /* GADMediationAdapterRunaBanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8B12C101694004A1448 /* GADMediationAdapterRunaBanner.h */; };
+		32E9C8BA2C101926004A1448 /* GADMediationAdapterRunaUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8B82C101926004A1448 /* GADMediationAdapterRunaUtil.h */; };
+		32E9C8BB2C101926004A1448 /* GADMediationAdapterRunaUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E9C8B92C101926004A1448 /* GADMediationAdapterRunaUtil.m */; };
+		32E9C8BE2C1019A9004A1448 /* GADMediationAdapterRunaExtras.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8BC2C1019A9004A1448 /* GADMediationAdapterRunaExtras.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32E9C8BF2C1019A9004A1448 /* GADMediationAdapterRunaExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E9C8BD2C1019A9004A1448 /* GADMediationAdapterRunaExtras.m */; };
 		32E9C8C22C101A04004A1448 /* RUNAAdParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E9C8C02C101A04004A1448 /* RUNAAdParameter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32E9C8C32C101A04004A1448 /* RUNAAdParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E9C8C12C101A04004A1448 /* RUNAAdParameter.m */; };
 		32E9C8D42C114D71004A1448 /* GoogleMobileAds.xcframework in Resources */ = {isa = PBXBuildFile; fileRef = 32E9C8962C0F2173004A1448 /* GoogleMobileAds.xcframework */; };
@@ -65,13 +65,13 @@
 		32E9C8A52C0FE51F004A1448 /* RUNAMediationAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAMediationAdapter.h; sourceTree = "<group>"; };
 		32E9C8AB2C0FE555004A1448 /* GADMediationAdapterRunaCustomEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADMediationAdapterRunaCustomEvent.h; sourceTree = "<group>"; };
 		32E9C8AC2C0FE555004A1448 /* GADMediationAdapterRunaCustomEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GADMediationAdapterRunaCustomEvent.m; sourceTree = "<group>"; };
-		32E9C8B12C101694004A1448 /* RUNAMediationAdapterAdmobBanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAMediationAdapterAdmobBanner.h; sourceTree = "<group>"; };
-		32E9C8B22C101694004A1448 /* RUNAMediationAdapterAdmobBanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAMediationAdapterAdmobBanner.m; sourceTree = "<group>"; };
+		32E9C8B12C101694004A1448 /* GADMediationAdapterRunaBanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADMediationAdapterRunaBanner.h; sourceTree = "<group>"; };
+		32E9C8B22C101694004A1448 /* GADMediationAdapterRunaBanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GADMediationAdapterRunaBanner.m; sourceTree = "<group>"; };
 		32E9C8B72C101888004A1448 /* PrefixHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.h; sourceTree = "<group>"; };
-		32E9C8B82C101926004A1448 /* RUNAMediationAdapterAdmobUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAMediationAdapterAdmobUtil.h; sourceTree = "<group>"; };
-		32E9C8B92C101926004A1448 /* RUNAMediationAdapterAdmobUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAMediationAdapterAdmobUtil.m; sourceTree = "<group>"; };
-		32E9C8BC2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAMediationAdapterAdmobExtras.h; sourceTree = "<group>"; };
-		32E9C8BD2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAMediationAdapterAdmobExtras.m; sourceTree = "<group>"; };
+		32E9C8B82C101926004A1448 /* GADMediationAdapterRunaUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADMediationAdapterRunaUtil.h; sourceTree = "<group>"; };
+		32E9C8B92C101926004A1448 /* GADMediationAdapterRunaUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GADMediationAdapterRunaUtil.m; sourceTree = "<group>"; };
+		32E9C8BC2C1019A9004A1448 /* GADMediationAdapterRunaExtras.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADMediationAdapterRunaExtras.h; sourceTree = "<group>"; };
+		32E9C8BD2C1019A9004A1448 /* GADMediationAdapterRunaExtras.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GADMediationAdapterRunaExtras.m; sourceTree = "<group>"; };
 		32E9C8C02C101A04004A1448 /* RUNAAdParameter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RUNAAdParameter.h; sourceTree = "<group>"; };
 		32E9C8C12C101A04004A1448 /* RUNAAdParameter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RUNAAdParameter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,12 +111,12 @@
 			children = (
 				32E9C8AB2C0FE555004A1448 /* GADMediationAdapterRunaCustomEvent.h */,
 				32E9C8AC2C0FE555004A1448 /* GADMediationAdapterRunaCustomEvent.m */,
-				32E9C8B12C101694004A1448 /* RUNAMediationAdapterAdmobBanner.h */,
-				32E9C8B22C101694004A1448 /* RUNAMediationAdapterAdmobBanner.m */,
-				32E9C8B82C101926004A1448 /* RUNAMediationAdapterAdmobUtil.h */,
-				32E9C8B92C101926004A1448 /* RUNAMediationAdapterAdmobUtil.m */,
-				32E9C8BC2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.h */,
-				32E9C8BD2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.m */,
+				32E9C8B12C101694004A1448 /* GADMediationAdapterRunaBanner.h */,
+				32E9C8B22C101694004A1448 /* GADMediationAdapterRunaBanner.m */,
+				32E9C8B82C101926004A1448 /* GADMediationAdapterRunaUtil.h */,
+				32E9C8B92C101926004A1448 /* GADMediationAdapterRunaUtil.m */,
+				32E9C8BC2C1019A9004A1448 /* GADMediationAdapterRunaExtras.h */,
+				32E9C8BD2C1019A9004A1448 /* GADMediationAdapterRunaExtras.m */,
 			);
 			path = Admob;
 			sourceTree = "<group>";
@@ -212,11 +212,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				32E9C8A62C0FE51F004A1448 /* RUNAMediationAdapter.h in Headers */,
-				32E9C8B42C101694004A1448 /* RUNAMediationAdapterAdmobBanner.h in Headers */,
+				32E9C8B42C101694004A1448 /* GADMediationAdapterRunaBanner.h in Headers */,
 				32E9C8AD2C0FE555004A1448 /* GADMediationAdapterRunaCustomEvent.h in Headers */,
-				32E9C8BA2C101926004A1448 /* RUNAMediationAdapterAdmobUtil.h in Headers */,
+				32E9C8BA2C101926004A1448 /* GADMediationAdapterRunaUtil.h in Headers */,
 				32E9C8C22C101A04004A1448 /* RUNAAdParameter.h in Headers */,
-				32E9C8BE2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.h in Headers */,
+				32E9C8BE2C1019A9004A1448 /* GADMediationAdapterRunaExtras.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,10 +375,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				32E9C8C32C101A04004A1448 /* RUNAAdParameter.m in Sources */,
-				32E9C8B32C101694004A1448 /* RUNAMediationAdapterAdmobBanner.m in Sources */,
-				32E9C8BF2C1019A9004A1448 /* RUNAMediationAdapterAdmobExtras.m in Sources */,
+				32E9C8B32C101694004A1448 /* GADMediationAdapterRunaBanner.m in Sources */,
+				32E9C8BF2C1019A9004A1448 /* GADMediationAdapterRunaExtras.m in Sources */,
 				32E9C8AE2C0FE555004A1448 /* GADMediationAdapterRunaCustomEvent.m in Sources */,
-				32E9C8BB2C101926004A1448 /* RUNAMediationAdapterAdmobUtil.m in Sources */,
+				32E9C8BB2C101926004A1448 /* GADMediationAdapterRunaUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

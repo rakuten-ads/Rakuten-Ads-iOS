@@ -1,5 +1,5 @@
 //
-//  RUNAMediationAdapterAdmobExtras.h
+//  GADMediationAdapterRunaExtras.h
 //  MediationAdapterObj
 //
 //  Created by Wu, Wei | David | GATD on 2024/06/05.
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RUNAMediationAdapterAdmobExtras : NSObject<GADAdNetworkExtras>
+@interface GADMediationAdapterRunaExtras : NSObject<GADAdNetworkExtras>
 
 @property RUNAAdParameter* adParameter;
 

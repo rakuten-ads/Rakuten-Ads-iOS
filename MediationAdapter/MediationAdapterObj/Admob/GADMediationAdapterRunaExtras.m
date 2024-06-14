@@ -1,13 +1,13 @@
 //
-//  RUNAMediationAdapterAdmobExtras.m
+//  GADMediationAdapterRunaExtras.m
 //  MediationAdapterObj
 //
 //  Created by Wu, Wei | David | GATD on 2024/06/05.
 //
 
-#import "RUNAMediationAdapterAdmobExtras.h"
+#import "GADMediationAdapterRunaExtras.h"
 
-@implementation RUNAMediationAdapterAdmobExtras
+@implementation GADMediationAdapterRunaExtras
 
 -(void)applyToBannerView:(RUNABannerView *)runaBanner {
     RUNADebug("apply RUNAAdParameter to banner: %@", self.adParameter);

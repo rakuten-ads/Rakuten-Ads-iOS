@@ -16,5 +16,5 @@ FOUNDATION_EXPORT const unsigned char RUNAMediationAdapterVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <MediationAdapterObj/PublicHeader.h>
 
 #import <RUNAMediationAdapter/GADMediationAdapterRunaCustomEvent.h>
-#import <RUNAMediationAdapter/RUNAMediationAdapterAdmobExtras.h>
+#import <RUNAMediationAdapter/GADMediationAdapterRunaExtras.h>
 #import <RUNAMediationAdapter/RUNAAdParameter.h>
