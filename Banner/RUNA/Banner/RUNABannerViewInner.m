@@ -154,7 +154,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     [super layoutSubviews];
     // Log the size of the banner view and its subviews after layout
     CGSize bannerViewSize = self.frame.size;
-    RUNADebug("BannerView loaded with size: %@", NSStringFromCGSize(bannerViewSize));
+    RUNALog("[RUNA] BannerView loaded with size: %@", NSStringFromCGSize(bannerViewSize));
 }
 
 
