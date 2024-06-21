@@ -26,7 +26,7 @@
 
 - (void)loadBannerForAdConfiguration:(GADMediationBannerAdConfiguration *)adConfiguration completionHandler:(GADMediationBannerLoadCompletionHandler)completionHandler {
 
-    RUNADebug("loadBannerForAdConfiguration: %@", adConfiguration);
+    RUNADebug("[RUNA MDA] loadBannerForAdConfiguration: %@", adConfiguration);
 
     if (adConfiguration.extras && [adConfiguration.extras isKindOfClass:GADMediationAdapterRunaExtras.class]) {
         GADMediationAdapterRunaExtras* extras = (GADMediationAdapterRunaExtras*) adConfiguration.extras;
@@ -43,27 +43,24 @@
         [self.bannerView loadWithEventHandler:^(RUNABannerView * _Nonnull view, struct RUNABannerViewEvent event) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
             if (!strongSelf) {
-                RUNALog("[RUNA] runa instance has been deallocated before completionHandler");
+                RUNALog("[RUNA MDA] runa instance has been deallocated before completionHandler");
                 return;
             }
             if (event.eventType == RUNABannerViewEventTypeSucceeded) {
-                GADAdSize verifiedSize = GADClosestValidSizeForAdSizes(
-                                                                 adConfiguration.adSize,
-                                                                 @[NSValueFromGADAdSize(GADAdSizeFromCGSize(strongSelf.bannerView.designatedContentSize))]
-                                                                       );
-
-                if (IsGADAdSizeValid(verifiedSize)) {
-                    RUNADebug("[RUNA] GAD adapter completionHandler succeed on verified GADSize %@",
-                            NSStringFromCGSize(CGSizeFromGADAdSize(verifiedSize)));
+                if ([strongSelf verifyAdSize:strongSelf.bannerView.designatedContentSize withRequestSize:adConfiguration.adSize]) {
+                    RUNADebug("[RUNA MDA] GAD adapter completionHandler succeed on request GADSize %@",
+                            NSStringFromCGSize(CGSizeFromGADAdSize(adConfiguration.adSize)));
                     strongSelf.adEventDelegate = strongSelf.completionHandler(strongSelf, nil);
                 } else {
                     NSError* err = [GADMediationAdapterRunaUtil
                                     domainError:RUNABannerViewErrorFatal
                                     withDescription: [NSString
-                                                      stringWithFormat:@"RUNA Banner size is not match for verified GADSize %@",
-                                                      NSStringFromCGSize(CGSizeFromGADAdSize(verifiedSize))]];
-                    RUNALog("[RUNA] GAD adapter completionHandler failed: %@", err);
-                    strongSelf.adEventDelegate = strongSelf.completionHandler(nil, err); // TODO: is possible to pass weakself?
+                                                      stringWithFormat:@"[RUNA MDA] RUNA Banner designated size %@ is not match for request GADSize %@",
+                                                      NSStringFromCGSize(strongSelf.bannerView.designatedContentSize),
+                                                      NSStringFromCGSize(CGSizeFromGADAdSize(adConfiguration.adSize))
+                                                     ]];
+                    RUNALog("[RUNA MDA] GAD adapter completionHandler failed: %@", err);
+                    strongSelf.adEventDelegate = strongSelf.completionHandler(nil, err);
                 }
             } else if(event.eventType == RUNABannerViewEventTypeFailed) {
                 NSError* err = [GADMediationAdapterRunaUtil
@@ -71,14 +68,28 @@
                                 withDescription: [NSString
                                                   stringWithFormat:@"[RUNA] RUNA SDK ad load failed with error: %lu",
                                                   (unsigned long)event.error]];
-                RUNALog("[RUNA] GAD adapter completionHandler failed: %@", err);
-                strongSelf.adEventDelegate = strongSelf.completionHandler(nil, err); // TODO: is possible to pass weakself?
+                RUNALog("[RUNA MDA] GAD adapter completionHandler failed: %@", err);
+                strongSelf.adEventDelegate = strongSelf.completionHandler(nil, err);
             } else if (event.eventType == RUNABannerViewEventTypeClicked) {
-                RUNALog("[RUNA] GAD adapter report click");
+                RUNALog("[RUNA MDA] GAD adapter report click");
                 [strongSelf.adEventDelegate reportClick];
             }
         }];
     }
+}
+
+/*!
+Verifiy RUNABanner size with requested GADAdSize. YES for either RUNABanner size is close to GADAdSize or the aspect ratio of 2 size has a distance less than 0.01.
+ */
+-(BOOL) verifyAdSize:(CGSize) adSize withRequestSize:(GADAdSize) requestSize {
+    GADAdSize verifiedSize = GADClosestValidSizeForAdSizes(requestSize, @[
+        NSValueFromGADAdSize(GADAdSizeFromCGSize(adSize))
+    ]);
+    RUNADebug("[RUNA MDA] GADClosestValidSizeForAdSizes = %@", NSStringFromCGSize(CGSizeFromGADAdSize(verifiedSize)));
+    double aspectRatioDistance = fabs((requestSize.size.width / requestSize.size.height) - (adSize.width / adSize.height));
+
+    RUNADebug("[RUNA MDA] AspectRatio distance = %f", aspectRatioDistance);
+    return IsGADAdSizeValid(verifiedSize) || aspectRatioDistance < 0.01;
 }
 
 @end

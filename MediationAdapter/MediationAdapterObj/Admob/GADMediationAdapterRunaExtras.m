@@ -10,7 +10,7 @@
 @implementation GADMediationAdapterRunaExtras
 
 -(void)applyToBannerView:(RUNABannerView *)runaBanner {
-    RUNADebug("apply RUNAAdParameter to banner: %@", self.adParameter);
+    RUNADebug("[RUNA MDA] apply RUNAAdParameter to banner: %@", self.adParameter);
 
     runaBanner.adSpotId = self.adParameter.adSpotId;
     runaBanner.adSpotCode = self.adParameter.adSpotCode;
