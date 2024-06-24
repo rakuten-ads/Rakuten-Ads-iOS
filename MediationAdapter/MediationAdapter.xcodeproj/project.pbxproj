@@ -6,6 +6,20 @@
 	objectVersion = 60;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		3276A08C2C296F6C006D58C3 /* Aggregate */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 3276A08D2C296F6C006D58C3 /* Build configuration list for PBXAggregateTarget "Aggregate" */;
+			buildPhases = (
+				3276A0912C296F85006D58C3 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Aggregate;
+			productName = Aggregate;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		322DE3372C1A924C00C44588 /* RUNABanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 322DE3352C1A924C00C44588 /* RUNABanner.framework */; };
 		322DE3392C1A924C00C44588 /* RUNACore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 322DE3362C1A924C00C44588 /* RUNACore.framework */; };
@@ -299,6 +313,9 @@
 					3232CB922BF6EA6D00D45A36 = {
 						CreatedOnToolsVersion = 15.3;
 					};
+					3276A08C2C296F6C006D58C3 = {
+						CreatedOnToolsVersion = 15.3;
+					};
 					32E9C8A22C0FE51F004A1448 = {
 						CreatedOnToolsVersion = 15.3;
 					};
@@ -322,6 +339,7 @@
 				32E9C8A22C0FE51F004A1448 /* MediationAdapterObj */,
 				3232CB882BF6EA6D00D45A36 /* MediationAdapterSwift */,
 				3232CB922BF6EA6D00D45A36 /* MediationAdapterTests */,
+				3276A08C2C296F6C006D58C3 /* Aggregate */,
 			);
 		};
 /* End PBXProject section */
@@ -352,6 +370,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3276A0912C296F85006D58C3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n../release/carthage-iOS.sh RUNAMediationAdapter\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3232CB852BF6EA6D00D45A36 /* Sources */ = {
@@ -759,6 +797,33 @@
 			};
 			name = Staging;
 		};
+		3276A08E2C296F6C006D58C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XWD4MKNM3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3276A08F2C296F6C006D58C3 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XWD4MKNM3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Staging;
+		};
+		3276A0902C296F6C006D58C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6XWD4MKNM3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		32E9C8A82C0FE51F004A1448 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -922,6 +987,16 @@
 				3232CBA12BF6EA6D00D45A36 /* Debug */,
 				3232CBB32BFAE18200D45A36 /* Staging */,
 				3232CBA22BF6EA6D00D45A36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3276A08D2C296F6C006D58C3 /* Build configuration list for PBXAggregateTarget "Aggregate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3276A08E2C296F6C006D58C3 /* Debug */,
+				3276A08F2C296F6C006D58C3 /* Staging */,
+				3276A0902C296F6C006D58C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
