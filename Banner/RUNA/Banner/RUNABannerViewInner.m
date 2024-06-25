@@ -26,7 +26,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
 @property (nonatomic, readonly) NSArray<NSLayoutConstraint*>* webViewConstraints;
 @property (nonatomic) RUNAVideoState videoState;
 @property (nonatomic) RUNAOpenRTBRequest* request;
-
 @end
 
 
@@ -151,6 +150,14 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     });
 }
 
+-(void)layoutSubviews {
+    [super layoutSubviews];
+    // Log the size of the banner view and its subviews after layout
+    CGSize bannerViewSize = self.frame.size;
+    RUNALog("[RUNA] BannerView loaded with size: %@", NSStringFromCGSize(bannerViewSize));
+}
+
+
 -(void)setAdSpotId:(NSString *)adSpotId {
     self.imp.adspotId = adSpotId;
 }
@@ -226,7 +233,7 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
     if (self.superview) {
         [self applyContainerSize];
         [self applyContainerPosition];
-        [self layoutIfNeeded];
+        [self layoutIfNeeded];  // Force layout update
     } else {
         RUNADebug("removeFromSuperview leads here when superview is nil");
     }
@@ -427,7 +434,6 @@ NSString* kSdkMessageHandlerName = @"runaSdkInterface";
         }
 
         self->_designatedContentSize = CGSizeMake(self.banner.width, self.banner.height);
-
         dispatch_async(dispatch_get_main_queue(), ^{
             @try {
                 [self applyAdView];
