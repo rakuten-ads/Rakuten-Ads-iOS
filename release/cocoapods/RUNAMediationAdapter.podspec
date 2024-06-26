@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint RUNACore.podspec' to ensure this is a
+#  Be sure to run `pod spec lint RUNA.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
 
-  s.name         = "RUNACore"
-  s.version      = "1.8.3"
+  s.name         = "RUNAMediationAdapter"
+  s.version      = "1.0.0"
   s.summary      = "Podspec file of #{s.name} iOS SDK."
   s.description  = <<-DESC
 This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
@@ -26,6 +26,7 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   }
   s.vendored_frameworks = "#{s.name}.xcframework"
 
-  s.frameworks = "Foundation", "AdSupport", "SystemConfiguration", "WebKit", "UIKit", "Network"
+  s.frameworks = "Foundation", "AdSupport", "SystemConfiguration", "WebKit", "UIKit"
+  s.dependency 'RUNABanner', '~> 1.14'
 
 end
