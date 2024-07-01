@@ -33,7 +33,7 @@ platform :ios do
   }
   p @sdk_map
 
-  @sdk_module_names = ["Core", "Banner", "OMAdapter", "A2A"]
+  @sdk_module_names = ["Core", "Banner", "OMAdapter", "A2A", "MediationAdapter"]
 
   def set_env param
     if param.count > 0
@@ -182,6 +182,7 @@ platform :ios do
       package
       deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}.xcframework.zip"
       deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}+dsym.zip"
+      update_spm_commit
       update_carthage
       update_podspec
       update_spm
@@ -257,5 +258,30 @@ platform :ios do
       end
     )
   end
+
+
+  lane :update_spm_commit do
+    _spm_repo_dir = "#{ENV['HOME']}/.cocoapods/repos/Rakuten-Ads-iOS"
+  
+    # Check if there are any changes in the repo
+    changes = `cd #{_spm_repo_dir}; git diff`
+    if changes.empty?
+      p "No changes in #{_spm_repo_dir}"
+    else
+      p "Changes detected in ---- #{_spm_repo_dir}:"
+      puts changes
+  
+      # Commit the changes if there are any
+      add_result = `cd #{_spm_repo_dir}; git add .`
+      if $?.exitstatus != 0
+        p "Error adding changes: #{add_result}"
+      else
+        commit_result = `cd #{_spm_repo_dir}; git commit -m "Update release 1.16.0"`
+        if $?.exitstatus != 0
+          p "Error committing changes: #{commit_result}"
+        end  # This end might be missing
+      end  # This end might be missing
+    end  # This end might be missing
+  end  # This end might be missing
 end
 
