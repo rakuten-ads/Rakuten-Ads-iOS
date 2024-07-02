@@ -20,6 +20,7 @@ DerivedData
 Pods/*
 
 # others
+*.swiftpm
 *.swp
 !.gitkeep
 .DS_Store
