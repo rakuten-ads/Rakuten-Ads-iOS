@@ -114,16 +114,14 @@ platform :ios do
     if @sdk_map[:sdk_dryrun]
       next
     end
-
-    # system("pod repo push Rakuten-Ads-iOS #{path} --skip-tests --verbose --sources=Rakuten-Ads-iOS")
-
+    update_spm_commit
     pod_push(
       path: path,
       repo: 'Rakuten-Ads-iOS',
       skip_tests: false,
       verbose: true,
       skip_import_validation: false,
-      sources: 'Rakuten-Ads-iOS',
+      sources: ['Rakuten-Ads-iOS','trunk'],
     )
   end
 
@@ -134,7 +132,6 @@ platform :ios do
   lane :github_release_tag do |param|
     path = "release/cocoapods/RUNA.podspec"
     version = version_get_podspec(path: path)
-
     p "push release tag #{version}"
     if @sdk_map[:sdk_dryrun]
       next
@@ -146,7 +143,7 @@ platform :ios do
       skip_tests: false,
       verbose: true,
       skip_import_validation: false,
-      sources: 'Rakuten-Ads-iOS',
+      sources: ['Rakuten-Ads-iOS', 'trunk'],
       # sources: "#{ENV['HOME']}/.cocoapods/repos/Rakuten-Ads-iOS",
     )
 
@@ -182,10 +179,9 @@ platform :ios do
       package
       deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}.xcframework.zip"
       deploy_to_gcs_dev file_name: "RUNA#{@sdk_map[:sdk_module_current]}_iOS_#{@sdk_map[:sdk_release_version]}+dsym.zip"
-      update_spm_commit
       update_carthage
-      update_podspec
       update_spm
+      update_podspec
     end
 
     github_release_tag
@@ -279,9 +275,9 @@ platform :ios do
         commit_result = `cd #{_spm_repo_dir}; git commit -m "Update release 1.16.0"`
         if $?.exitstatus != 0
           p "Error committing changes: #{commit_result}"
-        end  # This end might be missing
-      end  # This end might be missing
-    end  # This end might be missing
-  end  # This end might be missing
+        end
+      end
+    end
+  end
 end
 

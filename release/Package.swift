@@ -21,6 +21,7 @@ let package = Package(
                 "RUNABanner",
                 "RUNAOMAdapter",
                 "OMSDK_Rakuten",
+                "RUNAMediationAdapter",
             ]
         ),
     ],
@@ -34,7 +35,7 @@ let package = Package(
         .binaryTarget(
             name: "RUNABanner",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.14.2.xcframework.zip",
-			checksum : "dfe21156bb4d818a75ba6fbc5618f6aff18057fa36b3097a9d86f396e459a6ff"
+			checksum : "308a6e7d746fdf52b9113887735ff48a7c0c509baefbdc8171142c593fcc285a"
         ),
         .binaryTarget(
             name: "RUNAOMAdapter",
@@ -45,6 +46,11 @@ let package = Package(
             name: "OMSDK_Rakuten",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMSDK/RUNAOMSDK_iOS_1.4.13.xcframework.zip",
             checksum : "180907f36fd797969839123a4845a7e929af7ee7f2f51326419e3060fef551e0"
+        ),
+        .binaryTarget(
+            name: "RUNAMediationAdapter",
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAMediationAdapter/RUNAMediationAdapter_iOS_1.0.0.xcframework.zip",
+			checksum : "a88b304ba91a96d129d93ce5fe7af5297a53de0daf6123b9d0dd3ca4f8f1d1f7"
         ),
     ]
 )
