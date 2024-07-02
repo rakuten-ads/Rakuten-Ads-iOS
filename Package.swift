@@ -35,7 +35,7 @@ let package = Package(
         .binaryTarget(
             name: "RUNABanner",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.14.2.xcframework.zip",
-			checksum : "308a6e7d746fdf52b9113887735ff48a7c0c509baefbdc8171142c593fcc285a"
+			checksum : "8a2046dd3ab255ef63a983dedef4699ee7db3f03cfe95b97b15784595f33d89c"
         ),
         .binaryTarget(
             name: "RUNAOMAdapter",
@@ -50,7 +50,7 @@ let package = Package(
         .binaryTarget(
             name: "RUNAMediationAdapter",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAMediationAdapter/RUNAMediationAdapter_iOS_1.0.0.xcframework.zip",
-			checksum : "6b12603a91f0396a8f345d929184996d6a7ce28b9d12b5675391c000a78c22d5"
+			checksum : "8a8457be657c774088f5bb83b12edf1e3a7de75d6a2d414e747ddb6403253894"
         ),
     ]
 )
