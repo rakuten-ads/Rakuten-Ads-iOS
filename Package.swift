@@ -29,12 +29,12 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "RUNACore",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.8.2.xcframework.zip",
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.8.3.xcframework.zip",
 			checksum : "9beb20b61097006c0444940f5c45515ad5f8161fbf78828c5446896f7ed74fdb"
         ),
         .binaryTarget(
             name: "RUNABanner",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.14.2.xcframework.zip",
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.14.3.xcframework.zip",
 			checksum : "00fd83c0e19056be9fb11ee5395f067890b41843a8d705a3d970f3a110e9bc68"
         ),
         .binaryTarget(
