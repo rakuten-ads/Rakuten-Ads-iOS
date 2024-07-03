@@ -21,6 +21,13 @@ let package = Package(
                 "RUNABanner",
                 "RUNAOMAdapter",
                 "OMSDK_Rakuten",
+            ]
+        ),
+        .library(
+            name: "RUNAMediationAdapter",
+            targets: [
+                "RUNACore",
+                "RUNABanner",
                 "RUNAMediationAdapter",
             ]
         ),
