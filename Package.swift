@@ -30,12 +30,12 @@ let package = Package(
         .binaryTarget(
             name: "RUNACore",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.8.2.xcframework.zip",
-			checksum : "305fed8674362ffdda2e29403f45aaf6fab0a402d4dc0686cd25417ede4ebb58"
+			checksum : "a7107151b40f2dfe3b228705cb956bce070bace30897d989d636db42febe58ae"
         ),
         .binaryTarget(
             name: "RUNABanner",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.14.2.xcframework.zip",
-			checksum : "8a2046dd3ab255ef63a983dedef4699ee7db3f03cfe95b97b15784595f33d89c"
+			checksum : "00fd83c0e19056be9fb11ee5395f067890b41843a8d705a3d970f3a110e9bc68"
         ),
         .binaryTarget(
             name: "RUNAOMAdapter",
@@ -50,7 +50,7 @@ let package = Package(
         .binaryTarget(
             name: "RUNAMediationAdapter",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAMediationAdapter/RUNAMediationAdapter_iOS_1.0.0.xcframework.zip",
-			checksum : "8a8457be657c774088f5bb83b12edf1e3a7de75d6a2d414e747ddb6403253894"
+			checksum : "e379128f45d4ec17c52d350476b620d0fb1bbbf3cfea713dae4de15140f6898f"
         ),
     ]
 )
