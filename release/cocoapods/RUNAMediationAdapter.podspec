@@ -28,5 +28,6 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
 
   s.frameworks = "Foundation", "AdSupport", "SystemConfiguration", "WebKit", "UIKit"
   s.dependency 'RUNABanner', '~> 1.14'
-
+  s.dependency 'Google-Mobile-Ads-SDK', '~> 11.5'
+  s.swift_version = '5.0'
 end
