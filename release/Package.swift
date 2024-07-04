@@ -21,6 +21,13 @@ let package = Package(
                 "RUNABanner",
                 "RUNAOMAdapter",
                 "OMSDK_Rakuten",
+            ]
+        ),
+        .library(
+            name: "RUNAMediationAdapter",
+            targets: [
+                "RUNACore",
+                "RUNABanner",
                 "RUNAMediationAdapter",
             ]
         ),
@@ -29,18 +36,18 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "RUNACore",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.8.2.xcframework.zip",
-			checksum : "305fed8674362ffdda2e29403f45aaf6fab0a402d4dc0686cd25417ede4ebb58"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.8.3.xcframework.zip",
+            checksum : "9beb20b61097006c0444940f5c45515ad5f8161fbf78828c5446896f7ed74fdb"
         ),
         .binaryTarget(
             name: "RUNABanner",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.14.2.xcframework.zip",
-			checksum : "308a6e7d746fdf52b9113887735ff48a7c0c509baefbdc8171142c593fcc285a"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.14.3.xcframework.zip",
+            checksum : "00fd83c0e19056be9fb11ee5395f067890b41843a8d705a3d970f3a110e9bc68"
         ),
         .binaryTarget(
             name: "RUNAOMAdapter",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMAdapter/RUNAOMAdapter_iOS_1.3.2.xcframework.zip",
-			checksum : "221e2e02b8db0e84b1af5e8a6c9b3c403e858a81d4b69bedacc520c421d880d5"
+            checksum : "221e2e02b8db0e84b1af5e8a6c9b3c403e858a81d4b69bedacc520c421d880d5"
         ),
         .binaryTarget(
             name: "OMSDK_Rakuten",
@@ -50,7 +57,7 @@ let package = Package(
         .binaryTarget(
             name: "RUNAMediationAdapter",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAMediationAdapter/RUNAMediationAdapter_iOS_1.0.0.xcframework.zip",
-			checksum : "a88b304ba91a96d129d93ce5fe7af5297a53de0daf6123b9d0dd3ca4f8f1d1f7"
+            checksum : "14ee462e8a2950439833d6d5c08f00bd0ed8b998d98a6099c3b10a29352987c2"
         ),
     ]
 )
