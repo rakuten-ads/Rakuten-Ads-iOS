@@ -5,24 +5,25 @@
 # MediationAdapter
 
 The module `MediationAdapter` is an SDK to connect with the mediation function of other SDK products.
-Currently we only have the support for `GADBanner` feature of `GoogleAdsMobile` SDK.
+Currently we only have the support for ad banner feature of `GoogleAdsMobile` SDK.
 
 ---
 
 ## How to Use
 
-### Prepare with `GoogleAdsMobile`
+### Prepare `GoogleAdsMobile`
 
-#### Prepare the Admob account
+#### Admob ad Unit
 
-Follow the [introduction](https://developers.google.com/admob/ios/banner) and implement the Googel Ad banner.
-
+Get the ad Unit ID ready from the market side and follow the [introduction](https://developers.google.com/admob/ios/banner) to implement the `GADBanner` in the App.
 
 #### Enable mediation configurations in Admob console.
 
+Ask market side to enable the configuration of the Admob Mediation.
+
 0. set up a mediation group
 
-0. adding ad custom event as ad source and mapping the custom event with class name `GADMediationAdapterRunaCustomEvent`. 
+0. add ad custom event and map it with class name `GADMediationAdapterRunaCustomEvent` as the ad source.
 
 
 ### Implement `RUNAMediationAdapter`
@@ -45,10 +46,13 @@ and add `RUNAMediationAdapter` to target project.
 
 `MediationAdapter` is supported from RUNA SDK version `1.16.0`.
 
-The `MediationAdapter` SDK is dependent on `GoogleAdsMobile` SDK, but since the [SPM is not recommanded by `GoogleAdsMobile` currently](https://developers.google.com/admob/ios/quick-start#spm),
-`RUNAMediationAdapter` doesn't declare the dependency relation with it while let user to decide the method to import `GoogleAdsMobile` SDK.
+The `RUNAMediationAdapter` SDK is dependent on `GoogleAdsMobile` SDK, but since the [SPM is not recommanded by `GoogleAdsMobile` currently](https://developers.google.com/admob/ios/quick-start#spm),
+`RUNAMediationAdapter` doesn't declare the dependency relation with it while let developers to decide the method to import `GoogleAdsMobile` SDK.
 
 #### Configure RUNA essential parameters
+
+Configure the essential parameters in the class `RUNAAdParameter` for `RUNABanner` and register it to GAD network extras.
+
 
 ```swift
 // set parameters for RUNA
@@ -60,6 +64,22 @@ extras.adParameter = parameters
 // register the GADAdNetworkExtras before loading ad
 req.register(extras)
 ```
+
+__current supported parameters__
+
+- adSpotId
+- adSpotCode
+- adSpotBranchId
+- rz
+- rp
+- easyId
+- rpoint
+- customTargeting
+- genre
+
+details can be seen in [Banner Ad](../bannerads/README.md)
+
+
 
 ### 
 ## Samples
