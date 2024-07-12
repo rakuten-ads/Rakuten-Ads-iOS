@@ -1,4 +1,4 @@
-[TOP](/README.md#top)　>　 Mediation Adapter
+[TOP](../README.md#top)　>　 Mediation Adapter
 
 ---
 
@@ -42,7 +42,7 @@ pod 'RUNA/MediationAdapter'
 - [Swift Package Manager](#spm)
 
 URL `https://github.com/rakuten-ads/Rakuten-Ads-iOS`からパッケージをXcodeに導入し、
-目標のtarget projectに`RUNAMediationAdapter`モジュールを追加する。
+目標のprojectに`RUNAMediationAdapter`モジュールを追加する。
 
 RUNA SDK `1.16.0`から`RUNAMediationAdapter`SDKが提供された。
 `GoogleAdsMobile` SDKを依頼しているが、[`GoogleAdsMobile`現在SPMではなくCocoapodsの導入を推薦しているため](https://developers.google.com/admob/ios/quick-start#spm)、
@@ -83,7 +83,7 @@ __サポートするパラメーター__
 ### 
 ## Samples
 
-### シンプルケース
+### AdSpotIDを設定する
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 
 ```swift
@@ -104,7 +104,7 @@ req.register(extras)
 bannerView.load(req)
 ```
 
-### 複雑な設定を利用するケース
+### 複数パラメーターを設定する
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 
 ```swift
