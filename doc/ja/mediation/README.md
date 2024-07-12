@@ -4,8 +4,8 @@
 
 # MediationAdapter
 
-モジュール `MediationAdapter`は他社のSDKと連携するメディエーション機能を提供するためのSDKです。
-現在は`GoogleAdsMobile` SDKのbanner機能だけをサポートしています。
+モジュール `MediationAdapter`はメディエーション機能を提供する他社の広告製品と連携するためのSDKです。
+現在は`GoogleAdsMobile` SDKのbanner機能をサポートしています。
 
 ---
 
@@ -17,13 +17,13 @@
 
 マーケット側から用意されたad Unit IDを取得し、[GADBannerの導入手順](https://developers.google.com/admob/ios/banner)に従いbanner機能をアプリに実装する。
 
-#### Admob consoleでmediation設定を有効とします.
+#### Admob consoleでmediation設定を有効に.
 
-マーケット側にメディエーションの設定を有効するようと依頼をします。
+マーケット側にメディエーションの設定を有効するようと依頼する。
 
-0. mediation groupの設定
+1. mediation groupの設定
 
-0. ad custom eventを追加し、ad sourceとしてclass名 `GADMediationAdapterRunaCustomEvent` をマップする.
+1. ad custom eventを追加し、ad sourceとしてclass名 `GADMediationAdapterRunaCustomEvent` をマップする.
 
 
 ### `RUNAMediationAdapter`を実装
@@ -31,7 +31,7 @@
 #### [SDK導入](#integrate-sdk)
 
 - [CocoaPods](#cocoapods)
-Podfileを下記のように編集する
+CocoaPodsを利用する場合、Podfileを下記のように編集する
 
 ```ruby
 source "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
@@ -50,7 +50,7 @@ RUNA SDK `1.16.0`から`RUNAMediationAdapter`SDKが提供された。
 
 #### 必要なRUNAのパラメーターを設定
 
-`RUNAAdParameter`を使って必要なパラメーターを設定してGADネットワークExtraに登録する。
+`RUNAAdParameter`を使って必要なパラメーターを設定して`GADAdNetworkExtras`プロトコルに沿い、GADに登録する。
 
 
 ```swift

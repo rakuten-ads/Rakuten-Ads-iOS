@@ -4,14 +4,14 @@
 
 # MediationAdapter
 
-The module `MediationAdapter` is an SDK to connect with the mediation function of other SDK products.
-Currently we only have the support for ad banner feature of `GoogleAdsMobile` SDK.
+The module `MediationAdapter` is a SDK to serve ad with other SDK product through the mediation feature.
+Currently we support the ad banner feature of `GoogleAdsMobile` SDK.
 
 ---
 
 ## How to Use
 
-### Prepare `GoogleAdsMobile`
+### Prepare `GoogleAdsMobile` SDK
 
 #### Admob ad Unit
 
@@ -19,11 +19,11 @@ Get the ad Unit ID ready from the market side and follow the [introduction](http
 
 #### Enable mediation configurations in Admob console.
 
-Ask market side to enable the configuration of the Admob Mediation.
+Ask market side to enable the configuration of the Admob Mediation. The following 2 steps must be done.
 
-0. set up a mediation group
+1. set up a mediation group
 
-0. add ad custom event and map it with class name `GADMediationAdapterRunaCustomEvent` as the ad source.
+1. add ad custom event and map it with class name `GADMediationAdapterRunaCustomEvent` as the ad source.
 
 
 ### Implement `RUNAMediationAdapter`
@@ -31,7 +31,7 @@ Ask market side to enable the configuration of the Admob Mediation.
 #### [Integrate SDK](#integrate-sdk)
 
 - [CocoaPods](#cocoapods)
-Edit the Podfile to contains the following configuration.
+Edit the Podfile to contains the following configuration if using Cocoapods.
 
 ```ruby
 source "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
@@ -41,17 +41,17 @@ pod 'RUNA/MediationAdapter'
 
 - [Swift Package Manager](#spm)
 
-Add package from URL `https://github.com/rakuten-ads/Rakuten-Ads-iOS` in Xcode,
-and add `RUNAMediationAdapter` to target project.
+Add repository URL of `https://github.com/rakuten-ads/Rakuten-Ads-iOS` in Xcode,
+and add package `RUNAMediationAdapter` to the target project.
 
-`MediationAdapter` is supported from RUNA SDK version `1.16.0`.
+`MediationAdapter` has been supported from RUNA SDK version `1.16.0`.
 
-The `RUNAMediationAdapter` SDK is dependent on `GoogleAdsMobile` SDK, but since the [SPM is not recommanded by `GoogleAdsMobile` currently](https://developers.google.com/admob/ios/quick-start#spm),
-`RUNAMediationAdapter` doesn't declare the dependency relation with it while let developers to decide the method to import `GoogleAdsMobile` SDK.
+The `RUNAMediationAdapter` SDK dependents on `GoogleAdsMobile` SDK, but since the [SPM is not recommended by `GoogleAdsMobile` currently](https://developers.google.com/admob/ios/quick-start#spm),
+`RUNAMediationAdapter` doesn't strict the dependency relation in the declare file while let developers to decide the method to import `GoogleAdsMobile` SDK.
 
 #### Configure RUNA essential parameters
 
-Configure the essential parameters in the class `RUNAAdParameter` for `RUNABanner` and register it to GAD network extras.
+Configure the essential parameters in the class `RUNAAdParameter` for `RUNABanner` and register it to GAD by `GADAdNetworkExtras` protocol.
 
 
 ```swift
@@ -77,7 +77,7 @@ __current supported parameters__
 - customTargeting
 - genre
 
-details can be seen in [Banner Ad](../bannerads/README.md)
+Details of the values can be found in [Banner Ad](../bannerads/README.md)
 
 
 
