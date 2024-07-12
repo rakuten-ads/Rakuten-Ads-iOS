@@ -1,4 +1,4 @@
-[TOP](/README.md#top)　>　 ビューアビリティ計測
+[TOP](../README.md#top)　>　 ビューアビリティ計測
 
 ---
 
