@@ -175,8 +175,12 @@
 NSString* kModuleNameRuna = @"runa";
 NSString* kModuleNameCore = @"runa_core";
 NSString* kModuleNameBanner = @"runa_banner";
-NSString* kModuleNameOmadapter = @"runa_om_adapter";
-NSString* kModuleClassOmadapter = @"RUNAOpenMeasurer";
+NSString* kModuleNameOmAdapter = @"runa_om_adapter";
+NSString* kModuleNameMediationAdapter = @"runa_mediation_adapter";
+
+NSString* kModuleClassOmAdapter = @"RUNAOpenMeasurer";
+NSString* kModuleClassMediationAdapter = @"GADMediationAdapterRunaCustomEvent";
+
 -(NSArray*) getSdkVersions {
     NSMutableDictionary<NSString*, NSString*>* dict = [NSMutableDictionary new];
 
@@ -189,19 +193,33 @@ NSString* kModuleClassOmadapter = @"RUNAOpenMeasurer";
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-    Class bannerClass = NSClassFromString(kModuleClassBannerView);
-    if (bannerClass && [bannerClass respondsToSelector:@selector(versionString)]) {
-        NSString* bannerSDKVersion = [bannerClass performSelector:@selector(versionString)];
-        if (bannerSDKVersion) {
-            [dict setObject:bannerSDKVersion forKey:kModuleNameBanner];
+    {
+        Class bannerClass = NSClassFromString(kModuleClassBannerView);
+        if (bannerClass && [bannerClass respondsToSelector:@selector(versionString)]) {
+            NSString* bannerSDKVersion = [bannerClass performSelector:@selector(versionString)];
+            if (bannerSDKVersion) {
+                [dict setObject:bannerSDKVersion forKey:kModuleNameBanner];
+            }
         }
     }
 
-    Class omClass = NSClassFromString(kModuleClassOmadapter);
-    if (omClass && [omClass respondsToSelector:@selector(versionString)]) {
-        NSString* omadapterSDKVersion = [omClass performSelector:@selector(versionString)];
-        if (omadapterSDKVersion) {
-            [dict setObject:omadapterSDKVersion forKey:kModuleNameOmadapter];
+    {
+        Class omClass = NSClassFromString(kModuleClassOmAdapter);
+        if (omClass && [omClass respondsToSelector:@selector(versionString)]) {
+            NSString* omadapterSDKVersion = [omClass performSelector:@selector(versionString)];
+            if (omadapterSDKVersion) {
+                [dict setObject:omadapterSDKVersion forKey:kModuleNameOmAdapter];
+            }
+        }
+    }
+
+    {
+        Class mdaClass = NSClassFromString(kModuleClassMediationAdapter);
+        if (mdaClass && [mdaClass respondsToSelector:@selector(versionString)]) {
+            NSString* mdaSDKVersion = [mdaClass performSelector:@selector(versionString)];
+            if (mdaSDKVersion) {
+                [dict setObject:mdaSDKVersion forKey:kModuleNameMediationAdapter];
+            }
         }
     }
 #pragma clang diagnostic pop

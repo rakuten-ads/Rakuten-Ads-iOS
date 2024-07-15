@@ -8,9 +8,8 @@
 
 Pod::Spec.new do |s|
 
-  s.name         = "RUNA"
-  s.version      = "1.16.0"
-  s.swift_version = '5.0'
+  s.name         = "RUNAMediationAdapter"
+  s.version      = "1.0.0"
   s.summary      = "Podspec file of #{s.name} iOS SDK."
   s.description  = <<-DESC
 This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
@@ -23,34 +22,12 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   s.author       = "Rakuten"
   s.platform     = :ios, "13.0"
   s.source       = {
-    :git => "https://github.com/rakuten-ads/Rakuten-Ads-iOS.git"
+    :http => "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/#{s.name}/#{s.name}_iOS_#{s.version}.xcframework.zip"
   }
+  s.vendored_frameworks = "#{s.name}.xcframework"
 
-  s.default_subspec = 'Banner'
-
-  s.subspec 'CoreOnly' do |ss|
-    ss.ios.dependency 'RUNACore', '1.8.3'
-  end
-
-  s.subspec 'Banner' do |ss|
-    ss.dependency 'RUNA/CoreOnly'
-    ss.ios.dependency 'RUNABanner', '1.14.3'
-  end
-
-  s.subspec 'OMSDK' do |ss|
-    ss.ios.dependency 'RUNAOMSDK', '1.4.13'
-  end
-
-  s.subspec 'OMAdapter' do |ss|
-    ss.dependency 'RUNA/Banner'
-    ss.dependency 'RUNA/OMSDK'
-    ss.ios.dependency 'RUNAOMAdapter', '1.3.2'
-  end
-
-  s.subspec 'MediationAdapter' do |ss|
-    ss.dependency 'RUNA/Banner'
-    ss.ios.dependency 'Google-Mobile-Ads-SDK', '~> 11.5'
-    ss.ios.dependency 'RUNAMediationAdapter', '1.0.0'
-  end
-
+  s.frameworks = "Foundation", "AdSupport", "SystemConfiguration", "WebKit", "UIKit"
+  s.dependency 'RUNABanner', '~> 1.14'
+  s.dependency 'Google-Mobile-Ads-SDK', '~> 11.5'
+  s.swift_version = '5.0'
 end
