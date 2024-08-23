@@ -12,7 +12,7 @@ import RUNABanner
 @objc
 public final class AdmobMedationAdapter: NSObject, GADMediationAdapter {
 
-    static let kSDKVersion = "1.0.0" // TODO: update when releasing, last since 2024/05/30
+    static let kSDKVersion = "1.0.1" // TODO: update when releasing, last since 2024/05/30
 
     private var bannerLoader: AdmobMedationAdapterBanner?
 
