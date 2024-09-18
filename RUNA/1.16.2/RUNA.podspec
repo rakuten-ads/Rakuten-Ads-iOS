@@ -34,7 +34,7 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
 
   s.subspec 'Banner' do |ss|
     ss.dependency 'RUNA/CoreOnly'
-    ss.ios.dependency 'RUNABanner', '1.14.4'
+    ss.ios.dependency 'RUNABanner', '1.14.5'
   end
 
   s.subspec 'OMSDK' do |ss|
