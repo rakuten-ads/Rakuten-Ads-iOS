@@ -41,8 +41,8 @@ let package = Package(
         ),
         .binaryTarget(
             name: "RUNABanner",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.14.4.xcframework.zip",
-			checksum : "8f8c83e510e179dee791c8f7306c87e3fba04470acd08af5455ffc3910422f3e"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.14.5.xcframework.zip",
+			checksum : "24225fb126b86e17a97168cfefcbfe25382d6b78c1f59b52c24c05d82eced324"
         ),
         .binaryTarget(
             name: "RUNAOMAdapter",
