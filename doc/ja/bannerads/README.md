@@ -112,6 +112,11 @@ RUNA SDKがビデオ広告の再生コントロール方法を提供していま
 - **(void) toggleVideoAdPlay:(BOOL) shouldPlay;**<br>
   - `shouldPlay`: Bool, 値`true`は再生する、`false`は中断する。
 
+### SDKバージョン取得
+RUNA SDKは、CoreやBannerなどの複数のモジュールで構成されています。各モジュールはそれぞれ独自のバージョン管理を行っており、RUNA SDK全体のバージョンはこれらのモジュールのバージョンによって決定されます。
+
+- __+(NSString*) RUNASDKVersionString__<br>
+
 ### 拡張設定
 
 参照先: [拡張モジュール](./extension/README.md)
