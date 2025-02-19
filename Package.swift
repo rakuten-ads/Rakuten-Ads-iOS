@@ -31,39 +31,33 @@ let package = Package(
                 "RUNAMediationAdapter",
             ]
         ),
-        .library(
-            name: "OMSDK_Rakuten",
-            targets: [
-                "OMSDK_Rakuten",
-            ]
-        ),
     ],
     dependencies: [],
     targets: [
         .binaryTarget(
             name: "RUNACore",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.8.5.xcframework.zip",
-			checksum : "8c11ab668c2eee89c320b973355066bc56a869280af9a1a92d4f3193a71a7cdb"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_2.0.0.xcframework.zip",
+			checksum : "016c9aa6b6386b1a1024e21603c9f5d472759a316120710b348372116327dde2"
         ),
         .binaryTarget(
             name: "RUNABanner",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.15.0.xcframework.zip",
-			checksum : "fd3a640c140d230c99e19f12779f6afb4243d8117f389b46ca4dc035069ee7ae"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_2.0.0.xcframework.zip",
+			checksum : "bf0858bbd9b2f8e5f1c1083033943bea6fdcc13af372fd3f7262cf75c76279c7"
         ),
         .binaryTarget(
             name: "RUNAOMAdapter",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMAdapter/RUNAOMAdapter_iOS_1.3.3.xcframework.zip",
-			checksum : "0ce1c4cb185c8107262c5e87e1d3f2b11995b1f4550c72095acc708046c17e09"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMAdapter/RUNAOMAdapter_iOS_2.0.0.xcframework.zip",
+			checksum : "8ba13ae6f37f3ebe3f031cdda03cab19cd322bfa3cb694eec64b301af79ef5b4"
         ),
         .binaryTarget(
             name: "OMSDK_Rakuten",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMSDK/RUNAOMSDK_iOS_1.5.2.xcframework.zip",
-            checksum : "577e954e53c7ee31a89f413b836423543622ab5d721b32ee74864450409f6a6e"
+            checksum : "180907f36fd797969839123a4845a7e929af7ee7f2f51326419e3060fef551e0"
         ),
         .binaryTarget(
             name: "RUNAMediationAdapter",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAMediationAdapter/RUNAMediationAdapter_iOS_1.0.1.xcframework.zip",
-			checksum : "ab4f24310792f2a4b3a8389f1360c1890bfba96d0d1a37f76a909aa05d20f8d1"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAMediationAdapter/RUNAMediationAdapter_iOS_2.0.0.xcframework.zip",
+			checksum : "8ca5b115a4c5102c0903235564de7883986dd597ece546cc5346c6a13720143a"
         ),
     ]
 )
