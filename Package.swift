@@ -37,7 +37,7 @@ let package = Package(
         .binaryTarget(
             name: "RUNACore",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_2.0.0.xcframework.zip",
-			checksum : "016c9aa6b6386b1a1024e21603c9f5d472759a316120710b348372116327dde2"
+			checksum : "7d03c5c6c2b9e46b50a1f30b13ac408a97a55359f0aa694b8203c3d08535fccd"
         ),
         .binaryTarget(
             name: "RUNABanner",
