@@ -221,6 +221,52 @@ banner.load { (view, event) in
 self.view.addSubview(banner)
 ```
 
+![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
+
+```swift
+// SwiftUI case
+import SwiftUI
+import UIKit
+import RUNABanner
+
+struct CustomBannerView: UIViewRepresentable {
+    let adspotId: String
+    let adspotSize: RUNABannerViewSize
+
+    func makeUIView(context: Context) -> UIView {
+        let banner = RUNABannerView()
+        banner.adSpotId = adspotId
+        banner.size = adspotSize
+        banner.load { (view, event) in
+            switch event.eventType {
+            case .succeeded:
+                print("received event succeeded")
+            case .failed:
+                print("received event failed")
+                switch event.error {
+                case .unfilled:
+                    print("ad unavailable")
+                case .network:
+                    print("network unavailable")
+                default:
+                    break
+                }
+            case .clicked:
+                print("received event clicked")
+                if let _ = view.clickURL {
+                    view.shouldPreventDefaultClickAction = true
+                    print("do something with the click url by self")
+                }
+            default:
+                break
+            }
+        }
+
+        return banner
+    }
+}
+```
+
 ### Use RUNAAdSession to avoid duplicate ad
 
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
