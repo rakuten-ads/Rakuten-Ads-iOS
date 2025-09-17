@@ -220,11 +220,11 @@ banner.load { (view, event) in
 
 self.view.addSubview(banner)
 ```
+### SwiftUI
 
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 
 ```swift
-// SwiftUI case
 import SwiftUI
 import UIKit
 import RUNABanner
