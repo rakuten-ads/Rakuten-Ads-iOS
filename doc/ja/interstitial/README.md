@@ -37,6 +37,15 @@ __RUNAInterstitialAdSize size__
 
  - `RUNAInterstitialAdSizeCustom`: `RUNAInterstitialAdCustomDecorator`と一緒にサイズやポジションをを自由に設定させる
 
+__BOOL hideStatusBar__
+
+`hideStatusBar`プロパティは、インタースティシャル広告が表示される際のステータスバーの表示・非表示を制御します。
+
+ - `true`（デフォルト）: 完全な没入体験のため、インタースティシャル広告の表示中にステータスバーが非表示になります。
+
+ - `false`: インタースティシャル広告の表示中もステータスバーが表示されたままになります。
+
+
 __RUNAInterstitialAdCustomDecorator decorator__
 
 `typedef void (^RUNAInterstitialAdCustomDecorator)(UIView* const containerView, UIView* const adView, UIImageView* const closeButton);`
