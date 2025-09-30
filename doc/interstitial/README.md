@@ -37,6 +37,15 @@ The `size` property provides 3 options to scale the ad content:
 
  - `RUNAInterstitialAdSizeCustom`: customize support to let app set the layout constraints with a `RUNAInterstitialAdCustomDecorator`.
 
+__BOOL hideStatusBar__
+
+The `hideStatusBar` property controls the visibility of the status bar when the interstitial ad is displayed.
+
+ - `true`: The status bar will be hidden during the interstitial ad display for a full immersive experience.
+
+ - `false`: The status bar remains visible during the interstitial ad display.
+
+
 __RUNAInterstitialAdCustomDecorator decorator__
 
 `typedef void (^RUNAInterstitialAdCustomDecorator)(UIView* const containerView, UIView* const adView, UIImageView* const closeButton);`
