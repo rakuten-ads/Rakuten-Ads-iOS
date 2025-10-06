@@ -27,6 +27,6 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   s.vendored_frameworks = "#{s.name}.xcframework"
 
   s.frameworks = "Foundation", "AdSupport", "SystemConfiguration", "WebKit", "UIKit"
-  s.dependency 'RUNACore', '~> 1.8.6'
+  s.dependency 'RUNACore', '~> 1.8'
 
 end
