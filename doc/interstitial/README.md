@@ -36,6 +36,8 @@ The `size` property provides 3 options to scale the ad content:
  - `RUNAInterstitialAdSizeOriginal`: keep the original size of the creative.
 
  - `RUNAInterstitialAdSizeCustom`: customize support to let app set the layout constraints with a `RUNAInterstitialAdCustomDecorator`.
+ 
+ - `RUNAInterstitialAdSizeFullScreen`: ad content shown in full screen
 
 __BOOL hideStatusBar__
 

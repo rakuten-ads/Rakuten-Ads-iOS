@@ -37,6 +37,8 @@ __RUNAInterstitialAdSize size__
 
  - `RUNAInterstitialAdSizeCustom`: `RUNAInterstitialAdCustomDecorator`と一緒にサイズやポジションをを自由に設定させる
 
+ - `RUNAInterstitialAdSizeFullScreen`: 全画面で広告コンテンツを表示する
+
 __BOOL hideStatusBar__
 
 `hideStatusBar`プロパティは、インタースティシャル広告が表示される際のステータスバーの表示・非表示を制御します。
