@@ -1,24 +1,19 @@
 <div id="top"></div>
 
-[![Platform](http://img.shields.io/badge/platform-iOS-blue.svg?style=flat)](https://developer.apple.com/ios/)
-[![language](https://camo.githubusercontent.com/7387afbc27991b9739185470fcadf5475940be5a53886ec64f4df194a52911aa/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c616e67756167652d6f626a6563746976652d2d632d3642414545342e737667)](https://developer.apple.com/documentation)
-![iOS](http://img.shields.io/badge/support-iOS_10+-blue.svg?style=flat)
-![Xcode](http://img.shields.io/badge/IDE-Xcode_10+-blue.svg?style=flat)
+![Platform](http://img.shields.io/badge/platform-iOS-blue.svg?style=flat)
+![language](http://img.shields.io/badge/language-ObjC-blue.svg?style=flat)
+![language](http://img.shields.io/badge/language-Swift-blue.svg?style=flat)
+![iOS](http://img.shields.io/badge/support-iOS_15+-blue.svg?style=flat)
+![Xcode](http://img.shields.io/badge/IDE-Xcode_16+-blue.svg?style=flat)
 
 # Rakuten Publisher Service iOS SDK
-* [Ad Formats](#ad-formats)
 * [Get Started](#get-started)
 * [Prerequisites](#prerequisites)
 * [Integrate SDK](#integrate-sdk)
 * [CocoaPods](#cocoapods)
 * [Swift Package Manager](#swift-package-manager)
 * [M1 support](#m1-support)
-
-### [Ad Formats](#ad-formats)
-
-- **[Banner Ad](./doc/bannerads/README.md)**
-- **[CarouselAds](./doc/bannerads/carousel/README.md)**
-- **[Interstitial Ad](./doc/interstitial/README.md)**
+* [Implementation](#implementation)
 
 ---
 # [Get Started](#get-started)
@@ -27,9 +22,9 @@
 
 ## [Prerequisites](#prerequisites)
 
-* Xcode 10 or higher
-* iOS 10 or higher
-* Build iOS 17
+* Xcode 16 or higher
+* iOS 15 or higher
+* Build iOS 18
 
 
 <div id="import_sdk"></div>
@@ -74,14 +69,11 @@ target 'App' do
 end
 ```
 
----
-
-[Banner Ad](./doc/bannerads/README.md)<br>
-[CarouselAds](./doc/bannerads/carousel/README.md)<br>
-[Interstitial Ad](./doc/interstitial/README.md)<br>
-[Viewability Measurement](./doc/measurement/README.md)<br>
-[MediationAdapter](./doc/mediation/README.md)<br>
+--
+## [Implementation](#implementation)
+- [For 1.x](./doc/README.md)
+- [For 2.x](./doc2/README.md)
 
 ---
-LANGUAGE :
-> [![jp](./doc/lang/ja.png)](./doc/ja)
+
+For further assistance, rise a Github issue or contact support.
