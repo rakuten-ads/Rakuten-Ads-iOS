@@ -1,6 +1,6 @@
 # Mediation Usage Manual
 
-This manual introduces the usage of ad mediation as implemented in `Mediation.swift`. It covers the integration of RUNABanner with AdMob via the RUNAMediationAdapter, configuration, event handling, and best practices for using mediation in your iOS application.
+This manual introduces the usage of ad mediation. It covers the integration of RUNABanner with AdMob via the RUNAMediationAdapter, configuration, event handling, and best practices for using mediation in your iOS application.
 
 ---
 
@@ -116,9 +116,7 @@ class MediationSampleViewController: UIViewController, BannerViewDelegate {
 
 ## 7. References
 
-- [RUNABanner SDK Documentation](#)
-- [RUNAMediationAdapter Documentation](#)
-- [GoogleMobileAds Documentation](#)
-- [SampleCode/Mediation.swift](./Mediation.swift)
+- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/iOS/)
+- [GoogleMobileAds Documentation](https://developers.google.com/admob/ios/quick-start)
 
-For further assistance, refer to the official SDK documentation or contact support.
+For further assistance, rise a Github issue or contact support.

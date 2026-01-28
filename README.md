@@ -1,17 +1,17 @@
 <div id="top"></div>
 
 ![Platform](http://img.shields.io/badge/platform-iOS-blue.svg?style=flat)
-![language](http://img.shields.io/badge/language-ObjC-blue.svg?style=flat)
-![language](http://img.shields.io/badge/language-Swift-blue.svg?style=flat)
-![iOS](http://img.shields.io/badge/support-iOS_15+-blue.svg?style=flat)
-![Xcode](http://img.shields.io/badge/IDE-Xcode_16+-blue.svg?style=flat)
+![language](http://img.shields.io/badge/language-ObjC-brightgreen.svg?style=flat)
+![language](http://img.shields.io/badge/language-Swift-brightgreen.svg?style=flat)
+![iOS](http://img.shields.io/badge/support-iOS_15+-orange.svg?style=flat)
+![Xcode](http://img.shields.io/badge/IDE-Xcode_16+-orange.svg?style=flat)
 
 # Rakuten Publisher Service iOS SDK
 * [Get Started](#get-started)
 * [Prerequisites](#prerequisites)
 * [Integrate SDK](#integrate-sdk)
-* [CocoaPods](#cocoapods)
 * [Swift Package Manager](#swift-package-manager)
+* [CocoaPods](#cocoapods)
 * [M1 support](#m1-support)
 * [Implementation](#implementation)
 
@@ -31,6 +31,19 @@
 
 ## [Integrate SDK](#integrate-sdk)
 
+### [Swift Package Manager](#swift-package-manager)
+
+Swift Package Manager distribution support from 1.10.2 (1.10.1 deprecated).
+
+Please use package's URL `https://github.com/rakuten-ads/Rakuten-Ads-iOS` in Xcode,
+
+and select libraries from `RUNABanner`, `RUNAOMAdapter`, `RUNAMediation`.
+
+- `RUNABanner` is essential for variety ad formats supported by RUNA.
+- `RUNAOMAdapter` is essential for the Open Measurement coorperation. 
+- `RUNAMediationAdapter` is for demanding of mediation support. Now it has support for Admob
+
+
 ### [CocoaPods](#cocoapods)
 
 Put under lines into `Podfile`.
@@ -41,17 +54,6 @@ source "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
 pod 'RUNA/Banner'
 pod 'RUNA/OMAdapter'
 ```
-
-### [Swift Package Manager](#swift-package-manager)
-
-Swift Package Manager distribution support from 1.10.2 (1.10.1 deprecated).
-
-Please use package's URL `https://github.com/rakuten-ads/Rakuten-Ads-iOS` in Xcode,
-
-and select libraries from `RUNABanner`, `RUNAOMAdapter`.
-
-`RUNAOMAdapter` is essential for the Open Measurement request. 
-
 
 ### [M1 support](#m1-support)
 
@@ -69,10 +71,9 @@ target 'App' do
 end
 ```
 
---
-## [Implementation](#implementation)
-- [For 1.x](./doc/README.md)
-- [For 2.x](./doc2/README.md)
+## [Manual](#manual)
+- [For version 1.x](./doc/README.md)
+- [For version 2.x](./doc2/README.md)
 
 ---
 

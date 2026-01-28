@@ -97,7 +97,6 @@ try! ViewMeasurementProvider.shared.register(target: measurementTarget)
 
 ## 8. References
 
-- [RUNABanner SDK Documentation](#)
-- [SampleCode/Measurement.swift](./Measurement.swift)
+- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/iOS/)
 
-For further assistance, refer to the official SDK documentation or contact support.
+For further assistance, rise a Github issue or contact support.

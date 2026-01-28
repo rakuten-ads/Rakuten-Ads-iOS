@@ -1,8 +1,9 @@
 <div id="top"></div>
-![Platform](http://img.shields.io/badge/platform-iOS-blue.svg?style=flat)
-![language](http://img.shields.io/badge/language-ObjC-blue.svg?style=flat)
 
---
+![Platform](http://img.shields.io/badge/platform-iOS-blue.svg?style=flat)
+![language](http://img.shields.io/badge/language-ObjC-brightgreen.svg?style=flat)
+
+---
 
 # RUNA SDK Document for 1.x
 Welcome to the RUNA SDK documentation for version 1.x. This version was launched in 2019 and is currently maintained. It is built in Objective-C.
@@ -23,6 +24,5 @@ This index provides links to detailed manuals for each major feature and integra
 
 For further assistance, rise a Github issue or contact support.
 
---
 LANGUAGE :
 > [![jp](./doc/lang/ja.png)](./doc/ja)

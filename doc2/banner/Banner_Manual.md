@@ -133,7 +133,7 @@ bannerView.load(adRequest: request) { bannerView, adEvent in
 
 ## 7. Avoiding Duplicate Ads
 
-Use a shared `AdSession` to prevent duplicate ads in multiple banners:
+Use a shared `AdSession` to prevent duplicate ads in multiple banners, developer has the responsibility to maintain the life time of the `AdSession` instance:
 
 ```swift
 let sharedAdSession = AdSession()
@@ -169,9 +169,6 @@ bannerView2.load(adRequest: request2, eventHandler: { bannerView, adEvent in /* 
 ---
 
 ## 10. References
-- [RUNABanner API Documentation] (link to official docs)
-- [Sample Integration Project] (link to sample project)
-- [RUNABanner SDK Documentation](#)
-- [SampleCode/Banner.swift](./Banner.swift)
+- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/iOS/)
 
 For further assistance, contact your SDK provider or refer to official documentation.
