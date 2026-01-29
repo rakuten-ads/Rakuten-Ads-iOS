@@ -9,7 +9,7 @@
 
 Welcome to the RUNA SDK documentation. This index provides links to detailed manuals for each major feature and integration pattern. Click on a section to view its dedicated guide.
 
-For documentation on version 1.x built in Objective-C, please refer [here](../doc/README.md).
+For the implementation on SDK version __1.x__ which is built in Objective-C, please refer [the document of 2.x](../doc/README.md).
 
 ## Table of Contents
 

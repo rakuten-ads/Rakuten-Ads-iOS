@@ -26,7 +26,7 @@ let bannerView = BannerView()
 self.view.addSubview(bannerView)
 ```
 
-You can configure its position and size:
+You can change its default position and size:
 
 ```swift
 bannerView.position = .top
@@ -55,17 +55,33 @@ bannerView.load(adRequest: request) { bannerView, adEvent in
 
 ---
 
-## 4. Custom Positioning
+## 4. Custom Appearance
 
 You can use Auto Layout to position the banner:
 
 ```swift
 bannerView.size = .custom
+bannerView.position = .custom
 bannerView.translatesAutoresizingMaskIntoConstraints = false
-NSLayoutConstraint.activate([
-    bannerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-    bannerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20)
-])
+let request = AdRequest(adSpot: .init(adSpotId: "YOUR_ADSPOT_ID"))
+bannerView.load(adRequest: request) { bannerView, adEvent in
+    switch adEvent {
+    case .success:
+        print("Banner loaded successfully")
+        if let designtedSize = bannerView.designatedContentSize { // to comply with aspect ratio
+            NSLayoutConstraint.activate([
+                bannerView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+                bannerView.heightAnchor.constraint(equalTo: bannerView.widthAnchor, multiplier: designtedSize.height / designtedSize.width),
+                bannerView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                bannerView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20)
+            ])
+        }
+    case .failed(let error):
+        print("Failed to load banner: \(error.localizedDescription)")
+    default:
+        break
+    }
+}
 ```
 
 ---
@@ -155,8 +171,8 @@ bannerView2.load(adRequest: request2, eventHandler: { bannerView, adEvent in /* 
 
 - Always add `BannerView` to your view hierarchy before loading ads.
 - Use unique ad spot IDs/codes for different placements.
-- Handle all error cases for robust user experience.
-- Use shared `AdSession` for multiple banners to avoid duplicate ads.
+- Handle error cases for robust user experience.
+- Use shared `AdSession` in certain scope for multiple banners to avoid duplicate ads and release it appropriately.
 
 ---
 

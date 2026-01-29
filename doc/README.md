@@ -8,7 +8,7 @@
 # RUNA SDK Document for 1.x
 Welcome to the RUNA SDK documentation for version 1.x. This version was launched in 2019 and is currently maintained. It is built in Objective-C.
 
-For documentation on version 2.x built in Swift, please refer [here](../doc2/README.md).
+For the implementation on SDK version __2.x__ which is built in Swift, please refer to [the document of 2.x](../doc2/README.md).
 
 This index provides links to detailed manuals for each major feature and integration pattern. Click on a section to view its dedicated guide.
 
