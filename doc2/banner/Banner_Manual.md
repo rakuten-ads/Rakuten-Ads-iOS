@@ -40,13 +40,13 @@ bannerView.size = .aspectFit
 Create an `AdRequest` with your ad spot ID and load the banner:
 
 ```swift
-let request = AdRequest(adSpot: .init(adSpotId: "YOUR_ADSPOT_ID"))
+let request = AdRequest(adSpot: .init(adSpotId: <YOUR_ADSPOT_ID>))
 bannerView.load(adRequest: request) { bannerView, adEvent in
     switch adEvent {
     case .success:
         print("Banner loaded successfully")
     case .failed(let error):
-        print("Failed to load banner: \(error.localizedDescription)")
+        print("Failed to load banner: \(error)")
     default:
         break
     }
@@ -63,7 +63,7 @@ You can use Auto Layout to position the banner:
 bannerView.size = .custom
 bannerView.position = .custom
 bannerView.translatesAutoresizingMaskIntoConstraints = false
-let request = AdRequest(adSpot: .init(adSpotId: "YOUR_ADSPOT_ID"))
+let request = AdRequest(adSpot: .init(adSpotId: <YOUR_ADSPOT_ID>))
 bannerView.load(adRequest: request) { bannerView, adEvent in
     switch adEvent {
     case .success:
@@ -77,7 +77,7 @@ bannerView.load(adRequest: request) { bannerView, adEvent in
             ])
         }
     case .failed(let error):
-        print("Failed to load banner: \(error.localizedDescription)")
+        print("Failed to load banner: \(error)")
     default:
         break
     }
@@ -135,7 +135,7 @@ bannerView.load(adRequest: request) { bannerView, adEvent in
         case .fatal:
             print("Fatal error occurred")
         default:
-            print("Other error: \(error.localizedDescription)")
+            print("Other error: \(error)")
         }
     case .clicked(let url):
         print("Banner clicked with URL: \(url)")

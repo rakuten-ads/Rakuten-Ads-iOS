@@ -41,7 +41,7 @@ struct BannerViewRepresentable: UIViewRepresentable {
             case .success:
                 print("BannerViewRepresentable Success")
             case .failed(let error):
-                print("BannerViewRepresentable Failed: \(error.localizedDescription)")
+                print("BannerViewRepresentable Failed: \(error)")
             case .clicked:
                 print("BannerViewRepresentable Clicked")
             default:
@@ -107,7 +107,7 @@ Events are handled in the `load` callback:
 ```swift
 struct ContentView: View {
     var body: some View {
-        BannerViewRepresentable(adRequest: .init(adSpot: .init(adSpotId: "YOUR_ADSPOT_ID")))
+        BannerViewRepresentable(adRequest: .init(adSpot: .init(adSpotId: <YOUR_ADSPOT_ID>)))
             .frame(width: 320, height: 50)
     }
 }

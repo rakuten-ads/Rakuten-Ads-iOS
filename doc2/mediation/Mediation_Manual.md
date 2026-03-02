@@ -57,7 +57,7 @@ func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.BannerView) {
 }
 
 func bannerView(_ bannerView: GoogleMobileAds.BannerView, didFailToReceiveAdWithError error: any Error) {
-    print("gad bannerView - didFailToReceiveAdWithError: \(error.localizedDescription)")
+    print("gad bannerView - didFailToReceiveAdWithError: \(error)")
 }
 
 func bannerViewDidRecordClick(_ bannerView: GoogleMobileAds.BannerView) {
