@@ -20,6 +20,34 @@ This index provides links to detailed manuals for each major feature and integra
 - **[Viewability Measurement](./doc/measurement/README.md)**
 - **[MediationAdapter](./doc/mediation/README.md)**
 
+## [Integrate SDK](#integrate-sdk)
+
+### [CocoaPods](#cocoapods)
+
+Put under lines into `Podfile`.
+
+```ruby
+source "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
+
+pod 'RUNA/Banner'
+pod 'RUNA/OMAdapter'
+```
+
+### [M1 support](#m1-support)
+
+RUNA SDK starts to support xcframework from 1.10.1.
+
+The implemenation for any past version in M1 Macbook, it is need to set `EXCLUDED_ARCHS[sdk=iphonesimulator*] = "arm64 armv7"` in Build Settings, or add a `post_install` hook for in `Podfile` like below.
+
+```ruby
+target 'App' do
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |configuration|
+      configuration.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64 armv7"
+    end
+  end
+end
+```
 ---
 
 For further assistance, rise a Github issue or contact support.
