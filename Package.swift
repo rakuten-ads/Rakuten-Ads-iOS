@@ -43,17 +43,17 @@ let package = Package(
         .binaryTarget(
             name: "RUNACore",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_2.0.0.xcframework.zip",
-			checksum : "dcaad756463020da9e830a325b1333e8b774f4fbe70c23496aab82caad931daa"
+			checksum : "e3a1833ec52a5d555bd248af844766028a574fe35c1c0087fb330e7497d70976"
         ),
         .binaryTarget(
             name: "RUNABanner",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_2.0.0.xcframework.zip",
-			checksum : "a8d11a76fa53a536d061a6a2fc5c34141ab75634268d2c2919e4c8916fcb4ee4"
+			checksum : "5a1a88a91892ba107c8b568b1ef4111ee572d40427919947f5b0d71d9795a28c"
         ),
         .binaryTarget(
             name: "RUNAOMAdapter",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMAdapter/RUNAOMAdapter_iOS_2.0.0.xcframework.zip",
-			checksum : "ce1dd04e4079c70b0fd64412b12e5eae8facc997ea6488810b7e941becefb511"
+			checksum : "df8d79877b90a681f221a069e979cfa23232ccf87a07c3307121d0fce46a89e6"
         ),
         .binaryTarget(
             name: "OMSDK_Rakuten",
@@ -63,7 +63,7 @@ let package = Package(
         .binaryTarget(
             name: "RUNAMediationAdapter",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAMediationAdapter/RUNAMediationAdapter_iOS_2.0.0.xcframework.zip",
-			checksum : "1253866c1ff9735e1bba221ccdce7694abc3a06da0858233b1dc1275a7d4f4dc"
+			checksum : "013db5209d753797bdd61134c56e2dfffca2e9ac1b0d76d034cb81797859f01a"
         ),
     ]
 )
