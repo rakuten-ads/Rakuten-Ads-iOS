@@ -47,6 +47,7 @@ and select libraries from `RUNABanner`, `RUNAOMAdapter`, `RUNAMediation`.
 ## [Manual](#manual)
 - [For version 1.x](./doc/README.md)
 - [For version 2.x](./doc2/README.md)
+- [Migration Guide: 1.x to 2.x](./doc2/Migration_1x_to_2x.md)
 
 ---
 
