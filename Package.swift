@@ -1,11 +1,11 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 6.1
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "RUNA",
-    platforms: [.iOS(.v13)],
+    platforms: [.iOS(.v15)],
     products: [
         .library(
             name: "RUNABanner",
@@ -30,7 +30,7 @@ let package = Package(
                 "RUNABanner",
                 "RUNAMediationAdapter",
             ]
-        ),
+        ), 
         .library(
             name: "OMSDK_Rakuten",
             targets: [
@@ -42,18 +42,18 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "RUNACore",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.8.6.xcframework.zip",
-			checksum : "7bf06017eb234594dee7c93e66017f04f520592e89983e22962333eb95a6ee88"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_2.0.0.xcframework.zip",
+			checksum : "e3a1833ec52a5d555bd248af844766028a574fe35c1c0087fb330e7497d70976"
         ),
         .binaryTarget(
             name: "RUNABanner",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.16.0.xcframework.zip",
-			checksum : "fc28652ca102b22b4800a59a449743103cc49fc25e4c12b7182b76dfb2f3eda6"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_2.0.0.xcframework.zip",
+			checksum : "5a1a88a91892ba107c8b568b1ef4111ee572d40427919947f5b0d71d9795a28c"
         ),
         .binaryTarget(
             name: "RUNAOMAdapter",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMAdapter/RUNAOMAdapter_iOS_1.3.4.xcframework.zip",
-			checksum : "abd0022da3b0960dbb5d05c51b4dcdd3dbb2fa51a9dd8df969e7b2d00deedde5"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMAdapter/RUNAOMAdapter_iOS_2.0.0.xcframework.zip",
+			checksum : "df8d79877b90a681f221a069e979cfa23232ccf87a07c3307121d0fce46a89e6"
         ),
         .binaryTarget(
             name: "OMSDK_Rakuten",
@@ -62,8 +62,8 @@ let package = Package(
         ),
         .binaryTarget(
             name: "RUNAMediationAdapter",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAMediationAdapter/RUNAMediationAdapter_iOS_1.0.2.xcframework.zip",
-			checksum : "83590cc2f2e3cd64e9eb8d70d85bbf30a0df36aa04e98128464793bed029e221"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAMediationAdapter/RUNAMediationAdapter_iOS_2.0.0.xcframework.zip",
+			checksum : "013db5209d753797bdd61134c56e2dfffca2e9ac1b0d76d034cb81797859f01a"
         ),
     ]
 )

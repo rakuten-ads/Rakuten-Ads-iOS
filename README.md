@@ -1,24 +1,19 @@
 <div id="top"></div>
 
-[![Platform](http://img.shields.io/badge/platform-iOS-blue.svg?style=flat)](https://developer.apple.com/ios/)
-[![language](https://camo.githubusercontent.com/7387afbc27991b9739185470fcadf5475940be5a53886ec64f4df194a52911aa/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c616e67756167652d6f626a6563746976652d2d632d3642414545342e737667)](https://developer.apple.com/documentation)
-![iOS](http://img.shields.io/badge/support-iOS_10+-blue.svg?style=flat)
-![Xcode](http://img.shields.io/badge/IDE-Xcode_10+-blue.svg?style=flat)
+![Platform](http://img.shields.io/badge/platform-iOS-blue.svg?style=flat)
+![language](http://img.shields.io/badge/language-ObjC-brightgreen.svg?style=flat)
+![language](http://img.shields.io/badge/language-Swift-brightgreen.svg?style=flat)
+![iOS](http://img.shields.io/badge/support-iOS_15+-orange.svg?style=flat)
+![Xcode](http://img.shields.io/badge/IDE-Xcode_16+-orange.svg?style=flat)
 
 # Rakuten Publisher Service iOS SDK
-* [Ad Formats](#ad-formats)
 * [Get Started](#get-started)
 * [Prerequisites](#prerequisites)
 * [Integrate SDK](#integrate-sdk)
-* [CocoaPods](#cocoapods)
 * [Swift Package Manager](#swift-package-manager)
+* [CocoaPods](#cocoapods)
 * [M1 support](#m1-support)
-
-### [Ad Formats](#ad-formats)
-
-- **[Banner Ad](./doc/bannerads/README.md)**
-- **[CarouselAds](./doc/bannerads/carousel/README.md)**
-- **[Interstitial Ad](./doc/interstitial/README.md)**
+* [Implementation](#implementation)
 
 ---
 # [Get Started](#get-started)
@@ -27,25 +22,14 @@
 
 ## [Prerequisites](#prerequisites)
 
-* Xcode 10 or higher
-* iOS 10 or higher
-* Build iOS 17
+* Xcode 16 or higher
+* iOS 15 or higher
+* Build iOS 18
 
 
 <div id="import_sdk"></div>
 
 ## [Integrate SDK](#integrate-sdk)
-
-### [CocoaPods](#cocoapods)
-
-Put under lines into `Podfile`.
-
-```ruby
-source "https://github.com/rakuten-ads/Rakuten-Ads-iOS"
-
-pod 'RUNA/Banner'
-pod 'RUNA/OMAdapter'
-```
 
 ### [Swift Package Manager](#swift-package-manager)
 
@@ -53,35 +37,18 @@ Swift Package Manager distribution support from 1.10.2 (1.10.1 deprecated).
 
 Please use package's URL `https://github.com/rakuten-ads/Rakuten-Ads-iOS` in Xcode,
 
-and select libraries from `RUNABanner`, `RUNAOMAdapter`.
+and select libraries from `RUNABanner`, `RUNAOMAdapter`, `RUNAMediation`.
 
-`RUNAOMAdapter` is essential for the Open Measurement request. 
+- `RUNABanner` is essential for variety ad formats supported by RUNA.
+- `RUNAOMAdapter` is essential for the Open Measurement coorperation. 
+- `RUNAMediationAdapter` is for demanding of mediation support. Now it has support for Admob.
+- `OMSDK_Rakuten` is a partner SDK certified by the organization of [Open Measurement SDK](https://iabtechlab.com/standards/open-measurement-sdk/).
 
-
-### [M1 support](#m1-support)
-
-RUNA SDK starts to support xcframework from 1.10.1.
-
-The implemenation for any past version in M1 Macbook, it is need to set `EXCLUDED_ARCHS[sdk=iphonesimulator*] = "arm64 armv7"` in Build Settings, or add a `post_install` hook for in `Podfile` like below.
-
-```ruby
-target 'App' do
-  post_install do |installer|
-    installer.pods_project.build_configurations.each do |configuration|
-      configuration.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64 armv7"
-    end
-  end
-end
-```
+## [Manual](#manual)
+- [For version 1.x](./doc/README.md)
+- [For version 2.x](./doc2/README.md)
+- [Migration Guide: 1.x to 2.x](./doc2/Migration_1x_to_2x.md)
 
 ---
 
-[Banner Ad](./doc/bannerads/README.md)<br>
-[CarouselAds](./doc/bannerads/carousel/README.md)<br>
-[Interstitial Ad](./doc/interstitial/README.md)<br>
-[Viewability Measurement](./doc/measurement/README.md)<br>
-[MediationAdapter](./doc/mediation/README.md)<br>
-
----
-LANGUAGE :
-> [![jp](./doc/lang/ja.png)](./doc/ja)
+For further assistance, rise a Github issue or contact support.
