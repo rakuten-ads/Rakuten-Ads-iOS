@@ -1,4 +1,4 @@
-[TOP](/README.md#top)　>　 Interstitial Ads
+[TOP](../README.md#top)　>　 Interstitial Ads
 
 ---
 

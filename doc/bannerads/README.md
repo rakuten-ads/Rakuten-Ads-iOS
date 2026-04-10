@@ -348,10 +348,10 @@ See [Sample Code](../resources/ContentView.swift)
 
 ---
 
-[TOP](/README.md#top)
+[TOP](../README.md#top)
 
 ---
 
 LANGUAGE :
 
-> [![ja](/doc/lang/ja.png)](/doc/ja/bannerads/README.md)
+> [![ja](../lang/ja.png)](../ja/bannerads/README.md)

@@ -1,4 +1,4 @@
-[TOP](/README.md#top)　>　 Mediation Adapter
+[TOP](..//README.md#top)　>　 Mediation Adapter
 
 ---
 

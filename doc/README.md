@@ -14,11 +14,11 @@ This index provides links to detailed manuals for each major feature and integra
 
 ## Table of Contents
 
-- **[Banner Ad](./doc/bannerads/README.md)**
-- **[CarouselAds](./doc/bannerads/carousel/README.md)**
-- **[Interstitial Ad](./doc/interstitial/README.md)**
-- **[Viewability Measurement](./doc/measurement/README.md)**
-- **[MediationAdapter](./doc/mediation/README.md)**
+- **[Banner Ad](./bannerads/README.md)**
+- **[CarouselAds](./bannerads/carousel/README.md)**
+- **[Interstitial Ad](./interstitial/README.md)**
+- **[Viewability Measurement](./measurement/README.md)**
+- **[MediationAdapter](./mediation/README.md)**
 
 ## [Integrate SDK](#integrate-sdk)
 
@@ -53,4 +53,4 @@ end
 For further assistance, rise a Github issue or contact support.
 
 LANGUAGE :
-> [![jp](./doc/lang/ja.png)](./doc/ja)
+> [![jp](./lang/ja.png)](./doc/ja)
