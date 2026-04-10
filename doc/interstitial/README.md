@@ -180,7 +180,7 @@ interstitialAd.preload { [weak self] adView, event
 
 ---
 
-[TOP](/README.md#top)
+[TOP](../README.md#top)
 
 ---
 
