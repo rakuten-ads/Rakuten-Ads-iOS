@@ -94,7 +94,7 @@ override func viewDidDisappear(_ animated: Bool) {
 
 ---
 
-[TOP](/README.md#top)
+[TOP](../README.md#top)
 
 ---
 

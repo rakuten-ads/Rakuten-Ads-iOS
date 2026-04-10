@@ -1,4 +1,4 @@
-[TOP](/README.md#top)　>　 [Banner Ads](../README.md)
+[TOP](../README.md#top)　>　 [Banner Ads](../README.md)
 
 ---
 

@@ -1,4 +1,4 @@
-[TOP](/README.md#top)　>　 Mediation Adapter
+[TOP](..//README.md#top)　>　 Mediation Adapter
 
 ---
 
@@ -130,7 +130,7 @@ bannerView.load(req)
 
 ---
 
-[TOP](/README.md#top)
+[TOP](../README.md#top)
 
 ---
 

@@ -1,117 +1,83 @@
 //
 //  ContentView.swift
-//  RUNA-SDK-Sample-SwiftUI
+//  RunaSwiftUISample
 //
-//  Created by Wu, Wei | David | GATD on 2023/03/03.
+//  Created by Wu, Wei | David | GATD on 2026/04/10.
 //
 
 import SwiftUI
 import RUNABanner
-import UIKit
+
+struct BannerViewRepresentable: UIViewRepresentable {
+    @Binding var isReady: Bool
+    @Binding var designatedSize: CGSize
+    let adSpotId: String
+
+    func makeUIView(context: Context) -> RUNABannerView {
+        let bannerView = RUNABannerView()
+        bannerView.adSpotId = adSpotId
+        bannerView.size = .aspectFit
+        bannerView.position = .topLeft
+        bannerView.load { banner, event in
+            switch event.eventType {
+            case .succeeded:
+                print("BannerViewRepresentable Success")
+                isReady = true
+                designatedSize = banner.designatedContentSize
+            case .failed:
+                print("BannerViewRepresentable Failed: \(event.error)")
+                isReady = false
+            case .clicked:
+                print("BannerViewRepresentable Clicked")
+            default:
+                break
+            }
+        }
+        return bannerView
+    }
+
+    func updateUIView(_ uiView: RUNABannerView, context: Context) {
+        print("updateUIView - Banner NOT recreated")
+    }
+}
 
 struct ContentView: View {
 
-    let dataMatrix: [Int] = [Int](11...17)
-
-    let colors:[UIColor] = [
-        UIColor(red: 77.0/255.0, green: 69.0/255.0, blue: 93.0/255.0, alpha: 1),
-        UIColor(red: 233/255.0, green: 100/255.0, blue: 121/255.0, alpha: 1),
-        UIColor(red: 245.0/255.0, green: 233.0/255.0, blue: 207.0/255.0, alpha: 1),
-        UIColor(red: 125.0/255.0, green: 185.0/255.0, blue: 182.0/255.0, alpha: 1),
-    ]
-
-    @State var bannerLoadSucceeded:Bool = false
+    @State var showBanner = true
+    @State var designatedSize: CGSize = .zero
 
     var body: some View {
         VStack {
-            ScrollView {
-                VStack(alignment: .center) {
-
-                    Text("Hello, RUNA!")
-                        .padding()
-
-                    ForEach(0..<dataMatrix.count, id: \.self) { idx in
-                        VStack {
-                            if idx == 2 {
-                                Text("View All")
-                                RUNABannerAdapterView(loadSucceeded: $bannerLoadSucceeded, adspotId: "21882")
-                                    .frame(width:UIScreen.main.bounds.width,
-                                           height: bannerLoadSucceeded ? UIScreen.main.bounds.width / (360 / 237) : 0)
-                            }
-
-                            HStack {
-                                Text("\(dataMatrix[idx])")
-                            }.frame(width:UIScreen.main.bounds.width,height: 100)
-                                .background(rotatingColor(idx))
-                        }
+            List {
+                HStack {
+                    Text("PlaceHolder 1")
+                        .frame(height: 50)
+                }
+                .background {
+                    Color.blue.opacity(0.5)
+                }
+                if showBanner {
+                    HStack {
+                        BannerViewRepresentable(isReady: $showBanner, designatedSize: $designatedSize, adSpotId: "776")
                     }
+                    .background {
+                        Color.green.opacity(0.5)
+                    }
+                    .aspectRatio(designatedSize.width / designatedSize.height, contentMode: .fill)
+                }
+                HStack {
+                    Text("PlaceHolder 2")
+                        .frame(height: 100)
+                }.background {
+                    Color.red.opacity(0.5)
                 }
             }
         }
-    }
-
-    private func rotatingColor(_ position: Int) -> Color {
-        Color(colors[position % colors.count])
+        .padding()
+        .navigationTitle(Text("RUNA Sample"))
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
-
-struct RUNABannerAdapterView: UIViewRepresentable {
-
-    @Binding var loadSucceeded: Bool
-    let adspotId: String
-    fileprivate let banner: RUNABannerView = RUNABannerView()
-
-    var isReady = false
-
-    func makeUIView(context: Context) -> some UIView {
-        print("[runa] make view")
-        return banner
-    }
-
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-        print("[runa] update")
-        if loadSucceeded {
-            print("[runa] show")
-        } else {
-            print("[runa] hide")
-        }
-    }
-
-    func makeCoordinator() -> Coordinator {
-        print("[runa] make coordinator")
-        return Coordinator(adapterView: self)
-    }
-
-    class Coordinator {
-        private var adapterView: RUNABannerAdapterView
-
-        init(adapterView: RUNABannerAdapterView) {
-            self.adapterView = adapterView
-
-            adapterView.banner.adSpotId = adapterView.adspotId
-            adapterView.banner.size = .aspectFit
-
-            adapterView.banner.load {[weak self] view, event in
-                guard let self = self else { return }
-                switch event.eventType {
-                case .succeeded:
-                    print("[runa] banner load succeeded: code \(event.error)")
-                    self.adapterView.loadSucceeded = true
-                case .failed:
-                    print("[runa] banner load failed: code \(event.error)")
-                    self.adapterView.loadSucceeded = false
-                case .clicked:
-                    print("[runa] banner clicked: url \(self.adapterView.banner.clickURL ?? "none")")
-                default:
-                    break
-                }
-            }
-        }
-    }
+#Preview {
+    ContentView()
 }

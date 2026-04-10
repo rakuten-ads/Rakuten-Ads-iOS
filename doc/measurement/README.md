@@ -1,4 +1,4 @@
-[TOP](/README.md#top)　>　 Viewability Measurement Provider
+[TOP](../README.md#top)　>　 Viewability Measurement Provider
 
 ---
 
@@ -93,7 +93,7 @@ override func viewDidDisappear(_ animated: Bool) {
 
 ---
 
-[TOP](/README.md#top)
+[TOP](../README.md#top)
 
 ---
 
