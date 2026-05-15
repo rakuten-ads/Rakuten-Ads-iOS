@@ -17,6 +17,7 @@
 ### [Ad Formats](#ad-formats)
 
 - **[Banner Ad](./doc/bannerads/README.md)**
+- **[Video Ad](./doc/videoad/README.md)**
 - **[CarouselAds](./doc/bannerads/carousel/README.md)**
 - **[Interstitial Ad](./doc/interstitial/README.md)**
 
