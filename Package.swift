@@ -42,18 +42,18 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "RUNACore",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.8.6.xcframework.zip",
-			checksum : "7bf06017eb234594dee7c93e66017f04f520592e89983e22962333eb95a6ee88"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.9.0.xcframework.zip",
+			checksum : "fc1e55c5c7fb4ba55fdf8fbdd9abfa7287ac5b3e70094e73f19436ea4724abec"
         ),
         .binaryTarget(
             name: "RUNABanner",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.16.0.xcframework.zip",
-			checksum : "fc28652ca102b22b4800a59a449743103cc49fc25e4c12b7182b76dfb2f3eda6"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.17.0.xcframework.zip",
+			checksum : "6dcca3ed55f400050630c9f421d242c1f8d4e0b36d43bfc639ac9641debdd9ae"
         ),
         .binaryTarget(
             name: "RUNAOMAdapter",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMAdapter/RUNAOMAdapter_iOS_1.3.4.xcframework.zip",
-			checksum : "abd0022da3b0960dbb5d05c51b4dcdd3dbb2fa51a9dd8df969e7b2d00deedde5"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMAdapter/RUNAOMAdapter_iOS_1.3.5.xcframework.zip",
+			checksum : "7f39325926c7d5a2458b752dc716f4481b1515f6ab0403bcd8d293b53d305cfe"
         ),
         .binaryTarget(
             name: "OMSDK_Rakuten",
@@ -62,8 +62,8 @@ let package = Package(
         ),
         .binaryTarget(
             name: "RUNAMediationAdapter",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAMediationAdapter/RUNAMediationAdapter_iOS_1.0.2.xcframework.zip",
-			checksum : "83590cc2f2e3cd64e9eb8d70d85bbf30a0df36aa04e98128464793bed029e221"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAMediationAdapter/RUNAMediationAdapter_iOS_1.0.3.xcframework.zip",
+			checksum : "ce2c15005a9b48d2cb8c7664c35a30aae1a485241934bebeb2d6093beb6562f2"
         ),
     ]
 )
