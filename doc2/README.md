@@ -15,6 +15,7 @@ For the implementation on SDK version __1.x__ which is built in Objective-C, ple
 
 - [Migration Guide: 1.x to 2.x](./Migration_1x_to_2x.md)
 - [BannerView](./banner/Banner_Manual.md)
+- [videoAdView](./video/VideoAdView_Manual.md)
 - [BannerGroup](./banner/BannerGroup_Manual.md)
 - [BannerView in SwiftUI](./banner/BannerSwiftUI_Manual.md)
 - [CarouselView](./carousel/CarouselView_Manual.md)
