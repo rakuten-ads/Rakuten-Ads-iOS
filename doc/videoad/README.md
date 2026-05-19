@@ -81,7 +81,7 @@ Starts loading the video ad. The `eventHandler` block is called on the main thre
 
 **`toggleVideoAdPlay(_:)`**
 
-Manually controls playback. Pass `true` to play/resume and `false` to pause/stop. The SDK calls this automatically based on in-view visibility, but you can use it to sync with your app's lifecycle (e.g., resume on `didBecomeActiveNotification`).
+Manually controls playback. Pass `true` to play/resume and `false` to pause/stop. The SDK controls playback automatically based on in-view visibility, but you can use it to sync with your app's lifecycle (e.g., resume on `didBecomeActiveNotification`).
 
 ---
 
@@ -285,7 +285,7 @@ extension VideoAdViewController: SFSafariViewControllerDelegate {
 The SDK automatically manages measurement without any additional setup:
 
 - **Impression** — fires `impURL` once when the ad is loaded and initially visible.
-- **Inview** — fires `inviewURL` when the ad has been continuously visible for 2 seconds, conforming to the MRC standard. Re-fires each time the view re-enters the viewport after being off-screen.
+- **Inview** — fires `inviewURL` when the ad has been continuously visible for 2 seconds, conforming to the MRC standard.
 - **Auto-play / auto-pause** — the video player plays when the view is in-view and pauses when it scrolls out. Call `toggleVideoAdPlay(_:)` to override this, for example on `applicationDidBecomeActive`.
 
 ---
