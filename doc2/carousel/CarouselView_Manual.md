@@ -137,6 +137,6 @@ private func eventHandler(carouselView: BannerCarouselView, bannerView: BannerVi
 ---
 
 ## 9. References
-- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/iOS/)
+- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/)
 
 For further assistance, rise a Github issue or contact support.

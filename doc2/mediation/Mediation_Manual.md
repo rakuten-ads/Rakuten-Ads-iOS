@@ -116,7 +116,7 @@ class MediationSampleViewController: UIViewController, BannerViewDelegate {
 
 ## 7. References
 
-- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/iOS/)
+- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/)
 - [GoogleMobileAds Documentation](https://developers.google.com/admob/ios/quick-start)
 
 For further assistance, rise a Github issue or contact support.

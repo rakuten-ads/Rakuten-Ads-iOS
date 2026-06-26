@@ -116,6 +116,6 @@ group.load(adRequest: adRequest) { group, bannerView, adEvent in
 ---
 
 ## 7. References
-- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/iOS/)
+- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/)
 
 For further assistance, rise a Github issue or contact support.

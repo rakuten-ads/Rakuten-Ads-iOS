@@ -185,6 +185,6 @@ bannerView2.load(adRequest: request2, eventHandler: { bannerView, adEvent in /* 
 ---
 
 ## 10. References
-- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/iOS/)
+- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/)
 
 For further assistance, contact your SDK provider or refer to official documentation.

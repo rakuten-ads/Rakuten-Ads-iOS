@@ -26,6 +26,6 @@ For the implementation on SDK version __1.x__ which is built in Objective-C, ple
 ---
 
 ## API References
-- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/iOS/)
+- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/)
 
 For further assistance, rise a Github issue or contact support.
