@@ -103,6 +103,39 @@ bannerView.load(adRequest: request) { bannerView, adEvent in
 
 ---
 
+## 5.1. User Identification
+
+Pass Rakuten user identity signals to improve ad targeting and personalization. All parameters are optional.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `easyId` | `String?` | Rakuten Easy ID (email address). Transmitted as an MD5 hash. |
+| `rpCookie` | `String?` | Rakuten Point cookie token. |
+| `rzCookie` | `String?` | Rakuten cookie token. |
+| `rPoint` | `Int?` | User's Rakuten Point balance. |
+
+```swift
+let request = AdRequest(
+    adSpot: .init(adSpotId: "YOUR_ADSPOT_ID"),
+    rpCookie: "YOUR_RP_COOKIE",
+    rzCookie: "YOUR_RZ_COOKIE",
+    easyId: "00000000-0000-0000-0000-000000000000",
+    rPoint: 1500
+)
+bannerView.load(adRequest: request) { bannerView, adEvent in
+    switch adEvent {
+    case .success:
+        print("Banner loaded successfully")
+    case .failed(let error):
+        print("Failed to load banner: \(error.localizedDescription)")
+    default:
+        break
+    }
+}
+```
+
+---
+
 ## 6. Event Handling
 
 The event handler provides feedback on ad loading and user interaction:
