@@ -69,7 +69,36 @@ private func eventHandler(group: BannerGroup, bannerView: BannerView?, adEvent: 
 
 ---
 
-## 4. Best Practices
+## 4. User Identification
+
+Pass Rakuten user identity signals on the `AdRequest` to improve targeting across all banners in the group. All parameters are optional.
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `easyId` | `String?` | Raw Easy ID. SDK will transmitted with encryption. |
+| `rpCookie` | `String?` | RP cookie token. |
+| `rzCookie` | `String?` | RZ cookie token. |
+| `rPoint` | `Int?` | User's Point balance. |
+
+```swift
+let group = BannerGroup()
+let adRequest = AdRequest(
+    adSpotList: [
+        .init(adSpotId: "ad_spot_id_1"),
+        .init(adSpotId: "ad_spot_id_2"),
+        .init(adSpotId: "ad_spot_id_3"),
+    ],
+    rpCookie: "YOUR_RP_COOKIE",
+    rzCookie: "YOUR_RZ_COOKIE",
+    easyId: "00000000-0000-0000-0000-000000000000",
+    rPoint: 1500
+)
+group.load(adRequest: adRequest, eventHandler: eventHandler)
+```
+
+---
+
+## 5. Best Practices
 
 - Always add each loaded `bannerView` to your view hierarchy in the `.success` case.
 - Handle both individual banner failures and group-level failures for robust error management.
@@ -78,7 +107,7 @@ private func eventHandler(group: BannerGroup, bannerView: BannerView?, adEvent: 
 
 ---
 
-## 5. Example: Complete Integration
+## 6. Example: Complete Integration
 
 ```swift
 let group = BannerGroup()
@@ -107,7 +136,7 @@ group.load(adRequest: adRequest) { group, bannerView, adEvent in
 
 ---
 
-## 6. Troubleshooting
+## 7. Troubleshooting
 
 - Ensure all ad spot IDs are valid and active.
 - Check for network connectivity issues if banners fail to load.
@@ -115,7 +144,7 @@ group.load(adRequest: adRequest) { group, bannerView, adEvent in
 
 ---
 
-## 7. References
-- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/iOS/)
+## 8. References
+- [RUNA SDK API Documentation](https://rakuten-ads.github.io/runasdk.github.io/)
 
 For further assistance, rise a Github issue or contact support.
