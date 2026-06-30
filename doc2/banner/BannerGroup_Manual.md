@@ -75,10 +75,10 @@ Pass Rakuten user identity signals on the `AdRequest` to improve targeting acros
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `easyId` | `String?` | Rakuten Easy ID (email address). Transmitted as an MD5 hash. |
-| `rpCookie` | `String?` | Rakuten Point cookie token. |
-| `rzCookie` | `String?` | Rakuten cookie token. |
-| `rPoint` | `Int?` | User's Rakuten Point balance. |
+| `easyId` | `String?` | Raw Easy ID. SDK will transmitted with encryption. |
+| `rpCookie` | `String?` | RP cookie token. |
+| `rzCookie` | `String?` | RZ cookie token. |
+| `rPoint` | `Int?` | User's Point balance. |
 
 ```swift
 let group = BannerGroup()
