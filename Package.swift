@@ -42,13 +42,13 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "RUNACore",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.9.0.xcframework.zip",
-			checksum : "fc1e55c5c7fb4ba55fdf8fbdd9abfa7287ac5b3e70094e73f19436ea4724abec"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNACore/RUNACore_iOS_1.9.1.xcframework.zip",
+			checksum : "23a0ce1f016738bfc048383960b523e7a71f8e75e79d0cc1404539dbc765853c"
         ),
         .binaryTarget(
             name: "RUNABanner",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.17.0.xcframework.zip",
-			checksum : "6dcca3ed55f400050630c9f421d242c1f8d4e0b36d43bfc639ac9641debdd9ae"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNABanner/RUNABanner_iOS_1.17.1.xcframework.zip",
+			checksum : "0219862e65bad033815b6160329ab669ec3571d018b53022b1ee562568ce2e71"
         ),
         .binaryTarget(
             name: "RUNAOMAdapter",
