@@ -1,4 +1,4 @@
-<div id="top"></div>
+<a id="top"></a>
 
 [![Platform](http://img.shields.io/badge/platform-iOS-blue.svg?style=flat)](https://developer.apple.com/ios/)
 [![language](https://camo.githubusercontent.com/c26adc3630b1c213a4b3372979a3b805f7342746/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6c616e67756167652d4f626a6563746976652d2d432d626c75652e737667)](https://developer.apple.com/documentation)
@@ -24,7 +24,7 @@
 
 # [はじめに](#get-started)
 
-<div id="prerequisites"></div>
+<a id="prerequisites"></a>
 
 ## [前提](#prerequisites)
 
@@ -32,7 +32,7 @@
 - iOS 10 以上
 - iOS 17でビルド
 
-<div id="import_sdk"></div>
+<a id="integrate_sdk"></a>
 
 ## [SDK の導入](#integrate-sdk)
 
