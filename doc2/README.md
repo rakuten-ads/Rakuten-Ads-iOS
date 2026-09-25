@@ -1,4 +1,4 @@
-<div id="top"></div>
+<a id="top"></a>
 
 ![Platform](http://img.shields.io/badge/platform-iOS-blue.svg?style=flat)
 ![language](http://img.shields.io/badge/language-Swift-brightgreen.svg?style=flat)

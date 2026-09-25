@@ -1,4 +1,4 @@
-<div id="top"></div>
+<a id="top"></a>
 
 ![Platform](http://img.shields.io/badge/platform-iOS-blue.svg?style=flat)
 ![language](http://img.shields.io/badge/language-ObjC-brightgreen.svg?style=flat)
@@ -18,7 +18,7 @@
 ---
 # [Get Started](#get-started)
 
-<div id="prerequisites"></div>
+<a id="prerequisites"></a>
 
 ## [Prerequisites](#prerequisites)
 
@@ -27,7 +27,7 @@
 * Build iOS 18
 
 
-<div id="import_sdk"></div>
+<a id="integrate_sdk"></a>
 
 ## [Integrate SDK](#integrate-sdk)
 
