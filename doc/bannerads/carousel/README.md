@@ -63,7 +63,7 @@ carouselView.load { [weak self] carouselView, banner, event in
 }
 ```
 
-### complex settings of RUNABannerView
+### Complex settings of RUNABannerView
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 ```Swift
 
@@ -85,7 +85,7 @@ carouselView.load { [weak self] carouselView, banner, event in
 }
 ```
 
-### item view decoration
+### Item view decoration
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 ```Swift
 let carouselView = RUNABannerCarouselView()
