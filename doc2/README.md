@@ -14,12 +14,12 @@ For the implementation on SDK version __1.x__ which is built in Objective-C, ple
 ## Table of Contents
 
 - [Migration Guide: 1.x to 2.x](./Migration_1x_to_2x.md)
-- [BannerView](./banner/Banner_Manual.md)
-- [videoAdView](./video/VideoAdView_Manual.md)
-- [BannerGroup](./banner/BannerGroup_Manual.md)
-- [BannerView in SwiftUI](./banner/BannerSwiftUI_Manual.md)
-- [CarouselView](./carousel/CarouselView_Manual.md)
-- [InterstitialAd](./interstitial/InterstitialAd_Manual.md)
+- [Banner Ads (BannerView)](./banner/Banner_Manual.md)
+- [Video Ads (VideoAdView)](./video/VideoAdView_Manual.md)
+- [Single Request (BannerGroup)](./banner/BannerGroup_Manual.md)
+- [Banner Ads in SwiftUI (BannerView)](./banner/BannerSwiftUI_Manual.md)
+- [Carousel Ads (BannerCarouselView)](./carousel/CarouselView_Manual.md)
+- [Interstitial Ads (InterstitialAd)](./interstitial/InterstitialAd_Manual.md)
 - [Measurement & OM Support](./measurement/Measurement_Manual.md)
 - [Mediation (AdMob)](./mediation/Mediation_Manual.md)
 

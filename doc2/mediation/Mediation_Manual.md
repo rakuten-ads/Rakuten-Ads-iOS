@@ -75,7 +75,7 @@ func bannerViewDidRecordImpression(_ bannerView: GoogleMobileAds.BannerView) {
 
 - Always use a valid AdMob ad unit ID for production.
 - Register mediation extras before loading the ad.
-- Implement all delegate methods for robust event handling and analytics.
+- Implement all delegate methods to handle events and collect analytics.
 - Add the banner view to your view hierarchy after loading.
 
 ---

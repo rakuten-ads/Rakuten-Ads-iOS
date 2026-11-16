@@ -1,6 +1,6 @@
 # Measurement Usage Manual
 
-This manual introduces the usage of viewability and OM measurement features as implemented in `Measurement.swift`. It covers all demonstrated cases, configuration options, and best practices for integrating measurement in your iOS application.
+This manual describes how to measure ad viewability and Open Measurement (OM) in an iOS application. It covers native view measurement, OM measurement on `UIView` and WebView, dual measurement on `UIView`, and best practices.
 
 ---
 

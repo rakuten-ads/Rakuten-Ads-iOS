@@ -1,12 +1,12 @@
 # BannerSwiftUI Usage Manual
 
-This document provides a comprehensive guide for integrating and using banner ads in SwiftUI via the RUNABanner framework, based on the implementation in `BannerSwiftUI.swift`.
+This document describes how to display banner ads in SwiftUI by using the RUNABanner framework.
 
 ---
 
 ## 1. Overview
 
-`BannerSwiftUI.swift` demonstrates how to display a banner ad in a SwiftUI view by bridging UIKit's `BannerView` using `UIViewRepresentable`.
+A banner ad can be displayed in a SwiftUI view by wrapping UIKit's `BannerView` with `UIViewRepresentable`. This document shows an implementation of the wrapper (`BannerViewRepresentable`) and how to use it.
 
 ---
 
@@ -97,8 +97,8 @@ Events are handled in the `load` callback:
 
 - Always provide a valid ad spot ID in `AdRequest`.
 - Set the frame size to match the expected banner dimensions (e.g., 320x50).
-- The banner view is created once; `updateUIView` does not recreate it, ensuring efficient updates.
-- Handle all relevant events for robust user experience.
+- The banner view is created once; `updateUIView` does not recreate it.
+- Handle all relevant events.
 
 ---
 

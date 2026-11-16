@@ -75,7 +75,7 @@ Pass Rakuten user identity signals on the `AdRequest` to improve targeting acros
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `easyId` | `String?` | Raw Easy ID. SDK will transmitted with encryption. |
+| `easyId` | `String?` | Raw Easy ID. SDK will be transmitted with encryption. |
 | `rpCookie` | `String?` | RP cookie token. |
 | `rzCookie` | `String?` | RZ cookie token. |
 | `rPoint` | `Int?` | User's Point balance. |
@@ -101,7 +101,7 @@ group.load(adRequest: adRequest, eventHandler: eventHandler)
 ## 5. Best Practices
 
 - Always add each loaded `bannerView` to your view hierarchy in the `.success` case.
-- Handle both individual banner failures and group-level failures for robust error management.
+- Handle both individual banner failures and group-level failures.
 - Use unique ad spot IDs for each banner in the group.
 - Customize the layout and presentation of each `bannerView` as needed (e.g., in a carousel or stack).
 
