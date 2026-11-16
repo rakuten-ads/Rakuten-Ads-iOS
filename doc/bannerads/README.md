@@ -119,14 +119,10 @@ The RUNA SDK is composed of multiple modules, such as Core, Banner, and others. 
 
 See [Extension Module](./extension/README.md)
 
-### Distinct banners in group
+### Single Request
 
-Request distinct ad in a single request.
+Request multiple ads at once in a single request with `BannerGroup`.
 See [Banner Group](./group/README.md)
-
-UI Component with group request.
-See [Carousel View](./carousel/README.md)
-
 
 ## 2. Samples
 
