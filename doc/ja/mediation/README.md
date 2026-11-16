@@ -76,7 +76,7 @@ __サポートするパラメーター__
 - customTargeting
 - genre
 
-詳細はここへ参照してください：[Banner Ad](../bannerads/README.md)
+詳細はここへ参照してください：[Banner Ads](../bannerads/README.md)
 
 
 

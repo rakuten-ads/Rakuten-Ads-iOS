@@ -14,9 +14,9 @@ This index provides links to detailed manuals for each major feature and integra
 
 ## Table of Contents
 
-- **[Banner Ad](./bannerads/README.md)**
-- **[CarouselAds](./bannerads/carousel/README.md)**
-- **[Interstitial Ad](./interstitial/README.md)**
+- **[Banner Ads](./bannerads/README.md)**
+- **[Carousel Ads](./bannerads/carousel/README.md)**
+- **[Interstitial Ads](./interstitial/README.md)**
 - **[Viewability Measurement](./measurement/README.md)**
 - **[MediationAdapter](./mediation/README.md)**
 

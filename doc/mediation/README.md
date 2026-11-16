@@ -77,7 +77,7 @@ __current supported parameters__
 - customTargeting
 - genre
 
-Details of the values can be found in [Banner Ad](../bannerads/README.md)
+Details of the values can be found in [Banner Ads](../bannerads/README.md)
 
 
 
