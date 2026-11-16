@@ -2,7 +2,7 @@
 
 ---
 
-# Carousel View
+# Carousel Ads
 
 ## 概要
 

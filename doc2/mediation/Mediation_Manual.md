@@ -1,4 +1,4 @@
-# Mediation Usage Manual
+# Ad Mediation Usage Manual
 
 This manual introduces the usage of ad mediation. It covers the integration of RUNABanner with AdMob via the RUNAMediationAdapter, configuration, event handling, and best practices for using mediation in your iOS application.
 

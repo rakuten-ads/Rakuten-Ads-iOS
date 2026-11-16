@@ -1,4 +1,4 @@
-# CarouselView Usage Manual
+# Carousel Ads Usage Manual
 
 This manual describes how to display carousel banner ads in an iOS application by using `BannerCarouselView`. It covers the configuration options, UI decoration, event handling, and best practices.
 

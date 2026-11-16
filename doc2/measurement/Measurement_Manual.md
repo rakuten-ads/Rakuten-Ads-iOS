@@ -1,4 +1,4 @@
-# Measurement Usage Manual
+# Viewability Measurement Usage Manual
 
 This manual describes how to measure ad viewability and Open Measurement (OM) in an iOS application. It covers native view measurement, OM measurement on `UIView` and WebView, dual measurement on `UIView`, and best practices.
 

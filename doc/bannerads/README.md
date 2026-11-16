@@ -4,7 +4,7 @@
 
 # Banner Ads
 
-RUNABanner SDK banner view is a web view bases on `WebKit/WKWebView` which will present advertisement content by loading HTML advertisement tags.
+RUNA SDK banner view is a web view bases on `WebKit/WKWebView` which will present advertisement content by loading HTML advertisement tags.
 
 ---
 
@@ -70,7 +70,7 @@ Locate at the right left of the super view.
 
 ### Event Tracker
 
-The RUNABanner SDK tracks 3 event types of `RUNABannerViewEvent` if developers need to be triggerred and handle something by themselves.
+The RUNA SDK tracks 3 event types of `RUNABannerViewEvent` if developers need to be triggerred and handle something by themselves.
 
 - **Succeeded (RUNABannerViewEventTypeSucceeded) :**<br>
   Succeeded to received the advertisement response.

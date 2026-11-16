@@ -5,7 +5,7 @@
 
 ---
 
-# RUNABanner SDK Documentation for 2.x
+# RUNA SDK Documentation for 2.x
 
 Welcome to the RUNA SDK documentation. This index provides links to detailed manuals for each major feature and integration pattern. Click on a section to view its dedicated guide.
 
@@ -20,8 +20,8 @@ For the implementation on SDK version __1.x__ which is built in Objective-C, ple
 - [Banner Ads in SwiftUI (BannerView)](./banner/BannerSwiftUI_Manual.md)
 - [Carousel Ads (BannerCarouselView)](./carousel/CarouselView_Manual.md)
 - [Interstitial Ads (InterstitialAd)](./interstitial/InterstitialAd_Manual.md)
-- [Measurement & OM Support](./measurement/Measurement_Manual.md)
-- [Mediation (AdMob)](./mediation/Mediation_Manual.md)
+- [Viewability Measurement & OM Support](./measurement/Measurement_Manual.md)
+- [Ad Mediation (AdMob)](./mediation/Mediation_Manual.md)
 
 ---
 
