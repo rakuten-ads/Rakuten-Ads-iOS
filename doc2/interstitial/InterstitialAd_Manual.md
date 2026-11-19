@@ -1,6 +1,6 @@
 # InterstitialAd Usage Manual
 
-This manual introduces the usage of `InterstitialAd` as implemented in `InterstitialView.swift`. It covers all demonstrated cases, configuration options, event handling, and best practices for integrating interstitial ads in your iOS application.
+This manual describes how to preload and show interstitial ads in an iOS application by using `InterstitialAd`. It covers preloading and presentation, full screen configuration, event handling, and best practices.
 
 ---
 
@@ -70,7 +70,7 @@ Events are handled in the `preload` callback:
 ## 5. Best Practices
 
 - Always preload the interstitial ad before attempting to show it.
-- Handle all relevant events for robust user experience.
+- Handle all relevant events.
 - Use `.interstitialClosed` to trigger navigation or resume app flow.
 - Configure `size` and `hideStatusBar` as needed for your app's UI.
 

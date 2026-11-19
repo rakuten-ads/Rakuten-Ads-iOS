@@ -2,7 +2,7 @@
 
 ---
 
-# MediationAdapter
+# Ad Mediation
 
 モジュール `MediationAdapter`はメディエーション機能を提供する他社の広告製品と連携するためのSDKです。
 現在は`GoogleAdsMobile` SDKのbanner機能をサポートしています。
@@ -76,7 +76,7 @@ __サポートするパラメーター__
 - customTargeting
 - genre
 
-詳細はここへ参照してください：[Banner Ad](../bannerads/README.md)
+詳細はここへ参照してください：[Banner Ads](../bannerads/README.md)
 
 
 

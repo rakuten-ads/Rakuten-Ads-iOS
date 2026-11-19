@@ -5,7 +5,7 @@
 
 ---
 
-# RUNA SDK Document for 1.x
+# RUNA SDK Documentation for 1.x
 Welcome to the RUNA SDK documentation for version 1.x. This version was launched in 2019 and is currently maintained. It is built in Objective-C.
 
 For the implementation on SDK version __2.x__ which is built in Swift, please refer to [the document of 2.x](../doc2/README.md).
@@ -14,11 +14,11 @@ This index provides links to detailed manuals for each major feature and integra
 
 ## Table of Contents
 
-- **[Banner Ad](./bannerads/README.md)**
-- **[CarouselAds](./bannerads/carousel/README.md)**
-- **[Interstitial Ad](./interstitial/README.md)**
+- **[Banner Ads](./bannerads/README.md)**
+- **[Carousel Ads](./bannerads/carousel/README.md)**
+- **[Interstitial Ads](./interstitial/README.md)**
 - **[Viewability Measurement](./measurement/README.md)**
-- **[MediationAdapter](./mediation/README.md)**
+- **[Ad Mediation](./mediation/README.md)**
 
 ## [Integrate SDK](#integrate-sdk)
 

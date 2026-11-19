@@ -109,7 +109,7 @@ Pass Rakuten user identity signals to improve ad targeting and personalization. 
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `easyId` | `String?` | Raw Easy ID. SDK will transmitted with encryption. |
+| `easyId` | `String?` | Raw Easy ID. SDK will be transmitted with encryption. |
 | `rpCookie` | `String?` | RP cookie token. |
 | `rzCookie` | `String?` | RZ cookie token. |
 | `rPoint` | `Int?` | User's Point balance. |
@@ -204,7 +204,7 @@ bannerView2.load(adRequest: request2, eventHandler: { bannerView, adEvent in /* 
 
 - Always add `BannerView` to your view hierarchy before loading ads.
 - Use unique ad spot IDs/codes for different placements.
-- Handle error cases for robust user experience.
+- Handle error cases.
 - Use shared `AdSession` in certain scope for multiple banners to avoid duplicate ads and release it appropriately.
 
 ---

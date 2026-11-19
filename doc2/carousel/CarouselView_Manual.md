@@ -1,12 +1,12 @@
-# CarouselView Usage Manual
+# Carousel Ads Usage Manual
 
-This manual introduces the usage of `BannerCarouselView` as implemented in `CarouselView.swift`. It covers all demonstrated cases, configuration options, event handling, and best practices for integrating carousel banner ads in your iOS application.
+This manual describes how to display carousel banner ads in an iOS application by using `BannerCarouselView`. It covers the configuration options, UI decoration, event handling, and best practices.
 
 ---
 
 ## 1. Overview
 
-`BannerCarouselView` enables the display of multiple banner ads in a horizontal carousel format. It supports flexible configuration, advanced targeting, custom UI decoration, and robust event handling.
+`BannerCarouselView` displays multiple banner ads in a horizontal carousel. Targeting parameters can be passed with the request, the appearance of each item can be customized, and ad events are delivered to an event handler.
 
 ---
 

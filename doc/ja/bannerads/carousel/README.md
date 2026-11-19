@@ -2,9 +2,14 @@
 
 ---
 
-# Carousel View
+# Carousel Ads
 
-`RUNACarouselView` は`RUNABannerGroup`を基づく、横スクロールの`UICollectionView`をベースにして、複数異なるバナー広告を表示させる便利なUI部品です。
+## 概要
+
+カルーセル広告はバナー広告を横並びに表示し、アプリユーザーが水平方向にスクロールが可能な広告です。<br>
+指定した広告枠ID(`adSpotIds`)または広告枠コード(`adSpotCodes`)ごとに、バナー広告を1つずつ表示します。<br>
+各バナーのサイズは `itemScaleMode` で決まります。親ビューの横幅に合わせるか、横幅を固定値に指定し、縦幅は広告の縦横比から算出されます。<br>
+`RUNABannerCarouselView` は、横スクロールの `UICollectionView` をベースにしており、`RUNABannerGroup` を利用してバナーをグループとして読み込みます。
 
 ## How to use
 

@@ -127,7 +127,7 @@ RUNA SDKは、CoreやBannerなどの複数のモジュールで構成されて�
 参照先: [バナーグループ](./group/README.md)
 
 Group Requestを利用するUI 部品。
-参照先: [Carousel View](./carousel/README.md)
+参照先: [Carousel Ads](./carousel/README.md)
 
 
 ## 2. 実装サンプル

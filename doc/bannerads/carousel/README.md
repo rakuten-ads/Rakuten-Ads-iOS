@@ -2,9 +2,14 @@
 
 ---
 
-# Carousel View
+# Carousel Ads
 
-A `RUNACarouselView` is a convenient UI component shows a group of banner ads with distinct contents by using `RUNABannerGroup`, bases on an `UICollectionView` in horizontal orientation.
+## Overview
+
+Carousel ads are horizontal banner ads that allow app users to scroll horizontally.<br>
+One banner ad is displayed for each ad spot ID (`adSpotIds`) or ad spot code (`adSpotCodes`) specified.<br>
+The size of each banner is determined by `itemScaleMode`: it either fits the width of the parent view or uses a fixed width, and the height is calculated from the aspect ratio of the ad.<br>
+`RUNABannerCarouselView` is based on a horizontally scrolling `UICollectionView` and loads its banners as a group by using `RUNABannerGroup`.
 
 ## How to use
 
@@ -63,7 +68,7 @@ carouselView.load { [weak self] carouselView, banner, event in
 }
 ```
 
-### complex settings of RUNABannerView
+### Complex settings of RUNABannerView
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 ```Swift
 
@@ -85,7 +90,7 @@ carouselView.load { [weak self] carouselView, banner, event in
 }
 ```
 
-### item view decoration
+### Item view decoration
 ![Language](http://img.shields.io/badge/language-Swift-red.svg?style=flat)
 ```Swift
 let carouselView = RUNABannerCarouselView()

@@ -5,7 +5,7 @@
 ![iOS](http://img.shields.io/badge/support-iOS_10+-blue.svg?style=flat)
 ![Xcode](http://img.shields.io/badge/IDE-Xcode_10+-blue.svg?style=flat)
 
-# Rakuten Publisher Service iOS SDK
+# RUNA SDK for iOS
 * [広告フォーマット](#ad-formats)
 * [はじめに](#get-started)
 * [前提](#prerequisites)

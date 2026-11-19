@@ -6,7 +6,7 @@
 ![iOS](http://img.shields.io/badge/support-iOS_15+-orange.svg?style=flat)
 ![Xcode](http://img.shields.io/badge/IDE-Xcode_16+-orange.svg?style=flat)
 
-# Rakuten Publisher Service iOS SDK
+# RUNA SDK for iOS
 * [Get Started](#get-started)
 * [Prerequisites](#prerequisites)
 * [Integrate SDK](#integrate-sdk)
