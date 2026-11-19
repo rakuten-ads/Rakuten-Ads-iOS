@@ -22,7 +22,8 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   s.author       = "Rakuten"
   s.platform     = :ios, "13.0"
   s.source       = {
-    :http => "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/#{s.name}/#{s.name}_iOS_#{s.version}.xcframework.zip"
+    :http => "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/#{s.name}/#{s.name}_iOS_#{s.version}.xcframework.zip",
+    :sha256 => "9beb20b61097006c0444940f5c45515ad5f8161fbf78828c5446896f7ed74fdb"
   }
   s.vendored_frameworks = "#{s.name}.xcframework"
 

@@ -22,7 +22,8 @@ This repository is used to distribute #{s.name} iOS SDK for CocoaPods users.
   s.author       = "Rakuten"
   s.platform     = :ios, "10.0"
   s.source       = {
-    :http => "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/#{s.version}/#{s.name}_iOS_#{s.version}.framework.zip"
+    :http => "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/#{s.version}/#{s.name}_iOS_#{s.version}.framework.zip",
+    :sha256 => "723a6826a7c3b9f9579d3fa9c798c740a363fff2992a28b34c307752f6dbabac"
   }
   s.vendored_frameworks = "Carthage/Build/iOS/#{s.name}.framework"
 
