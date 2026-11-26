@@ -110,6 +110,27 @@ It can be used at a scean like that we need to pause a video ad is shown in back
 - **(void) toggleVideoAdPlay:(BOOL) shouldPlay**<br>
   - `shouldPlay`: Bool, Value `true` to play and `false` to pause.
 
+### Click URL Policy
+
+Available from **RUNACore 1.10.0** / **RUNABanner 1.18.0** / **RUNA 1.20.0**.
+
+URLs opened by an ad click (banner, video ad and native ad) are checked before they are handed to the system. A blocked URL is simply not opened; the ad itself keeps working.
+
+- `http` / `https` URLs are allowed only when they have a host.
+- These schemes are blocked by default: `tel`, `sms`, `mailto`, `facetime`, `facetime-audio`, `itms`, `itms-apps`, `itms-appss`, `itms-services`, `file`, `javascript`, `data`, `blob`.
+- Other custom schemes (for example, deep links of your app) are allowed.
+- URLs without a scheme are blocked.
+
+If an ad needs to open one of the blocked schemes (for example `tel` or `mailto`), add the scheme to `RUNA_INFO_KEY_URL_SCHEME_ALLOW_LIST` in your `runa.plist`. Schemes in this list are always allowed, are compared case-insensitively, and take priority over the blocked schemes above.
+
+```xml
+<key>RUNA_INFO_KEY_URL_SCHEME_ALLOW_LIST</key>
+<array>
+    <string>tel</string>
+    <string>mailto</string>
+</array>
+```
+
 ### Get SDK Version String
 The RUNA SDK is composed of multiple modules, such as Core, Banner, and others. Each module follows its own versioning system, and the overall RUNA SDK version is determined by the versions of these individual modules.
 

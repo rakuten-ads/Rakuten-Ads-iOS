@@ -48,6 +48,8 @@ RUNA SDK `1.16.0`から`RUNAMediationAdapter`SDKが提供された。
 `GoogleAdsMobile` SDKを依頼しているが、[`GoogleAdsMobile`現在SPMではなくCocoapodsの導入を推薦しているため](https://developers.google.com/admob/ios/quick-start#spm)、
 `RUNAMediationAdapter`はこの依頼関係を明示していない、開発者に`GoogleAdsMobile` SDKの導入方法の決定を委ねます。
 
+`RUNAMediationAdapter 1.1.0` / RUNA `1.20.0` 以降は、`GoogleAdsMobile` SDK `13.10` 以上（CocoaPods依存 `Google-Mobile-Ads-SDK ~> 13.10`）向けにビルドされ、iOS 15 以上が必要です。
+
 #### 必要なRUNAのパラメーターを設定
 
 `RUNAAdParameter`を使って必要なパラメーターを設定して`GADAdNetworkExtras`プロトコルに沿い、GADに登録する。

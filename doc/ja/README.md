@@ -29,7 +29,7 @@
 ## [前提](#prerequisites)
 
 - Xcode 10 以上
-- iOS 10 以上
+- iOS 15 以上 (RUNA 1.20.0 以降)
 - iOS 17でビルド
 
 <div id="import_sdk"></div>

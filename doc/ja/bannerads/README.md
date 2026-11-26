@@ -112,6 +112,27 @@ RUNA SDKがビデオ広告の再生コントロール方法を提供していま
 - **(void) toggleVideoAdPlay:(BOOL) shouldPlay;**<br>
   - `shouldPlay`: Bool, 値`true`は再生する、`false`は中断する。
 
+### クリックURLポリシー
+
+**RUNACore 1.10.0** / **RUNABanner 1.18.0** / **RUNA 1.20.0** 以降で利用可能。
+
+広告のクリックで開くURL（バナー、動画広告、ネイティブ広告）は、システムに渡す前に検証されます。許可されないURLは開かれませんが、広告の表示や動作には影響しません。
+
+- `http` / `https` はホストを持つURLのみ許可されます。
+- 次のスキームは既定でブロックされます: `tel`, `sms`, `mailto`, `facetime`, `facetime-audio`, `itms`, `itms-apps`, `itms-appss`, `itms-services`, `file`, `javascript`, `data`, `blob`
+- その他のカスタムスキーム（アプリのディープリンクなど）は許可されます。
+- スキームのないURLはブロックされます。
+
+ブロック対象のスキーム（例: `tel`、`mailto`）を広告から開く必要がある場合は、`runa.plist` の `RUNA_INFO_KEY_URL_SCHEME_ALLOW_LIST` にそのスキームを追加してください。このリストのスキームは大文字小文字を区別せず、ブロック対象より優先して常に許可されます。
+
+```xml
+<key>RUNA_INFO_KEY_URL_SCHEME_ALLOW_LIST</key>
+<array>
+    <string>tel</string>
+    <string>mailto</string>
+</array>
+```
+
 ### SDKバージョン取得
 RUNA SDKは、CoreやBannerなどの複数のモジュールで構成されています。各モジュールはそれぞれ独自のバージョン管理を行っており、RUNA SDK全体のバージョンはこれらのモジュールのバージョンによって決定されます。
 

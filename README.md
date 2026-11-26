@@ -29,7 +29,7 @@
 ## [Prerequisites](#prerequisites)
 
 * Xcode 10 or higher
-* iOS 10 or higher
+* iOS 15 or higher (from RUNA 1.20.0)
 * Build iOS 17
 
 

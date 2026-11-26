@@ -49,6 +49,8 @@ and add package `RUNAMediationAdapter` to the target project.
 The `RUNAMediationAdapter` SDK dependents on `GoogleAdsMobile` SDK, but since the [SPM is not recommended by `GoogleAdsMobile` currently](https://developers.google.com/admob/ios/quick-start#spm),
 `RUNAMediationAdapter` doesn't strict the dependency relation in the declare file while let developers to decide the method to import `GoogleAdsMobile` SDK.
 
+From `RUNAMediationAdapter 1.1.0` / RUNA `1.20.0`, the adapter is built for `GoogleAdsMobile` SDK `13.10` or later (CocoaPods dependency `Google-Mobile-Ads-SDK ~> 13.10`) and requires iOS 15 or higher.
+
 #### Configure RUNA essential parameters
 
 Configure the essential parameters in the class `RUNAAdParameter` for `RUNABanner` and register it to GAD by `GADAdNetworkExtras` protocol.
