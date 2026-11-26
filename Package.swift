@@ -57,8 +57,8 @@ let package = Package(
         ),
         .binaryTarget(
             name: "OMSDK_Rakuten",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMSDK/RUNAOMSDK_iOS_1.5.2.xcframework.zip",
-            checksum : "577e954e53c7ee31a89f413b836423543622ab5d721b32ee74864450409f6a6e"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMSDK/RUNAOMSDK_iOS_1.6.12.xcframework.zip",
+            checksum : "1e0070011a50f37f71d82b8627e51db5c44e2f73ad7a641bf78c275ad703913a"
         ),
         .binaryTarget(
             name: "RUNAMediationAdapter",
