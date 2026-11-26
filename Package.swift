@@ -62,8 +62,8 @@ let package = Package(
         ),
         .binaryTarget(
             name: "RUNAMediationAdapter",
-            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAMediationAdapter/RUNAMediationAdapter_iOS_1.0.3.xcframework.zip",
-			checksum : "ce2c15005a9b48d2cb8c7664c35a30aae1a485241934bebeb2d6093beb6562f2"
+            url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAMediationAdapter/RUNAMediationAdapter_iOS_1.1.0.xcframework.zip",
+			checksum : "21a1f493eac68fd669f44674d7b9b6866e01e762bb7f145f3fe79def03cd1ea8"
         ),
     ]
 )
