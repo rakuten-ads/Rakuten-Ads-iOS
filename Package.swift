@@ -53,7 +53,7 @@ let package = Package(
         .binaryTarget(
             name: "RUNAOMAdapter",
             url: "https://storage.googleapis.com/rssp-dev-cdn/sdk/ios/prod/RUNAOMAdapter/RUNAOMAdapter_iOS_1.3.5.xcframework.zip",
-			checksum : "7f39325926c7d5a2458b752dc716f4481b1515f6ab0403bcd8d293b53d305cfe"
+			checksum : "3bec96852be4b9ff3c12aae19f5918a6ac7eff1a8d938b746d1d104ad8ae02e7"
         ),
         .binaryTarget(
             name: "OMSDK_Rakuten",
